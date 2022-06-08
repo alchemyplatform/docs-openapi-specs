@@ -7,7 +7,7 @@
     },
     "servers": [
       {
-        "url": "https://eth-mainnet.alchemyapi.io",
+        "url": "https://eth-mainnet.alchemyapi.io/v2/",
         "variables": {
           "apiKey": {
             "default": "demo"
