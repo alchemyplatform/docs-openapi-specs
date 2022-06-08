@@ -1,0 +1,20 @@
+name: rdme 🦉 Sync to ReadMe
+author: ReadMe
+branding:
+  color: blue
+  icon: book-open
+description: Sync OpenAPI/Swagger (OAS) definitions and Markdown documentation from your GitHub repository to your ReadMe developer hub
+inputs:
+  rdme:
+    description: Command to pass into rdme
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install rdme deps
+      run: npm install --production --silent
+      shell: bash
+      working-directory: ${{ github.action_path }}
+    - name: Execute rdme command
+      run: ${{ github.action_path }}/bin/rdme ${{ inputs.rdme }}
+      shell: bash
