@@ -61,23 +61,23 @@ components:
               blockHash:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/request/blockHash"
+                  "$ref": "./param-descriptions.yaml#/request/blockHash"
               address:
                 type: array
                 items:
                   type: string
                 description:
-                  "$ref": "./param-descriptions.json#/request/getLogs_address"
+                  "$ref": "./param-descriptions.yaml#/request/getLogs_address"
               fromBlock:
                 type: string
                 default: latest
                 description:
-                  "$ref": "./param-descriptions.json#/request/fromBlock"
+                  "$ref": "./param-descriptions.yaml#/request/fromBlock"
               toBlock:
                 type: string
                 default: latest
                 description:
-                  "$ref": "./param-descriptions.json#/request/toBlock"
+                  "$ref": "./param-descriptions.yaml#/request/toBlock"
               topics:
                 type: array
                 items:
@@ -95,41 +95,41 @@ components:
               blockHash:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/blockHash"
+                  "$ref": "./param-descriptions.yaml#/logs_response/blockHash"
               address:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/address"
+                  "$ref": "./param-descriptions.yaml#/logs_response/address"
               logIndex:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/logIndex"
+                  "$ref": "./param-descriptions.yaml#/logs_response/logIndex"
               data:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/data"
+                  "$ref": "./param-descriptions.yaml#/logs_response/data"
               removed:
                 type: boolean
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/removed"
+                  "$ref": "./param-descriptions.yaml#/logs_response/removed"
               topics:
                 type: array
                 items:
                   type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/topics"
+                  "$ref": "./param-descriptions.yaml#/logs_response/topics"
               blockNumber:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/blockNumber"
+                  "$ref": "./param-descriptions.yaml#/logs_response/blockNumber"
               transactionIndex:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/transactionIndex"
+                  "$ref": "./param-descriptions.yaml#/logs_response/transactionIndex"
               transactionHash:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.json#/logs_response/transactionHash"
+                  "$ref": "./param-descriptions.yaml#/logs_response/transactionHash"
         id:
           type: integer
         jsonrpc:
