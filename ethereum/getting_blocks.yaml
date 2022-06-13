@@ -1,0 +1,196 @@
+---
+openapi: 3.1.0
+info:
+  title: Getting Blocks
+  description: Retrieves information from a particular block in the blockchain.
+  version: '1.0'
+servers:
+- url: https://eth-mainnet.alchemyapi.io/v2/
+  variables:
+    apiKey:
+      default: demo
+paths:
+  "/{apiKey}":
+    post:
+      summary: eth_blockNumber
+      description: Returns the number of the most recent block.
+      parameters:
+      - name: apiKey
+        in: path
+        schema:
+          type: string
+          default: demo
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/eth_blockNumber_body"
+      responses:
+        '200':
+          description: Click to see response payload
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eth_blockNumber_response"
+  "/{apiKey}":
+    post:
+      summary: eth_getBlockByNumber
+      description: Returns information about a block by block number.
+      parameters:
+      - name: apiKey
+        in: path
+        schema:
+          type: string
+          default: demo
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/eth_getBlockByNumber_body"
+      responses:
+        '200':
+          description: Click to see response payload
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eth_getBlockByNumber_response"
+components:
+  schemas:
+    eth_blockNumber_body:
+      type: object
+      properties:
+        method:
+          type: string
+          default: eth_blockNumber
+          enum:
+          - eth_blockNumber
+        id:
+          type: integer
+          default: 1
+        jsonrpc:
+          type: string
+          default: '2.0'
+    eth_getBlockByNumber_body:
+      type: object
+      properties:
+        method:
+          type: string
+          default: eth_getBlockByNumber
+          enum:
+          - eth_getBlockByNumber
+        id:
+          type: integer
+          default: 1
+        jsonrpc:
+          type: string
+          default: '2.0'
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          prefixItems: 
+            types:
+              - string
+              - boolean 
+    eth_blockNumber_response:
+      type: object
+      description: "./param-descriptions.yaml#/getBlock_response/result"
+      properties:
+        result:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/result"
+        id:
+          type: integer
+        jsonrpc:
+          type: string
+    eth_getBlockByNumber_response:
+      type: object
+      description: A block object with the following fields, or null when no block was found.
+      properties:
+        number:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/number"
+        hash:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/hash"
+        parentHash:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/parentHash"
+        nonce:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/nonce"
+        sha3Uncles:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/sha3Uncles"
+        logsBloom:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/logsBloom"
+        transactionsRoot:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/transactionsRoot"
+        stateRoot:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/stateRoot"
+        receiptsRoot:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/receiptsRoot"
+        miner:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/miner"
+        difficulty:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/difficulty"
+        totalDifficulty:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/totalDifficulty"
+        extraData:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/extraData"
+        size:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/size"
+        gasLimit:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/gasLimit"
+        gasUsed:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/gasUsed"
+        timestamp:
+          type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/timestamp"
+        transactions:
+          type: array
+          items:
+            type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/transactions"
+        uncles:
+          type: array
+          items:
+            type: string
+          description:
+            "$ref": "./param-descriptions.yaml#/getBlock_response/uncles"
+        id:
+          type: integer
+        jsonrpc:
+          type: string

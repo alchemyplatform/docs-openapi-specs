@@ -27,3 +27,24 @@ logs_response:
   topics: 'Array of 0 to 4 32 Bytes DATA of indexed log arguments. In solidity: The
     first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)),
     except you declare the event with the anonymous specifier.'
+getBlock_response:
+  number: the block number. null when its pending block.
+  hash: 32 Bytes - hash of the block. null when its pending block.
+  parentHash: 32 Bytes - hash of the parent block.
+  nonce: 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+  sha3Uncles: 32 Bytes - SHA3 of the uncles data in the block.
+  logsBloom: 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+  transactionsRoot: 32 Bytes - the root of the transaction trie of the block.
+  stateRoot: 32 Bytes - the root of the final state trie of the block.
+  receiptsRoot: 32 Bytes - the root of the receipts trie of the block.
+  miner: 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+  difficulty:  integer of the difficulty for this block.
+  totalDifficulty:  integer of the total difficulty of the chain until this block.
+  extraData:  the "extra data" field of this block.
+  size:  integer the size of this block in bytes.
+  gasLimit:  the maximum gas allowed in this block.
+  gasUsed:  the total used gas by all transactions in this block.
+  timestamp:  the unix timestamp for when the block was collated.
+  transactions: Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
+  uncles: Array of uncle hashes.
+  result: Integer of the current block number the client is on
