@@ -34,7 +34,7 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/eth_getLogs_response"
+                "$ref": "param-descriptions.yaml#/eth_getLogs_response"
 components:
   schemas:
     eth_getLogs_body:
@@ -61,76 +61,24 @@ components:
               blockHash:
                 type: string
                 description:
-                  "$ref": "./param-descriptions.yaml#/request/blockHash"
+                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/blockHash"
               address:
                 type: array
                 items:
                   type: string
                 description:
-                  "$ref": "./param-descriptions.yaml#/request/getLogs_address"
+                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/address"
               fromBlock:
                 type: string
                 default: latest
                 description:
-                  "$ref": "./param-descriptions.yaml#/request/fromBlock"
+                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/fromBlock"
               toBlock:
                 type: string
                 default: latest
                 description:
-                  "$ref": "./param-descriptions.yaml#/request/toBlock"
+                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/toBlock"
               topics:
                 type: array
                 items:
                   type: string
-    eth_getLogs_response:
-      type: object
-      properties:
-        result:
-          type: array
-          description: Array of log objects, or an empty array if nothing has changed
-            since last poll.
-          items:
-            type: object
-            properties:
-              blockHash:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/blockHash"
-              address:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/address"
-              logIndex:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/logIndex"
-              data:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/data"
-              removed:
-                type: boolean
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/removed"
-              topics:
-                type: array
-                items:
-                  type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/topics"
-              blockNumber:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/blockNumber"
-              transactionIndex:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/transactionIndex"
-              transactionHash:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/logs_response/transactionHash"
-        id:
-          type: integer
-        jsonrpc:
-          type: string

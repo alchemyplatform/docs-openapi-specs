@@ -1,7 +1,8 @@
 ---
 openapi: 3.1.0
 info:
-  title: Ethereum
+  title: Getting Blocks
+  description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
 - url: https://eth-mainnet.alchemyapi.io/v2/
@@ -31,7 +32,7 @@ paths:
             content:
               application/json:
                 schema:
-                  "$ref": "ethereum/param-descriptions.yaml#/eth_getBlockByHash_response"
+                  "$ref": "param-descriptions.yaml#/eth_getBlockByHash_response"
 components:
   schemas:
     eth_getBlockByNumber_body:
