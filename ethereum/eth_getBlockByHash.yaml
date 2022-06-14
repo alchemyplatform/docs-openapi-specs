@@ -1,0 +1,49 @@
+---
+openapi: 3.1.0
+info:
+  version: '1.0'
+servers:
+- url: https://eth-mainnet.alchemyapi.io/v2/
+  variables:
+    apiKey:
+      default: demo
+paths:
+  "/{apiKey}":
+      post:
+        summary: eth_getBlockByHash
+        description: Returns information about a block by block hash.
+        parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eth_getBlockByHash_body"
+        responses:
+          '200':
+            description: Click to see response payload
+            content:
+              application/json:
+                schema:
+                "$ref": "param-descriptions.yaml#/eth_getBlockByHash_response"
+components:
+  schemas:
+    eth_getBlockByHash_body:
+      type: object
+      properties:
+        method:
+          type: string
+          default: eth_getBlockByHash
+          enum:
+          - eth_getBlockByHash
+        id:
+          type: integer
+          default: 1
+        jsonrpc:
+          type: string
+          default: '2.0'

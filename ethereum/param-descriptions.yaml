@@ -27,6 +27,96 @@ logs_response:
   topics: 'Array of 0 to 4 32 Bytes DATA of indexed log arguments. In solidity: The
     first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)),
     except you declare the event with the anonymous specifier.'
+eth_getBlockByHash_response:
+  type: object
+  description: A block object with the following fields, or null when no block was found.
+  properties:
+    number:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/number"
+    hash:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/hash"
+    parentHash:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/parentHash"
+    nonce:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/nonce"
+    sha3Uncles:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/sha3Uncles"
+    logsBloom:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/logsBloom"
+    transactionsRoot:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/transactionsRoot"
+    stateRoot:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/stateRoot"
+    receiptsRoot:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/receiptsRoot"
+    miner:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/miner"
+    difficulty:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/difficulty"
+    totalDifficulty:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/totalDifficulty"
+    extraData:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/extraData"
+    size:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/size"
+    gasLimit:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/gasLimit"
+    gasUsed:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/gasUsed"
+    timestamp:
+      type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/timestamp"
+    transactions:
+      type: array
+      items:
+        type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/transactions"
+    uncles:
+      type: array
+      items:
+        type: string
+      description:
+        "$ref": "./param-descriptions.yaml#/getBlock_response/uncles"
+    id:
+      type: integer
+    jsonrpc:
+      type: string
+
+
 getBlock_response:
   number: the block number. null when its pending block.
   hash: 32 Bytes - hash of the block. null when its pending block.
