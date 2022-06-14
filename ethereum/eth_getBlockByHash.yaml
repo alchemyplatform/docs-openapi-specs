@@ -1,6 +1,8 @@
 ---
 openapi: 3.1.0
 info:
+  title: Ethereum
+  description: Returns information about a block by block hash.
   version: '1.0'
 servers:
 - url: https://eth-mainnet.alchemyapi.io/v2/
@@ -30,7 +32,7 @@ paths:
             content:
               application/json:
                 schema:
-                "$ref": "param-descriptions.yaml#/eth_getBlockByHash_response"
+                  "$ref": "ethereum/param-descriptions.yaml#/eth_getBlockByHash_response"
 components:
   schemas:
     eth_getBlockByHash_body:
@@ -47,3 +49,12 @@ components:
         jsonrpc:
           type: string
           default: '2.0'
+        params:
+          type: array
+          description: "1. String - Hash of block \n 2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions."
+          minItems: 2
+          maxItems: 2
+          prefixItems: 
+            types:
+              - string
+              - boolean 

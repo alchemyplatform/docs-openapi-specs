@@ -115,8 +115,17 @@ eth_getBlockByHash_response:
       type: integer
     jsonrpc:
       type: string
-
-
+eth_blockNumber_response:
+  type: object
+  description: Integer of the current block number the client is on.
+  properties:
+    result:
+      type: string
+      description: Integer of the current block number the client is on.
+    id:
+      type: integer
+    jsonrpc:
+      type: string
 getBlock_response:
   number: the block number. null when its pending block.
   hash: 32 Bytes - hash of the block. null when its pending block.
@@ -137,4 +146,3 @@ getBlock_response:
   timestamp:  the unix timestamp for when the block was collated.
   transactions: Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
   uncles: Array of uncle hashes.
-  result: Integer of the current block number the client is on

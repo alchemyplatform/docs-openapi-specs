@@ -1,0 +1,52 @@
+---
+openapi: 3.1.0
+info:
+  title: Ethereum
+  category: 5f7ce9e3a5504d0414d024c2
+  version: '1.0'
+servers:
+- url: https://eth-mainnet.alchemyapi.io/v2/
+  variables:
+    apiKey:
+      default: demo
+paths:
+  "/{apiKey}":
+    post:
+      summary: eth_blockNumber
+      description: Returns the number of the most recent block.
+      parameters:
+      - name: apiKey
+        in: path
+        schema:
+          type: string
+          default: demo
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/eth_blockNumber_body"
+      responses:
+        '200':
+          description: Click to see response payload
+          content:
+            application/json:
+              schema:
+                "$ref": "ethereum/param-descriptions.yaml#/eth_blockNumber_response"
+
+components:
+  schemas:
+    eth_blockNumber_body:
+      type: object
+      properties:
+        method:
+          type: string
+          default: eth_blockNumber
+          enum:
+          - eth_blockNumber
+        id:
+          type: integer
+          default: 1
+        jsonrpc:
+          type: string
+          default: '2.0'

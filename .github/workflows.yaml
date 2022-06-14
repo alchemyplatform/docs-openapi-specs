@@ -1,0 +1,23 @@
+name: Sync OpenAPI definition to ReadMe
+
+# Run workflow for every push to the `main` branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      # Run GitHub Action to sync OpenAPI file at [path-to-file.json]
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @7.2.0
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@7.2.0
+        with:
+          rdme: openapi ethereum/eth_blockNumber.yaml --key=rdme_xn8s9he02a71525a46b651c7c37827c7ece03fccde69eb269ac5a6651868fde0b4f821 --id=62a89fdd4f534e001a075760 
+          rdme: openapi ethereum/eth_getBlockByHash.yaml --key=rdme_xn8s9he02a71525a46b651c7c37827c7ece03fccde69eb269ac5a6651868fde0b4f821 --id=62a8959da024a3068520b93a
