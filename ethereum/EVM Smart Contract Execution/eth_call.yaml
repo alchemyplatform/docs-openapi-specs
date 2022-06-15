@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: 0f28dd778c214
 info:
   title: Message Call
   description: Executes a new message call immediately without creating a transaction on the block chain.
@@ -15,7 +13,7 @@ paths:
     post:
       operationId: eth_call
       summary: Message Call
-      description: Executes a new message call immediately without creating a transaction on the block chain..
+      description: Executes a new message call immediately without creating a transaction on the block chain.
       parameters:
         - name: apiKey
           in: path
@@ -30,7 +28,7 @@ paths:
               $ref: ./eth_call_body.yaml
       responses:
         '200':
-          description: Click to see response payload
+          description: The return value of executed contract.
           content:
             application/json:
               schema:

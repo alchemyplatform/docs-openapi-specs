@@ -1,3 +1,4 @@
+title: eth_call_body
 allOf:
   - $ref: ../CommonProperties.yaml
   - type: object
@@ -34,5 +35,3 @@ allOf:
               description: Hash of the method signature and encoded parameters
           required:
             - to
-x-stoplight:
-  id: d128b48720336
