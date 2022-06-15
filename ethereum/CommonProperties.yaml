@@ -1,0 +1,9 @@
+title: CommonProperties
+type: object
+properties:
+  id:
+    type: integer
+    default: 1
+  jsonrpc:
+    type: string
+    default: '2.0'

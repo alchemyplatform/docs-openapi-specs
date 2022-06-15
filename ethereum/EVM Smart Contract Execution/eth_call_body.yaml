@@ -1,0 +1,38 @@
+allOf:
+  - $ref: ../CommonProperties.yaml
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_call
+        enum:
+          - eth_call
+      params:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          properties:
+            from:
+              type: string
+              description: 20 Bytes - The address the transaction is sent from.
+            to:
+              type: string
+              description: 20 Bytes - The address the transaction is directed to
+            gas:
+              type: string
+              description: 'Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. NOTE: this parameter has a cap of 550 Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!'
+            gasPrice:
+              type: string
+              description: Integer of the gasPrice used for each paid gas.
+            value:
+              type: string
+              description: Integer of the value sent with this transaction
+            data:
+              type: string
+              description: Hash of the method signature and encoded parameters
+          required:
+            - to
+x-stoplight:
+  id: d128b48720336

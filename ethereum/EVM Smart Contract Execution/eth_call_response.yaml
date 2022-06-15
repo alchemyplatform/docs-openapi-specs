@@ -1,0 +1,7 @@
+title: eth_call_response
+allOf:
+  - $ref: ../CommonProperties.yaml
+  - type: object
+    properties:
+      result:
+        type: string

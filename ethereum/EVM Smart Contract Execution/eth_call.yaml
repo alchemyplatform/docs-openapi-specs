@@ -1,0 +1,37 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 0f28dd778c214
+info:
+  title: Message Call
+  description: Executes a new message call immediately without creating a transaction on the block chain.
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      operationId: eth_call
+      summary: Message Call
+      description: Executes a new message call immediately without creating a transaction on the block chain..
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./eth_call_body.yaml
+      responses:
+        '200':
+          description: Click to see response payload
+          content:
+            application/json:
+              schema:
+                $ref: ./eth_call_response.yaml
