@@ -25,27 +25,11 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/eth_blockNumber_body"
+              "$ref": "body.yaml#/eth_blockNumber"
       responses:
         '200':
           description: Click to see response payload
           content:
             application/json:
               schema:
-                "$ref": "param-descriptions.yaml#/eth_blockNumber_response"
-components:
-  schemas:
-    eth_blockNumber_body:
-      type: object
-      properties:
-        method:
-          type: string
-          default: eth_blockNumber
-          enum:
-          - eth_blockNumber
-        id:
-          type: integer
-          default: 1
-        jsonrpc:
-          type: string
-          default: '2.0'
+                "$ref": "responses.yaml#/eth_blockNumber"

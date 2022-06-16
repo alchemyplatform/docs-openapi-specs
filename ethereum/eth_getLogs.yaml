@@ -27,58 +27,11 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/eth_getLogs_body"
+              "$ref": "body.yaml#/eth_getLogs"
       responses:
         '200':
           description: Click to see response payload
           content:
             application/json:
               schema:
-                "$ref": "param-descriptions.yaml#/eth_getLogs_response"
-components:
-  schemas:
-    eth_getLogs_body:
-      type: object
-      properties:
-        method:
-          type: string
-          default: eth_getLogs
-          enum:
-          - eth_getLogs
-        id:
-          type: integer
-          default: 1
-        jsonrpc:
-          type: string
-          default: '2.0'
-        params:
-          type: array
-          minItems: 1
-          maxItems: 1
-          items:
-            type: object
-            properties:
-              blockHash:
-                type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/blockHash"
-              address:
-                type: array
-                items:
-                  type: string
-                description:
-                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/address"
-              fromBlock:
-                type: string
-                default: latest
-                description:
-                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/fromBlock"
-              toBlock:
-                type: string
-                default: latest
-                description:
-                  "$ref": "./param-descriptions.yaml#/eth_getLogs_request/toBlock"
-              topics:
-                type: array
-                items:
-                  type: string
+                "$ref": "responses.yaml#/eth_getLogs"

@@ -25,36 +25,12 @@ paths:
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/eth_getBlockByNumber_body"
+                  "$ref": "body.yaml#/eth_getBlockByNumber"
         responses:
           '200':
             description: Click to see response payload
             content:
               application/json:
                 schema:
-                  "$ref": "param-descriptions.yaml#/eth_getBlockByHash_response"
-components:
-  schemas:
-    eth_getBlockByNumber_body:
-      type: object
-      properties:
-        method:
-          type: string
-          default: eth_getBlockByNumber
-          enum:
-          - eth_getBlockByNumber
-        id:
-          type: integer
-          default: 1
-        jsonrpc:
-          type: string
-          default: '2.0'
-        params:
-          type: array
-          description: "1. String - Integer of a block number, or the string 'earliest', 'latest' or 'pending' \n 2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions."
-          minItems: 2
-          maxItems: 2
-          prefixItems: 
-            types:
-              - string
-              - boolean 
+                  "$ref": "responses.yaml#/eth_getBlockByNumber"
+    
