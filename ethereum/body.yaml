@@ -1,6 +1,6 @@
 eth_blockNumber:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -10,7 +10,7 @@ eth_blockNumber:
           - eth_blockNumber
 eth_getBlockByHash:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -31,7 +31,7 @@ eth_getBlockByHash:
             - boolean
 eth_getBlockByNumber:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -52,7 +52,7 @@ eth_getBlockByNumber:
             - boolean
 eth_getLogs:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -101,7 +101,7 @@ CommonProperties:
       default: '2.0'
 eth_call:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:

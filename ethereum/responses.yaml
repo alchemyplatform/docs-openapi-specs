@@ -1,6 +1,6 @@
 eth_getLogs:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       result:
@@ -10,7 +10,7 @@ eth_getLogs:
           $ref: '#/log_object'
 eth_blockNumber:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     description: Integer of the current block number the client is on.
     properties:
@@ -55,7 +55,7 @@ log_object:
       description: Hash of the transactions this log was created from. null when its pending log.
 block_object:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     description: 'A block object with the following fields, or null when no block was found.'
     properties:
@@ -129,7 +129,7 @@ CommonProperties:
       type: string
 eth_call:
   allOf:
-  - $ref: #/CommonProperties
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       result:
