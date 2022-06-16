@@ -1,5 +1,5 @@
 ---
-eth_blockNumber_body:
+eth_blockNumber:
   type: object
   properties:
     method:
