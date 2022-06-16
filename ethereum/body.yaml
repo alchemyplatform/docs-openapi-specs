@@ -1,105 +1,138 @@
----
 eth_blockNumber:
-  type: object
-  properties:
-    method:
-      type: string
-      default: eth_blockNumber
-      enum:
-      - eth_blockNumber
-    id:
-      type: integer
-      default: 1
-    jsonrpc:
-      type: string
-      default: '2.0'
+  allOf:
+  - $ref: #/CommonProperties
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_blockNumber
+        enum:
+          - eth_blockNumber
 eth_getBlockByHash:
-  type: object
-  properties:
-    method:
-      type: string
-      default: eth_getBlockByHash
-      enum:
-      - eth_getBlockByHash
-    id:
-      type: integer
-      default: 1
-    jsonrpc:
-      type: string
-      default: '2.0'
-    params:
-      type: array
-      description: "1. String - Hash of block \n 2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions."
-      minItems: 2
-      maxItems: 2
-      prefixItems: 
-        types:
-          - string
-          - boolean 
+  allOf:
+  - $ref: #/CommonProperties
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockByHash
+        enum:
+          - eth_getBlockByHash
+      params:
+        type: array
+        description: |-
+          1. String - Hash of block 
+            2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.
+        minItems: 2
+        maxItems: 2
+        prefixItems:
+          types:
+            - string
+            - boolean
 eth_getBlockByNumber:
-  type: object
-  properties:
-    method:
-      type: string
-      default: eth_getBlockByNumber
-      enum:
-      - eth_getBlockByNumber
-    id:
-      type: integer
-      default: 1
-    jsonrpc:
-      type: string
-      default: '2.0'
-    params:
-      type: array
-      description: "1. String - Integer of a block number, or the string 'earliest', 'latest' or 'pending' \n 2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions."
-      minItems: 2
-      maxItems: 2
-      prefixItems: 
-        types:
-          - string
-          - boolean 
+  allOf:
+  - $ref: #/CommonProperties
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockByNumber
+        enum:
+          - eth_getBlockByNumber
+      params:
+        type: array
+        description: |-
+          1. String - Integer of a block number, or the string 'earliest', 'latest' or 'pending' 
+            2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.
+        minItems: 2
+        maxItems: 2
+        prefixItems:
+          types:
+            - string
+            - boolean
 eth_getLogs:
-  type: object
-  properties:
-    method:
-      type: string
-      default: eth_getLogs
-      enum:
-      - eth_getLogs
-    id:
-      type: integer
-      default: 1
-    jsonrpc:
-      type: string
-      default: '2.0'
-    params:
-      type: array
-      minItems: 1
-      maxItems: 1
-      items:
-        type: object
-        properties:
-          blockHash:
-            type: string
-            description: Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.
-          address:
-            type: array
-            items:
+  allOf:
+  - $ref: #/CommonProperties
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getLogs
+        enum:
+          - eth_getLogs
+      params:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          properties:
+            blockHash:
               type: string
-            description: Contract address or a list of addresses from which logs should originate.
-          fromBlock:
-            type: string
-            default: latest
-            description: Starting block number. Can be integer, hex, or 'latest' for the last mined block, 'pending', 'earliest' for not yet mined transactions.
-          toBlock:
-            type: string
-            default: latest
-            description: Ending block number. Can be integer, hex, or 'latest' for the last mined block, 'pending', 'earliest' for not yet mined transactions.
-          topics:
-            $ref: "#/topics"
+              description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
+            address:
+              type: array
+              items:
+                type: string
+              description: Contract address or a list of addresses from which logs should originate.
+            fromBlock:
+              type: string
+              default: latest
+              description: 'Starting block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+            toBlock:
+              type: string
+              default: latest
+              description: 'Ending block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+            topics:
+              $ref: '#/topics'
 topics:
   type: array
   description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
   items:
     type: string
+CommonProperties:
+  type: object
+  properties:
+    id:
+      type: integer
+      default: 1
+    jsonrpc:
+      type: string
+      default: '2.0'
+eth_call:
+  allOf:
+  - $ref: #/CommonProperties
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_call
+        enum:
+          - eth_call
+      params:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          type: object
+          properties:
+            from:
+              type: string
+              description: 20 Bytes - The address the transaction is sent from.
+            to:
+              type: string
+              description: 20 Bytes - The address the transaction is directed to
+            gas:
+              type: string
+              description: 'Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. NOTE: this parameter has a cap of 550 Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!'
+            gasPrice:
+              type: string
+              description: Integer of the gasPrice used for each paid gas.
+            value:
+              type: string
+              description: Integer of the value sent with this transaction
+            data:
+              type: string
+              description: Hash of the method signature and encoded parameters
+          required:
+            - to
