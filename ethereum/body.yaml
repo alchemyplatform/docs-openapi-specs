@@ -97,11 +97,9 @@ eth_getLogs:
             default: latest
             description: Ending block number. Can be integer, hex, or 'latest' for the last mined block, 'pending', 'earliest' for not yet mined transactions.
           topics:
-            $ref: "#/components/schemas/topics"
-components:
-  schemas:
-    topics:
-      type: array
-      description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
-      items:
-        type: string
+            $ref: "#/topics"
+topics:
+  type: array
+  description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
+  items:
+    type: string
