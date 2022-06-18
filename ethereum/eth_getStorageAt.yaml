@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: Storage
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getStorageAt
+      description: Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getStorageAt
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_getStorageAt'
+      operationId: eth_getStorageAt

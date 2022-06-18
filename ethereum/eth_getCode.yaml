@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: Code
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getCode
+      description: Returns code at a given address.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getCode
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_getCode'
+      operationId: eth_getCode
