@@ -136,3 +136,102 @@ eth_call:
               description: Hash of the method signature and encoded parameters
           required:
             - to
+string_array_params:
+  type: object
+  properties:
+    params:
+      type: array
+      items:
+        type: string
+
+eth_getTransactionByHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionByHash
+        enum:
+          - eth_getTransactionByHash
+
+eth_getTransactionCount:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionCount
+        enum:
+          - eth_getTransactionCount
+
+eth_getTransactionReceipt:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionReceipt
+        enum:
+          - eth_getTransactionReceipt
+
+eth_getBlockTransactionCountByHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockTransactionCountByHash
+        enum:
+          - eth_getBlockTransactionCountByHash
+eth_getBlockTransactionCountByNumber:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockTransactionCountByNumber
+        enum:
+          - eth_getBlockTransactionCountByNumber
+eth_getTransactionByBlockHashAndIndex:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionByBlockHashAndIndex
+        enum:
+          - eth_getTransactionByBlockHashAndIndex
+eth_getTransactionByBlockNumberAndIndex:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionByBlockNumberAndIndex
+        enum:
+          - eth_getTransactionByBlockNumberAndIndex
+eth_getBlockReceipts:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockReceipts
+        enum:
+          - eth_getBlockReceiptss
