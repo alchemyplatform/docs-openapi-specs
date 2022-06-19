@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: Filter Logs
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getFilterLogs
+      description: "Returns an array of all logs matching filter with given id. Can compute the same results with an eth_getLogs call."
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getFilterLogs
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_getLogs'
+      operationId: eth_getFilterLogs

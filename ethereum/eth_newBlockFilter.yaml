@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: New Block Filter
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_newBlockFilter
+      description: "Creates a filter in the node, to notify when a new block arrives."
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_newBlockFilter
+      responses:
+        '200':
+          description: "Returns a filter id."
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_newBlockFilter
