@@ -1,7 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Message Call
-  description: Executes a new message call immediately without creating a transaction on the block chain.
+  title: Code
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -11,9 +10,9 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      operationId: eth_call
-      summary: Message Call
-      description: Executes a new message call immediately without creating a transaction on the block chain..
+      summary: eth_getCode
+      description: Returns code at a given address.
+      tags: []
       parameters:
         - name: apiKey
           in: path
@@ -25,11 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_call
+              $ref: body.yaml#/eth_getCode
       responses:
         '200':
-          description: "Returns integer of the number of transactions in this block."
+          description: "Returns the code from the given address."
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/string_result_response
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_getCode

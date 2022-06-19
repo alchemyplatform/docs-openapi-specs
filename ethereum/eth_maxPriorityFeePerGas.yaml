@@ -1,7 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Message Call
-  description: Executes a new message call immediately without creating a transaction on the block chain.
+  title: Priority Fee per Gas
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -11,9 +10,9 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      operationId: eth_call
-      summary: Message Call
-      description: Executes a new message call immediately without creating a transaction on the block chain..
+      summary: eth_maxPriorityFeePerGas
+      description: "Returns a fee per gas that is an estimate of how much you can pay as a priority fee, or 'tip', to get a transaction included in the current block."
+      tags: []
       parameters:
         - name: apiKey
           in: path
@@ -25,11 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_call
+              $ref: body.yaml#/eth_maxPriorityFeePerGas
       responses:
         '200':
-          description: "Returns integer of the number of transactions in this block."
+          description: "Returns the estimated priority fee per gas."
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/string_result_response
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_maxPriorityFeePerGas

@@ -18,59 +18,56 @@ eth_blockNumber:
         type: string
         description: Integer of the current block number the client is on.
 eth_getBlockByNumber:
-  $ref: '#/block_object'
-eth_getBlockByHash:
-  $ref: '#/block_object'
-log_object:
-  type: object
-  properties:
-    blockHash:
-      type: string
-      description: 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log
-    address:
-      type: string
-      description: 20 Bytes - address from which this log originated.
-    logIndex:
-      type: string
-      description: Integer of the log index position in the block. null when its pending log.
-    data:
-      type: string
-      description: Contains one or more 32 Bytes non-indexed arguments of the log.
-    removed:
-      type: boolean
-      description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
-    topics:
-      type: array
-      items:
-        type: string
-      description: 'Array of zero to four 32 Bytes DATA of indexed log arguments. In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declare the event with the anonymous specifier.'
-    blockNumber:
-      type: string
-      description: The block number where this log was in. null when its pending. null when its pending log.
-    transactionIndex:
-      type: string
-      description: Integer of the transactions index position log was created from. null when its pending log.
-    transactionHash:
-      type: string
-      description: Hash of the transactions this log was created from. null when its pending log.
-block_object:
   allOf:
   - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        $ref: '#/block_object'
+eth_getBlockByHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        $ref: '#/block_object'
+log_object:
+  allOf:
+  - $ref: '#/hash_number_transactionIndex'
+  - type: object
+    properties:
+      address:
+        type: string
+        description: 20 Bytes - address from which this log originated.
+      logIndex:
+        type: string
+        description: Integer of the log index position in the block. null when its pending log.
+      data:
+        type: string
+        description: Contains one or more 32 Bytes non-indexed arguments of the log.
+      removed:
+        type: boolean
+        description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
+      topics:
+        type: array
+        items:
+          type: string
+        description: 'Array of zero to four 32 Bytes DATA of indexed log arguments. In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declare the event with the anonymous specifier.'
+      transactionHash:
+        type: string
+        description: Hash of the transactions this log was created from. null when its pending log.
+block_object:
+  allOf:
+  - $ref: '#/nonce_hash'
   - type: object
     description: 'A block object with the following fields, or null when no block was found.'
     properties:
       number:
         type: string
         description: the block number. null when its pending block.
-      hash:
-        type: string
-        description: 32 Bytes - hash of the block. null when its pending block.
       parentHash:
         type: string
         description: 32 Bytes - hash of the parent block.
-      nonce:
-        type: string
-        description: 8 Bytes - hash of the generated proof-of-work. null when its pending block.
       sha3Uncles:
         type: string
         description: 32 Bytes - SHA3 of the uncles data in the block.
@@ -127,10 +124,221 @@ CommonProperties:
       type: integer
     jsonrpc:
       type: string
-eth_call:
+hash_number_transactionIndex:
+  type: object
+  properties:
+    blockHash:
+      type: string
+      description: 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log
+    blockNumber:
+      type: string
+      description: The block number where this log was in. null when its pending. null when its pending log.
+    transactionIndex:
+      type: string
+      description: Integer of the transactions index position log was created from. null when its pending log.
+nonce_hash:
+  type: object
+  properties:
+    nonce:
+      type: string
+      description: 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+    hash:
+      type: string
+      description: 32 Bytes - hash of the block. null when its pending block.
+eth_getTransactionByHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        description: "A transaction object, or null when no transaction was found"
+        allOf:
+        - $ref: '#/hash_number_transactionIndex'
+        - $ref: '#/nonce_hash'
+        - type: object
+          properties:
+            from:
+              type: string
+              description: "20 Bytes - address of the sender"
+            gas:
+              type: string
+              description: "gas provided by the sender"
+            gasPrice:
+              type: string
+              description: "gas price provided by the sender in Wei"
+            input:
+              type: string
+              description: "the data send along with the transaction"
+            r:
+              type: string
+              description: "ECDSA signature r"
+            s:
+              type: string
+              description: "ECDSA signature s"
+            to:
+              type: string
+              description: "20 Bytes - address of the receiver. null when it's a contract creation transaction"
+            v:
+              type: string
+              description: "ECDSA recovery id"
+            value:
+              type: string
+              description: "value transferred in Wei"
+transaction_receipt:
+  description: "A transaction receipt object, or null when no receipt was found"
+  allOf:
+  - $ref: '#/hash_number_transactionIndex'
+  - type: object
+    properties:
+      transactionHash:
+        type: string
+        description: "32 Bytes - hash of the transaction"
+      from:
+        type: string
+        description: "20 Bytes - address of the sender"
+      to:
+        type: string
+        description: "20 Bytes - address of the receiver. null when its a contract creation transaction"
+      cumulativeGasUsed: 
+        type: string
+        description: "The total amount of gas used when this transaction was executed in the block."
+      gasUsed:
+        type: string
+        description: "The amount of gas used by this specific transaction alone"
+      contractAddress:
+        type: string
+        description: "20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null"
+      logs:
+        type: array
+        description: "Array of log objects, which this transaction generated"
+        items:
+          $ref: '#/log_object'
+      logsBloom:
+        type: string
+        description: "256 Bytes - Bloom filter for light clients to quickly retrieve related logs"
+      root:
+        type: string
+        description: "32 bytes of post-transaction stateroot (pre Byzantium)"
+      status:
+        type: integer
+        description: "Either 1 (success) or 0 (failure)"
+        enum:
+          - 0
+          - 1
+eth_getTransactionReceipt:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        $ref: '#/transaction_receipt'      
+eth_getBlockReceipts:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: array
+        items:
+          $ref: '#/transaction_receipt'
+eth_cancelPrivateTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: boolean
+eth_getProof:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: Object
+        description: "An account object"
+        properties:
+          balance:
+            type: string
+            description: "the balance of the account"
+          codeHash:
+            type: string
+            description: "32 Bytes - hash of the code of the account. For a simple Account without code it will return '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'"
+          nonce:
+            type: string
+            description: "nonce of the account."
+          storageHash:
+            type: string
+            description: "32 Bytes - SHA3 of the StorageRoot. All storage will deliver a MerkleProof starting with this rootHash."
+          accountProof:
+            type: array
+            items:
+              type: string
+            description: "Array of rlp-serialized MerkleTree-Nodes, starting with the stateRoot-Node, following the path of the SHA3 (address) as key."
+          storageProof:
+            type: array
+            items:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: "the requested storage key"
+                value:
+                  type: string
+                  description: "the storage value"
+                proof:
+                  type: array
+                  items:
+                    type: string
+                  description: "Array of rlp-serialized MerkleTree-Nodes, starting with the storageHash-Node, following the path of the SHA3 (key) as path."
+string_result_response:
   allOf:
   - $ref: '#/CommonProperties'
   - type: object
     properties:
       result:
         type: string
+eth_feeHistory:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: object
+        required:
+        - OLDESTBLOCK
+        - BASEFEEPERGAS
+        - GASUSEDRATIO
+        properties:
+          OLDESTBLOCK:
+            type: integer
+            format: int64
+            description: "Lowest number block of the returned range."
+          BASEFEEPERGAS:
+            type: array
+            description: "An array of block base fees per gas. This includes the next block after the newest of the returned range, because this value can be derived from the newest block. Zeroes are returned for pre-EIP-1559 blocks."
+            items:
+              type: string
+          GASUSEDRATIO:
+            type: array
+            items:
+              type: number
+          REWARD:
+            type: array
+            items:
+              type: array
+              items:
+                type: string
+net_version:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: string
+        description: "The current network id. 1 - Ethereum Mainnet, 2 - Morden Testnet (deprecated), 3 - Ropsten Testnet, 4 - Rinkeby Testnet, 42 - Kovan Testnet,"
+        enum:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "42"
