@@ -250,4 +250,24 @@ eth_getBlockReceipts:
       result:
         type: array
         items:
+<<<<<<< HEAD
           $ref: '#/transaction_receipt'
+=======
+          $ref: '#/transaction_receipt'
+eth_sendRawTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: string
+        description: "32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available."
+eth_cancelPrivateTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: boolean
+        description: "true if transaction was successfully cancelled, false if not."
+>>>>>>> create-openapi-files-for-write-transactions-methods
