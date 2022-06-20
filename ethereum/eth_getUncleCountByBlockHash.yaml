@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction Count by hash
+  title: Uncle Count By Hash
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getBlockTransactionCountByHash
-      description: Returns the number of transactions in a block matching the given block hash.
+      summary: eth_getUncleCountByBlockHash
+      description: "Returns the number of uncles in a block matching the given block hash."
       tags: []
       parameters:
         - name: apiKey
@@ -25,12 +25,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getBlockTransactionCountByHash
+              $ref: body.yaml#/eth_getUncleCountByBlockHash
       responses:
         '200':
-          description: ""
+          description: "Returns integer of the number of uncles in this block."
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_call'
-      operationId: eth_getBlockTransactionCountByHash
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_getUncleCountByBlockHash

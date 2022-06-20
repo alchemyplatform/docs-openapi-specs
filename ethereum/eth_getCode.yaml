@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction Count by hash
+  title: Code
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getBlockTransactionCountByHash
-      description: Returns the number of transactions in a block matching the given block hash.
+      summary: eth_getCode
+      description: Returns code at a given address.
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,21 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 32 Bytes - hash of a block."
+        description: "Accepts (1) 20 Bytes - address. (2) Integer block number, or the string 'latest', 'earliest' or 'pending'."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getBlockTransactionCountByHash
+              $ref: body.yaml#/eth_getCode
       responses:
         '200':
+          description: "Returns the code from the given address."
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/string_result_response'
           description: ""
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_call'
-      operationId: eth_getBlockTransactionCountByHash
+                $ref: 'responses.yaml#/eth_getCode'
+      operationId: eth_getCode

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Raw transaction
+  title: Storage
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_sendRawTransaction
-      description: Creates a new message call transaction or a contract creation for signed transactions.
+      summary: eth_getStorageAt
+      description: Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods.
       tags: []
       parameters:
         - name: apiKey
@@ -21,14 +21,14 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts the signed transaction data."
+        description: "Accepts (1) 20 Bytes - address of the storage. (2) Integer of the position in the storage. (3) Integer block number, or the string 'latest', 'earliest' or 'pending'."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_sendRawTransaction
+              $ref: body.yaml#/eth_getStorageAt
       responses:
         '200':
-          description: "Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available."
+          description: "Returns the value at this storage position."
           content:
             application/json:
               schema:
@@ -37,5 +37,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_sendRawTransaction'
-      operationId: eth_sendRawTransaction
+                $ref: 'responses.yaml#/eth_getStorageAt'
+      operationId: eth_getStorageAt

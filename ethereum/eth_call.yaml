@@ -28,8 +28,8 @@ paths:
               $ref: body.yaml#/eth_call
       responses:
         '200':
-          description: The return value of executed contract.
+          description: "Returns integer of the number of transactions in this block."
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_call
+                $ref: responses.yaml#/string_result_response

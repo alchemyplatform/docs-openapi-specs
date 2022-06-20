@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction Count by hash
+  title: Chain Id
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getBlockTransactionCountByHash
-      description: Returns the number of transactions in a block matching the given block hash.
+      summary: eth_chainId
+      description: "Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155."
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 32 Bytes - hash of a block."
+        description: "Accepts nothing."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getBlockTransactionCountByHash
+              $ref: body.yaml#/eth_chainId
       responses:
         '200':
-          description: ""
+          description: "Returns integer of the current chain ID."
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_call'
-      operationId: eth_getBlockTransactionCountByHash
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_chainId

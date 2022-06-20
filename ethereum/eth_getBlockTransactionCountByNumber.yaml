@@ -32,5 +32,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: 'responses.yaml#/eth_call'
       operationId: eth_getBlockTransactionCountByNumber
