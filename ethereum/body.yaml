@@ -281,3 +281,4 @@ eth_cancelPrivateTransaction:
           properties:
             txHash:
               type: string
+              description: "Transaction hash for private transaction to be cancelled."
