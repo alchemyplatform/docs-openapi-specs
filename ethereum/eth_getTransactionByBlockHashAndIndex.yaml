@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Transaction by block hash and index
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getTransactionByBlockHashAndIndex
+      description: Returns information about a transaction by block hash and transaction index position.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        description: "Accepts 1. 32 Bytes - hash of a block 2. Integer of the transaction index position."
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getTransactionByBlockHashAndIndex
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_block'
+      operationId: eth_getTransactionByBlockHashAndIndex

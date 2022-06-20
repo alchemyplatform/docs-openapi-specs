@@ -282,3 +282,4 @@ eth_cancelPrivateTransaction:
             txHash:
               type: string
               description: "Transaction hash for private transaction to be cancelled."
+          - eth_getBlockReceipts

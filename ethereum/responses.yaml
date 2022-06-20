@@ -267,3 +267,4 @@ eth_cancelPrivateTransaction:
       result:
         type: boolean
         description: "true if transaction was successfully cancelled, false if not."
+          $ref: '#/transaction_receipt'

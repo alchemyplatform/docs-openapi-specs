@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Transaction Count by hash
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getBlockTransactionCountByHash
+      description: Returns the number of transactions in a block matching the given block hash.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        description: "Accepts 32 Bytes - hash of a block."
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getBlockTransactionCountByHash
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_getBlockTransactionCountByHash
