@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts nothing."
         content:
           application/json:
             schema:
@@ -32,4 +33,10 @@ paths:
             application/json:
               schema:
                 $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_accounts
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_accounts'
       operationId: eth_accounts

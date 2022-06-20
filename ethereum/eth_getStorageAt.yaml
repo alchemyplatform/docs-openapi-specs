@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts (1) 20 Bytes - address of the storage. (2) Integer of the position in the storage. (3) Integer block number, or the string 'latest', 'earliest' or 'pending'."
         content:
           application/json:
             schema:
@@ -32,4 +33,9 @@ paths:
             application/json:
               schema:
                 $ref: 'responses.yaml#/string_result_response'
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_getStorageAt'
       operationId: eth_getStorageAt

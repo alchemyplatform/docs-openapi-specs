@@ -28,6 +28,7 @@ paths:
       responses:
         '200':
           description: "Returns true if transaction was successfully cancelled, false if not."
+          description: ""
           content:
             application/json:
               schema:
