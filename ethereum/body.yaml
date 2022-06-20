@@ -154,7 +154,6 @@ eth_getTransactionByHash:
         default: eth_getTransactionByHash
         enum:
           - eth_getTransactionByHash
-
 eth_getTransactionCount:
   allOf:
   - $ref: '#/CommonProperties'
@@ -166,7 +165,6 @@ eth_getTransactionCount:
         default: eth_getTransactionCount
         enum:
           - eth_getTransactionCount
-
 eth_getTransactionReceipt:
   allOf:
   - $ref: '#/CommonProperties'
@@ -178,7 +176,6 @@ eth_getTransactionReceipt:
         default: eth_getTransactionReceipt
         enum:
           - eth_getTransactionReceipt
-
 eth_getBlockTransactionCountByHash:
   allOf:
   - $ref: '#/CommonProperties'
@@ -280,6 +277,69 @@ eth_cancelPrivateTransaction:
           type: object
           properties:
             txHash:
+              type: string
+eth_getBalance:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBalance
+        enum:
+          - eth_getBalance
+eth_getStorageAt:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getStorageAt
+        enum:
+          - eth_getStorageAt
+eth_getCode:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getCode
+        enum:
+          - eth_getCode
+eth_accounts:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_accounts
+        enum:
+          - eth_accounts
+      params:
+        type: array
+eth_getProof:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_accounts
+        enum:
+          - eth_accounts
+      params:
+        type: array
+        items:
+          oneOf:
+          - type: string
+          - type: array
+            items:
               type: string
               description: "Transaction hash for private transaction to be cancelled."
           - eth_getBlockReceipts

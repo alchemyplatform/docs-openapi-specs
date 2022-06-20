@@ -153,7 +153,6 @@ nonce_hash:
     hash:
       type: string
       description: 32 Bytes - hash of the block. null when its pending block.
-
 eth_getTransactionByHash:
   allOf:
   - $ref: '#/CommonProperties'
@@ -241,7 +240,6 @@ eth_getTransactionReceipt:
     properties:
       result:
         $ref: '#/transaction_receipt'
-        
 eth_getBlockReceipts:
   allOf:
   - $ref: '#/CommonProperties'
@@ -267,4 +265,80 @@ eth_cancelPrivateTransaction:
       result:
         type: boolean
         description: "true if transaction was successfully cancelled, false if not."
+eth_getBalance:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: string
+        description: "hex value of the current ETH balance for the given address, measured in wei."
+eth_getStorageAt:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: string
+        description: "the value at this storage position."
+eth_getCode:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: string
+        description: "the code from the given address."
+eth_accounts:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: array
+        items:
+          type: string
+          description: "20 Bytes - addresses owned by the client."
+eth_getProof:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: Object
+        description: "An account object"
+        properties:
+          balance:
+            type: string
+            description: "the balance of the account"
+          codeHash:
+            type: string
+            description: "32 Bytes - hash of the code of the account. For a simple Account without code it will return '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'"
+          nonce:
+            type: string
+            description: "nonce of the account."
+          storageHash:
+            type: string
+            description: "32 Bytes - SHA3 of the StorageRoot. All storage will deliver a MerkleProof starting with this rootHash."
+          accountProof:
+            type: array
+            items:
+              type: string
+            description: "Array of rlp-serialized MerkleTree-Nodes, starting with the stateRoot-Node, following the path of the SHA3 (address) as key."
+          storageProof:
+            type: array
+            items:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: "the requested storage key"
+                value:
+                  type: string
+                  description: "the storage value"
+                proof:
+                  type: array
+                  items:
+                    type: string
+                  description: "Array of rlp-serialized MerkleTree-Nodes, starting with the storageHash-Node, following the path of the SHA3 (key) as path."
           $ref: '#/transaction_receipt'
