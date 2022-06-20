@@ -143,10 +143,6 @@ string_array_params:
       type: array
       items:
         type: string
-<<<<<<< HEAD
-
-=======
->>>>>>> create-openapi-files-for-write-transactions-methods
 eth_getTransactionByHash:
   allOf:
   - $ref: '#/CommonProperties'
@@ -237,9 +233,6 @@ eth_getBlockReceipts:
         type: string
         default: eth_getBlockReceipts
         enum:
-<<<<<<< HEAD
-          - eth_getBlockReceipts
-=======
           - eth_getBlockReceipts
 eth_sendRawTransaction:
   allOf:
@@ -289,4 +282,3 @@ eth_cancelPrivateTransaction:
             txHash:
               type: string
               description: "Transaction hash for private transaction to be cancelled."
->>>>>>> create-openapi-files-for-write-transactions-methods
