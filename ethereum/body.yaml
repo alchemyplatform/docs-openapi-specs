@@ -567,6 +567,18 @@ eth_cancelPrivateTransaction:
 net_version:
   allOf:
   - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: net_version
+        enum:
+          - net_version
+      params:
+        type: array
+net_listening:
+  allOf:
+  - $ref: '#/CommonProperties'
         default: eth_cancelPrivateTransaction
         enum:
           - eth_cancelPrivateTransaction
@@ -585,6 +597,12 @@ eth_getBalance:
     properties:
       method:
         type: string
+        default: net_listening
+        enum:
+          - net_listening
+      params:
+        type: array
+eth_getUncleByBlockHashAndIndex:
         default: net_version
         enum:
           - net_version
@@ -602,6 +620,10 @@ eth_getStorageAt:
     properties:
       method:
         type: string
+        default: eth_getUncleByBlockHashAndIndex
+        enum:
+          - eth_getUncleByBlockHashAndIndex
+eth_getUncleByBlockNumberAndIndex:
         default: eth_getStorageAt
         enum:
           - eth_getStorageAt
@@ -613,6 +635,13 @@ eth_getCode:
     properties:
       method:
         type: string
+        default: eth_getUncleByBlockNumberAndIndex
+        enum:
+          - eth_getUncleByBlockNumberAndIndex
+eth_getUncleCountByBlockHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
         default: eth_getCode
         enum:
           - eth_getCode
@@ -623,6 +652,13 @@ eth_accounts:
     properties:
       method:
         type: string
+        default: eth_getUncleCountByBlockHash
+        enum:
+          - eth_getUncleCountByBlockHash
+eth_getUncleCountByBlockNumber:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
         default: eth_accounts
         enum:
           - eth_accounts
@@ -635,6 +671,9 @@ eth_getProof:
     properties:
       method:
         type: string
+        default: eth_getUncleCountByBlockNumber
+        enum:
+          - eth_getUncleCountByBlockNumber
         default: net_listening
         enum:
           - net_listening
