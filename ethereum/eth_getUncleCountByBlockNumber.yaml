@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts integer of a block number, or the string 'latest', 'earliest' or 'pending'."
         content:
           application/json:
             schema:

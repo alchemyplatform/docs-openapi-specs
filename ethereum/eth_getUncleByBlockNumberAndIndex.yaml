@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts (1) A block number, or the string 'earliest', 'latest' or 'pending'. (2) The uncle's index position."
         content:
           application/json:
             schema:
