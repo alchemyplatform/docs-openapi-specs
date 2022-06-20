@@ -143,7 +143,6 @@ string_array_params:
       type: array
       items:
         type: string
-
 eth_getTransactionByHash:
   allOf:
   - $ref: '#/CommonProperties'
@@ -234,4 +233,53 @@ eth_getBlockReceipts:
         type: string
         default: eth_getBlockReceipts
         enum:
+          - eth_getBlockReceipts
+eth_sendRawTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_sendRawTransaction
+        enum:
+          - eth_sendRawTransaction
+eth_sendPrivateTransaction:
+  type: array
+  items:
+    type: object
+    required:
+      - tx
+    properties:
+      tx:
+        type: string
+        description: "Raw, signed transaction"
+      maxBlockNumber:
+        type: string
+        description: "Hex-encoded number for highest block number in which the transaction should be included."
+      preferences:
+        type: object
+        properties:
+          fast:
+            type: boolean
+            description: "Sends transaction with fast mode when true."
+eth_cancelPrivateTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_cancelPrivateTransaction
+        enum:
+          - eth_cancelPrivateTransaction
+      params:
+        type: array
+        items:
+          type: object
+          properties:
+            txHash:
+              type: string
+              description: "Transaction hash for private transaction to be cancelled."
           - eth_getBlockReceipts
