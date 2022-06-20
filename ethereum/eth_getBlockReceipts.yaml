@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts block number or block hash to fetch transaction receipts for, or the string 'earliest', 'latest' or 'pending'."
         content:
           application/json:
             schema:

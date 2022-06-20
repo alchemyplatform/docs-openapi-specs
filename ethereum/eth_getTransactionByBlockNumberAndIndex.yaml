@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts 1. A block number, or the string 'earliest', 'latest' or 'pending' 2. The transaction index position."
         content:
           application/json:
             schema:
@@ -31,5 +32,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_getBlockByHash'
+                $ref: 'responses.yaml#/eth_block'
       operationId: eth_getTransactionByBlockNumberAndIndex

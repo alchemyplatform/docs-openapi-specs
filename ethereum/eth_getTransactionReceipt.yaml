@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts 32 Bytes - hash of a transaction."
         content:
           application/json:
             schema:

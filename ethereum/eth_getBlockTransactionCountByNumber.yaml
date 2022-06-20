@@ -21,6 +21,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts integer of a block number, or the string 'earliest', 'latest' or 'pending'."
         content:
           application/json:
             schema:
@@ -31,5 +32,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_call'
+                $ref: 'responses.yaml#/string_result_response'
       operationId: eth_getBlockTransactionCountByNumber
