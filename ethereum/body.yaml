@@ -341,3 +341,5 @@ eth_getProof:
           - type: array
             items:
               type: string
+              description: "Transaction hash for private transaction to be cancelled."
+          - eth_getBlockReceipts

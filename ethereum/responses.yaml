@@ -341,3 +341,4 @@ eth_getProof:
                   items:
                     type: string
                   description: "Array of rlp-serialized MerkleTree-Nodes, starting with the storageHash-Node, following the path of the SHA3 (key) as path."
+          $ref: '#/transaction_receipt'
