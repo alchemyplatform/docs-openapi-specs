@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction by block number and index
+  title: Fee History
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getTransactionByBlockNumberAndIndex
-      description: Returns information about a transaction by block number and transaction index position.
+      summary: eth_feeHistory
+      description: "Returns a collection of historical gas information."
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 1. A block number, or the string 'earliest', 'latest' or 'pending' 2. The transaction index position."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getTransactionByBlockNumberAndIndex
+              $ref: body.yaml#/eth_feeHistory
       responses:
         '200':
           description: ""
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_block'
-      operationId: eth_getTransactionByBlockNumberAndIndex
+                $ref: 'responses.yaml#/eth_feeHistory'
+      operationId: eth_feeHistory

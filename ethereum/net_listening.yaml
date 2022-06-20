@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction by block hash and index
+  title: Network Connection
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getTransactionByBlockHashAndIndex
-      description: Returns information about a transaction by block hash and transaction index position.
+      summary: net_listening
+      description: "Returns true if client is actively listening for network connections."
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 1. 32 Bytes - hash of a block 2. Integer of the transaction index position."
+        description: "Accepts nothing."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getTransactionByBlockHashAndIndex
+              $ref: body.yaml#/net_listening
       responses:
         '200':
-          description: ""
+          description: "Returns true when listening, otherwise false."
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_block'
-      operationId: eth_getTransactionByBlockHashAndIndex
+                $ref: 'responses.yaml#/eth_cancelPrivateTransaction'
+      operationId: net_listening

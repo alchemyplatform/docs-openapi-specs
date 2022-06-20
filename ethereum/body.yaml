@@ -420,6 +420,18 @@ eth_feeHistory:
 eth_maxPriorityFeePerGas:
   allOf:
   - $ref: '#/CommonProperties'
+            - to
+string_array_params:
+  type: object
+  properties:
+    params:
+      type: array
+      items:
+        type: string
+eth_getTransactionByHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
   - type: object
     properties:
       method:
@@ -430,6 +442,117 @@ eth_maxPriorityFeePerGas:
       params:
         type: array
 eth_chainId:
+        default: eth_getTransactionByHash
+        enum:
+          - eth_getTransactionByHash
+eth_getTransactionCount:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionCount
+        enum:
+          - eth_getTransactionCount
+eth_getTransactionReceipt:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionReceipt
+        enum:
+          - eth_getTransactionReceipt
+eth_getBlockTransactionCountByHash:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockTransactionCountByHash
+        enum:
+          - eth_getBlockTransactionCountByHash
+eth_getBlockTransactionCountByNumber:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockTransactionCountByNumber
+        enum:
+          - eth_getBlockTransactionCountByNumber
+eth_getTransactionByBlockHashAndIndex:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionByBlockHashAndIndex
+        enum:
+          - eth_getTransactionByBlockHashAndIndex
+eth_getTransactionByBlockNumberAndIndex:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getTransactionByBlockNumberAndIndex
+        enum:
+          - eth_getTransactionByBlockNumberAndIndex
+eth_getBlockReceipts:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getBlockReceipts
+        enum:
+          - eth_getBlockReceipts
+eth_sendRawTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_sendRawTransaction
+        enum:
+          - eth_sendRawTransaction
+eth_sendPrivateTransaction:
+  type: array
+  items:
+    type: object
+    required:
+      - tx
+    properties:
+      tx:
+        type: string
+        description: "Raw, signed transaction"
+      maxBlockNumber:
+        type: string
+        description: "Hex-encoded number for highest block number in which the transaction should be included."
+      preferences:
+        type: object
+        properties:
+          fast:
+            type: boolean
+            description: "Sends transaction with fast mode when true."
+eth_cancelPrivateTransaction:
   allOf:
   - $ref: '#/CommonProperties'
   - type: object
@@ -456,6 +579,20 @@ net_version:
 net_listening:
   allOf:
   - $ref: '#/CommonProperties'
+        default: eth_cancelPrivateTransaction
+        enum:
+          - eth_cancelPrivateTransaction
+      params:
+        type: array
+        items:
+          type: object
+          properties:
+            txHash:
+              type: string
+eth_getBalance:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
   - type: object
     properties:
       method:
@@ -466,6 +603,16 @@ net_listening:
       params:
         type: array
 eth_getUncleByBlockHashAndIndex:
+        default: net_version
+        enum:
+          - net_version
+      params:
+        type: array
+net_listening:
+        default: eth_getBalance
+        enum:
+          - eth_getBalance
+eth_getStorageAt:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
@@ -477,6 +624,10 @@ eth_getUncleByBlockHashAndIndex:
         enum:
           - eth_getUncleByBlockHashAndIndex
 eth_getUncleByBlockNumberAndIndex:
+        default: eth_getStorageAt
+        enum:
+          - eth_getStorageAt
+eth_getCode:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
@@ -491,6 +642,12 @@ eth_getUncleCountByBlockHash:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
+        default: eth_getCode
+        enum:
+          - eth_getCode
+eth_accounts:
+  allOf:
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -502,6 +659,14 @@ eth_getUncleCountByBlockNumber:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
+        default: eth_accounts
+        enum:
+          - eth_accounts
+      params:
+        type: array
+eth_getProof:
+  allOf:
+  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -509,3 +674,21 @@ eth_getUncleCountByBlockNumber:
         default: eth_getUncleCountByBlockNumber
         enum:
           - eth_getUncleCountByBlockNumber
+        default: net_listening
+        enum:
+          - net_listening
+      params:
+        type: array
+        default: eth_accounts
+        enum:
+          - eth_accounts
+      params:
+        type: array
+        items:
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+              description: "Transaction hash for private transaction to be cancelled."
+          - eth_getBlockReceipts

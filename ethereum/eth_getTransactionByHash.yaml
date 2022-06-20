@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction by block number and index
+  title: Hash Transaction
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getTransactionByBlockNumberAndIndex
-      description: Returns information about a transaction by block number and transaction index position.
+      summary: eth_getTransactionByHash
+      description: Returns the information about a transaction requested by transaction hash. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 1. A block number, or the string 'earliest', 'latest' or 'pending' 2. The transaction index position."
+        description: "Accepts 32 Bytes - hash of a transaction."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getTransactionByBlockNumberAndIndex
+              $ref: body.yaml#/eth_getTransactionByHash
       responses:
         '200':
           description: ""
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_block'
-      operationId: eth_getTransactionByBlockNumberAndIndex
+                $ref: 'responses.yaml#/eth_getTransactionByHash'
+      operationId: eth_getTransactionByHash
