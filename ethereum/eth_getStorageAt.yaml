@@ -28,6 +28,11 @@ paths:
               $ref: body.yaml#/eth_getStorageAt
       responses:
         '200':
+          description: "Returns the value at this storage position."
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/string_result_response'
           description: ""
           content:
             application/json:

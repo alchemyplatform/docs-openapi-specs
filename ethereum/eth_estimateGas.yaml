@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction Count by hash
+  title: Estimate Gas
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_getBlockTransactionCountByHash
-      description: Returns the number of transactions in a block matching the given block hash.
+      summary: eth_estimateGas
+      description: "Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain."
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 32 Bytes - hash of a block."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getBlockTransactionCountByHash
+              $ref: body.yaml#/eth_estimateGas
       responses:
         '200':
-          description: ""
+          description: "Returns the amount of gas used."
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_call'
-      operationId: eth_getBlockTransactionCountByHash
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_estimateGas
