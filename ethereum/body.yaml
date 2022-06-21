@@ -65,26 +65,28 @@ eth_getLogs:
         minItems: 1
         maxItems: 1
         items:
-          type: object
-          properties:
-            blockHash:
-              type: string
-              description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
-            address:
-              type: array
-              items:
-                type: string
-              description: Contract address or a list of addresses from which logs should originate.
-            fromBlock:
-              type: string
-              default: latest
-              description: 'Starting block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
-            toBlock:
-              type: string
-              default: latest
-              description: 'Ending block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
-            topics:
-              $ref: '#/topics'
+          $ref: '#/filter_options'
+filter_options:
+  type: object
+  properties:
+    blockHash:
+      type: string
+      description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
+    address:
+      type: array
+      items:
+        type: string
+      description: Contract address or a list of addresses from which logs should originate.
+    fromBlock:
+      type: string
+      default: latest
+      description: 'Starting block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+    toBlock:
+      type: string
+      default: latest
+      description: 'Ending block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+    topics:
+      $ref: '#/topics'          
 topics:
   type: array
   description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
@@ -284,6 +286,7 @@ eth_cancelPrivateTransaction:
           properties:
             txHash:
               type: string
+              description: "Transaction hash for private transaction to be cancelled."
 eth_getBalance:
   allOf:
   - $ref: '#/CommonProperties'
@@ -420,18 +423,6 @@ eth_feeHistory:
 eth_maxPriorityFeePerGas:
   allOf:
   - $ref: '#/CommonProperties'
-            - to
-string_array_params:
-  type: object
-  properties:
-    params:
-      type: array
-      items:
-        type: string
-eth_getTransactionByHash:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
   - type: object
     properties:
       method:
@@ -442,117 +433,6 @@ eth_getTransactionByHash:
       params:
         type: array
 eth_chainId:
-        default: eth_getTransactionByHash
-        enum:
-          - eth_getTransactionByHash
-eth_getTransactionCount:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getTransactionCount
-        enum:
-          - eth_getTransactionCount
-eth_getTransactionReceipt:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getTransactionReceipt
-        enum:
-          - eth_getTransactionReceipt
-eth_getBlockTransactionCountByHash:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getBlockTransactionCountByHash
-        enum:
-          - eth_getBlockTransactionCountByHash
-eth_getBlockTransactionCountByNumber:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getBlockTransactionCountByNumber
-        enum:
-          - eth_getBlockTransactionCountByNumber
-eth_getTransactionByBlockHashAndIndex:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getTransactionByBlockHashAndIndex
-        enum:
-          - eth_getTransactionByBlockHashAndIndex
-eth_getTransactionByBlockNumberAndIndex:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getTransactionByBlockNumberAndIndex
-        enum:
-          - eth_getTransactionByBlockNumberAndIndex
-eth_getBlockReceipts:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_getBlockReceipts
-        enum:
-          - eth_getBlockReceipts
-eth_sendRawTransaction:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
-  - type: object
-    properties:
-      method:
-        type: string
-        default: eth_sendRawTransaction
-        enum:
-          - eth_sendRawTransaction
-eth_sendPrivateTransaction:
-  type: array
-  items:
-    type: object
-    required:
-      - tx
-    properties:
-      tx:
-        type: string
-        description: "Raw, signed transaction"
-      maxBlockNumber:
-        type: string
-        description: "Hex-encoded number for highest block number in which the transaction should be included."
-      preferences:
-        type: object
-        properties:
-          fast:
-            type: boolean
-            description: "Sends transaction with fast mode when true."
-eth_cancelPrivateTransaction:
   allOf:
   - $ref: '#/CommonProperties'
   - type: object
@@ -579,21 +459,6 @@ net_version:
 net_listening:
   allOf:
   - $ref: '#/CommonProperties'
-        default: eth_cancelPrivateTransaction
-        enum:
-          - eth_cancelPrivateTransaction
-      params:
-        type: array
-        items:
-          type: object
-          properties:
-            txHash:
-              type: string
-              description: "Transaction hash for private transaction to be cancelled."
-eth_getBalance:
-  allOf:
-  - $ref: '#/CommonProperties'
-  - $ref: '#/string_array_params'
   - type: object
     properties:
       method:
@@ -604,16 +469,6 @@ eth_getBalance:
       params:
         type: array
 eth_getUncleByBlockHashAndIndex:
-        default: net_version
-        enum:
-          - net_version
-      params:
-        type: array
-net_listening:
-        default: eth_getBalance
-        enum:
-          - eth_getBalance
-eth_getStorageAt:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
@@ -625,10 +480,6 @@ eth_getStorageAt:
         enum:
           - eth_getUncleByBlockHashAndIndex
 eth_getUncleByBlockNumberAndIndex:
-        default: eth_getStorageAt
-        enum:
-          - eth_getStorageAt
-eth_getCode:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
@@ -643,12 +494,6 @@ eth_getUncleCountByBlockHash:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
-        default: eth_getCode
-        enum:
-          - eth_getCode
-eth_accounts:
-  allOf:
-  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -660,14 +505,6 @@ eth_getUncleCountByBlockNumber:
   allOf:
   - $ref: '#/CommonProperties'
   - $ref: '#/string_array_params'
-        default: eth_accounts
-        enum:
-          - eth_accounts
-      params:
-        type: array
-eth_getProof:
-  allOf:
-  - $ref: '#/CommonProperties'
   - type: object
     properties:
       method:
@@ -675,21 +512,171 @@ eth_getProof:
         default: eth_getUncleCountByBlockNumber
         enum:
           - eth_getUncleCountByBlockNumber
-        default: net_listening
+eth_getFilterChanges:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getFilterChanges
         enum:
-          - net_listening
+          - eth_getFilterChanges
+eth_getFilterLogs:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_getFilterLogs
+        enum:
+          - eth_getFilterLogs
+eth_newBlockFilter:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_newBlockFilter
+        enum:
+          - eth_newBlockFilter
       params:
         type: array
-        default: eth_accounts
+eth_newFilter:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_newFilter
         enum:
-          - eth_accounts
+          - eth_newFilter
+      params:
+        type: array
+        minItems: 1
+        maxItems: 1
+        items:
+          $ref: '#/filter_options'
+eth_newPendingTransactionFilter:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_newPendingTransactionFilter
+        enum:
+          - eth_newPendingTransactionFilter
+      params:
+        type: array
+eth_uninstallFilter:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_uninstallFilter
+        enum:
+          - eth_uninstallFilter
+web3_clientVersion:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: web3_clientVersion
+        enum:
+          - web3_clientVersion
+      params:
+        type: array
+web3_sha3:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: web3_sha3
+        enum:
+          - web3_sha3
+eth_subscribe:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_subscribe
+        enum:
+          - eth_subscribe
       params:
         type: array
         items:
           oneOf:
           - type: string
-          - type: array
-            items:
-              type: string
-              description: "Transaction hash for private transaction to be cancelled."
-          - eth_getBlockReceipts
+            description: "Returns the transaction information for all transactions that are added to the pending state. This subscription type subscribes to pending transactions, similar to the standard Web3 call web3.eth.subscribe('pendingTransactions'), but differs in that it emits full transaction information rather than just transaction hashes."
+            enum:
+            - alchemy_newFullPendingTransactions
+          - oneOf:
+            - type: string
+              description: "Returns the transaction information for all transactions that are added to the pending state that match a given filter. Currently supports an address filter, which will return transactions from or to the address."
+              enum:
+              - alchemy_filteredNewFullPendingTransactions
+            - type: object
+              properties:
+                address:
+                  type: string
+          - type: string
+            description: "Returns the hash for all transactions that are added to the pending state."
+            enum:
+            - newPendingTransactions
+          - type: string
+            description: "Emits an event any time a new header is added to the chain, including during a chain reorganization."
+            enum:
+            - newHeads
+          - oneOf:
+            - type: string
+              description: "Emits logs which are part of newly added blocks that match specified filter criteria."
+              enum:
+              - logs
+            - type: object
+              description: "An object."
+              properties:
+                address:
+                  description: "Either a string representing an address or an array of such strings. Only logs created from one of these addresses will be emitted."
+                  oneOf:
+                  - type: string
+                  - type: array
+                    items:
+                      type: string
+                topics:
+                  description: "An array of topic specifiers."
+                  oneOf:
+                  - type: string
+                  - type: array
+                    items:
+                      type: string
+          - type: string
+            description: "Indicates when the node starts or stops synchronizing. The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators."
+            enum:
+            - syncing
+eth_unsubscribe:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - $ref: '#/string_array_params'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: eth_unsubscribe
+        enum:
+          - eth_unsubscribe

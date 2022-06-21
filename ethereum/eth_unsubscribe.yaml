@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Network Connection
+  title: Unsubscribe
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: net_listening
-      description: "Returns true if client is actively listening for network connections."
+      summary: eth_unsubscribe
+      description: "Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as method and the subscription id as first parameter."
       tags: []
       parameters:
         - name: apiKey
@@ -21,15 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Subscription ID, as previously returned from an eth_subscribe call."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/net_listening
+              $ref: body.yaml#/eth_unsubscribe
       responses:
         '200':
-          description: "Returns true when listening, otherwise false."
+          description: "Returns true if a subscription was successfully cancelled, or false if no subscription existed with the given ID."
           content:
             application/json:
               schema:
                 $ref: 'responses.yaml#/eth_cancelPrivateTransaction'
-      operationId: net_listening
+      operationId: eth_unsubscribe

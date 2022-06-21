@@ -31,5 +31,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_sendRawTransaction'
+                $ref: 'responses.yaml#/string_result_response'
       operationId: eth_sendPrivateTransaction

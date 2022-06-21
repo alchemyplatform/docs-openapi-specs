@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Subscribe
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_subscribe
+      description: "Ethereum API - Subscribe to different event types like newHeads, logs, pendingTransactions, and syncing using websockets."
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        description: "Accepts (1) Subscription Type. (2) Optional params. - The first argument specifies the type of event for which to listen. The second argument contains additional options which depend on the first argument. The different description types, their options, and their event payloads are described below."
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_subscribe
+      responses:
+        '200':
+          description: "Returns the subscription ID. This ID will be attached to any received events, and can also be used to cancel the subscription using eth_unsubscribe."
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_subscribe'
+      operationId: eth_subscribe

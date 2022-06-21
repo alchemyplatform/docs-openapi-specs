@@ -21,7 +21,6 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts nothing."
         content:
           application/json:
             schema:
