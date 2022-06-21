@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Accounts
+  title: New Block Filter
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_accounts
-      description: Returns a list of addresses owned by client.
+      summary: eth_newBlockFilter
+      description: "Creates a filter in the node, to notify when a new block arrives."
       tags: []
       parameters:
         - name: apiKey
@@ -25,12 +25,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_accounts
+              $ref: body.yaml#/eth_newBlockFilter
       responses:
         '200':
-          description: "Returns 20 Bytes - addresses owned by the client."
+          description: "Returns a filter id."
           content:
             application/json:
               schema:
                 $ref: 'responses.yaml#/string_result_response'
-      operationId: eth_accounts
+      operationId: eth_newBlockFilter

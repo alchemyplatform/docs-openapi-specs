@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Network Connection
+  title: Uninstall Filter
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: net_listening
-      description: "Returns true if client is actively listening for network connections."
+      summary: eth_uninstallFilter
+      description: "Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally, Filters timeout when they aren’t requested with eth_getFilterChangesfor a period of time."
       tags: []
       parameters:
         - name: apiKey
@@ -21,15 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts the filter id."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/net_listening
+              $ref: body.yaml#/eth_uninstallFilter
       responses:
         '200':
-          description: "Returns true when listening, otherwise false."
+          description: "Returns true if the filter was successfully uninstalled, otherwise false."
           content:
             application/json:
               schema:
                 $ref: 'responses.yaml#/eth_cancelPrivateTransaction'
-      operationId: net_listening
+      operationId: eth_uninstallFilter

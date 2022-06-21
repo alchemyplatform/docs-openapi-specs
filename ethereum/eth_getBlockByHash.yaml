@@ -22,14 +22,15 @@ paths:
             default: demo
           required: true
         requestBody:
+          description: "Accepts (1) 32 Bytes - Hash of a block. (2)  If true it returns the full transaction objects, if false it returns only the hashes of the transactions."
           content:
             application/json:
               schema:
                 "$ref": "body.yaml#/eth_getBlockByHash"
         responses:
           '200':
-            description: Click to see response payload
+            description: "Returns a block object with the following fields, or null when no block was found."
             content:
               application/json:
                 schema:
-                  "$ref": "responses.yaml#/eth_getBlockByHash"
+                  "$ref": "responses.yaml#/eth_block"

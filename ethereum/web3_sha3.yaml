@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Accounts
+  title: Web 3 Sha 3
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_accounts
-      description: Returns a list of addresses owned by client.
+      summary: web3_sha3
+      description: "Returns the current client version."
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts nothing."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_accounts
+              $ref: body.yaml#/web3_sha3
       responses:
         '200':
-          description: "Returns 20 Bytes - addresses owned by the client."
+          description: "Returns the SHA3 result of the given string."
           content:
             application/json:
               schema:
                 $ref: 'responses.yaml#/string_result_response'
-      operationId: eth_accounts
+      operationId: web3_sha3

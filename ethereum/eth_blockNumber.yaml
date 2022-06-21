@@ -1,4 +1,3 @@
----
 openapi: 3.1.0
 info:
   title: Getting Blocks
@@ -22,13 +21,14 @@ paths:
           default: demo
         required: true
       requestBody:
+        description: "Accepts nothing."
         content:
           application/json:
             schema:
               "$ref": "body.yaml#/eth_blockNumber"
       responses:
         '200':
-          description: Click to see response payload
+          description: "Returns integer of the current block number the client is on."
           content:
             application/json:
               schema:

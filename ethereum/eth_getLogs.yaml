@@ -1,4 +1,3 @@
----
 openapi: 3.1.0
 info:
   title: Event Logs
@@ -24,13 +23,14 @@ paths:
           default: demo
         required: true
       requestBody:
+        description: "Accepts the filter options."
         content:
           application/json:
             schema:
               "$ref": "body.yaml#/eth_getLogs"
       responses:
         '200':
-          description: Click to see response payload
+          description: "Returns array of log objects, or an empty array if nothing has changed since last poll."
           content:
             application/json:
               schema:

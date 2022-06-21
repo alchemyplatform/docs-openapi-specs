@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Accounts
+  title: Filter Changes
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -10,8 +10,8 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      summary: eth_accounts
-      description: Returns a list of addresses owned by client.
+      summary: eth_getFilterChanges
+      description: "Polling method for a filter, which returns an array of logs which occurred since last poll."
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts nothing."
+        description: "Accepts the filter id."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_accounts
+              $ref: body.yaml#/eth_getFilterChanges
       responses:
         '200':
-          description: "Returns 20 Bytes - addresses owned by the client."
+          description: ""
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
-      operationId: eth_accounts
+                $ref: 'responses.yaml#/eth_getLogs'
+      operationId: eth_getFilterChanges

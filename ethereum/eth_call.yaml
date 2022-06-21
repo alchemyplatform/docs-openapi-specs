@@ -22,6 +22,7 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts the transaction call object."
         content:
           application/json:
             schema:

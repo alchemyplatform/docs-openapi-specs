@@ -22,15 +22,16 @@ paths:
             default: demo
           required: true
         requestBody:
+          description: "Accepts (1) Integer of a block number, or the string 'earliest', 'latest' or 'pending'. (2) If true it returns the full transaction objects, if false only the hashes of the transactions."
           content:
             application/json:
               schema:
                   "$ref": "body.yaml#/eth_getBlockByNumber"
         responses:
           '200':
-            description: Click to see response payload
+            description: "Returns a block object with the following fields, or null when no block was found."
             content:
               application/json:
                 schema:
-                  "$ref": "responses.yaml#/eth_getBlockByNumber"
+                  "$ref": "responses.yaml#/eth_block"
     
