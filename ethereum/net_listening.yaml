@@ -1,7 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Message Call
-  description: Executes a new message call immediately without creating a transaction on the block chain.
+  title: Network Connection
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -11,9 +10,9 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      operationId: eth_call
-      summary: Message Call
-      description: Executes a new message call immediately without creating a transaction on the block chain..
+      summary: net_listening
+      description: "Returns true if client is actively listening for network connections."
+      tags: []
       parameters:
         - name: apiKey
           in: path
@@ -22,14 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts nothing."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_call
+              $ref: body.yaml#/net_listening
       responses:
         '200':
-          description: "Returns integer of the number of transactions in this block."
+          description: "Returns true when listening, otherwise false."
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/string_result_response
+                $ref: 'responses.yaml#/eth_cancelPrivateTransaction'
+      operationId: net_listening

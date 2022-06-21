@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Uncle of a Block By Hash and Index
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getUncleByBlockHashAndIndex
+      description: "Returns information about an uncle of a block by hash and uncle index position."
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        description: "Accepts (1) A block number, or the string 'earliest', 'latest' or 'pending'. (2) The uncle's index position."
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getUncleByBlockHashAndIndex
+      responses:
+        '200':
+          description: "Returns the estimated priority fee per gas."
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_block'
+      operationId: eth_getUncleByBlockHashAndIndex

@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Merkle-Proof
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getProof
+      description: Returns the account and storage values of the specified account including the Merkle-proof. This call can be used to verify that the data you are pulling from is not tampered with.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        description: "Accept (1) 20 Bytes - address of the account. (2) 32 Bytes - array of storage-keys which should be proofed and included. (3) Integer block number, or the string 'latest' or 'earliest'."
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getProof
+      responses:
+        '200':
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_getProof'
+      operationId: eth_getProof

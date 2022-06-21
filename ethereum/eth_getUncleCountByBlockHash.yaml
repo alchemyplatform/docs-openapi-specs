@@ -1,7 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Message Call
-  description: Executes a new message call immediately without creating a transaction on the block chain.
+  title: Uncle Count By Hash
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
@@ -11,9 +10,9 @@ servers:
 paths:
   '/{apiKey}':
     post:
-      operationId: eth_call
-      summary: Message Call
-      description: Executes a new message call immediately without creating a transaction on the block chain..
+      summary: eth_getUncleCountByBlockHash
+      description: "Returns the number of uncles in a block matching the given block hash."
+      tags: []
       parameters:
         - name: apiKey
           in: path
@@ -22,14 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
+        description: "Accepts 32 Bytes - hash of a block."
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_call
+              $ref: body.yaml#/eth_getUncleCountByBlockHash
       responses:
         '200':
-          description: "Returns integer of the number of transactions in this block."
+          description: "Returns integer of the number of uncles in this block."
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/string_result_response
+                $ref: 'responses.yaml#/string_result_response'
+      operationId: eth_getUncleCountByBlockHash

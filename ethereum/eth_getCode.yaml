@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Code
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/{apiKey}':
+    post:
+      summary: eth_getCode
+      description: Returns code at a given address.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        description: "Accepts (1) 20 Bytes - address. (2) Integer block number, or the string 'latest', 'earliest' or 'pending'."
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getCode
+      responses:
+        '200':
+          description: "Returns the code from the given address."
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/string_result_response'
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: 'responses.yaml#/eth_getCode'
+      operationId: eth_getCode
