@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts (1) 20 Bytes - address. (2) Integer block number, or the string 'latest', 'earliest' or 'pending'."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getCode
       responses:
         '200':
-          description: "Returns the code from the given address."
+          description: Returns the code from the given address.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_getCode

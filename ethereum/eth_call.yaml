@@ -22,14 +22,14 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts the transaction call object."
+        description: Accepts the transaction call object.
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_call
       responses:
         '200':
-          description: "Returns integer of the number of transactions in this block."
+          description: Returns integer of the number of transactions in this block.
           content:
             application/json:
               schema:

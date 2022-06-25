@@ -1,36 +1,34 @@
----
 openapi: 3.1.0
 info:
   title: Getting Blocks
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
-- url: https://eth-mainnet.alchemyapi.io/v2/
-  variables:
-    apiKey:
-      default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/'
+    variables:
+      apiKey:
+        default: demo
 paths:
-  "/{apiKey}":
-      post:
-        summary: eth_getBlockByHash
-        description: Returns information about a block by block hash.
-        parameters:
+  '/{apiKey}':
+    post:
+      summary: eth_getBlockByHash
+      description: Returns information about a block by block hash.
+      parameters:
         - name: apiKey
           in: path
           schema:
             type: string
             default: demo
           required: true
-        requestBody:
-          description: "Accepts (1) 32 Bytes - Hash of a block. (2)  If true it returns the full transaction objects, if false it returns only the hashes of the transactions."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/eth_getBlockByHash
+      responses:
+        '200':
+          description: 'Returns a block object with the following fields, or null when no block was found.'
           content:
             application/json:
               schema:
-                "$ref": "body.yaml#/eth_getBlockByHash"
-        responses:
-          '200':
-            description: "Returns a block object with the following fields, or null when no block was found."
-            content:
-              application/json:
-                schema:
-                  "$ref": "responses.yaml#/eth_block"
+                $ref: responses.yaml#/eth_block

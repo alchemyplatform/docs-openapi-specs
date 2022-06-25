@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_newPendingTransactionFilter
-      description: "Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges."
+      description: 'Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges.'
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,16 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts nothing."
+        description: Accepts nothing.
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_newPendingTransactionFilter
       responses:
         '200':
-          description: "Returns a filter id."
+          description: Returns a filter id.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_newPendingTransactionFilter

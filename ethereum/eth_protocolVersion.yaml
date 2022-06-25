@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_protocolVersion
       responses:
         '200':
-          description: "Returns the current ethereum protocol version."
+          description: Returns the current ethereum protocol version.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_protocolVersion

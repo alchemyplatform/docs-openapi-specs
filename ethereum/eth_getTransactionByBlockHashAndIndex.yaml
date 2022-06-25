@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 1. 32 Bytes - hash of a block 2. Integer of the transaction index position."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getTransactionByBlockHashAndIndex
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_block'
+                $ref: responses.yaml#/eth_block
       operationId: eth_getTransactionByBlockHashAndIndex

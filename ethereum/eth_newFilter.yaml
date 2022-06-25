@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_newFilter
-      description: "Creates a filter object, based on filter options, to notify when the state changes (logs)."
+      description: 'Creates a filter object, based on filter options, to notify when the state changes (logs).'
       tags: []
       parameters:
         - name: apiKey
@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_newFilter
       responses:
         '200':
-          description: "Returns a filter id."
+          description: Returns a filter id.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_newFilter

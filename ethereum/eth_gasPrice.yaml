@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_gasPrice
       responses:
         '200':
-          description: "Returns integer of the current gas price in wei."
+          description: Returns integer of the current gas price in wei.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_gasPrice

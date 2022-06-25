@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_feeHistory
-      description: "Returns a collection of historical gas information."
+      description: Returns a collection of historical gas information.
       tags: []
       parameters:
         - name: apiKey
@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_feeHistory
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_feeHistory'
+                $ref: responses.yaml#/eth_feeHistory
       operationId: eth_feeHistory

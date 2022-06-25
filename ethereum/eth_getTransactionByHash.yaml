@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_getTransactionByHash
-      description: Returns the information about a transaction requested by transaction hash. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.
+      description: 'Returns the information about a transaction requested by transaction hash. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 32 Bytes - hash of a transaction"
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getTransactionByHash
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_getTransactionByHash'
+                $ref: responses.yaml#/eth_getTransactionByHash
       operationId: eth_getTransactionByHash

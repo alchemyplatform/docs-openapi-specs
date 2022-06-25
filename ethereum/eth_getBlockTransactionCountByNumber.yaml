@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts integer of a block number, or the string 'earliest', 'latest' or 'pending'."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getBlockTransactionCountByNumber
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_getBlockTransactionCountByNumber
