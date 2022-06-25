@@ -12,4 +12,4 @@ jobs:
       - uses: actions/checkout@v3
       - uses: readmeio/rdme@vXX
         with:
-          rdme: openapi [file] --key=rdme_xn8s9h3d2799870d8520f6286f271aaaccd4ed0dd70046ed4ad78aacb79392d7014f4c --id=API_DEFINITION_ID
+          rdme: openapi eth_call.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.README_API_DEFINITION_ID }}
