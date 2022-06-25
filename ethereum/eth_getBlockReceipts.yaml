@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts block number or block hash to fetch transaction receipts for, or the string 'earliest', 'latest' or 'pending'."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getBlockReceipts
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_getBlockReceipts'
+                $ref: responses.yaml#/eth_getBlockReceipts
       operationId: eth_getBlockReceipts

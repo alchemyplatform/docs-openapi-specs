@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: net_version
-      description: "Returns the current network id."
+      description: Returns the current network id.
       tags: []
       parameters:
         - name: apiKey
@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/net_version
       responses:
         '200':
-          description: "Returns the current network id."
+          description: Returns the current network id.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/net_version'
+                $ref: responses.yaml#/net_version
       operationId: net_version

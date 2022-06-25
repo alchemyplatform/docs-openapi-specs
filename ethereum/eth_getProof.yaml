@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accept (1) 20 Bytes - address of the account. (2) 32 Bytes - array of storage-keys which should be proofed and included. (3) Integer block number, or the string 'latest' or 'earliest'."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getProof
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_getProof'
+                $ref: responses.yaml#/eth_getProof
       operationId: eth_getProof

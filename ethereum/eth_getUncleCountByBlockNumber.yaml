@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_getUncleCountByBlockNumber
-      description: "Returns the number of uncles in a block matching the give block number."
+      description: Returns the number of uncles in a block matching the give block number.
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts integer of a block number, or the string 'latest', 'earliest' or 'pending'."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getUncleCountByBlockNumber
       responses:
         '200':
-          description: "Returns integer of the number of uncles in this block."
+          description: Returns integer of the number of uncles in this block.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_getUncleCountByBlockNumber

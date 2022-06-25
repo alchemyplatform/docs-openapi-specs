@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_chainId
-      description: "Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155."
+      description: 'Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155.'
       tags: []
       parameters:
         - name: apiKey
@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_chainId
       responses:
         '200':
-          description: "Returns integer of the current chain ID."
+          description: Returns integer of the current chain ID.
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_chainId

@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_cancelPrivateTransaction
       responses:
         '200':
-          description: "Returns true if transaction was successfully cancelled, false if not."
+          description: 'Returns true if transaction was successfully cancelled, false if not.'
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_cancelPrivateTransaction'
+                $ref: responses.yaml#/eth_cancelPrivateTransaction
       operationId: eth_cancelPrivateTransaction

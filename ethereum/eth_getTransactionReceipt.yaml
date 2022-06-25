@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts 32 Bytes - hash of a transaction."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_getTransactionReceipt
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_getTransactionReceipt'
+                $ref: responses.yaml#/eth_getTransactionReceipt
       operationId: eth_getTransactionReceipt

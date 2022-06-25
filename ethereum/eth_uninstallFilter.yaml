@@ -11,7 +11,7 @@ paths:
   '/{apiKey}':
     post:
       summary: eth_uninstallFilter
-      description: "Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally, Filters timeout when they aren’t requested with eth_getFilterChangesfor a period of time."
+      description: 'Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally, Filters timeout when they aren’t requested with eth_getFilterChangesfor a period of time.'
       tags: []
       parameters:
         - name: apiKey
@@ -21,16 +21,15 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: "Accepts the filter id."
         content:
           application/json:
             schema:
               $ref: body.yaml#/eth_uninstallFilter
       responses:
         '200':
-          description: "Returns true if the filter was successfully uninstalled, otherwise false."
+          description: 'Returns true if the filter was successfully uninstalled, otherwise false.'
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/eth_cancelPrivateTransaction'
+                $ref: responses.yaml#/eth_cancelPrivateTransaction
       operationId: eth_uninstallFilter

@@ -27,9 +27,9 @@ paths:
               $ref: body.yaml#/eth_sendPrivateTransaction
       responses:
         '200':
-          description: ""
+          description: ''
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/string_result_response'
+                $ref: responses.yaml#/string_result_response
       operationId: eth_sendPrivateTransaction
