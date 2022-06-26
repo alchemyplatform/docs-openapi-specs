@@ -26,11 +26,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./ethereum_components/body.yaml#/eth_call
+              $ref: ../ethereum_components/body.yaml#/eth_call
       responses:
         '200':
           description: Returns integer of the number of transactions in this block.
           content:
             application/json:
               schema:
-                $ref: ./ethereum_components/responses.yaml#/string_result_response
+                $ref: ../ethereum_components/responses.yaml#/string_result_response
