@@ -33,4 +33,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/string_result_response
+                $ref: ./ethereum_components/responses.yaml#/string_result_response
