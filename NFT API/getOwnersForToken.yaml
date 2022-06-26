@@ -1,0 +1,29 @@
+openapi: 3.1.0
+info:
+  title: Get Owners For Token
+  version: '1.0'
+servers:
+  - description: Ethereum
+    url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
+  - description: Polygon
+    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+paths:
+  '/{apiKey}/getOwnersForToken':
+    get:
+      summary: getOwnersForToken
+      description: Get the owner(s) for a token.
+      tags: []
+      parameters:
+      - $ref: 'body.yaml#/apiKey'
+      - $ref: 'body.yaml#/contractAddress'
+        description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
+      - $ref: 'body.yaml#/tokenId'
+        description: String - The ID of the token. Can be in hex or decimal format.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/getOwnersForToken
+      operationId: getOwnersForToken

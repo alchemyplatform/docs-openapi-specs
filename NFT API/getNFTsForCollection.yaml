@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: Get NFTs For Collection
+  version: '1.0'
+servers:
+  - description: Ethereum
+    url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
+  - description: Polygon
+    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+paths:
+  '/{apiKey}/getNFTsForCollection':
+    get:
+      summary: getNFTsForCollection
+      description: Gets all NFTs for a given NFT contract.
+      tags: []
+      parameters:
+      - $ref: 'body.yaml#/apiKey'
+      - $ref: 'body.yaml#/contractAddress'
+        description: String - contract address for the NFT collection
+      - $ref: 'body.yaml#/withMetadata'
+        description: 'Boolean - if set to true, returns NFT metadata; otherwise will only return tokenIds. Defaults to false.'
+      - $ref: 'body.yaml#/startToken'
+        description: 'String - An offset used for pagination. Can be a hex string, or a decimal.'
+      - $ref: 'body.yaml#/limit'
+        description: 'Integer - Sets the total number of NFTs returned in the response. Defaults to 100.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/getNFTsForCollection
+      operationId: getNFTsForCollection
