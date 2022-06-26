@@ -834,7 +834,7 @@ address_storageKeys_blockNumber: '1. String - 20 Bytes - Address of the account 
 blockNumber_uncleIndex: '1. String - A block number, or the string ''earliest'', ''latest'' or ''pending'' 2. String - The uncle''s index position.'
 filterId: 'String - The filter id.'
 shaHash: 'String - The data in hex form to convert into a SHA3 hash.'
-subscriptionId: 'String - Subscription ID, as previously returned from an eth_subscribe call.' 
+subscriptionId: 'String - Subscription ID, as previously returned from an eth_subscribe call.'
 
 
 
