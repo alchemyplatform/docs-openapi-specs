@@ -14,10 +14,10 @@ paths:
       description: Get the owner(s) for a token.
       tags: []
       parameters:
-      - $ref: 'body.yaml#/apiKey'
-      - $ref: 'body.yaml#/contractAddress'
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
         description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
-      - $ref: 'body.yaml#/tokenId'
+      - $ref: 'NFTs_body.yaml#/tokenId'
         description: String - The ID of the token. Can be in hex or decimal format.
       responses:
         '200':
@@ -25,5 +25,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/getOwnersForToken
+                $ref: NFTs_responses.yaml#/getOwnersForToken
       operationId: getOwnersForToken

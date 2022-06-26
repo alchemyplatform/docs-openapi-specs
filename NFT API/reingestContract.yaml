@@ -12,8 +12,8 @@ paths:
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
       tags: []
       parameters:
-      - $ref: 'body.yaml#/apiKey'
-      - $ref: 'body.yaml#/contractAddress'
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
         description: String - The address of the NFT contract/collection that needs to be refreshed.
       responses:
         '200':
@@ -21,5 +21,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'responses.yaml#/reingestContract'
+                $ref: 'NFTs_responses.yaml#/reingestContract'
       operationId: reingestContract

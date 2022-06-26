@@ -12,13 +12,13 @@ paths:
       description: Returns a list of all spam contracts marked by Alchemy.
       tags: []
       parameters:
-      - $ref: 'body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/apiKey'
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/arrayList
+                $ref: NFTs_responses.yaml#/arrayList
                 description: 'A list of contract addresses earmarked as spam by Alchemy.'
       operationId: getSpamContracts

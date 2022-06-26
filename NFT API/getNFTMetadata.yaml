@@ -16,12 +16,12 @@ paths:
       description: Gets the metadata associated with a given NFT.
       tags: []
       parameters:
-      - $ref: 'body.yaml#/apiKey'
-      - $ref: 'body.yaml#/contractAddress'
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
         description: 'String - Address of NFT contract.'
-      - $ref: 'body.yaml#/tokenId'
+      - $ref: 'NFTs_body.yaml#/tokenId'
         description: 'Integer or Hexadecimal - Id for NFT.'
-      - $ref: 'body.yaml#/tokenType'
+      - $ref: 'NFTs_body.yaml#/tokenType'
         description: "String - 'ERC721' or 'ERC1155'; specifies type of token to query for."
       responses:
         '200':
@@ -29,5 +29,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/ownedNFT
+                $ref: NFTs_responses.yaml#/ownedNFT
       operationId: getNFTMetadata

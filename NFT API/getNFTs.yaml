@@ -16,16 +16,16 @@ paths:
       description: Gets all NFTs currently owned by a given address.
       tags: []
       parameters:
-      - $ref: 'body.yaml#/apiKey'
-      - $ref: 'body.yaml#/owner'
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/owner'
         description: 'String - Address for NFT owner (can be in ENS format!).'
-      - $ref: 'body.yaml#/pageKey'
+      - $ref: 'NFTs_body.yaml#/pageKey'
         description: 'String - UUID for pagination. If more results are available, a UUID pageKey will be returned in the response. Pass that UUID into pageKey to fetch the next 100 NFTs. NOTE - pageKeys expire after 10 minutes.'
-      - $ref: 'body.yaml#/contractAddresses'
+      - $ref: 'NFTs_body.yaml#/contractAddresses'
         description: 'Array of contract addresses to filter the responses with. Max limit 20 contracts.'
-      - $ref: 'body.yaml#/withMetadata'
+      - $ref: 'NFTs_body.yaml#/withMetadata'
         description: 'True by default - If boolean is set to true the query will include metadata for each returned token '
-      - $ref: 'body.yaml#/filters'
+      - $ref: 'NFTs_body.yaml#/filters'
         description: 'Array of filters (as strings) that will be applied to the query. NFTs that are match one or more of these filters will be excluded from the response.'
       responses:
         '200':
@@ -33,5 +33,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/getNFTs
+                $ref: NFTs_responses.yaml#/getNFTs
       operationId: getNFTs

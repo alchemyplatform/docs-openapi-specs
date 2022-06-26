@@ -12,8 +12,8 @@ paths:
       description: Returns the floor prices of a NFT collection by marketplace.
       tags: []
       parameters:
-      - $ref: 'body.yaml#/apiKey'
-      - $ref: 'body.yaml#/contractAddress'
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
         description: 'String - Contract address for the NFT collection.'
       responses:
         '200':
@@ -21,5 +21,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/getFloorPrice
+                $ref: NFTs_responses.yaml#/getFloorPrice
       operationId: getFloorPrice
