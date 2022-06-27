@@ -14,8 +14,8 @@ paths:
       description: Queries NFT high-level collection/contract level information.
       tags: []
       parameters:
-      - $ref: 'NFTs_body.yaml#/apiKey'
-      - $ref: 'NFTs_body.yaml#/contractAddress'
+      - $ref: 'nfts_body.yaml#/apiKey'
+      - $ref: 'nfts_body.yaml#/contractAddress'
         description: 'String - Address of NFT contract.'
       responses:
         '200':
@@ -23,5 +23,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: NFTs_responses.yaml#/getContractMetadata
+                $ref: nfts_responses.yaml#/getContractMetadata
       operationId: getContractMetadata

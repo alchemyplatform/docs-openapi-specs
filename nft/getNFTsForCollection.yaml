@@ -14,14 +14,14 @@ paths:
       description: Gets all NFTs for a given NFT contract.
       tags: []
       parameters:
-      - $ref: 'NFTs_body.yaml#/apiKey'
-      - $ref: 'NFTs_body.yaml#/contractAddress'
+      - $ref: 'nfts_body.yaml#/apiKey'
+      - $ref: 'nfts_body.yaml#/contractAddress'
         description: String - contract address for the NFT collection
-      - $ref: 'NFTs_body.yaml#/withMetadata'
+      - $ref: 'nfts_body.yaml#/withMetadata'
         description: 'Boolean - if set to true, returns NFT metadata; otherwise will only return tokenIds. Defaults to false.'
-      - $ref: 'NFTs_body.yaml#/startToken'
+      - $ref: 'nfts_body.yaml#/startToken'
         description: 'String - An offset used for pagination. Can be a hex string, or a decimal.'
-      - $ref: 'NFTs_body.yaml#/limit'
+      - $ref: 'nfts_body.yaml#/limit'
         description: 'Integer - Sets the total number of NFTs returned in the response. Defaults to 100.'
       responses:
         '200':
@@ -29,5 +29,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: NFTs_responses.yaml#/getNFTsForCollection
+                $ref: nfts_responses.yaml#/getNFTsForCollection
       operationId: getNFTsForCollection

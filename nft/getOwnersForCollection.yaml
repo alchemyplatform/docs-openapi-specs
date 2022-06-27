@@ -14,8 +14,8 @@ paths:
       description: Gets all owners for a given NFT contract.
       tags: []
       parameters:
-      - $ref: 'NFTs_body.yaml#/apiKey'
-      - $ref: 'NFTs_body.yaml#/contractAddress'
+      - $ref: 'nfts_body.yaml#/apiKey'
+      - $ref: 'nfts_body.yaml#/contractAddress'
         description: String - Contract address for the NFT collection
       responses:
         '200':
@@ -23,5 +23,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: NFTs_responses.yaml#/owners
+                $ref: nfts_responses.yaml#/owners
       operationId: getOwnersForCollection

@@ -12,8 +12,8 @@ paths:
       description: Returns whether a contract is marked as spam or not by Alchemy.
       tags: []
       parameters:
-      - $ref: 'NFTs_body.yaml#/apiKey'
-      - $ref: 'NFTs_body.yaml#/contractAddress'
+      - $ref: 'nfts_body.yaml#/apiKey'
+      - $ref: 'nfts_body.yaml#/contractAddress'
         description: String - The NFT contract address in question.
       responses:
         '200':

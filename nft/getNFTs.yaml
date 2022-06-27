@@ -3,12 +3,16 @@ info:
   title: Get NFTs
   version: '1.0'
 servers:
-  - description: Ethereum
+  - description: Ethereum Mainnet
     url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
-  - description: Polygon
+  - description: Ethereum Rinkeby
+    url: 'https://eth-rinkeby.g.alchemy.com/nft/v2'
+  - description: Ethereum Goerli
+    url: 'https://eth-goerli.g.alchemy.com/nft/v2'
+  - description: Polygon Mainnet
     url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
-  - description: Flow
-    url: 'https://flow-mainnet.g.alchemy.com/nft/v2'
+  - description: Polygon Mumbai
+    url: 'https://polygon-mumbai.g.alchemy.com/nft/v2'
 paths:
   '/{apiKey}/getNFTs':
     get:
@@ -16,22 +20,22 @@ paths:
       description: Gets all NFTs currently owned by a given address.
       tags: []
       parameters:
-      - $ref: 'NFTs_body.yaml#/apiKey'
-      - $ref: 'NFTs_body.yaml#/owner'
+      - $ref: 'nfts_body.yaml#/apiKey'
+      - $ref: 'nfts_body.yaml#/owner'
         description: 'String - Address for NFT owner (can be in ENS format!).'
-      - $ref: 'NFTs_body.yaml#/pageKey'
+      - $ref: 'nfts_body.yaml#/pageKey'
         description: 'String - UUID for pagination. If more results are available, a UUID pageKey will be returned in the response. Pass that UUID into pageKey to fetch the next 100 NFTs. NOTE - pageKeys expire after 10 minutes.'
-      - $ref: 'NFTs_body.yaml#/contractAddresses'
+      - $ref: 'nfts_body.yaml#/contractAddresses'
         description: 'Array of contract addresses to filter the responses with. Max limit 20 contracts.'
-      - $ref: 'NFTs_body.yaml#/withMetadata'
+      - $ref: 'nfts_body.yaml#/withMetadata'
         description: 'True by default - If boolean is set to true the query will include metadata for each returned token '
-      - $ref: 'NFTs_body.yaml#/filters'
-        description: 'Array of filters (as strings) that will be applied to the query. NFTs that are match one or more of these filters will be excluded from the response.'
+      - $ref: 'nfts_body.yaml#/filters'
+        description: "Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. Filter Options: \n - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs."
       responses:
         '200':
           description: 'Returns true if transaction was successfully cancelled, false if not.'
           content:
             application/json:
               schema:
-                $ref: NFTs_responses.yaml#/getNFTs
+                $ref: nfts_responses.yaml#/getNFTs
       operationId: getNFTs
