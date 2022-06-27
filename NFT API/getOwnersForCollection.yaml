@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  title: Get Owners For Collection
+  version: '1.0'
+servers:
+  - description: Ethereum
+    url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
+  - description: Polygon
+    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+paths:
+  '/{apiKey}/getOwnersForCollection':
+    get:
+      summary: getOwnersForCollection
+      description: Gets all owners for a given NFT contract.
+      tags: []
+      parameters:
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
+        description: String - Contract address for the NFT collection
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: NFTs_responses.yaml#/owners
+      operationId: getOwnersForCollection

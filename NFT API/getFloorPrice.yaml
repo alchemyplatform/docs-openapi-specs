@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  title: Get Floor Price
+  version: '1.0'
+servers:
+  - description: Ethereum
+    url: 'https://eth-mainnet.alchemyapi.io/nft/v2'
+paths:
+  '/{apiKey}/getFloorPrice':
+    get:
+      summary: getFloorPrice
+      description: Returns the floor prices of a NFT collection by marketplace.
+      tags: []
+      parameters:
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
+        description: 'String - Contract address for the NFT collection.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: NFTs_responses.yaml#/getFloorPrice
+      operationId: getFloorPrice

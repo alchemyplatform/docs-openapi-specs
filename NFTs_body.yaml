@@ -1,0 +1,65 @@
+apiKey:
+  name: apiKey
+  in: path
+  schema:
+    type: string
+    default: demo
+  required: true
+owner:
+  name: owner
+  schema:
+    type: string
+  in: query
+  required: true
+pageKey:
+  name: pageKey
+  schema:
+    type: string
+  in: query
+contractAddresses:
+  name: contractAddresses[]
+  schema:
+    type: array
+    items:
+      type: string
+  in: query
+withMetadata:
+  name: withMetadata
+  schema:
+    type: boolean
+    default: true
+  in: query
+filters:
+  name: filters[]
+  schema:
+    type: array
+    items:
+      type: string
+  in: query
+contractAddress:
+  name: contractAddress
+  in: query
+  schema:
+    type: string
+  required: true
+tokenId:
+  name: tokenId
+  in: query
+  schema:
+    type: string
+  required: true
+tokenType:
+  name: tokenType
+  in: query
+  schema:
+    type: string
+startToken:
+  name: startToken
+  in: query
+  schema:
+    type: string
+limit:
+  name: limit
+  in: query
+  schema:
+    type: integer

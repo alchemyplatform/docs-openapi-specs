@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: Get NFT Metadata
+  version: '1.0'
+servers:
+  - description: Ethereum
+    url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
+  - description: Polygon
+    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+  - description: Flow
+    url: 'https://flow-mainnet.g.alchemy.com/nft/v2'
+paths:
+  '/{apiKey}/getNFTMetadata':
+    get:
+      summary: getNFTMetadata
+      description: Gets the metadata associated with a given NFT.
+      tags: []
+      parameters:
+      - $ref: 'NFTs_body.yaml#/apiKey'
+      - $ref: 'NFTs_body.yaml#/contractAddress'
+        description: 'String - Address of NFT contract.'
+      - $ref: 'NFTs_body.yaml#/tokenId'
+        description: 'Integer or Hexadecimal - Id for NFT.'
+      - $ref: 'NFTs_body.yaml#/tokenType'
+        description: "String - 'ERC721' or 'ERC1155'; specifies type of token to query for."
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: NFTs_responses.yaml#/ownedNFT
+      operationId: getNFTMetadata
