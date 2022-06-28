@@ -19,4 +19,4 @@ jobs:
         # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi eth_call.yaml --workingDirectory=docs-openapi-specs/ethereum/ --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b33c14e3f39d0051d3e983
+          rdme: openapi eth_call.yaml --workingDirectory=/ethereum/ --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b33c14e3f39d0051d3e983
