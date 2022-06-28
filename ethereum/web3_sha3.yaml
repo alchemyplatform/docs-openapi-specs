@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Web 3 Sha 3
+  title: Web3 Info
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'

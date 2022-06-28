@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Storage
+  title: Account Information
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
