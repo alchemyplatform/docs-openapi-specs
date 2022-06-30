@@ -24,12 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getFilterChanges
+              $ref: ../body.yaml#/eth_getFilterChanges
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_getLogs
+                $ref: ../responses.yaml#/eth_getLogs
       operationId: eth_getFilterChanges

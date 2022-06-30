@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Transaction Receipts
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: alchemy_getTransactionReceipts
+      description: 'An enhanced api that gets all transaction receipts for a given block by number or block hash. Supported on all networks for Ethereum, Polygon, and Arbitrum.'
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/alchemy_getTransactionReceipts_param
+      responses:
+        '200':
+          description: A list of transaction receipts for each transaction in this block.
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/transaction_receipt
+      operationId: alchemy_getTransactionReceipts

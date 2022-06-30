@@ -25,12 +25,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_subscribe
+              $ref: ../body.yaml#/eth_subscribe
       responses:
         '200':
           description: 'Returns the subscription ID. This ID will be attached to any received events, and can also be used to cancel the subscription using eth_unsubscribe.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_subscribe
+                $ref: ../responses.yaml#/eth_subscribe
       operationId: eth_subscribe

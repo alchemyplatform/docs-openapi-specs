@@ -24,11 +24,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getBlockByHash
+              $ref: ../body.yaml#/eth_getBlockByHash
       responses:
         '200':
           description: 'Returns a block object with the following fields, or null when no block was found.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_block
+                $ref: ../responses.yaml#/eth_block
