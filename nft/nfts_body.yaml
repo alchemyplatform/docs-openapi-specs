@@ -17,7 +17,7 @@ pageKey:
     type: string
   in: query
 contractAddresses:
-  name: contractAddresses
+  name: contractAddresses[]
   schema:
     type: array
     items:
@@ -30,7 +30,7 @@ withMetadata:
     default: true
   in: query
 filters:
-  name: filters
+  name: filters[]
   schema:
     type: array
     items:

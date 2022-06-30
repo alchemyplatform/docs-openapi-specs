@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: NFT API
+  version: '1.0'
+servers:
+  - description: Ethereum Mainnet
+    url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
+  - description: Ethereum Rinkeby
+    url: 'https://eth-rinkeby.g.alchemy.com/nft/v2'
+  - description: Ethereum Goerli
+    url: 'https://eth-goerli.g.alchemy.com/nft/v2'
+  - description: Polygon Mainnet
+    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+  - description: Polygon Mumbai
+    url: 'https://polygon-mumbai.g.alchemy.com/nft/v2'
+paths:
+  '/{apiKey}/getNFTs':
+    get:
+      summary: getNFTs
+      description: Gets all NFTs currently owned by a given address.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/owner
+          description: String - Address for NFT owner (can be in ENS format!).
+        - $ref: nfts_body.yaml#/pageKey
+          description: 'String - UUID for pagination. If more results are available, a UUID pageKey will be returned in the response. Pass that UUID into pageKey to fetch the next 100 NFTs. NOTE - pageKeys expire after 10 minutes.'
+        - $ref: nfts_body.yaml#/contractAddresses
+          description: Array of contract addresses to filter the responses with. Max limit 20 contracts.
+        - $ref: nfts_body.yaml#/withMetadata
+          description: 'True by default - If boolean is set to true the query will include metadata for each returned token '
+        - $ref: nfts_body.yaml#/filters
+          description: |-
+            Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. Filter Options: 
+             - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs.
+      responses:
+        '200':
+          description: 'Returns true if transaction was successfully cancelled, false if not.'
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getNFTs
+              examples:
+                byDefault:
+                  $ref: 'nfts_examples.yaml#/byDefault'
+                withoutMetadata:
+                  $ref: 'nfts_examples.yaml#/withoutMetadata'
+                withContractFiltering:
+                  $ref: 'nfts_examples.yaml#/withContractFiltering'
+                withPagination:
+                  $ref: 'nfts_examples.yaml#/withPagination'
+                  
+      operationId: getNFTs
+  '/{apiKey}/getNFTMetadata':
+    get:
+      summary: getNFTMetadata
+      description: Gets the metadata associated with a given NFT.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Address of NFT contract.
+        - $ref: nfts_body.yaml#/tokenId
+          description: Integer or Hexadecimal - Id for NFT.
+        - $ref: nfts_body.yaml#/tokenType
+          description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/ownedNFT
+      operationId: getNFTMetadata
+  '/{apiKey}/getContractMetadata':
+    get:
+      summary: getContractMetadata
+      description: Queries NFT high-level collection/contract level information.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Address of NFT contract.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getContractMetadata
+      operationId: getContractMetadata
+  '/{apiKey}/getNFTsForCollection':
+    get:
+      summary: getNFTsForCollection
+      description: Gets all NFTs for a given NFT contract.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - contract address for the NFT collection
+        - $ref: nfts_body.yaml#/withMetadata
+          description: 'Boolean - if set to true, returns NFT metadata; otherwise will only return tokenIds. Defaults to false.'
+        - $ref: nfts_body.yaml#/startToken
+          description: 'String - An offset used for pagination. Can be a hex string, or a decimal.'
+        - $ref: nfts_body.yaml#/limit
+          description: Integer - Sets the total number of NFTs returned in the response. Defaults to 100.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getNFTsForCollection
+      operationId: getNFTsForCollection
+  '/{apiKey}/getOwnersForCollection':
+    get:
+      summary: getOwnersForCollection
+      description: Gets all owners for a given NFT contract.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Contract address for the NFT collection
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/owners
+      operationId: getOwnersForCollection
+  '/{apiKey}/getSpamContracts':
+    get:
+      summary: getSpamContracts
+      description: Returns a list of all spam contracts marked by Alchemy.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/arrayList
+                description: A list of contract addresses earmarked as spam by Alchemy.
+      operationId: getSpamContracts
+  '/{apiKey}/isSpamContract':
+    get:
+      summary: isSpamContract
+      description: Returns whether a contract is marked as spam or not by Alchemy.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - The NFT contract address in question.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+      operationId: isSpamContract
+  '/{apiKey}/reingestContract':
+    get:
+      summary: reingestContract
+      description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - The address of the NFT contract/collection that needs to be refreshed.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/reingestContract
+      operationId: reingestContract
+  '/{apiKey}/getOwnersForToken':
+    get:
+      summary: getOwnersForToken
+      description: Get the owner(s) for a token.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
+        - $ref: nfts_body.yaml#/tokenId
+          description: String - The ID of the token. Can be in hex or decimal format.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getOwnersForToken
+      operationId: getOwnersForToken
+  '/{apiKey}/getFloorPrice':
+    get:
+      summary: getFloorPrice
+      description: Returns the floor prices of a NFT collection by marketplace.
+      tags: []
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Contract address for the NFT collection.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getFloorPrice
+      operationId: getFloorPrice
