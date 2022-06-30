@@ -101,7 +101,7 @@ CommonProperties:
       default: '2.0'
 defaultBlockParam:
   type: string
-  description: "The following options are possible for the defaultBlock parameter. HEX String - an integer block number. String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions"
+  description: The following options are possible for the defaultBlock parameter. HEX String - an integer block number. String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions
 eth_call:
   allOf:
     - $ref: '#/CommonProperties'
@@ -118,8 +118,8 @@ eth_call:
           maxItems: 2
           items:
             oneOf:
-            - $ref: '#/transaction_object'
-            - $ref: '#/defaultBlockParam'
+              - $ref: '#/transaction_object'
+              - $ref: '#/defaultBlockParam'
 transaction_object:
   type: object
   description: The transaction call object
@@ -819,21 +819,97 @@ eth_unsubscribe:
           default: eth_unsubscribe
           enum:
             - eth_unsubscribe
+alchemy_getTransactionReceipts_param:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        params:
+          type: array
+          description:
+            $ref: '#/alchemy_getTransactionReceipts'
+          minItems: 1
+          maxItems: 2
+          items:
+            type: string
+alchemy_getTokenAllowance:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        params:
+          type: array
+          description:
+            # $ref: '#/alchemy_getTransactionReceipts'
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              contract:
+                type: string
+                description: 'String - DATA, 20 Bytes - The address of the token contract.'
+              owner:
+                type: string
+                description: 'String - DATA, 20 Bytes - The address of the token owner.'
+              spender:
+                type: string
+                description: 'String - DATA, 20 Bytes - The address of the token spender.'
+alchemy_getTokenBalances:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        params:
+          type: array
+          description: |
+            - DATA, 20 Bytes - The address for which token balances will be checked.
+            - OneOf
+              - Array - A list of contract addresses. Suggested limit: 100 addresses
+              - The String ''DEFAULT_TOKENS'' - denotes a query for the top 100 tokens by 24 hour volume.
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+            - type: string
+            - oneOf:
+              - type: array
+                minItems: 1
+                maxItems: 100
+                items:
+                  type: string
+              - type: string
+                enum:
+                - DEFAULT_TOKENS
+alchemy_getTokenMetadata:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        params:
+          type: array
+          description: 'String - DATA, 20 Bytes - The address of the token contract.'
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+
+
+
 
 blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
 blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
-transactionHash: 'String - 32 Bytes - Hash of a transaction'
+transactionHash: String - 32 Bytes - Hash of a transaction
 blockNumber: 'String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending''.'
 address_blockNumber: '<br/>1. String - 20 Bytes - Address <br/>2. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
-blockHash_index: '<br/>1. String - 32 Bytes - Hash of a block <br/>2. String - Integer of the transaction index position.'
+blockHash_index: <br/>1. String - 32 Bytes - Hash of a block <br/>2. String - Integer of the transaction index position.
 blockNumber_index: '<br/>String - 1. A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The transaction index position.'
 blockNumberOrBlockHash: 'String - Block number or block hash to fetch transaction receipts for, or the string ''earliest'', ''latest'' or ''pending''.'
-transactionData: 'String - The signed transaction data.'
+transactionData: String - The signed transaction data.
 address_blockNumber_blockHash: '<br/>1. String - 20 Bytes - address of the storage <br/>2. String - Integer of the position in the storage. <br/>3. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
 address_storageKeys_blockNumber: '<br/>1. String - 20 Bytes - Address of the account <br/>2. Array - 32 Bytes - array of storage-keys which should be proofed and included <br/>3. String - Integer block number, or the string ''latest'' or ''earliest''.'
 blockNumber_uncleIndex: '<br/>1. String - A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The uncle''s index position.'
-filterId: 'String - The filter id.'
-shaHash: 'String - The data in hex form to convert into a SHA3 hash.'
+filterId: String - The filter id.
+shaHash: String - The data in hex form to convert into a SHA3 hash.
 subscriptionId: 'String - Subscription ID, as previously returned from an eth_subscribe call.'
-
-
+alchemy_getTransactionReceipts: 'The api only takes in one parameter - an object with at least a blockNumber or blockHash. If both are provided, blockHash is prioritized.'

@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Token Balance
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: alchemy_getTokenBalances
+      description: 'Returns token balances for a specific address given a list of contracts.'
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/alchemy_getTokenBalances
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/alchemy_getTokenBalances
+      operationId: alchemy_getTokenBalances

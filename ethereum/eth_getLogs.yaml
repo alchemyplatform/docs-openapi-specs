@@ -17,7 +17,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  /{apiKey}:
+  '/{apiKey}':
     post:
       summary: eth_getLogs
       description: Returns an array of all logs matching a given filter object.
@@ -32,14 +32,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_getLogs
+              $ref: ../body.yaml#/eth_getLogs
       responses:
         '200':
           description: 'Returns array of log objects, or an empty array if nothing has changed since last poll.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_getLogs
+                $ref: ../responses.yaml#/eth_getLogs
 x-readme:
   samples-languages:
     - curl

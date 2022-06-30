@@ -24,12 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/net_listening
+              $ref: ../body.yaml#/net_listening
       responses:
         '200':
           description: 'Returns true when listening, otherwise false.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_cancelPrivateTransaction
+                $ref: ../responses.yaml#/eth_cancelPrivateTransaction
       operationId: net_listening

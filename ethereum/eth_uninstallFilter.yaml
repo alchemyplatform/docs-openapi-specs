@@ -24,12 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_uninstallFilter
+              $ref: ../body.yaml#/eth_uninstallFilter
       responses:
         '200':
           description: 'Returns true if the filter was successfully uninstalled, otherwise false.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_cancelPrivateTransaction
+                $ref: ../responses.yaml#/eth_cancelPrivateTransaction
       operationId: eth_uninstallFilter

@@ -24,12 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/web3_sha3
+              $ref: ../body.yaml#/web3_sha3
       responses:
         '200':
           description: Returns the SHA3 result of the given string.
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/string_result_response
+                $ref: ../responses.yaml#/string_result_response
       operationId: web3_sha3

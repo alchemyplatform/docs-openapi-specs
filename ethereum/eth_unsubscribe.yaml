@@ -24,12 +24,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/eth_unsubscribe
+              $ref: ../body.yaml#/eth_unsubscribe
       responses:
         '200':
           description: 'Returns true if a subscription was successfully cancelled, or false if no subscription existed with the given ID.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/eth_cancelPrivateTransaction
+                $ref: ../responses.yaml#/eth_cancelPrivateTransaction
       operationId: eth_unsubscribe

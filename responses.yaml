@@ -220,6 +220,10 @@ transaction_receipt:
           enum:
             - 0
             - 1
+        effectiveGasPrice:
+          type: string
+        type:
+          type: string
 eth_getTransactionReceipt:
   allOf:
     - $ref: '#/CommonProperties'
@@ -382,3 +386,58 @@ eth_subscribe:
                       type: integer
                     knownStates:
                       type: integer
+alchemy_getTokenAllowance:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: string
+          description: 'The allowance amount.'
+alchemy_getTokenBalances:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            address:
+              type: string
+              description: 'DATA, 20 Bytes - The address for which token balances were checked.'
+            tokenBalances:
+              type: array
+              description: 'Array - returns an array of token balance objects. One of tokenBalance or error will be null.'
+              items:
+                type: object
+                properties:
+                  contractAddress:
+                    type: string
+                  tokenBalance:
+                    type: string
+                  error:
+                    type: string
+alchemy_getTokenMetadata:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            name:
+              type: string
+              description: 'String - The token''s name. null if not defined in the contract and not available from other sources.'
+            symbol:
+              type: string
+              description: 'String - The token''s symbol. null if not defined in the contract and not available from other sources.'
+            decimals:
+              type: number
+              description: 'Number - The number of decimals of the token. null if not defined in the contract and not available from other sources.'
+            logo:
+              type: string
+              description: 'String - URL of the token''s logo image. null if not available.'
+
+
+
+
