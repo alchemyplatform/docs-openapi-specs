@@ -13,6 +13,10 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v3
 
+      - name: Syncing nfts.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi nfts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/nft --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62bb5f1af2192000e16f5c93
       # Run GitHub Action to sync OpenAPI file at [path-to-file.json]
       - name: Syncing eth_call.yaml
         # We recommend specifying a fixed version, i.e. @7.3.0
