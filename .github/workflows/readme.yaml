@@ -22,6 +22,26 @@ jobs:
         with:
           rdme: openapi notify.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/notify --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c003629460ee00a2bad6cc
 
+      - name: Syncing alchemy_getTransactionReceipts.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi alchemy_getTransactionReceipts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Transaction-Receipts --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62be10cd6a09230087de4fea
+
+      - name: Syncing alchemy_getTokenAllowance.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi alchemy_getTokenAllowance.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Token-API --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008de5ecd5b009577791c
+
+      - name: Syncing alchemy_getTokenBalances.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi alchemy_getTokenBalances.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Token-API --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008f3c567be003c2b9405
+
+      - name: Syncing alchemy_getTokenMetadata.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi alchemy_getTokenMetadata.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Token-API --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c00908fcec0f0014b18bb4
+
       - name: Syncing eth_call.yaml
         uses: readmeio/rdme@7.3.0
         with:
