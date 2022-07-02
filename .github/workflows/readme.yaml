@@ -17,22 +17,20 @@ jobs:
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi nfts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/nft --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62bb5f1af2192000e16f5c93
-      # Run GitHub Action to sync OpenAPI file at [path-to-file.json]
+      - name: Syncing notify.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi notify.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/notify --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c003629460ee00a2bad6cc
+
       - name: Syncing eth_call.yaml
-        # We recommend specifying a fixed version, i.e. @7.3.0
-        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi eth_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b33c14e3f39d0051d3e983
       - name: Syncing eth_accounts.yaml
-        # We recommend specifying a fixed version, i.e. @7.3.0
-        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi eth_accounts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b3394890032e016cabd8c5
       - name: Syncing eth_blockNumber.yaml
-        # We recommend specifying a fixed version, i.e. @7.3.0
-        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi eth_blockNumber.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b33b9cd78f6300b3c004f3
