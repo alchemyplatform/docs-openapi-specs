@@ -839,8 +839,7 @@ alchemy_getTokenAllowance:
       properties:
         params:
           type: array
-          description:
-            # $ref: '#/alchemy_getTransactionReceipts'
+          description: null
           minItems: 1
           maxItems: 1
           items:
@@ -871,16 +870,16 @@ alchemy_getTokenBalances:
           maxItems: 2
           items:
             oneOf:
-            - type: string
-            - oneOf:
-              - type: array
-                minItems: 1
-                maxItems: 100
-                items:
-                  type: string
               - type: string
-                enum:
-                - DEFAULT_TOKENS
+              - oneOf:
+                  - type: array
+                    minItems: 1
+                    maxItems: 100
+                    items:
+                      type: string
+                  - type: string
+                    enum:
+                      - DEFAULT_TOKENS
 alchemy_getTokenMetadata:
   allOf:
     - $ref: '#/CommonProperties'
@@ -893,9 +892,195 @@ alchemy_getTokenMetadata:
           maxItems: 1
           items:
             type: string
-
-
-
+trace_call:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_call
+        enum:
+          - trace_call
+      params:
+        type: array
+        items:
+          oneOf:
+          - $ref: '#/transaction_object'
+            description: 'Call options.'
+          - type: array
+            description: 'Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+            items:
+              type: string
+              enum:
+              - vmTrace
+              - trace
+              - stateDiff
+          - $ref: '#/defaultBlockParam'
+trace_callMany:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_callMany
+        enum:
+          - trace_callMany
+      params:
+        type: array
+        items:
+          oneOf:
+          - type: array
+            description: 'List of trace calls with the type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+            items:
+              type: string
+              enum:
+              - vmTrace
+              - trace
+              - stateDiff
+          - $ref: '#/defaultBlockParam'
+trace_rawTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_rawTransaction
+        enum:
+          - trace_rawTransaction
+      params:
+        type: array
+        items:
+          oneOf:
+          - type: string
+            description: 'Raw transaction data.'
+          - type: array
+            description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+            items:
+              type: string
+trace_replayBlockTransactions:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_replayBlockTransactions
+        enum:
+          - trace_replayBlockTransactions
+      params:
+        type: array
+        items:
+          oneOf:
+          - $ref: '#/defaultBlockParam'
+          - type: array
+            description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+            items:
+              type: string
+trace_replayTransaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_replayTransaction
+        enum:
+          - trace_replayTransaction
+      params:
+        type: array
+        items:
+          oneOf:
+          - type: string
+            description: 'Hash - Transaction hash.'
+          - type: array
+            description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+            items:
+              type: string
+trace_block:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_block
+        enum:
+          - trace_block
+      params:
+        type: array
+        items:
+          $ref: '#/defaultBlockParam'
+trace_filter:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_filter
+        enum:
+          - trace_filter
+      params:
+        type: array
+        items:
+          type: object
+          properties:
+            fromBlock:
+              type: string
+              description: 'From this block'
+            toBlock:
+              type: string
+              description: 'To this block.'
+            fromAddress:
+              type: string
+              description: 'Sent from these addresses.'
+            toAddress:
+              type: string
+              description: 'Sent to these addresses.'
+            after:
+              type: string
+              description: 'The offset trace number.'
+            count:
+              type: integer
+              description: 'Integer number of traces to display in a batch.'
+trace_get:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_get
+        enum:
+          - trace_get
+      params:
+        type: array
+        items:
+          oneOf:
+          - type: string
+            description: 'Hash - Transaction hash.'
+          - type: array
+            description: 'Array - Index positions of the traces.'
+            items:
+              type: string
+trace_transaction:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      method:
+        type: string
+        default: trace_transaction
+        enum:
+          - trace_transaction
+      params:
+        type: array
+        items:
+          type: string
+          description: 'Hash - Transaction hash.'
 
 blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
 blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
