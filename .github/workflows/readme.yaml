@@ -99,6 +99,14 @@ jobs:
         with:
           rdme: openapi trace_transaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140166d87e70098f3c333
       
+      # Sync Unstoppable APIs
+      
+      - name: Syncing unstoppable.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi unstoppable.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Unstoppable --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c175d64400750014319604
+
+      
       # Sync Ethereum APIs
       
       - name: Syncing eth_call.yaml
