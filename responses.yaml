@@ -437,7 +437,155 @@ alchemy_getTokenMetadata:
             logo:
               type: string
               description: 'String - URL of the token''s logo image. null if not available.'
-
-
-
-
+trace_call:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          $ref: '#/trace_block'
+trace_block:
+  type: object
+  properties:
+    output:
+      type: string
+    stateDiff:
+      type: string
+    trace:
+      type: array
+      items:
+        type: object
+        properties:
+          action:
+            $ref: '#/action_object'
+          error:
+            type: string
+          subtraces:
+            type: string
+          traceAddress:
+            type: array
+            items:
+              type: string
+          type:
+            type: string
+    vmTrace:
+      type: string
+action_object:
+  type: object
+  properties:
+    callType:
+      type: string
+    from:
+      type: string
+    gas:
+      type: string
+    input:
+      type: string
+    to:
+      type: string
+    value:
+      type: string
+trace_callMany:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/trace_block'
+trace_filter:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/trace_filter_object'
+trace_filter_object:
+  type: object
+  properties:
+    action:
+      $ref: '#/action_object'
+    blockHash:
+      type: string
+    blockNumber:
+      type: string
+    result:
+      type: object
+      properties:
+        gasUsed:
+          type: string
+        output:
+          type: string
+        subtraces:
+          type: integer
+        traceAddress:
+          type: array
+          items:
+            type: string
+        transactionHash:
+          type: string
+        transactionPosition:
+          type: string
+        type:
+          type: string
+trace_get_object:
+  type: object
+  properties:
+    action:
+      $ref: '#/action_object'
+    blockHash:
+      type: string
+    blockNumber:
+      type: string
+    result:
+      type: object
+      properties:
+        gasUsed:
+          type: string
+        output:
+          type: string
+    subtraces:
+      type: integer
+    traceAddress:
+      type: array
+      items:
+        type: string
+    transactionHash:
+      type: string
+    transactionPosition:
+      type: string
+    type:
+      type: string
+trace_get:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          $ref: '#/trace_get_object'
+trace_trancastion:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/trace_get_object'
+trace_replayBlockTransactions:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/trace_block'
+            - type: object
+              properties:
+                transactionHash:
+                  type: string
