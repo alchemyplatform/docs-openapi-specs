@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: Notify API
+  version: '1.0'
+servers:
+  - url: 'https://dashboard.alchemyapi.io/api'
+paths:
+  /team-webhooks:
+    get:
+      summary: Get all webhooks
+      description: This endpoint allows you to get all webhooks from every app on your team.
+      tags: []
+      parameters:
+        - $ref: body.yaml#/X-Alchemy-Token
+      responses:
+        '200':
+          description: Returns list of webhook objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: responses.yaml#/webhook_object
+      operationId: team-webhooks
+  /webhook-addresses:
+    get:
+      summary: Get all addresses for an Address Activity webhook
+      description: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
+      tags: []
+      parameters:
+      - $ref: body.yaml#/X-Alchemy-Token
+      - $ref: body.yaml#/webhook_id
+      - $ref: body.yaml#/limit
+      - $ref: body.yaml#/after
+      responses:
+        '200':
+          description: 'List of addresses and pagination info.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: responses.yaml#/webhook_addresses
+      operationId: webhook-addresses 
+  /create-webhook:
+    post:
+      summary: Create Webhook
+      description: 'This endpoint allows you to create a webhook.'
+      tags: []
+      parameters:
+      - $ref: body.yaml#/X-Alchemy-Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/create_webhook
+      responses:
+        '200':
+          description: 'Returns webhook creation data.'
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/create_webhook
+      operationId: create-webhook
+  /update-webhook-addresses:
+    patch:
+      summary: Add and remove webhook addresses.
+      description: |
+        Add or remove addresses from a specific webhook.
+        *This webhook endpoint is idempotent, meaning that identical requests can be made once or several times in a row with the same effect*
+      tags: []
+      parameters:
+      - $ref: body.yaml#/X-Alchemy-Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/update_webhook_addresses
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-webhook-addresses
+    put:
+      summary: Replace webhook addresses.
+      description: 'Replace entire list of addresses tracked in a given webhook.'
+      tags: []
+      parameters:
+      - $ref: body.yaml#/X-Alchemy-Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/replace_webhook_addresses
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: replace-webhook-addresses
+  /update-webhook:
+    put:
+      summary: Update webhool status
+      description: 'Allows you to set status of webhooks to active or inactive.'
+      tags: []
+      parameters:
+      - $ref: body.yaml#/X-Alchemy-Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: body.yaml#/update_webhook
+      responses:
+        '200':
+          description: 'Returns updated webhook status.'
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/update_webhook
+      operationId: update-webhook
+  /delete-webhook:
+    delete:
+      summary: Delete Webhook
+      description: 'Allows you to delete a webhook.'
+      tags: []
+      parameters:
+      - $ref: body.yaml#/X-Alchemy-Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_id:
+                  type: string
+                  description: 'ID of the address activity webhook.'
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: delete-webhook
