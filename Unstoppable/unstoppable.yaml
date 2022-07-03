@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Get Domain Records
+  version: '1.0'
+servers:
+  - url: 'https://unstoppabledomains.g.alchemy.com/domains'
+paths:
+  /{domainName}:
+    get:
+      summary: domain_record
+      description: Gets all the records attached to a domain name.
+      tags: []
+      parameters:
+      - $ref: 'body.yaml#/domainName'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/domain_record
+      operationId: domain_record
+      security: 
+      - api_key: []
+  /:
+    get:
+      summary: owner_record
+      description: Gets all the domain names, records, and metadata owned by a wallet address or configured to a resolution record.
+      tags: []
+      parameters:
+      - $ref: 'body.yaml#/owners'
+      - $ref: 'body.yaml#/resolution'
+      - $ref: 'body.yaml#/tlds'
+      - $ref: 'body.yaml#/sortBy'
+      - $ref: 'body.yaml#/sortDirection'
+      - $ref: 'body.yaml#/startingAfter'
+      responses:
+        '200':
+          description: 'An object with a data field contains a list of domain details and some meta about the request.'
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/owner_record
+      operationId: owner_record
+      security: 
+      - api_key: []
+  /{domainName}/transfers/latest:
+    get:
+      summary: domain_transfer_events
+      description: Gets the transfer history of a domain name.
+      tags: []
+      parameters:
+      - $ref: 'body.yaml#/domainName'
+      responses:
+        '200':
+          description: 'An object with a data field that contains a list of domain transfer events.'
+          content:
+            application/json:
+              schema:
+                $ref: responses.yaml#/domain_transfer_events
+      operationId: domain_transfer_events
+      security: 
+      - api_key: []
+
+components:
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
