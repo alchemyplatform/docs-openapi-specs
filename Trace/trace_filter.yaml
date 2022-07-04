@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Trace Filter
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: trace_filter
+      description: Returns traces matching given filter.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/trace_filter
+      responses:
+        '200':
+          description: 'Returns - Array of Traces matching given filter.'
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/trace_filter
+      operationId: trace_filter

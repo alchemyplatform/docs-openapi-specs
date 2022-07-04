@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Trace Transaction
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: trace_transaction
+      description: Returns all traces of given transaction.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/trace_transaction
+      responses:
+        '200':
+          description: 'Returns - Array of traces of given transaction.'
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/trace_trancastion
+      operationId: trace_transaction

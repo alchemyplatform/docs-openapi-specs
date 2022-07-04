@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Get Trace
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: trace_get
+      description: Returns trace at given position.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/trace_get
+      responses:
+        '200':
+          description: 'Returns - Trace object.'
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/trace_get
+      operationId: trace_get

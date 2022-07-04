@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Trace Call
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: trace_call
+      description: Executes the given call and returns a number of possible traces for it.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/trace_call
+      responses:
+        '200':
+          description: 'Returns - Array of Block traces'
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/trace_call
+      operationId: trace_call
