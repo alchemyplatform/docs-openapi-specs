@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Health
+  version: '1.0'
+servers:
+  - url: 'https://solana-mainnet.g.alchemy.com/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: getHealth
+      description: Returns the current health of the node.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/getHealth
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/getHealth
+      operationId: getHealth

@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Vote Accounts
+  version: '1.0'
+servers:
+  - url: 'https://solana-mainnet.g.alchemy.com/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: getVoteAccounts
+      description: Returns the account info and associated stake for all the voting accounts in the current bank.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/getVoteAccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/getVoteAccounts
+      operationId: getVoteAccounts

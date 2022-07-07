@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Genesis Hash
+  version: '1.0'
+servers:
+  - url: 'https://solana-mainnet.g.alchemy.com/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: getGenesisHash
+      description: Returns the genesis hash.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/getGenesisHash
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/getGenesisHash
+      operationId: getGenesisHash
