@@ -1,0 +1,59 @@
+domainName:
+  name: domainName
+  in: path
+  required: true
+  schema:
+    type: string
+    default: '<domain name>'
+  description: 'A domain name registered by Unstoppable Domains.'
+owners:
+  name: owners
+  in: query
+  schema:
+    type: array
+    items:
+      type: string
+  description: 'A list of wallet addresses to query for domain information.'
+resolution:
+  name: resolution
+  in: query
+  schema:
+    type: object
+    additionalProperties:
+      type: string
+  description: 'A key-value pair of resolution records the response results should be filtered with. See the Records Reference guide for supported key values.'
+tlds:
+  name: tlds
+  in: query
+  schema:
+    type: array
+    items:
+      type: string
+  description: 'A list of domain endings the response should be filtered with.'
+sortBy:
+  name: sortBy
+  in: query
+  schema:
+    type: string
+    enum:
+    - id
+    - name
+    - created_at
+  description: 'The field to use for sorting of the response. Currently supports id (domain ID), name (domain name alphabetically), and created_at (domain creation date)'
+  
+sortDirection:
+  name: sortDirection
+  in: query
+  schema:
+    type: string
+    enum:
+    - ASC
+    - DESC
+  description: 'The order to use for sorting of the response. Currently supports ASC (ascending) and DESC (descending).'
+startingAfter:
+  name: startingAfter
+  in: query
+  schema:
+    type: string
+  description: 'The API will skip the results before this value in the response. Value depends on sortBy value.'
+  
