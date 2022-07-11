@@ -1,10 +1,10 @@
 name: Sync OpenAPI definition to ReadMe
 
 # Run workflow for every push to the `main` branch
-on:
-  push:
-    branches:
-      - main
+#on:
+#  push:
+#    branches:
+#      - main
 
 jobs:
   sync:
@@ -32,24 +32,24 @@ jobs:
       - name: Syncing alchemy_getTransactionReceipts.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi alchemy_getTransactionReceipts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Transaction-Receipts --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62be10cd6a09230087de4fea
+          rdme: openapi alchemy_getTransactionReceipts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/transaction-receipts --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62be10cd6a09230087de4fea
 
       # Sync Token APIs
       
       - name: Syncing alchemy_getTokenAllowance.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi alchemy_getTokenAllowance.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Token-API --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008de5ecd5b009577791c
+          rdme: openapi alchemy_getTokenAllowance.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008de5ecd5b009577791c
 
       - name: Syncing alchemy_getTokenBalances.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi alchemy_getTokenBalances.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Token-API --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008f3c567be003c2b9405
+          rdme: openapi alchemy_getTokenBalances.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008f3c567be003c2b9405
 
       - name: Syncing alchemy_getTokenMetadata.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi alchemy_getTokenMetadata.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Token-API --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c00908fcec0f0014b18bb4
+          rdme: openapi alchemy_getTokenMetadata.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c00908fcec0f0014b18bb4
 
 
       # Sync Trace APIs
@@ -57,54 +57,54 @@ jobs:
       - name: Syncing trace_block.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_block.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f1d26346a008fd4ea22
+          rdme: openapi trace_block.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f1d26346a008fd4ea22
 
       - name: Syncing trace_call.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f3226346a008fd4ea32
+          rdme: openapi trace_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f3226346a008fd4ea32
       
       - name: Syncing trace_callMany.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_callMany.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f4eb87f8a00720cf8d0
+          rdme: openapi trace_callMany.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f4eb87f8a00720cf8d0
              
       - name: Syncing trace_filter.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_filter.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13fa7222c45009d6bedeb
+          rdme: openapi trace_filter.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13fa7222c45009d6bedeb
 
       - name: Syncing trace_get.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_get.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13fc09644da0028f2747e
+          rdme: openapi trace_get.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13fc09644da0028f2747e
       
       - name: Syncing trace_rawTransaction.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_rawTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c1421c19bc010042202db0
+          rdme: openapi trace_rawTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c1421c19bc010042202db0
           
       - name: Syncing trace_replayBlockTransactions.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_replayBlockTransactions.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13ff125d3d900a649624c
+          rdme: openapi trace_replayBlockTransactions.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13ff125d3d900a649624c
       
       - name: Syncing trace_replayTransaction.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_replayTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140009ec2280043e0f5ef
+          rdme: openapi trace_replayTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140009ec2280043e0f5ef
       
       - name: Syncing trace_transaction.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_transaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140166d87e70098f3c333
+          rdme: openapi trace_transaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140166d87e70098f3c333
       
       # Sync Unstoppable APIs
       
       - name: Syncing unstoppable.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi unstoppable.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/Unstoppable --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c175d64400750014319604
+          rdme: openapi unstoppable.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/unstoppable --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c175d64400750014319604
 
       
       # Sync Ethereum APIs

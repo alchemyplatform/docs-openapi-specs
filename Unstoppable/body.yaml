@@ -4,8 +4,7 @@ domainName:
   required: true
   schema:
     type: string
-    default: '<domain name>'
-  description: 'A domain name registered by Unstoppable Domains.'
+  description: 'A domain name registered by Unstoppable Domains. See all [supported domain endings](https://docs.unstoppabledomains.com/developer-toolkit/resolution-service-api/#supported-domains-for-resolution-service-api)'
 owners:
   name: owners
   in: query
