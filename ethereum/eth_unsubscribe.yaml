@@ -3,33 +3,30 @@ info:
   title: Real-time Events
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_unsubscribe
-      description: Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as method and the subscription id as first parameter.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_unsubscribe
-      responses:
-        '200':
-          description: 'Returns true if a subscription was successfully cancelled, or false if no subscription existed with the given ID.'
+  '/':
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_unsubscribe
+        description: Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as method and the subscription id as first parameter.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_cancelPrivateTransaction
-      operationId: eth_unsubscribe
+                $ref: ../body.yaml#/eth_unsubscribe
+        responses:
+          '200':
+            description: 'Returns true if a subscription was successfully cancelled, or false if no subscription existed with the given ID.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/eth_cancelPrivateTransaction
+        operationId: eth_unsubscribe

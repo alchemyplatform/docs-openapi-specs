@@ -3,33 +3,30 @@ info:
   title: Reading Transactions
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_getTransactionByBlockHashAndIndex
-      description: Returns information about a transaction by block hash and transaction index position.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_getTransactionByBlockHashAndIndex
-      responses:
-        '200':
-          description: ''
+  '/':
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getTransactionByBlockHashAndIndex
+        description: Returns information about a transaction by block hash and transaction index position.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_block
-      operationId: eth_getTransactionByBlockHashAndIndex
+                $ref: ../body.yaml#/eth_getTransactionByBlockHashAndIndex
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/eth_block
+        operationId: eth_getTransactionByBlockHashAndIndex

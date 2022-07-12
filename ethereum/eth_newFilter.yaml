@@ -3,33 +3,30 @@ info:
   title: Filters
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_newFilter
-      description: 'Creates a filter object, based on filter options, to notify when the state changes (logs).'
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_newFilter
-      responses:
-        '200':
-          description: Returns a filter id.
+  '/':
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_newFilter
+        description: 'Creates a filter object, based on filter options, to notify when the state changes (logs).'
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
-      operationId: eth_newFilter
+                $ref: ../body.yaml#/eth_newFilter
+        responses:
+          '200':
+            description: Returns a filter id.
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth_newFilter

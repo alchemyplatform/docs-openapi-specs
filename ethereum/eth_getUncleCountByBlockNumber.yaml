@@ -3,33 +3,30 @@ info:
   title: Getting Uncles
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_getUncleCountByBlockNumber
-      description: Returns the number of uncles in a block matching the give block number.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_getUncleCountByBlockNumber
-      responses:
-        '200':
-          description: Returns integer of the number of uncles in this block.
+  '/':
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getUncleCountByBlockNumber
+        description: Returns the number of uncles in a block matching the give block number.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
-      operationId: eth_getUncleCountByBlockNumber
+                $ref: ../body.yaml#/eth_getUncleCountByBlockNumber
+        responses:
+          '200':
+            description: Returns integer of the number of uncles in this block.
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth_getUncleCountByBlockNumber

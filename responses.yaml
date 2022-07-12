@@ -393,7 +393,7 @@ alchemy_getTokenAllowance:
       properties:
         result:
           type: string
-          description: 'The allowance amount.'
+          description: The allowance amount.
 alchemy_getTokenBalances:
   allOf:
     - $ref: '#/CommonProperties'
@@ -407,7 +407,7 @@ alchemy_getTokenBalances:
               description: 'DATA, 20 Bytes - The address for which token balances were checked.'
             tokenBalances:
               type: array
-              description: 'Array - returns an array of token balance objects. One of tokenBalance or error will be null.'
+              description: Array - returns an array of token balance objects. One of tokenBalance or error will be null.
               items:
                 type: object
                 properties:
@@ -427,16 +427,16 @@ alchemy_getTokenMetadata:
           properties:
             name:
               type: string
-              description: 'String - The token''s name. null if not defined in the contract and not available from other sources.'
+              description: String - The token's name. null if not defined in the contract and not available from other sources.
             symbol:
               type: string
-              description: 'String - The token''s symbol. null if not defined in the contract and not available from other sources.'
+              description: String - The token's symbol. null if not defined in the contract and not available from other sources.
             decimals:
               type: number
-              description: 'Number - The number of decimals of the token. null if not defined in the contract and not available from other sources.'
+              description: Number - The number of decimals of the token. null if not defined in the contract and not available from other sources.
             logo:
               type: string
-              description: 'String - URL of the token''s logo image. null if not available.'
+              description: String - URL of the token's logo image. null if not available.
 trace_call:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1543,3 +1543,66 @@ getTransaction:
               type: number
               nullable: true
               description: 'Transaction version. Undefined if maxSupportedTransactionVersion is not set in request params.'
+bor_getAuthor:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: 'AUTHOR - address.'
+          type: string
+bor_getCurrentValidators:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: 'List of current validators.'
+          type: array
+          items:
+            type: object
+            properties:
+              ID:
+                type: integer
+              signer:
+                type: string
+              power:
+                type: integer
+              accum:
+                type: integer
+bor_getCurrentProposer:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: 'AUTHOR - address.'
+          type: string
+bor_getRootHash:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: 'Hash'
+          type: string
+eth_getSignersAtHash:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: 'List of HASH.'
+          type: array
+          items:
+            type: string
+eth_getTransactionReceiptsByBlock:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: 'Array of transaction receipt objects.'
+          type: array
+          items:
+            $ref: '#/transaction_receipt'

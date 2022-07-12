@@ -3,23 +3,16 @@ info:
   title: Reading Transactions
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
+  '/':
     post:
       summary: eth_getBlockReceipts
       description: Get all transaction receipts for a given block on Ethereum.
       tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
       requestBody:
         content:
           application/json:

@@ -3,33 +3,30 @@ info:
   title: Chain Information
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: net_version
-      description: Returns the current network id.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/net_version
-      responses:
-        '200':
-          description: Returns the current network id.
+  '/':
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: net_version
+        description: Returns the current network id.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/net_version
-      operationId: net_version
+                $ref: ../body.yaml#/net_version
+        responses:
+          '200':
+            description: Returns the current network id.
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/net_version
+        operationId: net_version
