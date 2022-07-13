@@ -30,9 +30,34 @@ paths:
         - $ref: nfts_body.yaml#/withMetadata
           description: 'True by default - If boolean is set to true the query will include metadata for each returned token. Setting this to false will reduce payload size and may result in a faster API call.'
         - $ref: nfts_body.yaml#/filters
-          description: |-
+          description: |- 
             Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. Filter Options: 
              - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install @alch/alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: demo, // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print all NFTs returned in the response:
+              alchemy.getNftsForOwner(alchemy, "0xshah.eth").then(console.log);
       responses:
         '200':
           description: 'Returns true if transaction was successfully cancelled, false if not.'
@@ -64,6 +89,34 @@ paths:
           description: Integer or Hexadecimal - Id for NFT.
         - $ref: nfts_body.yaml#/tokenType
           description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for.API requests will perform faster if this is specified.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT metadata returned in the response:
+              alchemy.getNftMetadata(
+                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
+                "1590"
+              ).then(console.log);
       responses:
         '200':
           description: ''
@@ -81,6 +134,32 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - Address of NFT contract.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy
+                .getNftContractMetadata("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+                .then(console.log);
       responses:
         '200':
           description: ''
@@ -104,6 +183,33 @@ paths:
           description: 'String - An offset used for pagination. Can be a hex string, or a decimal.'
         - $ref: nfts_body.yaml#/limit
           description: Integer - Sets the total number of NFTs returned in the response. Defaults to 100.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT collection returned in the response:
+              alchemy
+                .getNftsForNftContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+                .then(console.log);
       responses:
         '200':
           description: ''
@@ -123,6 +229,33 @@ paths:
           description: String - Contract address for the NFT collection
         - $ref: nfts_body.yaml#/withTokenBalances
           description: Boolean - [boolean]  false by default. If set to true the query will include the token balances per token id for each owner.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT count returned in the response:
+              alchemy
+                .getOwnersForNftContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+                .then(console.log);
       responses:
         '200':
           description: ''
@@ -138,6 +271,31 @@ paths:
       tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print all spam NFT contracts returned in the response:
+              alchemy.getSpamNftContracts().then(console.log);
       responses:
         '200':
           description: ''
@@ -156,6 +314,33 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - The NFT contract address in question.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print whether an NFT contract is spam
+              alchemy
+                .isSpamNftContract("0x000440f08436a7b866d1ae42db5e0be801da722a")
+                .then(console.log);
       responses:
         '200':
           description: ''
@@ -174,6 +359,36 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - The address of the NFT contract/collection that needs to be refreshed.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import {
+                Network,
+              } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT count returned in the response:
+              alchemy.reingestNftContract(
+                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
+                "1590"
+              ).then(console.log);
       responses:
         '200':
           description: ''
@@ -193,6 +408,33 @@ paths:
           description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
         - $ref: nfts_body.yaml#/tokenId
           description: String - The ID of the token. Can be in hex or decimal format.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT count returned in the response:
+              getOwnersForNft("0x5180db8F5c931aaE63c74266b211F580155ecac8", "1590").then(
+                console.log
+              );
       responses:
         '200':
           description: ''
@@ -210,6 +452,33 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - Contract address for the NFT collection.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install @alch/alchemy-sdk
+              import { Network, Alchemy } from "@alch/alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+                maxRetries: 10,
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print the NFT floor price for a contract
+              alchemy
+                .getNftFloorPrice("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d")
+                .then(console.log);
       responses:
         '200':
           description: ''
