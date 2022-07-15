@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: hfy1a39ww6ezy
 info:
   title: EVM/Smart Contract Execution
   version: '1.0'
@@ -8,7 +10,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -21,7 +23,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_estimateGas
+                $ref: ../body.yaml#/eth_estimateGas_550
         responses:
           '200':
             description: Returns the amount of gas used.

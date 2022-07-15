@@ -17,14 +17,17 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
     path:
       post:
         summary: eth_getLogs
-        description: Returns an array of all logs matching a given filter object.
+        description: |
+          Returns an array of all logs matching a given filter object.
+          </br><strong>NOTE:</strong> You can make eth_getLogs requests with up to a <b>2K</b> block range and <b>150MB</b> limit on the response size OR you can request any block range with a cap of <b>10K</b> logs in the response.
+          If you need to pull logs frequently, we recommend using WebSockets to push new logs to you when they are available.
         requestBody:
           content:
             application/json:
@@ -36,7 +39,7 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_getLogs    
+                  $ref: ../responses.yaml#/eth_getLogs
 x-readme:
   samples-languages:
     - curl
