@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: EVM/Smart Contract Execution
+  version: '1.0'
+servers:
+  - url: 'https://arb-mainnet.g.alchemy.com/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: eth_estimateGas
+      description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/eth_estimateGas_5
+      responses:
+        '200':
+          description: Returns the amount of gas used.
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/string_result_response
+      operationId: eth_estimateGas
