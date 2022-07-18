@@ -419,7 +419,7 @@ eth_cancelPrivateTransaction:
         params:
           type: array
           minItems: 1
-          maxItems: 3
+          maxItems: 1
           items:
             type: object
             properties:
@@ -976,7 +976,7 @@ alchemy_getTokenBalances:
           minItems: 2
           maxItems: 2
           items:
-            oneOf:
+            allOf:
               - type: string
               - oneOf:
                   - type: array
