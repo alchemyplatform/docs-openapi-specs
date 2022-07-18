@@ -1,35 +1,34 @@
 openapi: 3.1.0
+x-stoplight:
+  id: hfy1a39ww6ezy
 info:
   title: EVM/Smart Contract Execution
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_estimateGas
-      description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_estimateGas
-      responses:
-        '200':
-          description: Returns the amount of gas used.
+  /:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_estimateGas
+        description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
-      operationId: eth_estimateGas
+                $ref: ../body.yaml#/eth_estimateGas_550
+        responses:
+          '200':
+            description: Returns the amount of gas used.
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth_estimateGas

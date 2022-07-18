@@ -4,31 +4,28 @@ info:
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_getBlockByNumber
-      description: Returns information about a block by block number.
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_getBlockByNumber
-      responses:
-        '200':
-          description: 'Returns a block object with the following fields, or null when no block was found.'
+  '/':
+    $ref: '#components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getBlockByNumber
+        description: Returns information about a block by block number.
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_block
+                $ref: ../body.yaml#/eth_getBlockByNumber
+        responses:
+          '200':
+            description: 'Returns a block object with the following fields, or null when no block was found.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/eth_block

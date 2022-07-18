@@ -1,0 +1,12 @@
+openapi: 3.1.0
+info:
+  title: Real-time Events
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    $ref: '../ethereum/eth_unsubscribe.yaml#/components/pathItems/path'

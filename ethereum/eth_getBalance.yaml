@@ -3,33 +3,30 @@ info:
   title: Account Information
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_getBalance
-      description: Returns the balance of the account of a given address.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_getBalance
-      responses:
-        '200':
-          description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
+  '/':
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getBalance
+        description: Returns the balance of the account of a given address.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
-      operationId: eth_getBalance
+                $ref: ../body.yaml#/eth_getBalance
+        responses:
+          '200':
+            description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth_getBalance

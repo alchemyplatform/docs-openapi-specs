@@ -102,7 +102,7 @@ CommonProperties:
 defaultBlockParam:
   type: string
   description: The following options are possible for the defaultBlock parameter. HEX String - an integer block number. String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions
-eth_call:
+eth_call_550:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
@@ -118,7 +118,49 @@ eth_call:
           maxItems: 2
           items:
             oneOf:
-              - $ref: '#/transaction_object'
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/defaultBlockParam'
+eth_call_5:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_5'
+              - $ref: '#/defaultBlockParam'
+eth_call_50:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_50'
               - $ref: '#/defaultBlockParam'
 transaction_object:
   type: object
@@ -130,12 +172,11 @@ transaction_object:
     to:
       type: string
       description: 20 Bytes - The address the transaction is directed to
-    gas:
-      type: string
-      description: 'Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. NOTE: this parameter has a cap of 550 Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!'
     gasPrice:
       type: string
-      description: Integer of the gasPrice used for each paid gas.
+      description: |
+        Integer of the gasPrice used for each paid gas.
+        <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
     value:
       type: string
       description: Integer of the value sent with this transaction
@@ -144,6 +185,30 @@ transaction_object:
       description: Hash of the method signature and encoded parameters
   required:
     - to
+gas_50:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>50</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+gas_5:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>5</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+gas_550:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
 transactionHash_param:
   type: object
   properties:
@@ -463,7 +528,7 @@ eth_gasPrice:
             - eth_gasPrice
         params:
           type: array
-eth_estimateGas:
+eth_estimateGas_550:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
@@ -479,7 +544,49 @@ eth_estimateGas:
           maxItems: 2
           items:
             oneOf:
-              - $ref: '#/transaction_object'
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/defaultBlockParam'
+eth_estimateGas_5:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_estimateGas
+          enum:
+            - eth_estimateGas
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_5'
+              - $ref: '#/defaultBlockParam'
+eth_estimateGas_50:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_estimateGas
+          enum:
+            - eth_estimateGas
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_50'
               - $ref: '#/defaultBlockParam'
 eth_feeHistory:
   allOf:
@@ -907,7 +1014,7 @@ trace_call:
           items:
             oneOf:
               - $ref: '#/transaction_object'
-                description: 'Call options.'
+                description: Call options.
               - type: array
                 description: 'Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
                 items:
@@ -955,7 +1062,7 @@ trace_rawTransaction:
           items:
             oneOf:
               - type: string
-                description: 'Raw transaction data.'
+                description: Raw transaction data.
               - type: array
                 description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
                 items:
@@ -994,7 +1101,7 @@ trace_replayTransaction:
           items:
             oneOf:
               - type: string
-                description: 'Hash - Transaction hash.'
+                description: Hash - Transaction hash.
               - type: array
                 description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
                 items:
@@ -1030,22 +1137,22 @@ trace_filter:
             properties:
               fromBlock:
                 type: string
-                description: 'From this block'
+                description: From this block
               toBlock:
                 type: string
-                description: 'To this block.'
+                description: To this block.
               fromAddress:
                 type: string
-                description: 'Sent from these addresses.'
+                description: Sent from these addresses.
               toAddress:
                 type: string
-                description: 'Sent to these addresses.'
+                description: Sent to these addresses.
               after:
                 type: string
-                description: 'The offset trace number.'
+                description: The offset trace number.
               count:
                 type: integer
-                description: 'Integer number of traces to display in a batch.'
+                description: Integer number of traces to display in a batch.
 trace_get:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1061,9 +1168,9 @@ trace_get:
           items:
             oneOf:
               - type: string
-                description: 'Hash - Transaction hash.'
+                description: Hash - Transaction hash.
               - type: array
-                description: 'Array - Index positions of the traces.'
+                description: Array - Index positions of the traces.
                 items:
                   type: string
 trace_transaction:
@@ -1080,7 +1187,7 @@ trace_transaction:
           type: array
           items:
             type: string
-            description: 'Hash - Transaction hash.'
+            description: Hash - Transaction hash.
 getBlockHeight:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1095,7 +1202,7 @@ getBlockHeight:
           type: array
           items:
             type: object
-            description: 'Config object.'
+            description: Config object.
             properties:
               commitment:
                 $ref: '#/commitment'
@@ -1113,32 +1220,32 @@ getBlock:
           type: array
           items:
             oneOf:
-            - type: integer
-              description: 'A slot integer denoting the target block number.'
-            - type: object
-              properties:
-                encoding:
-                  $ref: '#/encoding'
-                transactionDetails:
-                  type: string
-                  description: |
-                    Level of transaction detail to return.
-                    Accepts one of the following strings:
-                    ["full" (Default), "signatures", or "none"] 
-                  enum:
-                  - full
-                  - signatures
-                  - none
-                  default: full
-                rewards:
-                  type: boolean
-                  description: 'Whether to populate the rewards array.  true (Default)'
-                  default: true
-                commitment:
-                  $ref: '#/commitment'
-                maxSupportedTransactionVersion:
-                  type: integer
-                  description: 'Sets the maximum transaction version.'
+              - type: integer
+                description: A slot integer denoting the target block number.
+              - type: object
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  transactionDetails:
+                    type: string
+                    description: |
+                      Level of transaction detail to return.
+                      Accepts one of the following strings:
+                      ["full" (Default), "signatures", or "none"] 
+                    enum:
+                      - full
+                      - signatures
+                      - none
+                    default: full
+                  rewards:
+                    type: boolean
+                    description: Whether to populate the rewards array.  true (Default)
+                    default: true
+                  commitment:
+                    $ref: '#/commitment'
+                  maxSupportedTransactionVersion:
+                    type: integer
+                    description: Sets the maximum transaction version.
 getBlocks:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1152,16 +1259,16 @@ getBlocks:
         params:
           type: array
           items:
-          - $ref: '#/get_blocks'
+            - $ref: '#/get_blocks'
 get_blocks:
   oneOf:
-  - type: integer
-    format: int64
-    description: '(Required) Starting slot integer or (Optional) ending slot integer.'
-  - type: object
-    properties:
-      commitment:
-        $ref: '#/commitment'
+    - type: integer
+      format: int64
+      description: (Required) Starting slot integer or (Optional) ending slot integer.
+    - type: object
+      properties:
+        commitment:
+          $ref: '#/commitment'
 getBlocksWithLimit:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1175,7 +1282,7 @@ getBlocksWithLimit:
         params:
           type: array
           items:
-          - $ref: '#/get_blocks'
+            - $ref: '#/get_blocks'
 getBlockTime:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1193,7 +1300,7 @@ getBlockTime:
           items:
             type: integer
             format: int64
-            description: 'u64 - Slot integer for a block.'
+            description: u64 - Slot integer for a block.
 getBlockCommitment:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1211,7 +1318,7 @@ getBlockCommitment:
           items:
             type: integer
             format: int64
-            description: 'u64 - A slot integer denoting the block number.'
+            description: u64 - A slot integer denoting the block number.
 getBlockProduction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1231,21 +1338,21 @@ getBlockProduction:
                 $ref: '#/commitment'
               range:
                 type: object
-                description: 'Slot range for block production response. Defaults to to the current epoch.'
+                description: Slot range for block production response. Defaults to to the current epoch.
                 required:
-                - firstSlot
+                  - firstSlot
                 properties:
                   firstSlot:
                     type: integer
                     format: int64
-                    description: 'u64 - First slot to return block production information for (inclusive).'
+                    description: u64 - First slot to return block production information for (inclusive).
                   lastSlot:
                     type: integer
                     format: int64
-                    description: 'u64 - Last slot to return block production information for (inclusive). Defaults to the highest slot.'
+                    description: u64 - Last slot to return block production information for (inclusive). Defaults to the highest slot.
                   identity:
                     type: string
-                    description: 'Base-58 Encoded String - Specifies return results for a particular validator identity.'
+                    description: Base-58 Encoded String - Specifies return results for a particular validator identity.
 isBlockhashValid:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1262,9 +1369,9 @@ isBlockhashValid:
           maxitems: 2
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - The blockhash of this block.'
-            - $ref: '#/configObject'
+              - type: string
+                description: Base-58 Encoded String - The blockhash of this block.
+              - $ref: '#/configObject'
 getAccountInfo:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1281,15 +1388,15 @@ getAccountInfo:
           maxitems: 2
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - Pubkey of account to query.'
-            - type: object
-              description: 'Config object.'
-              properties:
-                encoding:
-                  $ref: '#/encoding'
-                dataSlice:
-                  $ref: '#/dataSlice'
+              - type: string
+                description: Base-58 Encoded String - Pubkey of account to query.
+              - type: object
+                description: Config object.
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
 encoding:
   type: string
   description: |
@@ -1299,10 +1406,10 @@ encoding:
     "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON. 
   default: json
   enum:
-  - json
-  - jsonParsed
-  - base58
-  - base64
+    - json
+    - jsonParsed
+    - base58
+    - base64
 dataSlice:
   type: object
   description: |
@@ -1310,16 +1417,16 @@ dataSlice:
     Only available for "base58", "base64" or "base64+zstd" encodings.
 minContextSlot:
   type: number
-  description: 'Set the minimum slot that the request can be evaluated at.'
+  description: Set the minimum slot that the request can be evaluated at.
 commitment:
   type: string
-  description: | 
+  description: |
     Configures the commitment level of the blocks queried.
     Accepts one of the following strings: ["finalized", "confirmed", "processed"]
   enum:
-  - finalized
-  - confirmed
-  - processed
+    - finalized
+    - confirmed
+    - processed
 configObject:
   type: object
   properties:
@@ -1341,9 +1448,9 @@ getBalance:
           type: array
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - Pubkey of account to query.'
-            - $ref: '#/configObject'
+              - type: string
+                description: Base-58 Encoded String - Pubkey of account to query.
+              - $ref: '#/configObject'
 getMultipleAccounts:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1360,39 +1467,39 @@ getMultipleAccounts:
           maxitems: 2
           items:
             oneOf:
-            - type: array
-              items:
-                type: string
-              description: 'Array of Base-58 Encoded Strings - An array of Pubkeys to query (up to a maximum of 100).'
-            - type: object
-              description: 'Config object.'
-              properties:
-                encoding:
-                  $ref: '#/encoding'
-                dataSlice:
-                  $ref: '#/dataSlice'
-                minContextSlot:
-                  $ref: '#/minContextSlot'
+              - type: array
+                items:
+                  type: string
+                description: Array of Base-58 Encoded Strings - An array of Pubkeys to query (up to a maximum of 100).
+              - type: object
+                description: Config object.
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 filters:
   type: array
-  description: 'Array - Filter results using various filter objects; account must meet all filter criteria to be included in results.'
+  description: Array - Filter results using various filter objects; account must meet all filter criteria to be included in results.
   items:
     type: object
     properties:
       memcmp:
         type: object
-        description: 'Compares a provided series of bytes with program account data at a particular offset.'
+        description: Compares a provided series of bytes with program account data at a particular offset.
         properties:
           offset:
             type: integer
-            description: 'An offset into program account data to start comparison.'
+            description: An offset into program account data to start comparison.
           bytes:
             type: string
             description: 'String - Data to match, as base-58 encoded string and limited to less than 129 bytes.'
       dataSize:
         type: integer
         format: int64
-        description: 'Compares the program account data length with the provided data size.'
+        description: Compares the program account data length with the provided data size.
 getProgramAccounts:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1407,21 +1514,21 @@ getProgramAccounts:
           type: array
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded sStrings - Pubkey of program.'
-            - type: object
-              properties:
-                encoding:
-                  $ref: '#/encoding'
-                dataSlice:
-                  $ref: '#/dataSlice'
-                filters:
-                  $ref: '#/filters'
-                withContext:
-                  type: boolean
-                  description: 'Wrap the result in an RpcResponse JSON object.'
-                minContextSlot:
-                  $ref: '#/minContextSlot'
+              - type: string
+                description: Base-58 Encoded sStrings - Pubkey of program.
+              - type: object
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
+                  filters:
+                    $ref: '#/filters'
+                  withContext:
+                    type: boolean
+                    description: Wrap the result in an RpcResponse JSON object.
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 getVoteAccounts:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1441,14 +1548,14 @@ getVoteAccounts:
                 $ref: '#/commitment'
               votePubkey:
                 type: string
-                description: 'Base-58 Encoded String - Only return results for this validator vote address.'
+                description: Base-58 Encoded String - Only return results for this validator vote address.
               keepUnstakedDelinquents:
                 type: boolean
-                description: 'Do not filter out delinquent validators with no stake.'
+                description: Do not filter out delinquent validators with no stake.
               delinquentSlotDistance:
                 type: integer
                 format: int64
-                description: 'Specify the number of slots behind the tip that a validator must fall to be considered delinquent.'
+                description: Specify the number of slots behind the tip that a validator must fall to be considered delinquent.
 getLargestAccounts:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1465,13 +1572,13 @@ getLargestAccounts:
             type: object
             properties:
               commitment:
-                $ref: '#/commitment' 
+                $ref: '#/commitment'
               filter:
                 type: string
-                description: 'Filter results by account type; currently supported - "circulating" or "nonCirculating".'
+                description: Filter results by account type; currently supported - "circulating" or "nonCirculating".
                 enum:
-                - circulating
-                - nonCirculating
+                  - circulating
+                  - nonCirculating
 getClusterNodes:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1580,7 +1687,7 @@ getMinimumBalanceForRentExemption:
           items:
             oneOf:
               - type: integer
-                description: 'usize - Account data length.'
+                description: usize - Account data length.
               - type: object
                 properties:
                   commitment:
@@ -1597,7 +1704,7 @@ getRecentPerformanceSamples:
             - getRecentPerformanceSamples
         params:
           type: array
-          description: 'Array of number of samples to return (maximum 720).'
+          description: Array of number of samples to return (maximum 720).
           items:
             type: integer
             format: int64
@@ -1663,7 +1770,7 @@ getInflationReward:
           items:
             oneOf:
               - type: array
-                description: 'Array of Base-58 Encoded Strings - An array of addresses to query.'
+                description: Array of Base-58 Encoded Strings - An array of addresses to query.
                 items:
                   type: string
               - type: object
@@ -1695,8 +1802,8 @@ getSupply:
                 $ref: '#/commitment'
               excludeNonCirculatingAccountsList:
                 type: boolean
-                description: 'Boolean - Excludes non circulating accounts list from response.'
-getSlot:  
+                description: Boolean - Excludes non circulating accounts list from response.
+getSlot:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
@@ -1708,9 +1815,9 @@ getSlot:
             - getSlot
         params:
           type: array
-          items:   
+          items:
             $ref: '#/configObject'
-getSlotLeaders: 
+getSlotLeaders:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
@@ -1774,12 +1881,12 @@ getTokenAccountBalance:
           type: array
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - Pubkey of queried token account.'
-            - type: object
-              properties:
-                commitment:
-                  $ref: '#/commitment'
+              - type: string
+                description: Base-58 Encoded String - Pubkey of queried token account.
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
 getTokenAccountsByOwner:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1794,28 +1901,28 @@ getTokenAccountsByOwner:
           type: array
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - Pubkey of queried SPL token account owner.'
-            - oneOf:
+              - type: string
+                description: Base-58 Encoded String - Pubkey of queried SPL token account owner.
+              - oneOf:
+                  - type: object
+                    properties:
+                      mint:
+                        type: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
+                  - type: object
+                    properties:
+                      programId:
+                        type: string
+                        description: Base-58 Encoded String - Pubkey of the Token program that owns the accounts.
               - type: object
                 properties:
-                  mint:
-                    type: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
-              - type: object
-                properties:
-                  programId:
-                    type: string
-                    description: 'Base-58 Encoded String - Pubkey of the Token program that owns the accounts.'
-            - type: object
-              properties:
-                commitment:
-                  $ref: '#/commitment'
-                encoding:
-                  $ref: '#/encoding'
-                dataSlice:
-                  $ref: '#/dataSlice'
-                minContextSlot:
-                  $ref: '#/minContextSlot'
+                  commitment:
+                    $ref: '#/commitment'
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 getTokenSupply:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1830,12 +1937,12 @@ getTokenSupply:
           type: array
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - Pubkey of token Mint to query.'
-            - type: object
-              properties:
-                commitment:
-                  $ref: '#/commitment'
+              - type: string
+                description: Base-58 Encoded String - Pubkey of token Mint to query.
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
 getSignaturesForAddress:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1850,24 +1957,24 @@ getSignaturesForAddress:
           type: array
           items:
             oneOf:
-            - type: string
-              description: 'Base-58 Encoded String - Account address.'
-            - type: object
-              properties:
-                limit:
-                  type: number
-                  default: 1000
-                  description: 'Maximum transaction signatures to return (between 1 and 1,000, default - 1,000).'
-                before:
-                  type: string
-                  description: 'Start searching backwards from this transaction signature. If not provided the search starts from the top of the highest max confirmed block.'
-                until:
-                  type: string
-                  description: 'Search until this transaction signature, if found before limit reached.'
-                commitment:
-                  $ref: '#/commitment'
-                minContextSlot:
-                  $ref: '#/minContextSlot'
+              - type: string
+                description: Base-58 Encoded String - Account address.
+              - type: object
+                properties:
+                  limit:
+                    type: number
+                    default: 1000
+                    description: 'Maximum transaction signatures to return (between 1 and 1,000, default - 1,000).'
+                  before:
+                    type: string
+                    description: Start searching backwards from this transaction signature. If not provided the search starts from the top of the highest max confirmed block.
+                  until:
+                    type: string
+                    description: 'Search until this transaction signature, if found before limit reached.'
+                  commitment:
+                    $ref: '#/commitment'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 getSignatureStatuses:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1884,13 +1991,13 @@ getSignatureStatuses:
           maxItems: 2
           items:
             oneOf:
-            - type: string
-              description: 'Array of Base-58 Encoded String -  An array of transaction signatures to confirm.'
-            - type: object
-              properties:
-                searchTransactionHistory:
-                  type: boolean
-                  description: 'If true, a Solana node will search its ledger cache for any signatures not found in the recent status cache.'
+              - type: string
+                description: Array of Base-58 Encoded String -  An array of transaction signatures to confirm.
+              - type: object
+                properties:
+                  searchTransactionHistory:
+                    type: boolean
+                    description: 'If true, a Solana node will search its ledger cache for any signatures not found in the recent status cache.'
 sendTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1907,24 +2014,24 @@ sendTransaction:
           maxItems: 2
           items:
             oneOf:
-            - type: string
-              description: 'Encoded String - Fully-signed Transaction.'
-            - type: object
-              properties:
-                skipPreflight:
-                  type: boolean
-                  description: 'If true, skip the preflight transaction checks (default - false).'
-                preflightCommitment:
-                  type: string
-                  default: finalized
-                  description: 'Commitment level to use for preflight (default - "finalized").'
-                encoding:
-                  $ref: '#/encoding'
-                maxRetries:
-                  type: number
-                  description: 'Maximum number of times for the RPC node to retry sending the transaction to the leader. If this parameter not provided, the RPC node will retry the transaction until it is finalized or until the blockhash expires.'
-                minContextSlot:
-                  $ref: '#/minContextSlot'
+              - type: string
+                description: Encoded String - Fully-signed Transaction.
+              - type: object
+                properties:
+                  skipPreflight:
+                    type: boolean
+                    description: 'If true, skip the preflight transaction checks (default - false).'
+                  preflightCommitment:
+                    type: string
+                    default: finalized
+                    description: Commitment level to use for preflight (default - "finalized").
+                  encoding:
+                    $ref: '#/encoding'
+                  maxRetries:
+                    type: number
+                    description: 'Maximum number of times for the RPC node to retry sending the transaction to the leader. If this parameter not provided, the RPC node will retry the transaction until it is finalized or until the blockhash expires.'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 simulateTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1941,43 +2048,43 @@ simulateTransaction:
           maxItems: 2
           items:
             oneOf:
-            - type: string
-              description: 'Transaction, as an encoded string. The transaction must have a valid blockhash, but is not required to be signed.'
-            - type: object
-              properties:
-                sigVerify:
-                  type: boolean
-                  default: false
-                  description: 'if true the transaction signatures will be verified (default - false, conflicts with replaceRecentBlockhash).'
-                commitment:
-                  $ref: '#/commitment'
-                encoding:
-                  type: string
-                  default: base58
-                  description: 'Encoding used for the transaction data. Either "base58" (slow, DEPRECATED), or "base64". (default - "base58").'
-                replaceRecentBlockhash:
-                  type: boolean
-                  default: false
-                  description: 'If true, the transaction recent blockhash will be replaced with the most recent blockhash. (default - false, conflicts with sigVerify).'
-                accounts:
-                  type: object
-                  description: 'Accounts configuration object.'
-                  properties:
-                    encoding:
-                      type: string
-                      default: base64
-                      description: |
-                        Data encoding for each returned transaction
-                        Accepts one of the following strings:
-                        ["base64" (default), "base64+zstd" or "jsonParsed"] 
-                        "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
-                    addresses:
-                      type: array
-                      description: 'Array of Base-58 Encoded Strings - An array of accounts to return.'
-                      items:
+              - type: string
+                description: 'Transaction, as an encoded string. The transaction must have a valid blockhash, but is not required to be signed.'
+              - type: object
+                properties:
+                  sigVerify:
+                    type: boolean
+                    default: false
+                    description: 'if true the transaction signatures will be verified (default - false, conflicts with replaceRecentBlockhash).'
+                  commitment:
+                    $ref: '#/commitment'
+                  encoding:
+                    type: string
+                    default: base58
+                    description: 'Encoding used for the transaction data. Either "base58" (slow, DEPRECATED), or "base64". (default - "base58").'
+                  replaceRecentBlockhash:
+                    type: boolean
+                    default: false
+                    description: 'If true, the transaction recent blockhash will be replaced with the most recent blockhash. (default - false, conflicts with sigVerify).'
+                  accounts:
+                    type: object
+                    description: Accounts configuration object.
+                    properties:
+                      encoding:
                         type: string
-                minContextSlot:
-                  $ref: '#/minContextSlot'
+                        default: base64
+                        description: |
+                          Data encoding for each returned transaction
+                          Accepts one of the following strings:
+                          ["base64" (default), "base64+zstd" or "jsonParsed"] 
+                          "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
+                      addresses:
+                        type: array
+                        description: Array of Base-58 Encoded Strings - An array of accounts to return.
+                        items:
+                          type: string
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 getTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1994,18 +2101,128 @@ getTransaction:
           maxItems: 2
           items:
             oneOf:
-            - type: string
-              description: 'Returns transaction details for a confirmed transaction.'
-            - type: object
-              properties:
-                encoding:
-                  $ref: '#/encoding'
-                commitment:
-                  $ref: '#/commitment'
-                maxSupportedTransactionVersion:
-                  type: number
-                  description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
-
+              - type: string
+                description: Returns transaction details for a confirmed transaction.
+              - type: object
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  commitment:
+                    $ref: '#/commitment'
+                  maxSupportedTransactionVersion:
+                    type: number
+                    description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
+bor_getAuthor:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: bor_getAuthor
+          enum:
+            - bor_getAuthor
+        params:
+          description: Array of block number (in hexadecimal format).
+          type: array
+          items:
+            type: string
+bor_getCurrentValidators:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: bor_getCurrentValidators
+          enum:
+            - bor_getCurrentValidators
+bor_getCurrentProposer:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: bor_getCurrentProposer
+          enum:
+            - bor_getCurrentProposer
+bor_getRootHash:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: bor_getCurrentProposer
+          enum:
+            - bor_getCurrentProposer
+        params:
+          type: array
+          items:
+            type: object
+            properties:
+              from:
+                type: integer
+                description: Block number (in int format).
+              to:
+                type: integer
+                description: Block number (in int format).
+eth_getRootHash:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_getRootHash
+          enum:
+            - eth_getRootHash
+        params:
+          type: array
+          items:
+            type: object
+            properties:
+              from:
+                type: integer
+                description: Block number (in int format).
+              to:
+                type: integer
+                description: Block number (in int format).
+eth_getSignersAtHash:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_getSignersAtHash
+          enum:
+            - eth_getSignersAtHash
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          description: Blockhash.
+          items:
+            type: string
+eth_getTransactionReceiptsByBlock:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_getTransactionReceiptsByBlock
+          enum:
+            - eth_getTransactionReceiptsByBlock
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          description: block_number in hex OR block_hash.
+          items:
+            type: string
 blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
 blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
 transactionHash: String - 32 Bytes - Hash of a transaction

@@ -4,42 +4,42 @@ info:
   description: 'Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.'
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
-  - url: 'https://poylgon-mainnet.g.alchemy.com/v2/'
+  - url: 'https://poylgon-mainnet.g.alchemy.com/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
-  - url: 'https://poylgon-mumbai.g.alchemy.com/v2/'
+  - url: 'https://poylgon-mumbai.g.alchemy.com/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
-    post:
-      summary: eth_getLogs
-      description: Returns an array of all logs matching a given filter object.
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_getLogs
-      responses:
-        '200':
-          description: 'Returns array of log objects, or an empty array if nothing has changed since last poll.'
+  /:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getLogs
+        description: |
+          Returns an array of all logs matching a given filter object.
+          </br><strong>NOTE:</strong> You can make eth_getLogs requests with up to a <b>2K</b> block range and <b>150MB</b> limit on the response size OR you can request any block range with a cap of <b>10K</b> logs in the response.
+          If you need to pull logs frequently, we recommend using WebSockets to push new logs to you when they are available.
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_getLogs
+                $ref: ../body.yaml#/eth_getLogs
+        responses:
+          '200':
+            description: 'Returns array of log objects, or an empty array if nothing has changed since last poll.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/eth_getLogs
 x-readme:
   samples-languages:
     - curl

@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Eth - Root Hash
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  '/':
+    post:
+      summary: eth_getRootHash 
+      description: 'Polygon API - Returns the root hash given a block range.'
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/eth_getRootHash 
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/bor_getRootHash 
+      operationId: eth_getRootHash 

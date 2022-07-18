@@ -3,23 +3,16 @@ info:
   title: Chain Information
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
     variables:
       apiKey:
         default: demo
 paths:
-  '/{apiKey}':
+  '/':
     post:
       summary: eth_feeHistory
       description: Returns a collection of historical gas information.
       tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
       requestBody:
         content:
           application/json:
