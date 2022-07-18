@@ -214,3 +214,24 @@ withPagination:
       "totalCount": 277,
       "blockHash": "0x94d5ab52b8a6571733f6b183ef89f31573b82a4e78f8129b0ce90ef0beaf208b"
     }
+withTokenBalances:
+  type: array
+  description: List of objects representing the token ownership for owners
+  items:
+    type: object
+    properties:
+      ownerAddresses:
+        type: string
+        description: the address of an owner for the collection
+      tokenBalances:
+        type: array
+        description: a list of the token ids and balances for the owner of the collection
+        items:
+          type: object
+          properties:
+            tokenId:
+              type: string
+              description: tokenId of the NFT in the collection that an owner has
+            balance:
+              type: integer
+              description: the number of the specified token in the collection that the user owns

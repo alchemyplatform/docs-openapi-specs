@@ -27,7 +27,7 @@ withMetadata:
   name: withMetadata
   schema:
     type: boolean
-    default: true
+    default: false
   in: query
 filters:
   name: filters[]
@@ -65,3 +65,9 @@ limit:
   in: query
   schema:
     type: integer
+withTokenBalances:
+  name: withTokenBalances
+  in: query
+  schema:
+    type: boolean 
+    default: false
