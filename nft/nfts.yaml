@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: NFT API Placeholder
+  title: NFT API
   version: '1.0'
 servers:
   - description: Ethereum Mainnet
@@ -16,9 +16,9 @@ servers:
 paths:
   '/{apiKey}/getNFTs':
     get:
-      summary: getNFTs 
+      summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/owner
@@ -55,7 +55,7 @@ paths:
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -76,7 +76,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -93,7 +93,7 @@ paths:
     get:
       summary: getNFTsForCollection
       description: Gets all NFTs for a given NFT contract.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -116,7 +116,7 @@ paths:
     get:
       summary: getOwnersForCollection
       description: Gets all owners for a given NFT contract.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -135,7 +135,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
       responses:
@@ -151,7 +151,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -169,7 +169,7 @@ paths:
     get:
       summary: reingestContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -186,7 +186,7 @@ paths:
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -205,7 +205,7 @@ paths:
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: []
+      tags: ["NFT API"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
