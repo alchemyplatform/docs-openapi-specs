@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: s6lwirc27b30r
 info:
   title: Getting Blocks
   description: Retrieves information from a particular block in the blockchain.

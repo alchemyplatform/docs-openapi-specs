@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: 1igwa7n1qjk70
 info:
   title: Web3 Info
   version: '1.0'

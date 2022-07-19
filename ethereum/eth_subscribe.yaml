@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: qlim6yl1d15dk
 info:
   title: Real-time Events
   version: '1.0'

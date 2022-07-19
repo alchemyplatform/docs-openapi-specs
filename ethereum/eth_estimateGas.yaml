@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: hfy1a39ww6ezy
 info:
   title: EVM/Smart Contract Execution
   version: '1.0'

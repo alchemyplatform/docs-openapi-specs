@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: bwevfd6g5i1cp
 info:
   title: Chain Information
   version: '1.0'

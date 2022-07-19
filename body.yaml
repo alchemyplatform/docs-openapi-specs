@@ -976,7 +976,7 @@ alchemy_getTokenBalances:
           minItems: 2
           maxItems: 2
           items:
-            oneOf:
+            allOf:
               - type: string
               - oneOf:
                   - type: array

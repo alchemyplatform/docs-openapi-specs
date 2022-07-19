@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: ng0z5s532a5a9
 info:
   title: Transaction By Block Number And Index
   version: '1.0'

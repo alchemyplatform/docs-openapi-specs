@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: 1qp4we4mm4tht
 info:
   title: Block Transaction Count By Hash
   version: '1.0'

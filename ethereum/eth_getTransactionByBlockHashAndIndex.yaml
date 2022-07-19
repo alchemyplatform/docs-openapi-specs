@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: yfao4zg9mreih
 info:
   title: Reading Transactions
   version: '1.0'

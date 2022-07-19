@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: 83pyw5a6lfkw9
 info:
   title: Account Information
   version: '1.0'

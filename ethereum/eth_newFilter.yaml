@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: 2anr6mrsg73wr
 info:
   title: Filters
   version: '1.0'

@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: hbp3290x4hte3
 info:
   title: Chain Information
   version: '1.0'
