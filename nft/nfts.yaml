@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: NFT API
+  title: NFT API Placeholder
   version: '1.0'
 servers:
   - description: Ethereum Mainnet

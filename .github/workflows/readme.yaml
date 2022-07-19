@@ -111,19 +111,45 @@ jobs:
       - name: Syncing eth_call.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi eth_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b33c14e3f39d0051d3e983
+          rdme: openapi eth_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62cd3571d1a583001a47bb1c
       - name: Syncing eth_accounts.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi eth_accounts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b3394890032e016cabd8c5
+          rdme: openapi eth_accounts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d54b64fcf55a002eba8d8b
       - name: Syncing eth_blockNumber.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi eth_blockNumber.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62b33b9cd78f6300b3c004f3
+          rdme: openapi eth_blockNumber.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c8076fe3a26b039d30eab9
       - name: Syncing eth_cancelPrivateTransaction
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi eth_cancelPrivateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d189bd28710500453ac689
+      - name: Syncing eth_newFilter.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi eth_newFilter.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d5cc6ceb57150082e0f840
+      - name: Syncing eth_feeHistory.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi eth_feeHistory.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d5d1235ece66005997b8b1
+      
+      - name: Syncing eth_sendPrivateTransaction.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi eth_sendPrivateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d6beb6c58877026441688c
+      
+      # Sync Solana APIs
+      
+      - name: Syncing simulateTransaction.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi simulateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6efc9fa25a90077896797
+      
+      - name: Syncing simulateTransaction.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi simulateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950
+      
 
       
           

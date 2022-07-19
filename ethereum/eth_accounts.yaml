@@ -15,10 +15,10 @@ components:
     path:
       post:
         summary: eth_accounts
-        description: Returns a list of addresses owned by client.
+        description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
         tags: []
         requestBody:
-          description: Accepts nothing.
+          description: None
           content:
             application/json:
               schema:

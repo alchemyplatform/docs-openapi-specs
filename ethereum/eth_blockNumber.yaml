@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Getting Blocks
+  title: eth block number
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:

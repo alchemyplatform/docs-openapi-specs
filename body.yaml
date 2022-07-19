@@ -388,7 +388,7 @@ eth_sendRawTransaction:
 eth_sendPrivateTransaction:
   type: array
   minItems: 1
-  maxItems: 3
+  maxItems: 1
   items:
     type: object
     required:
@@ -480,8 +480,6 @@ eth_accounts:
           default: eth_accounts
           enum:
             - eth_accounts
-        params:
-          type: array
 eth_getProof:
   allOf:
     - $ref: '#/CommonProperties'
@@ -601,7 +599,7 @@ eth_feeHistory:
         params:
           type: array
           minItems: 1
-          maxItems: 3
+          maxItems: 1
           items:
             type: object
             required:

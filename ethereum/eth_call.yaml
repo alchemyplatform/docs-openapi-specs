@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: EVM/Smart Contract Execution
+  title: eth call 
   description: Executes a new message call immediately without creating a transaction on the block chain.
   version: '1.0'
 servers:
@@ -16,7 +16,7 @@ components:
     path:
       post:
         operationId: eth_call
-        summary: Message Call
+        summary: eth_call
         description: Executes a new message call immediately without creating a transaction on the block chain..
         requestBody:
           description: Accepts the transaction call object.
