@@ -145,10 +145,10 @@ jobs:
         with:
           rdme: openapi simulateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6efc9fa25a90077896797
       
-      - name: Syncing simulateTransaction.yaml
+      - name: Syncing getAccountInfo.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi simulateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950
+          rdme: openapi getAccountInfo.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950
       
 
       
