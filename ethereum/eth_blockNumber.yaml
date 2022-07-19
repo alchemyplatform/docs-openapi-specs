@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: c9xurvntnaaje
 info:
   title: Getting Blocks
   description: Retrieves information from a particular block in the blockchain.
@@ -9,7 +11,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:

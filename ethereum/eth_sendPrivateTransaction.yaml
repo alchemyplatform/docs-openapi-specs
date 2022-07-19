@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: 0ukguyl91heif
 info:
   title: Writing Transactions
   version: '1.0'
@@ -8,7 +10,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     post:
       summary: eth_sendPrivateTransaction
       description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.

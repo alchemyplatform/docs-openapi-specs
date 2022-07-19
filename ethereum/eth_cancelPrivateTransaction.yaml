@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: dehulgqzccvfp
 info:
   title: Writing Transactions
   version: '1.0'
@@ -8,7 +10,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     post:
       summary: eth_cancelPrivateTransaction
       description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.

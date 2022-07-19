@@ -1,0 +1,28 @@
+openapi: 3.1.0
+info:
+  title: Get Contract Metada
+  version: '1.0'
+servers:
+  - description: Ethereum
+    url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
+paths:
+  /:
+    post:
+      summary: alchemy_getAssetTransfers
+      tags: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/alchemy_getAssetTransfers
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/alchemy_getAssetTransfers
+      operationId: alchemy_getAssetTransfers

@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: uvlukg9p7z2nj
 info:
   title: Getting Blocks
   description: Retrieves information from a particular block in the blockchain.
@@ -9,11 +11,11 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
-    'path':
+    path:
       post:
         summary: eth_getBlockByHash
         description: Returns information about a block by block hash.

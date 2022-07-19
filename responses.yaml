@@ -596,7 +596,7 @@ getBlockHeight:
       properties:
         result:
           type: integer
-          description: 'A slot integer denoting the target block number.'
+          description: A slot integer denoting the target block number.
 getBlock:
   allOf:
     - $ref: '#/CommonProperties'
@@ -608,13 +608,13 @@ getBlock:
           properties:
             blockhash:
               type: string
-              description: 'Base-58 Encoded String - Blockhash of a given block.'
+              description: Base-58 Encoded String - Blockhash of a given block.
             previousBlockhash:
               type: string
               description: 'Base-58 Encoded String - The blockhash of this block''s parent. If the parent block is not available due to ledger cleanup, this field will return "11111111111111111111111111111111".'
             parentSlot:
               type: integer
-              description: 'u64 - The slot index of this block''s parent.'
+              description: u64 - The slot index of this block's parent.
             transactions:
               type: array
               items:
@@ -622,17 +622,17 @@ getBlock:
                 properties:
                   transaction:
                     type: object
-                    description: 'Encoded transaction object.'
+                    description: Encoded transaction object.
                   meta:
                     $ref: '#/meta'
                   version:
                     oneOf:
-                    - type: string
-                    - type: number
+                      - type: string
+                      - type: number
                     description: '"legacy"|number|undefined - Transaction version.'
             signatures:
               type: array
-              description: 'Present if "signatures" are requested for transaction details corresponding to the transaction order in the block.'
+              description: Present if "signatures" are requested for transaction details corresponding to the transaction order in the block.
               items:
                 type: string
             rewards:
@@ -646,36 +646,36 @@ getBlock:
               type: integer
               format: int64
               nullable: true
-              description: 'The number of blocks beneath this block.'
+              description: The number of blocks beneath this block.
 rewards:
   type: array
-  description: 'Array of object - Object present if rewards are requested.'
+  description: Array of object - Object present if rewards are requested.
   items:
     type: object
     properties:
       pubkey:
         type: string
-        description: 'Base-58 Encoded String - The public key of the account that received the reward.'
+        description: Base-58 Encoded String - The public key of the account that received the reward.
       lamports:
         type: integer
         description: 'i64- Number of reward lamports credited or debited by the account, as a i64.'
       postBalance:
         type: integer
-        description: 'u64 - Account balance in lamports after the reward was applied.'
+        description: u64 - Account balance in lamports after the reward was applied.
       rewardType:
         type: string
         description: 'Type of reward - ["fee", "rent", "voting", "staking"].'
         enum:
-        - fee
-        - rent
-        - voting
-        - staking
+          - fee
+          - rent
+          - voting
+          - staking
       commission:
         type: integer
         description: 'Vote account commission when the reward was credited, only present for voting and staking rewards.'
 meta:
   type: object
-  description: 'Transaction status metadata object.'
+  description: Transaction status metadata object.
   properties:
     err:
       type: string
@@ -683,40 +683,40 @@ meta:
       description: 'If transaction failed, error messaage. If transaction succeeded null.'
     fee:
       type: integer
-      description: 'u64 - Fee for this transaction.'
+      description: u64 - Fee for this transaction.
     preBalances:
       type: array
-      description: 'Array of u64s - Account balances from before the transaction was processed.'
+      description: Array of u64s - Account balances from before the transaction was processed.
       items:
         type: integer
     postBalances:
       type: array
-      description: 'Array of u64s - Account balances after the transaction was processed.'
+      description: Array of u64s - Account balances after the transaction was processed.
     innerInstructions:
       type: array
       nullable: true
-      description: 'List of inner instructions. null if not enabled during this transaction'
+      description: List of inner instructions. null if not enabled during this transaction
       items:
         type: string
     preTokenBalances:
       type: array
-      description: 'List of token balances from before the transaction was processed or Undefined if token balance recording was not yet enabled during this transaction.'
+      description: List of token balances from before the transaction was processed or Undefined if token balance recording was not yet enabled during this transaction.
       items:
         type: integer
     postTokenBalances:
       type: array
-      description: 'List of token balances from after the transaction was processed. Undefined if token balance recording was not yet enabled during this transaction'
+      description: List of token balances from after the transaction was processed. Undefined if token balance recording was not yet enabled during this transaction
       items:
         type: integer
     logMessages:
       type: array
       nullable: true
-      description: 'Array of string log messages. null if log message recording was not enabled during this transaction.'
+      description: Array of string log messages. null if log message recording was not enabled during this transaction.
       items:
         type: string
     loadedAddresses:
       type: array
-      description: 'Transaction addresses loaded from address lookup tables. Undefined if maxSupportedTransactionVersion was not set in request params.'
+      description: Transaction addresses loaded from address lookup tables. Undefined if maxSupportedTransactionVersion was not set in request params.
       items:
         type: object
         properties:
@@ -764,7 +764,7 @@ getBlockCommitment:
             commitment:
               type: array
               nullable: true
-              description: 'Array of u64 integers or <null> for unknown blocks.'
+              description: Array of u64 integers or <null> for unknown blocks.
               items:
                 type: integer
                 format: int64
@@ -789,16 +789,16 @@ getBlockProduction:
                 Value -> Two element arrays containing the number of leader slots and the number of blocks produced..'
             range:
               type: object
-              description: 'Block production slot range.'
+              description: Block production slot range.
               properties:
                 firstSlot:
                   type: integer
                   format: int64
-                  description: 'u64 - First slot of the block production information (inclusive).'
+                  description: u64 - First slot of the block production information (inclusive).
                 lastSlot:
                   type: integer
                   format: int64
-                  description: 'u64 - Last slot of block production information (inclusive).'
+                  description: u64 - Last slot of block production information (inclusive).
 isBlockhashValid:
   allOf:
     - $ref: '#/CommonProperties'
@@ -807,7 +807,7 @@ isBlockhashValid:
       properties:
         result:
           type: boolean
-          description: 'True if the blockhash is still valid.'
+          description: True if the blockhash is still valid.
 getAccountInfo:
   allOf:
     - $ref: '#/CommonProperties'
@@ -816,12 +816,12 @@ getAccountInfo:
       properties:
         result:
           type: object
-          description: 'A JSON object.'
+          description: A JSON object.
           properties:
             context:
               $ref: '#/context'
             value:
-              $ref: '#/accountValue'            
+              $ref: '#/accountValue'
 context:
   type: object
   properties:
@@ -834,21 +834,21 @@ accountValue:
     lamports:
       type: integer
       format: int64
-      description: 'u64 - Number of lamports assigned to this account.'
+      description: u64 - Number of lamports assigned to this account.
     owner:
       type: string
-      description: 'Base-58 Encoded String - Pubkey of the program this account has been assigned to.'
+      description: Base-58 Encoded String - Pubkey of the program this account has been assigned to.
     data:
       description: |
         [string, encoding]|object - Data associated with the account, either as encoded binary data or JSON format {<program>: <state>}, depending on encoding parameter.
       type: array
       items:
-        oneOf:data:
-        - type: string
-        - type: object
+        'oneOf:data':
+          - type: string
+          - type: object
     executable:
       type: boolean
-      description: 'Indicates if the account contains a program (and is strictly read-only).'
+      description: Indicates if the account contains a program (and is strictly read-only).
     rentEpoch:
       type: integer
       description: 'u64, The epoch at which this account will next owe rent.'
@@ -873,7 +873,7 @@ getMultipleAccounts:
       properties:
         result:
           type: object
-          description: 'A JSON object.'
+          description: A JSON object.
           properties:
             context:
               $ref: '#/context'
@@ -889,11 +889,11 @@ getProgramAccounts:
       properties:
         result:
           type: object
-          description: 'A JSON object.'
+          description: A JSON object.
           properties:
             pubkey:
               type: string
-              description: 'Base-58 Encoded String - The account Pubkey.'
+              description: Base-58 Encoded String - The account Pubkey.
             account:
               $ref: '#/accountValue'
 getVoteAccounts:
@@ -911,7 +911,7 @@ getVoteAccounts:
               properties:
                 votePubkey:
                   type: string
-                  description: 'Base-58 Encoded String - Vote account address.'
+                  description: Base-58 Encoded String - Vote account address.
                 nodePubkey:
                   type: string
                   description: 'Base-58 Encoded String - Validator identity, as base-58 encoded string.'
@@ -921,14 +921,14 @@ getVoteAccounts:
                   description: 'u64 - The stake, in lamports, delegated to this vote account and active in this epoch.'
                 epochVoteAccount:
                   type: boolean
-                  description: 'Whether the vote account is staked for this epoch.'
+                  description: Whether the vote account is staked for this epoch.
                 commission:
                   type: number
-                  description: 'Percentage (0-100) of rewards payout owed to the vote account.'
+                  description: Percentage (0-100) of rewards payout owed to the vote account.
                 lastVote:
                   type: integer
                   format: int64
-                  description: 'Most recent slot voted on by this vote account.'
+                  description: Most recent slot voted on by this vote account.
                 epochCredits:
                   type: array
                   description: 'Array -  History of how many credits earned by the end of each epoch, as an array of arrays containing - [epoch, credits, previousCredits]'
@@ -974,15 +974,15 @@ getClusterNodes:
             properties:
               pubkey:
                 type: string
-                description: 'Base-58 Encoded String - Node public key.'
+                description: Base-58 Encoded String - Node public key.
               gossip:
                 type: string
                 nullable: true
-                description: 'Node gossip network address.'
+                description: Node gossip network address.
               tpu:
                 type: string
                 nullable: true
-                description: 'Node TPU network address.'
+                description: Node TPU network address.
               rpc:
                 type: string
                 nullable: true
@@ -995,11 +995,11 @@ getClusterNodes:
                 type: integer
                 format: int32
                 nullable: true
-                description: 'The unique identifier of the node''s feature set.'
+                description: The unique identifier of the node's feature set.
               shredVersion:
                 type: integer
                 format: int16
-                description: 'The configured shred version for the node.'
+                description: The configured shred version for the node.
 getVersion:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1011,7 +1011,7 @@ getVersion:
           properties:
             solana-core:
               type: string
-              description: 'String - Software version of solana-core.'
+              description: String - Software version of solana-core.
             feature-set:
               type: string
               description: 'u64, Unique identifier of the current software''s feature set.'
@@ -1027,28 +1027,28 @@ getEpochInfo:
             absoluteSlot:
               type: integer
               format: int64
-              description: 'u64 - The current slot.'
+              description: u64 - The current slot.
             blockHeight:
               type: integer
               format: int64
-              description: 'u64 - The current block height.'
+              description: u64 - The current block height.
             epoch:
               type: integer
               format: int64
-              description: 'u64 - The current epoch.'
+              description: u64 - The current epoch.
             slotIndex:
               type: integer
               format: int64
-              description: 'u64 - The current slot relative to the start of the current epoch.'
+              description: u64 - The current slot relative to the start of the current epoch.
             slotsInEpoch:
               type: integer
               format: int64
-              description: 'u64 - The number of slots in this epoch.'
+              description: u64 - The number of slots in this epoch.
             transactionCount:
               type: integer
               format: int64
               nullable: true
-              description: 'u64 | null - Total number of transactions processed without error since genesis.'
+              description: u64 | null - Total number of transactions processed without error since genesis.
 getEpochSchedule:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1061,22 +1061,22 @@ getEpochSchedule:
             slotsPerEpoch:
               type: integer
               format: int64
-              description: 'u64 - The maximum number of slots in each epoch.'
+              description: u64 - The maximum number of slots in each epoch.
             leaderScheduleSlotOffset:
               type: integer
               format: int64
-              description: 'u64 - The number of slots before beginning of an epoch to calculate a leader schedule for that epoch.'
+              description: u64 - The number of slots before beginning of an epoch to calculate a leader schedule for that epoch.
             warmup:
               type: boolean
-              description: 'Boolean - Whether epochs start short and grow.'
+              description: Boolean - Whether epochs start short and grow.
             firstNormalEpoch:
               type: integer
               format: int64
-              description: 'u64 - First normal-length epoch => log2(slotsPerEpoch) - log2(MINIMUM_SLOTS_PER_EPOCH).'
+              description: u64 - First normal-length epoch => log2(slotsPerEpoch) - log2(MINIMUM_SLOTS_PER_EPOCH).
             firstNormalSlot:
               type: integer
               format: int64
-              description: 'u64 - Minimum slots per epoch * (2.pow(firstNormalEpoch) - 1).'
+              description: u64 - Minimum slots per epoch * (2.pow(firstNormalEpoch) - 1).
 getFeeForMessage:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1092,7 +1092,7 @@ getFeeForMessage:
               type: integer
               format: int64
               nullable: true
-              description: 'u64 - Fee corresponding to the message at the specified blockhash.'
+              description: u64 - Fee corresponding to the message at the specified blockhash.
 getFirstAvailableBlock:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1102,7 +1102,7 @@ getFirstAvailableBlock:
         result:
           type: integer
           format: int64
-          description: 'u64 - Slot of the lowest confirmed block.'
+          description: u64 - Slot of the lowest confirmed block.
 getGenesisHash:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1110,7 +1110,7 @@ getGenesisHash:
       properties:
         result:
           type: string
-          description: 'Base-58 Encoded String - A transaction hash.'
+          description: Base-58 Encoded String - A transaction hash.
 getHighestSnapshotSlot:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1122,12 +1122,12 @@ getHighestSnapshotSlot:
             full:
               type: integer
               format: int64
-              description: 'u64 - Highest full snapshot slot.'
+              description: u64 - Highest full snapshot slot.
             incremental:
               type: integer
               format: int64
               nullable: true
-              description: 'u64 | undefined - Highest incremental snapshot slot based on full if available.'
+              description: u64 | undefined - Highest incremental snapshot slot based on full if available.
 getMinimumBalanceForRentExemption:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1136,7 +1136,7 @@ getMinimumBalanceForRentExemption:
         result:
           type: integer
           format: int64
-          description: 'u64 - Minimum lamports required in account.'
+          description: u64 - Minimum lamports required in account.
 getRecentPerformanceSamples:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1144,26 +1144,26 @@ getRecentPerformanceSamples:
       properties:
         result:
           type: array
-          description: 'Array of RpcPerfSample objects.'
+          description: Array of RpcPerfSample objects.
           items:
             type: object
             properties:
               slot:
                 type: integer
                 format: int64
-                description: 'u64 - Slot in which sample was taken at.'
+                description: u64 - Slot in which sample was taken at.
               numTransactions:
                 type: integer
                 format: int64
-                description: 'u64 - Number of transactions in sample.'
+                description: u64 - Number of transactions in sample.
               numSlots:
                 type: integer
                 format: int64
-                description: 'u64 - Number of slots in sample.'
+                description: u64 - Number of slots in sample.
               samplePeriodSecs:
                 type: integer
                 format: int16
-                description: 'u16 - Number of seconds in a sample window.'
+                description: u16 - Number of seconds in a sample window.
 getHealth:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1193,19 +1193,19 @@ getInflationGovernor:
           properties:
             initial:
               type: number
-              description: 'f64 - The initial inflation percentage from time 0.'
+              description: f64 - The initial inflation percentage from time 0.
             terminal:
               type: number
-              description: 'f64 - Terminal inflation percentage.'
+              description: f64 - Terminal inflation percentage.
             taper:
               type: number
-              description: 'f64 - Rate per year at which inflation is lowered. Rate reduction is derived using the target slot time in genesis config.'
+              description: f64 - Rate per year at which inflation is lowered. Rate reduction is derived using the target slot time in genesis config.
             foundation:
               type: number
-              description: 'f64 - Percentage of total inflation allocated to the foundation.'
+              description: f64 - Percentage of total inflation allocated to the foundation.
             foundationTerm:
               type: number
-              description: 'f64 - Duration of foundation pool inflation in years.'
+              description: f64 - Duration of foundation pool inflation in years.
 getInflationRate:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1216,17 +1216,17 @@ getInflationRate:
           properties:
             total:
               type: number
-              description: 'f64 - Total inflation.'
+              description: f64 - Total inflation.
             validator:
               type: number
-              description: 'f64 - Inflation allocated to validators.'
+              description: f64 - Inflation allocated to validators.
             foundation:
               type: number
-              description: 'f64 - Inflation allocated to the foundation.'
+              description: f64 - Inflation allocated to the foundation.
             epoch:
               type: integer
               format: int64
-              description: 'u64 - Epoch for which these values are valid.'
+              description: u64 - Epoch for which these values are valid.
 getInflationReward:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1237,11 +1237,11 @@ getInflationReward:
           properties:
             epoch:
               type: integer
-              description: 'u64 - Epoch for which reward occured.'
+              description: u64 - Epoch for which reward occured.
             effectiveSlot:
               type: itneger
               format: int64
-              description: 'u64 - The slot in which the rewards are effective.'
+              description: u64 - The slot in which the rewards are effective.
             amount:
               type: integer
               format: int64
@@ -1249,12 +1249,12 @@ getInflationReward:
             postBalance:
               type: integer
               format: int64
-              description: 'u64 - Post balance of the account in lamports.'
+              description: u64 - Post balance of the account in lamports.
             commission:
               type: integer
               format: int8
               nullable: true
-              description: 'u8|undefined - Vote account commission when the reward was credited.'
+              description: u8|undefined - Vote account commission when the reward was credited.
 getSupply:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1271,36 +1271,36 @@ getSupply:
                 total:
                   type: integer
                   format: int64
-                  description: 'u64 - Total supply in lamports.'
+                  description: u64 - Total supply in lamports.
                 circulating:
                   type: integer
                   format: int64
-                  description: 'u64 - Circulating supply in lamports.'
+                  description: u64 - Circulating supply in lamports.
                 nonCirculating:
                   type: integer
                   format: int64
-                  description: 'u64 - Non-circulating supply in lamports.'
+                  description: u64 - Non-circulating supply in lamports.
                 nonCirculatingAccounts:
                   type: array
                   items:
                     type: string
                   description: 'An array of account addresses of non-circulating accounts, as strings. If excludeNonCirculatingAccountsList is enabled, the returned array will be empty.'
-getSlot:     
+getSlot:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
         result:
           type: string
-          description: 'u64 - Current slot.'   
-getSlotLeader:     
+          description: u64 - Current slot.
+getSlotLeader:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
         result:
           type: string
-          description: 'Base-58 Encoded String - Node identity Pubkey.'         
+          description: Base-58 Encoded String - Node identity Pubkey.
 getSlotLeaders:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1308,7 +1308,7 @@ getSlotLeaders:
       properties:
         result:
           type: array
-          description: 'Array of Base-58 Encoded Strings - Node identity public keys.'
+          description: Array of Base-58 Encoded Strings - Node identity public keys.
           items:
             type: string
 getMaxRetransmitSlot:
@@ -1318,7 +1318,7 @@ getMaxRetransmitSlot:
       properties:
         result:
           type: string
-          description: 'u64 - Slot.'
+          description: u64 - Slot.
 minimumLedgerSlot:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1326,7 +1326,7 @@ minimumLedgerSlot:
       properties:
         result:
           type: string
-          description: 'u64 - Minimum ledger slot.'
+          description: u64 - Minimum ledger slot.
 getTokenAccountBalance:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1342,10 +1342,10 @@ getTokenAccountBalance:
               properties:
                 amount:
                   type: string
-                  description: 'u64 String - The raw balance without decimals.'
+                  description: u64 String - The raw balance without decimals.
                 decimals:
                   type: number
-                  description: 'u8 - Number of base 10 digits to the right of the decimal place.'
+                  description: u8 - Number of base 10 digits to the right of the decimal place.
                 uiAmountString:
                   type: string
                   description: 'The balance as a string, using mint-prescribed decimals.'
@@ -1380,10 +1380,10 @@ getTokenSupply:
                 amount:
                   type: integer
                   format: int64
-                  description: 'u64 String - The raw balance without decimals.'
+                  description: u64 String - The raw balance without decimals.
                 decimals:
                   type: number
-                  description: 'u8 - Number of base 10 digits to the right of the decimal place.'
+                  description: u8 - Number of base 10 digits to the right of the decimal place.
                 uiAmountString:
                   type: string
                   description: 'String - The balance as a string, using mint-prescribed decimals.'
@@ -1399,11 +1399,11 @@ getSignaturesForAddress:
             properties:
               signature:
                 type: string
-                description: 'Base-58 Encoded String - Transaction signature as'
+                description: Base-58 Encoded String - Transaction signature as
               slot:
                 type: integer
                 format: int64
-                description: 'u64 - The slot that contains the block with the transaction.'
+                description: u64 - The slot that contains the block with the transaction.
               err:
                 type: string
                 nullable: true
@@ -1435,7 +1435,7 @@ getSignatureStatuses:
                   slot:
                     type: integer
                     format: int64
-                    description: 'u64 - The slot the transaction was processed.'
+                    description: u64 - The slot the transaction was processed.
                   confirmations:
                     type: number
                     nullable: true
@@ -1455,7 +1455,7 @@ sendTransaction:
       properties:
         result:
           type: string
-          description: 'Base-58 Encoded String - First Transaction Signature embedded in the transaction  (transaction id).'
+          description: Base-58 Encoded String - First Transaction Signature embedded in the transaction  (transaction id).
 simulateTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1483,26 +1483,26 @@ simulateTransaction:
                 accounts:
                   type: object
                   nullable: true
-                  description: 'Array of accounts with the same length as the accounts.addresses array in the request.'
+                  description: Array of accounts with the same length as the accounts.addresses array in the request.
                   properties:
                     lamports:
                       type: integer
                       format: int64
-                      description: 'Number of lamports assigned to this account.'
+                      description: Number of lamports assigned to this account.
                     owner:
                       type: string
-                      description: Base-58 Encoded String, Pubkey of the program this account has been assigned to.
+                      description: 'Base-58 Encoded String, Pubkey of the program this account has been assigned to.'
                     data:
                       description: |
                         [string, encoding]|object - Data associated with the account, either as encoded binary data or JSON format {<program>: <state>}, depending on encoding parameter.
                       type: array
                       items:
-                        oneOf:data:
-                        - type: string
-                        - type: object
+                        'oneOf:data':
+                          - type: string
+                          - type: object
                     executable:
                       type: boolean
-                      description: 'Indicates if the account contains a program (and is strictly read-only).'
+                      description: Indicates if the account contains a program (and is strictly read-only).
                     rentEpoch:
                       type: integer
                       description: 'u64, The epoch at which this account will next owe rent.'
@@ -1510,7 +1510,7 @@ simulateTransaction:
                   type: integer
                   format: int64
                   nullable: true
-                  description: 'The number of compute budget units consumed during the processing of this transaction.'
+                  description: The number of compute budget units consumed during the processing of this transaction.
 getTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1523,7 +1523,7 @@ getTransaction:
             slot:
               type: integer
               format: int64
-              description: 'The slot this transaction was processed in.'
+              description: The slot this transaction was processed in.
             transaction:
               type: object
               description: 'Tx object, either in JSON format or encoded binary data, depending on encoding parameter.'
@@ -1534,22 +1534,22 @@ getTransaction:
               description: 'Estimated production time, as Unix timestamp (seconds since the Unix epoch) of when the transaction was processed.'
             meta:
               allOf:
-              - $ref: '#/meta'
-              - type: object
-                properties:
-                  rewards:
-                    $ref: '#/rewards'
+                - $ref: '#/meta'
+                - type: object
+                  properties:
+                    rewards:
+                      $ref: '#/rewards'
             version:
               type: number
               nullable: true
-              description: 'Transaction version. Undefined if maxSupportedTransactionVersion is not set in request params.'
+              description: Transaction version. Undefined if maxSupportedTransactionVersion is not set in request params.
 bor_getAuthor:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
         result:
-          description: 'AUTHOR - address.'
+          description: AUTHOR - address.
           type: string
 bor_getCurrentValidators:
   allOf:
@@ -1557,7 +1557,7 @@ bor_getCurrentValidators:
     - type: object
       properties:
         result:
-          description: 'List of current validators.'
+          description: List of current validators.
           type: array
           items:
             type: object
@@ -1576,7 +1576,7 @@ bor_getCurrentProposer:
     - type: object
       properties:
         result:
-          description: 'AUTHOR - address.'
+          description: AUTHOR - address.
           type: string
 bor_getRootHash:
   allOf:
@@ -1584,7 +1584,7 @@ bor_getRootHash:
     - type: object
       properties:
         result:
-          description: 'Hash'
+          description: Hash
           type: string
 eth_getSignersAtHash:
   allOf:
@@ -1592,7 +1592,7 @@ eth_getSignersAtHash:
     - type: object
       properties:
         result:
-          description: 'List of HASH.'
+          description: List of HASH.
           type: array
           items:
             type: string
@@ -1602,7 +1602,105 @@ eth_getTransactionReceiptsByBlock:
     - type: object
       properties:
         result:
-          description: 'Array of transaction receipt objects.'
+          description: Array of transaction receipt objects.
           type: array
           items:
             $ref: '#/transaction_receipt'
+eth_syncing:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        result:
+          description: An object with sync status data or FALSE, when not syncing.
+          oneOf:
+          - type: object
+            properties:
+              startingBlock:
+                type: string
+                description: 'The block at which the import started (will only be reset, after the sync reached his head).'
+              currentBlock:
+                type: string
+                description: 'The current block, same as eth_blockNumber'
+              highestBlock:
+                type: string
+                description: 'The estimated highest block.'
+          - type: boolean
+alchemy_getAssetTransfers:
+  allOf:
+  - $ref: '#/CommonProperties'
+  - type: object
+    properties:
+      result:
+        type: object
+        description: 'An object with the following fields.'
+        properties:
+          pageKey:
+            type: string
+            description: 'Uuid of next page of results (if exists, else blank).'
+          transfers:
+            type: array
+            description: 'Array of objects - sorted in ascending order by block number, ties broken by category (external , internal, token transfers).'
+            items:
+              $ref: '#/transfer'
+transfer:
+  type: object
+  properties:
+    category:
+      type: string
+      description: '''external'', ''internal'', ''token'', ''erc20'', ''erc721'', ''erc1155'' - label for the transfer.'
+    token:
+      type: string
+      description: '''includes ''erc20'' and ''erc721'' transfers.'
+    blockNum:
+      type: string
+      description: 'The block where the transfer occurred (hex string).'
+    from:
+      type: string
+      description: 'From address of transfer (hex string).'
+    to:
+      type: string
+      description: 'To address of transfer (hex string). null if contract creation.'
+    value:
+      type: string
+      nullable: true
+      description: 'Converted asset transfer value as a number (raw value divided by contract decimal). null if ERC721 transfer or contract decimal not available.'
+    erc721TokenId:
+      type: string
+      nullable: true
+      description: 'Raw ERC721 token id (hex string). null if not an ERC721 token transfer.'
+    erc1155Metadata:
+      type: string
+      nullable: true
+      description: 'A list of objects containing the ERC1155 tokenId (hex string) and value (hex string). null if not an ERC1155 transfer.'
+    tokenId:
+      type: string
+      description: 'Token ID for ERC721 (or other NFT) tokens.'
+    asset:
+      type: string
+      nullable: true
+      description: 'ETH or the token''s symbol. null if not defined in the contract and not available from other sources.'
+    hash:
+      type: string
+      description: 'Transaction hash (hex string).'
+    rawContract:
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+          description: 'Raw transfer value (hex string). null if ERC721 or ERC1155 transfer.'
+        address:
+          type: string
+          nullable: true
+          description: 'Contract address (hex string). null if external or internal transfer.'
+        decimal:
+          type: string
+          nullable: true
+          description: 'Contract decimal (hex string). null if not defined in the contract and not available from other sources.'
+    metadata:
+      type: object
+      properties:
+        blockTimestamp:
+          type: string
+          description: 'Timestamp of the block from which the transaction event originated (ISO-formatted timestamp).'

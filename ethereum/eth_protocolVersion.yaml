@@ -8,21 +8,25 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
-    post:
-      summary: eth_protocolVersion
-      description: Returns the current ethereum protocol version.
-      tags: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_protocolVersion
-      responses:
-        '200':
-          description: Returns the current ethereum protocol version.
+  /:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_protocolVersion
+        description: Returns the current ethereum protocol version.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
-      operationId: eth_protocolVersion
+                $ref: ../body.yaml#/eth_protocolVersion
+        responses:
+          '200':
+            description: Returns the current ethereum protocol version.
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth_protocolVersion

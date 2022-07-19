@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: osc1f61dx2myq
 info:
   title: Filters
   version: '1.0'
@@ -8,7 +10,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:

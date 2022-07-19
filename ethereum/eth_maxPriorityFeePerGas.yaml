@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: jy0cxw6pv9uzx
 info:
   title: Chain Information
   version: '1.0'
@@ -8,7 +10,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     post:
       summary: eth_maxPriorityFeePerGas
       description: 'Returns a fee per gas that is an estimate of how much you can pay as a priority fee, or ''tip'', to get a transaction included in the current block.'

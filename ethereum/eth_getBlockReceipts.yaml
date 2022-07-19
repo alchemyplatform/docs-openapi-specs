@@ -1,4 +1,6 @@
 openapi: 3.1.0
+x-stoplight:
+  id: utzq9537nm64b
 info:
   title: Reading Transactions
   version: '1.0'
@@ -8,7 +10,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     post:
       summary: eth_getBlockReceipts
       description: Get all transaction receipts for a given block on Ethereum.
