@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Get Contract Metada
+  title: Transfers API (Tx History)
   version: '1.0'
 servers:
   - description: Ethereum
@@ -8,10 +8,16 @@ servers:
     variables:
       apiKey:
         default: demo
+  - description: Polygon
+    url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
+    variables:
+      apiKey:
+        default: demo
 paths:
   /:
     post:
       summary: alchemy_getAssetTransfers
+      description: 'The Transfers API allows you to easily fetch historical transactions for any address without having to scan the entire Ethereum and Polygon chain and index everything for each of your users.'
       tags: []
       requestBody:
         content:
