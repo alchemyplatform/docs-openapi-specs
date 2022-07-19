@@ -8,7 +8,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     post:
       summary: eth_sendPrivateTransaction
       description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.

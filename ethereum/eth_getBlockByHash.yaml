@@ -9,11 +9,11 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
-    'path':
+    path:
       post:
         summary: eth_getBlockByHash
         description: Returns information about a block by block hash.

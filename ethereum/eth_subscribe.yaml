@@ -8,7 +8,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -23,7 +23,7 @@ components:
           - Free tier users will be limited to 10 concurrent requests per WebSocket connection.
         tags: []
         requestBody:
-          content:  
+          content:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_subscribe

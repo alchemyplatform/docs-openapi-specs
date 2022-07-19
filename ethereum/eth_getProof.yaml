@@ -8,9 +8,8 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     $ref: '#/components/pathItems/path'
-
 components:
   pathItems:
     path:

@@ -8,21 +8,25 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
-    post:
-      summary: eth_sendRawTransaction
-      description: Creates a new message call transaction or a contract creation for signed transactions.
-      tags: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../body.yaml#/eth_sendRawTransaction
-      responses:
-        '200':
-          description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
+  /:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_sendRawTransaction
+        description: Creates a new message call transaction or a contract creation for signed transactions.
+        tags: []
+        requestBody:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
-      operationId: eth_sendRawTransaction
+                $ref: ../body.yaml#/eth_sendRawTransaction
+        responses:
+          '200':
+            description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth_sendRawTransaction

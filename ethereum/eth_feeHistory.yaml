@@ -8,7 +8,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
+  /:
     post:
       summary: eth_feeHistory
       description: Returns a collection of historical gas information.
