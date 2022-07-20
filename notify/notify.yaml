@@ -9,7 +9,7 @@ paths:
     get:
       summary: Get all webhooks
       description: This endpoint allows you to get all webhooks from every app on your team.
-      tags: []
+      tags: ["Notify API"]
       parameters:
         - $ref: body.yaml#/X-Alchemy-Token
       responses:
@@ -26,7 +26,7 @@ paths:
     get:
       summary: Get all addresses for an Address Activity webhook
       description: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
-      tags: []
+      tags: ["Notify API"]
       parameters:
       - $ref: body.yaml#/X-Alchemy-Token
       - $ref: body.yaml#/webhook_id
@@ -46,7 +46,7 @@ paths:
     post:
       summary: Create Webhook
       description: 'This endpoint allows you to create a webhook.'
-      tags: []
+      tags: ["Notify API"]
       parameters:
       - $ref: body.yaml#/X-Alchemy-Token
       requestBody:
@@ -68,7 +68,7 @@ paths:
       description: |
         Add or remove addresses from a specific webhook.
         *This webhook endpoint is idempotent, meaning that identical requests can be made once or several times in a row with the same effect*
-      tags: []
+      tags: ["Notify API"]
       parameters:
       - $ref: body.yaml#/X-Alchemy-Token
       requestBody:
@@ -87,7 +87,7 @@ paths:
     put:
       summary: Replace webhook addresses.
       description: 'Replace entire list of addresses tracked in a given webhook.'
-      tags: []
+      tags: ["Notify API"]
       parameters:
       - $ref: body.yaml#/X-Alchemy-Token
       requestBody:
@@ -107,7 +107,7 @@ paths:
     put:
       summary: Update webhool status
       description: 'Allows you to set status of webhooks to active or inactive.'
-      tags: []
+      tags: ["Notify API"]
       parameters:
       - $ref: body.yaml#/X-Alchemy-Token
       requestBody:
@@ -127,7 +127,7 @@ paths:
     delete:
       summary: Delete Webhook
       description: 'Allows you to delete a webhook.'
-      tags: []
+      tags: ["Notify API"]
       parameters:
       - $ref: body.yaml#/X-Alchemy-Token
       requestBody:

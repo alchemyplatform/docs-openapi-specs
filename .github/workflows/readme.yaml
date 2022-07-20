@@ -24,7 +24,7 @@ jobs:
       - name: Syncing notify.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi notify.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/notify --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c003629460ee00a2bad6cc
+          rdme: openapi notify.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/notify --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d74663f3ed8d0071190eb2
 
       # Sync Transaction Receipt APIs
       
@@ -103,7 +103,7 @@ jobs:
       - name: Syncing unstoppable.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi unstoppable.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/unstoppable --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c175d64400750014319604
+          rdme: openapi unstoppable.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/unstoppable --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d72d86d33a3600a3416770
 
       
       # Sync Ethereum APIs

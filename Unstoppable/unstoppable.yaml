@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Enhanced APIs
+  title: Unstoppable Domains API
   version: '1.0'
 servers:
   - url: 'https://unstoppabledomains.g.alchemy.com/domains'
@@ -9,7 +9,7 @@ paths:
     get:
       summary: Get records for a domain
       description: Gets all the records attached to a domain name.
-      tags: ["Unstoppable Domains API"]
+      tags: ["Unstoppable Domains API Quickstart"]
       parameters:
       - $ref: 'body.yaml#/domainName'
       responses:
@@ -26,7 +26,7 @@ paths:
     get:
       summary: Get records for owner addresses
       description: Gets all the domain names, records, and metadata owned by a wallet address or configured to a resolution record.
-      tags: ["Unstoppable Domains API"]
+      tags: ["Unstoppable Domains API Quickstart"]
       parameters:
       - $ref: 'body.yaml#/owners'
       - $ref: 'body.yaml#/resolution'
@@ -48,7 +48,7 @@ paths:
     get:
       summary: Get domain transfer events
       description: Gets the transfer history of a domain name.
-      tags: ["Unstoppable Domains API"]
+      tags: ["Unstoppable Domains API Quickstart"]
       parameters:
       - $ref: 'body.yaml#/domainName'
       responses:
