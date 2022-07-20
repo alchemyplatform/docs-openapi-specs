@@ -2290,6 +2290,30 @@ ethereumMainnet:
     pageKey:
       type: string
       description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
+debug_traceTransaction:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        disableStorage:
+          type: boolean
+          default: false
+          description: 'Setting this to true will disable storage capture (default = false).'
+        disableMemory:
+          type: boolean
+          default: false
+          description: 'Setting this to true will disable memory capture (default = false).'
+        disableStack:
+          type: boolean
+          default: false
+          description: 'Setting this to true will disable stack capture (default = false).'
+        tracer:
+          type: string
+          description: 'Setting this will enable JavaScript-based transaction tracing, described below. If set, the previous four arguments will be ignored.'
+        timeout:
+          type: string
+          description: 'Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described <a href="https://golang.org/pkg/time/#ParseDuration">here</a>.'
+
 
 blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
 blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
