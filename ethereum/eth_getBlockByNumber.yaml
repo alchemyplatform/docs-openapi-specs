@@ -10,7 +10,7 @@ servers:
         default: demo
 paths:
   /:
-    $ref: '#components/pathItems/path'
+    $ref: '#/components/pathItems/path'
 components:
   pathItems:
     path:
