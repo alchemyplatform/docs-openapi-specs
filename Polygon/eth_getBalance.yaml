@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Account Information
+  title: eth_getBalance - Polygon
   version: '1.0'
 servers:
   - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
