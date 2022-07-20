@@ -57,7 +57,7 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print all NFTs returned in the response:
-              alchemy.getNftsForOwner(alchemy, "0xshah.eth").then(console.log);
+              alchemy.nft.getNftsForOwner(alchemy, "0xshah.eth").then(console.log);
       responses:
         '200':
           description: 'Returns true if transaction was successfully cancelled, false if not.'
@@ -113,7 +113,7 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print NFT metadata returned in the response:
-              alchemy.getNftMetadata(
+              alchemy.nft.getNftMetadata(
                 "0x5180db8F5c931aaE63c74266b211F580155ecac8",
                 "1590"
               ).then(console.log);
@@ -157,8 +157,8 @@ paths:
 
               const alchemy = new Alchemy(settings);
 
-              alchemy
-                .getNftContractMetadata("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+              alchemy.nft
+                .getContractMetadata("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
                 .then(console.log);
       responses:
         '200':
@@ -207,8 +207,8 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print total NFT collection returned in the response:
-              alchemy
-                .getNftsForNftContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+              alchemy.nft
+                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
                 .then(console.log);
       responses:
         '200':
@@ -253,8 +253,8 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print total NFT count returned in the response:
-              alchemy
-                .getOwnersForNftContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+              alchemy.nft
+                .getOwnersForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
                 .then(console.log);
       responses:
         '200':
@@ -295,7 +295,7 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print all spam NFT contracts returned in the response:
-              alchemy.getSpamNftContracts().then(console.log);
+              alchemy.nft.getSpamContracts().then(console.log);
       responses:
         '200':
           description: ''
@@ -338,8 +338,8 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print whether an NFT contract is spam
-              alchemy
-                .isSpamNftContract("0x000440f08436a7b866d1ae42db5e0be801da722a")
+              alchemy.nft
+                .isSpamContract("0x000440f08436a7b866d1ae42db5e0be801da722a")
                 .then(console.log);
       responses:
         '200':
@@ -385,7 +385,7 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print total NFT count returned in the response:
-              alchemy.reingestNftContract(
+              alchemy.nft.refreshContract(
                 "0x5180db8F5c931aaE63c74266b211F580155ecac8",
                 "1590"
               ).then(console.log);
@@ -432,7 +432,7 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print total NFT count returned in the response:
-              getOwnersForNft("0x5180db8F5c931aaE63c74266b211F580155ecac8", "1590").then(
+              alchemy.nft.getOwnersForNft("0x5180db8F5c931aaE63c74266b211F580155ecac8", "1590").then(
                 console.log
               );
       responses:
@@ -476,8 +476,8 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print the NFT floor price for a contract
-              alchemy
-                .getNftFloorPrice("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d")
+              alchemy.nft
+                .getFloorPrice("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d")
                 .then(console.log);
       responses:
         '200':
@@ -487,3 +487,13 @@ paths:
               schema:
                 $ref: nfts_responses.yaml#/getFloorPrice
       operationId: getFloorPrice
+
+# This section doesn't work yet (but it should according to ReadMe)
+components:
+  schemas:
+    x-readme:
+      samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
