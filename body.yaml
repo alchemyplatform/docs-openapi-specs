@@ -1103,6 +1103,11 @@ trace_block:
             - trace_block
         params:
           type: array
+          description: |
+            Array of HEX String.
+            </br>The following options are possible for the defaultBlock parameter. 
+            - An integer block number. 
+            - String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions.
           items:
             $ref: '#/defaultBlockParam'
 trace_filter:
