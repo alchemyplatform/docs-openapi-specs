@@ -12,6 +12,12 @@ jobs:
     steps:
       - name: Checkout this 
         uses: actions/checkout@v3
+
+      # Sync Transfers API
+      - name: Syncing alchemy_getAssetTransfers.yaml
+        uses: readmeio/rdme@7.3.0
+          rdme: openapi alchemy_getAssetTransfers.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/nft --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75e355edcd00083b39fa2
+
       
       # Sync NFT APIs
       
@@ -31,7 +37,7 @@ jobs:
       - name: Syncing alchemy_getTransactionReceipts.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi alchemy_getTransactionReceipts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/transaction-receipts --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62be10cd6a09230087de4fea
+          rdme: openapi alchemy_getTransactionReceipts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/transaction-receipts --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d76a925edcd00083b41115
 
       # Sync Token APIs
       
@@ -56,7 +62,7 @@ jobs:
       - name: Syncing trace_block.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi trace_block.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f1d26346a008fd4ea22
+          rdme: openapi trace_block.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d75aa0ae0b8c00ac4bd10b
 
       - name: Syncing trace_call.yaml
         uses: readmeio/rdme@7.3.0

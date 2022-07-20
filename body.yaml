@@ -929,6 +929,11 @@ alchemy_getTransactionReceipts_param:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
+        method:
+          type: string
+          default: alchemy_getTransactionReceipts
+          enum:
+            - alchemy_getTransactionReceipts
         params:
           type: array
           description:
@@ -1130,6 +1135,8 @@ trace_filter:
             - trace_filter
         params:
           type: array
+          minItems: 1
+          maxItems: 1
           items:
             type: object
             properties:
@@ -2262,58 +2269,17 @@ ethereumMainnet:
       default: latest
     fromAddress:
       type: string
-      description: String - From address (hex string)
-      default: wildcard - any address
+      description: String - From address (hex string). Default wildcard - any address
     toAddress:
       type: string
-      description: String - To address (hex string)
-      default: wildcard - any address
+      description: String - To address (hex string). Default wildcard - any address
     contractAddresses:
       type: string
-      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "token", "erc20", "erc721", "erc1155" transfers.'
-      default: wildcard - any address
+      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "token", "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
     category:
       type: array
       description: |
-        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155"'
-        <table>
-          <tr>
-            <th><b>Type of Transfer</b></th>
-            <th>Ethereum Mainnet, Georli</th>
-            <th>Polygon Mainnet, Mumbai</th>
-            <th>Ethereum Kovan, Rinkeby, Ropsten </th>
-          </tr>
-          <tr>
-            <td>External</td>
-            <td>✅</td>
-            <td>✅</td>
-            <td>✅</td>
-          </tr>
-          <tr>
-            <td>Internal</td>
-            <td>✅</td>
-            <td>❌</td>
-            <td>❌</td>
-          </tr>
-          <tr>
-            <td>ERC20</td>
-            <td>✅</td>
-            <td>✅</td>
-            <td>❌</td>
-          </tr>
-          <tr>
-            <td>ERC721</td>
-            <td>✅</td>
-            <td>✅</td>
-            <td>❌</td>
-          </tr>
-          <tr>
-            <td>ERC1155</td>
-            <td>✅</td>
-            <td>✅</td>
-            <td>❌</td>
-          </tr>
-        </table>
+        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155". See the table above for supported categories on each network.'
       items:
         type: string
         enum:
