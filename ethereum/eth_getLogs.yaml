@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Event Logs
+  title: eth_getLogs
   description: 'Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.'
   version: '1.0'
 servers:

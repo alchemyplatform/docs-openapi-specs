@@ -117,7 +117,13 @@ jobs:
       - name: Syncing eth_call.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi eth_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62cd3571d1a583001a47bb1c
+          rdme: openapi eth_call.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62cd3571d1a583001a47bb1c 
+      
+      - name: Syncing eth_chainId.yaml
+        uses: readmeio/rdme@7.3.0
+        with:
+          rdme: openapi eth_chainId.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d78929f180b60043228bf9
+      
       - name: Syncing eth_accounts.yaml
         uses: readmeio/rdme@7.3.0
         with:
@@ -143,6 +149,8 @@ jobs:
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi eth_sendPrivateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d6beb6c58877026441688c
+      
+      
       
       # Sync Solana APIs
       

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Chain Information
+  title: net_listening
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'

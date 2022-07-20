@@ -640,8 +640,6 @@ eth_chainId:
           default: eth_chainId
           enum:
             - eth_chainId
-        params:
-          type: array
 net_version:
   allOf:
     - $ref: '#/CommonProperties'

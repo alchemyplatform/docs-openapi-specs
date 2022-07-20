@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transaction By Block Number And Index
+  title: eth_getTransactionByBlockNumberAndIndex
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
