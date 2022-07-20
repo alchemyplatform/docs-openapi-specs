@@ -10,3 +10,5 @@ servers:
 paths:
   /:
     $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path
+x-readme:
+  explorer-enabled: false

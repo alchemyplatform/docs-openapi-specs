@@ -25,6 +25,7 @@ components:
               schema:
                 $ref: ../body.yaml#/eth_call_550
         x-readme:
+          explorer-enabled: false
           samples-languages:
             - curl
             - python

@@ -30,3 +30,5 @@ components:
                 schema:
                   $ref: ../responses.yaml#/string_result_response
         operationId: eth_gasPrice
+        x-readme:
+          explorer-enabled: false

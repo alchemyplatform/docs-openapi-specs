@@ -15,7 +15,7 @@ components:
     path:
       post:
         summary: web3_sha3
-        description: Returns the current client version.
+        description: Returns Keccak-256 (not the standardized SHA3-256) of the given data.
         tags: []
         requestBody:
           content:

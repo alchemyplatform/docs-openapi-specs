@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockByHash
+  title: eth_getBlockByHash 
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
@@ -29,3 +29,5 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/eth_block
+        x-readme:
+          explorer-enabled: false

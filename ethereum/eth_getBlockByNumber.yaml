@@ -29,3 +29,5 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/eth_block
+        x-readme:
+          explorer-enabled: false

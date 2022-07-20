@@ -30,3 +30,5 @@ components:
                 schema:
                   $ref: ../responses.yaml#/eth_getProof
         operationId: eth_getProof
+        x-readme:
+          explorer-enabled: false
