@@ -1704,3 +1704,45 @@ transfer:
         blockTimestamp:
           type: string
           description: 'Timestamp of the block from which the transaction event originated (ISO-formatted timestamp).'
+debug_traceTransaction:
+  type: object
+  properties:
+    gas:
+      type: integer
+      format: int32
+    returnValue:
+      type: string
+    structLogs:
+      type: array
+      items:
+        type: object
+        properties:
+          depth:
+            type: integer
+            description: 'The execution depth'
+          error:
+            type: string
+            description: 'If an error occurred, information about the error.'
+          gas:
+            type: integer
+            description: 'Number, the amount of gas remaining.'
+          gasCost:
+            type: integer
+            description: 'Number, the cost in wei of each unit of gas.'
+          memory:
+            type: object
+            nullable: true
+            description: 'Object, a structure representing the contract''s memory space'
+          op:
+            type: object
+            description: 'Object, an OpCode object representing the current opcode.'
+          pc:
+            type: integer
+            description: 'Number, the current program counter.'
+          stack:
+            type: array
+            items:
+              type: string
+            description: 'Array[big.Int], the EVM execution stack.'
+          storage:
+            type: object
