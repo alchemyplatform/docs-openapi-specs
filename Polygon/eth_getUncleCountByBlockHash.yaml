@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Getting Uncles
+  title: eth_getUncleCountByBlockHash - Polygon
   version: '1.0'
 servers:
   - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'

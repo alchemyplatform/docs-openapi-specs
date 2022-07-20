@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Reading Transactions
+  title: eth_getTransactionByBlockNumberAndIndex - Polygon
   version: '1.0'
 servers:
   - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'

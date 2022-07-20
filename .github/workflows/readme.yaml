@@ -173,8 +173,54 @@ jobs:
       - name: Syncing getAccountInfo.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi getAccountInfo.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950
+          rdme: openapi getAccountInfo.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950  
+      
+          
+     # Polygon API
+      rdme openapi bor_getAuthor.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82945841e5600b8364320
+      rdme openapi bor_getCurrentProposer.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82965cb07ef006561e5af
+      rdme openapi bor_getCurrentValidators.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829733071e2001ac8ece4
+      rdme openapi bor_getRootHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8298795ca1c004cd48382
+      rdme openapi eth_accounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829a1fd9bd5008ad53eb1
+      rdme openapi eth_blockNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829b395ca1c004cd48534
+      rdme openapi eth_call.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829c2941aa0001a0ed91c
+      rdme openapi eth_chainId.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829d2eb13fc00281fe7bd
+      rdme openapi eth_estimateGas.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829e641abed0013809424
+      rdme openapi eth_gasPrice.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82a4d2880f9013de98d82
+      rdme openapi eth_getBalance.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82a6280429500289da818
+      rdme openapi eth_getBlockByHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82a7bcafd010020d61d7d
+      rdme openapi eth_getBlockByNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82a998c633400a90f064e
+      rdme openapi eth_getBlockTransactionCountByHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b0247066b0027c130b8
+      rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b191a6cbc0079615968
+      rdme openapi eth_getCode.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b320634e6003dbf8a9a
+      rdme openapi eth_getFilterChanges.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b42c6645600bb050cc3
+      rdme openapi eth_getFilterLogs.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b5326236f002a451bd3
+      rdme openapi eth_getLogs.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b66df005c0027cc9602
+      rdme openapi eth_getProof.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b76cafd010020d64513
+      rdme openapi eth_getRootHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b87a307230086583acb
+      rdme openapi eth_getSignersAtHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82b9da8b7440038ce9274
+      rdme openapi eth_getStorageAt.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82bb04fd782002e6db7f2
+      rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82bc3c4b3800064493595
+      rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82bd6e856170013d62f58
+      rdme openapi eth_getTransactionByHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c1ff43efe001c3b7c89
+      rdme openapi eth_getTransactionCount.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c318c633400a90f20aa
+      rdme openapi eth_getTransactionReceipt.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c448448ac0041147773
+      rdme openapi eth_getTransactionReceiptsByBlock.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c5335ad200020fd58d3
+      rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c65cc0535008473fef3
+      rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c821cf0bf0094764635
+      rdme openapi eth_getUncleCountByBlockHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82c925a22fd0099471487
+      rdme openapi eth_getUncleCountByBlockNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82ca16307ee002d9b2bd1
+      rdme openapi eth_newBlockFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82cb06307ee002d9b2be0
+      rdme openapi eth_newFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82cc1a63ffe0014d22442
+      rdme openapi eth_newPendingTransactionFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82ccff98016006db64147
+      rdme openapi eth_sendRawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82ce46ba6120089a4acd3
+      rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82cf328fc3201406fb699
+      rdme openapi eth_uninstallFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d14a8cddc001dc2ce2c
+      rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d242880f9013de9b7c5
+      rdme openapi net_listening.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d36ce9292019c74313c
+      rdme openapi net_version.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d48be94a1007dea3014
+      rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d5805ea78004bfb8dd7
+      rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d8d83fc58004e33187d
       
 
-      
           

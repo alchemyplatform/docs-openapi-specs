@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Web3 Info
+  title: web3_sha3 - Polygon
   version: '1.0'
 servers:
   - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
