@@ -162,7 +162,30 @@ jobs:
       rdme openapi eth_getCode.yaml --key=<key> --id=62d81c65cbd947021ac7a941
       rdme openapi eth_getFilterChanges.yaml --key=<key> --id=62d81c82c3d662001491b5a4
       rdme openapi eth_getFilterLogs.yaml --key=<key> --id=62d81cb1c4b3800064481d2d
-      
+      rdme openapi eth_getLogs.yaml --key=<key> --id=62d831294c882500402412d6
+      rdme openapi eth_getProof.yaml --key=<key> --id=62d8316ba8cddc001dc32815
+      rdme openapi eth_getStorageAt.yaml --key=<key> --id=62d83189978c0800136bc5aa
+      rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=<key> --id=62d831a48e6920009eb8f635
+      rdme openapi eth_getTransactionByHash.yaml --key=<key> --id=62d832236307ee002d9b9b0a
+      rdme openapi eth_getTransactionCount.yaml --key=<key> --id=62d8326743c6c00037dd6155
+      rdme openapi eth_getTransactionReceipt.yaml --key=<key> --id=62d8327be856170013d6b283
+      rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=<key> --id=62d832c5158058012d40ea4c
+      rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=<key> --id=62d832dc15065e002ee0d85a
+      rdme openapi eth_getUncleCountByBlockHash.yaml --key=<key> --id=62d832f9dcb3860058b4d99b
+      rdme openapi eth_getUncleCountByBlockNumber.yaml --key=<key> --id=62d833246307ee002d9ba6ff
+      rdme openapi eth_maxPriorityFeePerGas.yaml --key=<key> --id=62d8334b368457002f086082
+      rdme openapi eth_newBlockFilter.yaml --key=<key> --id=62d833f8d2cfb500282244c5
+      rdme openapi eth_newFilter.yaml --key=<key> --id=62d83471e3120f01fce73f1f
+      rdme openapi eth_newPendingTransactionFilter.yaml --key=<key> --id=62d83490c7cb6d00876164db
+      rdme openapi eth_protocolVersion.yaml --key=<key> --id=62d834cfbe94a1007dea9007
+      rdme openapi eth_sendRawTransaction.yaml --key=<key> --id=62d835028c633400a90fd223
+      rdme openapi eth_uninstallFilter.yaml --key=<key> --id=62d835bcf25f770152c68641
+      rdme openapi eth_unsubscribe.yaml --key=<key> --id=62d8363d9222ed084c6a4c15
+      rdme openapi net_listening.yaml --key=<key> --id=62d836535a22fd00994784a4
+      rdme openapi net_version.yaml --key=<key> --id=62d8366a895f5d0014681008
+      rdme openapi web3_clientVersion.yaml --key=<key> --id=62d8367fa2d9d4001c18d733
+      rdme openapi web3_sha3.yaml --key=<key> --id=62d83693bf0ca1002035a814
+
       # Sync Solana APIs
       
       - name: Syncing simulateTransaction.yaml
