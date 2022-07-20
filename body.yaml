@@ -512,8 +512,6 @@ eth_protocolVersion:
           default: eth_protocolVersion
           enum:
             - eth_protocolVersion
-        params:
-          type: array
 eth_gasPrice:
   allOf:
     - $ref: '#/CommonProperties'
@@ -524,8 +522,6 @@ eth_gasPrice:
           default: eth_gasPrice
           enum:
             - eth_gasPrice
-        params:
-          type: array
 eth_estimateGas_550:
   allOf:
     - $ref: '#/CommonProperties'
@@ -628,8 +624,6 @@ eth_maxPriorityFeePerGas:
           default: eth_maxPriorityFeePerGas
           enum:
             - eth_maxPriorityFeePerGas
-        params:
-          type: array
 eth_chainId:
   allOf:
     - $ref: '#/CommonProperties'
@@ -650,8 +644,6 @@ net_version:
           default: net_version
           enum:
             - net_version
-        params:
-          type: array
 net_listening:
   allOf:
     - $ref: '#/CommonProperties'
@@ -662,8 +654,6 @@ net_listening:
           default: net_listening
           enum:
             - net_listening
-        params:
-          type: array
 blockNumber_uncleIndex_param:
   type: object
   properties:
@@ -762,8 +752,6 @@ eth_newBlockFilter:
           default: eth_newBlockFilter
           enum:
             - eth_newBlockFilter
-        params:
-          type: array
 eth_newFilter:
   allOf:
     - $ref: '#/CommonProperties'
@@ -790,8 +778,6 @@ eth_newPendingTransactionFilter:
           default: eth_newPendingTransactionFilter
           enum:
             - eth_newPendingTransactionFilter
-        params:
-          type: array
 eth_uninstallFilter:
   allOf:
     - $ref: '#/CommonProperties'
@@ -813,8 +799,6 @@ web3_clientVersion:
           default: web3_clientVersion
           enum:
             - web3_clientVersion
-        params:
-          type: array
 shaHash_param:
   type: object
   properties:
