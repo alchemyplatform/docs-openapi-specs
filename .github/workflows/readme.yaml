@@ -13,33 +13,33 @@ name: Sync OpenAPI definition to ReadMe
     #  - name: Checkout this 
     #    uses: actions/checkout@v3
 
-      # Sync Transfers API
+      # Sync Transfers API - make sure to CD into the transfers folder before running!!
       - name: Syncing alchemy_getAssetTransfers.yaml
         uses: readmeio/rdme@7.3.0
           rdme: openapi alchemy_getAssetTransfers.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/nft --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75e355edcd00083b39fa2
 
       
-      # Sync NFT APIs
+      # Sync NFT APIs - make sure to CD into the nft folder before running!!
       
       - name: Syncing nfts.yaml
         uses: readmeio/rdme@7.3.0
           rdme: openapi nfts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/nft --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62bb5f1af2192000e16f5c93
       
-      # Sync Notify APIs
+      # Sync Notify APIs - make sure to CD into the notify folder before running!!
       
       - name: Syncing notify.yaml
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi notify.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/notify --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d74663f3ed8d0071190eb2
 
-      # Sync Transaction Receipt APIs
+      # Sync Transaction Receipt APIs - make sure to CD into the transaction receipts folder before running!!
       
       - name: Syncing alchemy_getTransactionReceipts.yaml
         uses: readmeio/rdme@7.3.0
         with:
           rdme: openapi alchemy_getTransactionReceipts.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/transaction-receipts --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d76a925edcd00083b41115
 
-      # Sync Token APIs
+      # Sync Token APIs - make sure to CD into the token folder before running!!
       
       - name: Syncing alchemy_getTokenAllowance.yaml
         uses: readmeio/rdme@7.3.0
@@ -57,7 +57,7 @@ name: Sync OpenAPI definition to ReadMe
           rdme: openapi alchemy_getTokenMetadata.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5581637732c00307aec6e
 
 
-      # Sync Trace APIs
+      # Sync Trace APIs - make sure to CD into the trace folder before running!!
       rdme openapi trace_block.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75aa0ae0b8c00ac4bd10b
       
       - name: Syncing trace_call.yaml
@@ -100,7 +100,7 @@ name: Sync OpenAPI definition to ReadMe
         with:
           rdme: openapi trace_transaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/trace --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140166d87e70098f3c333
       
-      # Sync Unstoppable APIs
+      # Sync Unstoppable APIs - make sure to CD into the Unstoppable folder before running!!
       
       - name: Syncing unstoppable.yaml
         uses: readmeio/rdme@7.3.0
@@ -108,7 +108,7 @@ name: Sync OpenAPI definition to ReadMe
           rdme: openapi unstoppable.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/unstoppable --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d72d86d33a3600a3416770
 
       
-      # Sync Ethereum APIs
+      # Sync Ethereum APIs - make sure to CD into the ethereum folder before running!!
       
       - name: Syncing eth_call.yaml
         uses: readmeio/rdme@7.3.0
@@ -146,7 +146,7 @@ name: Sync OpenAPI definition to ReadMe
         with:
           rdme: openapi eth_sendPrivateTransaction.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d6beb6c58877026441688c
       
-      # adding the ethereum rdme commands
+      # Ethereum API - make sure to CD into the ethereum folder before running!!
       rdme openapi eth_call.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62cd3571d1a583001a47bb1c 
       rdme openapi eth_estimateGas.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d79a2f75cd93006588aaa5
       rdme openapi eth_gasPrice.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d79ad44c8825004019d4b6
@@ -184,7 +184,7 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d83693bf0ca1002035a814
       rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d85761c50d8b00730dc6ce
 
-      # Sync Solana APIs
+      # Sync Solana APIs - make sure to CD into the solana folder before running!!
       
       - name: Syncing simulateTransaction.yaml
         uses: readmeio/rdme@7.3.0
@@ -197,7 +197,7 @@ name: Sync OpenAPI definition to ReadMe
           rdme: openapi getAccountInfo.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950  
       
           
-     # Polygon API
+     # Polygon API - make sure to CD into the polygon folder before running!!
       rdme openapi bor_getAuthor.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82945841e5600b8364320
       rdme openapi bor_getCurrentProposer.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82965cb07ef006561e5af
       rdme openapi bor_getCurrentValidators.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d829733071e2001ac8ece4
@@ -243,8 +243,44 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d5805ea78004bfb8dd7
       rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d8d83fc58004e33187d
       
-      # Arbitrum API
-      rdme openapi eth_accounts.yaml --key=<key> --id=62d8d22190dfbd0013767822
-      rdme openapi eth_blockNumber.yaml --key=<key> --id=62d8d23ca7d4940070fb5bec
+      # Arbitrum API - make sure to CD into the arbitrum folder before running!!
+      rdme openapi eth_accounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8d22190dfbd0013767822
+      rdme openapi eth_blockNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8d23ca7d4940070fb5bec
+      rdme openapi eth_call.yaml --key=<key> --id=62d8d7ec0e06b30029f9c72a
+      rdme openapi eth_chainId.yaml --key=<key> --id=62d8d805f01e4d002f2eaca0
+      rdme openapi eth_estimateGas.yaml --key=<key> --id=62d8d817f0253e00a6461eb0
+      rdme openapi eth_gasPrice.yaml --key=<key> --id=62d8d8328cd9e7006a42064c
+      rdme openapi eth_getBalance.yaml --key=<key> --id=62d8d87c14db26001416ac63
+      rdme openapi eth_getBlockByHash.yaml --key=<key> --id=62d8dd027c1ba40036a5a1a1
+      rdme openapi eth_getBlockByNumber.yaml --key=<key> --id=62d8e0c7f7b6f50072597080
+      rdme openapi eth_getBlockTransactionCountByHash.yaml --key=<key> --id=62d8e112259d7e001474c645
+      rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=<key> --id=62d8e133efa205012a37a43a
+      rdme openapi eth_getCode.yaml --key=<key> --id=62d8e15486056c003cc75375
+      rdme openapi eth_getFilterChanges.yaml --key=<key> --id=62d8e17070fd50003ffbf060
+      rdme openapi eth_getFilterLogs.yaml --key=<key> --id=62d8e189487ded0096d0097a
+      rdme openapi eth_getLogs.yaml --key=<key> --id=62d8e2164959b30088f11e57
+      rdme openapi eth_getStorageAt.yaml --key=<key> --id=62d8e22dbb9859001e90e111
+      rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=<key> --id=62d8e2bdd94be9009bef4eb5
+      rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=<key> --id=62d8e371cec32f0013dd7cd8
+      rdme openapi eth_getTransactionByHash.yaml --key=<key> --id=62d8e39187f70200a07262ff
+      rdme openapi eth_getTransactionCount.yaml --key=<key> --id=62d8e3c9f2ee85023f8958f8
       
-          
+      
+      
+      rdme openapi eth_getTransactionReceipt.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e51f07a31e009a2e3b09
+      rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e5c3bf6279007db52ca8
+      rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e5eb487ded0096d0477e
+      rdme openapi eth_getUncleCountByBlockHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e60143af490013464da6
+      rdme openapi eth_getUncleCountByBlockNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e61470fd9d0065c98eb7
+      rdme openapi eth_newBlockFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e63472584e002713e951
+      rdme openapi eth_newFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e648425369004cbbde61
+      rdme openapi eth_newPendingTransactionFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e659137da40014f246df
+      rdme openapi eth_sendRawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e66eaefd120077ed7e44
+      rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e684b4d7bf001a0e0f2f
+      rdme openapi eth_uninstallFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e6f1496fdb0056aecb93
+      rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e6ff9047c6001c2cfe38
+      rdme openapi net_listening.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e7123b4331007eb60617
+      rdme openapi net_version.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e72ad1ef6d002f8071c0
+      rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e7427400e900a6471d28
+      rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e759ebeda4004a1f51db
+      
