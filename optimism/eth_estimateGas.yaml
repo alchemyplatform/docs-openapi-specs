@@ -25,6 +25,6 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/string_result_response
-      operationId: eth_estimateGas
+      operationId: eth-estimategas-optimism
       x-readme:
           explorer-enabled: false

@@ -10,7 +10,7 @@ servers:
 paths:
   /:
     post:
-      operationId: eth_call
+      operationId: eth-call-optimism
       summary: Message Call
       description: Executes a new message call immediately without creating a transaction on the block chain..
       requestBody:

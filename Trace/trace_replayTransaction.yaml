@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/trace_call
-      operationId: trace_replayTransaction
+      operationId: trace-replayTransaction

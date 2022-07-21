@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/alchemy_getTokenMetadata
-      operationId: alchemy_getTokenMetadata
+      operationId: alchemy-getTokenMetadata

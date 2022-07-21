@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/alchemy_getTokenAllowance
-      operationId: alchemy_getTokenAllowance
+      operationId: alchemy-getTokenAllowance

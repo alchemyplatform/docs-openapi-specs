@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/alchemy_getTokenBalances
-      operationId: alchemy_getTokenBalances
+      operationId: alchemy-getTokenBalances

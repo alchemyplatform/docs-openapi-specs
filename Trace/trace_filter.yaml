@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/trace_filter
-      operationId: trace_filter
+      operationId: trace-filter
