@@ -29,4 +29,4 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/eth_getLogs
-        operationId: eth_getFilterLogs
+        operationId: eth-getFilterLogs

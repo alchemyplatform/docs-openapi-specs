@@ -15,7 +15,7 @@ components:
   pathItems:
     path:
       post:
-        operationId: eth_call
+        operationId: eth-call
         summary: eth_call
         description: Executes a new message call immediately without creating a transaction on the block chain..
         requestBody:

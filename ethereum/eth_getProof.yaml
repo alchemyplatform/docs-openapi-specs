@@ -29,6 +29,6 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/eth_getProof
-        operationId: eth_getProof
+        operationId: eth-getProof
         x-readme:
           explorer-enabled: false

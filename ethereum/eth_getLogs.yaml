@@ -23,6 +23,7 @@ components:
   pathItems:
     path:
       post:
+        operationId: eth-getlogs
         summary: eth_getLogs
         description: |
           Returns an array of all logs matching a given filter object.

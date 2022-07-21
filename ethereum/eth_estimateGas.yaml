@@ -29,6 +29,6 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/string_result_response
-        operationId: eth_estimateGas
+        operationId: eth-estimateGas
         x-readme:
           explorer-enabled: false

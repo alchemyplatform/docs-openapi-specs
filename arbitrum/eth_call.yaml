@@ -10,8 +10,8 @@ servers:
 paths:
   /:
     post:
-      operationId: eth_call
-      summary: Message Call
+      operationId: eth-call-arbitrum
+      summary: eth_call
       description: Executes a new message call immediately without creating a transaction on the block chain..
       requestBody:
         description: Accepts the transaction call object.

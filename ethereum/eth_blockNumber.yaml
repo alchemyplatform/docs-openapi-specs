@@ -16,6 +16,7 @@ components:
     path:
       post:
         summary: eth_blockNumber
+        operationId: eth-blocknumber
         description: Returns the number of the most recent block.
         requestBody:
           description: Accepts nothing.

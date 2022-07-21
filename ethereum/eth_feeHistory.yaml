@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/eth_feeHistory
-      operationId: eth_feeHistory
+      operationId: eth-feeHistory
