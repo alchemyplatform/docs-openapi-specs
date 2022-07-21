@@ -184,7 +184,7 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d83693bf0ca1002035a814
       rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d85761c50d8b00730dc6ce
 
-      # Optimism API - make sure to CD into the ethereum folder before running!!
+      # Optimism API - make sure to CD into the optimism folder before running!!
       rdme openapi eth_accounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d953617b813f0027df394f
       rdme openapi eth_blockNumber.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d953a514db2600141dbb76
       rdme openapi eth_call.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d953c76ccd56004569e216
