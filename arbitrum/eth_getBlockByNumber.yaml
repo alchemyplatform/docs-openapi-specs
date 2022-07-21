@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path
+    post:
+      operationId: eth-getblockbynumber-arbitrum
+      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post

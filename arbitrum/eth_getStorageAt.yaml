@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getStorageAt.yaml#/components/pathItems/path
+    post:
+      operationId: eth-getstorageat-arbitrum
+      $ref: ../ethereum/eth_getStorageAt.yaml#/components/pathItems/path/post

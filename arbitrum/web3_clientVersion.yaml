@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: web3_clientVersion
+  title: web3_clientVersion - arbitrum
   version: '1.0'
 servers:
   - url: 'https://arb-mainnet.g.alchemy.com/v2/{apiKey}'
@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path
+    post:
+      operationId: web3-clientversion-arbitrum
+      $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path/post

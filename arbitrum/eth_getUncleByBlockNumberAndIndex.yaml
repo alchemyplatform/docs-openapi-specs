@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getUncleByBlockNumberAndIndex.yaml#/components/pathItems/path
+    post:
+      operationId: eth-getunclebyblocknumberandindex-arbitrum
+      $ref: ../ethereum/eth_getUncleByBlockNumberAndIndex.yaml#/components/pathItems/path/post

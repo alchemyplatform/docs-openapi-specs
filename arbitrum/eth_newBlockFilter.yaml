@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_newBlockFilter.yaml#/components/pathItems/path
+    post:
+      operationId: eth-newblockfilter-arbitrum
+      $ref: ../ethereum/eth_newBlockFilter.yaml#/components/pathItems/path/post

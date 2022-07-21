@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getFilterChanges.yaml#/components/pathItems/path
+    post:
+      operationId: eth-getfilterchanges-arbitrum
+      $ref: ../ethereum/eth_getFilterChanges.yaml#/components/pathItems/path/post
