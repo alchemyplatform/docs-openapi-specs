@@ -243,5 +243,8 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d5805ea78004bfb8dd7
       rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d8d83fc58004e33187d
       
-
+      # Arbitrum API
+      rdme openapi eth_accounts.yaml --key=<key> --id=62d8d22190dfbd0013767822
+      rdme openapi eth_blockNumber.yaml --key=<key> --id=62d8d23ca7d4940070fb5bec
+      
           

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Getting Blocks
+  title: eth_getBlockByHash - optimism
   version: '1.0'
 servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2/{apiKey}'
@@ -11,4 +11,4 @@ paths:
   /:
     $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path
 x-readme:
-          explorer-enabled: false
+  explorer-enabled: false
