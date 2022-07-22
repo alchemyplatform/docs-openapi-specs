@@ -237,6 +237,50 @@ name: Sync OpenAPI definition to ReadMe
         with:
           rdme: openapi getAccountInfo.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950  
       
+      rdme openapi getAccountInfo.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f28496fdb0056b800e0
+      rdme openapi getBalance.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f3dd6f1280040035364
+      rdme openapi getBlock.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f4877cd5f004182af1a
+      rdme openapi getBlockCommitment.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f5714db260014219ae5
+      rdme openapi getBlockHeight.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f97c53ae5009910be97
+      rdme openapi getBlockProduction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97fb22dc143006b456c41
+      rdme openapi getBlocks.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97fd9e7f4f400720b1a7e
+      rdme openapi getBlocksWithLimit.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97ffdd9fef30054e3688a
+      rdme openapi getBlockTime.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d98014b1994a002d227c2a
+      rdme openapi getClusterNodes.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d98035ef764c004bc2481e
+      rdme openapi getEpochInfo.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9804df23a6a00359b2a4e
+      rdme openapi getEpochSchedule.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d98065be6fce009f8d9caa
+      rdme openapi getFeeForMessage.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9807670f20800586a3dbf
+      rdme openapi getFirstAvailableBlock.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9808aab01d00082f590d7
+      rdme openapi getGenesisHash.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9809a366de70043b2237f
+      rdme openapi getHealth.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d980aecec32f0013e6babe
+      rdme openapi getHighestSnapshotSlot.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9811d48751e0042955502
+      rdme openapi getIdentity.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9812f07add60035ed1487
+      rdme openapi getInflationGovernor.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9813d72584e00271e2985
+      rdme openapi getInflationRate.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9814eff2a2d0061def14b
+      rdme openapi getInflationReward.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d98160d04eff08f64f6787
+      rdme openapi getLargestAccounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9816f8a52690af76c597c
+      rdme openapi getMaxRetransmitSlot.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d981a5425369004cc57821
+      rdme openapi getMaxShredInsertSlot.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d981b0b9c43f005f31cbb5
+      rdme openapi getMinimumBalanceForRentExemption.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d981c8caa2920027764382
+      rdme openapi getMultipleAccounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d981db4959b30088fbe560
+      rdme openapi getProgramAccounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d981eecaa29200277649ff
+      rdme openapi getRecentPerformanceSamples.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d981fd28044300529c8024
+      rdme openapi getSignaturesForAddress.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9823b6199a8003b4a47b3
+      rdme openapi getSignatureStatuses.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9824a5848b10037812fe2
+      rdme openapi getSlot.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d98258fb40fb00a08cf5a2
+      rdme openapi getSlotLeader.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9826448751e0042956e8e
+      rdme openapi getSlotLeaders.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d98271f01e4d002f395c39
+      rdme openapi getSupply.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9827d80f257002f4bb308
+      rdme openapi getTokenAccountBalance.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d982b0826b4e0078ee3afb
+      rdme openapi getTokenAccountsByOwner.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d982c8ebeda4004a291b68
+      rdme openapi getTokenSupply.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d982d63b4331007ec01843
+      rdme openapi getTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d982e499d11500b3890f09
+      rdme openapi getVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d982ef70fd50003f0639c0
+      rdme openapi getVoteAccounts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d982fa8cd9e7006a4c7108
+      rdme openapi isBlockhashValid.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9830ae173250013ce6eda
+      rdme openapi minimumLedgerSlot.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9831df57266001a2415bf
+      rdme openapi sendTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9832db4d7bf001a180ea3
+      rdme openapi simulateTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9833790ee10002f105bf1
           
      # Polygon API - make sure to CD into the polygon folder before running!!
       rdme openapi bor_getAuthor.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82945841e5600b8364320
