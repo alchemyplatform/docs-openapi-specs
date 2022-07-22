@@ -127,7 +127,7 @@ name: Sync OpenAPI definition to ReadMe
       - name: Syncing eth_blockNumber.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi eth_blockNumber.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c8076fe3a26b039d30eab9
+          rdme: openapi eth_blockNumber.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/ethereum --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c8076fe3a26b039d30eab9
       - name: Syncing eth_cancelPrivateTransaction
         uses: readmeio/rdme@7.3.0
         with:
@@ -177,7 +177,7 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi eth_protocolVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d834cfbe94a1007dea9007
       rdme openapi eth_sendRawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d835028c633400a90fd223
       rdme openapi eth_uninstallFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d835bcf25f770152c68641
-      rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8363d9222ed084c6a4c15
+      # do not upload rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8363d9222ed084c6a4c15
       rdme openapi net_listening.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d836535a22fd00994784a4
       rdme openapi net_version.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8366a895f5d0014681008
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8367fa2d9d4001c18d733
@@ -216,10 +216,10 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi eth_newPendingTransactionFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9562996a4a60049733692
       rdme openapi eth_protocolVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9563f82f07f005619b822
       rdme openapi eth_sendRawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9564f37827c001a478ee6
-      rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d95662fe53600046a8f0ee
+      # do not upload rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d95662fe53600046a8f0ee
       rdme openapi eth_syncing.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d9567837827c001a47909f
       rdme openapi eth_uninstallFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d956923b4331007ebc7504
-      rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d956a26f8106007c221a2d
+      # do not upload rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d956a26f8106007c221a2d
       rdme openapi net_listening.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d956b1089b2a00309e60e4
       rdme openapi net_version.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d956cc03036a002da5d8e6
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d956dd7b813f0027df6c3e
@@ -276,9 +276,9 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi eth_newFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82cc1a63ffe0014d22442
       rdme openapi eth_newPendingTransactionFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82ccff98016006db64147
       rdme openapi eth_sendRawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82ce46ba6120089a4acd3
-      rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82cf328fc3201406fb699
+      # do not upload rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82cf328fc3201406fb699
       rdme openapi eth_uninstallFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d14a8cddc001dc2ce2c
-      rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d242880f9013de9b7c5
+      # do not upload rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d242880f9013de9b7c5
       rdme openapi net_listening.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d36ce9292019c74313c
       rdme openapi net_version.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d48be94a1007dea3014
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d82d5805ea78004bfb8dd7
@@ -314,9 +314,9 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi eth_newFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e648425369004cbbde61
       rdme openapi eth_newPendingTransactionFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e659137da40014f246df
       rdme openapi eth_sendRawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e66eaefd120077ed7e44
-      rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e684b4d7bf001a0e0f2f
+      # do not upload rdme openapi eth_subscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e684b4d7bf001a0e0f2f
       rdme openapi eth_uninstallFilter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e6f1496fdb0056aecb93
-      rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e6ff9047c6001c2cfe38
+      # do not upload rdme openapi eth_unsubscribe.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e6ff9047c6001c2cfe38
       rdme openapi net_listening.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e7123b4331007eb60617
       rdme openapi net_version.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e72ad1ef6d002f8071c0
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e7427400e900a6471d28
