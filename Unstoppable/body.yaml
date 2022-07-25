@@ -55,4 +55,3 @@ startingAfter:
   schema:
     type: string
   description: 'The API will skip the results before this value in the response. Value depends on sortBy value.'
-  

@@ -11,4 +11,4 @@ paths:
   /:
     post:
       operationId: eth-unsubscribe-arbitrum
-    $ref: ../ethereum/eth_unsubscribe.yaml#/components/pathItems/path/post
+      $ref: ../ethereum/eth_unsubscribe.yaml#/components/pathItems/path/post

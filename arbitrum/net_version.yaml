@@ -11,4 +11,4 @@ paths:
   /:
     post:
       operationId: net-version-arbitrum
-    $ref: ../ethereum/net_version.yaml#/components/pathItems/path/post
+      $ref: ../ethereum/net_version.yaml#/components/pathItems/path/post

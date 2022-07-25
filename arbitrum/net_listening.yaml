@@ -11,4 +11,4 @@ paths:
   /:
     post:
       operationId: net-listening-arbitrum
-    $ref: ../ethereum/net_listening.yaml#/components/pathItems/path/post
+      $ref: ../ethereum/net_listening.yaml#/components/pathItems/path/post

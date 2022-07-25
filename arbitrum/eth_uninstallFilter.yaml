@@ -11,4 +11,4 @@ paths:
   /:
     post:
       operationId: eth-uninstallfilter-arbitrum
-    $ref: ../ethereum/eth_uninstallFilter.yaml#/components/pathItems/path/post
+      $ref: ../ethereum/eth_uninstallFilter.yaml#/components/pathItems/path/post

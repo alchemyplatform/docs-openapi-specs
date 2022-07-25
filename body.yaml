@@ -957,7 +957,8 @@ alchemy_getTokenBalances:
             - DATA, 20 Bytes - The address for which token balances will be checked.
             - OneOf
               - Array - A list of contract addresses. Suggested limit: 100 addresses
-              - The String ''DEFAULT_TOKENS'' - denotes a query for the top 100 tokens by 24 hour volume.
+              - The String ''DEFAULT_TOKENS'' - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
+
           minItems: 2
           maxItems: 2
           items:

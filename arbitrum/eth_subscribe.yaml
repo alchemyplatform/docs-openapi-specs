@@ -11,4 +11,4 @@ paths:
   /:
     post:
       operationId: eth-subscribe-arbitrum
-    $ref: ../ethereum/eth_subscribe.yaml#/components/pathItems/path/post
+      $ref: ../ethereum/eth_subscribe.yaml#/components/pathItems/path/post
