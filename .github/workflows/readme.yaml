@@ -14,44 +14,22 @@ name: Sync OpenAPI definition to ReadMe
     #    uses: actions/checkout@v3
 
       # Sync Transfers API - make sure to CD into the transfers folder before running!!
-      - name: Syncing alchemy_getAssetTransfers.yaml
-        uses: readmeio/rdme@7.3.0
-          rdme: openapi alchemy_getAssetTransfers.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75e355edcd00083b39fa2
+      rdme openapi alchemy_getAssetTransfers.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75e355edcd00083b39fa2
 
 
       # Sync NFT APIs - make sure to CD into the nft folder before running!!
-      rdme openapi nfts.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62bb5f1af2192000e16f5c93
+      rdme openapi nfts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62bb5f1af2192000e16f5c93
       
       # Sync Notify APIs - make sure to CD into the notify folder before running!!
-      
-      - name: Syncing notify.yaml
-        uses: readmeio/rdme@7.3.0
-        with:
-          rdme: openapi notify.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d74663f3ed8d0071190eb2
+      rdme openapi notify.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d74663f3ed8d0071190eb2
 
       # Sync Transaction Receipt APIs - make sure to CD into the transaction receipts folder before running!!
-      
-      - name: Syncing alchemy_getTransactionReceipts.yaml
-        uses: readmeio/rdme@7.3.0
-        with:
-          rdme: openapi alchemy_getTransactionReceipts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d76a925edcd00083b41115
+      rdme openapi alchemy_getTransactionReceipts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d76a925edcd00083b41115
 
       # Sync Token APIs - make sure to CD into the token folder before running!!
-      
-      - name: Syncing alchemy_getTokenAllowance.yaml
-        uses: readmeio/rdme@7.3.0
-        with:
-          rdme: openapi alchemy_getTokenAllowance.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008de5ecd5b009577791c
-
-      - name: Syncing alchemy_getTokenBalances.yaml
-        uses: readmeio/rdme@7.3.0
-        with:
-          rdme: openapi alchemy_getTokenBalances.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d551cf2cef3a00205a5924
-
-      - name: Syncing alchemy_getTokenMetadata.yaml
-        uses: readmeio/rdme@7.3.0
-        with:
-          rdme: openapi alchemy_getTokenMetadata.yaml --workingDirectory=/home/runner/work/docs-openapi-specs/docs-openapi-specs/token --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5581637732c00307aec6e
+      rdme openapi alchemy_getTokenAllowance.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008de5ecd5b009577791c
+      rdme openapi alchemy_getTokenBalances.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d551cf2cef3a00205a5924
+      rdme openapi alchemy_getTokenMetadata.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5581637732c00307aec6e
 
 
       # Sync Trace APIs - make sure to CD into the trace folder before running!!
