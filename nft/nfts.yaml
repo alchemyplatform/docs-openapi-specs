@@ -43,21 +43,21 @@ paths:
           - language: javascript
             name: Alchemy SDK
             code: |
-              // Setup: npm install @alch/alchemy-sdk
+              // Setup: npm install alchemy-sdk
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: demo, // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
+                
               };
 
               const alchemy = new Alchemy(settings);
 
               // Print all NFTs returned in the response:
-              alchemy.nft.getNftsForOwner(alchemy, "0xshah.eth").then(console.log);
+              alchemy.nft.getNftsForOwner("0xshah.eth").then(console.log);
       responses:
         '200':
           description: 'Returns true if transaction was successfully cancelled, false if not.'
@@ -100,14 +100,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -145,14 +144,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -194,14 +192,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -218,6 +215,51 @@ paths:
               schema:
                 $ref: nfts_responses.yaml#/getNFTsForCollection
       operationId: getNFTsForCollection
+  '/{apiKey}/getOwnersForToken':
+    get:
+      summary: getOwnersForToken
+      description: Get the owner(s) for a token.
+      tags: ["NFT API"]
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
+        - $ref: nfts_body.yaml#/tokenId
+          description: String - The ID of the token. Can be in hex or decimal format.
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT count returned in the response:
+              alchemy.nft.getOwnersForNft("0x5180db8F5c931aaE63c74266b211F580155ecac8", "1590").then(
+                console.log
+              );
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getOwnersForToken
+      operationId: getOwnersForToken
   '/{apiKey}/getOwnersForCollection':
     get:
       summary: getOwnersForCollection
@@ -240,14 +282,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -282,14 +323,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -325,14 +365,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -370,16 +409,15 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
+              // Setup: npm install alchemy-sdk
               import {
                 Network,
-              } from "@alch/alchemy-sdk";
+              } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
@@ -397,52 +435,6 @@ paths:
               schema:
                 $ref: nfts_responses.yaml#/reingestContract
       operationId: reingestContract
-  '/{apiKey}/getOwnersForToken':
-    get:
-      summary: getOwnersForToken
-      description: Get the owner(s) for a token.
-      tags: ["NFT API Endpoints"]
-      parameters:
-        - $ref: nfts_body.yaml#/apiKey
-        - $ref: nfts_body.yaml#/contractAddress
-          description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
-        - $ref: nfts_body.yaml#/tokenId
-          description: String - The ID of the token. Can be in hex or decimal format.
-      x-readme: 
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT count returned in the response:
-              alchemy.nft.getOwnersForNft("0x5180db8F5c931aaE63c74266b211F580155ecac8", "1590").then(
-                console.log
-              );
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: nfts_responses.yaml#/getOwnersForToken
-      operationId: getOwnersForToken
   '/{apiKey}/getFloorPrice':
     get:
       summary: getFloorPrice
@@ -463,14 +455,13 @@ paths:
             name: Alchemy SDK
             code: |
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install @alch/alchemy-sdk
-              import { Network, Alchemy } from "@alch/alchemy-sdk";
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
 
               // Optional Config object, but defaults to demo api-key and eth-mainnet.
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                maxRetries: 10,
               };
 
               const alchemy = new Alchemy(settings);
