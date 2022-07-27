@@ -9,8 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_sendRawTransaction.yaml#/components/pathItems/path
-  /:
     post:
       $ref: ../ethereum/eth_sendRawTransaction.yaml#/components/pathItems/path/post
       operationId: eth-sendrawtransaction-optimism
