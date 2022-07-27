@@ -34,14 +34,14 @@ name: Sync OpenAPI definition to ReadMe
 
       # Sync Trace APIs - make sure to CD into the trace folder before running!!
       rdme openapi trace_block.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75aa0ae0b8c00ac4bd10b
-      rdme openapi trace_call.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f3226346a008fd4ea32
-      rdme openapi trace_callMany.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13f4eb87f8a00720cf8d0
-      rdme openapi --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13fa7222c45009d6bedeb
-      rdme openapi trace_get.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13fc09644da0028f2747e
-      rdme openapi trace_rawTransaction.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c1421c19bc010042202db0
-      rdme openapi trace_replayBlockTransactions.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c13ff125d3d900a649624c
-      rdme openapi trace_replayTransaction.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140009ec2280043e0f5ef
-      rdme openapi trace_transaction.yaml --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c140166d87e70098f3c333
+      rdme openapi trace_call.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cbf0a759110013247d5a
+      rdme openapi trace_callMany.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cd330b577a006e970485
+      rdme openapi trace_get.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cd4cc45b7f004714b274
+      rdme openapi trace_rawTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cd733bec4800a2cab44b
+      rdme openapi trace_replayBlockTransactions.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cd901c32f9001a935f5a
+      rdme openapi trace_replayTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cdb03e93d900a4b75c8c
+      rdme openapi trace_transaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cdd38dfdce003924d062
+      rdme openapi trace_filter.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cdf776a3c0006fb0e8d4
       
       # Sync Unstoppable APIs - make sure to CD into the Unstoppable folder before running!!
       rdme openapi unstoppable.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d72d86d33a3600a3416770
@@ -49,9 +49,9 @@ name: Sync OpenAPI definition to ReadMe
             
       # Ethereum API - make sure to CD into the ethereum folder before running!!
       rdme openapi eth_chainId.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d78929f180b60043228bf9
-      rdme openapi eth_newFilter.yaml  --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d5cc6ceb57150082e0f840
-      rdme openapi eth_cancelPrivateTransaction.yaml  --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d189bd28710500453ac689
-      rdme openapi eth_accounts.yaml  --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62d54b64fcf55a002eba8d8b
+      rdme openapi eth_newFilter.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5cc6ceb57150082e0f840
+      rdme openapi eth_cancelPrivateTransaction.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d189bd28710500453ac689
+      rdme openapi eth_accounts.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d54b64fcf55a002eba8d8b
       rdme openapi eth_feeHistory.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5d1235ece66005997b8b1
       rdme openapi eth_sendPrivateTransaction.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d6beb6c58877026441688c
       rdme openapi eth_chainId.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d78929f180b60043228bf9
@@ -140,12 +140,12 @@ name: Sync OpenAPI definition to ReadMe
       - name: Syncing simulateTransaction.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi simulateTransaction.yaml  --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6efc9fa25a90077896797
+          rdme: openapi simulateTransaction.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c6efc9fa25a90077896797
       
       - name: Syncing getAccountInfo.yaml
         uses: readmeio/rdme@7.3.0
         with:
-          rdme: openapi getAccountInfo.yaml  --key=rdme_xn8s9h59ecd4299899f5bfbb5efacf808be946d7bbe25c1b4db909d7e423861c5b3fb4 --id=62c6ef02ec7e0e00977b4950  
+          rdme: openapi getAccountInfo.yaml  --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c6ef02ec7e0e00977b4950  
       
       rdme openapi getAccountInfo.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f28496fdb0056b800e0
       rdme openapi getBalance.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d97f3dd6f1280040035364
