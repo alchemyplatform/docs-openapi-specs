@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getBlocks
       operationId: getBlocksWithLimit
+      x-readme:
+        explorer-enabled: false

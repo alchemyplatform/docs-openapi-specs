@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getSignaturesForAddress
       operationId: getSignaturesForAddress
+      x-readme:
+        explorer-enabled: false

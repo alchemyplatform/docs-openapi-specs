@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getProgramAccounts
       operationId: getProgramAccounts
+      x-readme:
+        explorer-enabled: false

@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getFeeForMessage
       operationId: getFeeForMessage
+      x-readme:
+        explorer-enabled: false

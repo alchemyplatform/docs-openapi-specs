@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getMultipleAccounts
       operationId: getMultipleAccounts
+      x-readme:
+        explorer-enabled: false

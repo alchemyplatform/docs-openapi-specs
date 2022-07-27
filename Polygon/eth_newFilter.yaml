@@ -11,4 +11,4 @@ paths:
   /:
     post:
       $ref: ../ethereum/eth_newFilter.yaml#/components/pathItems/path/post
-      operationId: eth-newfilter-optimism
+      operationId: eth-newfilter-polygon

@@ -12,5 +12,5 @@ paths:
     post:
       $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       operationId: eth-call-polygon
-x-readme:
-  explorer-enabled: false
+      x-readme:
+        explorer-enabled: false

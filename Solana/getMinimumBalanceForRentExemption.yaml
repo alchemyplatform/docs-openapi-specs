@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getMinimumBalanceForRentExemption
       operationId: getMinimumBalanceForRentExemption
+      x-readme:
+        explorer-enabled: false

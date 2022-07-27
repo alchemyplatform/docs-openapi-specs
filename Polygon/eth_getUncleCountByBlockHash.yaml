@@ -11,4 +11,4 @@ paths:
   /:
     post:
       $ref: ../ethereum/eth_getUncleCountByBlockHash.yaml#/components/pathItems/path/post
-      operationId: eth-getunclecountbyblockhash-optimism
+      operationId: eth-getunclecountbyblockhash-polygon

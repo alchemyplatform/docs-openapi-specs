@@ -12,4 +12,6 @@ paths:
     post:
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       operationId: eth-blocknumber-optimism
+      x-readme:
+        explorer-enabled: false
 

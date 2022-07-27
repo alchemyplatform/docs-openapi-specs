@@ -11,4 +11,4 @@ paths:
   /:
     post:
       $ref: ../ethereum/eth_getUncleByBlockNumberAndIndex.yaml#/components/pathItems/path/post
-      operationId: eth-getunclebyblocknumberandindex-optimism
+      operationId: eth-getunclebyblocknumberandindex-polygon

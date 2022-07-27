@@ -11,4 +11,4 @@ paths:
   /:
     post:
       $ref: ../ethereum/eth_newPendingTransactionFilter.yaml#/components/pathItems/path/post
-      operationId: eth-newpendingtransactionfilter-optimism
+      operationId: eth-newpendingtransactionfilter-polygon

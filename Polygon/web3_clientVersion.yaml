@@ -11,4 +11,4 @@ paths:
   /:
     post:
       $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path/post
-      operationId: web3-clientVersion-optimism
+      operationId: web3-clientVersion-polygon

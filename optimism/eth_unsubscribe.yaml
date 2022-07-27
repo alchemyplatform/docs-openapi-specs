@@ -12,3 +12,5 @@ paths:
     post:
       $ref: ../ethereum/eth_unsubscribe.yaml#/components/pathItems/path/post
       operationId: eth-unsubscribe-optimism
+      x-readme:
+        explorer-enabled: false

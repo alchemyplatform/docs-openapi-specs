@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getSignatureStatuses
       operationId: getSignatureStatuses
+      x-readme:
+        explorer-enabled: false
