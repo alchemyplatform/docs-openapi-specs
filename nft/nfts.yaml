@@ -219,7 +219,7 @@ paths:
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: ["NFT API"]
+      tags: ["NFT API Endpoints"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress

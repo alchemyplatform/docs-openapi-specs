@@ -20,9 +20,11 @@ paths:
             schema:
               $ref: ../body.yaml#/eth_call_5
       responses:
-          '200':
-            description: Returns integer of the number of transactions in this block.
-            content:
-              application/json:
-                schema:
-                  $ref: ../responses.yaml#/string_result_response
+        '200':
+          description: Returns integer of the number of transactions in this block.
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/string_result_response
+      x-readme:
+        explorer-enabled: false
