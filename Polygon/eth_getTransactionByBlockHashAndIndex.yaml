@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: '../ethereum/eth_getTransactionByBlockHashAndIndex.yaml#/components/pathItems/path'
+    post:
+      $ref: ../ethereum/eth_getTransactionByBlockHashAndIndex.yaml#/components/pathItems/path/post
+      operationId: eth-gettransactionbyblockhashandindex-polygon

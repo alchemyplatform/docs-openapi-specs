@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: '../ethereum/net_listening.yaml#/components/pathItems/path'
+    post:
+      $ref: ../ethereum/net_listening.yaml#/components/pathItems/path/post
+      operationId: net-listening-optimism

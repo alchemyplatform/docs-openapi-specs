@@ -8,7 +8,9 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
-    $ref: '../ethereum/eth_estimateGas.yaml#/components/pathItems/path'
+  /:
+    post:
+      $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
+      operationId: eth-estimategas-polygon
 x-readme:
   explorer-enabled: false

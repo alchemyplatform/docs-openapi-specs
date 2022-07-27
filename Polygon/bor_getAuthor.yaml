@@ -26,4 +26,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/bor_getAuthor
-      operationId: bor_getAuthor
+      operationId: bor-getauthor-polygon

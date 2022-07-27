@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/bor_getCurrentValidators
-      operationId: bor_getCurrentValidators
+      operationId: bor-getCurrentValidators-polygon

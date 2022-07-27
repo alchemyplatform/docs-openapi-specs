@@ -8,5 +8,8 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
-    $ref: '../ethereum/eth_accounts.yaml#/components/pathItems/path'
+  /:
+    post:
+      $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
+      operationId: eth-accounts-polygon
+      

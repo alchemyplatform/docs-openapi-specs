@@ -25,4 +25,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/eth_getSignersAtHash 
-      operationId: eth_getSignersAtHash 
+      operationId: eth-getsignersathash-polygon

@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: '../ethereum/web3_sha3.yaml#/components/pathItems/path'
+    post:
+      $ref: ../ethereum/web3_sha3.yaml#/components/pathItems/path/post
+      operationId: web3-sha3-polygon

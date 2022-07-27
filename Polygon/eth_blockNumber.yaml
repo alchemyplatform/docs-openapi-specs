@@ -8,5 +8,7 @@ servers:
       apiKey:
         default: demo
 paths:
-  '/':
-    $ref: '../ethereum/eth_blockNumber.yaml#/components/pathItems/path'
+  /:
+    post:
+      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
+      operationId: eth-blocknumber-optimism
