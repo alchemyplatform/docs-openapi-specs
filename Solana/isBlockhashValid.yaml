@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/isBlockhashValid
       operationId: isBlockhashValid
+      x-readme:
+        explorer-enabled: false

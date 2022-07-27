@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/trace_replayBlockTransactions
       operationId: trace-replayBlockTransactions
+      x-readme:
+        explorer-enabled: false

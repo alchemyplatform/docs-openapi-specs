@@ -566,7 +566,7 @@ trace_get:
       properties:
         result:
           $ref: '#/trace_get_object'
-trace_trancastion:
+trace_transaction:
   allOf:
     - $ref: '#/CommonProperties'
     - type: object

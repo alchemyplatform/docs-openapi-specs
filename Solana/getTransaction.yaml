@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/getTransaction
       operationId: getTransaction
+      x-readme:
+        explorer-enabled: false

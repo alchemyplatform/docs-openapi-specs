@@ -12,5 +12,5 @@ paths:
     post:
       $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path/post
       operationId: eth-getproof-polygon
-x-readme:
-  explorer-enabled: false
+      x-readme:
+        explorer-enabled: false

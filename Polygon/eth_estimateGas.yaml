@@ -12,5 +12,5 @@ paths:
     post:
       $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
       operationId: eth-estimategas-polygon
-x-readme:
-  explorer-enabled: false
+      x-readme:
+        explorer-enabled: false

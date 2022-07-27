@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/simulateTransaction
       operationId: simulateTransaction
+      x-readme:
+        explorer-enabled: false

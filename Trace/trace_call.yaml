@@ -26,3 +26,6 @@ paths:
               schema:
                 $ref: ../responses.yaml#/trace_call
       operationId: trace-call
+      x-readme:
+        explorer-enabled: false
+      

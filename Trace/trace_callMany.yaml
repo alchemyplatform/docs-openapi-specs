@@ -26,3 +26,5 @@ paths:
               schema:
                 $ref: ../responses.yaml#/trace_callMany
       operationId: trace-callMany
+      x-readme:
+        explorer-enabled: false

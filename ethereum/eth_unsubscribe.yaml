@@ -30,3 +30,5 @@ components:
                 schema:
                   $ref: ../responses.yaml#/eth_cancelPrivateTransaction
         operationId: eth-unsubscribe
+        x-readme:
+          explorer-enabled: false

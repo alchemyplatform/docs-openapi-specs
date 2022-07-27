@@ -19,6 +19,7 @@ paths:
             schema:
               $ref: ../body.yaml#/alchemy_getTokenBalances
       x-readme: 
+        explorer-enabled: false
         samples-languages:
           - javascript
           - curl
@@ -51,4 +52,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/alchemy_getTokenBalances
-      operationId: alchemy-getTokenBalances
+      operationId: alchemy-getTokenBalances        

@@ -12,3 +12,5 @@ paths:
     post:
       $ref: ../ethereum/eth_subscribe.yaml#/components/pathItems/path/post
       operationId: eth-subscribe-optimism
+      x-readme:
+        explorer-enabled: false

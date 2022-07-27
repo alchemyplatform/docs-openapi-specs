@@ -12,3 +12,5 @@ paths:
     post:
       operationId: eth-getblockbynumber-arbitrum
       $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
+      x-readme:
+        explorer-enabled: false

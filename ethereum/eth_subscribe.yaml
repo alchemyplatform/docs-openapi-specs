@@ -40,3 +40,5 @@ components:
                 schema:
                   $ref: ../responses.yaml#/eth_subscribe
         operationId: eth-subscribe
+        x-readme:
+          explorer-enabled: false
