@@ -12,5 +12,35 @@ paths:
     post:
       $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
       operationId: eth-estimategas-polygon
-      x-readme:
+      x-readme: 
         explorer-enabled: false
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy, parseEther } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.MATIC_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .estimateGas({
+                  // Wrapped ETH address
+                  to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+                  // `function deposit() payable`
+                  data: "0xd0e30db0",
+                  // 1 ether
+                  value: parseEther("1.0"),
+                })
+                .then(console.log);

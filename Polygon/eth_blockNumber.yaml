@@ -12,4 +12,26 @@ paths:
     post:
       operationId: eth-blocknumber-polygon
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
-      
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.MATIC_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              // Get the latest block number
+              alchemy.core.getBlockNumber().then(console.log);
