@@ -34,6 +34,60 @@ components:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_getLogs
+        x-readme:
+          samples-languages:
+            - javascript
+            - curl
+            - python
+            - go
+          code-samples:
+            - language: javascript
+              name: Alchemy SDK
+              code: |
+                // Setup: npm install alchemy-sdk
+                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+                import { Network, Alchemy } from "alchemy-sdk";
+
+                // Optional config object, but defaults to demo api-key and eth-mainnet.
+                const settings = {
+                  apiKey: "demo", // Replace with your Alchemy API Key.
+                  network: Network.ETH_MAINNET, // Replace with your network.
+                };
+                const alchemy = new Alchemy(settings);
+
+                // Get logs for a certain address, with specified topics and blockHash
+                alchemy.core
+                  .getLogs({
+                    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                    topics: [
+                      "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                    ],
+                    blockHash:
+                      "0x49664d1de6b3915d7e6fa297ff4b3d1c5328b8ecf2ff0eefb912a4dc5f6ad4a0",
+                  })
+                  .then(console.log);
+            - language: python
+              name: Web3.py
+              code: |
+                # Installation Instructions: https://web3py.readthedocs.io/en/latest/quickstart.html#installation
+
+                from web3 import Web3, HTTPProvider
+
+                #Replace with your Alchemy API key:
+                apiKey = "demo"
+
+                # Initialize a Web3.py instance
+                web3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemyapi.io/v2/'+apiKey))
+
+                # Query the blockchain (replace example parameters)
+                logs = web3.eth.get_logs({
+                  'fromBlock': 1000000, 
+                  'toBlock': 1000100, 
+                  'address': '0x6C8f2A1'
+                  }) 
+
+                # Print the output to console
+                print(logs)
         responses:
           '200':
             description: 'Returns array of log objects, or an empty array if nothing has changed since last poll.'
@@ -41,62 +95,3 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/eth_getLogs
-x-readme:
-  samples-languages:
-    - curl
-    - node
-    - javascript
-    - python
-  code-samples:
-    - language: node
-      code: |
-        // Installation instructions: https://github.com/alchemyplatform/alchemy-web3 
-        async function main() { 
-          // Import the AlchemyWeb3 library. Filepath to functions: 
-          // /@alch/alchemy-web3/dist/alchemyWeb3.js
-          const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-
-          // Replace with your Alchemy API key
-          const apiKey = "demo";
-          
-          // Initialize an alchemy-web3 instance
-          const web3 = createAlchemyWeb3(
-            `https://eth-mainnet.g.alchemy.com/v2/${apiKey}`);
-          
-          // Query the blockchain (replace example parameters)
-            const logs = await web3.eth.getLogs({
-              "address": "0xb59f67a8bff5d8cd03f6ac17265c550ed8f33907",
-              "topics": [
-                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-              ],
-              "blockHash": "0x8243343df08b9751f5ca0c5f8c9c0460d8a9b6351066fae0acbd4d3e776de8bb""
-            }); 
-            
-          // Print the output to console
-          console.log(logs);
-          }
-
-        main();
-      name: Alchemyweb3.js
-    - language: python
-      code: |
-        # Installation Instructions: https://web3py.readthedocs.io/en/latest/quickstart.html#installation
-
-        from web3 import Web3, HTTPProvider
-
-        #Replace with your Alchemy API key:
-        apiKey = "demo"
-
-        # Initialize a Web3.py instance
-        web3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemyapi.io/v2/'+apiKey))
-
-        # Query the blockchain (replace example parameters)
-        logs = web3.eth.get_logs({
-          'fromBlock': 1000000, 
-          'toBlock': 1000100, 
-          'address': '0x6C8f2A1'
-          }) 
-
-        # Print the output to console
-        print(logs)
-      name: Web3.py
