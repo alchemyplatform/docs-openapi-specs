@@ -18,6 +18,30 @@ paths:
           application/json:
             schema:
               $ref: ../body.yaml#/alchemy_getTokenMetadata
+      x-readme: 
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              // Print token metadata of USDC
+              const usdcContract = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+              alchemy.core.getTokenMetadata(usdcContract).then(console.log);
       responses:
         '200':
           description: ''
