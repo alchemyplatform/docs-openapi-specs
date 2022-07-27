@@ -23,6 +23,29 @@ components:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_getBlockByNumber
+        x-readme: 
+          explorer-enabled: false
+          samples-languages:
+            - javascript
+            - curl
+            - python
+            - go
+          code-samples:
+            - language: javascript
+              name: Alchemy SDK
+              code: |
+                // Setup: npm install alchemy-sdk
+                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+                import { Network, Alchemy } from "alchemy-sdk";
+
+                // Optional config object, but defaults to demo api-key and eth-mainnet.
+                const settings = {
+                  apiKey: "demo", // Replace with your Alchemy API Key.
+                  network: Network.ETH_MAINNET, // Replace with your network.
+                };
+                const alchemy = new Alchemy(settings);
+
+                alchemy.core.getBlockNumber(15221026).then(console.log);
         responses:
           '200':
             description: 'Returns a block object with the following fields, or null when no block was found.'
@@ -30,5 +53,3 @@ components:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/eth_block
-        x-readme:
-          explorer-enabled: false
