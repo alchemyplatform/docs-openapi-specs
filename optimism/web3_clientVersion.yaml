@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path
+    post:
+      $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path/post
+      operationId: web3-clientVersion-optimism

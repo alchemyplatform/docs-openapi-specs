@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getBlockTransactionCountByNumber.yaml#/components/pathItems/path
+    post:
+      $ref: ../ethereum/eth_getBlockTransactionCountByNumber.yaml#/components/pathItems/path/post
+      operationId: eth-getblocktransactioncountbynumber-optimism

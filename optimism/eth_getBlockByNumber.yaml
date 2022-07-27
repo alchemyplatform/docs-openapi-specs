@@ -9,6 +9,8 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path
-x-readme:
-          explorer-enabled: false
+    post:
+      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
+      operationId: eth-getblockbynumber-optimism
+      x-readme:
+        explorer-enabled: false

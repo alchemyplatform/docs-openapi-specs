@@ -9,6 +9,8 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path
+    post:
+      $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path/post
+      operationId: eth-getproof-optimism
 x-readme:
   explorer-enabled: false

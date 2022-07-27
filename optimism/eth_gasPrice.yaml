@@ -9,4 +9,6 @@ servers:
         default: demo
 paths:
   /:
-    $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path
+    post:
+      $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
+      operationId: eth-gasprice-optimism
