@@ -19,6 +19,43 @@ paths:
           application/json:
             schema:
               $ref: ../body.yaml#/eth_call_50
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.OPT_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              // Make a sample eth_call
+              alchemy.core
+                .call({
+                  to: "0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41",
+                  gas: "0x76c0",
+                  gasPrice: "0x9184e72a000",
+                  data: "0x3b3b57debf074faa138b72c65adbdcfb329847e4f2c04bde7f7dd7fcad5a52d2f395a558",
+                })
+                .then(console.log);
+          - language: curl
+            code: "curl https://opt-mainnet.alchemyapi.io/v2/your-api-key \\\r\n-X POST \\\r\n-H \"Content-Type: application/json\" \\\r\n-d '{\"jsonrpc\":\"2.0\",\"method\":\"eth_call\",\"params\":[{\"from\": \"0xb60e8dd61c5d32be8058bb8eb970870f07233155\",\"to\": \"0xd46e8dd67c5d32be8058bb8eb970870f07244567\",\"gas\": \"0x76c0\",\"gasPrice\": \"0x9184e72a000\",\"value\": \"0x9184e72a\",\"data\": \"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675\"}, \"latest\"],\"id\":1}'"
+            name: cURL
+          - language: python
+            code: "from web3 import Web3, HTTPProvider\r\n\r\n#Replace with your Alchemy API key:\r\napiKey = \"demo\"\r\n\r\n# Initialize a Web3.py instance\r\nweb3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemyapi.io/v2/'+apiKey))\r\n\r\n# Query the blockchain (replace example parameters)\r\ndata = web3.eth.call({\r\n\t\t'value': 0, \r\n\t\t'gas': 21736, \r\n\t\t'maxFeePerGas': 2000000000, \r\n\t\t'maxPriorityFeePerGas': 1000000000, \r\n\t\t'to': '0xc305c90',\r\n\t\t'data': '0x477a5c98'\r\n\t\t}) \r\n\r\n# Print the output to console\r\nprint(data)"
+            name: web3.py
       responses:
           '200':
             description: Returns integer of the number of transactions in this block.
@@ -26,5 +63,4 @@ paths:
               application/json:
                 schema:
                   $ref: ../responses.yaml#/string_result_response
-      x-readme:
-          explorer-enabled: false
+
