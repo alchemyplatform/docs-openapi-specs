@@ -394,6 +394,11 @@ eth_sendPrivateTransaction:
     required:
       - tx
     properties:
+      method:
+        type: string
+        default: eth_sendRawTransaction
+        enum:
+          - eth_sendRawTransaction
       tx:
         type: string
         description: 'Raw, signed transaction'
@@ -929,6 +934,11 @@ alchemy_getTokenAllowance:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
+        method:
+          type: string
+          default: alchemy_getTokenAllowance
+          enum:
+            - alchemy_getTokenAllowance
         params:
           type: array
           description: null
@@ -936,6 +946,10 @@ alchemy_getTokenAllowance:
           maxItems: 1
           items:
             type: object
+            required:
+              - contract
+              - owner
+              - spender
             properties:
               contract:
                 type: string
@@ -951,6 +965,11 @@ alchemy_getTokenBalances:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
+        method:
+          type: string
+          default: alchemy_getTokenBalances
+          enum:
+            - alchemy_getTokenBalances
         params:
           type: array
           description: |
@@ -978,6 +997,11 @@ alchemy_getTokenMetadata:
     - $ref: '#/CommonProperties'
     - type: object
       properties:
+        method:
+          type: string
+          default: alchemy_getTokenMetadata
+          enum:
+            - alchemy_getTokenMetadata
         params:
           type: array
           description: 'String - DATA, 20 Bytes - The address of the token contract.'

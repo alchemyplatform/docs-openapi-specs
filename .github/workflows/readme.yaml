@@ -31,7 +31,6 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi alchemy_getTokenBalances.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d551cf2cef3a00205a5924
       rdme openapi alchemy_getTokenMetadata.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5581637732c00307aec6e
 
-
       # Sync Trace APIs - make sure to CD into the trace folder before running!!
       rdme openapi trace_block.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d75aa0ae0b8c00ac4bd10b
       rdme openapi trace_call.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62e0cbf0a759110013247d5a
