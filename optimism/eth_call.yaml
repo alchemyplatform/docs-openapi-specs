@@ -18,7 +18,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_call_50
+              $ref: ../body.yaml#/eth_call_50_gas
       x-readme:
         explorer-enabled: false
         samples-languages:

@@ -1,3 +1,4 @@
+# ========= EVM Methods ==============
 eth_blockNumber:
   allOf:
     - $ref: '#/CommonProperties'
@@ -64,173 +65,6 @@ eth_getLogs:
           maxItems: 1
           items:
             $ref: '#/filter_options'
-filter_options:
-  type: object
-  properties:
-    blockHash:
-      type: string
-      description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
-    address:
-      type: array
-      items:
-        type: string
-      description: Contract address or a list of addresses from which logs should originate.
-    fromBlock:
-      type: string
-      default: latest
-      description: 'Starting block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
-    toBlock:
-      type: string
-      default: latest
-      description: 'Ending block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
-    topics:
-      $ref: '#/topics'
-topics:
-  type: array
-  description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
-  items:
-    type: string
-CommonProperties:
-  type: object
-  properties:
-    id:
-      type: integer
-      default: 1
-    jsonrpc:
-      type: string
-      default: '2.0'
-defaultBlockParam:
-  type: string
-  description: The following options are possible for the defaultBlock parameter. HEX String - an integer block number. String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions
-eth_call_550:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_550'
-              - $ref: '#/defaultBlockParam'
-eth_call_5:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_5'
-              - $ref: '#/defaultBlockParam'
-eth_call_50:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_50'
-              - $ref: '#/defaultBlockParam'
-transaction_object:
-  type: object
-  description: The transaction call object
-  properties:
-    from:
-      type: string
-      description: 20 Bytes - The address the transaction is sent from.
-    to:
-      type: string
-      description: 20 Bytes - The address the transaction is directed to
-    gasPrice:
-      type: string
-      description: |
-        Integer of the gasPrice used for each paid gas.
-        <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
-    value:
-      type: string
-      description: Integer of the value sent with this transaction
-    data:
-      type: string
-      description: Hash of the method signature and encoded parameters
-  required:
-    - to
-gas_50:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>50</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-gas_5:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>5</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-gas_550:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-transactionHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/transactionHash'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-blockNumber_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumber'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 eth_getTransactionByHash:
   allOf:
     - $ref: '#/CommonProperties'
@@ -242,28 +76,6 @@ eth_getTransactionByHash:
           default: eth_getTransactionByHash
           enum:
             - eth_getTransactionByHash
-address_blockNumber_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/address_blockNumber'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-eth_getTransactionCount:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - $ref: '#/address_blockNumber_param'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_getTransactionCount
-          enum:
-            - eth_getTransactionCount
 eth_getTransactionReceipt:
   allOf:
     - $ref: '#/CommonProperties'
@@ -297,17 +109,17 @@ eth_getBlockTransactionCountByNumber:
           default: eth_getBlockTransactionCountByNumber
           enum:
             - eth_getBlockTransactionCountByNumber
-blockHash_index_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockHash_index'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
+eth_getTransactionCount:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - $ref: '#/address_blockNumber_param'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_getTransactionCount
+          enum:
+            - eth_getTransactionCount
 eth_getTransactionByBlockHashAndIndex:
   allOf:
     - $ref: '#/CommonProperties'
@@ -319,17 +131,6 @@ eth_getTransactionByBlockHashAndIndex:
           default: eth_getTransactionByBlockHashAndIndex
           enum:
             - eth_getTransactionByBlockHashAndIndex
-blockNumber_index_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumber_index'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
 eth_getTransactionByBlockNumberAndIndex:
   allOf:
     - $ref: '#/CommonProperties'
@@ -341,17 +142,6 @@ eth_getTransactionByBlockNumberAndIndex:
           default: eth_getTransactionByBlockNumberAndIndex
           enum:
             - eth_getTransactionByBlockNumberAndIndex
-blockNumberOrBlockHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumberOrBlockHash'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/CommonProperties'
@@ -363,17 +153,6 @@ eth_getBlockReceipts:
           default: eth_getBlockReceipts
           enum:
             - eth_getBlockReceipts
-transactionData_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/transactionData'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 eth_sendRawTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -442,17 +221,6 @@ eth_getBalance:
           default: eth_getBalance
           enum:
             - eth_getBalance
-address_blockNumber_blockHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/address_blockNumber_blockHash'
-      minItems: 3
-      maxItems: 3
-      items:
-        type: string
 eth_getStorageAt:
   allOf:
     - $ref: '#/CommonProperties'
@@ -659,17 +427,6 @@ net_listening:
           default: net_listening
           enum:
             - net_listening
-blockNumber_uncleIndex_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumber_uncleIndex'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
 eth_getUncleByBlockHashAndIndex:
   allOf:
     - $ref: '#/CommonProperties'
@@ -714,17 +471,6 @@ eth_getUncleCountByBlockNumber:
           default: eth_getUncleCountByBlockNumber
           enum:
             - eth_getUncleCountByBlockNumber
-filterId_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/filterId'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 eth_getFilterChanges:
   allOf:
     - $ref: '#/CommonProperties'
@@ -804,17 +550,6 @@ web3_clientVersion:
           default: web3_clientVersion
           enum:
             - web3_clientVersion
-shaHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/shaHash'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 web3_sha3:
   allOf:
     - $ref: '#/CommonProperties'
@@ -889,17 +624,6 @@ eth_subscribe:
                 description: 'Indicates when the node starts or stops synchronizing. The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators.'
                 enum:
                   - syncing
-subscriptionId_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/subscriptionId'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 eth_unsubscribe:
   allOf:
     - $ref: '#/CommonProperties'
@@ -911,6 +635,316 @@ eth_unsubscribe:
           default: eth_unsubscribe
           enum:
             - eth_unsubscribe
+eth_getTransactionReceiptsByBlock:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_getTransactionReceiptsByBlock
+          enum:
+            - eth_getTransactionReceiptsByBlock
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          description: block_number in hex OR block_hash.
+          items:
+            type: string
+eth_syncing:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_syncing
+          enum:
+            - eth_syncing
+
+# ============ EVM Models ==============
+filter_options:
+  type: object
+  properties:
+    blockHash:
+      type: string
+      description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
+    address:
+      type: array
+      items:
+        type: string
+      description: Contract address or a list of addresses from which logs should originate.
+    fromBlock:
+      type: string
+      default: latest
+      description: 'Starting block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+    toBlock:
+      type: string
+      default: latest
+      description: 'Ending block number. Can be integer, hex, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+    topics:
+      $ref: '#/topics'
+topics:
+  type: array
+  description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
+  items:
+    type: string
+CommonProperties:
+  type: object
+  properties:
+    id:
+      type: integer
+      default: 1
+    jsonrpc:
+      type: string
+      default: '2.0'
+defaultBlockParam:
+  type: string
+  description: The following options are possible for the defaultBlock parameter. HEX String - an integer block number. String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions
+eth_call_550_gas:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/defaultBlockParam'
+eth_call_5_gas:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_5'
+              - $ref: '#/defaultBlockParam'
+eth_call_50_gas:
+  allOf:
+    - $ref: '#/CommonProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_50'
+              - $ref: '#/defaultBlockParam'
+transaction_object:
+  type: object
+  description: The transaction call object
+  properties:
+    from:
+      type: string
+      description: 20 Bytes - The address the transaction is sent from.
+    to:
+      type: string
+      description: 20 Bytes - The address the transaction is directed to
+    gasPrice:
+      type: string
+      description: |
+        Integer of the gasPrice used for each paid gas.
+        <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
+    value:
+      type: string
+      description: Integer of the value sent with this transaction
+    data:
+      type: string
+      description: Hash of the method signature and encoded parameters
+  required:
+    - to
+gas_50:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>50</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+gas_5:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>5</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+gas_550:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+transactionHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/transactionHash'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+blockNumber_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/blockNumber'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+address_blockNumber_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/address_blockNumber'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockHash_index_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/blockHash_index'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+
+blockNumber_index_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/blockNumber_index'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumberOrBlockHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/blockNumberOrBlockHash'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+transactionData_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/transactionData'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+address_blockNumber_blockHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/address_blockNumber_blockHash'
+      minItems: 3
+      maxItems: 3
+      items:
+        type: string
+blockNumber_uncleIndex_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/blockNumber_uncleIndex'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+filterId_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/filterId'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+shaHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/shaHash'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+subscriptionId_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description:
+        $ref: '#/subscriptionId'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+
+
+# ============= Transaction Receipts API Method ===============
 alchemy_getTransactionReceipts_param:
   allOf:
     - $ref: '#/CommonProperties'
@@ -929,6 +963,8 @@ alchemy_getTransactionReceipts_param:
           maxItems: 2
           items:
             type: string
+
+# ============= Token API Methods ===============
 alchemy_getTokenAllowance:
   allOf:
     - $ref: '#/CommonProperties'
@@ -977,7 +1013,6 @@ alchemy_getTokenBalances:
             - OneOf
               - Array - A list of contract addresses. Suggested limit: 100 addresses
               - The String ''DEFAULT_TOKENS'' - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
-
           minItems: 2
           maxItems: 2
           items:
@@ -1009,6 +1044,8 @@ alchemy_getTokenMetadata:
           maxItems: 1
           items:
             type: string
+
+# ============= Trace API Methods ===============
 trace_call:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1205,6 +1242,8 @@ trace_transaction:
           items:
             type: string
             description: Hash - Transaction hash.
+
+# ============= Solana API Methods ===============
 getBlockHeight:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1414,43 +1453,6 @@ getAccountInfo:
                     $ref: '#/encoding'
                   dataSlice:
                     $ref: '#/dataSlice'
-encoding:
-  type: string
-  description: |
-    Data encoding for each returned transaction.
-    Accepts one of the following strings:
-    ["json" (Default), "jsonParsed", "base58" (slow), "base64"] 
-    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON. 
-  default: json
-  enum:
-    - json
-    - jsonParsed
-    - base58
-    - base64
-dataSlice:
-  type: object
-  description: |
-    Limits the returned account data using the provided offset: <usize> and length: <usize> fields
-    Only available for "base58", "base64" or "base64+zstd" encodings.
-minContextSlot:
-  type: number
-  description: Set the minimum slot that the request can be evaluated at.
-commitment:
-  type: string
-  description: |
-    Configures the commitment level of the blocks queried.
-    Accepts one of the following strings: ["finalized", "confirmed", "processed"]
-  enum:
-    - finalized
-    - confirmed
-    - processed
-configObject:
-  type: object
-  properties:
-    commitment:
-      $ref: '#/commitment'
-    minContextSlot:
-      $ref: '#/minContextSlot'
 getBalance:
   allOf:
     - $ref: '#/CommonProperties'
@@ -1497,26 +1499,6 @@ getMultipleAccounts:
                     $ref: '#/dataSlice'
                   minContextSlot:
                     $ref: '#/minContextSlot'
-filters:
-  type: array
-  description: Array - Filter results using various filter objects; account must meet all filter criteria to be included in results.
-  items:
-    type: object
-    properties:
-      memcmp:
-        type: object
-        description: Compares a provided series of bytes with program account data at a particular offset.
-        properties:
-          offset:
-            type: integer
-            description: An offset into program account data to start comparison.
-          bytes:
-            type: string
-            description: 'String - Data to match, as base-58 encoded string and limited to less than 129 bytes.'
-      dataSize:
-        type: integer
-        format: int64
-        description: Compares the program account data length with the provided data size.
 getProgramAccounts:
   allOf:
     - $ref: '#/CommonProperties'
@@ -2129,6 +2111,67 @@ getTransaction:
                   maxSupportedTransactionVersion:
                     type: number
                     description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
+
+# ============= Solana API Models ===============
+encoding:
+  type: string
+  description: |
+    Data encoding for each returned transaction.
+    Accepts one of the following strings:
+    ["json" (Default), "jsonParsed", "base58" (slow), "base64"] 
+    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON. 
+  default: json
+  enum:
+    - json
+    - jsonParsed
+    - base58
+    - base64
+dataSlice:
+  type: object
+  description: |
+    Limits the returned account data using the provided offset: <usize> and length: <usize> fields
+    Only available for "base58", "base64" or "base64+zstd" encodings.
+minContextSlot:
+  type: number
+  description: Set the minimum slot that the request can be evaluated at.
+commitment:
+  type: string
+  description: |
+    Configures the commitment level of the blocks queried.
+    Accepts one of the following strings: ["finalized", "confirmed", "processed"]
+  enum:
+    - finalized
+    - confirmed
+    - processed
+configObject:
+  type: object
+  properties:
+    commitment:
+      $ref: '#/commitment'
+    minContextSlot:
+      $ref: '#/minContextSlot'
+filters:
+  type: array
+  description: Array - Filter results using various filter objects; account must meet all filter criteria to be included in results.
+  items:
+    type: object
+    properties:
+      memcmp:
+        type: object
+        description: Compares a provided series of bytes with program account data at a particular offset.
+        properties:
+          offset:
+            type: integer
+            description: An offset into program account data to start comparison.
+          bytes:
+            type: string
+            description: 'String - Data to match, as base-58 encoded string and limited to less than 129 bytes.'
+      dataSize:
+        type: integer
+        format: int64
+        description: Compares the program account data length with the provided data size.
+
+# ============= Polygon API Methods ===============
 bor_getAuthor:
   allOf:
     - $ref: '#/CommonProperties'
@@ -2223,33 +2266,8 @@ eth_getSignersAtHash:
           description: Blockhash.
           items:
             type: string
-eth_getTransactionReceiptsByBlock:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_getTransactionReceiptsByBlock
-          enum:
-            - eth_getTransactionReceiptsByBlock
-        params:
-          type: array
-          minItems: 1
-          maxItems: 1
-          description: block_number in hex OR block_hash.
-          items:
-            type: string
-eth_syncing:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_syncing
-          enum:
-            - eth_syncing
+
+# ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:
   allOf:
     - $ref: '#/CommonProperties'
@@ -2265,8 +2283,9 @@ alchemy_getAssetTransfers:
           minItems: 1
           maxItems: 1
           items:
-            $ref: '#/ethereumMainnet'
-ethereumMainnet:
+            $ref: '#/getAssetTransfers_eth_mainnet'
+# ============= Transfers API Models ===============
+getAssetTransfers_eth_mainnet:
   type: object
   required:
     - category
@@ -2315,6 +2334,8 @@ ethereumMainnet:
     pageKey:
       type: string
       description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
+
+# ============= Debug API Methods ===============
 debug_traceTransaction:
   allOf:
     - $ref: '#/CommonProperties'
@@ -2339,7 +2360,7 @@ debug_traceTransaction:
           type: string
           description: 'Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described <a href="https://golang.org/pkg/time/#ParseDuration">here</a>.'
 
-
+# ============= Other Definitions ===============
 blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
 blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
 transactionHash: String - 32 Bytes - Hash of a transaction
