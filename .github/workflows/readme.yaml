@@ -27,7 +27,7 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi alchemy_getTransactionReceipts.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d76a925edcd00083b41115
 
       # Sync Token APIs - make sure to CD into the token folder before running!!
-      rdme openapi alchemy_getTokenAllowance.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62c008de5ecd5b009577791c
+      rdme openapi alchemy_getTokenAllowance.yaml --key=rdme_xn8s9h8129e038b3d979853eafc07a9ddb21aff1659dc31347ab1226b4f37d0e4077cf --id=62d557bb6c138d007e01972e
       rdme openapi alchemy_getTokenBalances.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d551cf2cef3a00205a5924
       rdme openapi alchemy_getTokenMetadata.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d5581637732c00307aec6e
 
