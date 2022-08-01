@@ -3,12 +3,9 @@ info:
   title: eth_blockNumber - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       operationId: eth-blocknumber-polygon
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post

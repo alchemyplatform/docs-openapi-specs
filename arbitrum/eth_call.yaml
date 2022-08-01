@@ -3,22 +3,26 @@ info:
   title: eth_call - arbitrum
   version: '1.0'
 servers:
-  - url: 'https://arb-mainnet.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       operationId: eth-call-arbitrum
       summary: eth_call
-      description: Executes a new message call immediately without creating a transaction on the block chain..
+      description: Executes a new message call immediately without creating a transaction on the block chain.
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         description: Accepts the transaction call object.
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_call_5
+              $ref: ../body.yaml#/eth_call_5_gas
       responses:
         '200':
           description: Returns integer of the number of transactions in this block.

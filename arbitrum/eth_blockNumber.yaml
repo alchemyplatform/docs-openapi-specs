@@ -3,12 +3,9 @@ info:
   title: eth_blockNumber - arbitrum
   version: '1.0'
 servers:
-  - url: 'https://arb-mainnet.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://arb-mainnet.g.alchemy.com/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       operationId: eth-blocknumber-arbitrum
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
