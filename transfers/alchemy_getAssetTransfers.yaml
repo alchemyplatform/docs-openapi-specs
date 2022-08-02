@@ -4,21 +4,22 @@ info:
   version: '1.0'
 servers:
   - description: Ethereum
-    url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+    url: 'https://eth-mainnet.alchemyapi.io/v2'
   - description: Polygon
-    url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+    url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       summary: alchemy_getAssetTransfers
       description: 'The Transfers API allows you to easily fetch historical transactions for any address without having to scan the entire Ethereum and Polygon chain and index everything for each of your users.'
       tags: ['Transfers API Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:
