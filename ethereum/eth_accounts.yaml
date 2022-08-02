@@ -10,7 +10,6 @@ paths:
 components:
   pathItems:
     path:
-
       post:
         summary: eth_accounts
         description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
