@@ -3,12 +3,9 @@ info:
   title: eth_getProof - optimism
   version: '1.0'
 servers:
-  - url: 'https://opt-mainnet.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path/post
       operationId: eth-getproof-optimism

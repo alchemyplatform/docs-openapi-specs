@@ -3,12 +3,9 @@ info:
   title: web3_sha3 - optimism
   version: '1.0'
 servers:
-  - url: 'https://opt-mainnet.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       $ref: ../ethereum/web3_sha3.yaml#/components/pathItems/path/post
       operationId: web3-sha3-optimism
