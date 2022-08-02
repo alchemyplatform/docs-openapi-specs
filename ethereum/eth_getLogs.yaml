@@ -4,20 +4,9 @@ info:
   description: 'Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.'
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
-  - url: 'https://poylgon-mainnet.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
-  - url: 'https://poylgon-mumbai.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -27,6 +16,13 @@ components:
         summary: eth_getLogs
         description: |
           Returns an array of all logs matching a given filter object.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         requestBody:
           content:
             application/json:

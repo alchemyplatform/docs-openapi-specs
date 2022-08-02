@@ -3,12 +3,9 @@ info:
   title: Account Information
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -17,8 +14,14 @@ components:
         summary: eth_accounts
         description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
         tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         requestBody:
-          description: None
           content:
             application/json:
               schema:

@@ -3,12 +3,9 @@ info:
   title: eth_subscribe
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -22,6 +19,13 @@ components:
           - The maximum size of a JSON-RPC batch request that can be sent over a WebSocket connection is 20.
           - Free tier users will be limited to 10 concurrent requests per WebSocket connection.
         tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         requestBody:
           content:
             application/json:

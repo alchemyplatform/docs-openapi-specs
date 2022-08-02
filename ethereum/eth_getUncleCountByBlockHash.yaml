@@ -3,12 +3,9 @@ info:
   title: eth_getUncleCountByBlockHash
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -17,6 +14,13 @@ components:
         summary: eth_getUncleCountByBlockHash
         description: Returns the number of uncles in a block matching the given block hash.
         tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         requestBody:
           content:
             application/json:

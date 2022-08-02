@@ -3,12 +3,9 @@ info:
   title: eth_getBlockTransactionCountByNumber
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -17,6 +14,13 @@ components:
         summary: eth_getBlockTransactionCountByNumber
         description: Returns the number of transactions in a block matching the given block number.
         tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         requestBody:
           content:
             application/json:
