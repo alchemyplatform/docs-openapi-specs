@@ -3,12 +3,9 @@ info:
   title: eth_getBlockByNumber - arbitrum
   version: '1.0'
 servers:
-  - url: 'https://arb-mainnet.g.alchemy.com/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://arb-mainnet.g.alchemy.com/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       operationId: eth-getblockbynumber-arbitrum
       $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
