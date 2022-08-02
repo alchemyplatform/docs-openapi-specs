@@ -3,12 +3,9 @@ info:
   title: eth_getTransactionReceiptsByBlock - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  '/':
+  /{apiKey}:
     post:
       summary: eth_getTransactionReceiptsByBlock
       description: 'Polygon API - Returns all transaction receipts for the given block number or hash.'

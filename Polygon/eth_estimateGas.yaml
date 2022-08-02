@@ -3,12 +3,9 @@ info:
   title: eth_estimateGas - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
       operationId: eth-estimategas-polygon

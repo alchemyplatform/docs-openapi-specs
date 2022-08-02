@@ -3,12 +3,9 @@ info:
   title: bor_getAuthor - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  '/':
+  /{apiKey}:
     post:
       summary: bor_getAuthor
       description: 'Polygon API - Returns address of Author.'

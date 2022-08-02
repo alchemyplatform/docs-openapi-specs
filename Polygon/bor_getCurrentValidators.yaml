@@ -3,12 +3,9 @@ info:
   title: bor_getCurrentValidators - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  '/':
+  /{apiKey}:
     post:
       summary: bor_getCurrentValidators
       description: 'Polygon API - Returns current validators.'
