@@ -3,12 +3,9 @@ info:
   title: eth_subscribe
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -21,6 +18,13 @@ components:
           - There is a limit of 20,000 WebSocket connections per API Key as well as 1,000 parallel WebSocket subscriptions per WebSocket connection, creating a maximum of 20 million subscriptions per application.
           - The maximum size of a JSON-RPC batch request that can be sent over a WebSocket connection is 20.
           - Free tier users will be limited to 10 concurrent requests per WebSocket connection.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         tags: []
         requestBody:
           content:

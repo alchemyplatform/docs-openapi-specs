@@ -3,12 +3,9 @@ info:
   title: eth_chainId
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -16,6 +13,13 @@ components:
       post:
         summary: eth_chainId
         description: 'Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155.'
+        parameters:
+          - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+            required: true
         tags: []
         requestBody:
           content:

@@ -3,12 +3,9 @@ info:
   title: eth_unsubscribe
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -16,6 +13,13 @@ components:
       post:
         summary: eth_unsubscribe
         description: Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as method and the subscription id as first parameter.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         tags: []
         requestBody:
           content:

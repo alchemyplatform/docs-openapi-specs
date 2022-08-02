@@ -3,12 +3,9 @@ info:
   title: web3_sha3
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -16,6 +13,13 @@ components:
       post:
         summary: web3_sha3
         description: Returns Keccak-256 (not the standardized SHA3-256) of the given data.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         tags: []
         requestBody:
           content:

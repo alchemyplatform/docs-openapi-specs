@@ -3,12 +3,9 @@ info:
   title: eth_getStorageAt
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -16,6 +13,13 @@ components:
       post:
         summary: eth_getStorageAt
         description: 'Returns the value from a storage position at a given address, or in other words, returns the state of the contract''s storage, which may not be exposed via the contract''s methods.'
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         tags: []
         requestBody:
           content:

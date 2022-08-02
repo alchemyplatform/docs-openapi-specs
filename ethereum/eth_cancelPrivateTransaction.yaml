@@ -3,16 +3,20 @@ info:
   title: Writing Transactions
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       operationId: eth-cancelPrivateTransaction
       summary: eth_cancelPrivateTransaction
       description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.
+      parameters:
+        - name: apiKey
+        in: path
+        schema:
+          type: string
+          default: demo
+          required: true
       tags: []
       requestBody:
         content:

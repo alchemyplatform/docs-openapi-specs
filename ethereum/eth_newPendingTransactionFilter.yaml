@@ -3,12 +3,9 @@ info:
   title: eth_newPendingTransactionFilter
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     $ref: '#/components/pathItems/path'
 components:
   pathItems:
@@ -16,6 +13,13 @@ components:
       post:
         summary: eth_newPendingTransactionFilter
         description: 'Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges.'
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
         tags: []
         requestBody:
           description: Accepts nothing.

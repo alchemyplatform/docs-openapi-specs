@@ -3,15 +3,19 @@ info:
   title: eth_sendPrivateTransaction
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       summary: eth_sendPrivateTransaction
       description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.
+      parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
       tags: []
       requestBody:
         content:
