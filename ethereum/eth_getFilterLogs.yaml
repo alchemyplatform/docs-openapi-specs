@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_getFilterLogs
         description: Returns an array of all logs matching filter with given id. Can compute the same results with an eth_getLogs call.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

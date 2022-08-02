@@ -10,14 +10,14 @@ paths:
       operationId: eth-cancelPrivateTransaction
       summary: eth_cancelPrivateTransaction
       description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.
+      tags: []
       parameters:
         - name: apiKey
-        in: path
-        schema:
-          type: string
-          default: demo
+          in: path
+          schema:
+            type: string
+            default: demo
           required: true
-      tags: []
       requestBody:
         content:
           application/json:

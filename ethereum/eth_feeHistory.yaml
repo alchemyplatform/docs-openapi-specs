@@ -9,14 +9,14 @@ paths:
     post:
       summary: eth_feeHistory
       description: Returns a collection of historical gas information.
-      parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: demo
-            required: true
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

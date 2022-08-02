@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_unsubscribe
         description: Subscriptions are cancelled with a regular RPC call with eth_unsubscribe as method and the subscription id as first parameter.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

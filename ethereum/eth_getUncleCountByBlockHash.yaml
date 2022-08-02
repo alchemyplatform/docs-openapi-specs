@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_getUncleCountByBlockHash
         description: Returns the number of uncles in a block matching the given block hash.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

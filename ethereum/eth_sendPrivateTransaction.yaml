@@ -9,14 +9,14 @@ paths:
     post:
       summary: eth_sendPrivateTransaction
       description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.
-      parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: demo
-            required: true
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

@@ -13,6 +13,7 @@ components:
       post:
         summary: web3_sha3
         description: Returns Keccak-256 (not the standardized SHA3-256) of the given data.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

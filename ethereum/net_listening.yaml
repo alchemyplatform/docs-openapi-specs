@@ -13,6 +13,7 @@ components:
       post:
         summary: net_listening
         description: Returns true if client is actively listening for network connections.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

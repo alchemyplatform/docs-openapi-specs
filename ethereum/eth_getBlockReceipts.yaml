@@ -9,14 +9,14 @@ paths:
     post:
       summary: eth_getBlockReceipts
       description: Get all transaction receipts for a given block on Ethereum.
-      parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: demo
-            required: true
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

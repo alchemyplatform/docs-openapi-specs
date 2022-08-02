@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_newPendingTransactionFilter
         description: 'Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges.'
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           description: Accepts nothing.
           content:

@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_getBalance
         description: Returns the balance of the account of a given address.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

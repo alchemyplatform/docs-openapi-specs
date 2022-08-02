@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_uninstallFilter
         description: 'Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally, Filters timeout when they aren’t requested with eth_getFilterChangesfor a period of time.'
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

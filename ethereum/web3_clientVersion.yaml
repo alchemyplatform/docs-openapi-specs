@@ -13,6 +13,7 @@ components:
       post:
         summary: web3_clientVersion
         description: Returns the current client version.
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

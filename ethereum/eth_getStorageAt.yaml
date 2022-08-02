@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_getStorageAt
         description: 'Returns the value from a storage position at a given address, or in other words, returns the state of the contract''s storage, which may not be exposed via the contract''s methods.'
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

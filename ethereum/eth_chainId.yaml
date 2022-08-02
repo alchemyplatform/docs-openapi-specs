@@ -13,14 +13,14 @@ components:
       post:
         summary: eth_chainId
         description: 'Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155.'
+        tags: []
         parameters:
           - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
+            in: path
+            schema:
+              type: string
+              default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:

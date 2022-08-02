@@ -13,6 +13,7 @@ components:
       post:
         summary: eth_newFilter
         description: 'Creates a filter object, based on filter options, to notify when the state changes (logs).'
+        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -20,7 +21,6 @@ components:
               type: string
               default: demo
             required: true
-        tags: []
         requestBody:
           content:
             application/json:
