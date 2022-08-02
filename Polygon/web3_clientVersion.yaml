@@ -3,12 +3,9 @@ info:
   title: web3_clientVersion - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2/{apiKey}'
-    variables:
-      apiKey:
-        default: demo
+  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
 paths:
-  /:
+  /{apiKey}:
     post:
       $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path/post
       operationId: web3-clientVersion-polygon
