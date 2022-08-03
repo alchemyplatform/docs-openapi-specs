@@ -10,6 +10,13 @@ paths:
       summary: getTokenAccountsByOwner
       description: Returns all SPL Token accounts by token owner.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

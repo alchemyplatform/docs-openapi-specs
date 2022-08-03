@@ -10,6 +10,13 @@ paths:
       summary: getSlot
       description: Returns the slot that has reached the given or default commitment level.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

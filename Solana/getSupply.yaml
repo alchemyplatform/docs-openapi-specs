@@ -10,6 +10,13 @@ paths:
       summary: getSupply
       description: Returns information about the current supply.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

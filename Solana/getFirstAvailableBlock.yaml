@@ -10,6 +10,13 @@ paths:
       summary: getFirstAvailableBlock
       description: Get the fee the network will charge for a particular message.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

@@ -10,6 +10,13 @@ paths:
       summary: getClusterNodes
       description: Returns information about all the nodes participating in the cluster.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

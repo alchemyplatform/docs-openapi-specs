@@ -11,12 +11,12 @@ paths:
       description: Returns the current block height of the node.
       tags: []
       parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: demo
-            required: true
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

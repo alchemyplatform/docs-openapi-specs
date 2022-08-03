@@ -10,6 +10,13 @@ paths:
       summary: getMultipleAccounts
       description: Returns the account information for a list of Pubkeys.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

@@ -10,6 +10,13 @@ paths:
       summary: getMinimumBalanceForRentExemption
       description: Returns minimum balance required to make account rent exempt.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

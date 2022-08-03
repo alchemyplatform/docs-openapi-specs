@@ -10,6 +10,13 @@ paths:
       summary: getMaxRetransmitSlot
       description: Get the max slot seen from retransmit stage.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

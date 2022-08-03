@@ -10,6 +10,13 @@ paths:
       summary: getVoteAccounts
       description: Returns the account info and associated stake for all the voting accounts in the current bank.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

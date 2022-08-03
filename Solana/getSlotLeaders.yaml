@@ -10,6 +10,13 @@ paths:
       summary: getSlotLeaders
       description: Returns the slot leaders for a given slot range.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

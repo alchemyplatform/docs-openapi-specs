@@ -10,6 +10,13 @@ paths:
       summary: bor_getRootHash 
       description: 'Polygon API - Returns the root hash given a block range.'
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

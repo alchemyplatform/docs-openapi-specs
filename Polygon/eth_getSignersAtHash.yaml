@@ -10,6 +10,13 @@ paths:
       summary: eth_getSignersAtHash 
       description: 'Polygon API - Returns all signs given a blockhash.'
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

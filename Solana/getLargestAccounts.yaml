@@ -10,6 +10,13 @@ paths:
       summary: getLargestAccounts
       description: Returns the 20 largest accounts, by lamport balance (results may be cached up to two hours).
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

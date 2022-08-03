@@ -10,6 +10,13 @@ paths:
       summary: getMaxShredInsertSlot
       description: Get the max slot seen from after shred insert..
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

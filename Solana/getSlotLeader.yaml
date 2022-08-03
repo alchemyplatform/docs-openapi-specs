@@ -10,6 +10,13 @@ paths:
       summary: getSlotLeader
       description: Returns the current slot leader.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

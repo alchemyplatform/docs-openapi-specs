@@ -10,6 +10,13 @@ paths:
       summary: getSignatureStatuses
       description: Returns the statuses of a list of signatures.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

@@ -11,12 +11,12 @@ paths:
       description: Returns identity and transaction information about a confirmed block in the ledger.
       tags: []
       parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: demo
-            required: true
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

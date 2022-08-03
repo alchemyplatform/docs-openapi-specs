@@ -12,6 +12,13 @@ paths:
         Creates a new message call transaction or a contract creation for signed transactions.
         </br><strong> Note: </strong> Due to network constraints, transactions on Polygon Mainnet must be submitted with a minimum gasPrice of 30 gwei.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

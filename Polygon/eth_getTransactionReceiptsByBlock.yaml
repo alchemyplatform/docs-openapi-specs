@@ -10,6 +10,13 @@ paths:
       summary: eth_getTransactionReceiptsByBlock
       description: 'Polygon API - Returns all transaction receipts for the given block number or hash.'
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

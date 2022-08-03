@@ -10,6 +10,13 @@ paths:
       summary: eth_syncing 
       description: Returns a list of addresses owned by client.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         description: Accepts nothing.
         content:

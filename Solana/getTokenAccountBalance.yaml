@@ -10,6 +10,13 @@ paths:
       summary: getTokenAccountBalance
       description: Returns the token balance of an SPL Token account..
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

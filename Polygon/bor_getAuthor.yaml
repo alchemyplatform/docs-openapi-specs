@@ -10,6 +10,13 @@ paths:
       summary: bor_getAuthor
       description: 'Polygon API - Returns address of Author.'
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         description: 'Block number (in hexadecimal format).'
         content:

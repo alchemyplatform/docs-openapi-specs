@@ -67,13 +67,13 @@ paths:
                 $ref: nfts_responses.yaml#/getNFTs
               examples:
                 byDefault:
-                  $ref: 'nfts_examples.yaml#/byDefault'
+                  $ref: 'get_nfts_examples.yaml#/byDefault'
                 withoutMetadata:
-                  $ref: 'nfts_examples.yaml#/withoutMetadata'
+                  $ref: 'get_nfts_examples.yaml#/withoutMetadata'
                 withContractFiltering:
-                  $ref: 'nfts_examples.yaml#/withContractFiltering'
+                  $ref: 'get_nfts_examples.yaml#/withContractFiltering'
                 withPagination:
-                  $ref: 'nfts_examples.yaml#/withPagination'
+                  $ref: 'get_nfts_examples.yaml#/withPagination'
                   
       operationId: getNFTs
   '/{apiKey}/getNFTMetadata':

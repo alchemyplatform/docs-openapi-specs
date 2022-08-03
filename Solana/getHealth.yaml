@@ -10,6 +10,13 @@ paths:
       summary: getHealth
       description: Returns the current health of the node.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

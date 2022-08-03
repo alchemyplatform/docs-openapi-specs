@@ -10,6 +10,13 @@ paths:
       summary: getInflationRate
       description: Returns the specific inflation values for the current epoch.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

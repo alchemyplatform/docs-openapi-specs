@@ -10,6 +10,13 @@ paths:
       summary: getHighestSnapshotSlot
       description: Returns the highest slot information that the node has snapshots for.
       tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
       requestBody:
         content:
           application/json:

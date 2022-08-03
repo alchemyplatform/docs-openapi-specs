@@ -8,7 +8,7 @@ paths:
   /{apiKey}:
     post:
       operationId: eth-call-optimism
-      summary: Message Call
+      summary: eth_call
       description: Executes a new message call immediately without creating a transaction on the block chain..
       parameters:
         - name: apiKey
