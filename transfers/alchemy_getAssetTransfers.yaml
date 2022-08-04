@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Transfers API (Tx History)
+  title: 💸 Transfers API (Tx History)
   version: '1.0'
 servers:
   - description: Ethereum

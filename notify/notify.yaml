@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Notify API
+  title: 🔔 Notify API
   version: '1.0'
 servers:
   - url: 'https://dashboard.alchemyapi.io/api'

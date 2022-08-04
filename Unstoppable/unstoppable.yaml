@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Unstoppable Domains API
+  title: 🛡 Unstoppable Domains API
   version: '1.0'
 servers:
   - url: 'https://unstoppabledomains.g.alchemy.com/domains'
