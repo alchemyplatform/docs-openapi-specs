@@ -1648,7 +1648,7 @@ transfer:
   properties:
     category:
       type: string
-      description: '''external'', ''internal'', ''token'', ''erc20'', ''erc721'', ''erc1155'' - label for the transfer.'
+      description: '''external'', ''internal'', ''token'', ''erc20'', ''erc721'', ''erc1155'', ''specialnft'' - label for the transfer.'
     token:
       type: string
       description: '''includes ''erc20'' and ''erc721'' transfers.'

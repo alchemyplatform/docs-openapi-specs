@@ -2317,7 +2317,7 @@ getAssetTransfers_eth_mainnet:
     category:
       type: array
       description: |
-        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155". See the table above for supported categories on each network.'
+        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
       items:
         type: string
         enum:
@@ -2326,6 +2326,7 @@ getAssetTransfers_eth_mainnet:
           - erc20
           - erc721
           - erc1155
+          - specialnft
     withMetadata:
       type: boolean
       description: Boolean - Whether or not to include additional metadata about each transfer event.
