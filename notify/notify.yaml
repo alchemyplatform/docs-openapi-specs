@@ -11,7 +11,7 @@ paths:
       description: This endpoint allows you to get all webhooks from every app on your team.
       tags: ["Notify API Endpoints"]
       parameters:
-        - $ref: body.yaml#/X-Alchemy-Token
+        - $ref: '#/components/schemas/X-Alchemy-Token'
       responses:
         '200':
           description: Returns list of webhook objects.
@@ -20,7 +20,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: responses.yaml#/webhook_object
+                  $ref: '#/components/schemas/webhook_object_response'
       operationId: team-webhooks
   /webhook-addresses:
     get:
@@ -28,10 +28,10 @@ paths:
       description: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
       tags: ["Notify API Endpoints"]
       parameters:
-      - $ref: body.yaml#/X-Alchemy-Token
-      - $ref: body.yaml#/webhook_id
-      - $ref: body.yaml#/limit
-      - $ref: body.yaml#/after
+      - $ref: '#/components/schemas/X-Alchemy-Token'
+      - $ref: '#/components/schemas/webhook_id'
+      - $ref: '#/components/schemas/limit'
+      - $ref: '#/components/schemas/after'
       responses:
         '200':
           description: 'List of addresses and pagination info.'
@@ -40,42 +40,42 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: responses.yaml#/webhook_addresses
+                  $ref: responses.yaml#/webhook_addresses_response
       operationId: webhook-addresses 
   /create-webhook:
     post:
-      summary: Create Webhook
+      summary: Create webhook
       description: 'This endpoint allows you to create a webhook.'
       tags: ["Notify API Endpoints"]
       parameters:
-      - $ref: body.yaml#/X-Alchemy-Token
+      - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/create_webhook
+              $ref: '#/components/schemas/create_webhook'
       responses:
         '200':
           description: 'Returns webhook creation data.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/create_webhook
+                $ref: '#/components/schemas/create_webhook_response'
       operationId: create-webhook
   /update-webhook-addresses:
     patch:
-      summary: Add and remove webhook addresses.
+      summary: Add and remove webhook addresses
       description: |
         Add or remove addresses from a specific webhook.
         *This webhook endpoint is idempotent, meaning that identical requests can be made once or several times in a row with the same effect*
       tags: ["Notify API Endpoints"]
       parameters:
-      - $ref: body.yaml#/X-Alchemy-Token
+      - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/update_webhook_addresses
+              $ref: '#/components/schemas/update_webhook_addresses'
       responses:
         '200':
           description: 'Returns empty object.'
@@ -85,16 +85,16 @@ paths:
                 type: object
       operationId: update-webhook-addresses
     put:
-      summary: Replace webhook addresses.
+      summary: Replace webhook addresses
       description: 'Replace entire list of addresses tracked in a given webhook.'
       tags: ["Notify API Endpoints"]
       parameters:
-      - $ref: body.yaml#/X-Alchemy-Token
+      - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/replace_webhook_addresses
+              $ref: '#/components/schemas/replace_webhook_addresses'
       responses:
         '200':
           description: 'Returns empty object.'
@@ -105,31 +105,73 @@ paths:
       operationId: replace-webhook-addresses
   /update-webhook:
     put:
-      summary: Update webhool status
+      summary: Update webhook status
       description: 'Allows you to set status of webhooks to active or inactive.'
       tags: ["Notify API Endpoints"]
       parameters:
-      - $ref: body.yaml#/X-Alchemy-Token
+      - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: body.yaml#/update_webhook
+              $ref: '#/components/schemas/update_webhook'
       responses:
         '200':
           description: 'Returns updated webhook status.'
           content:
             application/json:
               schema:
-                $ref: responses.yaml#/update_webhook
+                $ref: '#/components/schemas/update_webhook_response'
       operationId: update-webhook
+  /update-webhook-nft-filters:
+    patch:
+      summary: Update webhook NFT filters
+      description: 'Add and remove webhook NFT filters'
+      tags: ["Notify API Endpoints"]
+      parameters:
+      - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_nft_filters'
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-webhook-nft-filters
+
+  /webhook-nft-filters:
+    get:
+      summary: Get all webhook NFT filters
+      description: Paginated endpoint to list all of the NFT filter objects a given webhook is subscribed to.
+      tags: ["Notify API Endpoints"]
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/webhook_id'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/after'
+      responses:
+        '200':
+          description: Returns a list of nft filter objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_nft_filters_response'
+      operationId: webhook-nft-filters
+
   /delete-webhook:
     delete:
       summary: Delete Webhook
       description: 'Allows you to delete a webhook.'
       tags: ["Notify API Endpoints"]
       parameters:
-      - $ref: body.yaml#/X-Alchemy-Token
+      - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
@@ -147,3 +189,269 @@ paths:
               schema:
                 type: object
       operationId: delete-webhook
+
+components:
+  schemas:
+    X-Alchemy-Token:
+      name: X-Alchemy-Token
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'Alchemy Auth token to use the Notify API.'
+      example: 'your-X-Alchemy-Token'
+    webhook_id:
+      name: webhook_id
+      schema:
+        type: string
+      description: 'ID of the address activity webhook.'
+      in: query
+      required: true
+    limit:
+      name: limit
+      schema:
+        type: integer
+        default: 100
+      description: 'Number of items per page.'
+      in: query
+    after:
+      name: after
+      schema:
+        type: string
+        default: '1'
+      description: 'Page cursor for the next page.'
+      in: query
+    nft_filter_object:
+      type: object
+      properties:
+        contract_address:
+          type: string
+          description: contract address of NFT 
+        token_id: 
+          type: string
+          description: token ID for NFT. Can be integer or hex (0x prefixed hex string).
+    create_webhook:
+      type: object
+      required:
+      - network
+      - webhook_type
+      - webhook_url
+      properties:
+        network:
+          type: string
+          description: 'Network of webhook'
+          enum:
+          - ETH_MAINNET
+          - ETH_GOERLI
+          - ETH_ROPSTEN
+          - ETH_RINKEBY
+          - ETH_KOVAN
+          - MATIC_MAINNET
+          - MATIC_MUMBAI
+          - ARB_MAINNET
+          - ARB_RINKEBY
+          - OPT_MAINNET
+          - OPT_KOVAN
+        webhook_type:
+          type: string
+          description: 'Type of webhook.'
+          enum:
+          - MINED_TRANSACTION
+          - DROPPED_TRANSACTION
+          - ADDRESS_ACTIVITY
+        webhook_url:
+          type: string
+          description: 'URL where requests are sent'
+        app_id:
+          type: string
+          description: 'Required for mined and dropped webhooks, optional for address activity.'
+        addresses:
+          type: array
+          description: 'List of addresses you want to track. Required for address activity webhooks only.'
+          items:
+            type: string
+        nft_filters:
+          type: array
+          description: list of nft filter objects to track transfer activity for
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+    update_webhook_addresses:
+      type: object
+      required:
+      - webhook_id
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        addressed_to_add:
+          type: array
+          description: 'List of addresses to add, use [] if none.'
+          items:
+            type: string
+        addresses_to_remove:
+          type: array
+          description: 'List of addresses to remove, use [] if none.'
+          items:
+            type: string
+    update_webhook_nft_filters:
+      type: object
+      required:
+      - webhook_id
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        nft_filters_to_add:
+          type: array
+          description: 'List of nft filters to add, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+        nft_filters_to_remove:
+          type: array
+          description: 'List of addresses to remove, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+    replace_webhook_addresses:
+      type: object
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook.'
+        addresses:
+          type: array
+          description: 'New list of addresses to track. This replaces any existing addresses.'
+          items:
+            type: string
+    update_webhook:
+      type: object
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        is_active:
+          type: boolean
+          description: |
+            True - set webhook to active state
+            False - set webhook to inactive state
+    webhook_object_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'List of webhooks for your team.'
+          items:
+            $ref: '#/components/schemas/webhook_creation_data'
+    webhook_creation_data:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique ID for given webhook.'
+        app_id:
+          type: string
+          description: 'ID for alchemy app.'
+        network:
+          type: string
+          description: 'Network for given webhook.'
+          enum:
+          - ETH_MAINNET
+          - ETH_GOERLI
+          - ETH_ROPSTEN
+          - ETH_RINKEBY
+          - ETH_KOVAN
+          - MATIC_MAINNET
+          - MATIC_MUMBAI
+          - ARB_MAINNET
+          - ARB_RINKEBY
+          - OPT_MAINNET
+          - OPT_KOVAN
+        webhook_type:
+          type: string
+          description: 'Type of webhook.'
+          enum:
+          - MINED_TRANSACTION
+          - DROPPED_TRANSACTION
+          - ADDRESS_ACTIVITY
+        webhook_url:
+          type: string
+          description: 'URL endpoint where webhook is sent'
+        is_active:
+          type: boolean
+          description: '(boolean) - true if webhook is active, false if not active.'
+        time_created:
+          type: string
+          description: 'Timestamp webhook was created.'
+        addresses:
+          type: array
+          description: 'List of addresses being tracked, null if not address activity webhook.'
+          items:
+            type: string
+    gas_price_low:
+      type: integer
+      description: 'Low end of gas price threshold, null if not gas price webhook.'
+    gas_price_high:
+      type: integer
+      description: 'High end of gas price threshold, null if not gas price webhook.'
+    gas_price_type:
+      type: integer
+      description: 'Metric used for gas price threshold, null if not gas price webhook'
+    version:
+      type: string
+      description: 'V1 or V2'
+      enum:
+      - V1
+      - V2
+    webhook_addresses_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'List of addresses associated with given webhook.'
+          items:
+            type: string
+        pagination:
+          type: object
+          description: 'Information for pagination.'
+          properties:
+            cursors:
+              type: object
+              properties:
+                $ref: '#/components/schemas/after'
+            total_count:
+              type: integer
+              description: 'Total number of addresses.'
+    create_webhook_response:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/webhook_creation_data'
+    update_webhook_response:
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/webhook_creation_data'
+          - type: object
+            properties:
+              signing_key:
+                type: string
+                description: 'Signing key for given webhook.'
+    webhook_nft_filters_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'List of nft filter objects'
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+        pagination:
+          type: object
+          description: 'Information for pagination.'
+          properties:
+            cursors:
+              type: object
+              properties:
+                $ref: '#/components/schemas/after'
+            total_count:
+              type: integer
+              description: 'Total number of nft filters.'

@@ -960,9 +960,16 @@ alchemy_getTransactionReceipts_param:
           description:
             $ref: '#/alchemy_getTransactionReceipts'
           minItems: 1
-          maxItems: 2
+          maxItems: 1
           items:
-            type: string
+            type: object
+            properties:
+              blockNumber:
+                type: string
+                description: The block number you want to get transaction receipts for, in hex
+              blockHash:
+                type: string
+                description: The block hash you want to get transaction receipts for
 
 # ============= Token API Methods ===============
 alchemy_getTokenAllowance:
