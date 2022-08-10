@@ -40,7 +40,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: responses.yaml#/webhook_addresses_response
+                  $ref: '#/components/schemas/webhook_addresses_response'
       operationId: webhook-addresses 
   /create-webhook:
     post:
@@ -238,27 +238,9 @@ components:
       - webhook_url
       properties:
         network:
-          type: string
-          description: 'Network of webhook'
-          enum:
-          - ETH_MAINNET
-          - ETH_GOERLI
-          - ETH_ROPSTEN
-          - ETH_RINKEBY
-          - ETH_KOVAN
-          - MATIC_MAINNET
-          - MATIC_MUMBAI
-          - ARB_MAINNET
-          - ARB_RINKEBY
-          - OPT_MAINNET
-          - OPT_KOVAN
+          $ref: '#/components/schemas/network'
         webhook_type:
-          type: string
-          description: 'Type of webhook.'
-          enum:
-          - MINED_TRANSACTION
-          - DROPPED_TRANSACTION
-          - ADDRESS_ACTIVITY
+          $ref: '#/components/schemas/webhook_type'
         webhook_url:
           type: string
           description: 'URL where requests are sent'
@@ -351,27 +333,9 @@ components:
           type: string
           description: 'ID for alchemy app.'
         network:
-          type: string
-          description: 'Network for given webhook.'
-          enum:
-          - ETH_MAINNET
-          - ETH_GOERLI
-          - ETH_ROPSTEN
-          - ETH_RINKEBY
-          - ETH_KOVAN
-          - MATIC_MAINNET
-          - MATIC_MUMBAI
-          - ARB_MAINNET
-          - ARB_RINKEBY
-          - OPT_MAINNET
-          - OPT_KOVAN
+          $ref: '#/components/schemas/network'
         webhook_type:
-          type: string
-          description: 'Type of webhook.'
-          enum:
-          - MINED_TRANSACTION
-          - DROPPED_TRANSACTION
-          - ADDRESS_ACTIVITY
+          $ref: '#/components/schemas/webhook_type'
         webhook_url:
           type: string
           description: 'URL endpoint where webhook is sent'
@@ -455,3 +419,26 @@ components:
             total_count:
               type: integer
               description: 'Total number of nft filters.'
+    network:
+      type: string
+      description: 'Network of webhook'
+      enum:
+      - ETH_MAINNET
+      - ETH_GOERLI
+      - ETH_ROPSTEN
+      - ETH_RINKEBY
+      - ETH_KOVAN
+      - MATIC_MAINNET
+      - MATIC_MUMBAI
+      - ARB_MAINNET
+      - ARB_RINKEBY
+      - OPT_MAINNET
+      - OPT_KOVAN
+    webhook_type:
+      type: string
+      description: 'Type of webhook.'
+      enum:
+      - MINED_TRANSACTION
+      - DROPPED_TRANSACTION
+      - ADDRESS_ACTIVITY
+      - NFT_ACTIVITY

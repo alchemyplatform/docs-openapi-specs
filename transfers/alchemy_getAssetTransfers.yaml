@@ -7,6 +7,10 @@ servers:
     url: 'https://eth-mainnet.alchemyapi.io/v2'
   - description: Polygon
     url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
+  - description: Arbitrum
+    url: 'https://arb-mainnet.g.alchemy.com/v2'
+  - description: Optimism
+    url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
