@@ -2327,6 +2327,13 @@ getAssetTransfers_eth_mainnet:
           - erc721
           - erc1155
           - specialnft
+    order:
+      type: string
+      description: |
+        String - Whether to return results in ascending or descending order. Defaults to "asc" if omitted.
+      enum:
+        - asc
+        - desc
     withMetadata:
       type: boolean
       description: Boolean - Whether or not to include additional metadata about each transfer event.
