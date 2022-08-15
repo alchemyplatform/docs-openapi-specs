@@ -2312,8 +2312,10 @@ getAssetTransfers_eth_mainnet:
       type: string
       description: String - To address (hex string). Default wildcard - any address
     contractAddresses:
-      type: string
+      type: array
       description: 'String - List of contract addresses (hex strings) to filter for - only applies to "token", "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+      items:
+        type: string
     category:
       type: array
       description: |
