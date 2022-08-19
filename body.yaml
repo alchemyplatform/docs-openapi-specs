@@ -967,6 +967,7 @@ alchemy_getTransactionReceipts_param:
               blockNumber:
                 type: string
                 description: The block number you want to get transaction receipts for, in hex
+                pattern: '^0[xX][0-9a-fA-F]+$'
               blockHash:
                 type: string
                 description: The block hash you want to get transaction receipts for
