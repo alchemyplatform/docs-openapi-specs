@@ -1046,7 +1046,7 @@ alchemy_getTokenMetadata:
             - alchemy_getTokenMetadata
         params:
           type: array
-          description: 'String - DATA, 20 Bytes - The address of the token contract.'
+          description: 'DATA, 20 Bytes - Singluar address for the token contract.'
           minItems: 1
           maxItems: 1
           items:
