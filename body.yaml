@@ -175,9 +175,9 @@ eth_sendPrivateTransaction:
     properties:
       method:
         type: string
-        default: eth_sendRawTransaction
+        default: eth_sendPrivateTransaction
         enum:
-          - eth_sendRawTransaction
+          - eth_sendPrivateTransaction
       tx:
         type: string
         description: 'Raw, signed transaction'
