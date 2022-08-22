@@ -88,9 +88,8 @@ paths:
         - $ref: nfts_body.yaml#/contractAddress
         - $ref: nfts_body.yaml#/tokenId
         - $ref: nfts_body.yaml#/tokenType
-          description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for.API requests will perform faster if this is specified.
+          description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
         - $ref: nfts_body.yaml#/tokenUriTimeoutInMs
-          description: 'No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to _only_ access the cache and not live fetch any metadata for cache misses then set this value to 0.'
       x-readme:
         samples-languages:
           - javascript
@@ -229,12 +228,7 @@ paths:
         - $ref: nfts_body.yaml#/contractAddress
           description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
         - $ref: nfts_body.yaml#/tokenId
-<<<<<<< HEAD
-          description: String - The ID of the token. Can be in hex or decimal format.
       x-readme:
-=======
-      x-readme:
->>>>>>> 4095791c83f6734cdae056d49a2bfb18a556d99b
         samples-languages:
           - javascript
           - curl
