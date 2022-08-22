@@ -65,9 +65,14 @@ limit:
   in: query
   schema:
     type: integer
+tokenUriTimeoutInMs:
+  name: tokenUriTimeoutInMs
+  in: query
+  schema:
+    type: integer
 withTokenBalances:
   name: withTokenBalances
   in: query
   schema:
-    type: boolean 
+    type: boolean
     default: false

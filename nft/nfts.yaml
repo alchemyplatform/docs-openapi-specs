@@ -29,11 +29,13 @@ paths:
           description: Array of contract addresses to filter the responses with. Max limit 20 contracts.
         - $ref: nfts_body.yaml#/withMetadata
           description: 'True by default - If boolean is set to true the query will include metadata for each returned token. Setting this to false will reduce payload size and may result in a faster API call.'
+        - $ref: nfts_body.yaml#/tokenUriTimeoutInMs
+          description: 'No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to _only_ access the cache and not live fetch any metadata for cache misses then set this value to 0.'
         - $ref: nfts_body.yaml#/filters
-          description: |- 
-            Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. Filter Options: 
+          description: |-
+            Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. Filter Options:
              - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -51,7 +53,7 @@ paths:
               const settings = {
                 apiKey: demo, // Replace with your Alchemy API Key.
                 network: Network.ETH_MAINNET, // Replace with your network.
-                
+
               };
 
               const alchemy = new Alchemy(settings);
@@ -74,7 +76,7 @@ paths:
                   $ref: 'get_nfts_examples.yaml#/withContractFiltering'
                 withPagination:
                   $ref: 'get_nfts_examples.yaml#/withPagination'
-                  
+
       operationId: getNFTs
   '/{apiKey}/getNFTMetadata':
     get:
@@ -89,7 +91,9 @@ paths:
           description: Integer or Hexadecimal - Id for NFT.
         - $ref: nfts_body.yaml#/tokenType
           description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for.API requests will perform faster if this is specified.
-      x-readme: 
+        - $ref: nfts_body.yaml#/tokenUriTimeoutInMs
+          description: 'No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to _only_ access the cache and not live fetch any metadata for cache misses then set this value to 0.'
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -133,7 +137,7 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - Address of NFT contract.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -181,7 +185,9 @@ paths:
           description: 'String - An offset used for pagination. Can be a hex string, or a decimal.'
         - $ref: nfts_body.yaml#/limit
           description: Integer - Sets the total number of NFTs returned in the response. Defaults to 100.
-      x-readme: 
+        - $ref: nfts_body.yaml#/tokenUriTimeoutInMs
+          description: 'No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to _only_ access the cache and not live fetch any metadata for cache misses then set this value to 0.'
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -226,7 +232,7 @@ paths:
           description: String - The address of the contract that the token belongs to. We currently support both ERC721 and ERC1155 contracts.
         - $ref: nfts_body.yaml#/tokenId
           description: String - The ID of the token. Can be in hex or decimal format.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -271,7 +277,7 @@ paths:
           description: String - Contract address for the NFT collection
         - $ref: nfts_body.yaml#/withTokenBalances
           description: Boolean - [boolean]  false by default. If set to true the query will include the token balances per token id for each owner.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -312,7 +318,7 @@ paths:
       tags: ["NFT API Endpoints"]
       parameters:
         - $ref: nfts_body.yaml#/apiKey
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -354,7 +360,7 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - The NFT contract address in question.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -398,7 +404,7 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - The address of the NFT contract/collection that needs to be refreshed.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
@@ -444,7 +450,7 @@ paths:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - Contract address for the NFT collection.
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl
