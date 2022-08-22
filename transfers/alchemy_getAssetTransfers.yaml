@@ -15,7 +15,7 @@ paths:
   /{apiKey}:
     post:
       summary: alchemy_getAssetTransfers
-      description: 'The Transfers API allows you to easily fetch historical transactions for any address without having to scan the entire Ethereum and Polygon chain and index everything for each of your users.'
+      description: 'The Transfers API allows you to easily fetch historical transactions for any address across Ethereum and supported L2s including Polygon, Arbitrum, and Optimism.'
       tags: ['Transfers API Endpoints']
       parameters:
         - name: apiKey
