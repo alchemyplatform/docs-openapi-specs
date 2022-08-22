@@ -40,18 +40,21 @@ filters:
   in: query
 contractAddress:
   name: contractAddress
+  description: String - Address of NFT contract.
   in: query
   schema:
     type: string
   required: true
 tokenId:
   name: tokenId
+  description: String - The ID of the token. Can be in hex or decimal format.
   in: query
   schema:
     type: string
   required: true
 tokenType:
   name: tokenType
+  description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for.API requests will perform faster if this is specified.
   in: query
   schema:
     type: string
@@ -71,3 +74,10 @@ withTokenBalances:
   schema:
     type: boolean 
     default: false
+refreshCache:
+  name: refreshCache
+  description: Defaults to false for faster response times.  If true will refresh metadata for given token. If false will check the cache and use it or refresh if cache doesn't exist.
+  in: query
+  schema:
+    type: boolean 
+    default: false 
