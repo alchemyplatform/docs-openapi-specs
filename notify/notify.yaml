@@ -172,15 +172,7 @@ paths:
       tags: ["Notify API Endpoints"]
       parameters:
       - $ref: '#/components/schemas/X-Alchemy-Token'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                webhook_id:
-                  type: string
-                  description: 'ID of the address activity webhook.'
+      - $ref: '#/components/schemas/webhook_id'
       responses:
         '200':
           description: 'Returns empty object.'
