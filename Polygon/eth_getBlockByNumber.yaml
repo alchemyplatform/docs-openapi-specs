@@ -31,4 +31,4 @@ paths:
               };
               const alchemy = new Alchemy(settings);
 
-              alchemy.core.getBlockNumber(15221026).then(console.log);
+              alchemy.core.getBlock(15221026).then(console.log);

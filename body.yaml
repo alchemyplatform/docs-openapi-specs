@@ -175,9 +175,9 @@ eth_sendPrivateTransaction:
     properties:
       method:
         type: string
-        default: eth_sendRawTransaction
+        default: eth_sendPrivateTransaction
         enum:
-          - eth_sendRawTransaction
+          - eth_sendPrivateTransaction
       tx:
         type: string
         description: 'Raw, signed transaction'
@@ -967,6 +967,7 @@ alchemy_getTransactionReceipts_param:
               blockNumber:
                 type: string
                 description: The block number you want to get transaction receipts for, in hex
+                pattern: '^0[xX][0-9a-fA-F]+$'
               blockHash:
                 type: string
                 description: The block hash you want to get transaction receipts for
@@ -1046,7 +1047,7 @@ alchemy_getTokenMetadata:
             - alchemy_getTokenMetadata
         params:
           type: array
-          description: 'String - DATA, 20 Bytes - The address of the token contract.'
+          description: 'DATA, 20 Bytes - Singluar address for the token contract.'
           minItems: 1
           maxItems: 1
           items:
@@ -2312,8 +2313,10 @@ getAssetTransfers_eth_mainnet:
       type: string
       description: String - To address (hex string). Default wildcard - any address
     contractAddresses:
-      type: string
-      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "token", "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+      type: array
+      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+      items:
+        type: string
     category:
       type: array
       description: |
@@ -2327,6 +2330,13 @@ getAssetTransfers_eth_mainnet:
           - erc721
           - erc1155
           - specialnft
+    order:
+      type: string
+      description: |
+        String - Whether to return results in ascending or descending order. Defaults to "asc" if omitted.
+      enum:
+        - asc
+        - desc
     withMetadata:
       type: boolean
       description: Boolean - Whether or not to include additional metadata about each transfer event.

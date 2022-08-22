@@ -5,6 +5,15 @@ getNFTs:
       type: array
       items:
         $ref: '#/ownedNFT'
+    pageKey:
+      type: string
+      description: 'String - UUID for pagination - returned if there are more NFTs to fetch. Max NFTs per page = 100.'
+    totalCount:
+      type: string
+      description: 'String -Total number of NFTs owned by the given address.'
+    blockHash:
+      type: string
+      description: 'String - The canonical head block hash of when your request was received'
 id:
   type: object
   properties:
@@ -92,15 +101,6 @@ ownedNFT:
     timeLastUpdated:
       type: string
       description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
-    pageKey:
-      type: string
-      description: 'String - UUID for pagination - returned if there are more NFTs to fetch. Max NFTs per page = 100.'
-    totalCount:
-      type: string
-      description: 'String -Total number of NFTs owned by the given address.'
-    blockHash:
-      type: string
-      description: 'String - The canonical head block hash of when your request was received'
     error:
       type: string
       description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'

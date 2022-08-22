@@ -49,7 +49,7 @@ components:
                 };
                 const alchemy = new Alchemy(settings);
 
-                alchemy.core.getBlockNumber(15221026).then(console.log);
+                alchemy.core.getBlock(15221026).then(console.log);
         responses:
           '200':
             description: 'Returns a block object with the following fields, or null when no block was found.'
