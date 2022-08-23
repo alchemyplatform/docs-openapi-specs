@@ -90,6 +90,7 @@ paths:
         - $ref: nfts_body.yaml#/tokenType
           description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
         - $ref: nfts_body.yaml#/tokenUriTimeoutInMs
+        - $ref: nfts_body.yaml#/refreshCache
       x-readme:
         samples-languages:
           - javascript
