@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: eth_estimateGas - optimism
+  version: '1.0'
+servers:
+  - url: 'https://opt-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_estimateGas
+      description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../body.yaml#/eth_estimateGas_50
+      x-readme: 
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy, parseEther } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.OPT_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .estimateGas({
+                  // Wrapped ETH address
+                  to: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+                  // `function deposit() payable`
+                  data: "0xd0e30db0",
+                  // 1 ether
+                  value: parseEther("1.0"),
+                })
+                .then(console.log);
+      responses:
+        '200':
+          description: Returns the amount of gas used.
+          content:
+            application/json:
+              schema:
+                $ref: ../responses.yaml#/string_result_response
+      operationId: eth-estimategas-optimism

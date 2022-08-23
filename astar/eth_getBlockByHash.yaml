@@ -1,0 +1,34 @@
+openapi: 3.1.0
+info:
+  title: eth_getBlockByHash - optimism
+  version: '1.0'
+servers:
+  - url: 'https://opt-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path/post
+      operationId: eth-getblockbyhash-optimism
+      x-readme: 
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.OPT_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .getBlock(
+                  "0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3"
+                )
+                .then(console.log);

@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: eth_getUncleCountByBlockHash - optimism
+  version: '1.0'
+servers:
+  - url: 'https://opt-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      $ref: ../ethereum/eth_getUncleCountByBlockHash.yaml#/components/pathItems/path/post
+      operationId: eth-getunclecountbyblockhash-optimism
