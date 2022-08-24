@@ -70,6 +70,7 @@ limit:
     type: integer
 tokenUriTimeoutInMs:
   name: tokenUriTimeoutInMs
+  description: 'No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to _only_ access the cache and not live fetch any metadata for cache misses then set this value to 0.'
   in: query
   schema:
     type: integer
