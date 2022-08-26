@@ -1021,8 +1021,9 @@ alchemy_getTokenBalances:
             - OneOf
               - Array - A list of contract addresses. Suggested limit: 100 addresses
               - The String ''DEFAULT_TOKENS'' - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
+              - The String ''erc20'' - denotes the set of erc20 tokens that the address has ever held.
           minItems: 2
-          maxItems: 2
+          maxItems: 3
           items:
             allOf:
               - type: string
@@ -1035,6 +1036,13 @@ alchemy_getTokenBalances:
                   - type: string
                     enum:
                       - DEFAULT_TOKENS
+                      - erc20
+              - type: object
+                properties:
+                  pageKey:
+                    type: string
+                    description: 'An address used for pagination. If more results are available, a pageKey will be returned in the response.'
+                    default: '0x0'
 alchemy_getTokenMetadata:
   allOf:
     - $ref: '#/CommonProperties'
