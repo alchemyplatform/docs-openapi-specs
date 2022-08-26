@@ -16,6 +16,11 @@ pageKey:
   schema:
     type: string
   in: query
+pageSize:
+  name: pageSize
+  schema:
+    type: integer
+  in: query
 contractAddresses:
   name: contractAddresses[]
   schema:
