@@ -1680,6 +1680,9 @@ transfer:
       type: string
       nullable: true
       description: 'ETH or the token''s symbol. null if not defined in the contract and not available from other sources.'
+    uniqueId:
+      type: string
+      description: 'A unique identifier for the transfer object.'
     hash:
       type: string
       description: 'Transaction hash (hex string).'
