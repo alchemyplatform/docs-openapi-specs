@@ -1,6 +1,6 @@
 AccountListRequest:
   allOf:
-    - $ref: '../common/properties#JsonRpcProperties'
+    - $ref: '../common/properties.yml#JsonRpcProperties'
     - type: object
       properties:
         method:
@@ -11,7 +11,7 @@ AccountListRequest:
 
 AccountListResponse:
   allOf:
-    - $ref: '../common/properties#JsonRpcProperties'
+    - $ref: '../common/properties.yml#JsonRpcProperties'
     - type: object
       properties:
         result:
