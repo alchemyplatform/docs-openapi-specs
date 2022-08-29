@@ -11,12 +11,7 @@ paths:
       summary: eth_accounts
       description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
+        - $ref: common/auth.yml
       requestBody:
         content:
           application/json:

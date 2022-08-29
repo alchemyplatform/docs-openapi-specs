@@ -1,0 +1,6 @@
+name: apiKey
+in: path
+schema:
+  type: string
+  default: demo
+required: true
