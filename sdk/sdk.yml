@@ -6,11 +6,7 @@ servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
+    post:
         summary: eth_accounts
         description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
         tags: []
@@ -34,3 +30,5 @@ components:
                 schema:
                   $ref: ../responses.yaml#/string_result_response
         operationId: eth-accounts
+
+      
