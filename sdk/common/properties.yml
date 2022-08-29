@@ -1,0 +1,7 @@
+JsonRpcProperties:
+  type: object
+  properties:
+    id:
+      type: integer
+    jsonrpc:
+      type: string
