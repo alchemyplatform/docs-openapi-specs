@@ -5,10 +5,10 @@ info:
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
 paths:
-  /{apiKey}:
+  /{apiKey}/account/list:
     post:
-      operationId: eth-accounts
       summary: eth_accounts
+      operationId: accountList
       description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
       parameters:
         - $ref: common/auth.yml
@@ -16,7 +16,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_accounts
+              $ref: 'methods/eth_accounts.yml#/AccountListRequest'
       responses:
         '200':
           description: Returns 20 Bytes - addresses owned by the client.

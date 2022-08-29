@@ -1,0 +1,10 @@
+AccountListRequest:
+  allOf:
+    - $ref: '../common/properties#JsonRpcProperties'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_accounts
+          enum:
+            - eth_accounts
