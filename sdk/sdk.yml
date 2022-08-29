@@ -16,14 +16,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'methods/eth_accounts.yml#/AccountListRequest'
+              $ref: methods/eth_accounts.yml#/AccountListRequest
       responses:
         '200':
           description: Returns 20 Bytes - addresses owned by the client.
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
+                $ref: methods/eth_accounts.yml#/AccountListResponse
         
 
       

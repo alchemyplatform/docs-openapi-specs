@@ -8,3 +8,11 @@ AccountListRequest:
           default: eth_accounts
           enum:
             - eth_accounts
+
+AccountListResponse:
+  allOf:
+    - $ref: '../common/properties#JsonRpcProperties'
+    - type: object
+      properties:
+        result:
+          type: string
