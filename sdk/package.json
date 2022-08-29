@@ -4,6 +4,7 @@
   "description": "Our goal is to use the Open API Specification to generate SDKs in other languages (Python, Go, etc..).",
   "main": "index.js",
   "scripts": {
+    "lint": "speccy lint entry.yml",
     "resolve": "speccy resolve entry.yml -o sdk.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
