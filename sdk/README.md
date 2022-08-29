@@ -66,18 +66,5 @@ To generate SDKs, we need to:
 
 ## Coding
 
-To help follow link, I installed the following extensions in VS Code.
-
-Name: OpenAPI (Swagger) Editor
-Id: 42Crunch.vscode-openapi
-Description: OpenAPI extension for Visual Studio Code
-Version: 4.13.0
-Publisher: 42Crunch
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi
-
-Name: openapi-lint
-Id: mermade.openapi-lint
-Description: OpenAPI (Swagger) 2.0/3.0.x intellisense, validator, linter, converter, resolver
-Version: 1.2.0
-Publisher: mermade
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=mermade.openapi-lint
+To help with linting, resolve and do
+I used [speccy](https://github.com/wework/speccy)

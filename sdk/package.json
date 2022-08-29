@@ -1,0 +1,15 @@
+{
+  "name": "sdk",
+  "version": "1.0.0",
+  "description": "Our goal is to use the Open API Specification to generate SDKs in other languages (Python, Go, etc..).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "speccy": "^0.11.0"
+  }
+}
