@@ -42,6 +42,7 @@ filters:
       type: string
       enum:
         - SPAM
+        - AIRDROPS
   in: query
 contractAddress:
   name: contractAddress
