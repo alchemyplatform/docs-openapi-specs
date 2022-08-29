@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Account Information
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_accounts
+        description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: demo
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../body.yaml#/eth_accounts
+        responses:
+          '200':
+            description: Returns 20 Bytes - addresses owned by the client.
+            content:
+              application/json:
+                schema:
+                  $ref: ../responses.yaml#/string_result_response
+        operationId: eth-accounts

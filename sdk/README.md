@@ -63,3 +63,14 @@ To generate SDKs, we need to:
 - add authentication (tweak SDK initialization)
 
 > We can do this manually initially and eventually write a script to automate most of this.
+
+## Coding
+
+To help follow link, I installed the following extension in VS Code.
+
+Name: OpenAPI (Swagger) Editor
+Id: 42Crunch.vscode-openapi
+Description: OpenAPI extension for Visual Studio Code
+Version: 4.13.0
+Publisher: 42Crunch
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi
