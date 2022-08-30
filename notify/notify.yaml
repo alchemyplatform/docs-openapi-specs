@@ -257,7 +257,7 @@ components:
         webhook_id:
           type: string
           description: 'ID of the address activity webhook'
-        addressed_to_add:
+        addresses_to_add:
           type: array
           description: 'List of addresses to add, use [] if none.'
           items:
