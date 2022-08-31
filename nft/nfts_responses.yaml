@@ -214,3 +214,18 @@ getFloorPrice:
       error:
         type: string
         description: 'String - Returns an error if there was an error fetching floor prices from the given marketplace.'
+computeRarity:
+  type: array
+  description: 'NFT attributes and their associated prevalence.'
+  items:
+    type: object
+    properties:
+      trait_type:
+        type: string
+        description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
+      value:
+        type: string
+        description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
+      prevalence:
+        type: number
+        description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'

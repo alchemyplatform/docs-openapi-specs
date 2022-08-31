@@ -486,6 +486,30 @@ paths:
               schema:
                 $ref: nfts_responses.yaml#/getFloorPrice
       operationId: getFloorPrice
+  '/{apiKey}/computeRarity':
+    get:
+      summary: computeRarity
+      description: Computes the rarity of each attribute of an NFT.
+      tags: ["NFT API Endpoints"]
+      parameters:
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Contract address for the NFT collection.
+        - $ref: nfts_body.yaml#/tokenId
+          description: String - Token ID for the NFT. Can be hex or decimal.
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/computeRarity
+      operationId: computeRarity
 
 # This section doesn't work yet (but it should according to ReadMe)
 components:
