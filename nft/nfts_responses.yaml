@@ -229,3 +229,13 @@ computeRarity:
       prevalence:
         type: number
         description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
+summarizeNftAttributes:
+  type: object
+  description: 'Prevalence counts for each attribute within a collection.'
+  properties:
+    totalSupply:
+      type: number
+      description: 'Total number of NFTs for the input contract.'
+    summmary:
+      type: object
+      description: 'Object mapping trait types to the prevalence of each trait within that tyep.'

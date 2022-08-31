@@ -492,6 +492,7 @@ paths:
       description: Computes the rarity of each attribute of an NFT.
       tags: ["NFT API Endpoints"]
       parameters:
+        - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
           description: String - Contract address for the NFT collection.
         - $ref: nfts_body.yaml#/tokenId
@@ -510,6 +511,29 @@ paths:
               schema:
                 $ref: nfts_responses.yaml#/computeRarity
       operationId: computeRarity
+  '/{apiKey}/summarizeNftAttributes':
+    get:
+      summary: summarizeNftAttributes
+      description: Generate a summary of attribute prevalence for an NFT collection.
+      tags: ["NFT API Endpoints"]
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Contract address for the NFT collection.
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/summarizeNftAttributes
+      operationId: summarizeNftAttributes
 
 # This section doesn't work yet (but it should according to ReadMe)
 components:
