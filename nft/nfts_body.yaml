@@ -11,6 +11,12 @@ owner:
     type: string
   in: query
   required: true
+wallet:
+  name: wallet
+  schema:
+    type: string
+  in: query
+  required: true
 pageKey:
   name: pageKey
   schema:
