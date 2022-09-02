@@ -9,7 +9,7 @@ paths:
     get:
       summary: Get all webhooks
       description: This endpoint allows you to get all webhooks from every app on your team.
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
       responses:
@@ -26,12 +26,12 @@ paths:
     get:
       summary: Get all addresses for an Address Activity webhook
       description: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
-      - $ref: '#/components/schemas/webhook_id'
-      - $ref: '#/components/schemas/limit'
-      - $ref: '#/components/schemas/after'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/webhook_id'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/after'
       responses:
         '200':
           description: 'List of addresses and pagination info.'
@@ -41,14 +41,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/webhook_addresses_response'
-      operationId: webhook-addresses 
+      operationId: webhook-addresses
   /create-webhook:
     post:
       summary: Create webhook
       description: 'This endpoint allows you to create a webhook.'
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
@@ -68,9 +68,9 @@ paths:
       description: |
         Add or remove addresses from a specific webhook.
         *This webhook endpoint is idempotent, meaning that identical requests can be made once or several times in a row with the same effect*
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
@@ -87,9 +87,9 @@ paths:
     put:
       summary: Replace webhook addresses
       description: 'Replace entire list of addresses tracked in a given webhook.'
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
@@ -107,9 +107,9 @@ paths:
     put:
       summary: Update webhook status
       description: 'Allows you to set status of webhooks to active or inactive.'
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
@@ -127,9 +127,9 @@ paths:
     patch:
       summary: Update webhook NFT filters
       description: 'Add and remove webhook NFT filters'
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
         content:
           application/json:
@@ -148,7 +148,7 @@ paths:
     get:
       summary: Get all webhook NFT filters
       description: Paginated endpoint to list all of the NFT filter objects a given webhook is subscribed to.
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
@@ -169,10 +169,10 @@ paths:
     delete:
       summary: Delete Webhook
       description: 'Allows you to delete a webhook.'
-      tags: ["Notify API Endpoints"]
+      tags: ['Notify API Endpoints']
       parameters:
-      - $ref: '#/components/schemas/X-Alchemy-Token'
-      - $ref: '#/components/schemas/webhook_id'
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/webhook_id'
       responses:
         '200':
           description: 'Returns empty object.'
@@ -218,16 +218,16 @@ components:
       properties:
         contract_address:
           type: string
-          description: contract address of NFT 
-        token_id: 
+          description: contract address of NFT
+        token_id:
           type: string
           description: token ID for NFT. Can be integer or hex (0x prefixed hex string).
     create_webhook:
       type: object
       required:
-      - network
-      - webhook_type
-      - webhook_url
+        - network
+        - webhook_type
+        - webhook_url
       properties:
         network:
           $ref: '#/components/schemas/network'
@@ -252,7 +252,7 @@ components:
     update_webhook_addresses:
       type: object
       required:
-      - webhook_id
+        - webhook_id
       properties:
         webhook_id:
           type: string
@@ -270,7 +270,7 @@ components:
     update_webhook_nft_filters:
       type: object
       required:
-      - webhook_id
+        - webhook_id
       properties:
         webhook_id:
           type: string
@@ -355,8 +355,8 @@ components:
       type: string
       description: 'V1 or V2'
       enum:
-      - V1
-      - V2
+        - V1
+        - V2
     webhook_addresses_response:
       type: object
       properties:
@@ -386,12 +386,12 @@ components:
       properties:
         data:
           allOf:
-          - $ref: '#/components/schemas/webhook_creation_data'
-          - type: object
-            properties:
-              signing_key:
-                type: string
-                description: 'Signing key for given webhook.'
+            - $ref: '#/components/schemas/webhook_creation_data'
+            - type: object
+              properties:
+                signing_key:
+                  type: string
+                  description: 'Signing key for given webhook.'
     webhook_nft_filters_response:
       type: object
       properties:
@@ -415,22 +415,22 @@ components:
       type: string
       description: 'Network of webhook'
       enum:
-      - ETH_MAINNET
-      - ETH_GOERLI
-      - ETH_ROPSTEN
-      - ETH_RINKEBY
-      - ETH_KOVAN
-      - MATIC_MAINNET
-      - MATIC_MUMBAI
-      - ARB_MAINNET
-      - ARB_RINKEBY
-      - OPT_MAINNET
-      - OPT_KOVAN
+        - ETH_MAINNET
+        - ETH_GOERLI
+        - ETH_ROPSTEN
+        - ETH_RINKEBY
+        - ETH_KOVAN
+        - MATIC_MAINNET
+        - MATIC_MUMBAI
+        - ARB_MAINNET
+        - ARB_RINKEBY
+        - OPT_MAINNET
+        - OPT_KOVAN
     webhook_type:
       type: string
       description: 'Type of webhook.'
       enum:
-      - MINED_TRANSACTION
-      - DROPPED_TRANSACTION
-      - ADDRESS_ACTIVITY
-      - NFT_ACTIVITY
+        - MINED_TRANSACTION
+        - DROPPED_TRANSACTION
+        - ADDRESS_ACTIVITY
+        - NFT_ACTIVITY

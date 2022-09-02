@@ -1,5 +1,5 @@
 byDefault:
-  summary: "Response (By Default)"
+  summary: 'Response (By Default)'
   value: >
     {
     "ownedNfts": [{
@@ -87,7 +87,7 @@ byDefault:
       "blockHash": "0xeb2d26af5b6175344a14091777535a2cb21c681665a734a8285f889981987630"
     }
 withoutMetadata:
-  summary: "Response (withMetadata = false)"
+  summary: 'Response (withMetadata = false)'
   value: >
     {
       "ownedNfts": [{

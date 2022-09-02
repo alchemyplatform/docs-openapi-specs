@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
       operationId: eth-gasprice-optimism
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript

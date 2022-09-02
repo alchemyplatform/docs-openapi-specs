@@ -32,4 +32,3 @@ paths:
       operationId: trace-call
       x-readme:
         explorer-enabled: false
-      

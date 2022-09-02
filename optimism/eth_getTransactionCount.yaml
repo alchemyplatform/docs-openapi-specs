@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_getTransactionCount.yaml#/components/pathItems/path/post
       operationId: eth-gettransactioncount-optimism
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

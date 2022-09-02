@@ -7,7 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
-      summary: eth_getSignersAtHash 
+      summary: eth_getSignersAtHash
       description: 'Polygon API - Returns all signs given a blockhash.'
       tags: []
       parameters:
@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_getSignersAtHash 
+              $ref: ../body.yaml#/eth_getSignersAtHash
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_getSignersAtHash 
+                $ref: ../responses.yaml#/eth_getSignersAtHash
       operationId: eth-getsignersathash-polygon

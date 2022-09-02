@@ -74,7 +74,7 @@ ownedNFT:
         address:
           type: string
           description: 'String - Address of NFT contract.'
-    id: 
+    id:
       $ref: '#/id'
     balance:
       type: string
@@ -133,7 +133,7 @@ getContractMetadata:
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           type: string
-          description: 'String - ''erc721'' or ''erc1155'' NFT token type.'
+          description: "String - 'erc721' or 'erc1155' NFT token type."
 getNFTsForCollection:
   type: object
   properties:
@@ -181,13 +181,13 @@ reingestContract:
     reingestionState:
       type: string
       enum:
-      - does_not_exist
-      - already_queried
-      - in_progress
-      - finished
-      - queued
-      - queue_failed
-      description: '<br/> String - The current state of the reingestion request. <br/>''does_not_exist'' - The contract requested is not an NFT and does not contain proper metadata <br/>''already_queried'' - Contract already queried <br/>''in_progress'' - Ingestion in progress <br/>''finished'' - Ingestion complete <br/>''queued'' - Ingestion request placed into queue and awaiting execution. <br/>''queue_failed'' - Queue job incomplete'
+        - does_not_exist
+        - already_queried
+        - in_progress
+        - finished
+        - queued
+        - queue_failed
+      description: "<br/> String - The current state of the reingestion request. <br/>'does_not_exist' - The contract requested is not an NFT and does not contain proper metadata <br/>'already_queried' - Contract already queried <br/>'in_progress' - Ingestion in progress <br/>'finished' - Ingestion complete <br/>'queued' - Ingestion request placed into queue and awaiting execution. <br/>'queue_failed' - Queue job incomplete"
     progress:
       type: string
       description: 'String - Percentage of tokens successfully refreshed.'
@@ -204,7 +204,7 @@ getFloorPrice:
         type: string
         description: 'String - The currency in which the floor price is denominated. Typically, denominated in ETH'
         enum:
-        - ETH
+          - ETH
       collectionUrl:
         type: string
         description: 'String - Link to the collection on the given marketplace.'

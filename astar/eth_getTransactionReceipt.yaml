@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_getTransactionReceipt.yaml#/components/pathItems/path/post
       operationId: eth-gettransactionreceipt-astar
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

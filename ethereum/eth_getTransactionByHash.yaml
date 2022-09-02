@@ -26,9 +26,12 @@ components:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_getTransactionByHash
-                example: 
-                  params: ["0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"]
-        x-readme: 
+                example:
+                  params:
+                    [
+                      '0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b',
+                    ]
+        x-readme:
           samples-languages:
             - javascript
             - curl

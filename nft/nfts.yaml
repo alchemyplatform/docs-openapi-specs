@@ -18,7 +18,7 @@ paths:
     get:
       summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/owner
@@ -85,7 +85,7 @@ paths:
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -133,7 +133,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -175,7 +175,7 @@ paths:
     get:
       summary: getNFTsForCollection
       description: Gets all NFTs for a given NFT contract.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -226,7 +226,7 @@ paths:
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -270,7 +270,7 @@ paths:
     get:
       summary: getOwnersForCollection
       description: Gets all owners for a given NFT contract.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -317,7 +317,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
       x-readme:
@@ -357,7 +357,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -401,7 +401,7 @@ paths:
     get:
       summary: reingestContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -447,7 +447,7 @@ paths:
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -490,7 +490,7 @@ paths:
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -515,7 +515,7 @@ paths:
     get:
       summary: summarizeNftAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ["NFT API Endpoints"]
+      tags: ['NFT API Endpoints']
       parameters:
         - $ref: nfts_body.yaml#/apiKey
         - $ref: nfts_body.yaml#/contractAddress
@@ -540,7 +540,7 @@ components:
   schemas:
     x-readme:
       samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
+        - javascript
+        - curl
+        - python
+        - go

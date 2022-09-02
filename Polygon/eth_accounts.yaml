@@ -9,4 +9,3 @@ paths:
     post:
       $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
       operationId: eth-accounts-polygon
-      

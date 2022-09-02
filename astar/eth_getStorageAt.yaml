@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_getStorageAt.yaml#/components/pathItems/path/post
       operationId: eth-getstorageat-astar
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

@@ -9,7 +9,7 @@ paths:
     post:
       operationId: eth-getstorageat-arbitrum
       $ref: ../ethereum/eth_getStorageAt.yaml#/components/pathItems/path/post
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

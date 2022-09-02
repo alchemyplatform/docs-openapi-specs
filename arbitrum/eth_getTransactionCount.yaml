@@ -9,7 +9,7 @@ paths:
     post:
       operationId: eth-gettransactioncount-arbitrum
       $ref: ../ethereum/eth_getTransactionCount.yaml#/components/pathItems/path/post
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

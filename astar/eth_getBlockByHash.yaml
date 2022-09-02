@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path/post
       operationId: eth-getblockbyhash-astar
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript

@@ -22,7 +22,7 @@ paths:
           application/json:
             schema:
               $ref: ../body.yaml#/alchemy_getTokenMetadata
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

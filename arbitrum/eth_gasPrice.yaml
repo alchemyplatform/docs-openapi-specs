@@ -9,7 +9,7 @@ paths:
     post:
       operationId: eth-gasprice-arbitrum
       $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript
