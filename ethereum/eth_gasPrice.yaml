@@ -26,7 +26,7 @@ components:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_gasPrice
-        x-readme: 
+        x-readme:
           explorer-enabled: false
           samples-languages:
             - javascript
@@ -57,4 +57,3 @@ components:
                 schema:
                   $ref: ../responses.yaml#/string_result_response
         operationId: eth-gasPrice
-

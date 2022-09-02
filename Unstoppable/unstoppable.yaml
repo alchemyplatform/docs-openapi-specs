@@ -9,9 +9,9 @@ paths:
     get:
       summary: Get records for a domain
       description: Gets all the records attached to a domain name.
-      tags: ["Unstoppable Domains API Endpoints"]
+      tags: ['Unstoppable Domains API Endpoints']
       parameters:
-      - $ref: 'body.yaml#/domainName'
+        - $ref: 'body.yaml#/domainName'
       responses:
         '200':
           description: ''
@@ -20,20 +20,20 @@ paths:
               schema:
                 $ref: responses.yaml#/domain_record
       operationId: domain_record
-      security: 
-      - api_key: []
+      security:
+        - api_key: []
   /:
     get:
       summary: Get records for owner addresses
       description: Gets all the domain names, records, and metadata owned by a wallet address or configured to a resolution record.
-      tags: ["Unstoppable Domains API Endpoints"]
+      tags: ['Unstoppable Domains API Endpoints']
       parameters:
-      - $ref: 'body.yaml#/owners'
-      - $ref: 'body.yaml#/resolution'
-      - $ref: 'body.yaml#/tlds'
-      - $ref: 'body.yaml#/sortBy'
-      - $ref: 'body.yaml#/sortDirection'
-      - $ref: 'body.yaml#/startingAfter'
+        - $ref: 'body.yaml#/owners'
+        - $ref: 'body.yaml#/resolution'
+        - $ref: 'body.yaml#/tlds'
+        - $ref: 'body.yaml#/sortBy'
+        - $ref: 'body.yaml#/sortDirection'
+        - $ref: 'body.yaml#/startingAfter'
       responses:
         '200':
           description: 'An object with a data field contains a list of domain details and some meta about the request.'
@@ -42,15 +42,15 @@ paths:
               schema:
                 $ref: responses.yaml#/owner_record
       operationId: owner_record
-      security: 
-      - api_key: []
+      security:
+        - api_key: []
   /{domainName}/transfers/latest:
     get:
       summary: Get domain transfer events
       description: Gets the transfer history of a domain name.
-      tags: ["Unstoppable Domains API Endpoints"]
+      tags: ['Unstoppable Domains API Endpoints']
       parameters:
-      - $ref: 'body.yaml#/domainName'
+        - $ref: 'body.yaml#/domainName'
       responses:
         '200':
           description: 'An object with a data field that contains a list of domain transfer events.'
@@ -59,8 +59,8 @@ paths:
               schema:
                 $ref: responses.yaml#/domain_transfer_events
       operationId: domain_transfer_events
-      security: 
-      - api_key: []
+      security:
+        - api_key: []
 
 components:
   securitySchemes:

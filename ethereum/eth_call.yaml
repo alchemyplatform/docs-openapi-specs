@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth call 
+  title: eth call
   description: Executes a new message call immediately without creating a transaction on the block chain.
   version: '1.0'
 servers:

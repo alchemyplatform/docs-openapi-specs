@@ -7,7 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
-      summary: eth_syncing 
+      summary: eth_syncing
       description: Returns a list of addresses owned by client.
       tags: []
       parameters:
@@ -22,12 +22,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_syncing 
+              $ref: ../body.yaml#/eth_syncing
       responses:
         '200':
           description: Returns 20 Bytes - addresses owned by the client.
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_syncing 
-      operationId: eth-syncing-optimism 
+                $ref: ../responses.yaml#/eth_syncing
+      operationId: eth-syncing-optimism

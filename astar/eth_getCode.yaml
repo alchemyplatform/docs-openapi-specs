@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_getCode.yaml#/components/pathItems/path/post
       operationId: eth-getcode-astar
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

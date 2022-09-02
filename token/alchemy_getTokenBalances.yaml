@@ -22,7 +22,7 @@ paths:
           application/json:
             schema:
               $ref: ../body.yaml#/alchemy_getTokenBalances
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript
@@ -56,4 +56,4 @@ paths:
             application/json:
               schema:
                 $ref: ../responses.yaml#/alchemy_getTokenBalances
-      operationId: alchemy-getTokenBalances        
+      operationId: alchemy-getTokenBalances

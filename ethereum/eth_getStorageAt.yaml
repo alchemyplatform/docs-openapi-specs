@@ -12,7 +12,7 @@ components:
     path:
       post:
         summary: eth_getStorageAt
-        description: 'Returns the value from a storage position at a given address, or in other words, returns the state of the contract''s storage, which may not be exposed via the contract''s methods.'
+        description: "Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods."
         tags: []
         parameters:
           - name: apiKey
@@ -26,7 +26,7 @@ components:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_getStorageAt
-        x-readme: 
+        x-readme:
           samples-languages:
             - javascript
             - curl

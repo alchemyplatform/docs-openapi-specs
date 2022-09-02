@@ -22,7 +22,7 @@ paths:
           application/json:
             schema:
               $ref: ../body.yaml#/eth_estimateGas_50
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript

@@ -26,11 +26,11 @@ domain_record:
             - 4 - Ethereum Rinkeby Testnet
             - 5 - Ethereum Goerli Testnet
           enum:
-          - 1
-          - 137
-          - 80001
-          - 4
-          - 5
+            - 1
+            - 137
+            - 80001
+            - 4
+            - 5
     owner:
       type: string
       description: 'String - The wallet address that owns the domain.'
@@ -101,25 +101,14 @@ domain_transfer_events:
               - 4 - Ethereum Rinkeby Testnet
               - 5 - Ethereum Goerly Testnet
             enum:
-            - 1
-            - 137
-            - 80001
-            - 4
-            - 5
+              - 1
+              - 137
+              - 80001
+              - 4
+              - 5
           blockNumber:
             type: integer
             description: 'The blockchain block where the transfer happened.'
           blockchain:
             type: string
             description: 'The blockchain the domain is located (MATIC, ETH, ZIL). The blockchain names are coin types according to SLIP-0044.'
-
-
-
-
-
-
-
-
-
-
-

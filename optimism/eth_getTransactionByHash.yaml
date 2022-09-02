@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_getTransactionByHash.yaml#/components/pathItems/path/post
       operationId: eth-gettransactionbyhash-optimism
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

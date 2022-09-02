@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       operationId: eth-blocknumber-optimism
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript
@@ -33,4 +33,3 @@ paths:
 
               // Get the latest block number
               alchemy.core.getBlockNumber().then(console.log);
-

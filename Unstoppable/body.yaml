@@ -35,19 +35,19 @@ sortBy:
   schema:
     type: string
     enum:
-    - id
-    - name
-    - created_at
+      - id
+      - name
+      - created_at
   description: 'The field to use for sorting of the response. Currently supports id (domain ID), name (domain name alphabetically), and created_at (domain creation date)'
-  
+
 sortDirection:
   name: sortDirection
   in: query
   schema:
     type: string
     enum:
-    - ASC
-    - DESC
+      - ASC
+      - DESC
   description: 'The order to use for sorting of the response. Currently supports ASC (ascending) and DESC (descending).'
 startingAfter:
   name: startingAfter

@@ -9,7 +9,7 @@ paths:
     post:
       $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
       operationId: eth-estimategas-polygon
-      x-readme: 
+      x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript

@@ -9,7 +9,7 @@ paths:
     post:
       operationId: eth-blocknumber-polygon
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
-      x-readme: 
+      x-readme:
         samples-languages:
           - javascript
           - curl

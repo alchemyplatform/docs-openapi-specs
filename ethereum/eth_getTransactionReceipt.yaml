@@ -26,7 +26,7 @@ components:
             application/json:
               schema:
                 $ref: ../body.yaml#/eth_getTransactionReceipt
-        x-readme: 
+        x-readme:
           samples-languages:
             - javascript
             - curl
