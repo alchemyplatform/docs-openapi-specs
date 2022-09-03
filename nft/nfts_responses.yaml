@@ -238,4 +238,11 @@ summarizeNftAttributes:
       description: 'Total number of NFTs for the input contract.'
     summmary:
       type: object
-      description: 'Object mapping trait types to the prevalence of each trait within that tyep.'
+      description: 'Object mapping trait types to the prevalence of each trait within that type.'
+isHolderOfCollection:
+  type: object
+  description: "Data related to a wallet's ownership of any token in an NFT collection."
+  properties:
+    isHolderOfCollection:
+      type: boolean
+      description: 'Whether the given wallet owns any token in the given NFT collection.'

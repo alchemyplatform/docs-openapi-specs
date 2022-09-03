@@ -534,6 +534,31 @@ paths:
               schema:
                 $ref: nfts_responses.yaml#/summarizeNftAttributes
       operationId: summarizeNftAttributes
+  '/{apiKey}/isHolderOfCollection':
+    get:
+      summary: isHolderOfCollection
+      description: Checks whether a wallet holds a NFT in a given collection
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/wallet
+          description: String - Wallet address to check for collection ownership.
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - Contract address for the NFT collection.
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/isHolderOfCollection
+      operationId: isHolderOfCollection
 
 # This section doesn't work yet (but it should according to ReadMe)
 components:
