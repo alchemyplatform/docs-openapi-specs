@@ -578,7 +578,7 @@ eth_subscribe:
           items:
             oneOf:
               - type: string
-                description: "Returns the transaction information for all transactions that are added to the pending state. This subscription type subscribes to pending transactions, similar to the standard Web3 call web3.eth.subscribe('pendingTransactions'), but differs in that it emits full transaction information rather than just transaction hashes."
+                description: 'Returns the transaction information for all transactions that are added to the pending state. This subscription type subscribes to pending transactions, similar to the standard Web3 call web3.eth.subscribe(''pendingTransactions''), but differs in that it emits full transaction information rather than just transaction hashes.'
                 enum:
                   - alchemy_newFullPendingTransactions
               - oneOf:
@@ -678,11 +678,11 @@ filter_options:
     fromBlock:
       type: string
       default: latest
-      description: "Starting block number. Can be integer, hex, or 'latest' for the last mined block, 'pending', 'earliest' for not yet mined transactions."
+      description: 'Starting block number. hex value or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
     toBlock:
       type: string
       default: latest
-      description: "Ending block number. Can be integer, hex, or 'latest' for the last mined block, 'pending', 'earliest' for not yet mined transactions."
+      description: 'Ending block number. hex value, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
     topics:
       $ref: '#/topics'
 topics:
@@ -701,7 +701,7 @@ CommonProperties:
       default: '2.0'
 defaultBlockParam:
   type: string
-  description: The following options are possible for the defaultBlock parameter. HEX String - an integer block number. String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions
+  description: The following options are possible for the defaultBlock parameter. An integer block number (in hex). String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' for the pending state/transactions.
 eth_call_550_gas:
   allOf:
     - $ref: '#/CommonProperties'
@@ -943,6 +943,7 @@ subscriptionId_param:
       items:
         type: string
 
+
 # ============= Transaction Receipts API Method ===============
 alchemy_getTransactionReceipts_param:
   allOf:
@@ -1183,7 +1184,7 @@ trace_block:
           description: |
             Array of HEX String.
             </br>The following options are possible for the defaultBlock parameter. 
-            - An integer block number. 
+            - An integer block number (in hex)
             - String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions.
           items:
             $ref: '#/defaultBlockParam'
@@ -1302,7 +1303,7 @@ getBlock:
                     description: |
                       Level of transaction detail to return.
                       Accepts one of the following strings:
-                      ["full" (Default), "signatures", or "none"]
+                      ["full" (Default), "signatures", or "none"] 
                     enum:
                       - full
                       - signatures
@@ -2134,7 +2135,7 @@ encoding:
     Data encoding for each returned transaction.
     Accepts one of the following strings:
     ["json" (Default), "jsonParsed", "base58" (slow), "base64"] 
-    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
+    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON. 
   default: json
   enum:
     - json
@@ -2340,7 +2341,7 @@ getAssetTransfers_eth_mainnet:
     order:
       type: string
       description: |
-        String - Whether to return results in ascending or descending order. Defaults to "asc" if omitted.
+        String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, decending order is from newest to oldest. Defaults to "asc" if omitted.
       enum:
         - asc
         - desc
@@ -2387,17 +2388,17 @@ debug_traceTransaction:
 
 # ============= Other Definitions ===============
 blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
-blockNumberBooleanTransaction: "<br/>1. String - Integer of a block number, or the string 'earliest', 'latest' or 'pending' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions."
+blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
 transactionHash: String - 32 Bytes - Hash of a transaction
-blockNumber: "String - Integer of a block number, or the string 'earliest', 'latest' or 'pending'."
-address_blockNumber: "<br/>1. String - 20 Bytes - Address <br/>2. String - Integer block number, or the string 'latest', 'earliest' or 'pending'."
+blockNumber: 'String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending''.'
+address_blockNumber: '<br/>1. String - 20 Bytes - Address <br/>2. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
 blockHash_index: <br/>1. String - 32 Bytes - Hash of a block <br/>2. String - Integer of the transaction index position.
-blockNumber_index: "<br/>String - 1. A block number, or the string 'earliest', 'latest' or 'pending' <br/>2. String - The transaction index position."
-blockNumberOrBlockHash: "String - Block number or block hash to fetch transaction receipts for, or the string 'earliest', 'latest' or 'pending'."
+blockNumber_index: '<br/>String - 1. A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The transaction index position.'
+blockNumberOrBlockHash: 'String - Block number or block hash to fetch transaction receipts for, or the string ''earliest'', ''latest'' or ''pending''.'
 transactionData: String - The signed transaction data.
-address_blockNumber_blockHash: "<br/>1. String - 20 Bytes - address of the storage <br/>2. String - Integer of the position in the storage. <br/>3. String - Integer block number, or the string 'latest', 'earliest' or 'pending'."
-address_storageKeys_blockNumber: "<br/>1. String - 20 Bytes - Address of the account <br/>2. Array - 32 Bytes - array of storage-keys which should be proofed and included <br/>3. String - Integer block number, or the string 'latest' or 'earliest'."
-blockNumber_uncleIndex: "<br/>1. String - A block number, or the string 'earliest', 'latest' or 'pending' <br/>2. String - The uncle's index position."
+address_blockNumber_blockHash: '<br/>1. String - 20 Bytes - address of the storage <br/>2. String - Integer of the position in the storage. <br/>3. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
+address_storageKeys_blockNumber: '<br/>1. String - 20 Bytes - Address of the account <br/>2. Array - 32 Bytes - array of storage-keys which should be proofed and included <br/>3. String - Integer block number, or the string ''latest'' or ''earliest''.'
+blockNumber_uncleIndex: '<br/>1. String - A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The uncle''s index position.'
 filterId: String - The filter id.
 shaHash: String - The data in hex form to convert into a SHA3 hash.
 subscriptionId: 'String - Subscription ID, as previously returned from an eth_subscribe call.'
