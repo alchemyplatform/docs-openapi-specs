@@ -99,3 +99,9 @@ refreshCache:
   schema:
     type: boolean
     default: false
+block:
+  name: block
+  in: query
+  schema:
+    type: string
+  required: false
