@@ -277,6 +277,8 @@ paths:
           description: String - Contract address for the NFT collection
         - $ref: nfts_body.yaml#/withTokenBalances
           description: Boolean - [boolean]  false by default. If set to true the query will include the token balances per token id for each owner.
+        - $ref: nfts_body.yaml#/block
+          description: String - The point in time or block number (in hex or decimal) to fetch collection ownership information for.
         - $ref: nfts_body.yaml#/pageKey
           description: String - Page key for paginated results (see note on pagination)
       x-readme:
