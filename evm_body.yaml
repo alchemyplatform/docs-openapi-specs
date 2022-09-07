@@ -1,7 +1,7 @@
 # ========= EVM Methods ==============
 eth_blockNumber:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -11,7 +11,7 @@ eth_blockNumber:
             - eth_blockNumber
 eth_getBlockByHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -31,7 +31,7 @@ eth_getBlockByHash:
               - boolean
 eth_getBlockByNumber:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -51,7 +51,7 @@ eth_getBlockByNumber:
               - boolean
 eth_getLogs:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -67,7 +67,7 @@ eth_getLogs:
             $ref: '#/filter_options'
 eth_getTransactionByHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/transactionHash_param'
     - type: object
       properties:
@@ -78,7 +78,7 @@ eth_getTransactionByHash:
             - eth_getTransactionByHash
 eth_getTransactionReceipt:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/transactionHash_param'
     - type: object
       properties:
@@ -89,7 +89,7 @@ eth_getTransactionReceipt:
             - eth_getTransactionReceipt
 eth_getBlockTransactionCountByHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/transactionHash_param'
     - type: object
       properties:
@@ -100,7 +100,7 @@ eth_getBlockTransactionCountByHash:
             - eth_getBlockTransactionCountByHash
 eth_getBlockTransactionCountByNumber:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockNumber_param'
     - type: object
       properties:
@@ -111,7 +111,7 @@ eth_getBlockTransactionCountByNumber:
             - eth_getBlockTransactionCountByNumber
 eth_getTransactionCount:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/address_blockNumber_param'
     - type: object
       properties:
@@ -122,7 +122,7 @@ eth_getTransactionCount:
             - eth_getTransactionCount
 eth_getTransactionByBlockHashAndIndex:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockHash_index_param'
     - type: object
       properties:
@@ -133,7 +133,7 @@ eth_getTransactionByBlockHashAndIndex:
             - eth_getTransactionByBlockHashAndIndex
 eth_getTransactionByBlockNumberAndIndex:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockNumber_index_param'
     - type: object
       properties:
@@ -144,7 +144,7 @@ eth_getTransactionByBlockNumberAndIndex:
             - eth_getTransactionByBlockNumberAndIndex
 eth_getBlockReceipts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockNumberOrBlockHash_param'
     - type: object
       properties:
@@ -155,7 +155,7 @@ eth_getBlockReceipts:
             - eth_getBlockReceipts
 eth_sendRawTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/transactionData_param'
     - type: object
       properties:
@@ -192,7 +192,7 @@ eth_sendPrivateTransaction:
             description: Sends transaction with fast mode when true.
 eth_cancelPrivateTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -212,7 +212,7 @@ eth_cancelPrivateTransaction:
                 description: Transaction hash for private transaction to be cancelled.
 eth_getBalance:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/address_blockNumber_param'
     - type: object
       properties:
@@ -223,7 +223,7 @@ eth_getBalance:
             - eth_getBalance
 eth_getStorageAt:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/address_blockNumber_blockHash_param'
     - type: object
       properties:
@@ -234,7 +234,7 @@ eth_getStorageAt:
             - eth_getStorageAt
 eth_getCode:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/address_blockNumber_param'
     - type: object
       properties:
@@ -245,7 +245,7 @@ eth_getCode:
             - eth_getCode
 eth_accounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -255,7 +255,7 @@ eth_accounts:
             - eth_accounts
 eth_getProof:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -277,7 +277,7 @@ eth_getProof:
                   type: string
 eth_protocolVersion:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -287,7 +287,7 @@ eth_protocolVersion:
             - eth_protocolVersion
 eth_gasPrice:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -297,7 +297,7 @@ eth_gasPrice:
             - eth_gasPrice
 eth_estimateGas_550:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -317,7 +317,7 @@ eth_estimateGas_550:
               - $ref: '#/defaultBlockParam'
 eth_estimateGas_5:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -337,7 +337,7 @@ eth_estimateGas_5:
               - $ref: '#/defaultBlockParam'
 eth_estimateGas_50:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -357,7 +357,7 @@ eth_estimateGas_50:
               - $ref: '#/defaultBlockParam'
 eth_feeHistory:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -389,7 +389,7 @@ eth_feeHistory:
                   type: number
 eth_maxPriorityFeePerGas:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -399,7 +399,7 @@ eth_maxPriorityFeePerGas:
             - eth_maxPriorityFeePerGas
 eth_chainId:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -409,7 +409,7 @@ eth_chainId:
             - eth_chainId
 net_version:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -419,7 +419,7 @@ net_version:
             - net_version
 net_listening:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -429,7 +429,7 @@ net_listening:
             - net_listening
 eth_getUncleByBlockHashAndIndex:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockNumber_uncleIndex_param'
     - type: object
       properties:
@@ -440,7 +440,7 @@ eth_getUncleByBlockHashAndIndex:
             - eth_getUncleByBlockHashAndIndex
 eth_getUncleByBlockNumberAndIndex:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockNumber_uncleIndex_param'
     - type: object
       properties:
@@ -451,7 +451,7 @@ eth_getUncleByBlockNumberAndIndex:
             - eth_getUncleByBlockNumberAndIndex
 eth_getUncleCountByBlockHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/transactionHash_param'
     - type: object
       properties:
@@ -462,7 +462,7 @@ eth_getUncleCountByBlockHash:
             - eth_getUncleCountByBlockHash
 eth_getUncleCountByBlockNumber:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/blockNumber_param'
     - type: object
       properties:
@@ -473,7 +473,7 @@ eth_getUncleCountByBlockNumber:
             - eth_getUncleCountByBlockNumber
 eth_getFilterChanges:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/filterId_param'
     - type: object
       properties:
@@ -484,7 +484,7 @@ eth_getFilterChanges:
             - eth_getFilterChanges
 eth_getFilterLogs:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/filterId_param'
     - type: object
       properties:
@@ -495,7 +495,7 @@ eth_getFilterLogs:
             - eth_getFilterLogs
 eth_newBlockFilter:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -505,7 +505,7 @@ eth_newBlockFilter:
             - eth_newBlockFilter
 eth_newFilter:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -521,7 +521,7 @@ eth_newFilter:
             $ref: '#/filter_options'
 eth_newPendingTransactionFilter:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -531,7 +531,7 @@ eth_newPendingTransactionFilter:
             - eth_newPendingTransactionFilter
 eth_uninstallFilter:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/filterId_param'
     - type: object
       properties:
@@ -542,7 +542,7 @@ eth_uninstallFilter:
             - eth_uninstallFilter
 web3_clientVersion:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -552,7 +552,7 @@ web3_clientVersion:
             - web3_clientVersion
 web3_sha3:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/shaHash_param'
     - type: object
       properties:
@@ -563,7 +563,7 @@ web3_sha3:
             - web3_sha3
 eth_subscribe:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -626,7 +626,7 @@ eth_subscribe:
                   - syncing
 eth_unsubscribe:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - $ref: '#/subscriptionId_param'
     - type: object
       properties:
@@ -637,7 +637,7 @@ eth_unsubscribe:
             - eth_unsubscribe
 eth_getTransactionReceiptsByBlock:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -654,7 +654,7 @@ eth_getTransactionReceiptsByBlock:
             type: string
 eth_syncing:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -690,7 +690,7 @@ topics:
   description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
   items:
     type: string
-CommonProperties:
+common_request_fields:
   type: object
   properties:
     id:
@@ -704,7 +704,7 @@ defaultBlockParam:
   description: The following options are possible for the defaultBlock parameter. An integer block number (in hex). String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' for the pending state/transactions.
 eth_call_550_gas:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -724,7 +724,7 @@ eth_call_550_gas:
               - $ref: '#/defaultBlockParam'
 eth_call_5_gas:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -744,7 +744,7 @@ eth_call_5_gas:
               - $ref: '#/defaultBlockParam'
 eth_call_50_gas:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -947,7 +947,7 @@ subscriptionId_param:
 # ============= Transaction Receipts API Method ===============
 alchemy_getTransactionReceipts_param:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -975,7 +975,7 @@ alchemy_getTransactionReceipts_param:
 # ============= Token API Methods ===============
 alchemy_getTokenAllowance:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1006,7 +1006,7 @@ alchemy_getTokenAllowance:
                 description: 'String - DATA, 20 Bytes - The address of the token spender.'
 alchemy_getTokenBalances:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1045,7 +1045,7 @@ alchemy_getTokenBalances:
                     default: '0x0'
 alchemy_getTokenMetadata:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1064,7 +1064,7 @@ alchemy_getTokenMetadata:
 # ============= Trace API Methods ===============
 trace_call:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1088,7 +1088,7 @@ trace_call:
               - $ref: '#/defaultBlockParam'
 trace_callMany:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1110,7 +1110,7 @@ trace_callMany:
               - $ref: '#/defaultBlockParam'
 trace_rawTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1130,7 +1130,7 @@ trace_rawTransaction:
                   type: string
 trace_replayBlockTransactions:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1149,7 +1149,7 @@ trace_replayBlockTransactions:
                   type: string
 trace_replayTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1169,7 +1169,7 @@ trace_replayTransaction:
                   type: string
 trace_block:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1188,7 +1188,7 @@ trace_block:
             $ref: '#/defaultBlockParam'
 trace_filter:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1223,7 +1223,7 @@ trace_filter:
                 description: Integer number of traces to display in a batch.
 trace_get:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1243,7 +1243,7 @@ trace_get:
                   type: string
 trace_transaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1260,7 +1260,7 @@ trace_transaction:
 # ============= Polygon API Methods ===============
 bor_getAuthor:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1275,7 +1275,7 @@ bor_getAuthor:
             type: string
 bor_getCurrentValidators:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1285,7 +1285,7 @@ bor_getCurrentValidators:
             - bor_getCurrentValidators
 bor_getCurrentProposer:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1295,7 +1295,7 @@ bor_getCurrentProposer:
             - bor_getCurrentProposer
 bor_getRootHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1316,7 +1316,7 @@ bor_getRootHash:
                 description: Block number (in int format).
 eth_getRootHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1337,7 +1337,7 @@ eth_getRootHash:
                 description: Block number (in int format).
 eth_getSignersAtHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1356,7 +1356,7 @@ eth_getSignersAtHash:
 # ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -1370,7 +1370,7 @@ alchemy_getAssetTransfers:
           maxItems: 1
           items:
             $ref: '#/getAssetTransfers_eth_mainnet'
-            
+
 # ============= Transfers API Models ===============
 getAssetTransfers_eth_mainnet:
   type: object
@@ -1435,7 +1435,7 @@ getAssetTransfers_eth_mainnet:
 # ============= Debug API Methods ===============
 debug_traceTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         disableStorage:
