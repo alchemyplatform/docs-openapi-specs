@@ -27,7 +27,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_call_550_gas
+                $ref: ../evm_body.yaml#/eth_call_550_gas
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -68,4 +68,4 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response

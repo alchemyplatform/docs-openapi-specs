@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getInflationReward
+              $ref: solana_body.yaml#/getInflationReward
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getInflationReward
+                $ref: solana_responses.yaml#/getInflationReward
       operationId: getInflationReward
       x-readme:
         explorer-enabled: false

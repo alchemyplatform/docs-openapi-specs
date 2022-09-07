@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/alchemy_getTokenMetadata
+              $ref: ../evm_body.yaml#/alchemy_getTokenMetadata
       x-readme:
         samples-languages:
           - javascript
@@ -52,5 +52,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/alchemy_getTokenMetadata
+                $ref: ../evm_responses.yaml#/alchemy_getTokenMetadata
       operationId: alchemy-getTokenMetadata

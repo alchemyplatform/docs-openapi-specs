@@ -25,12 +25,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_getUncleCountByBlockHash
+                $ref: ../evm_body.yaml#/eth_getUncleCountByBlockHash
         responses:
           '200':
             description: Returns integer of the number of uncles in this block.
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response
         operationId: eth-getUncleCountByBlockHash

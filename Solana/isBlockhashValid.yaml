@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/isBlockhashValid
+              $ref: solana_body.yaml#/isBlockhashValid
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/isBlockhashValid
+                $ref: solana_responses.yaml#/isBlockhashValid
       operationId: isBlockhashValid
       x-readme:
         explorer-enabled: false

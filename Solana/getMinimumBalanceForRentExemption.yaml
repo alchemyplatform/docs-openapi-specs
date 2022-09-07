@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getMinimumBalanceForRentExemption
+              $ref: solana_body.yaml#/getMinimumBalanceForRentExemption
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getMinimumBalanceForRentExemption
+                $ref: solana_responses.yaml#/getMinimumBalanceForRentExemption
       operationId: getMinimumBalanceForRentExemption
       x-readme:
         explorer-enabled: false

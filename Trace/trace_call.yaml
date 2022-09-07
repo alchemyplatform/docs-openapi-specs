@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/trace_call
+              $ref: ../evm_body.yaml#/trace_call
       responses:
         '200':
           description: 'Returns - Array of Block traces'
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/trace_call
+                $ref: ../evm_responses.yaml#/trace_call
       operationId: trace-call
       x-readme:
         explorer-enabled: false

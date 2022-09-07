@@ -26,7 +26,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_getBlockByHash
+                $ref: ../evm_body.yaml#/eth_getBlockByHash
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -56,4 +56,4 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_block
+                  $ref: ../evm_responses.yaml#/eth_block

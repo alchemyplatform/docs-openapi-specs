@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/alchemy_getTokenBalances
+              $ref: ../evm_body.yaml#/alchemy_getTokenBalances
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -55,5 +55,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/alchemy_getTokenBalances
+                $ref: ../evm_responses.yaml#/alchemy_getTokenBalances
       operationId: alchemy-getTokenBalances

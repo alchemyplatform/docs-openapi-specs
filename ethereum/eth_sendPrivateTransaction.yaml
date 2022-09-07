@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_sendPrivateTransaction
+              $ref: ../evm_body.yaml#/eth_sendPrivateTransaction
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
+                $ref: ../evm_responses.yaml#/string_result_response
       operationId: eth-sendPrivateTransaction

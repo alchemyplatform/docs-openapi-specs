@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getInflationRate
+              $ref: solana_body.yaml#/getInflationRate
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getInflationRate
+                $ref: solana_responses.yaml#/getInflationRate
       operationId: getInflationRate

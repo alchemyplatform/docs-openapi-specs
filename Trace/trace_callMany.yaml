@@ -22,14 +22,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/trace_callMany
+              $ref: ../evm_body.yaml#/trace_callMany
       responses:
         '200':
           description: 'Returns - Array of the given transactions’ traces'
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/trace_callMany
+                $ref: ../evm_responses.yaml#/trace_callMany
       operationId: trace-callMany
       x-readme:
         explorer-enabled: false

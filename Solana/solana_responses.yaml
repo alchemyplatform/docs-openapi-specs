@@ -1,597 +1,13 @@
-eth_getLogs:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: array
-          description: 'Array of log objects, or an empty array if nothing has changed since last poll.'
-          items:
-            $ref: '#/log_object'
-eth_blockNumber:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      description: Integer of the current block number the client is on.
-      properties:
-        result:
-          type: string
-          description: Integer of the current block number the client is on.
-eth_block:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          $ref: '#/block_object'
-log_object:
-  allOf:
-    - $ref: '#/hash_number_transactionIndex'
-    - type: object
-      properties:
-        address:
-          type: string
-          description: 20 Bytes - address from which this log originated.
-        logIndex:
-          type: string
-          description: Integer of the log index position in the block. null when its pending log.
-        data:
-          type: string
-          description: Contains one or more 32 Bytes non-indexed arguments of the log.
-        removed:
-          type: boolean
-          description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
-        topics:
-          type: array
-          items:
-            type: string
-          description: 'Array of zero to four 32 Bytes DATA of indexed log arguments. In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declare the event with the anonymous specifier.'
-        transactionHash:
-          type: string
-          description: Hash of the transactions this log was created from. null when its pending log.
-block_object:
-  allOf:
-    - $ref: '#/nonce_hash'
-    - type: object
-      description: 'A block object with the following fields, or null when no block was found.'
-      properties:
-        number:
-          type: string
-          description: the block number. null when its pending block.
-        parentHash:
-          type: string
-          description: 32 Bytes - hash of the parent block.
-        sha3Uncles:
-          type: string
-          description: 32 Bytes - SHA3 of the uncles data in the block.
-        logsBloom:
-          type: string
-          description: 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
-        transactionsRoot:
-          type: string
-          description: 32 Bytes - the root of the transaction trie of the block.
-        stateRoot:
-          type: string
-          description: 32 Bytes - the root of the final state trie of the block.
-        receiptsRoot:
-          type: string
-          description: 32 Bytes - the root of the receipts trie of the block.
-        miner:
-          type: string
-          description: 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
-        difficulty:
-          type: string
-          description: integer of the difficulty for this block.
-        totalDifficulty:
-          type: string
-          description: integer of the total difficulty of the chain until this block.
-        extraData:
-          type: string
-          description: the "extra data" field of this block.
-        size:
-          type: string
-          description: integer the size of this block in bytes.
-        gasLimit:
-          type: string
-          description: the maximum gas allowed in this block.
-        gasUsed:
-          type: string
-          description: the total used gas by all transactions in this block.
-        timestamp:
-          type: string
-          description: the unix timestamp for when the block was collated.
-        transactions:
-          type: array
-          items:
-            type: string
-          description: 'Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.'
-        uncles:
-          type: array
-          items:
-            type: string
-          description: Array of uncle hashes.
-CommonProperties:
+common_response_fields:
   type: object
   properties:
     id:
       type: integer
     jsonrpc:
       type: string
-hash_number_transactionIndex:
-  type: object
-  properties:
-    blockHash:
-      type: string
-      description: 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log
-    blockNumber:
-      type: string
-      description: The block number where this log was in. null when its pending. null when its pending log.
-    transactionIndex:
-      type: string
-      description: Integer of the transactions index position log was created from. null when its pending log.
-nonce_hash:
-  type: object
-  properties:
-    nonce:
-      type: string
-      description: 8 Bytes - hash of the generated proof-of-work. null when its pending block.
-    hash:
-      type: string
-      description: 32 Bytes - hash of the block. null when its pending block.
-eth_getTransactionByHash:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: 'A transaction object, or null when no transaction was found'
-          $ref: '#/transaction_object'
-transaction_object:
-  allOf:
-    - $ref: '#/hash_number_transactionIndex'
-    - $ref: '#/nonce_hash'
-    - type: object
-      properties:
-        from:
-          type: string
-          description: 20 Bytes - address of the sender
-        gas:
-          type: string
-          description: gas provided by the sender
-        gasPrice:
-          type: string
-          description: gas price provided by the sender in Wei
-        input:
-          type: string
-          description: the data send along with the transaction
-        r:
-          type: string
-          description: ECDSA signature r
-        s:
-          type: string
-          description: ECDSA signature s
-        to:
-          type: string
-          description: 20 Bytes - address of the receiver. null when it's a contract creation transaction
-        v:
-          type: string
-          description: ECDSA recovery id
-        value:
-          type: string
-          description: value transferred in Wei
-transaction_receipt:
-  description: 'A transaction receipt object, or null when no receipt was found'
-  allOf:
-    - $ref: '#/hash_number_transactionIndex'
-    - type: object
-      properties:
-        transactionHash:
-          type: string
-          description: 32 Bytes - hash of the transaction
-        from:
-          type: string
-          description: 20 Bytes - address of the sender
-        to:
-          type: string
-          description: 20 Bytes - address of the receiver. null when its a contract creation transaction
-        cumulativeGasUsed:
-          type: string
-          description: The total amount of gas used when this transaction was executed in the block.
-        gasUsed:
-          type: string
-          description: The amount of gas used by this specific transaction alone
-        contractAddress:
-          type: string
-          description: '20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null'
-        logs:
-          type: array
-          description: 'Array of log objects, which this transaction generated'
-          items:
-            $ref: '#/log_object'
-        logsBloom:
-          type: string
-          description: 256 Bytes - Bloom filter for light clients to quickly retrieve related logs
-        root:
-          type: string
-          description: 32 bytes of post-transaction stateroot (pre Byzantium)
-        status:
-          type: integer
-          description: Either 1 (success) or 0 (failure)
-          enum:
-            - 0
-            - 1
-        effectiveGasPrice:
-          type: string
-        type:
-          type: string
-eth_getTransactionReceipt:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          $ref: '#/transaction_receipt'
-eth_getBlockReceipts:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/transaction_receipt'
-eth_cancelPrivateTransaction:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: boolean
-eth_getProof:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: Object
-          description: An account object
-          properties:
-            balance:
-              type: string
-              description: the balance of the account
-            codeHash:
-              type: string
-              description: 32 Bytes - hash of the code of the account. For a simple Account without code it will return '0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
-            nonce:
-              type: string
-              description: nonce of the account.
-            storageHash:
-              type: string
-              description: 32 Bytes - SHA3 of the StorageRoot. All storage will deliver a MerkleProof starting with this rootHash.
-            accountProof:
-              type: array
-              items:
-                type: string
-              description: 'Array of rlp-serialized MerkleTree-Nodes, starting with the stateRoot-Node, following the path of the SHA3 (address) as key.'
-            storageProof:
-              type: array
-              items:
-                type: object
-                properties:
-                  key:
-                    type: string
-                    description: the requested storage key
-                  value:
-                    type: string
-                    description: the storage value
-                  proof:
-                    type: array
-                    items:
-                      type: string
-                    description: 'Array of rlp-serialized MerkleTree-Nodes, starting with the storageHash-Node, following the path of the SHA3 (key) as path.'
-string_result_response:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: string
-eth_feeHistory:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: object
-          required:
-            - OLDESTBLOCK
-            - BASEFEEPERGAS
-            - GASUSEDRATIO
-          properties:
-            OLDESTBLOCK:
-              type: integer
-              format: int64
-              description: Lowest number block of the returned range.
-            BASEFEEPERGAS:
-              type: array
-              description: 'An array of block base fees per gas. This includes the next block after the newest of the returned range, because this value can be derived from the newest block. Zeroes are returned for pre-EIP-1559 blocks.'
-              items:
-                type: string
-            GASUSEDRATIO:
-              type: array
-              items:
-                type: number
-            REWARD:
-              type: array
-              items:
-                type: array
-                items:
-                  type: string
-net_version:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: string
-          description: 'The current network id. 1 - Ethereum Mainnet, 2 - Morden Testnet (deprecated), 3 - Ropsten Testnet, 4 - Rinkeby Testnet, 42 - Kovan Testnet,'
-          enum:
-            - '1'
-            - '2'
-            - '3'
-            - '4'
-            - '42'
-eth_subscribe:
-  type: object
-  properties:
-    jsonrpc:
-      default: '2.0'
-      type: string
-      enum:
-        - '2.0'
-      description: Always '2.0'.
-    method:
-      type: string
-      default: eth_subscription
-      enum:
-        - eth_subscription
-      description: Always 'eth_subscription'.
-    params:
-      type: object
-      properties:
-        subscription:
-          type: string
-          description: The subscription ID returned by the eth_subscription call which created this subscription.
-        result:
-          description: An object whose contents vary depending on the type of subscription.
-          oneOf:
-            - $ref: '#/transaction_object'
-            - type: string
-            - $ref: '#/block_object'
-            - $ref: '#/log_object'
-            - type: object
-              properties:
-                syncing:
-                  type: boolean
-                status:
-                  type: object
-                  properties:
-                    startingBlock:
-                      type: integer
-                    currentBlock:
-                      type: integer
-                    highestBlock:
-                      type: integer
-                    pulledStates:
-                      type: integer
-                    knownStates:
-                      type: integer
-alchemy_getTokenAllowance:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: string
-          description: The allowance amount.
-alchemy_getTokenBalances:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: object
-          properties:
-            address:
-              type: string
-              description: 'DATA, 20 Bytes - The address for which token balances were checked.'
-            tokenBalances:
-              type: array
-              description: Array - returns an array of token balance objects. One of tokenBalance or error will be null.
-              items:
-                type: object
-                properties:
-                  contractAddress:
-                    type: string
-                  tokenBalance:
-                    type: string
-                  error:
-                    type: string
-alchemy_getTokenMetadata:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: object
-          properties:
-            name:
-              type: string
-              description: String - The token's name. null if not defined in the contract and not available from other sources.
-            symbol:
-              type: string
-              description: String - The token's symbol. null if not defined in the contract and not available from other sources.
-            decimals:
-              type: number
-              description: Number - The number of decimals of the token. null if not defined in the contract and not available from other sources.
-            logo:
-              type: string
-              description: String - URL of the token's logo image. null if not available.
-trace_call:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          $ref: '#/trace_block'
-trace_block:
-  type: object
-  properties:
-    output:
-      type: string
-    stateDiff:
-      type: string
-    trace:
-      type: array
-      items:
-        type: object
-        properties:
-          action:
-            $ref: '#/action_object'
-          error:
-            type: string
-          subtraces:
-            type: string
-          traceAddress:
-            type: array
-            items:
-              type: string
-          type:
-            type: string
-    vmTrace:
-      type: string
-action_object:
-  type: object
-  properties:
-    callType:
-      type: string
-    from:
-      type: string
-    gas:
-      type: string
-    input:
-      type: string
-    to:
-      type: string
-    value:
-      type: string
-trace_callMany:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/trace_block'
-trace_filter:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/trace_filter_object'
-trace_filter_object:
-  type: object
-  properties:
-    action:
-      $ref: '#/action_object'
-    blockHash:
-      type: string
-    blockNumber:
-      type: string
-    result:
-      type: object
-      properties:
-        gasUsed:
-          type: string
-        output:
-          type: string
-        subtraces:
-          type: integer
-        traceAddress:
-          type: array
-          items:
-            type: string
-        transactionHash:
-          type: string
-        transactionPosition:
-          type: string
-        type:
-          type: string
-trace_get_object:
-  type: object
-  properties:
-    action:
-      $ref: '#/action_object'
-    blockHash:
-      type: string
-    blockNumber:
-      type: string
-    result:
-      type: object
-      properties:
-        gasUsed:
-          type: string
-        output:
-          type: string
-    subtraces:
-      type: integer
-    traceAddress:
-      type: array
-      items:
-        type: string
-    transactionHash:
-      type: string
-    transactionPosition:
-      type: string
-    type:
-      type: string
-trace_get:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          $ref: '#/trace_get_object'
-trace_transaction:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/trace_get_object'
-trace_replayBlockTransactions:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: array
-          items:
-            allOf:
-              - $ref: '#/trace_block'
-              - type: object
-                properties:
-                  transactionHash:
-                    type: string
 getBlockHeight:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -599,7 +15,7 @@ getBlockHeight:
           description: A slot integer denoting the target block number.
 getBlock:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -732,7 +148,7 @@ meta:
               type: object
 getBlocks:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -744,7 +160,7 @@ getBlocks:
             format: int64
 getBlockTime:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -754,7 +170,7 @@ getBlockTime:
           format: int64
 getBlockCommitment:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -774,7 +190,7 @@ getBlockCommitment:
               description: 'Total active stake, in lamports, of the current epoch.'
 getBlockProduction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -801,7 +217,7 @@ getBlockProduction:
                   description: u64 - Last slot of block production information (inclusive).
 isBlockhashValid:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -810,7 +226,7 @@ isBlockhashValid:
           description: True if the blockhash is still valid.
 getAccountInfo:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -854,7 +270,7 @@ accountValue:
       description: 'u64, The epoch at which this account will next owe rent.'
 getBalance:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -867,7 +283,7 @@ getBalance:
               type: number
 getMultipleAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -883,7 +299,7 @@ getMultipleAccounts:
                 $ref: '#/accountValue'
 getProgramAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -898,7 +314,7 @@ getProgramAccounts:
               $ref: '#/accountValue'
 getVoteAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -940,7 +356,7 @@ getVoteAccounts:
                       type: integer
 getLargestAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -963,7 +379,7 @@ getLargestAccounts:
                     description: 'u64, Number of lamports in the account.'
 getClusterNodes:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -1002,7 +418,7 @@ getClusterNodes:
                 description: The configured shred version for the node.
 getVersion:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -1017,7 +433,7 @@ getVersion:
               description: "u64, Unique identifier of the current software's feature set."
 getEpochInfo:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -1051,7 +467,7 @@ getEpochInfo:
               description: u64 | null - Total number of transactions processed without error since genesis.
 getEpochSchedule:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -1079,7 +495,7 @@ getEpochSchedule:
               description: u64 - Minimum slots per epoch * (2.pow(firstNormalEpoch) - 1).
 getFeeForMessage:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -1095,7 +511,7 @@ getFeeForMessage:
               description: u64 - Fee corresponding to the message at the specified blockhash.
 getFirstAvailableBlock:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       nullable: true
       properties:
@@ -1105,7 +521,7 @@ getFirstAvailableBlock:
           description: u64 - Slot of the lowest confirmed block.
 getGenesisHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1113,7 +529,7 @@ getGenesisHash:
           description: Base-58 Encoded String - A transaction hash.
 getHighestSnapshotSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1130,7 +546,7 @@ getHighestSnapshotSlot:
               description: u64 | undefined - Highest incremental snapshot slot based on full if available.
 getMinimumBalanceForRentExemption:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1139,7 +555,7 @@ getMinimumBalanceForRentExemption:
           description: u64 - Minimum lamports required in account.
 getRecentPerformanceSamples:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1166,7 +582,7 @@ getRecentPerformanceSamples:
                 description: u16 - Number of seconds in a sample window.
 getHealth:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1174,7 +590,7 @@ getHealth:
           description: 'String - If the node is healthy, returns "ok"; otherwise, a JSON RPC error response is returned.'
 getIdentity:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1185,7 +601,7 @@ getIdentity:
               description: 'Base-58 Encoded String, The identity pubkey of the current node.'
 getInflationGovernor:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1208,7 +624,7 @@ getInflationGovernor:
               description: f64 - Duration of foundation pool inflation in years.
 getInflationRate:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1229,7 +645,7 @@ getInflationRate:
               description: u64 - Epoch for which these values are valid.
 getInflationReward:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1257,7 +673,7 @@ getInflationReward:
               description: u8|undefined - Vote account commission when the reward was credited.
 getSupply:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1287,7 +703,7 @@ getSupply:
                   description: 'An array of account addresses of non-circulating accounts, as strings. If excludeNonCirculatingAccountsList is enabled, the returned array will be empty.'
 getSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1295,7 +711,7 @@ getSlot:
           description: u64 - Current slot.
 getSlotLeader:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1303,7 +719,7 @@ getSlotLeader:
           description: Base-58 Encoded String - Node identity Pubkey.
 getSlotLeaders:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1313,7 +729,7 @@ getSlotLeaders:
             type: string
 getMaxRetransmitSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1321,7 +737,7 @@ getMaxRetransmitSlot:
           description: u64 - Slot.
 minimumLedgerSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1329,7 +745,7 @@ minimumLedgerSlot:
           description: u64 - Minimum ledger slot.
 getTokenAccountBalance:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1351,7 +767,7 @@ getTokenAccountBalance:
                   description: 'The balance as a string, using mint-prescribed decimals.'
 getTokenAccountsByOwner:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1366,7 +782,7 @@ getTokenAccountsByOwner:
                   $ref: '#/accountValue'
 getTokenSupply:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1389,7 +805,7 @@ getTokenSupply:
                   description: 'String - The balance as a string, using mint-prescribed decimals.'
 getSignaturesForAddress:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1419,7 +835,7 @@ getSignaturesForAddress:
                 description: 'Estimated production time, as Unix timestamp (seconds since the Unix epoch) of when transaction was processed. null if not available.'
 getSignatureStatuses:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1450,7 +866,7 @@ getSignatureStatuses:
                     description: "The transaction's cluster confirmation status; either processed, confirmed, or finalized. See Commitment for more on optimistic confirmation."
 sendTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1458,7 +874,7 @@ sendTransaction:
           description: Base-58 Encoded String - First Transaction Signature embedded in the transaction  (transaction id).
 simulateTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1513,7 +929,7 @@ simulateTransaction:
                   description: The number of compute budget units consumed during the processing of this transaction.
 getTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_response_fields'
     - type: object
       properties:
         result:
@@ -1543,209 +959,3 @@ getTransaction:
               type: number
               nullable: true
               description: Transaction version. Undefined if maxSupportedTransactionVersion is not set in request params.
-bor_getAuthor:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: AUTHOR - address.
-          type: string
-bor_getCurrentValidators:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: List of current validators.
-          type: array
-          items:
-            type: object
-            properties:
-              ID:
-                type: integer
-              signer:
-                type: string
-              power:
-                type: integer
-              accum:
-                type: integer
-bor_getCurrentProposer:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: AUTHOR - address.
-          type: string
-bor_getRootHash:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: Hash
-          type: string
-eth_getSignersAtHash:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: List of HASH.
-          type: array
-          items:
-            type: string
-eth_getTransactionReceiptsByBlock:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: Array of transaction receipt objects.
-          type: array
-          items:
-            $ref: '#/transaction_receipt'
-eth_syncing:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          description: An object with sync status data or FALSE, when not syncing.
-          oneOf:
-            - type: object
-              properties:
-                startingBlock:
-                  type: string
-                  description: 'The block at which the import started (will only be reset, after the sync reached his head).'
-                currentBlock:
-                  type: string
-                  description: 'The current block, same as eth_blockNumber'
-                highestBlock:
-                  type: string
-                  description: 'The estimated highest block.'
-            - type: boolean
-alchemy_getAssetTransfers:
-  allOf:
-    - $ref: '#/CommonProperties'
-    - type: object
-      properties:
-        result:
-          type: object
-          description: 'An object with the following fields.'
-          properties:
-            pageKey:
-              type: string
-              description: 'Uuid of next page of results (if exists, else blank).'
-            transfers:
-              type: array
-              description: 'Array of objects - sorted in ascending order by block number, ties broken by category (external , internal, token transfers).'
-              items:
-                $ref: '#/transfer'
-transfer:
-  type: object
-  properties:
-    category:
-      type: string
-      description: "'external', 'internal', 'token', 'erc20', 'erc721', 'erc1155', 'specialnft' - label for the transfer."
-    token:
-      type: string
-      description: "'includes 'erc20' and 'erc721' transfers."
-    blockNum:
-      type: string
-      description: 'The block where the transfer occurred (hex string).'
-    from:
-      type: string
-      description: 'From address of transfer (hex string).'
-    to:
-      type: string
-      description: 'To address of transfer (hex string). null if contract creation.'
-    value:
-      type: string
-      nullable: true
-      description: 'Converted asset transfer value as a number (raw value divided by contract decimal). null if ERC721 transfer or contract decimal not available.'
-    erc721TokenId:
-      type: string
-      nullable: true
-      description: 'Raw ERC721 token id (hex string). null if not an ERC721 token transfer.'
-    erc1155Metadata:
-      type: string
-      nullable: true
-      description: 'A list of objects containing the ERC1155 tokenId (hex string) and value (hex string). null if not an ERC1155 transfer.'
-    tokenId:
-      type: string
-      description: 'Token ID for ERC721 (or other NFT) tokens.'
-    asset:
-      type: string
-      nullable: true
-      description: "ETH or the token's symbol. null if not defined in the contract and not available from other sources."
-    uniqueId:
-      type: string
-      description: 'A unique identifier for the transfer object.'
-    hash:
-      type: string
-      description: 'Transaction hash (hex string).'
-    rawContract:
-      type: object
-      properties:
-        value:
-          type: string
-          nullable: true
-          description: 'Raw transfer value (hex string). null if ERC721 or ERC1155 transfer.'
-        address:
-          type: string
-          nullable: true
-          description: 'Contract address (hex string). null if external or internal transfer.'
-        decimal:
-          type: string
-          nullable: true
-          description: 'Contract decimal (hex string). null if not defined in the contract and not available from other sources.'
-    metadata:
-      type: object
-      properties:
-        blockTimestamp:
-          type: string
-          description: 'Timestamp of the block from which the transaction event originated (ISO-formatted timestamp).'
-debug_traceTransaction:
-  type: object
-  properties:
-    gas:
-      type: integer
-      format: int32
-    returnValue:
-      type: string
-    structLogs:
-      type: array
-      items:
-        type: object
-        properties:
-          depth:
-            type: integer
-            description: 'The execution depth'
-          error:
-            type: string
-            description: 'If an error occurred, information about the error.'
-          gas:
-            type: integer
-            description: 'Number, the amount of gas remaining.'
-          gasCost:
-            type: integer
-            description: 'Number, the cost in wei of each unit of gas.'
-          memory:
-            type: object
-            nullable: true
-            description: "Object, a structure representing the contract's memory space"
-          op:
-            type: object
-            description: 'Object, an OpCode object representing the current opcode.'
-          pc:
-            type: integer
-            description: 'Number, the current program counter.'
-          stack:
-            type: array
-            items:
-              type: string
-            description: 'Array[big.Int], the EVM execution stack.'
-          storage:
-            type: object

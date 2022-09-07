@@ -25,7 +25,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_getTransactionReceipt
+                $ref: ../evm_body.yaml#/eth_getTransactionReceipt
         x-readme:
           samples-languages:
             - javascript
@@ -58,5 +58,5 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_getTransactionReceipt
+                  $ref: ../evm_responses.yaml#/eth_getTransactionReceipt
         operationId: eth-getTransactionReceipt

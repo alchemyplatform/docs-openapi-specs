@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getAccountInfo
+              $ref: solana_body.yaml#/getAccountInfo
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getAccountInfo
+                $ref: solana_responses.yaml#/getAccountInfo
       operationId: getAccountInfo
       x-readme:
         explorer-enabled: false

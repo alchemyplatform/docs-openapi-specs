@@ -25,12 +25,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_sendRawTransaction
+                $ref: ../evm_body.yaml#/eth_sendRawTransaction
         responses:
           '200':
             description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response
         operationId: eth-sendRawTransaction

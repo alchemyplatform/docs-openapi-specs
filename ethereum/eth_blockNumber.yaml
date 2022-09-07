@@ -27,7 +27,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_blockNumber
+                $ref: ../evm_body.yaml#/eth_blockNumber
         x-readme:
           samples-languages:
             - javascript
@@ -57,4 +57,4 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_blockNumber
+                  $ref: ../evm_responses.yaml#/eth_blockNumber

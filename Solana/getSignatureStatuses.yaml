@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getSignatureStatuses
+              $ref: solana_body.yaml#/getSignatureStatuses
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getSignatureStatuses
+                $ref: solana_responses.yaml#/getSignatureStatuses
       operationId: getSignatureStatuses
       x-readme:
         explorer-enabled: false

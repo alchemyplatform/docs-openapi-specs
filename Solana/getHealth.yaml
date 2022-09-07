@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getHealth
+              $ref: solana_body.yaml#/getHealth
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getHealth
+                $ref: solana_responses.yaml#/getHealth
       operationId: getHealth

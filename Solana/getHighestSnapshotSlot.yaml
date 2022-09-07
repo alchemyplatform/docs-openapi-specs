@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getHighestSnapshotSlot
+              $ref: solana_body.yaml#/getHighestSnapshotSlot
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getHighestSnapshotSlot
+                $ref: solana_responses.yaml#/getHighestSnapshotSlot
       operationId: getHighestSnapshotSlot

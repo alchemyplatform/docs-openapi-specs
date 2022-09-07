@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/alchemy_getTransactionReceipts_param
+              $ref: ../evm_body.yaml#/alchemy_getTransactionReceipts_param
       responses:
         '200':
           description: A list of transaction receipts for each transaction in this block.
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/transaction_receipt
+                $ref: ../evm_responses.yaml#/transaction_receipt
       operationId: alchemy-getTransactionReceipts

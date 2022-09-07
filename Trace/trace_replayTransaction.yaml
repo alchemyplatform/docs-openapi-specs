@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/trace_replayTransaction
+              $ref: ../evm_body.yaml#/trace_replayTransaction
       responses:
         '200':
           description: 'Returns - Block traces'
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/trace_call
+                $ref: ../evm_responses.yaml#/trace_call
       operationId: trace-replayTransaction
       x-readme:
         explorer-enabled: false

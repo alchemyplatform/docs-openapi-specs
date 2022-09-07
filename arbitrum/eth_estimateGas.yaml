@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_estimateGas_5
+              $ref: ../evm_body.yaml#/eth_estimateGas_5
       responses:
         '200':
           description: Returns the amount of gas used.
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/string_result_response
+                $ref: ../evm_responses.yaml#/string_result_response
       x-readme:
         explorer-enabled: false
         samples-languages:

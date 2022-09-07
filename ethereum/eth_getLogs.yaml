@@ -27,7 +27,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_getLogs
+                $ref: ../evm_body.yaml#/eth_getLogs
         x-readme:
           samples-languages:
             - javascript
@@ -88,4 +88,4 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_getLogs
+                  $ref: ../evm_responses.yaml#/eth_getLogs

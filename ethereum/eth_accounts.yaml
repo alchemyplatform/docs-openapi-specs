@@ -25,12 +25,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_accounts
+                $ref: ../evm_body.yaml#/eth_accounts
         responses:
           '200':
             description: Returns 20 Bytes - addresses owned by the client.
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response
         operationId: eth-accounts

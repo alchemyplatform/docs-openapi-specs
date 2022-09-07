@@ -25,7 +25,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_getBalance
+                $ref: ../evm_body.yaml#/eth_getBalance
         x-readme:
           samples-languages:
             - javascript
@@ -54,5 +54,5 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response
         operationId: eth-getBalance

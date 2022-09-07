@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/eth_feeHistory
+              $ref: ../evm_body.yaml#/eth_feeHistory
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/eth_feeHistory
+                $ref: ../evm_responses.yaml#/eth_feeHistory
       operationId: eth-feeHistory
       x-readme:
         explorer-enabled: false

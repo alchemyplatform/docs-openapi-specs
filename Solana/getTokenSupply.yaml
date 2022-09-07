@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getTokenSupply
+              $ref: solana_body.yaml#/getTokenSupply
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getTokenSupply
+                $ref: solana_responses.yaml#/getTokenSupply
       operationId: getTokenSupply
       x-readme:
         explorer-enabled: false

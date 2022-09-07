@@ -30,7 +30,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_subscribe
+                $ref: ../evm_body.yaml#/eth_subscribe
           description: |
             Accepts
             - Subscription Type.
@@ -42,7 +42,7 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_subscribe
+                  $ref: ../evm_responses.yaml#/eth_subscribe
         operationId: eth-subscribe
         x-readme:
           explorer-enabled: false

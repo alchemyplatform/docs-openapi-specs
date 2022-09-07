@@ -25,12 +25,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_getUncleByBlockNumberAndIndex
+                $ref: ../evm_body.yaml#/eth_getUncleByBlockNumberAndIndex
         responses:
           '200':
             description: ''
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_block
+                  $ref: ../evm_responses.yaml#/eth_block
         operationId: eth-getUncleByBlockNumberAndIndex

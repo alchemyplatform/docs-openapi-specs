@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/trace_get
+              $ref: ../evm_body.yaml#/trace_get
       responses:
         '200':
           description: 'Returns - Trace object.'
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/trace_get
+                $ref: ../evm_responses.yaml#/trace_get
       operationId: trace-get
       x-readme:
         explorer-enabled: false

@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getBlock
+              $ref: solana_body.yaml#/getBlock
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getBlock
+                $ref: solana_responses.yaml#/getBlock
       operationId: getBlock
       x-readme:
         explorer-enabled: false

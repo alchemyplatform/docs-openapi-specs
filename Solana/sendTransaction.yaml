@@ -21,14 +21,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/sendTransaction
+              $ref: solana_body.yaml#/sendTransaction
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/sendTransaction
+                $ref: solana_responses.yaml#/sendTransaction
       operationId: sendTransaction
       x-readme:
         explorer-enabled: false

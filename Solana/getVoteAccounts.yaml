@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getVoteAccounts
+              $ref: solana_body.yaml#/getVoteAccounts
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getVoteAccounts
+                $ref: solana_responses.yaml#/getVoteAccounts
       operationId: getVoteAccounts

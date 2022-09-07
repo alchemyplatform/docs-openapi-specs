@@ -25,14 +25,14 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../body.yaml#/eth_unsubscribe
+                $ref: ../evm_body.yaml#/eth_unsubscribe
         responses:
           '200':
             description: 'Returns true if a subscription was successfully cancelled, or false if no subscription existed with the given ID.'
             content:
               application/json:
                 schema:
-                  $ref: ../responses.yaml#/eth_cancelPrivateTransaction
+                  $ref: ../evm_responses.yaml#/eth_cancelPrivateTransaction
         operationId: eth-unsubscribe
         x-readme:
           explorer-enabled: false

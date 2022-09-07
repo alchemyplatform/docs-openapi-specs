@@ -21,12 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../body.yaml#/getClusterNodes
+              $ref: solana_body.yaml#/getClusterNodes
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/getClusterNodes
+                $ref: solana_responses.yaml#/getClusterNodes
       operationId: getClusterNodes
