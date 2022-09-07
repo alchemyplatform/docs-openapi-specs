@@ -1079,11 +1079,10 @@ trace_call:
               - $ref: '#/transaction_object'
                 description: Call options.
               - type: array
-                description: 'Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+                description: 'Type of trace, one or more of "trace" or "stateDiff".'
                 items:
                   type: string
                   enum:
-                    - vmTrace
                     - trace
                     - stateDiff
               - $ref: '#/defaultBlockParam'
@@ -1102,11 +1101,10 @@ trace_callMany:
           items:
             oneOf:
               - type: array
-                description: 'List of trace calls with the type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+                description: 'List of trace calls with the type of trace, one or more of "trace or "stateDiff".'
                 items:
                   type: string
                   enum:
-                    - vmTrace
                     - trace
                     - stateDiff
               - $ref: '#/defaultBlockParam'
@@ -1127,7 +1125,7 @@ trace_rawTransaction:
               - type: string
                 description: Raw transaction data.
               - type: array
-                description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+                description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
                 items:
                   type: string
 trace_replayBlockTransactions:
@@ -1146,7 +1144,7 @@ trace_replayBlockTransactions:
             oneOf:
               - $ref: '#/defaultBlockParam'
               - type: array
-                description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+                description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
                 items:
                   type: string
 trace_replayTransaction:
@@ -1166,7 +1164,7 @@ trace_replayTransaction:
               - type: string
                 description: Hash - Transaction hash.
               - type: array
-                description: 'Array - Type of trace, one or more of "vmTrace", "trace", "stateDiff".'
+                description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
                 items:
                   type: string
 trace_block:
