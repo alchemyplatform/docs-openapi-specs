@@ -27,5 +27,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../responses.yaml#/debug_traceTransaction
+                $ref: ../evm_responses.yaml#/debug_traceTransaction
       operationId: debug_traceTransaction
