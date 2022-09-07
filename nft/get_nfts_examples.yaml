@@ -41,7 +41,13 @@ byDefault:
             }
           ]
         },
-        "timeLastUpdated": "2022-02-16T22:52:54.719Z"
+        "timeLastUpdated": "2022-02-16T22:52:54.719Z",
+        "contractMetadata": {
+          "name": "DuskBreakers",
+          "symbol": "DUSK",
+          "totalSupply": "10000",
+          "tokenType": "ERC721"
+        }
       },
       {
         "contract": {
@@ -81,7 +87,13 @@ byDefault:
             }
           ]
         },
-        "timeLastUpdated": "2022-02-18T00:42:04.401Z"
+        "timeLastUpdated": "2022-02-18T00:42:04.401Z",
+        "contractMetadata": {
+          "name": "Chain Runners",
+          "symbol": "RUN",
+          "totalSupply": "10000",
+          "tokenType": "ERC721"
+        }
       }],
       "totalCount": 6,
       "blockHash": "0xeb2d26af5b6175344a14091777535a2cb21c681665a734a8285f889981987630"
