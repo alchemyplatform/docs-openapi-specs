@@ -21,8 +21,7 @@ eth_getBlockByHash:
             - eth_getBlockByHash
         params:
           type: array
-          description:
-            $ref: '#/blockHashAndBooleanTransaction'
+          description: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
           minItems: 2
           maxItems: 2
           prefixItems:
@@ -41,8 +40,7 @@ eth_getBlockByNumber:
             - eth_getBlockByNumber
         params:
           type: array
-          description:
-            $ref: '#/blockNumberBooleanTransaction'
+          description: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
           minItems: 2
           maxItems: 2
           prefixItems:
@@ -112,7 +110,7 @@ eth_getBlockTransactionCountByNumber:
 eth_getTransactionCount:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_blockNumber_param'
+    - $ref: '#/address_and_blockNumber_param'
     - type: object
       properties:
         method:
@@ -123,7 +121,7 @@ eth_getTransactionCount:
 eth_getTransactionByBlockHashAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockHash_index_param'
+    - $ref: '#/blockHash_and_index_param'
     - type: object
       properties:
         method:
@@ -134,7 +132,7 @@ eth_getTransactionByBlockHashAndIndex:
 eth_getTransactionByBlockNumberAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_index_param'
+    - $ref: '#/blockNumber_and_index_param'
     - type: object
       properties:
         method:
@@ -145,7 +143,7 @@ eth_getTransactionByBlockNumberAndIndex:
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumberOrBlockHash_param'
+    - $ref: '#/blockNumber_or_blockHash_param'
     - type: object
       properties:
         method:
@@ -156,7 +154,7 @@ eth_getBlockReceipts:
 eth_sendRawTransaction:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/transactionData_param'
+    - $ref: '#/signed_transaction_param'
     - type: object
       properties:
         method:
@@ -213,7 +211,7 @@ eth_cancelPrivateTransaction:
 eth_getBalance:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_blockNumber_param'
+    - $ref: '#/address_and_blockNumber_param'
     - type: object
       properties:
         method:
@@ -224,7 +222,7 @@ eth_getBalance:
 eth_getStorageAt:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_blockNumber_blockHash_param'
+    - $ref: '#/address_and_blockNumber_blockHash_param'
     - type: object
       properties:
         method:
@@ -235,7 +233,7 @@ eth_getStorageAt:
 eth_getCode:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_blockNumber_param'
+    - $ref: '#/address_and_blockNumber_param'
     - type: object
       properties:
         method:
@@ -264,8 +262,7 @@ eth_getProof:
           enum:
             - eth_getProof
         params:
-          description:
-            $ref: '#/address_storageKeys_blockNumber'
+          description: '<br/>1. String - 20 Bytes - Address of the account <br/>2. Array - 32 Bytes - array of storage-keys which should be proofed and included <br/>3. String - Integer block number (in hex), or the string ''latest'' or ''earliest''.'
           type: array
           minItems: 3
           maxItems: 3
@@ -624,17 +621,6 @@ eth_subscribe:
                 description: 'Indicates when the node starts or stops synchronizing. The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators.'
                 enum:
                   - syncing
-eth_unsubscribe:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - $ref: '#/subscriptionId_param'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_unsubscribe
-          enum:
-            - eth_unsubscribe
 eth_getTransactionReceiptsByBlock:
   allOf:
     - $ref: '#/common_request_fields'
@@ -663,287 +649,6 @@ eth_syncing:
           enum:
             - eth_syncing
 
-# ============ EVM Models ==============
-filter_options:
-  type: object
-  properties:
-    blockHash:
-      type: string
-      description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
-    address:
-      type: array
-      items:
-        type: string
-      description: Contract address or a list of addresses from which logs should originate.
-    fromBlock:
-      type: string
-      default: latest
-      description: 'Starting block number. hex value or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
-    toBlock:
-      type: string
-      default: latest
-      description: 'Ending block number. hex value, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
-    topics:
-      $ref: '#/topics'
-topics:
-  type: array
-  description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
-  items:
-    type: string
-common_request_fields:
-  type: object
-  properties:
-    id:
-      type: integer
-      default: 1
-    jsonrpc:
-      type: string
-      default: '2.0'
-defaultBlockParam:
-  type: string
-  description: The following options are possible for the defaultBlock parameter. An integer block number (in hex). String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' for the pending state/transactions.
-eth_call_550_gas:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_550'
-              - $ref: '#/defaultBlockParam'
-eth_call_5_gas:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_5'
-              - $ref: '#/defaultBlockParam'
-eth_call_50_gas:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_50'
-              - $ref: '#/defaultBlockParam'
-transaction_object:
-  type: object
-  description: The transaction call object
-  properties:
-    from:
-      type: string
-      description: 20 Bytes - The address the transaction is sent from.
-    to:
-      type: string
-      description: 20 Bytes - The address the transaction is directed to
-    gasPrice:
-      type: string
-      description: |
-        Integer of the gasPrice used for each paid gas.
-        <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
-    value:
-      type: string
-      description: Integer of the value sent with this transaction
-    data:
-      type: string
-      description: Hash of the method signature and encoded parameters
-  required:
-    - to
-gas_50:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>50</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-gas_5:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>5</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-gas_550:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-transactionHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/transactionHash'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-blockNumber_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumber'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-address_blockNumber_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/address_blockNumber'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-blockHash_index_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockHash_index'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-
-blockNumber_index_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumber_index'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-blockNumberOrBlockHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumberOrBlockHash'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-transactionData_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/transactionData'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-address_blockNumber_blockHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/address_blockNumber_blockHash'
-      minItems: 3
-      maxItems: 3
-      items:
-        type: string
-blockNumber_uncleIndex_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/blockNumber_uncleIndex'
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-filterId_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/filterId'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-shaHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/shaHash'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-subscriptionId_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description:
-        $ref: '#/subscriptionId'
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-
-
 # ============= Transaction Receipts API Method ===============
 alchemy_getTransactionReceipts_param:
   allOf:
@@ -957,8 +662,7 @@ alchemy_getTransactionReceipts_param:
             - alchemy_getTransactionReceipts
         params:
           type: array
-          description:
-            $ref: '#/alchemy_getTransactionReceipts'
+          description: 'The api only takes in one parameter - an object with at least a blockNumber or blockHash. If both are provided, blockHash is prioritized.'
           minItems: 1
           maxItems: 1
           items:
@@ -1457,20 +1161,259 @@ debug_traceTransaction:
           type: string
           description: 'Overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Valid values are described <a href="https://golang.org/pkg/time/#ParseDuration">here</a>.'
 
-# ============= Other Definitions ===============
-blockHashAndBooleanTransaction: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
-blockNumberBooleanTransaction: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
-transactionHash: String - 32 Bytes - Hash of a transaction
-blockNumber: 'String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending''.'
-address_blockNumber: '<br/>1. String - 20 Bytes - Address <br/>2. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
-blockHash_index: <br/>1. String - 32 Bytes - Hash of a block <br/>2. String - Integer of the transaction index position.
-blockNumber_index: '<br/>String - 1. A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The transaction index position.'
-blockNumberOrBlockHash: 'String - Block number or block hash to fetch transaction receipts for, or the string ''earliest'', ''latest'' or ''pending''.'
-transactionData: String - The signed transaction data.
-address_blockNumber_blockHash: '<br/>1. String - 20 Bytes - address of the storage <br/>2. String - Integer of the position in the storage. <br/>3. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
-address_storageKeys_blockNumber: '<br/>1. String - 20 Bytes - Address of the account <br/>2. Array - 32 Bytes - array of storage-keys which should be proofed and included <br/>3. String - Integer block number, or the string ''latest'' or ''earliest''.'
-blockNumber_uncleIndex: '<br/>1. String - A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The uncle''s index position.'
-filterId: String - The filter id.
-shaHash: String - The data in hex form to convert into a SHA3 hash.
-subscriptionId: 'String - Subscription ID, as previously returned from an eth_subscribe call.'
-alchemy_getTransactionReceipts: 'The api only takes in one parameter - an object with at least a blockNumber or blockHash. If both are provided, blockHash is prioritized.'
+# ============ EVM Models ==============
+common_request_fields:
+  type: object
+  properties:
+    id:
+      type: integer
+      default: 1
+    jsonrpc:
+      type: string
+      default: '2.0'
+filter_options:
+  type: object
+  properties:
+    blockHash:
+      type: string
+      description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
+    address:
+      type: array
+      items:
+        type: string
+      description: Contract address or a list of addresses from which logs should originate.
+    fromBlock:
+      type: string
+      default: latest
+      description: 'Starting block number. hex value or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+    toBlock:
+      type: string
+      default: latest
+      description: 'Ending block number. hex value, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
+    topics:
+      $ref: '#/topics'
+topics:
+  type: array
+  description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
+  items:
+    type: string
+defaultBlockParam:
+  type: string
+  description: The following options are possible for the defaultBlock parameter. An integer block number (in hex). String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' for the pending state/transactions.
+eth_call_550_gas:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/defaultBlockParam'
+eth_call_5_gas:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_5'
+              - $ref: '#/defaultBlockParam'
+eth_call_50_gas:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_call
+          enum:
+            - eth_call
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_50'
+              - $ref: '#/defaultBlockParam'
+transaction_object:
+  type: object
+  description: The transaction call object
+  properties:
+    from:
+      type: string
+      description: 20 Bytes - The address the transaction is sent from.
+    to:
+      type: string
+      description: 20 Bytes - The address the transaction is directed to
+    gasPrice:
+      type: string
+      description: |
+        Integer of the gasPrice used for each paid gas.
+        <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
+    value:
+      type: string
+      description: Integer of the value sent with this transaction
+    data:
+      type: string
+      description: Hash of the method signature and encoded parameters
+  required:
+    - to
+gas_50:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>50</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+gas_5:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>5</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+gas_550:
+  type: object
+  properties:
+    gas:
+      type: string
+      description: |
+        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions. 
+        </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
+transactionHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: String - 32 Bytes - Hash of a transaction
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+blockNumber_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: 'String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending''.'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+address_and_blockNumber_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: '<br/>1. String - 20 Bytes - Address <br/>2. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockHash_and_index_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: <br/>1. String - 32 Bytes - Hash of a block <br/>2. String - Integer of the transaction index position.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumber_and_index_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: '<br/>String - 1. A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The transaction index position.'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumber_or_blockHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: 'String - Block number or block hash to fetch transaction receipts for, or the string ''earliest'', ''latest'' or ''pending''.'
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+signed_transaction_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: String - The signed transaction data.
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+address_blockNumber_blockHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: '<br/>1. String - 20 Bytes - address of the storage <br/>2. String - Integer of the slot position in the storage (in hex). <br/>3. String - Integer block number (in hex), or the string ''latest'', ''earliest'' or ''pending''.'
+      minItems: 3
+      maxItems: 3
+      items:
+        type: string
+blockNumber_uncleIndex_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: '<br/>1. String - Integer block number (in hex), or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The uncle''s index position (in hex)'
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+filterId_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: String - The filter id.
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+shaHash_param:
+  type: object
+  properties:
+    params:
+      type: array
+      description: String - The data in hex form to convert into a SHA3 hash.
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
