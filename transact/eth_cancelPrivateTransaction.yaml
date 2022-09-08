@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Writing Transactions
+  title: eth_cancelPrivateTransaction
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemyapi.io/v2'
