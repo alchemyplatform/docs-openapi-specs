@@ -761,28 +761,6 @@ trace_call:
                     - trace
                     - stateDiff
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-trace_callMany:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: trace_callMany
-          enum:
-            - trace_callMany
-        params:
-          type: array
-          items:
-            oneOf:
-              - type: array
-                description: 'List of trace calls with the type of trace, one or more of "trace or "stateDiff".'
-                items:
-                  type: string
-                  enum:
-                    - trace
-                    - stateDiff
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
 trace_rawTransaction:
   allOf:
     - $ref: '#/common_request_fields'
