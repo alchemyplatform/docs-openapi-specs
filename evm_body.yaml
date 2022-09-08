@@ -143,7 +143,7 @@ eth_getTransactionByBlockHashAndIndex:
 eth_getTransactionByBlockNumberAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_and_index_param'
+    - $ref: '#/blockNumber_and_index_param_eth'
     - type: object
       properties:
         method:
@@ -154,7 +154,7 @@ eth_getTransactionByBlockNumberAndIndex:
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_or_blockHash_param'
+    - $ref: '#/blockNumber_or_blockHash_param_eth'
     - type: object
       properties:
         method:
@@ -471,7 +471,7 @@ eth_getUncleByBlockHashAndIndex:
 eth_getUncleByBlockNumberAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_uncleIndex_param'
+    - $ref: '#/blockNumber_uncleIndex_param_eth'
     - type: object
       properties:
         method:
@@ -594,7 +594,7 @@ web3_sha3:
 eth_getTransactionReceiptsByBlock:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_or_blockHash_param'
+    - $ref: '#/blockNumber_or_blockHash_param_eth'
     - type: object
       properties:
         method:
@@ -1271,49 +1271,6 @@ blockHash_param:
       maxItems: 1
       items:
         type: string
-
-blockNumber_or_blocktag_param_eth:
-  type: string
-  description: | 
-    String - Either the hex value of a **block number** OR One of the following **block tags**: 
-      * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
-      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-      * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
-      * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
-      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-
-blockNumber_or_blocktag_param_l2:
-  type: string
-  properties:
-    params:
-      type: array
-      description: | 
-        String - Either the hex value of a **block number** OR One of the following **block tags**: 
-          * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
-          * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-          * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-
-address_and_blockNumber_param_eth:
-  type: object
-  properties:
-    params:
-      type: array
-      description: | 
-        1. String - 20 Bytes - Address
-        2. String - Either the hex value of a **block number** OR One of the following **block tags**: 
-            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
-            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
-            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
-            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
 blockHash_and_index_param:
   type: object
   properties:
@@ -1326,42 +1283,6 @@ blockHash_and_index_param:
       maxItems: 2
       items:
         type: string
-blockNumber_and_index_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description: | 
-        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
-            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
-            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
-            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
-            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-        2. String - The transaction index position (in hex)
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-blockNumber_or_blockHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description: | 
-        String - One of the following options:
-          1. **block hash** 
-          2. **block number** (in hex)
-          3. One of the following **block tags**: 
-            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
-            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
-            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
-            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.      
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
 signed_transaction_param:
   type: object
   properties:
@@ -1372,7 +1293,6 @@ signed_transaction_param:
       maxItems: 1
       items:
         type: string
-
 blockHash_uncleIndex_param:
   type: object
   properties:
@@ -1380,23 +1300,6 @@ blockHash_uncleIndex_param:
       type: array
       description: |
         1. String - 32 Bytes - Hash of a block 
-        2. String - The uncle''s index position (in hex)
-      minItems: 2
-      maxItems: 2
-      items:
-        type: string
-blockNumber_uncleIndex_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description: | 
-        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
-            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
-            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
-            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
-            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
         2. String - The uncle''s index position (in hex)
       minItems: 2
       maxItems: 2
@@ -1420,5 +1323,157 @@ shaHash_param:
       description: String - The data in hex form to convert into a SHA3 hash.
       minItems: 1
       maxItems: 1
+      items:
+        type: string
+
+# ======= Definitions for blockNumber methods ==========
+# After the merge, Ethereum offers more block tags than other EVM chains so we separated them out
+
+blockNumber_or_blocktag_param_eth:
+  type: string
+  description: | 
+    String - Either the hex value of a **block number** OR One of the following **block tags**: 
+      * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+      * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+      * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+blockNumber_or_blocktag_param_l2:
+  type: string
+  description: | 
+    String - Either the hex value of a **block number** OR One of the following **block tags**: 
+      * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+address_and_blockNumber_param_eth:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        1. String - 20 Bytes - Address
+        2. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+address_and_blockNumber_param_l2:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        1. String - 20 Bytes - Address
+        2. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumber_and_index_param_eth:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The transaction index position (in hex)
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumber_and_index_param_eth_l2:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The transaction index position (in hex)
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumber_or_blockHash_param_eth:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        String - One of the following options:
+          1. **block hash** 
+          2. **block number** (in hex)
+          3. One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.      
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+blockNumber_or_blockHash_param_l2:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        String - One of the following options:
+          1. **block hash** 
+          2. **block number** (in hex)
+          3. One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.      
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+blockNumber_uncleIndex_param_eth:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The uncle''s index position (in hex)
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+blockNumber_uncleIndex_param_l2:
+  type: object
+  properties:
+    params:
+      type: array
+      description: | 
+        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The uncle''s index position (in hex)
+      minItems: 2
+      maxItems: 2
       items:
         type: string
