@@ -21,7 +21,9 @@ eth_getBlockByHash:
             - eth_getBlockByHash
         params:
           type: array
-          description: '<br/>1. String - Hash of block <br/>2. Boolean - If true it returns the full transaction objects, if false it returns only the hashes of the transactions.'
+          description: | 
+            1. String - Hash of block
+            2. Boolean - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions. Defaults to `false`.
           minItems: 2
           maxItems: 2
           prefixItems:
@@ -40,13 +42,18 @@ eth_getBlockByNumber:
             - eth_getBlockByNumber
         params:
           type: array
-          description: '<br/>1. String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. Boolean  If true it returns the full transaction objects, if false only the hashes of the transactions.'
+          description: | 
+            1. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+                * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+                * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+                * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+                * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+                * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+            2. Boolean - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions. Defaults to `false`.
           minItems: 2
           maxItems: 2
-          prefixItems:
-            types:
-              - string
-              - boolean
+          items:
+            type: string
 eth_getLogs:
   allOf:
     - $ref: '#/common_request_fields'
@@ -88,7 +95,7 @@ eth_getTransactionReceipt:
 eth_getBlockTransactionCountByHash:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/transactionHash_param'
+    - $ref: '#/blockHash_param'
     - type: object
       properties:
         method:
@@ -99,7 +106,6 @@ eth_getBlockTransactionCountByHash:
 eth_getBlockTransactionCountByNumber:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_param'
     - type: object
       properties:
         method:
@@ -107,10 +113,15 @@ eth_getBlockTransactionCountByNumber:
           default: eth_getBlockTransactionCountByNumber
           enum:
             - eth_getBlockTransactionCountByNumber
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_getTransactionCount:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_param'
+    - $ref: '#/address_and_blockNumber_param_eth'
     - type: object
       properties:
         method:
@@ -211,7 +222,7 @@ eth_cancelPrivateTransaction:
 eth_getBalance:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_param'
+    - $ref: '#/address_and_blockNumber_param_eth'
     - type: object
       properties:
         method:
@@ -222,7 +233,6 @@ eth_getBalance:
 eth_getStorageAt:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_blockHash_param'
     - type: object
       properties:
         method:
@@ -230,10 +240,25 @@ eth_getStorageAt:
           default: eth_getStorageAt
           enum:
             - eth_getStorageAt
+        params:
+          type: array
+          description: |
+            1. String - 20 Bytes - address of the storage 
+            2. String - Integer of the slot position in the storage (in hex)
+            3. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+              * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+              * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+              * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+              * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+              * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+          minItems: 3
+          maxItems: 3
+          items:
+            type: string
 eth_getCode:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_param'
+    - $ref: '#/address_and_blockNumber_param_eth'
     - type: object
       properties:
         method:
@@ -262,7 +287,15 @@ eth_getProof:
           enum:
             - eth_getProof
         params:
-          description: '<br/>1. String - 20 Bytes - Address of the account <br/>2. Array - 32 Bytes - array of storage-keys which should be proofed and included <br/>3. String - Integer block number (in hex), or the string ''latest'' or ''earliest''.'
+          description: | 
+            1. String - 20 Bytes - Address of the account
+            2. Array - 32 Bytes - array of storage-keys which should be proofed and included
+            3. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+              * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+              * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+              * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+              * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+              * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
           type: array
           minItems: 3
           maxItems: 3
@@ -311,7 +344,7 @@ eth_estimateGas_550:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_estimateGas_5:
   allOf:
     - $ref: '#/common_request_fields'
@@ -331,7 +364,7 @@ eth_estimateGas_5:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_5'
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_estimateGas_50:
   allOf:
     - $ref: '#/common_request_fields'
@@ -351,7 +384,7 @@ eth_estimateGas_50:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_50'
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_feeHistory:
   allOf:
     - $ref: '#/common_request_fields'
@@ -427,7 +460,7 @@ net_listening:
 eth_getUncleByBlockHashAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_uncleIndex_param'
+    - $ref: '#/blockHash_uncleIndex_param'
     - type: object
       properties:
         method:
@@ -449,7 +482,7 @@ eth_getUncleByBlockNumberAndIndex:
 eth_getUncleCountByBlockHash:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/transactionHash_param'
+    - $ref: '#/blockHash_param'
     - type: object
       properties:
         method:
@@ -460,7 +493,7 @@ eth_getUncleCountByBlockHash:
 eth_getUncleCountByBlockNumber:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_param'
+    - $ref: '#/blockNumber_or_blocktag_param_eth'
     - type: object
       properties:
         method:
@@ -558,72 +591,10 @@ web3_sha3:
           default: web3_sha3
           enum:
             - web3_sha3
-eth_subscribe:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_subscribe
-          enum:
-            - eth_subscribe
-        params:
-          type: array
-          minItems: 1
-          maxItems: 3
-          items:
-            oneOf:
-              - type: string
-                description: 'Returns the transaction information for all transactions that are added to the pending state. This subscription type subscribes to pending transactions, similar to the standard Web3 call web3.eth.subscribe(''pendingTransactions''), but differs in that it emits full transaction information rather than just transaction hashes.'
-                enum:
-                  - alchemy_newFullPendingTransactions
-              - oneOf:
-                  - type: string
-                    description: 'Returns the transaction information for all transactions that are added to the pending state that match a given filter. Currently supports an address filter, which will return transactions from or to the address.'
-                    enum:
-                      - alchemy_filteredNewFullPendingTransactions
-                  - type: object
-                    properties:
-                      address:
-                        type: string
-              - type: string
-                description: Returns the hash for all transactions that are added to the pending state.
-                enum:
-                  - newPendingTransactions
-              - type: string
-                description: 'Emits an event any time a new header is added to the chain, including during a chain reorganization.'
-                enum:
-                  - newHeads
-              - oneOf:
-                  - type: string
-                    description: Emits logs which are part of newly added blocks that match specified filter criteria.
-                    enum:
-                      - logs
-                  - type: object
-                    description: An object.
-                    properties:
-                      address:
-                        description: Either a string representing an address or an array of such strings. Only logs created from one of these addresses will be emitted.
-                        oneOf:
-                          - type: string
-                          - type: array
-                            items:
-                              type: string
-                      topics:
-                        description: An array of topic specifiers.
-                        oneOf:
-                          - type: string
-                          - type: array
-                            items:
-                              type: string
-              - type: string
-                description: 'Indicates when the node starts or stops synchronizing. The result can either be a boolean indicating that the synchronization has started (true), finished (false) or an object with various progress indicators.'
-                enum:
-                  - syncing
 eth_getTransactionReceiptsByBlock:
   allOf:
     - $ref: '#/common_request_fields'
+    - $ref: '#/blockNumber_or_blockHash_param'
     - type: object
       properties:
         method:
@@ -789,7 +760,7 @@ trace_call:
                   enum:
                     - trace
                     - stateDiff
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 trace_callMany:
   allOf:
     - $ref: '#/common_request_fields'
@@ -811,7 +782,7 @@ trace_callMany:
                   enum:
                     - trace
                     - stateDiff
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 trace_rawTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -846,7 +817,7 @@ trace_replayBlockTransactions:
           type: array
           items:
             oneOf:
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
               - type: array
                 description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
                 items:
@@ -889,7 +860,7 @@ trace_block:
             - An integer block number (in hex)
             - String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' - for the pending state/transactions.
           items:
-            $ref: '#/defaultBlockParam'
+            $ref: '#/blockNumber_or_blocktag_param_eth'
 trace_filter:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1183,13 +1154,11 @@ filter_options:
         type: string
       description: Contract address or a list of addresses from which logs should originate.
     fromBlock:
-      type: string
+      $ref: '#/blockNumber_or_blocktag_param_eth'
       default: latest
-      description: 'Starting block number. hex value or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
     toBlock:
-      type: string
+      $ref: '#/blockNumber_or_blocktag_param_eth'
       default: latest
-      description: 'Ending block number. hex value, or ''latest'' for the last mined block, ''pending'', ''earliest'' for not yet mined transactions.'
     topics:
       $ref: '#/topics'
 topics:
@@ -1197,9 +1166,6 @@ topics:
   description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
   items:
     type: string
-defaultBlockParam:
-  type: string
-  description: The following options are possible for the defaultBlock parameter. An integer block number (in hex). String 'earliest' for the earliest/genesis block. String 'latest' - for the latest mined block. String 'pending' for the pending state/transactions.
 eth_call_550_gas:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1219,7 +1185,7 @@ eth_call_550_gas:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_call_5_gas:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1239,7 +1205,7 @@ eth_call_5_gas:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_5'
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_call_50_gas:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1259,7 +1225,7 @@ eth_call_50_gas:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_50'
-              - $ref: '#/defaultBlockParam'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 transaction_object:
   type: object
   description: The transaction call object
@@ -1317,22 +1283,55 @@ transactionHash_param:
       maxItems: 1
       items:
         type: string
-blockNumber_param:
+blockHash_param:
   type: object
   properties:
     params:
       type: array
-      description: 'String - Integer of a block number, or the string ''earliest'', ''latest'' or ''pending''.'
+      description: String - 32 Bytes - Hash of a block
       minItems: 1
       maxItems: 1
       items:
         type: string
-address_and_blockNumber_param:
+
+blockNumber_or_blocktag_param_eth:
+  type: string
+  description: | 
+    String - Either the hex value of a **block number** OR One of the following **block tags**: 
+      * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+      * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+      * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+
+blockNumber_or_blocktag_param_l2:
+  type: string
+  properties:
+    params:
+      type: array
+      description: | 
+        String - Either the hex value of a **block number** OR One of the following **block tags**: 
+          * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+          * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+          * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+      minItems: 1
+      maxItems: 1
+      items:
+        type: string
+
+address_and_blockNumber_param_eth:
   type: object
   properties:
     params:
       type: array
-      description: '<br/>1. String - 20 Bytes - Address <br/>2. String - Integer block number, or the string ''latest'', ''earliest'' or ''pending''.'
+      description: | 
+        1. String - 20 Bytes - Address
+        2. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
       minItems: 2
       maxItems: 2
       items:
@@ -1342,7 +1341,9 @@ blockHash_and_index_param:
   properties:
     params:
       type: array
-      description: <br/>1. String - 32 Bytes - Hash of a block <br/>2. String - Integer of the transaction index position.
+      description: |
+        1. String - 32 Bytes - Hash of a block 
+        2. String - Integer of the transaction index position (in hex).
       minItems: 2
       maxItems: 2
       items:
@@ -1352,7 +1353,14 @@ blockNumber_and_index_param:
   properties:
     params:
       type: array
-      description: '<br/>String - 1. A block number, or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The transaction index position.'
+      description: | 
+        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The transaction index position (in hex)
       minItems: 2
       maxItems: 2
       items:
@@ -1362,7 +1370,16 @@ blockNumber_or_blockHash_param:
   properties:
     params:
       type: array
-      description: 'String - Block number or block hash to fetch transaction receipts for, or the string ''earliest'', ''latest'' or ''pending''.'
+      description: | 
+        String - One of the following options:
+          1. **block hash** 
+          2. **block number** (in hex)
+          3. One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.      
       minItems: 1
       maxItems: 1
       items:
@@ -1377,14 +1394,17 @@ signed_transaction_param:
       maxItems: 1
       items:
         type: string
-address_blockNumber_blockHash_param:
+
+blockHash_uncleIndex_param:
   type: object
   properties:
     params:
       type: array
-      description: '<br/>1. String - 20 Bytes - address of the storage <br/>2. String - Integer of the slot position in the storage (in hex). <br/>3. String - Integer block number (in hex), or the string ''latest'', ''earliest'' or ''pending''.'
-      minItems: 3
-      maxItems: 3
+      description: |
+        1. String - 32 Bytes - Hash of a block 
+        2. String - The uncle''s index position (in hex)
+      minItems: 2
+      maxItems: 2
       items:
         type: string
 blockNumber_uncleIndex_param:
@@ -1392,7 +1412,14 @@ blockNumber_uncleIndex_param:
   properties:
     params:
       type: array
-      description: '<br/>1. String - Integer block number (in hex), or the string ''earliest'', ''latest'' or ''pending'' <br/>2. String - The uncle''s index position (in hex)'
+      description: | 
+        1. String - either the hex value of a **block number** OR One of the following **block tags**: 
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The uncle''s index position (in hex)
       minItems: 2
       maxItems: 2
       items:
