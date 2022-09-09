@@ -26,7 +26,7 @@ paths:
         - $ref: nfts_body.yaml#/pageKey
           description: 'String - Cursor key for pagination. If more results are available, a pageKey will be returned in the response. Pass back that pageKey as a param to fetch the next 100 NFTs.'
         - $ref: nfts_body.yaml#/pageSize
-          description: 'String - Number of NFTs to be returned per page. Defaults to 100. Max is 100. NOTE: This parameter is not supported on the Rinkeby testnet.'
+          description: 'String - Number of NFTs to be returned per page. Defaults to 100. Max is 100. NOTE: This parameter is supported on all networks EXCEPT for the deprecated Ethereum testnets (i.e. Rinkeby, Kovan, etc.)'
         - $ref: nfts_body.yaml#/contractAddresses
           description: Array of contract addresses to filter the responses with. Max limit 20 contracts.
         - $ref: nfts_body.yaml#/withMetadata
