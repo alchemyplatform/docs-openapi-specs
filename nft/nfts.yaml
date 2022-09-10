@@ -649,6 +649,50 @@ paths:
                     type: boolean
                     description: 'Whether the given wallet owns any token in the given NFT collection.'
       operationId: isHolderOfCollection
+  '/{apiKey}/getNFTSales':
+    get:
+      summary: getNFTSales
+      description: Gets NFT sales that have happened through on-chain marketplaces
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: nfts_body.yaml#/apiKey
+        - $ref: nfts_body.yaml#/startBlock
+          description: String - The block number to start fetching NFT sales data from. Allowed values are decimal integers and "latest". Defaults to "latest".
+        - $ref: nfts_body.yaml#/startLogIndex
+          description: Integer - The log index within the startBlock to start fetching NFT sales data from.
+        - $ref: nfts_body.yaml#/startBundleIndex
+          description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from.
+        - $ref: nfts_body.yaml#/ascendingOrder
+          description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending.
+        - $ref: nfts_body.yaml#/marketplace
+          description: Enum - The name of the NFT marketplace to filter sales by. Currently only "seaport" is supported.
+        - $ref: nfts_body.yaml#/contractAddress
+          description: String - The contract address of a NFT collection to filter sales by.
+        - $ref: nfts_body.yaml#/tokenId
+          description: String - The token id of an NFT within the collection specified by contractAddress to filter sales by.
+        - $ref: nfts_body.yaml#/buyerAddress
+          description: String - The address of the NFT buyer to filter sales by.
+        - $ref: nfts_body.yaml#/sellerAddress
+          description: String - The address of the NFT seller to filter sales by.
+        - $ref: nfts_body.yaml#/buyerIsMaker
+          description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid.
+        - $ref: nfts_body.yaml#/limit
+          description: Integer - The maximum number of NFT sales return.
+
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: nfts_responses.yaml#/getNFTSales
+      operationId: getNFTSales
 
 components:
   schemas:
