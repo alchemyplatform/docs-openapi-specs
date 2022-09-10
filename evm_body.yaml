@@ -616,7 +616,7 @@ web3_sha3:
 eth_getTransactionReceiptsByBlock:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_or_blockHash_param_eth'
+    - $ref: '#/blockNumber_or_blockHash_param_l2'
     - type: object
       properties:
         method:
