@@ -188,7 +188,7 @@ paths:
                         type: string
                         description: 'String - Total number of NFTs in a given NFT collection.'
                       tokenType:
-                        $ref: '#/components/schemas/tokenType_response'   
+                        $ref: '#/components/schemas/tokenType_response'
       operationId: getContractMetadata
   '/{apiKey}/getNFTsForCollection':
     get:
@@ -655,7 +655,7 @@ paths:
       description: Gets NFT sales that have happened through on-chain marketplaces
       tags: ['NFT API Endpoints']
       parameters:
-        - $ref: nfts_body.yaml#/apiKey
+        - $ref: '#/components/schemas/tokenId'
         - $ref: nfts_body.yaml#/startBlock
           description: String - The block number to start fetching NFT sales data from. Allowed values are decimal integers and "latest". Defaults to "latest".
         - $ref: nfts_body.yaml#/startLogIndex
@@ -676,8 +676,8 @@ paths:
           description: String - The address of the NFT seller to filter sales by.
         - $ref: nfts_body.yaml#/buyerIsMaker
           description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid.
-        - $ref: nfts_body.yaml#/limit
-          description: Integer - The maximum number of NFT sales return.
+        - $ref: '#/components/schemas/tokenId'
+          description: Integer - The maximum number of NFT sales return. Defaults to 100.
 
       x-readme:
         samples-languages:
@@ -691,7 +691,62 @@ paths:
           content:
             application/json:
               schema:
-                $ref: nfts_responses.yaml#/getNFTSales
+                type: object
+                properties:
+                  nftSales:
+                    description: 'List of NFT sales that match the query'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        marketplace:
+                          type: string
+                          description: String - The marketplace the sale took place on.
+                        contractAddress:
+                          type: string
+                          description: String - The contract address of the collection the NFT belongs to.
+                        tokenId:
+                          type: string
+                          description: String - The hex token ID of the NFT being sold.
+                        quantity:
+                          type: integer
+                          description: Integer - The number of tokens sold in the sale.
+                        buyerAddress:
+                          type: string
+                          description: String - The address of the buyer in the NFT sale.
+                        sellerAddress:
+                          type: string
+                          description: String - The address of the seller in the NFT sale.
+                        buyerIsMaker:
+                          type: boolean
+                          description: Boolean - True if the buyer was the maker (put out bid), false if the buyer was the taker (accepted seller listing) in the order.
+                        price:
+                          type: float
+                          description: Float - The amount paid to the NFT seller in the sale.
+                        priceCurrency:
+                          type: string
+                          description: String - The token used to pay the seller in the sale.
+                        protocolFee:
+                          type: float
+                          description: Float - The amount paid to the marketplace in the sale.
+                        protocolFeeCurrency:
+                          type: string
+                          description: String - The token used to pay the marketplace in the sale.
+                        royaltyFee:
+                          type: float
+                          description: Float - The amount paid in NFT creator royalties in the sale.
+                        royaltyFeeCurrency:
+                          type: string
+                          description: String - The token used to pay the royalties in the sale.
+                        blockNumber:
+                          type: integer
+                          description: Integer - The block number the NFT sale took place in.
+                        logIndex:
+                          type: integer
+                          description: Integer - The log number of the sale event emitted within the block.
+                        bundleIndex:
+                          type: integer
+                          description: Integer - The index of the token within the bundle of NFTs sold in the sale.
       operationId: getNFTSales
 
 components:
@@ -920,7 +975,7 @@ components:
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
         error:
           type: string
-          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'      
+          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
     owners:
       type: object
       properties:
