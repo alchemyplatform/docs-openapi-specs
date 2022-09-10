@@ -54,6 +54,28 @@ eth_getBlockByNumber:
           maxItems: 2
           items:
             type: string
+eth_getBlockByNumber_l2:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: eth_getBlockByNumber
+          enum:
+            - eth_getBlockByNumber
+        params:
+          type: array
+          description: | 
+            1. String - Either the hex value of a **block number** OR One of the following **block tags**: 
+                * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+                * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+                * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+            2. Boolean - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions. Defaults to `false`.
+          minItems: 2
+          maxItems: 2
+          items:
+            type: string
 eth_getLogs:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1325,6 +1347,8 @@ shaHash_param:
       maxItems: 1
       items:
         type: string
+        pattern: '^0[xX][0-9a-fA-F]+$'
+
 
 # ======= Definitions for blockNumber methods ==========
 # After the merge, Ethereum offers more block tags than other EVM chains so we separated them out
