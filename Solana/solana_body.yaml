@@ -139,7 +139,7 @@ getBlockProduction:
           type: string
           default: getBlockProduction
           enum:
-            - getBlockProductions
+            - getBlockProduction
         params:
           type: array
           items:
