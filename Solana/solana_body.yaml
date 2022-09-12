@@ -1,7 +1,7 @@
 # ============= Solana API Methods ===============
 getBlockHeight:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -19,7 +19,7 @@ getBlockHeight:
                 $ref: '#/commitment'
 getBlock:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -59,7 +59,7 @@ getBlock:
                     description: Sets the maximum transaction version.
 getBlocks:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -82,7 +82,7 @@ get_blocks:
           $ref: '#/commitment'
 getBlocksWithLimit:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -96,7 +96,7 @@ getBlocksWithLimit:
             - $ref: '#/get_blocks'
 getBlockTime:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -114,7 +114,7 @@ getBlockTime:
             description: u64 - Slot integer for a block.
 getBlockCommitment:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -132,7 +132,7 @@ getBlockCommitment:
             description: u64 - A slot integer denoting the block number.
 getBlockProduction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -166,7 +166,7 @@ getBlockProduction:
                     description: Base-58 Encoded String - Specifies return results for a particular validator identity.
 isBlockhashValid:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -185,7 +185,7 @@ isBlockhashValid:
               - $ref: '#/configObject'
 getAccountInfo:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -210,7 +210,7 @@ getAccountInfo:
                     $ref: '#/dataSlice'
 getBalance:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -227,7 +227,7 @@ getBalance:
               - $ref: '#/configObject'
 getMultipleAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -256,7 +256,7 @@ getMultipleAccounts:
                     $ref: '#/minContextSlot'
 getProgramAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -285,7 +285,7 @@ getProgramAccounts:
                     $ref: '#/minContextSlot'
 getVoteAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -312,7 +312,7 @@ getVoteAccounts:
                 description: Specify the number of slots behind the tip that a validator must fall to be considered delinquent.
 getLargestAccounts:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -335,7 +335,7 @@ getLargestAccounts:
                   - nonCirculating
 getClusterNodes:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -345,7 +345,7 @@ getClusterNodes:
             - getClusterNodes
 getVersion:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -355,7 +355,7 @@ getVersion:
             - getVersion
 getEpochInfo:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -369,7 +369,7 @@ getEpochInfo:
             $ref: '#/configObject'
 getEpochSchedule:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -379,7 +379,7 @@ getEpochSchedule:
             - getEpochSchedule
 getFeeForMessage:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -398,7 +398,7 @@ getFeeForMessage:
             type: string
 getFirstAvailableBlock:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -408,7 +408,7 @@ getFirstAvailableBlock:
             - getFirstAvailableBlock
 getGenesisHash:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -418,7 +418,7 @@ getGenesisHash:
             - getGenesisHash
 getHighestSnapshotSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -428,7 +428,7 @@ getHighestSnapshotSlot:
             - getHighestSnapshotSlot
 getMinimumBalanceForRentExemption:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -448,7 +448,7 @@ getMinimumBalanceForRentExemption:
                     $ref: '#/commitment'
 getRecentPerformanceSamples:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -464,7 +464,7 @@ getRecentPerformanceSamples:
             format: int64
 getHealth:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -474,7 +474,7 @@ getHealth:
             - getHealth
 getIdentity:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -484,7 +484,7 @@ getIdentity:
             - getIdentity
 getInflationGovernor:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -501,7 +501,7 @@ getInflationGovernor:
                 $ref: '#/commitment'
 getInflationRate:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -511,7 +511,7 @@ getInflationRate:
             - getInflationRate
 getInflationReward:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -539,7 +539,7 @@ getInflationReward:
                     $ref: '#/minContextSlot'
 getSupply:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -559,7 +559,7 @@ getSupply:
                 description: Boolean - Excludes non circulating accounts list from response.
 getSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -573,7 +573,7 @@ getSlot:
             $ref: '#/configObject'
 getSlotLeaders:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -593,7 +593,7 @@ getSlotLeaders:
             format: int64
 getMaxRetransmitSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -603,7 +603,7 @@ getMaxRetransmitSlot:
             - getMaxRetransmitSlot
 getMaxShredInsertSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -613,7 +613,7 @@ getMaxShredInsertSlot:
             - getMaxShredInsertSlot
 minimumLedgerSlot:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -623,7 +623,7 @@ minimumLedgerSlot:
             - minimumLedgerSlot
 getTokenAccountBalance:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -643,7 +643,7 @@ getTokenAccountBalance:
                     $ref: '#/commitment'
 getTokenAccountsByOwner:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -679,7 +679,7 @@ getTokenAccountsByOwner:
                     $ref: '#/minContextSlot'
 getTokenSupply:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -699,7 +699,7 @@ getTokenSupply:
                     $ref: '#/commitment'
 getSignaturesForAddress:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -731,7 +731,7 @@ getSignaturesForAddress:
                     $ref: '#/minContextSlot'
 getSignatureStatuses:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -754,7 +754,7 @@ getSignatureStatuses:
                     description: 'If true, a Solana node will search its ledger cache for any signatures not found in the recent status cache.'
 sendTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -788,7 +788,7 @@ sendTransaction:
                     $ref: '#/minContextSlot'
 simulateTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -841,7 +841,7 @@ simulateTransaction:
                     $ref: '#/minContextSlot'
 getTransaction:
   allOf:
-    - $ref: '#/CommonProperties'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
@@ -868,6 +868,15 @@ getTransaction:
                     description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
 
 # ============= Solana API Models ===============
+common_request_fields:
+  type: object
+  properties:
+    id:
+      type: integer
+      default: 1
+    jsonrpc:
+      type: string
+      default: '2.0'
 encoding:
   type: string
   description: |
