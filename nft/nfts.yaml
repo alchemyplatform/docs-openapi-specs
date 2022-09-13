@@ -188,7 +188,7 @@ paths:
                         type: string
                         description: 'String - Total number of NFTs in a given NFT collection.'
                       tokenType:
-                        $ref: '#/components/schemas/tokenType_response'   
+                        $ref: '#/components/schemas/tokenType_response'
       operationId: getContractMetadata
   '/{apiKey}/getNFTsForCollection':
     get:
@@ -618,7 +618,7 @@ paths:
                   summmary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
-                  contract:
+                  contractAddress:
                     $ref: '#/components/schemas/contractAddress'
       operationId: summarizeNftAttributes
   '/{apiKey}/isHolderOfCollection':
@@ -876,7 +876,7 @@ components:
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
         error:
           type: string
-          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'      
+          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
     owners:
       type: object
       properties:
