@@ -618,7 +618,7 @@ paths:
                   summmary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
-                  contract:
+                  contractAddress:
                     $ref: '#/components/schemas/contractAddress'
       operationId: summarizeNftAttributes
   '/{apiKey}/isHolderOfCollection':
