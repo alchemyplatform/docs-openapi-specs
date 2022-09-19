@@ -889,14 +889,14 @@ components:
       required: false
     startLogIndex:
       name: startLogIndex
-      description: Integer - The log index within the startBlock to start fetching NFT sales data from.
+      description: Integer - The log index within the startBlock to start fetching NFT sales data from. Defaults to 0.
       in: query
       schema:
         type: integer
       required: false
     startBundleIndex:
       name: startBundleIndex
-      description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from.
+      description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from. Defaults to 0.
       in: query
       schema:
         type: integer
