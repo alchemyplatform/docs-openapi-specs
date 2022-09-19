@@ -670,7 +670,7 @@ paths:
         - $ref: '#/components/schemas/sellerAddress'
         - $ref: '#/components/schemas/buyerIsMaker'
         - $ref: '#/components/schemas/limit'
-          description: Integer - The maximum number of NFT sales return. Defaults to 100.
+          description: Integer - The maximum number of NFT sales to return. Defaults to 100.
           required: false
 
       x-readme:
