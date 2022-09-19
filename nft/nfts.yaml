@@ -92,7 +92,9 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/tokenId'
+          required: true
         - $ref: '#/components/schemas/tokenType'
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
         - $ref: '#/components/schemas/refreshCache'
@@ -139,6 +141,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -198,6 +201,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/withMetadata'
         - $ref: '#/components/schemas/startToken'
         - $ref: '#/components/schemas/limit'
@@ -260,7 +264,9 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/tokenId'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -305,6 +311,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/withTokenBalances'
         - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
@@ -393,6 +400,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -436,6 +444,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -497,6 +506,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -561,7 +571,9 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/tokenId'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -597,6 +609,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -630,6 +643,7 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -814,14 +828,12 @@ components:
       in: query
       schema:
         type: string
-      required: true
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
       schema:
         type: string
-      required: true
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
