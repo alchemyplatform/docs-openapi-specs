@@ -676,10 +676,10 @@ paths:
         - $ref: '#/components/schemas/ascendingOrder'
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
-          description: String - The contract address of a NFT collection to filter sales by.
+          description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
           required: false
         - $ref: '#/components/schemas/tokenId'
-          description: String - The token id of an NFT within the collection specified by contractAddress to filter sales by.
+          description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
           required: false
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
@@ -919,21 +919,21 @@ components:
       required: false
     buyerAddress:
       name: buyerAddress
-      description: String - The address of the NFT buyer to filter sales by.
+      description: String - The address of the NFT buyer to filter sales by. Defaults to returning sales involving any buyer.
       in: query
       schema:
         type: string
       required: false
     sellerAddress:
       name: sellerAddress
-      description: String - The address of the NFT seller to filter sales by.
+      description: String - The address of the NFT seller to filter sales by. Defaults to returning sales involving any seller.
       in: query
       schema:
         type: string
       required: false
     buyerIsMaker:
       name: buyerIsMaker
-      description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid.
+      description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid. Defaults to returning both maker and taker orders.
       in: query
       schema:
         type: boolean
