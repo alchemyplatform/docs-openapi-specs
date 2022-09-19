@@ -590,6 +590,87 @@ trace_replayBlockTransactions:
                   transactionHash:
                     type: string
 
+# ===== Debug API Responses ============
+callTracer:
+  type: object
+  properties:
+    type:
+      type: string
+      description: CALL or CREATE
+    from:
+      type: string
+      description: 20 Bytes - address of the sender
+    to:
+      type: string
+      description: 20 Bytes - address of the receiver. null when its a contract creation transaction
+    value:
+      type: string
+      description: amount of value for transfer (in hex)
+    gas:
+      type: string
+      description: amount of gas provided for the call (in hex)
+    gasUsed:
+      type: string
+      description: amount of gsa used during the call (in hex)
+    input:
+      type: string
+      description: call data
+    output:
+      type: string
+      description: return data
+    error:
+      type: string
+      description: error, if any
+    revertReason:
+      type: string
+      description: solidity revert reason, if any
+    calls:
+      type: array
+      description: list of sub-calls
+
+debug_traceCall:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: Array of block traces
+          items:
+            $ref: '#/callTracer'
+
+debug_traceTransaction:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          description: trace for the transaction
+          $ref: '#/callTracer'
+
+debug_traceBlockByHash:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: array of block traces
+          items:
+            $ref: '#/callTracer'
+
+debug_traceBlockByNumber:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: array of block traces
+          items:
+            $ref: '#/callTracer'
+
+
 # ===== Polygon API Responses ============
 bor_getAuthor:
   allOf:
@@ -755,45 +836,3 @@ transfer:
         blockTimestamp:
           type: string
           description: 'Timestamp of the block from which the transaction event originated (ISO-formatted timestamp).'
-debug_traceTransaction:
-  type: object
-  properties:
-    gas:
-      type: integer
-      format: int32
-    returnValue:
-      type: string
-    structLogs:
-      type: array
-      items:
-        type: object
-        properties:
-          depth:
-            type: integer
-            description: 'The execution depth'
-          error:
-            type: string
-            description: 'If an error occurred, information about the error.'
-          gas:
-            type: integer
-            description: 'Number, the amount of gas remaining.'
-          gasCost:
-            type: integer
-            description: 'Number, the cost in wei of each unit of gas.'
-          memory:
-            type: object
-            nullable: true
-            description: "Object, a structure representing the contract's memory space"
-          op:
-            type: object
-            description: 'Object, an OpCode object representing the current opcode.'
-          pc:
-            type: integer
-            description: 'Number, the current program counter.'
-          stack:
-            type: array
-            items:
-              type: string
-            description: 'Array[big.Int], the EVM execution stack.'
-          storage:
-            type: object

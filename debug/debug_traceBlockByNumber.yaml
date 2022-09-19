@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: debug_traceBlockByNumber
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: debug_traceBlockByNumber
+      description: Replays the block that is already present in the database.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/debug_traceBlockByNumber
+      responses:
+        '200':
+          description: 'Returns - array of block traces'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/debug_traceBlockByNumber
+      operationId: debug-traceblockbynumber

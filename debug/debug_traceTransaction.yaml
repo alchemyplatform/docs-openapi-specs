@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: debug_traceTransaction
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: debug_traceTransaction
+      description: Attempts to run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/debug_traceTransaction
+      responses:
+        '200':
+          description: 'Returns - transaction trace'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/debug_traceTransaction
+      operationId: debug-tracetransaction
