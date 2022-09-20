@@ -893,6 +893,7 @@ components:
       in: query
       schema:
         type: integer
+        default: 0
       required: false
     startBundleIndex:
       name: startBundleIndex
@@ -900,13 +901,15 @@ components:
       in: query
       schema:
         type: integer
+        default: 0
       required: false
     ascendingOrder:
       name: ascendingOrder
-      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending.
+      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending (true).
       in: query
       schema:
         type: boolean
+        default: true
       required: false
     marketplace:
       name: marketplace
