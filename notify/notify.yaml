@@ -321,9 +321,6 @@ components:
         id:
           type: string
           description: 'Unique ID for given webhook.'
-        app_id:
-          type: string
-          description: 'ID for alchemy app.'
         network:
           $ref: '#/components/schemas/network'
         webhook_type:
@@ -342,6 +339,12 @@ components:
           description: 'List of addresses being tracked, null if not address activity webhook.'
           items:
             type: string
+        version:
+          type: string
+          description: Webhook version (v1 or v2)
+        signing_key:
+          type: string
+          description: 'Signing key for given webhook.'
     gas_price_low:
       type: integer
       description: 'Low end of gas price threshold, null if not gas price webhook.'
