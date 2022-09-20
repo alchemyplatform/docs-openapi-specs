@@ -589,9 +589,9 @@ paths:
                       type: number
                       description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
       operationId: computeRarity
-  '/{apiKey}/summarizeNftAttributes':
+  '/{apiKey}/summarizeNFTAttributes':
     get:
-      summary: summarizeNftAttributes
+      summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
       tags: ['NFT API Endpoints']
       parameters:
@@ -620,7 +620,7 @@ paths:
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
                   contractAddress:
                     $ref: '#/components/schemas/contractAddress'
-      operationId: summarizeNftAttributes
+      operationId: summarizeNFTAttributes
   '/{apiKey}/isHolderOfCollection':
     get:
       summary: isHolderOfCollection
