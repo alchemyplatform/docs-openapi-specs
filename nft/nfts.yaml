@@ -596,7 +596,7 @@ paths:
       tags: ['NFT API Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/searchQuery'
+        - $ref: '#/components/schemas/query'
       x-readme:
         samples-languages:
           - javascript
@@ -971,8 +971,8 @@ components:
       schema:
         type: boolean
       required: false
-    searchQuery:
-      name: searchQuery
+    query:
+      name: query
       description: String - The search string that you want to search for in contract metadata
       in: query
       schema:
