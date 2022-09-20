@@ -1046,68 +1046,65 @@ alchemy_getAssetTransfers:
           minItems: 1
           maxItems: 1
           items:
-            $ref: '#/getAssetTransfers_eth_mainnet'
-
-# ============= Transfers API Models ===============
-getAssetTransfers_eth_mainnet:
-  type: object
-  required:
-    - category
-  properties:
-    fromBlock:
-      type: string
-      description: 'String - Inclusive from block (hex string, int, or latest)'
-      default: '0x0'
-    toBlock:
-      type: string
-      description: 'String - Inclusive to block (hex string, int, or latest)'
-      default: latest
-    fromAddress:
-      type: string
-      description: String - From address (hex string). Default wildcard - any address
-    toAddress:
-      type: string
-      description: String - To address (hex string). Default wildcard - any address
-    contractAddresses:
-      type: array
-      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
-      items:
-        type: string
-    category:
-      type: array
-      description: |
-        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
-      items:
-        type: string
-        enum:
-          - external
-          - internal
-          - erc20
-          - erc721
-          - erc1155
-          - specialnft
-    order:
-      type: string
-      description: |
-        String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, decending order is from newest to oldest. Defaults to "asc" if omitted.
-      enum:
-        - asc
-        - desc
-    withMetadata:
-      type: boolean
-      description: Boolean - Whether or not to include additional metadata about each transfer event.
-      default: false
-    excludeZeroValue:
-      type: boolean
-      description: Boolean - A boolean to exclude transfers with zero value. Zero value is not the same as null value.
-      default: true
-    maxCount:
-      type: string
-      description: Max hex string number of results to return per call.
-      default: '0x3e8'
-    pageKey:
-      type: string
-      description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
+            type: object 
+            required:
+              - category
+            properties:
+              fromBlock:
+                type: string
+                description: 'String - Inclusive from block (hex string, int, or latest). Defaults to `0x0`'
+                default: '0x0'
+              toBlock:
+                type: string
+                description: 'String - Inclusive to block (hex string, int, or latest). Defaults to `latest`'
+                default: latest
+              fromAddress:
+                type: string
+                description: String - From address (hex string). Default wildcard - any address
+              toAddress:
+                type: string
+                description: String - To address (hex string). Default wildcard - any address
+              contractAddresses:
+                type: array
+                description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+                items:
+                  type: string
+              category:
+                type: array
+                description: |
+                  'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
+                example: external
+                items:
+                  type: string
+                  enum:
+                    - external
+                    - internal
+                    - erc20
+                    - erc721
+                    - erc1155
+                    - specialnft
+              order:
+                type: string
+                description: |
+                  String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, decending order is from newest to oldest. Defaults to `asc`.
+                enum:
+                  - asc
+                  - desc
+              withMetadata:
+                type: boolean
+                description: Boolean - Whether or not to include additional metadata about each transfer event. Defaults to `false`.
+                default: false
+              excludeZeroValue:
+                type: boolean
+                description: Boolean - A boolean to exclude transfers with zero value - zero value is not the same as null value. Defaults to `true`.
+                default: true
+              maxCount:
+                type: string
+                description: Max hex string number of results to return per call. Defaults to `0x3e8` (1000).
+                default: '0x3e8'
+              pageKey:
+                type: string
+                description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
 
 # ============= Debug API Methods ===============
 tracer:
