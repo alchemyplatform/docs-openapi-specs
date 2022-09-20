@@ -589,6 +589,49 @@ paths:
                       type: number
                       description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
       operationId: computeRarity
+  '/{apiKey}/searchContractMetadata':
+    get:
+      summary: searchContractMetadata
+      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/searchQuery'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns the list of NFT contracts where the metadata overlaps with the search string.'
+          content:
+            application/json:
+              schema:
+                type: array                  
+                description: 'List of contracts where the metadata overlaps with the search string.'
+                items:
+                  type: object
+                  properties:
+                    address:
+                      $ref: '#/components/schemas/contractAddress'
+                    contractMetadata:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: 'String - The name of the NFT collection'
+                        symbol:
+                          type: string
+                          description: 'String - The symbol of the NFT collection'
+                        totalSupply:
+                          type: string
+                          description: 'String - The total supply for the NFT collection'
+                        tokenType:
+                          type: string
+                          description: 'String - The type of the token (ERC721 or ERC115)'                       
+      operationId: searchContractMetadata
   '/{apiKey}/summarizeNftAttributes':
     get:
       summary: summarizeNftAttributes
@@ -655,6 +698,7 @@ paths:
       description: Gets NFT sales that have happened through on-chain marketplaces
       tags: ['NFT API Endpoints']
       parameters:
+        - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/startBlock'
         - $ref: '#/components/schemas/startLogIndex'
         - $ref: '#/components/schemas/startBundleIndex'
@@ -927,6 +971,13 @@ components:
       schema:
         type: boolean
       required: false
+    searchQuery:
+      name: searchQuery
+      description: String - The search string that you want to search for in contract metadata
+      in: query
+      schema:
+        type: string
+      required: true
 
     # ===== Response Objects ========
     tokenType_response:
