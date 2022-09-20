@@ -655,6 +655,7 @@ paths:
       description: Gets NFT sales that have happened through on-chain marketplaces
       tags: ['NFT API Endpoints']
       parameters:
+        - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/startBlock'
         - $ref: '#/components/schemas/startLogIndex'
         - $ref: '#/components/schemas/startBundleIndex'
