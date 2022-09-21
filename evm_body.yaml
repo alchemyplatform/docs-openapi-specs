@@ -1046,68 +1046,65 @@ alchemy_getAssetTransfers:
           minItems: 1
           maxItems: 1
           items:
-            $ref: '#/getAssetTransfers_eth_mainnet'
-
-# ============= Transfers API Models ===============
-getAssetTransfers_eth_mainnet:
-  type: object
-  required:
-    - category
-  properties:
-    fromBlock:
-      type: string
-      description: 'String - Inclusive from block (hex string, int, or latest)'
-      default: '0x0'
-    toBlock:
-      type: string
-      description: 'String - Inclusive to block (hex string, int, or latest)'
-      default: latest
-    fromAddress:
-      type: string
-      description: String - From address (hex string). Default wildcard - any address
-    toAddress:
-      type: string
-      description: String - To address (hex string). Default wildcard - any address
-    contractAddresses:
-      type: array
-      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
-      items:
-        type: string
-    category:
-      type: array
-      description: |
-        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
-      items:
-        type: string
-        enum:
-          - external
-          - internal
-          - erc20
-          - erc721
-          - erc1155
-          - specialnft
-    order:
-      type: string
-      description: |
-        String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, decending order is from newest to oldest. Defaults to "asc" if omitted.
-      enum:
-        - asc
-        - desc
-    withMetadata:
-      type: boolean
-      description: Boolean - Whether or not to include additional metadata about each transfer event.
-      default: false
-    excludeZeroValue:
-      type: boolean
-      description: Boolean - A boolean to exclude transfers with zero value. Zero value is not the same as null value.
-      default: true
-    maxCount:
-      type: string
-      description: Max hex string number of results to return per call.
-      default: '0x3e8'
-    pageKey:
-      type: string
-      description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
+            type: object 
+            required:
+              - category
+            properties:
+              fromBlock:
+                type: string
+                description: 'String - Inclusive from block (hex string, int, or latest). Defaults to `0x0`'
+                default: '0x0'
+              toBlock:
+                type: string
+                description: 'String - Inclusive to block (hex string, int, or latest). Defaults to `latest`'
+                default: latest
+              fromAddress:
+                type: string
+                description: String - From address (hex string). Default wildcard - any address
+              toAddress:
+                type: string
+                description: String - To address (hex string). Default wildcard - any address
+              contractAddresses:
+                type: array
+                description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+                items:
+                  type: string
+              category:
+                type: array
+                description: |
+                  'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
+                items:
+                  type: string
+                  example: external
+                  enum:
+                    - external
+                    - internal
+                    - erc20
+                    - erc721
+                    - erc1155
+                    - specialnft
+              order:
+                type: string
+                description: |
+                  String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, decending order is from newest to oldest. Defaults to `asc`.
+                enum:
+                  - asc
+                  - desc
+              withMetadata:
+                type: boolean
+                description: Boolean - Whether or not to include additional metadata about each transfer event. Defaults to `false`.
+                default: false
+              excludeZeroValue:
+                type: boolean
+                description: Boolean - A boolean to exclude transfers with zero value - zero value is not the same as null value. Defaults to `true`.
+                default: true
+              maxCount:
+                type: string
+                description: Max hex string number of results to return per call. Defaults to `0x3e8` (1000).
+                default: '0x3e8'
+              pageKey:
+                type: string
+                description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
 
 # ============= Debug API Methods ===============
 tracer:
@@ -1131,13 +1128,15 @@ debug_traceCall:
           minItems: 3
           maxItems: 3
           description: |
-            1. Object - Transaction object
-            2. String - Block hash, block number (in hex), or block tag 
-            3. `tracer` Object - Currently only supports `callTracer` (see above for definition).
+            1. `object` - Transaction Object
+            2. `string` - Block Identifier: Block hash, block number (in hex), or block tag 
+            3. `tracer` - Object: Currently only supports `callTracer` (see above for definition)
           items:
             anyOf:
             - $ref: '#/transaction_object'
+              title: Transaction object
             - type: string
+              title: Block identifier 
               description: | 
                 String - One of the following options:
                   1. **block hash** 
@@ -1150,6 +1149,7 @@ debug_traceCall:
                     * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
               example: finalized
             - type: object
+              title: Tracer
               properties:
                 tracer:
                   $ref: '#/tracer'
@@ -1167,16 +1167,18 @@ debug_traceBlockByHash:
         params:
           type: array
           description: |
-            1. String - Block hash for the block to be traced
+            1. `string` - Block hash for the block to be traced
             2. `tracer` Object - Currently only supports `callTracer` (see above for definition)
           minItems: 2
           maxItems: 2
           items:
             anyOf:
             - type: string
+              title: Block hash
               description: block hash
               example: '0x7bd8357213af34d3fe7f725d9b21187a5a58127e39aac5776fd0594e3391ea6e'
             - type: object
+              title: Tracer
               properties:
                 tracer:
                   $ref: '#/tracer'
@@ -1200,7 +1202,9 @@ debug_traceBlockByNumber:
           items:
             anyOf:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
+                title: Block Number or Block Tag 
               - type: object
+                title: tracer
                 properties:
                   tracer:
                     $ref: '#/tracer'
@@ -1222,14 +1226,16 @@ debug_traceTransaction:
             1. String - Transaction hash
             2. Object - options for call, can be any of the following options:
               - `tracer`: Object - Currently only supports `callTracer` (see above for definition).
-              - `timeout`: STRING - A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms". 
+              - `timeout`: String - A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms". 
           items:
             anyOf:
             - type: string
+              title: Transaction hash
               description: Transaction hash
               example: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
             - type: object
               description: options for call
+              title: Options
               properties:
                 tracer:
                   $ref: '#/tracer'

@@ -92,7 +92,9 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/tokenId'
+          required: true
         - $ref: '#/components/schemas/tokenType'
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
         - $ref: '#/components/schemas/refreshCache'
@@ -139,6 +141,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -198,6 +201,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/withMetadata'
         - $ref: '#/components/schemas/startToken'
         - $ref: '#/components/schemas/limit'
@@ -260,7 +264,9 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/tokenId'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -305,6 +311,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/withTokenBalances'
         - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
@@ -393,6 +400,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -436,6 +444,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -497,6 +506,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -561,7 +571,9 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
         - $ref: '#/components/schemas/tokenId'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -632,14 +644,15 @@ paths:
                           type: string
                           description: 'String - The type of the token (ERC721 or ERC115)'                       
       operationId: searchContractMetadata
-  '/{apiKey}/summarizeNftAttributes':
+  '/{apiKey}/summarizeNFTAttributes':
     get:
-      summary: summarizeNftAttributes
+      summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
       tags: ['NFT API Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -663,7 +676,7 @@ paths:
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
                   contractAddress:
                     $ref: '#/components/schemas/contractAddress'
-      operationId: summarizeNftAttributes
+      operationId: summarizeNFTAttributes
   '/{apiKey}/isHolderOfCollection':
     get:
       summary: isHolderOfCollection
@@ -673,6 +686,7 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
         - $ref: '#/components/schemas/contractAddress'
+          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -705,10 +719,10 @@ paths:
         - $ref: '#/components/schemas/ascendingOrder'
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
-          description: String - The contract address of a NFT collection to filter sales by.
+          description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
           required: false
         - $ref: '#/components/schemas/tokenId'
-          description: String - The token id of an NFT within the collection specified by contractAddress to filter sales by.
+          description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
           required: false
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
@@ -857,14 +871,12 @@ components:
       in: query
       schema:
         type: string
-      required: true
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
       schema:
         type: string
-      required: true
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
@@ -920,21 +932,23 @@ components:
       required: false
     startLogIndex:
       name: startLogIndex
-      description: Integer - The log index within the startBlock to start fetching NFT sales data from.
+      description: Integer - The log index within the startBlock to start fetching NFT sales data from. Defaults to 0.
       in: query
       schema:
         type: integer
+        default: 0
       required: false
     startBundleIndex:
       name: startBundleIndex
-      description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from.
+      description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from. Defaults to 0.
       in: query
       schema:
         type: integer
+        default: 0
       required: false
     ascendingOrder:
       name: ascendingOrder
-      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending.
+      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending (true).
       in: query
       schema:
         type: boolean
@@ -948,25 +962,24 @@ components:
         type: string
         enum:
           - seaport
-        default: seaport
       required: false
     buyerAddress:
       name: buyerAddress
-      description: String - The address of the NFT buyer to filter sales by.
+      description: String - The address of the NFT buyer to filter sales by. Defaults to returning sales involving any buyer.
       in: query
       schema:
         type: string
       required: false
     sellerAddress:
       name: sellerAddress
-      description: String - The address of the NFT seller to filter sales by.
+      description: String - The address of the NFT seller to filter sales by. Defaults to returning sales involving any seller.
       in: query
       schema:
         type: string
       required: false
     buyerIsMaker:
       name: buyerIsMaker
-      description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid.
+      description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid. Defaults to returning both maker and taker orders.
       in: query
       schema:
         type: boolean
