@@ -254,7 +254,7 @@ paths:
                           $ref: '#/components/schemas/metadata'
                   nextToken:
                     type: string
-                    description: 'String - An offset used for pagination'
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
       operationId: getNFTsForCollection
   '/{apiKey}/getOwnersForToken':
     get:
@@ -876,7 +876,7 @@ components:
         type: string
     startToken:
       name: startToken
-      description: 'String - An offset used for pagination. Can be a hex string, or a decimal.'
+      description: 'String - A tokenID offset used for pagination. Can be a hex string, or a decimal. Users can specify the offset themselves to start from a custom offset, or to fetch multiple token ranges in parallel.'
       in: query
       schema:
         type: string
