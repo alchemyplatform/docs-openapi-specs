@@ -757,6 +757,40 @@ paths:
                           type: integer
                           description: Integer - The index of the token within the bundle of NFTs sold in the sale.
       operationId: getNFTSales
+  '/{apiKey}/getContractsForOwner':
+    get:
+      summary: getContractsForOwner
+      description: Gets all NFT contracts held by an owner address.
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/pageKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ownedNfts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedContract'
+                  pageKey:
+                    type: string
+                    description: 'String - UUID for pagination - returned if there are more NFTs contracts to fetch. Max NFT contracts per page = 100.'
+                  totalCount:
+                    type: string
+                    description: 'String - Total number of NFT contracts held by the given address.'
+      operationId: getContractsForOwner
 
 components:
   schemas:
@@ -998,6 +1032,48 @@ components:
               trait_type:
                 type: string
           description: 'Object - Traits/attributes/characteristics for each NFT asset.'
+        media:
+          $ref: '#/components/schemas/media'
+    ownedContract:
+      type: object
+      properties:
+        address:
+          description: 'Address of the held contract'
+          type: string
+        ownedCount:
+          type: number
+        isSpam:
+          type: boolean
+        tokenId:
+          description: 'One of the tokens from this contract held by the owner.'
+          type: string
+        name:
+          description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
+          type: string
+        symbol:
+          description: 'The symbol of the contract, i.e. BAYC.'
+          type: string
+        tokenType:
+          description: 'The NFT standard used by the contract, i.e. ERC-721 or ERC-1155.'
+          type: string
+        media:
+          $ref: '#/components/schemas/media'
+    media:
+      type: object
+      properties:
+        raw:
+          $ref: '#/components/schemas/raw'
+        gateway:
+          $ref: '#/components/schemas/gateway'
+        thumbnail:
+          type: string
+          description: URL for a resized thumbnail of the NFT media asset.
+        format:
+          type: string
+          description: The media format (jpg, gif, png, etc.) of the gateway and thumbnail assets.
+        bytes:
+          type: integer
+          description: The size of the media asset in bytes.
     ownedNFT:
       type: object
       properties:
