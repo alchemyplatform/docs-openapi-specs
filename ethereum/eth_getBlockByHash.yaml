@@ -38,6 +38,9 @@ components:
             - language: javascript
               name: Alchemy SDK
               code: |
+                // Setup: npm install alchemy-sdk
+                import { Alchemy, Network } from "alchemy-sdk";
+
                 // Optional config object, but defaults to demo api-key and eth-mainnet.
                 const settings = {
                   apiKey: "demo", // Replace with your Alchemy API Key.
