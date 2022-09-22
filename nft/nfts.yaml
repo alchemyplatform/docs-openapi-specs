@@ -677,16 +677,13 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-          required: false
         - $ref: '#/components/schemas/tokenId'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
-          required: false
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
         - $ref: '#/components/schemas/buyerIsMaker'
         - $ref: '#/components/schemas/limit'
           description: Integer - The maximum number of NFT sales to return. Defaults to 100.
-          required: false
 
       x-readme:
         samples-languages:
@@ -808,6 +805,7 @@ components:
         type: string
       in: query
       required: true
+      example: vitalik.eth
     wallet:
       name: wallet
       description: String - Wallet address to check for collection ownership.
@@ -862,12 +860,16 @@ components:
       in: query
       schema:
         type: string
+      required: true
+      example: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
       schema:
         type: string
+      required: true
+      example: '44'
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
@@ -912,7 +914,6 @@ components:
       in: query
       schema:
         type: string
-      required: false
     startBlock:
       name: startBlock
       description: String - The block number to start fetching NFT sales data from. Allowed values are decimal integers and "latest". Defaults to "latest".
@@ -920,7 +921,6 @@ components:
       schema:
         type: string
         default: 'latest'
-      required: false
     startLogIndex:
       name: startLogIndex
       description: Integer - The log index within the startBlock to start fetching NFT sales data from. Defaults to 0.
@@ -944,7 +944,6 @@ components:
       schema:
         type: boolean
         default: true
-      required: false
     marketplace:
       name: marketplace
       description: Enum - The name of the NFT marketplace to filter sales by. Currently only "seaport" is supported.
@@ -953,6 +952,7 @@ components:
         type: string
         enum:
           - seaport
+        default: seaport
       required: false
     buyerAddress:
       name: buyerAddress
@@ -960,21 +960,18 @@ components:
       in: query
       schema:
         type: string
-      required: false
     sellerAddress:
       name: sellerAddress
       description: String - The address of the NFT seller to filter sales by. Defaults to returning sales involving any seller.
       in: query
       schema:
         type: string
-      required: false
     buyerIsMaker:
       name: buyerIsMaker
       description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid. Defaults to returning both maker and taker orders.
       in: query
       schema:
         type: boolean
-      required: false
 
     # ===== Response Objects ========
     tokenType_response:
