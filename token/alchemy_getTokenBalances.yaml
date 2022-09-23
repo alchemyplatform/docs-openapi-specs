@@ -23,7 +23,6 @@ paths:
             schema:
               $ref: ../evm_body.yaml#/alchemy_getTokenBalances
       x-readme:
-        explorer-enabled: false
         samples-languages:
           - javascript
           - curl
