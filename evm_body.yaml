@@ -697,12 +697,15 @@ alchemy_getTokenAllowance:
               contract:
                 type: string
                 description: 'String - DATA, 20 Bytes - The address of the token contract.'
+                example: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
               owner:
                 type: string
                 description: 'String - DATA, 20 Bytes - The address of the token owner.'
+                example: '0xf1a726210550c306a9964b251cbcd3fa5ecb275d'
               spender:
                 type: string
                 description: 'String - DATA, 20 Bytes - The address of the token spender.'
+                example: '0xdef1c0ded9bec7f1a1670819833240f027b25eff'
 alchemy_getTokenBalances:
   allOf:
     - $ref: '#/common_request_fields'
@@ -716,32 +719,21 @@ alchemy_getTokenBalances:
         params:
           type: array
           description: |
-            - DATA, 20 Bytes - The address for which token balances will be checked.
-            - OneOf
-              - Array - A list of contract addresses. Suggested limit: 100 addresses
-              - The String ''DEFAULT_TOKENS'' - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
-              - The String ''erc20'' - denotes the set of erc20 tokens that the address has ever held.
-          minItems: 2
-          maxItems: 3
+            1. String, 20 Bytes - The address to check token balances for.
+            2. OneOf the following token specifications, defaults to `erc20`
+              - **[omitted below]** Array - A list of contract addresses. Suggested limit: 100 addresses
+              - The String `DEFAULT_TOKENS` - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
+              - The String `erc20` - denotes the set of erc20 tokens that the address has ever held.
+            3. **[omitted below]**  Object `pageKey` - A string address used for pagination. If more results are available, a pageKey will be returned in the response.
+          minItems: 1
+          maxItems: 2
           items:
-            allOf:
-              - type: string
-              - oneOf:
-                  - type: array
-                    minItems: 1
-                    maxItems: 100
-                    items:
-                      type: string
-                  - type: string
-                    enum:
-                      - DEFAULT_TOKENS
-                      - erc20
-              - type: object
-                properties:
-                  pageKey:
-                    type: string
-                    description: 'An address used for pagination. If more results are available, a pageKey will be returned in the response.'
-                    default: '0x0'
+            type: string
+            examples:
+              address:
+                value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+              token specification:
+                value: 'erc20'
 alchemy_getTokenMetadata:
   allOf:
     - $ref: '#/common_request_fields'
@@ -754,11 +746,12 @@ alchemy_getTokenMetadata:
             - alchemy_getTokenMetadata
         params:
           type: array
-          description: 'DATA, 20 Bytes - Singluar address for the token contract.'
+          description: 'string, 20 Bytes - Singluar address for the token contract.'
           minItems: 1
           maxItems: 1
           items:
             type: string
+            example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
 # ============= Trace API Methods ===============
 trace_call:
