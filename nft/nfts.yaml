@@ -66,8 +66,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/ownedNFT'
                   pageKey:
-                    type: string
-                    description: 'String - UUID for pagination - returned if there are more NFTs to fetch. Max NFTs per page = 100.'
+                    $ref: '#/components/schemas/pageKey'
                   totalCount:
                     type: string
                     description: 'String - Total number of NFTs owned by the given address.'
@@ -782,8 +781,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/ownedContract'
                   pageKey:
-                    type: string
-                    description: 'String - UUID for pagination - returned if there are more NFTs contracts to fetch. Max NFT contracts per page = 100.'
+                    $ref: '#/components/schemas/pageKey'
                   totalCount:
                     type: string
                     description: 'String - Total number of NFT contracts held by the given address.'
@@ -815,7 +813,7 @@ components:
       required: true
     pageKey:
       name: pageKey
-      description: 'String - Cursor key for pagination. If more results are available, a pageKey will be returned in the response. Pass back that pageKey as a param to fetch the next 100 NFTs.'
+      description: 'String - key for pagination. If more results are available, a pageKey will be returned in the response. Pass back the pageKey as a param to fetch the next page of results.'
       schema:
         type: string
       in: query
@@ -1051,7 +1049,7 @@ components:
           description: 'The symbol of the contract, i.e. BAYC.'
           type: string
         tokenType:
-          description: 'The NFT standard used by the contract, i.e. ERC-721 or ERC-1155.'
+          description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
           type: string
         media:
           $ref: '#/components/schemas/media'
