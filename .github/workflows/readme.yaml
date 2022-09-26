@@ -275,5 +275,5 @@ name: Sync OpenAPI definition to ReadMe
       rdme openapi web3_clientVersion.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e7427400e900a6471d28
       rdme openapi web3_sha3.yaml --key=rdme_xn8s9hdf70894e4e36b34ccb045169936a1f406ee5806d0b281d23bd285556ce722cdf --id=62d8e759ebeda4004a1f51db
       
-      # Alchemy SDK - make sure to CD into the arbitrum folder before running!!
+      # Alchemy SDK - make sure to CD into the sdk folder before running!!
       rdme openapi sdk.yaml --key=rdme_xn8s9h28b31ea37baa9e95a4e6961c9cc66d9fc5b743c15d75bbc1a5c21a2e5a0e46f4 --id=6329f94e07857a0090323a90
