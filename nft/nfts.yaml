@@ -178,19 +178,7 @@ paths:
                     type: string
                     description: 'String - Contract address for the queried NFT collection'
                   contractMetadata:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        description: 'String - NFT contract name.'
-                      symbol:
-                        type: string
-                        description: 'String - NFT contract symbol abbreviation.'
-                      totalSupply:
-                        type: string
-                        description: 'String - Total number of NFTs in a given NFT collection.'
-                      tokenType:
-                        $ref: '#/components/schemas/tokenType_response'
+                    $ref: '#/components/schemas/contractMetadata'
       operationId: getContractMetadata
   '/{apiKey}/getNFTsForCollection':
     get:
@@ -600,6 +588,36 @@ paths:
                       type: number
                       description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
       operationId: computeRarity
+  '/{apiKey}/searchContractMetadata':
+    get:
+      summary: searchContractMetadata
+      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/query'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns the list of NFT contracts where the metadata has one or more keywords from the search string.'
+          content:
+            application/json:
+              schema:
+                type: array                  
+                description: 'List of contracts where the metadata contains one or more keywords from the search string.'
+                items:
+                  type: object
+                  properties:
+                    address:
+                      $ref: '#/components/schemas/contractAddress'
+                    contractMetadata:
+                      $ref: '#/components/schemas/contractMetadata'                      
+      operationId: searchContractMetadata
   '/{apiKey}/summarizeNFTAttributes':
     get:
       summary: summarizeNFTAttributes
@@ -786,6 +804,30 @@ paths:
                     type: string
                     description: 'String - Total number of NFT contracts held by the given address.'
       operationId: getContractsForOwner
+  '/{apiKey}/reportSpamContract':
+    get:
+      summary: reportSpamContract
+      description: Report a particular contract address to our APIs if you think it is spam
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: 'String - "Contract was successfully reported as spam" if calling the API was successful. '
+      operationId: reportSpamContract
 
 components:
   schemas:
@@ -970,6 +1012,13 @@ components:
       in: query
       schema:
         type: boolean
+    query:
+      name: query
+      description: String - The search string that you want to search for in contract metadata
+      in: query
+      schema:
+        type: string
+      required: true
 
     # ===== Response Objects ========
     tokenType_response:
@@ -1124,3 +1173,17 @@ components:
           type: array
           items:
             type: string
+    contractMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'String - NFT contract name.'
+        symbol:
+          type: string
+          description: 'String - NFT contract symbol abbreviation.'
+        totalSupply:
+          type: string
+          description: 'String - Total number of NFTs in a given NFT collection.'
+        tokenType:
+          $ref: '#/components/schemas/tokenType_response'    
