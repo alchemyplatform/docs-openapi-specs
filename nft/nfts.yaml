@@ -804,6 +804,30 @@ paths:
                     type: string
                     description: 'String - Total number of NFT contracts held by the given address.'
       operationId: getContractsForOwner
+  '/{apiKey}/reportSpamContract':
+    get:
+      summary: reportSpamContract
+      description: Report a particular contract address to our APIs if you think it is spam
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: 'String - "Contract was successfully reported as spam" if calling the API was successful. '
+      operationId: reportSpamContract
 
 components:
   schemas:
