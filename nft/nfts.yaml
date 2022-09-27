@@ -66,8 +66,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/ownedNFT'
                   pageKey:
-                    type: string
-                    description: 'String - UUID for pagination - returned if there are more NFTs to fetch. Max NFTs per page = 100.'
+                    $ref: '#/components/schemas/pageKey'
                   totalCount:
                     type: string
                     description: 'String - Total number of NFTs owned by the given address.'
@@ -720,16 +719,13 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-          required: false
         - $ref: '#/components/schemas/tokenId'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
-          required: false
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
         - $ref: '#/components/schemas/buyerIsMaker'
         - $ref: '#/components/schemas/limit'
           description: Integer - The maximum number of NFT sales to return. Defaults to 100.
-          required: false
 
       x-readme:
         samples-languages:
@@ -800,6 +796,39 @@ paths:
                           type: integer
                           description: Integer - The index of the token within the bundle of NFTs sold in the sale.
       operationId: getNFTSales
+  '/{apiKey}/getContractsForOwner':
+    get:
+      summary: getContractsForOwner
+      description: Gets all NFT contracts held by an owner address.
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/pageKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ownedNfts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedContract'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+                  totalCount:
+                    type: string
+                    description: 'String - Total number of NFT contracts held by the given address.'
+      operationId: getContractsForOwner
 
 components:
   schemas:
@@ -817,6 +846,7 @@ components:
         type: string
       in: query
       required: true
+      example: vitalik.eth
     wallet:
       name: wallet
       description: String - Wallet address to check for collection ownership.
@@ -826,7 +856,7 @@ components:
       required: true
     pageKey:
       name: pageKey
-      description: 'String - Cursor key for pagination. If more results are available, a pageKey will be returned in the response. Pass back that pageKey as a param to fetch the next 100 NFTs.'
+      description: 'String - key for pagination. If more results are available, a pageKey will be returned in the response. Pass back the pageKey as a param to fetch the next page of results.'
       schema:
         type: string
       in: query
@@ -871,12 +901,16 @@ components:
       in: query
       schema:
         type: string
+      required: true
+      example: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
       schema:
         type: string
+      required: true
+      example: '44'
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
@@ -921,7 +955,6 @@ components:
       in: query
       schema:
         type: string
-      required: false
     startBlock:
       name: startBlock
       description: String - The block number to start fetching NFT sales data from. Allowed values are decimal integers and "latest". Defaults to "latest".
@@ -929,7 +962,6 @@ components:
       schema:
         type: string
         default: 'latest'
-      required: false
     startLogIndex:
       name: startLogIndex
       description: Integer - The log index within the startBlock to start fetching NFT sales data from. Defaults to 0.
@@ -953,7 +985,6 @@ components:
       schema:
         type: boolean
         default: true
-      required: false
     marketplace:
       name: marketplace
       description: Enum - The name of the NFT marketplace to filter sales by. Currently only "seaport" is supported.
@@ -962,6 +993,7 @@ components:
         type: string
         enum:
           - seaport
+        default: seaport
       required: false
     buyerAddress:
       name: buyerAddress
@@ -969,21 +1001,18 @@ components:
       in: query
       schema:
         type: string
-      required: false
     sellerAddress:
       name: sellerAddress
       description: String - The address of the NFT seller to filter sales by. Defaults to returning sales involving any seller.
       in: query
       schema:
         type: string
-      required: false
     buyerIsMaker:
       name: buyerIsMaker
       description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid. Defaults to returning both maker and taker orders.
       in: query
       schema:
         type: boolean
-      required: false
     query:
       name: query
       description: String - The search string that you want to search for in contract metadata
@@ -1048,6 +1077,48 @@ components:
               trait_type:
                 type: string
           description: 'Object - Traits/attributes/characteristics for each NFT asset.'
+        media:
+          $ref: '#/components/schemas/media'
+    ownedContract:
+      type: object
+      properties:
+        address:
+          description: 'Address of the held contract'
+          type: string
+        ownedCount:
+          type: number
+        isSpam:
+          type: boolean
+        tokenId:
+          description: 'One of the tokens from this contract held by the owner.'
+          type: string
+        name:
+          description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
+          type: string
+        symbol:
+          description: 'The symbol of the contract, i.e. BAYC.'
+          type: string
+        tokenType:
+          description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
+          type: string
+        media:
+          $ref: '#/components/schemas/media'
+    media:
+      type: object
+      properties:
+        raw:
+          $ref: '#/components/schemas/raw'
+        gateway:
+          $ref: '#/components/schemas/gateway'
+        thumbnail:
+          type: string
+          description: URL for a resized thumbnail of the NFT media asset.
+        format:
+          type: string
+          description: The media format (jpg, gif, png, etc.) of the gateway and thumbnail assets.
+        bytes:
+          type: integer
+          description: The size of the media asset in bytes.
     ownedNFT:
       type: object
       properties:
