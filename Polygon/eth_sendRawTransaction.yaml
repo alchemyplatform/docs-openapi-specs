@@ -24,6 +24,43 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/eth_sendRawTransaction
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              import { Network, Alchemy, Wallet, Utils } from "alchemy-sdk";
+              import dotenv from "dotenv";
+              dotenv.config();
+
+              const { API_KEY, PRIVATE_KEY } = process.env;
+
+              const settings = {
+                apiKey: API_KEY,
+                network: Network.MATIC_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const wallet = new Wallet(PRIVATE_KEY);
+
+              const transaction = {
+                to: "0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd",
+                value: Utils.parseEther("0.001"),
+                gasLimit: "21000",
+                maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
+                maxFeePerGas: Utils.parseUnits("20", "gwei"),
+                nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                type: 2,
+                chainId: 137, // Corresponds to MATIC_MAINNET
+              };
+
+              const rawTransaction = await wallet.signTransaction(transaction);
+              await alchemy.transact.sendTransaction(rawTransaction);
       responses:
         '200':
           description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
