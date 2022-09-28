@@ -725,6 +725,7 @@ eth_getSignersAtHash:
           type: array
           items:
             type: string
+
 eth_getTransactionReceiptsByBlock:
   allOf:
     - $ref: '#/common_response_fields'
@@ -755,6 +756,36 @@ eth_syncing:
                   type: string
                   description: 'The estimated highest block.'
             - type: boolean
+
+# ============= Arbitrum API Methods ===============
+eth_createAccessList:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          description: Returns list of addresses and storage keys that are read and written by the transaction (except the sender account and precompiles), plus the estimated gas consumed when the access list is added.
+          properties:
+            accessList:
+              description: list of objects containing addresses and storage keys
+              type: array
+              items:
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: address read or written by the transaction 
+                  storageKeys:
+                    type: array
+                    description: list of storage keys used by the transaction
+                    items:
+                      type: string
+            gasUsed:
+              type: string
+              description: estimated gas consumed when the access list is added. Note, adding an `accessList` to your transaction does not necessary result in lower gas usage compared to a transaction without an `accessList`.
+
+# ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:
   allOf:
     - $ref: '#/common_response_fields'

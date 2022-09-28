@@ -1,0 +1,17 @@
+openapi: 3.1.0
+info:
+  title: eth_feeHistory
+  version: '1.0'
+servers:
+  - url: 'https://arb-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      operationId: eth-feehistory-arbitrum
+      $ref: ../ethereum/eth_feeHistory.yaml#/components/pathItems/path/post
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go

@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: eth_maxPriorityFeePerGas - arbitrum
+  version: '1.0'
+servers:
+  - url: 'https://arb-mainnet.g.alchemy.com/v2
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_maxPriorityFeePerGas
+      description: "Returns a fee per gas that is an estimate of how much you can pay as a priority fee, or 'tip', to get a transaction included in the current block."
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_maxPriorityFeePerGas
+      responses:
+        '200':
+          description: Returns the estimated priority fee per gas.
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/string_result_response
+      operationId: eth-maxpriorityfeepergas-arbitrum
