@@ -608,7 +608,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array                  
+                type: array
                 description: 'List of contracts where the metadata contains one or more keywords from the search string.'
                 items:
                   type: object
@@ -616,7 +616,7 @@ paths:
                     address:
                       $ref: '#/components/schemas/contractAddress'
                     contractMetadata:
-                      $ref: '#/components/schemas/contractMetadata'                      
+                      $ref: '#/components/schemas/contractMetadata'
       operationId: searchContractMetadata
   '/{apiKey}/summarizeNFTAttributes':
     get:
@@ -1085,6 +1085,7 @@ components:
           description: 'Address of the held contract'
           type: string
         ownedCount:
+          description: 'Total number of tokens held from the contract. For non-fungible tokens, this is equivalent to the number of distinct token IDs held. For fungible tokens, it is the total balance held.'
           type: number
         isSpam:
           type: boolean
@@ -1186,4 +1187,4 @@ components:
           type: string
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
-          $ref: '#/components/schemas/tokenType_response'    
+          $ref: '#/components/schemas/tokenType_response'
