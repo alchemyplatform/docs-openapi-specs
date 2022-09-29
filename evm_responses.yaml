@@ -827,7 +827,7 @@ transfer:
     erc721TokenId:
       type: string
       nullable: true
-      description: 'Legacy token ID field for ERC721 tokens (hex string). The `tokenId` field should be used instead.'
+      description: '(Deprecated) Legacy token ID field for ERC721 tokens (hex string). The `tokenId` field should be used instead.'
     erc1155Metadata:
       type: string
       nullable: true
