@@ -3,7 +3,7 @@ info:
   title: eth_newFilter
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemy.com/v2'
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

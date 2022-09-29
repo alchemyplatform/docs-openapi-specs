@@ -665,7 +665,7 @@ alchemy_getTransactionReceipts_param:
             - alchemy_getTransactionReceipts
         params:
           type: array
-          description: 'The api only takes in one parameter - an object with at least a blockNumber or blockHash. If both are provided, blockHash is prioritized.'
+          description: 'The api only takes in one parameter - an object with at least a blockNumber or blockHash. If both are provided, an error is returned asking you to choose either blockNumber or blockHash.'
           minItems: 1
           maxItems: 1
           items:

@@ -3,7 +3,7 @@ info:
   title: eth_newPendingTransactionFilter - Polygon
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemyapi.io/v2'
+  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
