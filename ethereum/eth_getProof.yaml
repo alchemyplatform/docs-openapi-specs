@@ -3,7 +3,7 @@ info:
   title: eth_getProof
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemy.com/v2'
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'
@@ -34,5 +34,3 @@ components:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_getProof
         operationId: eth-getProof
-        x-readme:
-          explorer-enabled: false

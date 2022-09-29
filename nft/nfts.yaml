@@ -10,7 +10,7 @@ servers:
   - description: Ethereum Goerli
     url: 'https://eth-goerli.g.alchemy.com/nft/v2'
   - description: Polygon Mainnet
-    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+    url: 'https://polygon-mainnet.g.alchemy.com/nft/v2'
   - description: Polygon Mumbai
     url: 'https://polygon-mumbai.g.alchemy.com/nft/v2'
 paths:
@@ -608,7 +608,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array                  
+                type: array
                 description: 'List of contracts where the metadata contains one or more keywords from the search string.'
                 items:
                   type: object
@@ -616,7 +616,7 @@ paths:
                     address:
                       $ref: '#/components/schemas/contractAddress'
                     contractMetadata:
-                      $ref: '#/components/schemas/contractMetadata'                      
+                      $ref: '#/components/schemas/contractMetadata'
       operationId: searchContractMetadata
   '/{apiKey}/summarizeNFTAttributes':
     get:
@@ -800,9 +800,15 @@ paths:
                       $ref: '#/components/schemas/ownedContract'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
-                  totalCount:
-                    type: string
-                    description: 'String - Total number of NFT contracts held by the given address.'
+                  ownedCount:
+                    type: number
+                    description: '(DEPRECATED) - Please refer to the `totalBalance` and `numDistinctTokensOwned` fields instead.'
+                  totalBalance:
+                    type: number
+                    description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
+                  numDistinctTokensOwned:
+                    type: number
+                    description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
       operationId: getContractsForOwner
   '/{apiKey}/reportSpamContract':
     get:
@@ -1085,6 +1091,7 @@ components:
           description: 'Address of the held contract'
           type: string
         ownedCount:
+          description: 'Total number of tokens held from the contract. For non-fungible tokens, this is equivalent to the number of distinct token IDs held. For fungible tokens, it is the total balance held.'
           type: number
         isSpam:
           type: boolean
@@ -1165,6 +1172,10 @@ components:
         error:
           type: string
           description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+        contractMetadata:
+          $ref: '#/components/schemas/contractMetadata'
+        spamInfo:
+          $ref: '#/components/schemas/spamInfo'
     owners:
       type: object
       properties:
@@ -1186,4 +1197,16 @@ components:
           type: string
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
-          $ref: '#/components/schemas/tokenType_response'    
+          $ref: '#/components/schemas/tokenType_response'
+    spamInfo:
+      type: object
+      properties:
+        description: 'Information about whether and why a contract was marked as spam.'
+        isSpam:
+          type: string
+          description: '"true" if contract is spam, else "false"'
+        classifications:
+          description: 'List of reasons why a contract was classified as spam.'
+          type: array
+          items:
+            type: string
