@@ -3,7 +3,7 @@ info:
   title: 🔔 Notify API
   version: '1.0'
 servers:
-  - url: 'https://dashboard.alchemyapi.io/api'
+  - url: 'https://dashboard.alchemy.com/api'
 paths:
   /team-webhooks:
     get:

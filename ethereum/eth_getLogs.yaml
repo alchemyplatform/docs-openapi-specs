@@ -4,7 +4,7 @@ info:
   description: 'Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.'
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: 'https://eth-mainnet.alchemy.com/v2'
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'
@@ -71,7 +71,7 @@ components:
                 apiKey = "demo"
 
                 # Initialize a Web3.py instance
-                web3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemyapi.io/v2/'+apiKey))
+                web3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemy.com/v2/'+apiKey))
 
                 # Query the blockchain (replace example parameters)
                 logs = web3.eth.get_logs({
