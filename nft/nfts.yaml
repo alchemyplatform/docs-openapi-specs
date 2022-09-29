@@ -1166,6 +1166,10 @@ components:
         error:
           type: string
           description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+        contractMetadata:
+          $ref: '#/components/schemas/contractMetadata'
+        spamInfo:
+          $ref: '#/components/schemas/spamInfo'
     owners:
       type: object
       properties:
@@ -1188,3 +1192,15 @@ components:
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
+    spamInfo:
+      type: object
+      properties:
+        description: 'Information about whether and why a contract was marked as spam.'
+        isSpam:
+          type: string
+          description: '"true" if contract is spam, else "false"'
+        classifications:
+          description: 'List of reasons why a contract was classified as spam.'
+          type: array
+          items:
+            type: string
