@@ -1,9 +1,9 @@
-openapi: 3.1.0
+openapi: "3.0.0"
 info:
   title: OpenAPI spec used to generate SDKs 
-  version: '1.0'
+  version: 1.0.0
 servers:
-  - url: 'https://eth-mainnet.alchemyapi.io/v2'
+  - url: https://eth-mainnet.alchemyapi.io/v2
 paths:
   /{apiKey}/account/list:
     post:
@@ -11,19 +11,19 @@ paths:
       operationId: accountList
       description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
       parameters:
-        - $ref: common/auth.yml
+        - $ref: ./common/auth.yml
       requestBody:
         content:
           application/json:
             schema:
-              $ref: methods/eth_accounts.yml#/AccountListRequest
+              $ref: ./methods/eth_accounts.yml#/AccountListRequest
       responses:
         '200':
           description: Returns 20 Bytes - addresses owned by the client.
           content:
             application/json:
               schema:
-                $ref: methods/eth_accounts.yml#/AccountListResponse
+                $ref: ./methods/eth_accounts.yml#/AccountListResponse
         
 
       

@@ -68,3 +68,26 @@ To generate SDKs, we need to:
 
 To help with linting, resolve and do
 I used [speccy](https://github.com/wework/speccy)
+
+Reinstall VSCode extension below to follow ref links
+
+Name: OpenAPI (Swagger) Editor
+Id: 42Crunch.vscode-openapi
+Description: OpenAPI extension for Visual Studio Code
+Version: 4.13.0
+Publisher: 42Crunch
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi
+
+### Resolve refs
+
+- tried [openapi-merge-cli](https://www.npmjs.com/package/openapi-merge-cli)
+
+- tried swagger-client
+
+- tried Speccy - this works but it resolves schemas it has seen before by linking to them (not prettiest)
+
+### Generators
+
+- autorest from Microsoft
+
+- openapi-generators (requires Java installed)

@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autorest": "^3.6.2",
     "speccy": "^0.11.0"
   }
 }
