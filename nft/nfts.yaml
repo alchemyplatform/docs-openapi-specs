@@ -10,7 +10,7 @@ servers:
   - description: Ethereum Goerli
     url: 'https://eth-goerli.g.alchemy.com/nft/v2'
   - description: Polygon Mainnet
-    url: 'https://polygon-mainnet.g.alchemyapi.io/nft/v2'
+    url: 'https://polygon-mainnet.g.alchemy.com/nft/v2'
   - description: Polygon Mumbai
     url: 'https://polygon-mumbai.g.alchemy.com/nft/v2'
 paths:
