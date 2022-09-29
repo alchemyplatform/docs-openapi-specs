@@ -670,7 +670,6 @@ debug_traceBlockByNumber:
           items:
             $ref: '#/callTracer'
 
-
 # ===== Polygon API Responses ============
 bor_getAuthor:
   allOf:
@@ -775,7 +774,7 @@ eth_createAccessList:
                 properties:
                   address:
                     type: string
-                    description: address read or written by the transaction 
+                    description: address read or written by the transaction
                   storageKeys:
                     type: array
                     description: list of storage keys used by the transaction
@@ -828,7 +827,7 @@ transfer:
     erc721TokenId:
       type: string
       nullable: true
-      description: 'Raw ERC721 token id (hex string). null if not an ERC721 token transfer.'
+      description: 'Legacy token ID field for ERC721 tokens (hex string). The `tokenId` field should be used instead.'
     erc1155Metadata:
       type: string
       nullable: true
