@@ -800,15 +800,9 @@ paths:
                       $ref: '#/components/schemas/ownedContract'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
-                  ownedCount:
-                    type: number
-                    description: '(DEPRECATED) - Please refer to the `totalBalance` and `numDistinctTokensOwned` fields instead.'
-                  totalBalance:
-                    type: number
-                    description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
-                  numDistinctTokensOwned:
-                    type: number
-                    description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
+                  totalCount:
+                    type: string
+                    description: 'String - Total number of NFT contracts held by the given address.'
       operationId: getContractsForOwner
   '/{apiKey}/reportSpamContract':
     get:
@@ -1091,8 +1085,14 @@ components:
           description: 'Address of the held contract'
           type: string
         ownedCount:
-          description: 'Total number of tokens held from the contract. For non-fungible tokens, this is equivalent to the number of distinct token IDs held. For fungible tokens, it is the total balance held.'
           type: number
+          description: '(DEPRECATED) - Please refer to the `totalBalance` and `numDistinctTokensOwned` fields instead.'
+        totalBalance:
+          type: number
+          description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
+        numDistinctTokensOwned:
+          type: number
+          description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
         isSpam:
           type: boolean
         tokenId:
