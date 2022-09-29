@@ -1198,7 +1198,7 @@ components:
         description: 'Information about whether and why a contract was marked as spam.'
         isSpam:
           type: string
-          description: '"true" if contract is spam, else false'
+          description: '"true" if contract is spam, else "false"'
         classifications:
           description: 'List of reasons why a contract was classified as spam.'
           type: array
