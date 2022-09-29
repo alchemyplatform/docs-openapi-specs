@@ -52,7 +52,7 @@ paths:
               apiKey = "demo"
 
               # Initialize a Web3.py instance
-              web3 = Web3(Web3.HTTPProvider('https://arb-mainnet.alchemyapi.io/v2/'+apiKey))
+              web3 = Web3(Web3.HTTPProvider('https://arb-mainnet.alchemy.com/v2/'+apiKey))
 
               # Query the blockchain (replace example parameters)
               logs = web3.eth.get_logs({
