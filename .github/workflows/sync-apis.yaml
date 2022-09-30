@@ -22,9 +22,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
+      
+      - name: List Directory
+        run: |
+          ls -a
+          pwd
+          
       # Runs a single command using the runners shell
       - name: GitHub action to update API
         uses: readmeio/rdme@7.5.0
         with:
-          rdme: openapi ../../nft/nfts.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.NFT_API_ID }}
+          rdme: openapi nft/nfts.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.NFT_API_ID }}
