@@ -434,6 +434,7 @@ eth_feeHistory:
               1. `integer` - Block count or range
               2. `string` - Block number (in hex) or block tag
               3. `array` of `integers` - (optional) Reward percentiles to sample from each block
+          items:
             anyOf:
             - type: integer
               title: Block count 
