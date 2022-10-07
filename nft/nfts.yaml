@@ -867,7 +867,7 @@ components:
       in: query
     contractAddresses:
       name: contractAddresses[]
-      description: Array of contract addresses to filter the responses with. Max limit 20 contracts.
+      description: Array of contract addresses to filter the responses with. Max limit 45 contracts.
       schema:
         type: array
         items:
