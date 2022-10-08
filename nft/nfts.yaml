@@ -986,7 +986,7 @@ components:
         default: true
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. Currently only "seaport" is supported.
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport" and "looksrare".
       in: query
       schema:
         type: string
