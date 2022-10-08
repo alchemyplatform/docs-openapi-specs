@@ -17,7 +17,6 @@ paths:
             default: demo
           required: true
       requestBody:
-        description: 'Block number (in hexadecimal format).'
         content:
           application/json:
             schema:
