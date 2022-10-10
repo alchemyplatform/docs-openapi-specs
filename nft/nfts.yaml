@@ -75,13 +75,13 @@ paths:
                     description: 'String - The canonical head block hash of when your request was received'
               examples:
                 byDefault:
-                  $ref: '#/components/schemas/byDefault'
+                  $ref: '#/components/schemas/byDefault_response'
                 withoutMetadata:
-                  $ref: '#/components/schemas/withoutMetadata'
+                  $ref: '#/components/schemas/withoutMetadata_response'
                 withContractFiltering:
-                  $ref: '#/components/schemas/withContractFiltering'
+                  $ref: '#/components/schemas/withContractFiltering_response'
                 withPagination:
-                  $ref: '#/components/schemas/withPagination'
+                  $ref: '#/components/schemas/withPagination_response'
       operationId: getNFTs
   '/{apiKey}/getNFTMetadata':
     get:
@@ -1211,7 +1211,7 @@ components:
           items:
             type: string
      # === getNFTs example responses ===
-    byDefault:
+    byDefault_response:
       summary: 'Response (By Default)'
       value: >
         {
@@ -1311,7 +1311,7 @@ components:
           "totalCount": 6,
           "blockHash": "0xeb2d26af5b6175344a14091777535a2cb21c681665a734a8285f889981987630"
         }
-    withoutMetadata:
+    withoutMetadata_response:
       summary: 'Response (withMetadata = false)'
       value: >
         {
@@ -1345,7 +1345,7 @@ components:
           "totalCount": 6,
           "blockHash": "0xf9a2a4e15116680e22b160c734529f62d89d54cde0759daf5135672fad0ecebc"
         }
-    withContractFiltering:
+    withContractFiltering_response:
       summary: 'Response (with contract filtering)'
       value: >
         {
@@ -1360,7 +1360,7 @@ components:
           "totalCount": 1,
           "blockHash": "0x3d8bca59c08e41f55d46ebbe738327eb12955cf280bd06ef7d40352919c188d8"
         }
-    withPagination:
+    withPagination_response:
       summary: 'Response (with pagination)'
       value: >
         {
@@ -1439,7 +1439,7 @@ components:
           "totalCount": 277,
           "blockHash": "0x94d5ab52b8a6571733f6b183ef89f31573b82a4e78f8129b0ce90ef0beaf208b"
         }
-    withTokenBalances:
+    withTokenBalances_response:
       type: array
       description: List of objects representing the token ownership for owners
       items:
