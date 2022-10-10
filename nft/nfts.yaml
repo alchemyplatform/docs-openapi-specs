@@ -986,13 +986,13 @@ components:
         default: true
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport" and "looksrare".
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport" and "looksrare". Defaults to returning sales from all supported marketplaces.
       in: query
       schema:
         type: string
         enum:
           - seaport
-        default: seaport
+          - looksrare
       required: false
     buyerAddress:
       name: buyerAddress
