@@ -1211,7 +1211,7 @@ components:
           type: array
           items:
             type: string
-      # === getNFTs example responses ===
+    # === getNFTs example responses ===
     byDefault_response:
       summary: 'Response (By Default)'
       value: >
