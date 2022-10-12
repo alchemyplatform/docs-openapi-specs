@@ -1027,13 +1027,13 @@ paths:
                     description: 'String - The canonical head block hash of when your request was received'
               examples:
                 byDefault:
-                  $ref: '../nft/get_nfts_examples.yaml#/byDefault'
+                  $ref: '../nft/nfts.yaml#/components/schemas/byDefault_response'
                 withoutMetadata:
-                  $ref: '../nft/get_nfts_examples.yaml#/withoutMetadata'
+                  $ref: '../nft/nfts.yaml#/components/schemas/withoutMetadata_response'
                 withContractFiltering:
-                  $ref: '../nft/get_nfts_examples.yaml#/withContractFiltering'
+                  $ref: '../nft/nfts.yaml#/components/schemas/withContractFiltering_response'
                 withPagination:
-                  $ref: '../nft/get_nfts_examples.yaml#/withPagination'
+                  $ref: '../nft/nfts.yaml#/components/schemas/withPagination_response'
   '/{apiKey}/getNftMetadata':
     get:
       summary: getNftMetadata
@@ -1853,7 +1853,7 @@ paths:
                 .then(console.log);
       responses:
         '200':
-          description: 'Returns a promise of a transaction receipt which will not resolve until specified transaction hash is mined.
+          description: Returns a promise of a transaction receipt which will not resolve until specified transaction hash is mined.
           content:
             application/json:
               schema:
