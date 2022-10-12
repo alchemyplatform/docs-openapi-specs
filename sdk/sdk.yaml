@@ -966,9 +966,9 @@ paths:
   # /////////////////////////////////// NFT ENDPOINTS //////////////////////////////
   # ////////////////////////////////////////////////////////////////////////////////
 
-  '/{apiKey}/getNfts':
+  '/{apiKey}/getNftsForOwner':
     get:
-      summary: getNfts
+      summary: getNftsForOwner
       description: Gets all NFTs currently owned by a given address.
       tags: ['SDK NFT Endpoints']
       operationId: sdk-getNfts
