@@ -843,9 +843,9 @@ components:
       description: String - Address for NFT owner (can be in ENS format!).
       schema:
         type: string
+        default: vitalik.eth
       in: query
       required: true
-      default: vitalik.eth
     wallet:
       name: wallet
       description: String - Wallet address to check for collection ownership.
@@ -900,16 +900,16 @@ components:
       in: query
       schema:
         type: string
+        default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
       required: true
-      default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
       schema:
         type: string
+        default: '44'
       required: true
-      default: '44'
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
