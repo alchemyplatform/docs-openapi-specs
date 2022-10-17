@@ -64,5 +64,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/alchemy_getAssetTransfers
+                $ref: evm_responses.yaml#/alchemy_getAssetTransfers
       operationId: alchemy-getAssetTransfers

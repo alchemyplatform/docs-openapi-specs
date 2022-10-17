@@ -23,7 +23,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/eth_call_550_gas
+              $ref: sdk_body.yaml#/eth_call_550_gas
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/string_result_response
+                $ref: sdk_responses.yaml#/string_result_response
               examples:
                 default:
                   summary: 'Sample Response'
@@ -83,7 +83,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/eth_estimateGas_550
+              $ref: sdk_body.yaml#/eth_estimateGas_550
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -119,7 +119,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/string_result_response
+                $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getAssetTransfers:
     post:
       tags: ['SDK Core Endpoints']
@@ -137,7 +137,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/alchemy_getAssetTransfers
+              $ref: sdk_body.yaml#/alchemy_getAssetTransfers
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -173,7 +173,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/alchemy_getAssetTransfers
+                $ref: sdk_responses.yaml#/alchemy_getAssetTransfers
   /{apiKey}/getBalance:
       post:
         operationId: sdk-getBalance
@@ -191,7 +191,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getBalance
+                $ref: sdk_body.yaml#/eth_getBalance
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -218,7 +218,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/string_result_response
+                  $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getBlock:
       post:
         tags: ['SDK Core Endpoints']
@@ -236,7 +236,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getBlock
+                $ref: sdk_body.yaml#/eth_getBlock
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -263,7 +263,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/eth_block
+                  $ref: sdk_responses.yaml#/eth_block
                 examples:
                   default:
                     summary: 'Sample Response'
@@ -355,7 +355,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getBlock
+                $ref: sdk_body.yaml#/eth_getBlock
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -382,7 +382,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/eth_block
+                  $ref: sdk_responses.yaml#/eth_block
                 examples:
                   default:
                     summary: 'Sample Response'
@@ -444,7 +444,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getCode
+                $ref: sdk_body.yaml#/eth_getCode
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -471,7 +471,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/string_result_response
+                  $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/feeData:
       post:
         operationId: sdk-feeData
@@ -511,7 +511,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/getFeeData
+                  $ref: sdk_responses.yaml#/getFeeData
   /{apiKey}/getGasPrice:
       post:
         operationId: sdk-getGasPrice
@@ -551,7 +551,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/string_result_response
+                  $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getLogs:
       post:
         tags: ['SDK Core Endpoints']
@@ -570,7 +570,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getLogs
+                $ref: sdk_body.yaml#/eth_getLogs
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -629,7 +629,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/eth_getLogs
+                  $ref: sdk_responses.yaml#/eth_getLogs
   /{apiKey}/getStorageAt:
       post:
         operationId: sdk-getStorageAt
@@ -647,7 +647,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getStorageAt
+                $ref: sdk_body.yaml#/eth_getStorageAt
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -674,7 +674,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/string_result_response
+                  $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getTokenBalances:
     post:
       operationId: sdk-getTokenBalances
@@ -692,7 +692,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/alchemy_getTokenBalances
+              $ref: sdk_body.yaml#/alchemy_getTokenBalances
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -723,7 +723,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/alchemy_getTokenBalances
+                $ref: sdk_responses.yaml#/alchemy_getTokenBalances
   /{apiKey}/getTokenMetadata:
     post:
       operationId: sdk-getTokenMetadata
@@ -741,7 +741,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/alchemy_getTokenMetadata
+              $ref: sdk_body.yaml#/alchemy_getTokenMetadata
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -770,7 +770,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/alchemy_getTokenMetadata
+                $ref: sdk_responses.yaml#/alchemy_getTokenMetadata
   /{apiKey}/getTransactionCount:
       post:
         operationId: sdk-getTransactionCount
@@ -788,7 +788,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getTransactionCount
+                $ref: sdk_body.yaml#/eth_getTransactionCount
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -815,7 +815,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/number_result_response
+                  $ref: sdk_responses.yaml#/number_result_response
   /{apiKey}/getTransactionReceipt:
       post:
         operationId: sdk-getTransactionReceipt
@@ -833,7 +833,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getTransactionReceipt
+                $ref: sdk_body.yaml#/eth_getTransactionReceipt
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -864,7 +864,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/eth_getTransactionReceipt
+                  $ref: sdk_responses.yaml#/eth_getTransactionReceipt
   /{apiKey}/getTransactionReceipts:
     post:
       summary: getTransactionReceipts
@@ -881,7 +881,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/alchemy_getTransactionReceipts_param
+              $ref: sdk_body.yaml#/alchemy_getTransactionReceipts_param
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -912,7 +912,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/transaction_receipts
+                $ref: sdk_responses.yaml#/transaction_receipts
       operationId: sdk-getTransactionReceipts
   /{apiKey}/send:
       post:
@@ -931,7 +931,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/sdk_send
+                $ref: sdk_body.yaml#/sdk_send
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -960,7 +960,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/any_result_response
+                  $ref: sdk_responses.yaml#/any_result_response
 
   # ////////////////////////////////////////////////////////////////////////////////
   # /////////////////////////////////// NFT ENDPOINTS //////////////////////////////
@@ -1603,7 +1603,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_getTransactionByHash
+                $ref: sdk_body.yaml#/eth_getTransactionByHash
                 example:
                   params:
                     [
@@ -1639,7 +1639,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/eth_getTransactionByHash
+                  $ref: sdk_responses.yaml#/eth_getTransactionByHash
   /{apiKey}/sendTransaction:
       post:
         operationId: sdk-sendTransaction
@@ -1657,7 +1657,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_body.yaml#/eth_sendRawTransaction
+                $ref: sdk_body.yaml#/eth_sendRawTransaction
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -1699,7 +1699,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: ../sdk_responses.yaml#/sendTransaction
+                  $ref: sdk_responses.yaml#/sendTransaction
   /{apiKey}/sendPrivateTransaction:
     post:
       summary: sendPrivateTransaction
@@ -1717,7 +1717,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/eth_sendPrivateTransaction
+              $ref: sdk_body.yaml#/eth_sendPrivateTransaction
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -1759,7 +1759,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/string_result_response
+                $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/cancelPrivateTransaction:
     post:
       operationId: sdk-cancelPrivateTransaction
@@ -1777,7 +1777,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/eth_cancelPrivateTransaction
+              $ref: sdk_body.yaml#/eth_cancelPrivateTransaction
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -1808,7 +1808,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/eth_cancelPrivateTransaction
+                $ref: sdk_responses.yaml#/eth_cancelPrivateTransaction
   /{apiKey}/waitForTransaction:
     post:
       operationId: sdk-waitForTransaction
@@ -1826,7 +1826,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../sdk_body.yaml#/waitForTransaction
+              $ref: sdk_body.yaml#/waitForTransaction
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -1857,7 +1857,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../sdk_responses.yaml#/transaction_receipt
+                $ref: sdk_responses.yaml#/transaction_receipt
 
 components:
   schemas:
