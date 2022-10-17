@@ -1103,7 +1103,6 @@ alchemy_getAssetTransfers:
                   'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
                 items:
                   type: string
-                  example: external
                   enum:
                     - external
                     - internal
@@ -1111,6 +1110,7 @@ alchemy_getAssetTransfers:
                     - erc721
                     - erc1155
                     - specialnft
+                default: ["external"]
               order:
                 type: string
                 description: |
