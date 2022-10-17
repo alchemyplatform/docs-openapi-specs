@@ -1027,13 +1027,13 @@ paths:
                     description: 'String - The canonical head block hash of when your request was received'
               examples:
                 byDefault:
-                  $ref: '../nft/nfts.yaml#/components/schemas/byDefault_response'
+                  $ref: 'nft/nfts.yaml#/components/schemas/byDefault_response'
                 withoutMetadata:
-                  $ref: '../nft/nfts.yaml#/components/schemas/withoutMetadata_response'
+                  $ref: 'nft/nfts.yaml#/components/schemas/withoutMetadata_response'
                 withContractFiltering:
-                  $ref: '../nft/nfts.yaml#/components/schemas/withContractFiltering_response'
+                  $ref: 'nft/nfts.yaml#/components/schemas/withContractFiltering_response'
                 withPagination:
-                  $ref: '../nft/nfts.yaml#/components/schemas/withPagination_response'
+                  $ref: 'nft/nfts.yaml#/components/schemas/withPagination_response'
   '/{apiKey}/getNftMetadata':
     get:
       summary: getNftMetadata
