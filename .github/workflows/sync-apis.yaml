@@ -34,7 +34,13 @@ jobs:
         uses: readmeio/rdme@7.5.0
         with:
           rdme: openapi notify/notify.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.NOTIFY_API_ID }}
-      
+          
+      # Update Transfers API in docs
+      - name: GitHub action to update Transfers API
+        uses: readmeio/rdme@7.5.0
+        with:
+          rdme: openapi transfers/alchemy_getAssetTransfers.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.TRANSFERS_API_ID }} 
+          
       # Update SDK docs 
       - name: GitHub action to update SDK APIs
         uses: readmeio/rdme@7.5.0
