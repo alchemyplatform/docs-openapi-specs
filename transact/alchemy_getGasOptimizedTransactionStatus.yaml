@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: eth_sendPrivateTransaction
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_sendPrivateTransaction
+      description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_sendPrivateTransaction
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/string_result_response
+      operationId: eth-sendPrivateTransaction
