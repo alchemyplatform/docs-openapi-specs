@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_sendPrivateTransaction
+  title: alchemy_getGasOptimizedTransactionStatus
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemy.com/v2'
