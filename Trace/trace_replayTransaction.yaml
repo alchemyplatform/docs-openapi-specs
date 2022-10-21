@@ -3,7 +3,7 @@ info:
   title: Replay Transaction
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemy.com/v2'
+  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
 paths:
   /{apiKey}:
     post:
