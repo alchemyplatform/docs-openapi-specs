@@ -688,8 +688,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/startBlock'
-        - $ref: '#/components/schemas/startLogIndex'
-        - $ref: '#/components/schemas/startBundleIndex'
+        - $ref: '#/components/schemas/endBlock'
         - $ref: '#/components/schemas/ascendingOrder'
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
@@ -698,9 +697,9 @@ paths:
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
-        - $ref: '#/components/schemas/buyerIsMaker'
+        - $ref: '#/components/schemas/taker'
         - $ref: '#/components/schemas/limit'
-          description: Integer - The maximum number of NFT sales to return. Defaults to 100.
+          description: Integer - The maximum number of NFT sales to return. Defaults to 100. Maximum of 1000.
 
       x-readme:
         samples-languages:
@@ -740,27 +739,21 @@ paths:
                         sellerAddress:
                           type: string
                           description: String - The address of the seller in the NFT sale.
-                        buyerIsMaker:
-                          type: boolean
-                          description: Boolean - True if the buyer was the maker (put out bid), false if the buyer was the taker (accepted seller listing) in the order.
-                        price:
-                          type: float
-                          description: Float - The amount paid to the NFT seller in the sale.
-                        priceCurrency:
+                        taker:
                           type: string
-                          description: String - The token used to pay the seller in the sale.
-                        protocolFee:
-                          type: float
-                          description: Float - The amount paid to the marketplace in the sale.
-                        protocolFeeCurrency:
-                          type: string
-                          description: String - The token used to pay the marketplace in the sale.
+                          description: String - Whether the taker in the trade was the buyer or the seller.
+                          enum:
+                            - BUYER
+                            - SELLER
+                        sellerFee:
+                          type: object
+                          description: The amount, token symbol, and decimals of the token of the payment from buyer to seller
+                        marketplaceFee:
+                          type: object
+                          description: The amount, token symbol, and decimals of the token of the payment from buyer to the marketplace
                         royaltyFee:
-                          type: float
-                          description: Float - The amount paid in NFT creator royalties in the sale.
-                        royaltyFeeCurrency:
-                          type: string
-                          description: String - The token used to pay the royalties in the sale.
+                          type: object
+                          description: The amount, token symbol, and decimals of the token of the payment from buyer to the NFT collection royalty address
                         blockNumber:
                           type: integer
                           description: Integer - The block number the NFT sale took place in.
@@ -956,30 +949,21 @@ components:
         type: string
     startBlock:
       name: startBlock
-      description: String - The block number to start fetching NFT sales data from. Allowed values are decimal integers and "latest". Defaults to "latest".
+      description: String - The block number to start fetching NFT sales data from. Allowed values are decimal and hex integers, and "latest". Defaults to "0".
+      in: query
+      schema:
+        type: string
+        default: '0'
+    endBlock:
+      name: endBlock
+      description: String - The block number to start fetching NFT sales data from. Allowed values are decimal and hex integers, and "latest". Defaults to "latest".
       in: query
       schema:
         type: string
         default: 'latest'
-    startLogIndex:
-      name: startLogIndex
-      description: Integer - The log index within the startBlock to start fetching NFT sales data from. Defaults to 0.
-      in: query
-      schema:
-        type: integer
-        default: 0
-      required: false
-    startBundleIndex:
-      name: startBundleIndex
-      description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from. Defaults to 0.
-      in: query
-      schema:
-        type: integer
-        default: 0
-      required: false
     ascendingOrder:
       name: ascendingOrder
-      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending (true).
+      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to descending (false).
       in: query
       schema:
         type: boolean
@@ -1007,12 +991,16 @@ components:
       in: query
       schema:
         type: string
-    buyerIsMaker:
-      name: buyerIsMaker
-      description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid. Defaults to returning both maker and taker orders.
+    taker:
+      name: taker
+      description: Enum - Filter by whether the buyer or seller was the taker in the NFT trade. Allowed filter values are "buyer" and "seller". Defaults to returning both buyer and seller taker trades.
       in: query
       schema:
-        type: boolean
+        type: string
+        enum:
+          - buyer
+          - seller
+        required: false
     query:
       name: query
       description: String - The search string that you want to search for in contract metadata
