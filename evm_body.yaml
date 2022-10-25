@@ -1151,6 +1151,12 @@ tracer:
   default: callTracer
   enum:
     - callTracer
+    - prestateTracer
+tracerConfig:
+  type: object
+  properties:
+    onlyTopCall:
+      type: boolean
 
 debug_traceCall:
   allOf:
@@ -1192,6 +1198,8 @@ debug_traceCall:
               properties:
                 tracer:
                   $ref: '#/tracer'
+                tracerConfig:
+                  $ref: '#/tracerConfig'
 
 debug_traceBlockByHash:
   allOf:
@@ -1221,6 +1229,8 @@ debug_traceBlockByHash:
               properties:
                 tracer:
                   $ref: '#/tracer'
+                tracerConfig:
+                  $ref: '#/tracerConfig'
 debug_traceBlockByNumber:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1247,6 +1257,8 @@ debug_traceBlockByNumber:
                 properties:
                   tracer:
                     $ref: '#/tracer'
+                  tracerConfig:
+                    $ref: '#/tracerConfig'
 debug_traceTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1278,6 +1290,8 @@ debug_traceTransaction:
               properties:
                 tracer:
                   $ref: '#/tracer'
+                tracerConfig:
+                  $ref: '#/tracerConfig'
                 timeout:
                   type: string
                   description: A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
