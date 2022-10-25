@@ -1474,6 +1474,11 @@ blockHash_and_index_param:
 signed_transaction_param:
   type: object
   properties:
+    method:
+      type: string
+      default: alchemy_getGasOptimizedTransactionStatus
+      enum:
+        - alchemy_getGasOptimizedTransactionStatus
     params:
       type: array
       description: String - The signed transaction data.
@@ -1494,6 +1499,11 @@ get_signed_txns_status_param:
 bundled_signed_transaction_param:
   type: object
   properties:
+    method:
+      type: string
+      default: alchemy_sendGasOptimizedTransaction
+      enum:
+        - alchemy_sendGasOptimizedTransaction
     params:
       type: array
       minItems: 1
