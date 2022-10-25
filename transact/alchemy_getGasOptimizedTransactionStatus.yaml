@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      operationId: alchemy_getGasOptimizedTransactionStatus
       summary: alchemy_getGasOptimizedTransactionStatus
       description: Returns the progression/status of transactions sent in via alchemy_sendGasOptimizedTransaction
       tags: []
