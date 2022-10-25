@@ -12,6 +12,30 @@ paths:
       tags: ['Notify API Endpoints']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
       responses:
         '200':
           description: Returns list of webhook objects.
@@ -31,7 +55,39 @@ paths:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
         - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/after'
+        - $ref: '#/components/schemas/pageKey'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const hooks = await alchemy.notify.getAllWebhooks();
+
+              const addressesById = await alchemy.notify.getAddresses("wh_qv16bt12wbj9kax4", {
+                limit: 3,
+              });
+              const addressesByWebhook = await alchemy.notify.getAddresses(
+                hooks.webhooks[3],
+                { limit: 3, pageKey: 1 }
+              );
       responses:
         '200':
           description: 'List of addresses and pagination info.'
@@ -54,6 +110,63 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/create_webhook'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network, WebhookType } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              const minedTxWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.MINED_TRANSACTION,
+                { appId: "wq9fgv022aff81pg" }
+              );
+
+              const droppedTxWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.DROPPED_TRANSACTION,
+                { appId: "wq9fgv022aff81pg" }
+              );
+
+              const addressActivityWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.ADDRESS_ACTIVITY,
+                {
+                  addresses: ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96010"],
+                  network: Network.ETH_MAINNET,
+                }
+              );
+
+              const nftActivityWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.NFT_ACTIVITY,
+                {
+                  filters: [
+                    {
+                      contractAddress: "0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656",
+                      tokenId: "234",
+                    },
+                  ],
+                  network: Network.ETH_MAINNET,
+                }
+              );
       responses:
         '200':
           description: 'Returns webhook creation data.'
@@ -76,6 +189,37 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/update_webhook_addresses'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating Address Activity Webhook: add/remove addresses
+              await alchemy.notify.updateWebhook("wh_qv16bt12wbj9kax4", {
+                addAddresses: [
+                  "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96010",
+                  "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96011",
+                ],
+                removeAddresses: ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96043"],
+              });
       responses:
         '200':
           description: 'Returns empty object.'
@@ -95,6 +239,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/replace_webhook_addresses'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating Address Activity Webhook: replace all addresses
+              await alchemy.notify.updateWebhook("wh_qv16bt12wbj9kax4", {
+                newAddresses: ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96010"],
+              });
       responses:
         '200':
           description: 'Returns empty object.'
@@ -115,6 +286,30 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/update_webhook'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              await alchemy.notify.updateWebhook("wh_qv16bt12wbj9kax4", { isActive: false });
       responses:
         '200':
           description: 'Returns updated webhook status.'
@@ -135,6 +330,44 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/update_webhook_nft_filters'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating NFT Filter Webhook: add/remove filters
+              await alchemy.notify.updateWebhook("wh_zyhqo5im08n6ougk", {
+                addFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "101",
+                  },
+                ],
+                removeFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "24",
+                  },
+                ],
+              });
       responses:
         '200':
           description: 'Returns empty object.'
@@ -153,7 +386,37 @@ paths:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
         - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/after'
+        - $ref: '#/components/schemas/pageKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const hooks = await alchemy.notify.getAllWebhooks();
+
+              const nftsById = await alchemy.notify.getNftFilters("wh_zyhqo5im08n6ougk", {
+                limit: 3,
+                pageKey: 1,
+              });
+
+              const nftsByWebhook = await alchemy.notify.getNftFilters(hooks.webhooks[1]);
       responses:
         '200':
           description: Returns a list of nft filter objects.
@@ -173,6 +436,37 @@ paths:
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network, WebhookType } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              const minedTxWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.MINED_TRANSACTION,
+                { appId: "wq9fgv022aff81pg" }
+              );
+
+              await alchemy.notify.deleteWebhook("wh_qv16bt12wbj9kax4");
+              await alchemy.notify.deleteWebhook(minedTxWebhook);
       responses:
         '200':
           description: 'Returns empty object.'
@@ -205,6 +499,13 @@ components:
         type: integer
         default: 100
       description: 'Number of items per page.'
+      in: query
+    pageKey:
+      name: pageKey
+      schema:
+        type: string
+        default: '0'
+      description: 'Page cursor for the next page.'
       in: query
     after:
       name: after

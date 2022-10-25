@@ -238,6 +238,15 @@ eth_estimateGas_50:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_50'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
+
+findContractDeployer:
+  allOf:
+    - type: object
+      properties:
+        contractAddress:
+          type: string
+          description: The contract address to find the deployer for.
+
 eth_feeHistory:
   allOf:
     - type: object
