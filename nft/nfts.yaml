@@ -1085,9 +1085,6 @@ components:
         address:
           description: 'Address of the held contract'
           type: string
-        ownedCount:
-          type: number
-          description: '(DEPRECATED) - Please refer to the `totalBalance` and `numDistinctTokensOwned` fields instead.'
         totalBalance:
           type: number
           description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
