@@ -1,15 +1,14 @@
 openapi: 3.1.0
 info:
-  title: eth_cancelPrivateTransaction
+  title: alchemy_sendGasOptimizedTransaction
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
-      operationId: eth-cancelPrivateTransaction
-      summary: eth_cancelPrivateTransaction
-      description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.
+      summary: alchemy_sendGasOptimizedTransaction
+      description: Submits a bundle of indentical transactions, each individually with a range of different gas values
       tags: []
       parameters:
         - name: apiKey
@@ -22,11 +21,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/eth_cancelPrivateTransaction
+              $ref: ../evm_body.yaml#/bundled_signed_transaction_param
       responses:
         '200':
-          description: 'Returns true if transaction was successfully cancelled, false if not.'
+          description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/eth_cancelPrivateTransaction
+                $ref: ../evm_responses.yaml#/sendTxn_result_response
+      operationId: alchemy-sendGasOptimizedTransaction
