@@ -717,15 +717,15 @@ alchemy_getTokenAllowance:
               contract:
                 type: string
                 description: 'String - DATA, 20 Bytes - The address of the token contract.'
-                example: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+                default: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
               owner:
                 type: string
                 description: 'String - DATA, 20 Bytes - The address of the token owner.'
-                example: '0xf1a726210550c306a9964b251cbcd3fa5ecb275d'
+                default: '0xf1a726210550c306a9964b251cbcd3fa5ecb275d'
               spender:
                 type: string
                 description: 'String - DATA, 20 Bytes - The address of the token spender.'
-                example: '0xdef1c0ded9bec7f1a1670819833240f027b25eff'
+                default: '0xdef1c0ded9bec7f1a1670819833240f027b25eff'
 alchemy_getTokenBalances:
   allOf:
     - $ref: '#/common_request_fields'
@@ -749,12 +749,9 @@ alchemy_getTokenBalances:
           maxItems: 2
           items:
             type: string
-            examples:
-              address:
-                value: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-              token specification:
-                value: 'erc20'
-alchemy_getTokenMetadata:
+            default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+            
+alchemy_getTokenMetadata: 
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
@@ -771,7 +768,7 @@ alchemy_getTokenMetadata:
           maxItems: 1
           items:
             type: string
-            example: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+            default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
 # ============= Trace API Methods ===============
 trace_call:
