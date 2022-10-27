@@ -41,10 +41,3 @@ paths:
                   value: parseEther("1.0"),
                 })
                 .then(console.log);
-      responses:
-        '200':
-          description: Returns the amount of gas used.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/string_result_response

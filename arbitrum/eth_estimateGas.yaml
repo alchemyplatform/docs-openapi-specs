@@ -9,13 +9,6 @@ paths:
     post:
       $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
       operationId: eth-estimateGas-arbitrum
-      responses:
-        '200':
-          description: Returns the amount of gas used.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/string_result_response
       x-readme:
         explorer-enabled: false
         samples-languages:

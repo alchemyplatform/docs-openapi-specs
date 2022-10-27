@@ -9,13 +9,6 @@ paths:
     post:
       $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       operationId: eth-call-arbitrum
-      responses:
-        '200':
-          description: Returns integer of the number of transactions in this block.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/string_result_response
       x-readme:
         explorer-enabled: false
         samples-languages:
