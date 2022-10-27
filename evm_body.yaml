@@ -387,46 +387,6 @@ eth_estimateGas_550:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-eth_estimateGas_5:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_estimateGas
-          enum:
-            - eth_estimateGas
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_5'
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
-eth_estimateGas_50:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_estimateGas
-          enum:
-            - eth_estimateGas
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_50'
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
 eth_feeHistory:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1348,46 +1308,7 @@ eth_call_550_gas:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-eth_call_5_gas:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_5'
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
-eth_call_50_gas:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          type: string
-          default: eth_call
-          enum:
-            - eth_call
-        params:
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                  - $ref: '#/gas_50'
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
+
 transaction_object:
   type: object
   description: The transaction call object
@@ -1412,22 +1333,6 @@ transaction_object:
       description: Hash of the method signature and encoded parameters
   required:
     - to
-gas_50:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>50</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-gas_5:
-  type: object
-  properties:
-    gas:
-      type: string
-      description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-        </br><strong> NOTE: </strong>this parameter has a cap of <b>5</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
 gas_550:
   type: object
   properties:
