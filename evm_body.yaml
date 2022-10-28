@@ -339,7 +339,6 @@ eth_getProof:
               - type: string
                 title: Address
                 description: Address of the account
-                example:
               - type: array
                 title: Array of storage keys
                 description: array of storage-keys which should be proofed and included
@@ -410,17 +409,17 @@ eth_feeHistory:
             - type: integer
               title: Block count
               description: Number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query (may return less than requested range if not all blocks are available).
-              example: 4
+              default: 4
             - $ref: '#/blockNumber_or_blocktag_param_eth'
               title: Newest block
               description: highest number block in the requested range
-              example: latest
+              default: latest
             - type: array
               items:
                 type: number
               title: reward percentiles
               description: (optional) A monotonically increasing list of percentile values to sample from each block's effective priority fees per gas in ascending order, weighted by gas used.
-              example: [25,75]
+              default: [25,75]
 eth_maxPriorityFeePerGas:
   allOf:
     - $ref: '#/common_request_fields'
@@ -647,6 +646,7 @@ alchemy_getTransactionReceipts_param:
                 type: string
                 description: The block number you want to get transaction receipts for, in hex
                 pattern: '^0[xX][0-9a-fA-F]+$'
+                default: '0xF1D1C6'
               blockHash:
                 type: string
                 description: The block hash you want to get transaction receipts for
@@ -1025,7 +1025,7 @@ eth_createAccessList:
               title: Transaction object
             - $ref: '#/blockNumber_or_blocktag_param_l2'
               title: Block number or block tag
-              example: pending
+              default: pending
 
 # ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:
@@ -1153,7 +1153,7 @@ debug_traceCall:
                     * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
                     * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
                     * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-              example: finalized
+              default: finalized
             - type: object
               title: Tracer
               properties:
@@ -1184,7 +1184,7 @@ debug_traceBlockByHash:
             - type: string
               title: Block hash
               description: block hash
-              example: '0x7bd8357213af34d3fe7f725d9b21187a5a58127e39aac5776fd0594e3391ea6e'
+              default: '0x7bd8357213af34d3fe7f725d9b21187a5a58127e39aac5776fd0594e3391ea6e'
             - type: object
               title: Tracer
               properties:
@@ -1244,7 +1244,7 @@ debug_traceTransaction:
             - type: string
               title: Transaction hash
               description: Transaction hash
-              example: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+              default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
             - type: object
               description: options for call
               title: Options
@@ -1256,7 +1256,7 @@ debug_traceTransaction:
                 timeout:
                   type: string
                   description: A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
-                  example: 5s
+                  default: 5s
 
 # ============ EVM Models ==============
 common_request_fields:
@@ -1484,7 +1484,7 @@ blockNumber_or_blocktag_param_eth:
       * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
       * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
       * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-  example: finalized
+  default: finalized
 blockNumber_or_blocktag_param_l2:
   type: string
   description: |

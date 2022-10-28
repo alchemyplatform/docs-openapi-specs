@@ -851,6 +851,7 @@ components:
       description: String - Wallet address to check for collection ownership.
       schema:
         type: string
+        default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
       in: query
       required: true
     pageKey:
@@ -1019,6 +1020,7 @@ components:
       in: query
       schema:
         type: string
+        default: sunglasses
       required: true
 
     # ===== Response Objects ========
