@@ -650,6 +650,7 @@ alchemy_getTransactionReceipts_param:
               blockHash:
                 type: string
                 description: The block hash you want to get transaction receipts for
+                pattern: '^0[xX][0-9a-fA-F]+$'
 
 # ============= Token API Methods ===============
 alchemy_getTokenAllowance:
@@ -1057,14 +1058,17 @@ alchemy_getAssetTransfers:
               fromAddress:
                 type: string
                 description: String - From address (hex string). Default wildcard - any address
+                pattern: '^0[xX][0-9a-fA-F]+$'
               toAddress:
                 type: string
                 description: String - To address (hex string). Default wildcard - any address
+                pattern: '^0[xX][0-9a-fA-F]+$'
               contractAddresses:
                 type: array
                 description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
                 items:
                   type: string
+                  pattern: '^0[xX][0-9a-fA-F]+$'
               category:
                 type: array
                 description: |
@@ -1269,6 +1273,7 @@ filter_options:
   properties:
     blockHash:
       type: string
+      pattern: '^0[xX][0-9a-fA-F]+$'
       description: 'Using blockHash is equivalent to fromBlock = toBlock = the block number with hash blockHash. If blockHash is present in the filter criteria, then neither fromBlock nor toBlock are allowed.'
     address:
       type: array
@@ -1316,21 +1321,25 @@ transaction_object:
     from:
       type: string
       description: 20 Bytes - The address the transaction is sent from.
+      pattern: '^0[xX][0-9a-fA-F]+$'
     to:
       type: string
       description: 20 Bytes - The address the transaction is directed to
       default: '0xd46e8dd67c5d32be8058bb8eb970870f07244567'
+      pattern: '^0[xX][0-9a-fA-F]+$'
     gasPrice:
       type: string
       description: |
         Integer of the gasPrice used for each paid gas.
         <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
+      pattern: '^0[xX][0-9a-fA-F]+$'
     value:
       type: string
       description: Integer of the value sent with this transaction
     data:
       type: string
       description: Hash of the method signature and encoded parameters
+      pattern: '^0[xX][0-9a-fA-F]+$'
   required:
     - to
 gas_550:
@@ -1338,6 +1347,7 @@ gas_550:
   properties:
     gas:
       type: string
+      pattern: '^0[xX][0-9a-fA-F]+$'
       description: |
         Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
         </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
@@ -1351,6 +1361,7 @@ transactionHash_param:
       maxItems: 1
       items:
         type: string
+        pattern: '^0[xX][0-9a-fA-F]+$'
 blockHash_param:
   type: object
   properties:
@@ -1361,6 +1372,7 @@ blockHash_param:
       maxItems: 1
       items:
         type: string
+        pattern: '^0[xX][0-9a-fA-F]+$'
 blockHash_and_index_param:
   type: object
   properties:
@@ -1373,6 +1385,7 @@ blockHash_and_index_param:
       maxItems: 2
       items:
         type: string
+        pattern: '^0[xX][0-9a-fA-F]+$'
 signed_transaction_param:
   type: object
   properties:
@@ -1388,6 +1401,7 @@ signed_transaction_param:
       maxItems: 1
       items:
         type: string
+        pattern: '^0[xX][0-9a-fA-F]+$'
 get_signed_txns_status_param:
   type: object
   properties:
@@ -1434,6 +1448,7 @@ blockHash_uncleIndex_param:
       maxItems: 2
       items:
         type: string
+        pattern: '^0[xX][0-9a-fA-F]+$'
 filterId_param:
   type: object
   properties:
