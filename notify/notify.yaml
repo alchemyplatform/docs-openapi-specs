@@ -8,7 +8,7 @@ paths:
   /team-webhooks:
     get:
       summary: Get all webhooks
-      description: This endpoint allows you to get all webhooks from every app on your team.
+      description: This endpoint allows you to get all webhooks on your team.
       tags: ['Notify API Endpoints']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
