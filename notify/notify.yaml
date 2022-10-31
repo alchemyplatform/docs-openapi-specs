@@ -489,3 +489,4 @@ components:
         - DROPPED_TRANSACTION
         - ADDRESS_ACTIVITY
         - NFT_ACTIVITY
+        - NFT_METADATA_UPDATE
