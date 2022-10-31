@@ -210,7 +210,7 @@ components:
       name: after
       schema:
         type: string
-        default: '5'
+        default: '1'
       description: 'Page cursor for the next page.'
       in: query
     nft_filter_object:
