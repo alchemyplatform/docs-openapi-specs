@@ -332,7 +332,7 @@ components:
           type: boolean
           description: '(boolean) - true if webhook is active, false if not active.'
         time_created:
-          type: string
+          type: integer
           description: 'Timestamp webhook was created.'
         addresses:
           type: array
@@ -375,7 +375,9 @@ components:
             cursors:
               type: object
               properties:
-                $ref: '#/components/schemas/after'
+                after:
+                  type: string
+                  description: 'Page cursor for the next page.'
             total_count:
               type: integer
               description: 'Total number of addresses.'
@@ -410,7 +412,9 @@ components:
             cursors:
               type: object
               properties:
-                $ref: '#/components/schemas/after'
+                after:
+                  type: string
+                  description: 'Page cursor for the next page.'
             total_count:
               type: integer
               description: 'Total number of nft filters.'
