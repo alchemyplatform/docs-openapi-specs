@@ -794,7 +794,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  ownedNfts:
+                  contracts:
                     type: array
                     items:
                       $ref: '#/components/schemas/ownedContract'
@@ -1109,6 +1109,8 @@ components:
           type: string
         media:
           $ref: '#/components/schemas/media'
+        opensea:
+          $ref: '#/components/schemas/opensea'
     media:
       type: object
       properties:
@@ -1176,6 +1178,31 @@ components:
           $ref: '#/components/schemas/contractMetadata'
         spamInfo:
           $ref: '#/components/schemas/spamInfo'
+    opensea:
+      type: object
+      properties:
+        floorPrice:
+          type: number
+          description: 'NFT floor price'
+        collectionName:
+          type: string
+          description: 'OpenSea collection name'
+        safelistRequestStatus:
+          type: string
+          description: ''
+        imageUrl:
+          type: string
+          description: 'OpenSea CDN image URL'
+        description:
+          type: string
+          description: 'OpenSea collection description'
+        externalUrl:
+          type: string
+          description: 'Collection homepage'
+        twitterUsername:
+          type: string
+        discordUrl:
+          type: string
     owners:
       type: object
       properties:
@@ -1198,6 +1225,8 @@ components:
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
+        opensea:
+          $ref: '#/components/schemas/opensea'
     spamInfo:
       type: object
       properties:
