@@ -1189,7 +1189,7 @@ components:
           description: 'OpenSea collection name'
         safelistRequestStatus:
           type: string
-          description: ''
+          description: 'Collection approval status within OpenSea. For more info, see the Opensea docs at docs.opensea.io/reference/collection-model'
         imageUrl:
           type: string
           description: 'OpenSea CDN image URL'
