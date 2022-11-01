@@ -293,11 +293,13 @@ components:
           description: 'ID of the address activity webhook'
         addresses_to_add:
           type: array
+          default: []
           description: 'List of addresses to add, use [] if none.'
           items:
             type: string
         addresses_to_remove:
           type: array
+          default: []
           description: 'List of addresses to remove, use [] if none.'
           items:
             type: string
@@ -311,11 +313,13 @@ components:
           description: 'ID of the address activity webhook'
         nft_filters_to_add:
           type: array
+          default: []
           description: 'List of nft filters to add, use [] if none.'
           items:
             $ref: '#/components/schemas/nft_filter_object'
         nft_filters_to_remove:
           type: array
+          default: []
           description: 'List of addresses to remove, use [] if none.'
           items:
             $ref: '#/components/schemas/nft_filter_object'
