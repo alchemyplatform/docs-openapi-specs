@@ -411,7 +411,7 @@ paths:
               const alchemy = new Alchemy(settings);
               const hooks = await alchemy.notify.getAllWebhooks();
 
-              const nftsById = await alchemy.notify.getNftFilters("wh_zyhqo5im08n6ougk", {
+              const nftsById = await alchemy.notify.getNftFilters("wh_zyhqo5im08n6ouuu", {
                 limit: 3,
                 pageKey: 1,
               });
@@ -465,7 +465,7 @@ paths:
                 { appId: "wq9fgv022aff81pg" }
               );
 
-              await alchemy.notify.deleteWebhook("wh_qv16bt12wbj9kax4");
+              await alchemy.notify.deleteWebhook("wh_qv16bt12wbj9ksss");
               await alchemy.notify.deleteWebhook(minedTxWebhook);
       responses:
         '200':
