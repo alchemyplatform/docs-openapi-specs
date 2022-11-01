@@ -55,7 +55,7 @@ paths:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
         - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/after'
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -386,7 +386,7 @@ paths:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
         - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/after'
       x-readme:
         samples-languages:
           - javascript
