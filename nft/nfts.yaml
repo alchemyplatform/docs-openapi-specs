@@ -151,9 +151,15 @@ paths:
                     type: object
                     properties:
                       contractAddress:
+<<<<<<< HEAD
                         $ref: '#/components/schemas/contractAddress'
                       tokenId:
                         $ref: '#/components/schemas/tokenId'
+=======
+                        - $ref: '#/components/schemas/contractAddress'
+                      tokenId:
+                        - $ref: '#/components/schemas/tokenId'
+>>>>>>> 85aec63c8214771db09cf6b51723599a91fdfc0d
                 tokenUriTimeoutInMs:
                   $ref: '#/components/schemas/tokenUriTimeoutInMs'
                 refreshCache:
@@ -191,7 +197,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ownedNFT'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
       operationId: getNFTMetadataBatch
   '/{apiKey}/getContractMetadata':
     get:
