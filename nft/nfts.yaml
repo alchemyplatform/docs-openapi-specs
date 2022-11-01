@@ -132,6 +132,65 @@ paths:
               schema:
                 $ref: '#/components/schemas/ownedNFT'
       operationId: getNFTMetadata
+  '/{apiKey}/getNFTMetadataBatch':
+    post:
+      summary: getNFTMetadataBatch
+      description: Gets the metadata associated with the given NFTs.
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokens:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      - $ref: '#/components/schemas/contractAddress'
+                      - $ref: '#/components/schemas/tokenId'
+                tokenUriTimeoutInMs:
+                  - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+                refreshCache:
+                  - $ref: '#/components/schemas/refreshCache'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT metadata returned in the response:
+              alchemy.nft.getNftMetadata(
+                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
+                "1590"
+              ).then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ownedNFT'
+      operationId: getNFTMetadataBatch
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
