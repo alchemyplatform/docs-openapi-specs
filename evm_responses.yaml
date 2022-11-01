@@ -296,6 +296,43 @@ string_result_response:
       properties:
         result:
           type: string
+getTxn_result_response:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            jobStatus:
+                type: string
+                description: 'See below for the different response statuses'
+                enum:
+                  - 'IN_PROGRESS'
+                  - 'COMPLETE'
+                  - 'ABANDONED'
+                  - 'UNSPECIFIED'
+            transactionHashesAttempted:
+                type: array
+                description: 'An array of currently submitted transaction hashes'
+                items:
+                  type: string
+sendTxn_result_response:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            trackingId:
+                type: string
+                description: 'A transaction identifier that can be used in alchemy_getGasOptimizedTransactionStatus for querying its status'
+            transactionHashes:
+                type: array
+                description: 'An array of currently submitted transaction hashes'
+                items:
+                  type: string
 eth_feeHistory:
   allOf:
     - $ref: '#/common_response_fields'
