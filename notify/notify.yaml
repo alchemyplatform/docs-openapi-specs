@@ -143,6 +143,26 @@ paths:
               schema:
                 type: object
       operationId: update-webhook-nft-filters
+  /update-webhook-nft-metadata-filters:
+    patch:
+      summary: Update NFT metadata webhook filters
+      description: 'Add and remove NFT metadata webhook filters'
+      tags: ['Notify API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_nft_metadata_filters'
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-webhook-nft-metadata-filters
 
   /webhook-nft-filters:
     get:
@@ -222,6 +242,15 @@ components:
         token_id:
           type: string
           description: token ID for NFT. Can be integer or hex (0x prefixed hex string).
+    nft_metadata_filter_object:
+      type: object
+      properties:
+        contract_address:
+          type: string
+          description: Contract address for an NFT. If this field and the token_id aren't set all metadata updates will be sent.
+        token_id:
+          type: string
+          description: Token ID for an NFT. Can be integer or hex (0x prefixed hex string). If this field and the token_id aren't set all metadata updates will be sent. This field can't be set if the contract_address field isn't set.
     create_webhook:
       type: object
       required:
@@ -249,6 +278,11 @@ components:
           description: list of nft filter objects to track transfer activity for
           items:
             $ref: '#/components/schemas/nft_filter_object'
+        nft_metadata_filters:
+          type: array
+          description: list of nft metadata filter objects to track metadata updates for
+          items:
+            $ref: '#/components/schemas/nft_metadata_filter_object'
     update_webhook_addresses:
       type: object
       required:
@@ -289,6 +323,24 @@ components:
           description: 'List of addresses to remove, use [] if none.'
           items:
             $ref: '#/components/schemas/nft_filter_object'
+    update_webhook_nft_metadata_filters:
+      type: object
+      required:
+        - webhook_id
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        nft_metadata_filters_to_add:
+          type: array
+          description: 'List of nft metadata filters to add, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_metadata_filter_object'
+        nft_metadata_filters_to_remove:
+          type: array
+          description: 'List of nft metadata filters to remove, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_metadata_filter_object'
     replace_webhook_addresses:
       type: object
       properties:
@@ -441,3 +493,4 @@ components:
         - DROPPED_TRANSACTION
         - ADDRESS_ACTIVITY
         - NFT_ACTIVITY
+        - NFT_METADATA_UPDATE
