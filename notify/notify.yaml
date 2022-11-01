@@ -428,8 +428,7 @@ components:
               type: object
               properties:
                 after:
-                  type: string
-                  description: 'Page cursor for the next page.'
+                  $ref: '#/components/schemas/after'
             total_count:
               type: integer
               description: 'Total number of addresses.'
@@ -465,8 +464,7 @@ components:
               type: object
               properties:
                 after:
-                  type: string
-                  description: 'Page cursor for the next page.'
+                  $ref: '#/components/schemas/after'
             total_count:
               type: integer
               description: 'Total number of nft filters.'
