@@ -150,8 +150,10 @@ paths:
                   items:
                     type: object
                     properties:
-                      - $ref: '#/components/schemas/contractAddress'
-                      - $ref: '#/components/schemas/tokenId'
+                      contractAddress:
+                        - $ref: '#/components/schemas/contractAddress'
+                      tokenId:
+                        - $ref: '#/components/schemas/tokenId'
                 tokenUriTimeoutInMs:
                   - $ref: '#/components/schemas/tokenUriTimeoutInMs'
                 refreshCache:
@@ -189,7 +191,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ownedNFT'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
       operationId: getNFTMetadataBatch
   '/{apiKey}/getContractMetadata':
     get:
@@ -910,7 +914,6 @@ components:
       description: String - Wallet address to check for collection ownership.
       schema:
         type: string
-        default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
       in: query
       required: true
     pageKey:
@@ -1079,7 +1082,6 @@ components:
       in: query
       schema:
         type: string
-        default: sunglasses
       required: true
 
     # ===== Response Objects ========
