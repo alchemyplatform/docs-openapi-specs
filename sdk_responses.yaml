@@ -330,6 +330,16 @@ eth_getProof:
                     items:
                       type: string
                     description: 'Array of rlp-serialized MerkleTree-Nodes, starting with the storageHash-Node, following the path of the SHA3 (key) as path.'
+findContractDeployerResponse:
+  allOf:
+    - type: object
+      properties:
+        deployerAddress:
+          type: string
+          description: The address of the contract deployer, if it is available.
+        blockNumber: 
+          type: number
+          description: The block number the contract was deployed in. 
 string_result_response:
   allOf:
     - type: object
