@@ -150,12 +150,14 @@ paths:
                   items:
                     type: object
                     properties:
-                      - $ref: '#/components/schemas/contractAddress'
-                      - $ref: '#/components/schemas/tokenId'
+                      contractAddress:
+                        $ref: '#/components/schemas/contractAddress'
+                      tokenId:
+                        $ref: '#/components/schemas/tokenId'
                 tokenUriTimeoutInMs:
-                  - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+                  $ref: '#/components/schemas/tokenUriTimeoutInMs'
                 refreshCache:
-                  - $ref: '#/components/schemas/refreshCache'
+                  $ref: '#/components/schemas/refreshCache'
       x-readme:
         samples-languages:
           - javascript
