@@ -7,28 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
-      summary: eth_estimateGas
-      description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
-      tags: []
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../evm_body.yaml#/eth_estimateGas_5
-      responses:
-        '200':
-          description: Returns the amount of gas used.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/string_result_response
+      $ref: ../ethereum/eth_estimateGas.yaml#/components/pathItems/path/post
+      operationId: eth-estimateGas-arbitrum
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -44,7 +24,7 @@ paths:
               // Github: https://github.com/alchemyplatform/alchemy-sdk-js
               import { Network, Alchemy, parseEther } from "alchemy-sdk";
 
-              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              // Optional config object, but defaults to demo api-key and eth-mainnet.  
               const settings = {
                 apiKey: "demo", // Replace with your Alchemy API Key.
                 network: Network.ARB_MAINNET, // Replace with your network.
@@ -61,4 +41,3 @@ paths:
                   value: parseEther("1.0"),
                 })
                 .then(console.log);
-      operationId: eth-estimateGas-arbitrum

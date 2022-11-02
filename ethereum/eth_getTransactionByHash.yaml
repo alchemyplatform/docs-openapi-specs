@@ -3,7 +3,7 @@ info:
   title: eth_getTransactionByHash
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemy.com/v2'
+  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'
@@ -26,7 +26,7 @@ components:
             application/json:
               schema:
                 $ref: ../evm_body.yaml#/eth_getTransactionByHash
-                example:
+                default:
                   params:
                     [
                       '0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b',

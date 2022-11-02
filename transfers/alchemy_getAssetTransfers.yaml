@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: evm_body.yaml#/alchemy_getAssetTransfers
+              $ref: evm_body.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_body.yaml#/alchemy_getAssetTransfers
       x-readme:
         samples-languages:
           - curl
@@ -64,5 +64,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: evm_responses.yaml#/alchemy_getAssetTransfers
+                $ref: evm_responses.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_responses.yaml#/alchemy_getAssetTransfers
       operationId: alchemy-getAssetTransfers

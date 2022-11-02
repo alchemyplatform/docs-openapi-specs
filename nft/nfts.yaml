@@ -132,6 +132,69 @@ paths:
               schema:
                 $ref: '#/components/schemas/ownedNFT'
       operationId: getNFTMetadata
+  '/{apiKey}/getNFTMetadataBatch':
+    post:
+      summary: getNFTMetadataBatch
+      description: Gets the metadata associated with the given NFTs.
+      tags: ['NFT API Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokens:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      contractAddress:
+                        $ref: '#/components/schemas/contractAddress'
+                      tokenId:
+                        $ref: '#/components/schemas/tokenId'
+                tokenUriTimeoutInMs:
+                  $ref: '#/components/schemas/tokenUriTimeoutInMs'
+                refreshCache:
+                  $ref: '#/components/schemas/refreshCache'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT metadata returned in the response:
+              alchemy.nft.getNftMetadata(
+                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
+                "1590"
+              ).then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
+      operationId: getNFTMetadataBatch
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -820,7 +883,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  ownedNfts:
+                  contracts:
                     type: array
                     items:
                       $ref: '#/components/schemas/ownedContract'
@@ -877,6 +940,7 @@ components:
       description: String - Wallet address to check for collection ownership.
       schema:
         type: string
+        default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
       in: query
       required: true
     pageKey:
@@ -1043,6 +1107,7 @@ components:
       in: query
       schema:
         type: string
+        default: sunglasses
       required: true
 
     # ===== Response Objects ========
@@ -1109,9 +1174,6 @@ components:
         address:
           description: 'Address of the held contract'
           type: string
-        ownedCount:
-          type: number
-          description: '(DEPRECATED) - Please refer to the `totalBalance` and `numDistinctTokensOwned` fields instead.'
         totalBalance:
           type: number
           description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
@@ -1134,6 +1196,8 @@ components:
           type: string
         media:
           $ref: '#/components/schemas/media'
+        opensea:
+          $ref: '#/components/schemas/opensea'
     media:
       type: object
       properties:
@@ -1201,6 +1265,31 @@ components:
           $ref: '#/components/schemas/contractMetadata'
         spamInfo:
           $ref: '#/components/schemas/spamInfo'
+    opensea:
+      type: object
+      properties:
+        floorPrice:
+          type: number
+          description: 'NFT floor price'
+        collectionName:
+          type: string
+          description: 'OpenSea collection name'
+        safelistRequestStatus:
+          type: string
+          description: 'Collection approval status within OpenSea. For more info, see the Opensea docs at docs.opensea.io/reference/collection-model'
+        imageUrl:
+          type: string
+          description: 'OpenSea CDN image URL'
+        description:
+          type: string
+          description: 'OpenSea collection description'
+        externalUrl:
+          type: string
+          description: 'Collection homepage'
+        twitterUsername:
+          type: string
+        discordUrl:
+          type: string
     owners:
       type: object
       properties:
@@ -1223,6 +1312,8 @@ components:
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
+        opensea:
+          $ref: '#/components/schemas/opensea'
     spamInfo:
       type: object
       properties:

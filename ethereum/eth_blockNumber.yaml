@@ -4,7 +4,7 @@ info:
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.alchemy.com/v2'
+  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

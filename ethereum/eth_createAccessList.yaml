@@ -1,0 +1,31 @@
+openapi: 3.1.0
+info:
+  title: eth_createAccessList - Ethereum
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_createAccessList
+      description: 'Ethereum API - Creates an EIP2930 type `accessList` based on a given Transaction object. Returns list of addresses and storage keys that are read and written by the transaction (except the sender account and precompiles), plus the estimated gas consumed when the access list is added.'
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: demo
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_createAccessList
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/eth_createAccessList
+      operationId: eth-createaccesslist
