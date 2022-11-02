@@ -732,6 +732,7 @@ alchemy_getTokenMetadata:
             default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
 # ============= Trace API Methods ===============
+
 trace_call:
   allOf:
     - $ref: '#/common_request_fields'
@@ -744,18 +745,20 @@ trace_call:
             - trace_call
         params:
           type: array
+          minItems: 3
+          maxItems: 3
+          description: |
+            1. `object` - Transaction Object (select in 1st box)
+            2. `string` - Type of trace, one or more of "trace" or "stateDiff". (select in 2nd box)
+            3. `string` - Block Identifier: Block hash, block number (in hex), or block tag (select in 3rd box)
           items:
-            oneOf:
+            anyOf:
               - $ref: '#/transaction_object'
-                description: Call options.
-              - type: array
-                description: 'Type of trace, one or more of "trace" or "stateDiff".'
-                items:
-                  type: string
-                  enum:
-                    - trace
-                    - stateDiff
+                title: Transaction Object
+                description: transaction object.
+              - $ref: '#/trace_type_array'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
+                title: Block number or block tag 
 trace_rawTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -768,14 +771,18 @@ trace_rawTransaction:
             - trace_rawTransaction
         params:
           type: array
+          minItems: 2
+          maxItems: 2
+          description: |
+            1. `string` - Raw transaction data
+            2. `array` - Type of trace, one or more of "trace" or "stateDiff"
           items:
-            oneOf:
+            anyOf:
               - type: string
+                title: raw transaction
                 description: Raw transaction data.
-              - type: array
-                description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
-                items:
-                  type: string
+                default: "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
+              - $ref: '#/trace_type_array'
 trace_replayBlockTransactions:
   allOf:
     - $ref: '#/common_request_fields'
@@ -788,13 +795,16 @@ trace_replayBlockTransactions:
             - trace_replayBlockTransactions
         params:
           type: array
+          minItems: 2
+          maxItems: 2
+          description: |
+            1. `string` - Block Identifier: Block hash, block number (in hex), or block tag
+            2. `array` - Type of trace, one or more of "trace" or "stateDiff"
           items:
             oneOf:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-              - type: array
-                description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
-                items:
-                  type: string
+                title: block number or block tag
+              - $ref: '#/trace_type_array'
 trace_replayTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -807,14 +817,19 @@ trace_replayTransaction:
             - trace_replayTransaction
         params:
           type: array
+          minItems: 2
+          maxItems: 2
+          description: |
+            1. `string` - transaction hash
+            2. `array` - Type of trace, one or more of "trace" or "stateDiff"
           items:
             oneOf:
               - type: string
-                description: Hash - Transaction hash.
-              - type: array
-                description: 'Array - Type of trace, one or more of "trace" or "stateDiff".'
-                items:
-                  type: string
+                title: Transaction hash
+                default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+                pattern: '^0[xX][0-9a-fA-F]+$'
+              - $ref: '#/trace_type_array'
+              
 trace_block:
   allOf:
     - $ref: '#/common_request_fields'
@@ -854,21 +869,28 @@ trace_filter:
               fromBlock:
                 type: string
                 description: From this block
+                default: "0xc26f54"
+                pattern: '^0[xX][0-9a-fA-F]+$'
               toBlock:
                 type: string
-                description: To this block.
+                description: To this block
+                default: "0xc26f54"
+                pattern: '^0[xX][0-9a-fA-F]+$'
               fromAddress:
                 type: string
                 description: Sent from these addresses.
+                pattern: '^0[xX][0-9a-fA-F]+$'
               toAddress:
                 type: string
                 description: Sent to these addresses.
+                pattern: '^0[xX][0-9a-fA-F]+$'
               after:
                 type: string
                 description: The offset trace number.
               count:
                 type: integer
                 description: Integer number of traces to display in a batch.
+                
 trace_get:
   allOf:
     - $ref: '#/common_request_fields'
@@ -881,17 +903,29 @@ trace_get:
             - trace_get
         params:
           type: array
+          description: |
+            1. `string` - transaction hash
+            2. `array` - index position of traces to get, in hex
+          minItems: 2
+          maxItems: 2
           items:
-            oneOf:
-              - type: string
-                description: Hash - Transaction hash.
-              - type: array
-                description: Array - Index positions of the traces.
-                items:
-                  type: string
+            anyOf:
+            - type: string
+              title: Transaction hash
+              default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+              pattern: '^0[xX][0-9a-fA-F]+$'
+            - type: array
+              title: index position of trace
+              description: Array - Index positions of the traces, in hex
+              items:
+                type: string
+                pattern: '^0[xX][0-9a-fA-F]+$'
+              default: ["0x0"]
+
 trace_transaction:
   allOf:
     - $ref: '#/common_request_fields'
+    - $ref: '#/transactionHash_param'
     - type: object
       properties:
         method:
@@ -899,11 +933,6 @@ trace_transaction:
           default: trace_transaction
           enum:
             - trace_transaction
-        params:
-          type: array
-          items:
-            type: string
-            description: Hash - Transaction hash.
 
 # ============= Polygon API Methods ===============
 bor_getAuthor:
@@ -1241,10 +1270,7 @@ debug_traceTransaction:
               - `timeout`: String - A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
           items:
             anyOf:
-            - type: string
-              title: Transaction hash
-              description: Transaction hash
-              default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+            - $ref: '#/transactionHash_param'
             - type: object
               description: options for call
               title: Options
@@ -1362,6 +1388,7 @@ transactionHash_param:
       items:
         type: string
         pattern: '^0[xX][0-9a-fA-F]+$'
+        default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
 blockHash_param:
   type: object
   properties:
@@ -1470,6 +1497,16 @@ shaHash_param:
       items:
         type: string
         pattern: '^0[xX][0-9a-fA-F]+$'
+trace_type_array:
+  type: array
+  description: 'Type of trace, one or more of "trace" or "stateDiff".'
+  title: Type of Trace ("trace" or "statediff")
+  items:
+    type: string
+    enum:
+      - trace
+      - stateDiff
+  default: ["trace"]
 
 
 # ======= Definitions for blockNumber methods ==========

@@ -30,5 +30,3 @@ paths:
               schema:
                 $ref: ../evm_responses.yaml#/trace_call
       operationId: trace-replayTransaction
-      x-readme:
-        explorer-enabled: false

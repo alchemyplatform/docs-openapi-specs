@@ -30,5 +30,3 @@ paths:
               schema:
                 $ref: ../evm_responses.yaml#/trace_get
       operationId: trace-get
-      x-readme:
-        explorer-enabled: false
