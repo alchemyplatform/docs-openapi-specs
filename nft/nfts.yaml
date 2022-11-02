@@ -804,7 +804,7 @@ paths:
                           description: String - The address of the seller in the NFT sale.
                         taker:
                           type: string
-                          description: String - Whether the taker in the trade was the buyer or the seller.
+                          description: String - Whether the price taker in the trade was the buyer or the seller.
                           enum:
                             - BUYER
                             - SELLER
