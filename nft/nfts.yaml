@@ -687,9 +687,9 @@ paths:
       tags: ['NFT API Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/startBlock'
-        - $ref: '#/components/schemas/endBlock'
-        - $ref: '#/components/schemas/ascendingOrder'
+        - $ref: '#/components/schemas/fromBlock'
+        - $ref: '#/components/schemas/toBlock'
+        - $ref: '#/components/schemas/order'
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
@@ -699,8 +699,8 @@ paths:
         - $ref: '#/components/schemas/sellerAddress'
         - $ref: '#/components/schemas/taker'
         - $ref: '#/components/schemas/limit'
-          description: Integer - The maximum number of NFT sales to return. Defaults to 100. Maximum of 1000.
-
+          description: Integer - The maximum number of NFT sales to return. Maximum and default values are 1000.
+        - $ref: '#/components/schemas/pageKey'
       x-readme:
         samples-languages:
           - javascript
@@ -729,10 +729,10 @@ paths:
                           description: String - The contract address of the collection the NFT belongs to.
                         tokenId:
                           type: string
-                          description: String - The hex token ID of the NFT being sold.
+                          description: String - The decimal token ID of the NFT being sold.
                         quantity:
-                          type: integer
-                          description: Integer - The number of tokens sold in the sale.
+                          type: string
+                          description: Integer - The number of tokens sold in the sale as a decimal integer string.
                         buyerAddress:
                           type: string
                           description: String - The address of the buyer in the NFT sale.
@@ -747,13 +747,43 @@ paths:
                             - SELLER
                         sellerFee:
                           type: object
-                          description: The amount, token symbol, and decimals of the token of the payment from buyer to seller
+                          description: The payment from buyer to the seller
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment from the buyer to seller as a decimal integer string.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimal:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
                         marketplaceFee:
                           type: object
-                          description: The amount, token symbol, and decimals of the token of the payment from buyer to the marketplace
+                          description: The payment from buyer to the marketplace
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the marketplace as a decimal integer string.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimal:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
                         royaltyFee:
                           type: object
-                          description: The amount, token symbol, and decimals of the token of the payment from buyer to the NFT collection royalty address
+                          description: The payment from buyer to the royalty address of the NFT collection
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the royalty collector as a decimal integer string.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimal:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
                         blockNumber:
                           type: integer
                           description: Integer - The block number the NFT sale took place in.
@@ -763,6 +793,9 @@ paths:
                         bundleIndex:
                           type: integer
                           description: Integer - The index of the token within the bundle of NFTs sold in the sale.
+                  pageKey:
+                    type: string
+                    description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
       operationId: getNFTSales
   '/{apiKey}/getContractsForOwner':
     get:
@@ -947,27 +980,30 @@ components:
       in: query
       schema:
         type: string
-    startBlock:
-      name: startBlock
+    fromBlock:
+      name: fromBlock
       description: String - The block number to start fetching NFT sales data from. Allowed values are decimal and hex integers, and "latest". Defaults to "0".
       in: query
       schema:
         type: string
         default: '0'
-    endBlock:
-      name: endBlock
+    toBlock:
+      name: toBlock
       description: String - The block number to start fetching NFT sales data from. Allowed values are decimal and hex integers, and "latest". Defaults to "latest".
       in: query
       schema:
         type: string
         default: 'latest'
-    ascendingOrder:
-      name: ascendingOrder
-      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to descending (false).
+    order:
+      name: order
+      description: Enum - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to descending (false).
       in: query
       schema:
-        type: boolean
-        default: true
+        type: string
+        enum:
+          - asc
+          - desc
+        default: asc
     marketplace:
       name: marketplace
       description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
