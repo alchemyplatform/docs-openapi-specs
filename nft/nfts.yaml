@@ -756,10 +756,8 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-          required: false
         - $ref: '#/components/schemas/tokenId'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
-          required: false
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
         - $ref: '#/components/schemas/taker'
@@ -993,7 +991,7 @@ components:
       schema:
         type: string
         default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
-      required: true
+      required: false
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
@@ -1001,7 +999,7 @@ components:
       schema:
         type: string
         default: '44'
-      required: true
+      required: false
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
