@@ -756,8 +756,10 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
+          required: false
         - $ref: '#/components/schemas/tokenId'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
+          required: false
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
         - $ref: '#/components/schemas/taker'
