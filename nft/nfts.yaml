@@ -984,6 +984,14 @@ components:
             - SPAM
             - AIRDROPS
       in: query
+    address:
+      name: address
+      description: String - any valid blockchain address for NFT collections, contracts, mints, etc.
+      in: query
+      schema:
+        type: string
+        default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
+      required: false
     contractAddress:
       name: contractAddress
       description: String - Contract address for the NFT collection (ERC721 and ERC1155 supported).
