@@ -751,10 +751,9 @@ paths:
       tags: ['NFT API Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/startBlock'
-        - $ref: '#/components/schemas/startLogIndex'
-        - $ref: '#/components/schemas/startBundleIndex'
-        - $ref: '#/components/schemas/ascendingOrder'
+        - $ref: '#/components/schemas/fromBlock'
+        - $ref: '#/components/schemas/toBlock'
+        - $ref: '#/components/schemas/order'
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
@@ -762,10 +761,10 @@ paths:
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
-        - $ref: '#/components/schemas/buyerIsMaker'
+        - $ref: '#/components/schemas/taker'
         - $ref: '#/components/schemas/limit'
-          description: Integer - The maximum number of NFT sales to return. Defaults to 100.
-
+          description: Integer - The maximum number of NFT sales to return. Maximum and default values are 1000.
+        - $ref: '#/components/schemas/pageKey'
       x-readme:
         samples-languages:
           - javascript
@@ -794,37 +793,61 @@ paths:
                           description: String - The contract address of the collection the NFT belongs to.
                         tokenId:
                           type: string
-                          description: String - The hex token ID of the NFT being sold.
+                          description: String - The decimal token ID of the NFT being sold.
                         quantity:
-                          type: integer
-                          description: Integer - The number of tokens sold in the sale.
+                          type: string
+                          description: Integer - The number of tokens sold in the sale as a decimal integer string.
                         buyerAddress:
                           type: string
                           description: String - The address of the buyer in the NFT sale.
                         sellerAddress:
                           type: string
                           description: String - The address of the seller in the NFT sale.
-                        buyerIsMaker:
-                          type: boolean
-                          description: Boolean - True if the buyer was the maker (put out bid), false if the buyer was the taker (accepted seller listing) in the order.
-                        price:
-                          type: float
-                          description: Float - The amount paid to the NFT seller in the sale.
-                        priceCurrency:
+                        taker:
                           type: string
-                          description: String - The token used to pay the seller in the sale.
-                        protocolFee:
-                          type: float
-                          description: Float - The amount paid to the marketplace in the sale.
-                        protocolFeeCurrency:
-                          type: string
-                          description: String - The token used to pay the marketplace in the sale.
+                          description: String - Whether the price taker in the trade was the buyer or the seller.
+                          enum:
+                            - BUYER
+                            - SELLER
+                        sellerFee:
+                          type: object
+                          description: The payment from buyer to the seller
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment from the buyer to seller as a decimal integer string.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimal:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        marketplaceFee:
+                          type: object
+                          description: The payment from buyer to the marketplace
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the marketplace as a decimal integer string.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimal:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
                         royaltyFee:
-                          type: float
-                          description: Float - The amount paid in NFT creator royalties in the sale.
-                        royaltyFeeCurrency:
-                          type: string
-                          description: String - The token used to pay the royalties in the sale.
+                          type: object
+                          description: The payment from buyer to the royalty address of the NFT collection
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the royalty collector as a decimal integer string.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimal:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
                         blockNumber:
                           type: integer
                           description: Integer - The block number the NFT sale took place in.
@@ -834,6 +857,9 @@ paths:
                         bundleIndex:
                           type: integer
                           description: Integer - The index of the token within the bundle of NFTs sold in the sale.
+                  pageKey:
+                    type: string
+                    description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
       operationId: getNFTSales
   '/{apiKey}/getContractsForOwner':
     get:
@@ -868,14 +894,14 @@ paths:
                     type: string
                     description: 'String - Total number of NFT contracts held by the given address.'
       operationId: getContractsForOwner
-  '/{apiKey}/reportSpamContract':
+  '/{apiKey}/reportSpam':
     get:
-      summary: reportSpamContract
-      description: Report a particular contract address to our APIs if you think it is spam
+      summary: reportSpam
+      description: Report a particular address to our APIs if you think it is spam
       tags: ['NFT API Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/address'
           required: true
       x-readme:
         samples-languages:
@@ -890,8 +916,8 @@ paths:
             application/json:
               schema:
                 type: string
-                description: 'String - "Contract was successfully reported as spam" if calling the API was successful. '
-      operationId: reportSpamContract
+                description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
+      operationId: reportSpam
 
 components:
   schemas:
@@ -959,6 +985,14 @@ components:
             - SPAM
             - AIRDROPS
       in: query
+    address:
+      name: address
+      description: String - any valid blockchain address for NFT collections, contracts, mints, etc.
+      in: query
+      schema:
+        type: string
+        default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
+      required: false
     includeFilters:
       name: includeFilters[]
       description: |-
@@ -978,7 +1012,7 @@ components:
       schema:
         type: string
         default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
-      required: true
+      required: false
     tokenId:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
@@ -986,7 +1020,7 @@ components:
       schema:
         type: string
         default: '44'
-      required: true
+      required: false
     tokenType:
       name: tokenType
       description: String - 'ERC721' or 'ERC1155'; specifies type of token to query for. API requests will perform faster if this is specified.
@@ -1031,36 +1065,30 @@ components:
       in: query
       schema:
         type: string
-    startBlock:
-      name: startBlock
-      description: String - The block number to start fetching NFT sales data from. Allowed values are decimal integers and "latest". Defaults to "latest".
+    fromBlock:
+      name: fromBlock
+      description: String - The block number to start fetching NFT sales data from. Allowed values are decimal and hex integers, and "latest". Defaults to "0".
+      in: query
+      schema:
+        type: string
+        default: '0'
+    toBlock:
+      name: toBlock
+      description: String - The block number to start fetching NFT sales data from. Allowed values are decimal and hex integers, and "latest". Defaults to "latest".
       in: query
       schema:
         type: string
         default: 'latest'
-    startLogIndex:
-      name: startLogIndex
-      description: Integer - The log index within the startBlock to start fetching NFT sales data from. Defaults to 0.
+    order:
+      name: order
+      description: Enum - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to descending (false).
       in: query
       schema:
-        type: integer
-        default: 0
-      required: false
-    startBundleIndex:
-      name: startBundleIndex
-      description: Integer - The index of an NFT within a sale bundle to start fetching NFT sales data from. Defaults to 0.
-      in: query
-      schema:
-        type: integer
-        default: 0
-      required: false
-    ascendingOrder:
-      name: ascendingOrder
-      description: Boolean - Whether to return the results ascending from startBlock or descending from startBlock. Defaults to ascending (true).
-      in: query
-      schema:
-        type: boolean
-        default: true
+        type: string
+        enum:
+          - asc
+          - desc
+        default: asc
     marketplace:
       name: marketplace
       description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
@@ -1084,12 +1112,16 @@ components:
       in: query
       schema:
         type: string
-    buyerIsMaker:
-      name: buyerIsMaker
-      description: Boolean - Filter by whether if the buyer was the maker in the trade, i.e. if the sale involved a buyer offering a bid and the seller then accepting the bid. Defaults to returning both maker and taker orders.
+    taker:
+      name: taker
+      description: Enum - Filter by whether the buyer or seller was the taker in the NFT trade. Allowed filter values are "buyer" and "seller". Defaults to returning both buyer and seller taker trades.
       in: query
       schema:
-        type: boolean
+        type: string
+        enum:
+          - buyer
+          - seller
+        required: false
     query:
       name: query
       description: String - The search string that you want to search for in contract metadata
