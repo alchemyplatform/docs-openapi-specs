@@ -18,7 +18,7 @@ paths:
     get:
       summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: ['NFT API Endpoints']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -87,7 +87,7 @@ paths:
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT API Endpoints']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -136,7 +136,7 @@ paths:
     post:
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with the given NFTs.
-      tags: ['NFT API Endpoints']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -199,7 +199,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT API Endpoints']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -247,7 +247,7 @@ paths:
     get:
       summary: getNFTsForCollection
       description: Gets all NFTs for a given NFT contract.
-      tags: ['NFT API Endpoints']
+      tags: ['Collections']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -310,7 +310,7 @@ paths:
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: ['NFT API Endpoints']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -357,7 +357,7 @@ paths:
     get:
       summary: getOwnersForCollection
       description: Gets all owners for a given NFT contract.
-      tags: ['NFT API Endpoints']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -404,7 +404,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['NFT API Endpoints']
+      tags: ['Spam Detection']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
@@ -446,7 +446,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['NFT API Endpoints']
+      tags: ['Spam Detection']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -490,7 +490,7 @@ paths:
     get:
       summary: reingestContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: ['NFT API Endpoints']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -552,7 +552,7 @@ paths:
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['NFT API Endpoints']
+      tags: ['Sales & Marketplace Data']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -617,7 +617,7 @@ paths:
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['NFT API Endpoints']
+      tags: ['Rarity Data']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -655,7 +655,7 @@ paths:
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT API Endpoints']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/query'
@@ -685,7 +685,7 @@ paths:
     get:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['NFT API Endpoints']
+      tags: ['Rarity Data']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -718,7 +718,7 @@ paths:
     get:
       summary: isHolderOfCollection
       description: Checks whether a wallet holds a NFT in a given collection
-      tags: ['NFT API Endpoints']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
@@ -747,7 +747,7 @@ paths:
     get:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['NFT API Endpoints']
+      tags: ['Sales & Marketplace Data']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/fromBlock'
@@ -864,7 +864,7 @@ paths:
     get:
       summary: getContractsForOwner
       description: Gets all NFT contracts held by an owner address.
-      tags: ['NFT API Endpoints']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -897,7 +897,7 @@ paths:
     get:
       summary: reportSpam
       description: Report a particular address to our APIs if you think it is spam
-      tags: ['NFT API Endpoints']
+      tags: ['Spam Detection']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/address'
