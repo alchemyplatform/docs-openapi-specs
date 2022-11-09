@@ -490,7 +490,7 @@ paths:
   '/{apiKey}/invalidateContract':
     get:
       summary: invalidateContract
-      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache. 
+      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
       tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -516,7 +516,7 @@ paths:
                     description: <br /> True if the contract was invalidated. <br/> False - if it wasn't.
                   numTokensInvalidated:
                     type: number
-                    description: The number of tokens that were invalidated as a result of running this query. 
+                    description: The number of tokens that were invalidated as a result of running this query.
       operationId: invalidateContract
   '/{apiKey}/reingestContract':
     get:
@@ -1126,7 +1126,7 @@ components:
         default: asc
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
       in: query
       schema:
         type: string
@@ -1134,6 +1134,7 @@ components:
           - seaport
           - looksrare
           - x2y2
+          - wyvern
       required: false
     buyerAddress:
       name: buyerAddress
