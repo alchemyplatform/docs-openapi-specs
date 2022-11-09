@@ -27,7 +27,8 @@ paths:
         - $ref: '#/components/schemas/contractAddresses'
         - $ref: '#/components/schemas/withMetadata'
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-        - $ref: '#/components/schemas/filters'
+        - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/includeFilters'
       x-readme:
         samples-languages:
           - javascript
@@ -970,12 +971,12 @@ components:
         type: boolean
         default: false
       in: query
-    filters:
-      name: filters[]
+    excludeFilters:
+      name: excludeFilters[]
       description: |-
-        Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. Filter Options:
+        Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. May not be used in conjunction with includeFilters[]. Filter Options:
           - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs.
-          - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet and Goerli only.
+          - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
       schema:
         type: array
         items:
@@ -992,6 +993,18 @@ components:
         type: string
         default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
       required: false
+    includeFilters:
+      name: includeFilters[]
+      description: |-
+        Array of filters (as ENUMS) that will be applied to the query. Only NFTs that match one or more of these filters will be included in the response. May not be used in conjunction with excludeFilters[]. Filter Options:
+          - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - AIRDROPS
+      in: query
     contractAddress:
       name: contractAddress
       description: String - Contract address for the NFT collection (ERC721 and ERC1155 supported).
