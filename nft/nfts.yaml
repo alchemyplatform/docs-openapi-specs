@@ -487,6 +487,37 @@ paths:
                 type: boolean
                 description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
       operationId: isSpamContract
+  '/{apiKey}/invalidateContract':
+    get:
+      summary: invalidateContract
+      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache. 
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+                properties:
+                  success:
+                    type: string
+                    description: <br /> True if the contract was invalidated. <br/> False - if it wasn't.
+                  numTokensInvalidated:
+                    type: number
+                    description: The number of tokens that were invalidated as a result of running this query. 
+      operationId: invalidateContract
   '/{apiKey}/reingestContract':
     get:
       summary: reingestContract
