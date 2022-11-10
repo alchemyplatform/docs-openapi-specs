@@ -70,7 +70,7 @@ paths:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
                     type: string
-                    description: 'String - Total number of NFTs owned by the given address.'
+                    description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
                   blockHash:
                     type: string
                     description: 'String - The canonical head block hash of when your request was received'
