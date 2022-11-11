@@ -156,7 +156,7 @@ paths:
                       tokenId:
                         $ref: '#/components/schemas/tokenId'
                       tokenType:
-                        $ref: '#/components/schemas/tokenId'
+                        $ref: '#/components/schemas/tokenType'
                 tokenUriTimeoutInMs:
                   $ref: '#/components/schemas/tokenUriTimeoutInMs'
                   type: number
