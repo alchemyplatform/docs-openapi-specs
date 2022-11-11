@@ -162,6 +162,8 @@ paths:
                   type: number
                 refreshCache:
                   $ref: '#/components/schemas/refreshCache'
+                  type: boolean
+                  default: false
       x-readme:
         samples-languages:
           - javascript
