@@ -155,10 +155,15 @@ paths:
                         $ref: '#/components/schemas/contractAddress'
                       tokenId:
                         $ref: '#/components/schemas/tokenId'
+                      tokenType:
+                        $ref: '#/components/schemas/tokenType'
                 tokenUriTimeoutInMs:
                   $ref: '#/components/schemas/tokenUriTimeoutInMs'
+                  type: number
                 refreshCache:
                   $ref: '#/components/schemas/refreshCache'
+                  type: boolean
+                  default: false
       x-readme:
         samples-languages:
           - javascript
@@ -490,7 +495,7 @@ paths:
   '/{apiKey}/invalidateContract':
     get:
       summary: invalidateContract
-      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache. 
+      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
       tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -516,7 +521,7 @@ paths:
                     description: <br /> True if the contract was invalidated. <br/> False - if it wasn't.
                   numTokensInvalidated:
                     type: number
-                    description: The number of tokens that were invalidated as a result of running this query. 
+                    description: The number of tokens that were invalidated as a result of running this query.
       operationId: invalidateContract
   '/{apiKey}/reingestContract':
     get:
