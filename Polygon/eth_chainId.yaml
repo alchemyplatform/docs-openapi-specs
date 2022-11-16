@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: 'Returns the currently configured chain ID on Polygon, a value used in replay-protected transaction signing as introduced by EIP-155.'
       $ref: ../ethereum/eth_chainId.yaml#/components/pathItems/path/post
       operationId: eth-chainid-polygon

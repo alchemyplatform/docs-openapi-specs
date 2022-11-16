@@ -8,7 +8,7 @@ paths:
   /{apiKey}:
     post:
       summary: bor_getCurrentProposer
-      description: "Polygon API - Returns current proposer's address."
+      description: "Returns current proposer's address on Polygon."
       tags: []
       parameters:
         - name: apiKey
