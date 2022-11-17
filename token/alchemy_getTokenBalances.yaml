@@ -8,7 +8,7 @@ paths:
   /{apiKey}:
     post:
       summary: alchemy_getTokenBalances
-      description: 'Returns ERC20 token balances for a specific address. Optionally accepts a list of contracts.'
+      description: 'Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.'
       tags: []
       parameters:
         - name: apiKey
