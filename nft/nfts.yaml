@@ -1131,7 +1131,7 @@ components:
         default: asc
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
       in: query
       schema:
         type: string
@@ -1139,6 +1139,7 @@ components:
           - seaport
           - looksrare
           - x2y2
+          - wyvern
       required: false
     buyerAddress:
       name: buyerAddress
