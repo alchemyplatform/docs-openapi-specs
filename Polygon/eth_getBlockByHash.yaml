@@ -10,7 +10,6 @@ paths:
       $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path/post
       operationId: eth-getblockbyhash-polygon
       x-readme:
-        explorer-enabled: false
         samples-languages:
           - javascript
           - curl

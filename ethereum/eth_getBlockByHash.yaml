@@ -28,7 +28,6 @@ components:
               schema:
                 $ref: ../evm_body.yaml#/eth_getBlockByHash
         x-readme:
-          explorer-enabled: false
           samples-languages:
             - javascript
             - curl
