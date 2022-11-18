@@ -8,7 +8,7 @@ paths:
   /{apiKey}:
     post:
       summary: bor_getAuthor
-      description: 'Polygon API - Returns address of Author.'
+      description: 'Returns address of Author on Polygon.'
       tags: []
       parameters:
         - name: apiKey
