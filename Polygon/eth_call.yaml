@@ -8,21 +8,8 @@ paths:
   /{apiKey}:
     post:
       operationId: eth-call-polygon
-      summary: eth_call
-      description: Executes a new message call immediately without creating a transaction on the block chain.
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-        requestBody:
-          description: Accepts the transaction call object.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_body.yaml#/eth_call_550_gas
+      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
+      description: Executes a new message call immediately without creating a transaction on the block chain on Polygon.
       x-readme:
         explorer-enabled: false
         samples-languages:

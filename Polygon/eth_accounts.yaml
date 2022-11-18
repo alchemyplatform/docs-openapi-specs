@@ -7,26 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      summary: eth_accounts
-        description: Returns a list of addresses owned by a client on Polygon. Since Alchemy does not store keys, this will always return empty.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: demo
-            required: true
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_body.yaml#/eth_accounts
-        responses:
-          '200':
-            description: Returns 20 Bytes - addresses owned by the client.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response
+      description: Returns a list of addresses owned by client on Polygon. Since Alchemy does not store keys, this will always return empty.
+      $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
       operationId: eth-accounts-polygon

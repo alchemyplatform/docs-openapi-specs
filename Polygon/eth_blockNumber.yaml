@@ -7,22 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
-      operationId: eth-blocknumber-polygon
-      summary: eth_blockNumber
+      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       description: Returns the number of the most recent block on Polygon.
-      parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: demo
-          required: true
-      requestBody:
-        description: Accepts nothing.
-        content:
-          application/json:
-            schema:
-              $ref: ../evm_body.yaml#/eth_blockNumber
       x-readme:
         samples-languages:
           - javascript
