@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Polygon API - Creates a filter object, based on filter options, to notify when the state changes (logs).
       $ref: ../ethereum/eth_newFilter.yaml#/components/pathItems/path/post
       operationId: eth-newfilter-polygon

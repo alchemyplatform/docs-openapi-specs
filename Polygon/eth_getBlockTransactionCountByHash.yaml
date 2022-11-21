@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the number of transactions in a block matching the given block hash on Polygon.
       $ref: ../ethereum/eth_getBlockTransactionCountByHash.yaml#/components/pathItems/path/post
       operationId: eth-getblocktransactioncountbyhash-polygon

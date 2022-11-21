@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the information about a transaction requested by transaction hash on Polygon. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.
       $ref: ../ethereum/eth_getTransactionByHash.yaml#/components/pathItems/path/post
       operationId: eth-gettransactionbyhash-polygon
       x-readme:

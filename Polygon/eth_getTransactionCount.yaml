@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the number of transactions sent from an address on Polygon.
       $ref: ../ethereum/eth_getTransactionCount.yaml#/components/pathItems/path/post
       operationId: eth-gettransactioncount-polygon
       x-readme:

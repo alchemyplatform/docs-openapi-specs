@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Polygon API - Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods.
       $ref: ../ethereum/eth_getStorageAt.yaml#/components/pathItems/path/post
       operationId: eth-getstorageat-polygon
       x-readme:

@@ -8,8 +8,8 @@ paths:
   /{apiKey}:
     post:
       operationId: eth-call-polygon
-      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       description: Executes a new message call immediately without creating a transaction on the block chain on Polygon.
+      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -44,10 +44,3 @@ paths:
           - language: python
             code: "from web3 import Web3, HTTPProvider\r\n\r\n#Replace with your Alchemy API key:\r\napiKey = \"demo\"\r\n\r\n# Initialize a Web3.py instance\r\nweb3 = Web3(Web3.HTTPProvider('https://eth-mainnet.g.alchemy.com/v2 /'+apiKey))\r\n\r\n# Query the blockchain (replace example parameters)\r\ndata = web3.eth.call({\r\n\t\t'value': 0, \r\n\t\t'gas': 21736, \r\n\t\t'maxFeePerGas': 2000000000, \r\n\t\t'maxPriorityFeePerGas': 1000000000, \r\n\t\t'to': '0xc305c90',\r\n\t\t'data': '0x477a5c98'\r\n\t\t}) \r\n\r\n# Print the output to console\r\nprint(data)"
             name: web3.py
-      responses:
-          '200':
-            description: Returns integer of the number of transactions in this block.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response

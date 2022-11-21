@@ -7,7 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
-      $ref: ../evm_body.yaml#/eth_getBlockByNumber_l2
+      description: Returns information about a block on Polygon by block number.
+      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblockbynumber-polygon
       x-readme:
         explorer-enabled: false

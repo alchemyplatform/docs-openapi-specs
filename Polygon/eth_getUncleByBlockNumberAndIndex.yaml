@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns information about an uncle of a block by number and uncle index position on Polygon.
       $ref: ../ethereum/eth_getUncleByBlockNumberAndIndex.yaml#/components/pathItems/path/post
       operationId: eth-getunclebyblocknumberandindex-polygon

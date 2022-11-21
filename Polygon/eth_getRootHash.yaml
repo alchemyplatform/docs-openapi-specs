@@ -8,7 +8,7 @@ paths:
   /{apiKey}:
     post:
       summary: eth_getRootHash
-      description: 'Polygon API - Returns the root hash given a block range.'
+      description: 'Returns the root hash given a block range on Polygon.'
       tags: []
       parameters:
         - name: apiKey

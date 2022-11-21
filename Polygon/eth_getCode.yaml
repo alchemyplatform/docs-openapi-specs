@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns code at a given address on Polygon.
       $ref: ../ethereum/eth_getCode.yaml#/components/pathItems/path/post
       operationId: eth-getcode-polygon
       x-readme:

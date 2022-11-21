@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the current network id on Polygon.
       $ref: ../ethereum/net_version.yaml#/components/pathItems/path/post
       operationId: net-version-optimism

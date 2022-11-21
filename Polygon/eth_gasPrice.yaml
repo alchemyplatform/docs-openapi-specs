@@ -7,8 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
-      $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
       description: Returns the current price per gas in wei for Polygon.
+      $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
       operationId: eth-gasprice-polygon
       x-readme:
         explorer-enabled: false

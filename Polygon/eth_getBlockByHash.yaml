@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns information about a block on Polygon by block hash.
       $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path/post
       operationId: eth-getblockbyhash-polygon
       x-readme:
