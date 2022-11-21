@@ -11,7 +11,6 @@ paths:
       $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblockbynumber-polygon
       x-readme:
-        explorer-enabled: false
         samples-languages:
           - javascript
           - curl
