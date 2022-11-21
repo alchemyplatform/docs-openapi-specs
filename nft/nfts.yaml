@@ -359,6 +359,7 @@ paths:
                 properties:
                   owners:
                     $ref: '#/components/schemas/owners'
+      operationId: getOwnersForToken
   '/{apiKey}/getOwnersForCollection':
     get:
       summary: getOwnersForCollection
