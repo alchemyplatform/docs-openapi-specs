@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the current client version on Polygon.
       $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path/post
       operationId: web3-clientVersion-polygon

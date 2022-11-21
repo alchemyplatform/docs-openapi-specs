@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Polygon API - Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally, Filters timeout when they aren’t requested with eth_getFilterChangesfor a period of time.
       $ref: ../ethereum/eth_uninstallFilter.yaml#/components/pathItems/path/post
       operationId: eth-uninstallfilter-optimism

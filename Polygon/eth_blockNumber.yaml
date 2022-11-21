@@ -7,8 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
-      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       description: Returns the number of the most recent block on Polygon.
+      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       x-readme:
         samples-languages:
           - javascript
@@ -32,10 +32,3 @@ paths:
 
               // Get the latest block number
               alchemy.core.getBlockNumber().then(console.log);
-      responses:
-          '200':
-            description: Returns integer of the current block number the client is on.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_blockNumber

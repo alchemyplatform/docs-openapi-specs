@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns true if client is actively listening for network connections on Polygon.
       $ref: ../ethereum/net_listening.yaml#/components/pathItems/path/post
       operationId: net-listening-optimism

@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: 'Polling method for a filter, which returns an array of logs which occurred since last poll on Polygon.'
       $ref: ../ethereum/eth_getFilterChanges.yaml#/components/pathItems/path/post
       operationId: eth-getfilterchanges-polygon

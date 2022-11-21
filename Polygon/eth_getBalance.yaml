@@ -7,9 +7,9 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the balance of the account of a given address on Polygon.
       $ref: ../ethereum/eth_getBalance.yaml#/components/pathItems/path/post
       operationId: eth-getbalance-polygon
-      description: Returns the balance of the account of a given address on Polygon.
       x-readme:
         samples-languages:
           - javascript

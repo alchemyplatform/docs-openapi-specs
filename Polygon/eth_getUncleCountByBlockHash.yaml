@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the number of uncles in a block matching the given block hash on Polygon.
       $ref: ../ethereum/eth_getUncleCountByBlockHash.yaml#/components/pathItems/path/post
       operationId: eth-getunclecountbyblockhash-polygon

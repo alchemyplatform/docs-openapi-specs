@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns Keccak-256 (not the standardized SHA3-256) of the given data on Polygon.
       $ref: ../ethereum/web3_sha3.yaml#/components/pathItems/path/post
       operationId: web3-sha3-polygon

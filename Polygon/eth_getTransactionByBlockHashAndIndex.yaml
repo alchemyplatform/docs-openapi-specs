@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns information about a transaction by block hash and transaction index position on Polygon.
       $ref: ../ethereum/eth_getTransactionByBlockHashAndIndex.yaml#/components/pathItems/path/post
       operationId: eth-gettransactionbyblockhashandindex-polygon

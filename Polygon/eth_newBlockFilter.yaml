@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Polygon API - Creates a filter in the node, to notify when a new block arrives.
       $ref: ../ethereum/eth_newBlockFilter.yaml#/components/pathItems/path/post
       operationId: eth-newblockfilter-polygon

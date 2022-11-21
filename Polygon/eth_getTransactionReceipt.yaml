@@ -7,6 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns the receipt of a transaction by transaction hash on Polygon.
       $ref: ../ethereum/eth_getTransactionReceipt.yaml#/components/pathItems/path/post
       operationId: eth-gettransactionreceipt-polygon
       x-readme:

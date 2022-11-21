@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Returns an array of all logs matching filter with given id on Polygon. Can compute the same results with an eth_getLogs call.
       $ref: ../ethereum/eth_getFilterLogs.yaml#/components/pathItems/path/post
       operationId: eth-getfilterlogs-polygon

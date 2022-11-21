@@ -7,5 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      description: Creates a filter in the node, to notify when new pending transactions arrive on Polygon. To check if the state has changed, call eth_getFilterChanges.
       $ref: ../ethereum/eth_newPendingTransactionFilter.yaml#/components/pathItems/path/post
       operationId: eth-newpendingtransactionfilter-polygon
