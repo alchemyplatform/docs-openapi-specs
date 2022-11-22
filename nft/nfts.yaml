@@ -148,6 +148,7 @@ paths:
               properties:
                 tokens:
                   type: array
+                  description: list of token objects to batch request NFT metadata for
                   items:
                     type: object
                     properties:
