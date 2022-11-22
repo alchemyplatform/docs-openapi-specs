@@ -26,10 +26,12 @@ eth_getBlockByHash:
             2. Boolean - If `true` it returns the full transaction objects, if `false` only the hashes of the transactions. Defaults to `false`.
           minItems: 2
           maxItems: 2
-          prefixItems:
-            types:
-              - string
-              - boolean
+          items:
+            anyOf:
+              - $ref: '#/blockHash_param'
+              - title: Full transaction objects
+                type: boolean
+                default: false
 eth_getBlockByNumber:
   allOf:
     - $ref: '#/common_request_fields'
@@ -53,7 +55,12 @@ eth_getBlockByNumber:
           minItems: 2
           maxItems: 2
           items:
-            type: string
+            anyOf:
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
+                title: block number or block tag
+              - title: Full transaction objects
+                type: boolean
+                default: false
 eth_getBlockByNumber_l2:
   allOf:
     - $ref: '#/common_request_fields'
@@ -117,7 +124,6 @@ eth_getTransactionReceipt:
 eth_getBlockTransactionCountByHash:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockHash_param'
     - type: object
       properties:
         method:
@@ -125,6 +131,12 @@ eth_getBlockTransactionCountByHash:
           default: eth_getBlockTransactionCountByHash
           enum:
             - eth_getBlockTransactionCountByHash
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            - $ref: '#/blockHash_param'
 eth_getBlockTransactionCountByNumber:
   allOf:
     - $ref: '#/common_request_fields'
@@ -485,7 +497,6 @@ eth_getUncleByBlockNumberAndIndex:
 eth_getUncleCountByBlockHash:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockHash_param'
     - type: object
       properties:
         method:
@@ -493,6 +504,12 @@ eth_getUncleCountByBlockHash:
           default: eth_getUncleCountByBlockHash
           enum:
             - eth_getUncleCountByBlockHash
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            - $ref: '#/blockHash_param'
 eth_getUncleCountByBlockNumber:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1390,16 +1407,11 @@ transactionHash_param:
         pattern: '^0[xX][0-9a-fA-F]+$'
         default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
 blockHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description: String - 32 Bytes - Hash of a block
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-        pattern: '^0[xX][0-9a-fA-F]+$'
+  type: string
+  description: String - 32 Bytes - Hash of a block
+  title: block hash
+  pattern: '^0[xX][0-9a-fA-F]+$'
+  default: '0x63392b0dbab8cecbf16a8174f6ee7c2fd58a01d1f9bd5599aa422d0c782908d5'
 blockHash_and_index_param:
   type: object
   properties:
