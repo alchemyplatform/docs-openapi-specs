@@ -857,12 +857,12 @@ paths:
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
-                            decimal:
+                            decimals:
                               type: integer
                               description: Integer - The number of decimals of the token used for the payment.
-                        marketplaceFee:
+                        protocolFee:
                           type: object
-                          description: The payment from buyer to the marketplace
+                          description: The payment from buyer to the NFT marketplace protocol
                           properties:
                             amount:
                               type: string
@@ -870,7 +870,7 @@ paths:
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
-                            decimal:
+                            decimals:
                               type: integer
                               description: Integer - The number of decimals of the token used for the payment.
                         royaltyFee:
@@ -883,7 +883,7 @@ paths:
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
-                            decimal:
+                            decimals:
                               type: integer
                               description: Integer - The number of decimals of the token used for the payment.
                         blockNumber:
@@ -895,9 +895,14 @@ paths:
                         bundleIndex:
                           type: integer
                           description: Integer - The index of the token within the bundle of NFTs sold in the sale.
+                        transactionHash:
+                          type: string
+                          description: String - The transaction hash of the transaction containing the sale.
                   pageKey:
                     type: string
                     description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
+              examples:
+
       operationId: getNFTSales
   '/{apiKey}/getContractsForOwner':
     get:
@@ -1640,3 +1645,68 @@ components:
                 balance:
                   type: integer
                   description: the number of the specified token in the collection that the user owns
+    # === getNFTSales example response ===
+    nftSales_response:
+      summary: 'Response (with pagination)'
+      value: >
+        {
+          "nftSales":[
+            {
+              "marketplace":"seaport",
+              "contractAddress":"0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b",
+              "tokenId":"13749",
+              "quantity":"1",
+              "buyerAddress":"0x78f6c2458b53d0735208992c693bb2b2dafebb52",
+              "sellerAddress":"0x558a18f94cabdea4e47c5965384f457d8e870419",
+              "taker":"BUYER",
+              "sellerFee":{
+                "amount":"11100000000000000000",
+                "symbol":"ETH",
+                "decimals":18
+              },
+              "protocolFee":{
+                "amount":"300000000000000000",
+                "symbol":"ETH",
+                "decimals":18
+              },
+              "royaltyFee":{
+                "amount":"600000000000000000",
+                "symbol":"ETH",
+                "decimals":18
+              },
+              "blockNumber":15000002,
+              "logIndex":130,
+              "bundleIndex":0,
+              "transactionHash":"0xecfa1b29c9016bd2556fde637c6b48484eeb14f273af54c49317e3856ab7cb16"
+            },
+            {
+              "marketplace":"looksrare",
+              "contractAddress":"0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258",
+              "tokenId":"75417",
+              "quantity":"1",
+              "buyerAddress":"0xb3aa9923489bc2bfec323bf05346acd4afbc92a0",
+              "sellerAddress":"0x206ccba024c236dced07c35b4e9eb0bade7ef166",
+              "taker":"BUYER",
+              "sellerFee":{
+                "amount":"2222700000000000000",
+                "symbol":"WETH",
+                "decimals":18
+              },
+              "protocolFee":{
+                "amount":"47800000000000000",
+                "symbol":"WETH",
+                "decimals":18
+              },
+              "royaltyFee":{
+                "amount":"119500000000000000",
+                "symbol":"WETH",
+                "decimals":18
+              },
+              "blockNumber":15000002,
+              "logIndex":197,
+              "bundleIndex":0,
+              "transactionHash":"0x4c23163e4f855e143e573776bc6129bee370dff6ce760e71553fc93201b292e2"
+            }
+          ],
+          "pageKey":"MTUwMDAwNzgsODcsMA"
+        }
