@@ -915,7 +915,6 @@ paths:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
-          description: 'Number of NFTs to be returned per page. Defaults to 100. Max is 100.'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
       x-readme:
@@ -1000,7 +999,7 @@ components:
       in: query
     pageSize:
       name: pageSize
-      description: 'String - Number of NFTs to be returned per page. Defaults to 100. Max is 100. NOTE: Only supported on Ethereum Mainnet and Goerli, Polygon Mainnet and Mumbai, Arbitrum Mainnet and Goerli, and Optimism Mainnet and Goerli.'
+      description: 'Number of NFTs to be returned per page. Defaults to 100. Max is 100.'
       schema:
         type: integer
       in: query
