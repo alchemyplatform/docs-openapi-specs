@@ -914,6 +914,7 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
       x-readme:
