@@ -915,6 +915,7 @@ paths:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
+          description: 'Number of NFTs to be returned per page. Defaults to 100. Max is 100.'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
       x-readme:
