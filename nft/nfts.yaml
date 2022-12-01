@@ -494,6 +494,32 @@ paths:
                 type: boolean
                 description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
       operationId: isSpamContract
+  '/{apiKey}/isAirdrop':
+    get:
+      summary: isAirdrop
+      description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
+      operationId: isAirdrop
   '/{apiKey}/invalidateContract':
     get:
       summary: invalidateContract
@@ -1002,6 +1028,7 @@ components:
       description: 'Number of NFTs to be returned per page. Defaults to 100. Max is 100.'
       schema:
         type: integer
+        default: 100
       in: query
     contractAddresses:
       name: contractAddresses[]
