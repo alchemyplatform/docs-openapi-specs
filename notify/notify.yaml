@@ -539,19 +539,19 @@ components:
       properties:
         contract_address:
           type: string
-          description: contract address of NFT
+          description: Contract address for an NFT. If this field and the `token_id` aren't set all NFT activity updates will be sent.
         token_id:
           type: string
-          description: token ID for NFT. Can be integer or hex (0x prefixed hex string).
+          description: Token ID for an NFT. Can be decimal or "0x" prefixed hex integer string. If this field and the `token_id` aren't set all NFT activity updates will be sent. This field can't be set if the `contract_address` field isn't set.
     nft_metadata_filter_object:
       type: object
       properties:
         contract_address:
           type: string
-          description: Contract address for an NFT. If this field and the token_id aren't set all metadata updates will be sent.
+          description: Contract address for an NFT. If this field and the `token_id` aren't set all metadata updates will be sent.
         token_id:
           type: string
-          description: Token ID for an NFT. Can be integer or hex (0x prefixed hex string). If this field and the token_id aren't set all metadata updates will be sent. This field can't be set if the contract_address field isn't set.
+          description: Token ID for an NFT. Can be decimal or "0x" prefixed hex integer string. If this field and the `token_id` aren't set all metadata updates will be sent. This field can't be set if the `contract_address` field isn't set.
     create_webhook:
       type: object
       required:
@@ -788,6 +788,7 @@ components:
         - ARB_RINKEBY
         - OPT_MAINNET
         - OPT_KOVAN
+      default: ETH_MAINNET
     webhook_type:
       type: string
       description: 'Type of webhook.'
