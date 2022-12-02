@@ -250,6 +250,39 @@ paths:
                   contractMetadata:
                     $ref: '#/components/schemas/contractMetadata'
       operationId: getContractMetadata
+  '/{apiKey}/getContractMetadataBatch':
+    post:
+      summary: getContractMetadataBatch
+      description: Gets the metadata associated with the given list of contract addresses
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contractAddresses:
+                  type: array
+                  description: list of contract addresses to batch metadata requests for
+                  items:
+                    $ref: '#/components/schemas/contractAddress'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      $ref: '#/components/schemas/address'
+                    contractMetadata:
+                      $ref: '#/components/schemas/ownedContract'
+      operationId: getContractMetadataBatch
   '/{apiKey}/getNFTsForCollection':
     get:
       summary: getNFTsForCollection
