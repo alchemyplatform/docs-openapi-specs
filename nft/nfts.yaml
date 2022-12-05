@@ -250,6 +250,40 @@ paths:
                   contractMetadata:
                     $ref: '#/components/schemas/contractMetadata'
       operationId: getContractMetadata
+  '/{apiKey}/getContractMetadataBatch':
+    post:
+      summary: getContractMetadataBatch
+      description: Gets the metadata associated with the given list of contract addresses
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contractAddresses:
+                  type: array
+                  description: list of contract addresses to batch metadata requests for
+                  default: ['0xe785E82358879F061BC3dcAC6f0444462D4b5330', '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d']
+                  items:
+                    $ref: '#/components/schemas/contractAddress'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    address:
+                      $ref: '#/components/schemas/address'
+                    contractMetadata:
+                      $ref: '#/components/schemas/ownedContract'
+      operationId: getContractMetadataBatch
   '/{apiKey}/getNFTsForCollection':
     get:
       summary: getNFTsForCollection
@@ -494,6 +528,32 @@ paths:
                 type: boolean
                 description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
       operationId: isSpamContract
+  '/{apiKey}/isAirdrop':
+    get:
+      summary: isAirdrop
+      description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
+      operationId: isAirdrop
   '/{apiKey}/invalidateContract':
     get:
       summary: invalidateContract
@@ -857,12 +917,12 @@ paths:
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
-                            decimal:
+                            decimals:
                               type: integer
                               description: Integer - The number of decimals of the token used for the payment.
-                        marketplaceFee:
+                        protocolFee:
                           type: object
-                          description: The payment from buyer to the marketplace
+                          description: The payment from buyer to the NFT marketplace protocol
                           properties:
                             amount:
                               type: string
@@ -870,7 +930,7 @@ paths:
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
-                            decimal:
+                            decimals:
                               type: integer
                               description: Integer - The number of decimals of the token used for the payment.
                         royaltyFee:
@@ -883,7 +943,7 @@ paths:
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
-                            decimal:
+                            decimals:
                               type: integer
                               description: Integer - The number of decimals of the token used for the payment.
                         blockNumber:
@@ -895,9 +955,15 @@ paths:
                         bundleIndex:
                           type: integer
                           description: Integer - The index of the token within the bundle of NFTs sold in the sale.
+                        transactionHash:
+                          type: string
+                          description: String - The transaction hash of the transaction containing the sale.
                   pageKey:
                     type: string
                     description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
+              examples:
+                nftSales_response:
+                  $ref: '#/components/schemas/nftSales_response'
       operationId: getNFTSales
   '/{apiKey}/getContractsForOwner':
     get:
@@ -908,6 +974,7 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
       x-readme:
@@ -992,9 +1059,10 @@ components:
       in: query
     pageSize:
       name: pageSize
-      description: 'String - Number of NFTs to be returned per page. Defaults to 100. Max is 100. NOTE: Only supported on Ethereum Mainnet and Goerli, Polygon Mainnet and Mumbai, Arbitrum Mainnet and Goerli, and Optimism Mainnet and Goerli.'
+      description: 'Number of NFTs to be returned per page. Defaults to 100. Max is 100.'
       schema:
         type: integer
+        default: 100
       in: query
     contractAddresses:
       name: contractAddresses[]
@@ -1640,3 +1708,68 @@ components:
                 balance:
                   type: integer
                   description: the number of the specified token in the collection that the user owns
+    # === getNFTSales example response ===
+    nftSales_response:
+      summary: 'Response (with pagination)'
+      value: >
+        {
+          "nftSales":[
+            {
+              "marketplace":"seaport",
+              "contractAddress":"0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b",
+              "tokenId":"13749",
+              "quantity":"1",
+              "buyerAddress":"0x78f6c2458b53d0735208992c693bb2b2dafebb52",
+              "sellerAddress":"0x558a18f94cabdea4e47c5965384f457d8e870419",
+              "taker":"BUYER",
+              "sellerFee":{
+                "amount":"11100000000000000000",
+                "symbol":"ETH",
+                "decimals":18
+              },
+              "protocolFee":{
+                "amount":"300000000000000000",
+                "symbol":"ETH",
+                "decimals":18
+              },
+              "royaltyFee":{
+                "amount":"600000000000000000",
+                "symbol":"ETH",
+                "decimals":18
+              },
+              "blockNumber":15000002,
+              "logIndex":130,
+              "bundleIndex":0,
+              "transactionHash":"0xecfa1b29c9016bd2556fde637c6b48484eeb14f273af54c49317e3856ab7cb16"
+            },
+            {
+              "marketplace":"looksrare",
+              "contractAddress":"0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258",
+              "tokenId":"75417",
+              "quantity":"1",
+              "buyerAddress":"0xb3aa9923489bc2bfec323bf05346acd4afbc92a0",
+              "sellerAddress":"0x206ccba024c236dced07c35b4e9eb0bade7ef166",
+              "taker":"BUYER",
+              "sellerFee":{
+                "amount":"2222700000000000000",
+                "symbol":"WETH",
+                "decimals":18
+              },
+              "protocolFee":{
+                "amount":"47800000000000000",
+                "symbol":"WETH",
+                "decimals":18
+              },
+              "royaltyFee":{
+                "amount":"119500000000000000",
+                "symbol":"WETH",
+                "decimals":18
+              },
+              "blockNumber":15000002,
+              "logIndex":197,
+              "bundleIndex":0,
+              "transactionHash":"0x4c23163e4f855e143e573776bc6129bee370dff6ce760e71553fc93201b292e2"
+            }
+          ],
+          "pageKey":"MTUwMDAwNzgsODcsMA"
+        }
