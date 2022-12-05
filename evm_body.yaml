@@ -158,6 +158,7 @@ eth_getBlockTransactionCountByNumber:
                 * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
                 * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
                 * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+          default: finalized
           minItems: 1
           maxItems: 1
           items:
@@ -1444,11 +1445,6 @@ blockHash_and_index_param:
 signed_transaction_param:
   type: object
   properties:
-    method:
-      type: string
-      default: alchemy_getGasOptimizedTransactionStatus
-      enum:
-        - alchemy_getGasOptimizedTransactionStatus
     params:
       type: array
       description: String - The signed transaction data.
