@@ -29,7 +29,6 @@ components:
               schema:
                 $ref: ../evm_body.yaml#/eth_call_550_gas
         x-readme:
-          explorer-enabled: false
           samples-languages:
             - javascript
             - curl
