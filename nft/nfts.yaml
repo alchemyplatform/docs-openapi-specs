@@ -1422,6 +1422,8 @@ components:
           type: string
         discordUrl:
           type: string
+        lastIngestedAt:
+          type: string
     owners:
       type: object
       properties:
