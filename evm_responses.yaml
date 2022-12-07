@@ -305,18 +305,18 @@ getTxn_result_response:
           type: object
           properties:
             jobStatus:
-                type: string
-                description: 'See below for the different response statuses'
-                enum:
-                  - 'IN_PROGRESS'
-                  - 'COMPLETE'
-                  - 'ABANDONED'
-                  - 'UNSPECIFIED'
+              type: string
+              description: 'See below for the different response statuses'
+              enum:
+                - 'IN_PROGRESS'
+                - 'COMPLETE'
+                - 'ABANDONED'
+                - 'UNSPECIFIED'
             transactionHashesAttempted:
-                type: array
-                description: 'An array of currently submitted transaction hashes'
-                items:
-                  type: string
+              type: array
+              description: 'An array of currently submitted transaction hashes'
+              items:
+                type: string
 sendTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'
@@ -326,13 +326,13 @@ sendTxn_result_response:
           type: object
           properties:
             trackingId:
-                type: string
-                description: 'A transaction identifier that can be used in alchemy_getGasOptimizedTransactionStatus for querying its status'
+              type: string
+              description: 'A transaction identifier that can be used in alchemy_getGasOptimizedTransactionStatus for querying its status'
             transactionHashes:
-                type: array
-                description: 'An array of currently submitted transaction hashes'
-                items:
-                  type: string
+              type: array
+              description: 'An array of currently submitted transaction hashes'
+              items:
+                type: string
 eth_feeHistory:
   allOf:
     - $ref: '#/common_response_fields'
@@ -845,9 +845,6 @@ transfer:
     category:
       type: string
       description: "'external', 'internal', 'token', 'erc20', 'erc721', 'erc1155', 'specialnft' - label for the transfer."
-    token:
-      type: string
-      description: "'includes 'erc20' and 'erc721' transfers."
     blockNum:
       type: string
       description: 'The block where the transfer occurred (hex string).'
@@ -866,9 +863,16 @@ transfer:
       nullable: true
       description: '(Deprecated) Legacy token ID field for ERC721 tokens (hex string). The `tokenId` field should be used instead.'
     erc1155Metadata:
-      type: string
+      type: array
       nullable: true
       description: 'A list of objects containing the ERC1155 tokenId (hex string) and value (hex string). null if not an ERC1155 transfer.'
+      items:
+        type: object
+        properties:
+          tokenId:
+            type: string
+          value:
+            type: string
     tokenId:
       type: string
       description: 'Token ID for ERC721 (or other NFT) tokens.'
