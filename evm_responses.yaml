@@ -855,7 +855,7 @@ transfer:
       type: string
       description: 'To address of transfer (hex string). null if contract creation.'
     value:
-      type: string | null
+      type: string
       nullable: true
       description: 'Converted asset transfer value as a number (raw value divided by contract decimal). null if ERC721 transfer or contract decimal not available.'
     erc721TokenId:
@@ -863,7 +863,7 @@ transfer:
       nullable: true
       description: '(Deprecated) Legacy token ID field for ERC721 tokens (hex string). The `tokenId` field should be used instead.'
     erc1155Metadata:
-      type: array | null
+      type: array
       nullable: true
       description: 'A list of objects containing the ERC1155 tokenId (hex string) and value (hex string). null if not an ERC1155 transfer.'
       items:
