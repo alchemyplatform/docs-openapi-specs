@@ -8,14 +8,15 @@ paths:
   /{apiKey}:
     post:
       summary: bor_getCurrentValidators
-      description: 'Returns current validators for Polygon's API.'
+      description: 'Returns current validators for Polygon.'
       tags: []
       parameters:
         - name: apiKey
           in: path
           schema:
             type: string
-            default: demo
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
           required: true
       requestBody:
         content:
