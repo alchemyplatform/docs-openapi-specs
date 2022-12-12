@@ -125,9 +125,7 @@ getBlockCommitment:
           minItems: 1
           maxItems: 1
           items:
-            type: integer
-            format: int64
-            description: u64 - A slot integer denoting the block number.
+            $ref: '#/block_number'
 getBlockProduction:
   allOf:
     - $ref: '#/common_request_fields'
