@@ -29,6 +29,7 @@ paths:
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
         - $ref: '#/components/schemas/excludeFilters'
         - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/orderBy'
       x-readme:
         samples-languages:
           - javascript
@@ -1165,6 +1166,16 @@ components:
           - asc
           - desc
         default: asc
+    orderBy:
+      name: orderBy
+      description: |-
+        Enum - ordering scheme to use for ordering NFTs in the response. If unspecified, NFTs will be ordered by contract address and token ID.
+          - TRANSFER_TIME: NFTs will be ordered by the time they were transferred into the wallet, with newest NFTs first. NOTE: this ordering is only supported on Ethereum Mainnet and Polygon Mainnet.
+      in: query
+      schema:
+        type: string
+        enum:
+          - transfer_time
     marketplace:
       name: marketplace
       description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
