@@ -153,10 +153,12 @@ getBlockProduction:
                     type: integer
                     format: int64
                     description: u64 - First slot to return block production information for (inclusive).
+                    default: 165768577
                   lastSlot:
                     type: integer
                     format: int64
                     description: u64 - Last slot to return block production information for (inclusive). Defaults to the highest slot.
+                    default: 165768579
                   identity:
                     type: string
                     description: Base-58 Encoded String - Specifies return results for a particular validator identity.
