@@ -42,7 +42,7 @@ getBlock:
                     description: |
                       Level of transaction detail to return.
                       Accepts one of the following strings:
-                      ["full" (Default), "signatures", or "none"] 
+                      ["full" (Default), "signatures", or "none"]
                     enum:
                       - full
                       - signatures
@@ -109,10 +109,7 @@ getBlockTime:
           minItems: 1
           maxItems: 1
           items:
-            type: integer
-            format: int64
-            description: u64 - Slot integer for a block.
-            default: 165768577
+            $ref: '#/block_number'
 getBlockCommitment:
   allOf:
     - $ref: '#/common_request_fields'
@@ -128,9 +125,7 @@ getBlockCommitment:
           minItems: 1
           maxItems: 1
           items:
-            type: integer
-            format: int64
-            description: u64 - A slot integer denoting the block number.
+            $ref: '#/block_number'
 getBlockProduction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -158,10 +153,12 @@ getBlockProduction:
                     type: integer
                     format: int64
                     description: u64 - First slot to return block production information for (inclusive).
+                    default: 165768577
                   lastSlot:
                     type: integer
                     format: int64
                     description: u64 - Last slot to return block production information for (inclusive). Defaults to the highest slot.
+                    default: 165768579
                   identity:
                     type: string
                     description: Base-58 Encoded String - Specifies return results for a particular validator identity.
@@ -884,7 +881,7 @@ encoding:
     Data encoding for each returned transaction.
     Accepts one of the following strings:
     ["json" (Default), "jsonParsed", "base58" (slow), "base64"] 
-    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON. 
+    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
   default: json
   enum:
     - json
@@ -898,9 +895,11 @@ dataSlice:
     Only available for "base58", "base64" or "base64+zstd" encodings.
 minContextSlot:
   type: number
+  default: 165768577
   description: Set the minimum slot that the request can be evaluated at.
 commitment:
   type: string
+  default: processed
   description: |
     Configures the commitment level of the blocks queried.
     Accepts one of the following strings: ["finalized", "confirmed", "processed"]
@@ -936,3 +935,10 @@ filters:
         format: int64
         description: Compares the program account data length with the provided data size.
 
+# ======= Definitions for blockNumber ==========
+# blockNumber or slotnumber is used in many API endpoints so creating a separate component for it
+block_number:
+  type: integer
+  default: 165768577
+  format: int64
+  description: u64 - Slot integer for a block.
