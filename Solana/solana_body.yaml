@@ -895,6 +895,7 @@ dataSlice:
     Only available for "base58", "base64" or "base64+zstd" encodings.
 minContextSlot:
   type: number
+  default: 165768577
   description: Set the minimum slot that the request can be evaluated at.
 commitment:
   type: string
