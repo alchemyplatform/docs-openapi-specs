@@ -112,6 +112,7 @@ getBlockTime:
             type: integer
             format: int64
             description: u64 - Slot integer for a block.
+            default: 165768577
 getBlockCommitment:
   allOf:
     - $ref: '#/common_request_fields'
