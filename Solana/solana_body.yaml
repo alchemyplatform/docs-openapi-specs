@@ -898,6 +898,7 @@ minContextSlot:
   description: Set the minimum slot that the request can be evaluated at.
 commitment:
   type: string
+  default: processed
   description: |
     Configures the commitment level of the blocks queried.
     Accepts one of the following strings: ["finalized", "confirmed", "processed"]
