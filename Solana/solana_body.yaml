@@ -303,6 +303,7 @@ getVoteAccounts:
                 description: Base-58 Encoded String - Only return results for this validator vote address.
               keepUnstakedDelinquents:
                 type: boolean
+                default: false
                 description: Do not filter out delinquent validators with no stake.
               delinquentSlotDistance:
                 type: integer
@@ -327,6 +328,7 @@ getLargestAccounts:
                 $ref: '#/commitment'
               filter:
                 type: string
+                default: circulating
                 description: Filter results by account type; currently supported - "circulating" or "nonCirculating".
                 enum:
                   - circulating
@@ -459,6 +461,7 @@ getRecentPerformanceSamples:
           description: Array of number of samples to return (maximum 720).
           items:
             type: integer
+            default: 5
             format: int64
 getHealth:
   allOf:
@@ -554,6 +557,7 @@ getSupply:
                 $ref: '#/commitment'
               excludeNonCirculatingAccountsList:
                 type: boolean
+                default: false
                 description: Boolean - Excludes non circulating accounts list from response.
 getSlot:
   allOf:
@@ -581,14 +585,12 @@ getSlotLeaders:
             - getSlotLeaders
         params:
           type: array
+          default: [165768577, 5]
           minItems: 2
           maxItems: 2
           description: |
             - u64 - Start slot.
             - u64 - Limit of the number of slot leaders in the response payload.
-          items:
-            type: integer
-            format: int64
 getMaxRetransmitSlot:
   allOf:
     - $ref: '#/common_request_fields'
