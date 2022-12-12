@@ -1175,7 +1175,7 @@ components:
       schema:
         type: string
         enum:
-          - transfer_time
+          - TRANSFER_TIME
     marketplace:
       name: marketplace
       description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
