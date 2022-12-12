@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Alchemy SDK
+  title: 🛠️ Alchemy SDK
   version: '1.0'
 servers:
   - url: 'https://alchemy-sdk-core-example.com'
