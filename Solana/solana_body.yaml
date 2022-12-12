@@ -42,7 +42,7 @@ getBlock:
                     description: |
                       Level of transaction detail to return.
                       Accepts one of the following strings:
-                      ["full" (Default), "signatures", or "none"] 
+                      ["full" (Default), "signatures", or "none"]
                     enum:
                       - full
                       - signatures
@@ -109,9 +109,7 @@ getBlockTime:
           minItems: 1
           maxItems: 1
           items:
-            type: integer
-            format: int64
-            description: u64 - Slot integer for a block.
+            $ref: '#/block_number'
 getBlockCommitment:
   allOf:
     - $ref: '#/common_request_fields'
@@ -883,7 +881,7 @@ encoding:
     Data encoding for each returned transaction.
     Accepts one of the following strings:
     ["json" (Default), "jsonParsed", "base58" (slow), "base64"] 
-    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON. 
+    "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
   default: json
   enum:
     - json
@@ -935,3 +933,10 @@ filters:
         format: int64
         description: Compares the program account data length with the provided data size.
 
+# ======= Definitions for blockNumber ==========
+# blockNumber or slotnumber is used in many API endpoints so creating a separate component for it
+block_number:
+  type: integer
+  default: 165768577
+  format: int64
+  description: u64 - Slot integer for a block.
