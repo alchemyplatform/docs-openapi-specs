@@ -55,6 +55,9 @@ block_object:
     - type: object
       description: 'A block object with the following fields, or null when no block was found.'
       properties:
+        baseFeePerGas:
+          type: string
+          description: the base fee, in wei, that is charged for each unit of gas used, during the execution of the given block, encoded as a hexadecimal.
         number:
           type: string
           description: the block number. null when its pending block.
