@@ -12,14 +12,15 @@ components:
     path:
       post:
         summary: eth_getUncleCountByBlockNumber
-        description: Returns the number of uncles in a block matching the give block number.
+        description: Returns the number of uncles in a block matching the given block number.
         tags: []
         parameters:
           - name: apiKey
             in: path
             schema:
               type: string
-              default: demo
+              default: docs-demo
+              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
             required: true
         requestBody:
           content:
