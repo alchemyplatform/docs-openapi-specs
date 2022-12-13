@@ -1166,6 +1166,7 @@ components:
           - asc
           - desc
         default: asc
+      required: false
     orderBy:
       name: orderBy
       description: |-
