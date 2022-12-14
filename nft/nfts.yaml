@@ -1210,12 +1210,12 @@ components:
       name: orderBy
       description: |-
         Enum - ordering scheme to use for ordering NFTs in the response. If unspecified, NFTs will be ordered by contract address and token ID.
-          - TRANSFER_TIME: NFTs will be ordered by the time they were transferred into the wallet, with newest NFTs first. NOTE: this ordering is only supported on Ethereum Mainnet and Polygon Mainnet.
+          - transferTime: NFTs will be ordered by the time they were transferred into the wallet, with newest NFTs first. NOTE: this ordering is only supported on Ethereum Mainnet and Polygon Mainnet.
       in: query
       schema:
         type: string
         enum:
-          - TRANSFER_TIME
+          - transferTime
           - null
       required: false
     marketplace:
