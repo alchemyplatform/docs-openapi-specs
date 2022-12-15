@@ -20,7 +20,8 @@ components:
             in: path
             schema:
               type: string
-              default: demo
+              default: docs-demo
+              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
             required: true
         requestBody:
           description: Accepts the transaction call object.
@@ -29,7 +30,6 @@ components:
               schema:
                 $ref: ../evm_body.yaml#/eth_call_550_gas
         x-readme:
-          explorer-enabled: false
           samples-languages:
             - javascript
             - curl

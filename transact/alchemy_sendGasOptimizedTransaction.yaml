@@ -16,7 +16,8 @@ paths:
           in: path
           schema:
             type: string
-            default: demo
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
           required: true
       requestBody:
         content:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/sendTxn_result_response
-      operationId: alchemy-sendGasOptimizedTransaction
