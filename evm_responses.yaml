@@ -320,6 +320,28 @@ getTxn_result_response:
               description: 'An array of currently submitted transaction hashes'
               items:
                 type: string
+            minedTransactionHash:
+              type: string
+              description: transaction hash for the mined transaction if it has been mined
+            transactionHashWithErrors:
+              type: array
+              description: An array of object errors that occured with the transaction, omitted if no errors occured. 
+              items:
+                type: object
+                properties:
+                  hash: 
+                    type: string
+                    description: hash for the transaction that had the error
+                  errors:
+                    type: array
+                    description: error objects 
+                    properties:
+                      code:
+                        type: integer
+                        description: error code 
+                      message:
+                        type: string
+                        description: error message
 sendTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'

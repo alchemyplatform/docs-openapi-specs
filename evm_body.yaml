@@ -227,7 +227,7 @@ eth_sendRawTransaction:
 alchemy_getGasOptimizedTransactionStatus:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/signed_transaction_param'
+    - $ref: '#/get_signed_txns_status_param'
     - type: object
       properties:
         method:
@@ -1461,11 +1461,12 @@ get_signed_txns_status_param:
   properties:
     params:
       type: array
+      description: String - The `transactionId` returned from `alchemy_sendGasOptimizedTransactions`
       minItems: 1
       maxItems: 1
       items:
         type: string
-        description: String - The transactionId returned from alchemy_sendGasOptimizedTransactions
+        default: "0x000C"
 bundled_signed_transaction_param:
   type: object
   properties:
