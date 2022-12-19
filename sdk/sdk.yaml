@@ -1257,8 +1257,8 @@ paths:
                           $ref: '#/components/schemas/id'
                         tokenUri:
                           $ref: '#/components/schemas/tokenUri'
-                        metadata:
-                          $ref: '#/components/schemas/metadata'
+                        rawMetadata:
+                          $ref: '#/components/schemas/rawMetadata'
                   nextToken:
                     type: string
                     description: 'String - An offset used for pagination'
@@ -2428,7 +2428,7 @@ components:
           $ref: '#/components/schemas/raw'
         gateway:
           $ref: '#/components/schemas/gateway'
-    metadata:
+    rawMetadata:
       type: object
       description: 'String - Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
       properties:
@@ -2496,8 +2496,8 @@ components:
             bytes:
               type: integer
               description: The size of the media asset in bytes.
-        metadata:
-          $ref: '#/components/schemas/metadata'
+        rawMetadata:
+          $ref: '#/components/schemas/rawMetadata'
         timeLastUpdated:
           type: string
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
