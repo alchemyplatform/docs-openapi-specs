@@ -227,120 +227,120 @@ paths:
               schema:
                 $ref: sdk_responses.yaml#/alchemy_getAssetTransfers
   /{apiKey}/getBalance:
-      post:
-        operationId: sdk-getBalance
-        summary: getBalance
-        description: Returns the balance of the account of a given address.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-getBalance
+      summary: getBalance
+      description: Returns the balance of the account of a given address.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getBalance
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core.getBalance("vitalik.eth", "latest").then(console.log);
+      responses:
+        '200':
+          description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getBalance
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core.getBalance("vitalik.eth", "latest").then(console.log);
-        responses:
-          '200':
-            description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/string_result_response
+                $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getBlock:
-      post:
-        tags: ['SDK Core Endpoints']
-        operationId: sdk-getBlock
-        summary: getBlock
-        description: Returns the block from the network based on the provided block number or hash. 
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: ['SDK Core Endpoints']
+      operationId: sdk-getBlock
+      summary: getBlock
+      description: Returns the block from the network based on the provided block number or hash.
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getBlock
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .getBlock(
+                  "0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3"
+                )
+                .then(console.log);
+      responses:
+        '200':
+          description: 'Returns a block object with the following fields, or null when no block was found.'
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getBlock
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core
-                  .getBlock(
-                    "0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3"
-                  )
-                  .then(console.log);
-        responses:
-          '200':
-            description: 'Returns a block object with the following fields, or null when no block was found.'
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/eth_block
-                examples:
-                  default:
-                    summary: 'Sample Response'
-                    value: >
-                      {
-                        hash: '0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3',
-                        parentHash: '0x6890edf8ad6900a5472c2a7ee3ef795f020ef6f907afb7f4ebf6a92d6aeb1804',
-                        number: 15221026,
-                        timestamp: 1658877717,
-                        nonce: '0xd8c399035d6e6e8f',
-                        difficulty: null,
-                        gasLimit: BigNumber { _hex: '0x01ca35d2', _isBigNumber: true },
-                        gasUsed: BigNumber { _hex: '0x01ca1ae1', _isBigNumber: true },
-                        miner: '0x52bc44d5378309EE2abF1539BF71dE1b7d7bE3b5',
-                        extraData: '0x6e616e6f706f6f6c2e6f7267',
-                        transactions: [
-                          '0xba4938ea41154427c8cb424ea89d9f150f139ed10065fe43ce11102dc82e1c37',
-                          '0x98cc6b4b66453e184f65728fee265a726b030c5ddcfc1311a01ea5345c3959ab',
-                          '0x2cbb4968cce66c73f2755fe7ef177981962afa7943f658b323e61850f31e4163'
-                        ],
-                        baseFeePerGas: BigNumber { _hex: '0x02aa2d1d80', _isBigNumber: true },
-                        _difficulty: BigNumber { _hex: '0x2a31d8a2cf4dd7', _isBigNumber: true }
-                      }
+                $ref: sdk_responses.yaml#/eth_block
+              examples:
+                default:
+                  summary: 'Sample Response'
+                  value: >
+                    {
+                      hash: '0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3',
+                      parentHash: '0x6890edf8ad6900a5472c2a7ee3ef795f020ef6f907afb7f4ebf6a92d6aeb1804',
+                      number: 15221026,
+                      timestamp: 1658877717,
+                      nonce: '0xd8c399035d6e6e8f',
+                      difficulty: null,
+                      gasLimit: BigNumber { _hex: '0x01ca35d2', _isBigNumber: true },
+                      gasUsed: BigNumber { _hex: '0x01ca1ae1', _isBigNumber: true },
+                      miner: '0x52bc44d5378309EE2abF1539BF71dE1b7d7bE3b5',
+                      extraData: '0x6e616e6f706f6f6c2e6f7267',
+                      transactions: [
+                        '0xba4938ea41154427c8cb424ea89d9f150f139ed10065fe43ce11102dc82e1c37',
+                        '0x98cc6b4b66453e184f65728fee265a726b030c5ddcfc1311a01ea5345c3959ab',
+                        '0x2cbb4968cce66c73f2755fe7ef177981962afa7943f658b323e61850f31e4163'
+                      ],
+                      baseFeePerGas: BigNumber { _hex: '0x02aa2d1d80', _isBigNumber: true },
+                      _difficulty: BigNumber { _hex: '0x2a31d8a2cf4dd7', _isBigNumber: true }
+                    }
   /{apiKey}/getBlockNumber:
     post:
       tags: ['SDK Core Endpoints']
@@ -394,348 +394,348 @@ paths:
                   summary: 'Sample Response'
                   value: '15534524'
   /{apiKey}/getBlockWithTransactions:
-      post:
-        tags: ['SDK Core Endpoints']
-        operationId: sdk-getBlockWithTransactions
-        summary: getBlockWithTransactions
-        description: Returns the block from the network based on the provided block number or hash. Includes fully transactions from the block. 
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: ['SDK Core Endpoints']
+      operationId: sdk-getBlockWithTransactions
+      summary: getBlockWithTransactions
+      description: Returns the block from the network based on the provided block number or hash. Includes fully transactions from the block.
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getBlock
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .getBlockWithTransactions(
+                  "0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3"
+                )
+                .then(console.log);
+      responses:
+        '200':
+          description: 'Returns a block object with the following fields, or null when no block was found.'
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getBlock
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core
-                  .getBlockWithTransactions(
-                    "0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3"
-                  )
-                  .then(console.log);
-        responses:
-          '200':
-            description: 'Returns a block object with the following fields, or null when no block was found.'
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/eth_block
-                examples:
-                  default:
-                    summary: 'Sample Response'
-                    value: >
-                      {
-                        hash: '0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3',
-                        parentHash: '0x6890edf8ad6900a5472c2a7ee3ef795f020ef6f907afb7f4ebf6a92d6aeb1804',
-                        number: 15221026,
-                        timestamp: 1658877717,
-                        nonce: '0xd8c399035d6e6e8f',
-                        difficulty: null,
-                        gasLimit: BigNumber { _hex: '0x01ca35d2', _isBigNumber: true },
-                        gasUsed: BigNumber { _hex: '0x01ca1ae1', _isBigNumber: true },
-                        miner: '0x52bc44d5378309EE2abF1539BF71dE1b7d7bE3b5',
-                        extraData: '0x6e616e6f706f6f6c2e6f7267',
-                        transactions: [
-                          {
-                            hash: '0x58bbdd890cc828a70cf6d65f103d7723e945197b53da2c263ea6270a82fb2ccb',
-                            type: 2,
-                            accessList: [],
-                            blockHash: '0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3',
-                            blockNumber: 15221026,
-                            transactionIndex: 57,
-                            confirmations: 329310,
-                            from: '0x7abE0cE388281d2aCF297Cb089caef3819b13448',
-                            gasPrice: [BigNumber],
-                            maxPriorityFeePerGas: [BigNumber],
-                            maxFeePerGas: [BigNumber],
-                            gasLimit: [BigNumber],
-                            to: '0x7BA11217CCd0eD428924295BF7f13D50E75B68A4',
-                            value: [BigNumber],
-                            nonce: 310301,
-                            data: '0x',
-                            r: '0x79a3a0a0a9707c3c679e702b115562ce1bc5c8c761891baf05dfae2ddcc38599',
-                            s: '0x488153c1dcdb9b03af4199070b67476fa8f24af865e0f448fb7f538b004b0991',
-                            v: 1,
-                            creates: null,
-                            chainId: 1,
-                            wait: [Function (anonymous)]
-                          }
-                        ],
-                        baseFeePerGas: BigNumber { _hex: '0x02aa2d1d80', _isBigNumber: true },
-                        _difficulty: BigNumber { _hex: '0x2a31d8a2cf4dd7', _isBigNumber: true }
-                      }
+                $ref: sdk_responses.yaml#/eth_block
+              examples:
+                default:
+                  summary: 'Sample Response'
+                  value: >
+                    {
+                      hash: '0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3',
+                      parentHash: '0x6890edf8ad6900a5472c2a7ee3ef795f020ef6f907afb7f4ebf6a92d6aeb1804',
+                      number: 15221026,
+                      timestamp: 1658877717,
+                      nonce: '0xd8c399035d6e6e8f',
+                      difficulty: null,
+                      gasLimit: BigNumber { _hex: '0x01ca35d2', _isBigNumber: true },
+                      gasUsed: BigNumber { _hex: '0x01ca1ae1', _isBigNumber: true },
+                      miner: '0x52bc44d5378309EE2abF1539BF71dE1b7d7bE3b5',
+                      extraData: '0x6e616e6f706f6f6c2e6f7267',
+                      transactions: [
+                        {
+                          hash: '0x58bbdd890cc828a70cf6d65f103d7723e945197b53da2c263ea6270a82fb2ccb',
+                          type: 2,
+                          accessList: [],
+                          blockHash: '0x92fc42b9642023f2ee2e88094df80ce87e15d91afa812fef383e6e5cd96e2ed3',
+                          blockNumber: 15221026,
+                          transactionIndex: 57,
+                          confirmations: 329310,
+                          from: '0x7abE0cE388281d2aCF297Cb089caef3819b13448',
+                          gasPrice: [BigNumber],
+                          maxPriorityFeePerGas: [BigNumber],
+                          maxFeePerGas: [BigNumber],
+                          gasLimit: [BigNumber],
+                          to: '0x7BA11217CCd0eD428924295BF7f13D50E75B68A4',
+                          value: [BigNumber],
+                          nonce: 310301,
+                          data: '0x',
+                          r: '0x79a3a0a0a9707c3c679e702b115562ce1bc5c8c761891baf05dfae2ddcc38599',
+                          s: '0x488153c1dcdb9b03af4199070b67476fa8f24af865e0f448fb7f538b004b0991',
+                          v: 1,
+                          creates: null,
+                          chainId: 1,
+                          wait: [Function (anonymous)]
+                        }
+                      ],
+                      baseFeePerGas: BigNumber { _hex: '0x02aa2d1d80', _isBigNumber: true },
+                      _difficulty: BigNumber { _hex: '0x2a31d8a2cf4dd7', _isBigNumber: true }
+                    }
   /{apiKey}/getCode:
-      post:
-        operationId: sdk-getCode
-        summary: getCode
-        description: Returns code at a given address.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-getCode
+      summary: getCode
+      description: Returns code at a given address.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getCode
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core.getCode("registrar.firefly.eth").then(console.log);
+      responses:
+        '200':
+          description: Returns the code from the given address.
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getCode
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core.getCode("registrar.firefly.eth").then(console.log);
-        responses:
-          '200':
-            description: Returns the code from the given address.
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/string_result_response
+                $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/feeData:
-      post:
-        operationId: sdk-feeData
-        summary: feeData
-        description: Returns the recommended fee data to use in a transaction. For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas should be used. For legacy transactions and networks which do not support EIP-1559, the gasPrice should be used.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
+    post:
+      operationId: sdk-feeData
+      summary: feeData
+      description: Returns the recommended fee data to use in a transaction. For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas should be used. For legacy transactions and networks which do not support EIP-1559, the gasPrice should be used.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
 
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                alchemy.core.getFeeData().then(console.log);
-        responses:
-          '200':
-            description: Returns integer of the current gas price in wei.
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/getFeeData
+              alchemy.core.getFeeData().then(console.log);
+      responses:
+        '200':
+          description: Returns integer of the current gas price in wei.
+          content:
+            application/json:
+              schema:
+                $ref: sdk_responses.yaml#/getFeeData
   /{apiKey}/getGasPrice:
-      post:
-        operationId: sdk-getGasPrice
-        summary: getGasPrice
-        description: Returns the current price per gas in wei.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
+    post:
+      operationId: sdk-getGasPrice
+      summary: getGasPrice
+      description: Returns the current price per gas in wei.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
 
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                alchemy.core.getGasPrice().then(console.log);
-        responses:
-          '200':
-            description: Returns integer of the current gas price in wei.
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/string_result_response
+              alchemy.core.getGasPrice().then(console.log);
+      responses:
+        '200':
+          description: Returns integer of the current gas price in wei.
+          content:
+            application/json:
+              schema:
+                $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getLogs:
-      post:
-        tags: ['SDK Core Endpoints']
-        operationId: sdk-getlogs
-        summary: getLogs
-        description: |
-          Returns an array of all logs matching a given filter object. Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: ['SDK Core Endpoints']
+      operationId: sdk-getlogs
+      summary: getLogs
+      description: |
+        Returns an array of all logs matching a given filter object. Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getLogs
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              // Get logs for a certain address, with specified topics and blockHash
+              alchemy.core
+                .getLogs({
+                  address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                  topics: [
+                    "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  ],
+                  blockHash:
+                    "0x49664d1de6b3915d7e6fa297ff4b3d1c5328b8ecf2ff0eefb912a4dc5f6ad4a0",
+                })
+                .then(console.log);
+          - language: python
+            name: Web3.py
+            code: |
+              # Installation Instructions: https://web3py.readthedocs.io/en/latest/quickstart.html#installation
+
+              from web3 import Web3, HTTPProvider
+
+              #Replace with your Alchemy API key:
+              apiKey = "demo"
+
+              # Initialize a Web3.py instance
+              web3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemyapi.io/v2/'+apiKey))
+
+              # Query the blockchain (replace example parameters)
+              logs = web3.eth.get_logs({
+                'fromBlock': 1000000, 
+                'toBlock': 1000100, 
+                'address': '0x6C8f2A1'
+                }) 
+
+              # Print the output to console
+              print(logs)
+      responses:
+        '200':
+          description: 'Returns array of log objects, or an empty array if nothing has changed since last poll.'
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getLogs
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                // Get logs for a certain address, with specified topics and blockHash
-                alchemy.core
-                  .getLogs({
-                    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-                    topics: [
-                      "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
-                    ],
-                    blockHash:
-                      "0x49664d1de6b3915d7e6fa297ff4b3d1c5328b8ecf2ff0eefb912a4dc5f6ad4a0",
-                  })
-                  .then(console.log);
-            - language: python
-              name: Web3.py
-              code: |
-                # Installation Instructions: https://web3py.readthedocs.io/en/latest/quickstart.html#installation
-
-                from web3 import Web3, HTTPProvider
-
-                #Replace with your Alchemy API key:
-                apiKey = "demo"
-
-                # Initialize a Web3.py instance
-                web3 = Web3(Web3.HTTPProvider('https://eth-mainnet.alchemyapi.io/v2/'+apiKey))
-
-                # Query the blockchain (replace example parameters)
-                logs = web3.eth.get_logs({
-                  'fromBlock': 1000000, 
-                  'toBlock': 1000100, 
-                  'address': '0x6C8f2A1'
-                  }) 
-
-                # Print the output to console
-                print(logs)
-        responses:
-          '200':
-            description: 'Returns array of log objects, or an empty array if nothing has changed since last poll.'
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/eth_getLogs
+                $ref: sdk_responses.yaml#/eth_getLogs
   /{apiKey}/getStorageAt:
-      post:
-        operationId: sdk-getStorageAt
-        summary: getStorageAt
-        description: Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-getStorageAt
+      summary: getStorageAt
+      description: Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getStorageAt
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core.getStorageAt("registrar.firefly.eth", 0).then(console.log);
+      responses:
+        '200':
+          description: Returns the value at this storage position.
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getStorageAt
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core.getStorageAt("registrar.firefly.eth", 0).then(console.log);
-        responses:
-          '200':
-            description: Returns the value at this storage position.
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/string_result_response
+                $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getTokenBalances:
     post:
       operationId: sdk-getTokenBalances
@@ -835,101 +835,101 @@ paths:
               schema:
                 $ref: sdk_responses.yaml#/alchemy_getTokenMetadata
   /{apiKey}/getTransactionCount:
-      post:
-        operationId: sdk-getTransactionCount
-        summary: getTransactionCount
-        description: Returns the number of transactions sent from an address.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-getTransactionCount
+      summary: getTransactionCount
+      description: Returns the number of transactions sent from an address.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getTransactionCount
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core.getTransactionCount("vitalik.eth").then(console.log);
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getTransactionCount
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core.getTransactionCount("vitalik.eth").then(console.log);
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/number_result_response
+                $ref: sdk_responses.yaml#/number_result_response
   /{apiKey}/getTransactionReceipt:
-      post:
-        operationId: sdk-getTransactionReceipt
-        summary: getTransactionReceipt
-        description: Returns the receipt of a transaction by transaction hash.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-getTransactionReceipt
+      summary: getTransactionReceipt
+      description: Returns the receipt of a transaction by transaction hash.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getTransactionReceipt
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .getTransactionReceipt(
+                  "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
+                )
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getTransactionReceipt
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core
-                  .getTransactionReceipt(
-                    "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
-                  )
-                  .then(console.log);
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/eth_getTransactionReceipt
+                $ref: sdk_responses.yaml#/eth_getTransactionReceipt
   /{apiKey}/getTransactionReceipts:
     post:
       summary: getTransactionReceipts
@@ -981,53 +981,53 @@ paths:
                 $ref: sdk_responses.yaml#/transaction_receipts
       operationId: sdk-getTransactionReceipts
   /{apiKey}/send:
-      post:
-        operationId: sdk-send
-        summary: send
-        description: Allows sending a raw message to the Alchemy backend.
-        tags: ['SDK Core Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-send
+      summary: send
+      description: Allows sending a raw message to the Alchemy backend.
+      tags: ['SDK Core Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/sdk_send
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.core
+                .send("eth_getBlockByNumber", ["0xEDD023", false])
+                .then(console.log);
+      responses:
+        '200':
+          description: Returns an object corresponding to the method called.
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/sdk_send
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.core
-                  .send("eth_getBlockByNumber", ["0xEDD023", false])
-                  .then(console.log);
-        responses:
-          '200':
-            description: Returns an object corresponding to the method called.
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/any_result_response
+                $ref: sdk_responses.yaml#/any_result_response
 
   # ////////////////////////////////////////////////////////////////////////////////
   # /////////////////////////////////// NFT ENDPOINTS //////////////////////////////
@@ -1201,7 +1201,7 @@ paths:
                         type: string
                         description: 'String - Total number of NFTs in a given NFT collection.'
                       tokenType:
-                        $ref: '#/components/schemas/tokenType_response'   
+                        $ref: '#/components/schemas/tokenType_response'
       operationId: sdk-getContractMetadata
   '/{apiKey}/getNftsForContract':
     get:
@@ -1604,6 +1604,48 @@ paths:
                       type: number
                       description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
       operationId: sdk-computeRarity
+
+  '/{apiKey}/verifyNftOwnership':
+    get:
+      summary: verifyNftOwnership
+      description: Checks if the given address holds an NFT from the given NFT contract.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/walletAddress'
+        - $ref: '#/components/schemas/contractAddress'
+      x-readme:
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.nft
+                .verifyNftOwnership("0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8", "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: 'Boolean representing if the given contract address holds an NFT from the given NFT contract.'
+      operationId: sdk-verifyNftOwnership
+
   # '/{apiKey}/summarizeNftAttributes':
   #   get:
   #     summary: summarizeNftAttributes
@@ -1664,127 +1706,127 @@ paths:
   #                   type: boolean
   #                   description: 'Whether the given wallet owns any token in the given NFT collection.'
   #     operationId: sdk-isHolderOfCollection
-  
+
   # ////////////////////////////////////////////////////////////////////////////////
   # /////////////////////////////////// TRANSACT ENDPOINTS /////////////////////////
   # ////////////////////////////////////////////////////////////////////////////////
 
   /{apiKey}/getTransaction:
-      post:
-        operationId: sdk-getTransaction
-        summary: getTransaction
-        description: 'Returns the information about a transaction requested by transaction hash or number. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
-        tags: ['SDK Transact Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-getTransaction
+      summary: getTransaction
+      description: 'Returns the information about a transaction requested by transaction hash or number. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
+      tags: ['SDK Transact Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_getTransactionByHash
+              example:
+                params:
+                  [
+                    '0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b',
+                  ]
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
+
+              alchemy.transact
+                .getTransaction(
+                  "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
+                )
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_getTransactionByHash
-                example:
-                  params:
-                    [
-                      '0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b',
-                    ]
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
-
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
-
-                alchemy.transact
-                  .getTransaction(
-                    "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
-                  )
-                  .then(console.log);
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/eth_getTransactionByHash
+                $ref: sdk_responses.yaml#/eth_getTransactionByHash
   /{apiKey}/sendTransaction:
-      post:
-        operationId: sdk-sendTransaction
-        summary: sendTransaction
-        description: Creates a new message call transaction or a contract creation for signed transactions.
-        tags: ['SDK Transact Endpoints']
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      operationId: sdk-sendTransaction
+      summary: sendTransaction
+      description: Creates a new message call transaction or a contract creation for signed transactions.
+      tags: ['SDK Transact Endpoints']
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+          required: true
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-            required: true
-        requestBody:
+              $ref: sdk_body.yaml#/eth_sendRawTransaction
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              import { Network, Alchemy, Wallet, Utils } from "alchemy-sdk";
+              import dotenv from "dotenv";
+              dotenv.config();
+
+              const { API_KEY, PRIVATE_KEY } = process.env;
+
+              const settings = {
+                apiKey: API_KEY,
+                network: Network.ETH_GOERLI, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const wallet = new Wallet(PRIVATE_KEY);
+
+              const transaction = {
+                to: "0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd",
+                value: Utils.parseEther("0.001"),
+                gasLimit: "21000",
+                maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
+                maxFeePerGas: Utils.parseUnits("20", "gwei"),
+                nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                type: 2,
+                chainId: 5, // Corresponds to ETH_GOERLI
+              };
+
+              const rawTransaction = await wallet.signTransaction(transaction);
+              await alchemy.transact.sendTransaction(rawTransaction);
+      responses:
+        '200':
+          description: 'Returns the pending transaction object.'
           content:
             application/json:
               schema:
-                $ref: sdk_body.yaml#/eth_sendRawTransaction
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - javascript
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                import { Network, Alchemy, Wallet, Utils } from "alchemy-sdk";
-                import dotenv from "dotenv";
-                dotenv.config();
-
-                const { API_KEY, PRIVATE_KEY } = process.env;
-
-                const settings = {
-                  apiKey: API_KEY,
-                  network: Network.ETH_GOERLI, // Replace with your network.
-                };
-
-                const alchemy = new Alchemy(settings);
-                const wallet = new Wallet(PRIVATE_KEY);
-
-                const transaction = {
-                  to: "0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd",
-                  value: Utils.parseEther("0.001"),
-                  gasLimit: "21000",
-                  maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
-                  maxFeePerGas: Utils.parseUnits("20", "gwei"),
-                  nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
-                  type: 2,
-                  chainId: 5, // Corresponds to ETH_GOERLI
-                };
-
-                const rawTransaction = await wallet.signTransaction(transaction);
-                await alchemy.transact.sendTransaction(rawTransaction);
-        responses:
-          '200':
-            description: 'Returns the pending transaction object.'
-            content:
-              application/json:
-                schema:
-                  $ref: sdk_responses.yaml#/sendTransaction
+                $ref: sdk_responses.yaml#/sendTransaction
   /{apiKey}/sendPrivateTransaction:
     post:
       summary: sendPrivateTransaction
@@ -1947,11 +1989,9 @@ paths:
               schema:
                 $ref: sdk_responses.yaml#/transaction_receipt
 
-
   # ////////////////////////////////////////////////////////////////////////////////
   # /////////////////////////////////// NOTIFY ENDPOINTS ///////////////////////////
   # ////////////////////////////////////////////////////////////////////////////////
-
 
   /get-all-webhooks:
     get:
@@ -2157,7 +2197,7 @@ paths:
         '200':
           description: 'Returns undefined.'
       operationId: sdk-update-webhook
-      
+
   /create-webhook:
     post:
       summary: createWebhook
@@ -2320,6 +2360,14 @@ components:
         items:
           type: string
       in: query
+    walletAddress:
+      name: walletAddress
+      description: String - Wallet address
+      schema:
+        type: string
+        default: '0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8'
+      required: true
+      in: query
     omitMetadata:
       name: omitMetadata
       description: 'Boolean - if set to `false`, returns NFT metadata. Setting this to true will reduce payload size and may result in a faster API call. Defaults to `false`.'
@@ -2347,6 +2395,7 @@ components:
       in: query
       schema:
         type: string
+        default: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
       required: true
     tokenId:
       name: tokenId
@@ -2503,7 +2552,7 @@ components:
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
         error:
           type: string
-          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'      
+          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
     owners:
       type: object
       properties:
@@ -2523,16 +2572,16 @@ components:
       name: webhook
       schema:
         type: string
-      description: |     
+      description: |
         One of the following:
           1. String - Webhook ID associated with the webhook
           2. Webhook - Javascript object representing the webhook returned in getAllWebhooks()
       in: query
       required: true
-    getWebhookListOptions: 
+    getWebhookListOptions:
       name: options
       in: query
-      schema: 
+      schema:
         type: object
         properties:
           limit:
@@ -2540,8 +2589,8 @@ components:
               type: integer
               default: 100
             description: 'Number of items per page.'
-          pageKey: 
-            schema: 
+          pageKey:
+            schema:
               type: integer
               default: '1'
             description: 'Page cursor for the next page.'
@@ -2567,41 +2616,41 @@ components:
           description: 'URL where requests are sent'
         type:
           $ref: '#/components/schemas/webhook_type'
-        TransactionWebhookParams: 
+        TransactionWebhookParams:
           type: object
           description: |
             Used for Mined / Dropped Transaction Webhooks. 
             Include only one of these Params objects as the third parameter.
-          properties: 
-            appId: 
+          properties:
+            appId:
               type: string
               description: The app id of the project to create the mined / dropped transaction webhook on.
-        AddressWebhookParams: 
+        AddressWebhookParams:
           type: object
           description: |
             Used for Address Activity Webhooks. 
             Include only one of these Params objects as the third parameter.
-          properties: 
-            addresses: 
+          properties:
+            addresses:
               type: array
-              description: Array of addresses the webhook should track activity for. 
-              items: 
+              description: Array of addresses the webhook should track activity for.
+              items:
                 type: string
-            network: 
+            network:
               description: Optional network to create the webhook on. If omitted, the webhook will be created on network of the app provided in the api key config.
               $ref: '#/components/schemas/network'
-        NftWebhookParams: 
+        NftWebhookParams:
           type: object
           description: |
             Used for NFT Filter Webhooks. 
             Include only one of these Params objects as the third parameter.
-          properties: 
-            addresses: 
+          properties:
+            addresses:
               type: array
               description: Array of NFT filters the webhook should track.
-              items: 
+              items:
                 $ref: '#/components/schemas/nft_filter'
-            network: 
+            network:
               description: Optional network to create the webhook on. If omitted, the webhook will be created on network of the app provided in the api key config.
               $ref: '#/components/schemas/network'
 
@@ -2653,56 +2702,55 @@ components:
           items:
             type: string
 
-
     update_webhook_endpoint:
       type: object
       description: A Webhook ID, followed by one of the following objects
       properties:
         webhook:
           $ref: '#/components/schemas/webhook_id'
-        WebhookStatusUpdate: 
+        WebhookStatusUpdate:
           type: object
           description: Include only one of these Update objects as the second parameter.
-          properties: 
-            isActive: 
+          properties:
+            isActive:
               type: boolean
-              description: "Sets the webhook to be active or inactive."
-        WebhookAddressUpdate: 
+              description: 'Sets the webhook to be active or inactive.'
+        WebhookAddressUpdate:
           type: object
           description: Include only one of these Update objects as the second parameter.
-          properties: 
-            addAddresses: 
+          properties:
+            addAddresses:
               type: array
-              description: "Array of addresses to additionally track."
-              items: 
+              description: 'Array of addresses to additionally track.'
+              items:
                 type: string
-            removeAddresses: 
+            removeAddresses:
               type: array
-              description: "Array of existing addresses to remove"
-              items: 
+              description: 'Array of existing addresses to remove'
+              items:
                 type: string
-        WebhookAddressOverride: 
+        WebhookAddressOverride:
           type: object
           description: Include only one of these Update objects as the second parameter.
-          properties: 
-            newAddresses: 
+          properties:
+            newAddresses:
               type: array
-              description: "New addresses to track. Existing addresses will be removed."
-              items: 
+              description: 'New addresses to track. Existing addresses will be removed.'
+              items:
                 type: string
-        WebhookNftFilterUpdate: 
+        WebhookNftFilterUpdate:
           type: object
           description: Include only one of these Update objects as the second parameter.
-          properties: 
-            addFilters: 
+          properties:
+            addFilters:
               type: array
-              description: "Array of NFT filters to additionally track."
-              items: 
+              description: 'Array of NFT filters to additionally track.'
+              items:
                 $ref: '#/components/schemas/nft_filter'
-            removeFilters: 
+            removeFilters:
               type: array
-              description: "Array of existing filters to remove."
-              items: 
+              description: 'Array of existing filters to remove.'
+              items:
                 $ref: '#/components/schemas/nft_filter'
     webhook_object_response:
       type: object
@@ -2712,7 +2760,7 @@ components:
           description: 'List of webhooks for your team.'
           items:
             $ref: '#/components/schemas/return_webhook_data'
-        totalCount: 
+        totalCount:
           type: number
           description: 'Number of webhooks returned'
     return_webhook_data:
@@ -2740,7 +2788,7 @@ components:
         version:
           type: string
           description: Webhook version (v1 or v2)
-        appId: 
+        appId:
           type: string
           description: Only exists for Mined / Dropped Transactions. The App ID of the project the webhook is connected to.
     gas_price_low:
@@ -2766,7 +2814,7 @@ components:
           description: 'List of addresses associated with given webhook.'
           items:
             type: string
-        totalCount: 
+        totalCount:
           type: integer
           description: 'Total number of addresses.'
         pageKey:
@@ -2776,13 +2824,13 @@ components:
     create_webhook_response:
       $ref: '#/components/schemas/return_webhook_data'
 
-    nft_filter: 
+    nft_filter:
       type: object
       properties:
         contractAddress:
           type: string
           description: 'Contract address of the NFT in the NFT filter.'
-        tokenId: 
+        tokenId:
           type: string
           description: 'Token ID of the NFT in the NFT Filter. 0x-prefixed hexidecimal or decimal string.'
 
@@ -2794,7 +2842,7 @@ components:
           description: 'List of NFT filters associated with given webhook.'
           items:
             $ref: '#/components/schemas/nft_filter'
-        totalCount: 
+        totalCount:
           type: integer
           description: 'Total number of addresses.'
         pageKey:
