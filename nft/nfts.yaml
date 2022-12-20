@@ -982,6 +982,7 @@ paths:
         - $ref: '#/components/schemas/pageSize'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/orderBy'
       x-readme:
         samples-languages:
           - javascript
