@@ -1562,6 +1562,7 @@ paths:
         - $ref: '#/components/schemas/contractAddress'
         - $ref: '#/components/schemas/tokenId'
       x-readme:
+        explorer-enabled: false
         samples-languages:
           - javascript
         code-samples:
@@ -1615,6 +1616,7 @@ paths:
         - $ref: '#/components/schemas/walletAddress'
         - $ref: '#/components/schemas/contractAddress'
       x-readme:
+        explorer-enabled: false
         samples-languages:
           - javascript
         code-samples:
