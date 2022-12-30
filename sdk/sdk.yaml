@@ -1268,6 +1268,88 @@ paths:
                 description: Indicates whether the metadata was refreshed.
       operationId: sdk-refreshNftMetadata
 
+  /{apiKey}/getNftSales:
+    get:
+      summary: getNftSales
+      description: Gets a list of NFT sales that have happened through on-chain marketplaces.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: options
+          in: query
+          schema:
+            type: object
+            properties:
+              buyerAddress:
+                type: string
+                description: The address of the NFT buyer to filter sales by.
+              fromBlock:
+                type: integer
+                description: The block number to start fetching NFT sales data from.
+              limit:
+                type: integer
+                description: The maximum number of NFT sales to return.
+              marketplace:
+                type: string
+                description: The on-chain marketplace to filter sales by.
+              order:
+                type: string
+                description: Whether to return the results in ascending or descending order by block number.
+                enum: [asc, desc]
+              pageKey:
+                type: string
+                description: The pagination key for the next page of results.
+              sellerAddress:
+                type: string
+                description: The address of the NFT seller to filter sales by.
+              taker:
+                type: string
+                description: Whether the buyer or seller was the taker in the sale.
+                enum: [buyer, seller]
+              toBlock:
+                type: integer
+                description: The block number to stop fetching NFT sales data at.
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT sales returned in the response:
+              alchemy.nft
+                .getNftSales()
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageKey:
+                    type: string
+                    description: The pagination key for the next page of results, if available.
+                  nftSales:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/nftSale'
+      operationId: sdk-getNftSales
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -3118,3 +3200,74 @@ components:
           type: object
           description: Information about whether the NFT has been flagged as spam.
           nullable: true
+
+    nftSale:
+      type: object
+      properties:
+        marketplace:
+          type: string
+          description: The on-chain marketplace where the sale took place.
+        contractAddress:
+          type: string
+          description: The contract address of the NFT.
+        tokenId:
+          type: string
+          description: The token id of the NFT.
+        quantity:
+          type: string
+          description: The quantity of NFTs sold in the sale.
+        buyerAddress:
+          type: string
+          description: The address of the NFT buyer.
+        sellerAddress:
+          type: string
+          description: The address of the NFT seller.
+        taker:
+          type: string
+          description: Whether the buyer or seller was the taker in the sale.
+          enum: [buyer, seller]
+        sellerFee:
+          type: object
+          description: The fee paid by the seller in the sale.
+          properties:
+            amount:
+              type: string
+              description: The amount of the fee.
+            currency:
+              type: string
+              description: The currency of the fee.
+              enum: [eth]
+        marketplaceFee:
+          type: object
+          description: The fee paid to the marketplace in the sale, if applicable.
+          properties:
+            amount:
+              type: string
+              description: The amount of the fee.
+            currency:
+              type: string
+              description: The currency of the fee.
+              enum: [eth]
+        royaltyFee:
+          type: object
+          description: The royalty fee paid in the sale, if applicable.
+          properties:
+            amount:
+              type: string
+              description: The amount of the fee.
+            currency:
+              type: string
+              description: The currency of the fee.
+              enum: [eth]
+        blockNumber:
+          type: integer
+          description: The block number where the sale took place.
+        logIndex:
+          type: integer
+          description: The log index of the sale in the block.
+        bundleIndex:
+          type: integer
+          description: The bundle index of the sale.
+        transactionHash:
+          type: string
+          description: The transaction hash of the sale.
