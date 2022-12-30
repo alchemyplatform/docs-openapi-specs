@@ -1350,6 +1350,57 @@ paths:
                       $ref: '#/components/schemas/nftSale'
       operationId: sdk-getNftSales
 
+  /{apiKey}/summarizeNftAttributes:
+    get:
+      summary: summarizeNftAttributes
+      description: Generate a summary of attribute prevalence for an NFT collection.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Get the summary of attribute prevalence for the given NFT collection.
+              alchemy.nft
+                .summarizeNftAttributes("0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'Prevalence counts for each attribute within a collection.'
+                properties:
+                  totalSupply:
+                    type: number
+                    description: 'Total number of NFTs for the input contract.'
+                  summary:
+                    type: object
+                    description: 'Object mapping trait types to the prevalence of each trait within that type.'
+                  contract:
+                    $ref: '#/components/schemas/contractAddress'
+      operationId: sdk-summarizeNftAttributes
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -1852,38 +1903,6 @@ paths:
                 description: 'Boolean representing if the given contract address holds an NFT from the given NFT contract.'
       operationId: sdk-verifyNftOwnership
 
-  # '/{apiKey}/summarizeNftAttributes':
-  #   get:
-  #     summary: summarizeNftAttributes
-  #     description: Generate a summary of attribute prevalence for an NFT collection.
-  #     tags: ['SDK NFT Endpoints']
-  #     parameters:
-  #       - $ref: '#/components/schemas/apiKey'
-  #       - $ref: '#/components/schemas/contractAddress'
-  #     x-readme:
-  #       samples-languages:
-  #         - javascript
-  #         - curl
-  #         - python
-  #         - go
-  #     responses:
-  #       '200':
-  #         description: ''
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               description: 'Prevalence counts for each attribute within a collection.'
-  #               properties:
-  #                 totalSupply:
-  #                   type: number
-  #                   description: 'Total number of NFTs for the input contract.'
-  #                 summmary:
-  #                   type: object
-  #                   description: 'Object mapping trait types to the prevalence of each trait within that type.'
-  #                 contract:
-  #                   $ref: '#/components/schemas/contractAddress'
-  #     operationId: sdk-summarizeNftAttributes
   # '/{apiKey}/isHolderOfCollection':
   #   get:
   #     summary: isHolderOfCollection
