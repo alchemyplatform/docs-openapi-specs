@@ -1401,6 +1401,53 @@ paths:
                     $ref: '#/components/schemas/contractAddress'
       operationId: sdk-summarizeNftAttributes
 
+  /{apiKey}/searchContractMetadata:
+    get:
+      summary: searchContractMetadata
+      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: query
+          in: query
+          schema:
+            type: string
+            description: The search string that you want to search for in contract metadata.
+          required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: An array of object containing information about the NFT contracts whose metadata matches with the given query.
+                items:
+                  $ref: '#/components/schemas/matchedNftContractInfo'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Search for "hair" string across metadata of all NFT collections.
+              alchemy.nft.searchContractMetadata("hair").then(console.log);
+      operationId: sdk-searchContractMetadata
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -3290,3 +3337,53 @@ components:
         transactionHash:
           type: string
           description: The transaction hash of the sale.
+
+    matchedNftContractInfo:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Address of the NFT contract.
+        name:
+          type: string
+          description: Name of the NFT contract.
+        symbol:
+          type: string
+          description: Symbol of the NFT contract.
+        totalSupply:
+          type: string
+          description: Total supply of NFTs for the contract.
+        tokenType:
+          type: string
+          description: Type of the NFT contract, either "ERC721" or "ERC1155".
+        openSea:
+          type: object
+          description: OpenSea metadata for the NFT contract.
+          properties:
+            floorPrice:
+              type: number
+              description: Minimum price for an NFT to be sold on OpenSea.
+            collectionName:
+              type: string
+              description: Name of the collection on OpenSea.
+            safelistRequestStatus:
+              type: string
+              description: Current status of the contract's safelist request on OpenSea.
+            imageUrl:
+              type: string
+              description: URL of the main image for the NFT contract.
+            description:
+              type: string
+              description: Description of the NFT contract.
+            externalUrl:
+              type: string
+              description: External URL of the NFT contract.
+            twitterUsername:
+              type: string
+              description: Twitter username for the NFT contract.
+            discordUrl:
+              type: string
+              description: URL for the NFT contract's Discord server.
+            lastIngestedAt:
+              type: string
+              description: Timestamp of the last time the contract's metadata was updated on OpenSea.
