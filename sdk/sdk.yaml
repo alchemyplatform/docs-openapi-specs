@@ -1268,7 +1268,7 @@ paths:
                 description: Indicates whether the metadata was refreshed.
       operationId: sdk-refreshNftMetadata
 
-  /{apiKey}/getNftSales:
+  '/{apiKey}/getNftSales':
     get:
       summary: getNftSales
       description: Gets a list of NFT sales that have happened through on-chain marketplaces.
@@ -1350,7 +1350,7 @@ paths:
                       $ref: '#/components/schemas/nftSale'
       operationId: sdk-getNftSales
 
-  /{apiKey}/summarizeNftAttributes:
+  '/{apiKey}/summarizeNftAttributes':
     get:
       summary: summarizeNftAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
@@ -1401,7 +1401,7 @@ paths:
                     $ref: '#/components/schemas/contractAddress'
       operationId: sdk-summarizeNftAttributes
 
-  /{apiKey}/searchContractMetadata:
+  '/{apiKey}/searchContractMetadata':
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
