@@ -1225,6 +1225,49 @@ paths:
                   $ref: '#/components/schemas/get_nft_metadata_batch_response'
       operationId: sdk-getNftMetadataBatch
 
+  '/{apiKey}/refreshNftMetadata':
+    post:
+      summary: refreshNftMetadata
+      description: Refreshes the metadata for a given NFT.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/tokenId'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Refresh NFT Metadata for a given NFT contract address and token ID.
+              alchemy.nft
+                .refreshNftMetadata("0x06012c8cf97bead5deae237070f9587f8e7a266d", "1")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: Indicates whether the metadata was refreshed.
+      operationId: sdk-refreshNftMetadata
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -2484,6 +2527,7 @@ components:
       in: query
       schema:
         type: string
+        default: '1'
       required: true
     tokenType:
       name: tokenType
