@@ -1146,6 +1146,85 @@ paths:
               schema:
                 $ref: '#/components/schemas/ownedNFT'
       operationId: sdk-getNftMetadata
+
+  '/{apiKey}/getNftMetadataBatch':
+    get:
+      summary: getNftMetadataBatch
+      description: Gets the metadata for a batch of NFTs.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: tokens
+          in: query
+          description: 'An array of objects with the following properties: contractAddress, tokenId, tokenType.'
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/token'
+        - name: options
+          in: query
+          description: 'An object with the following properties: tokenUriTimeoutInMs, refreshCache.'
+          required: false
+          schema:
+            type: object
+            properties:
+              tokenUriTimeoutInMs:
+                type: integer
+                description: The amount of time in milliseconds to wait before timing out when trying to fetch the token URI.
+              refreshCache:
+                type: boolean
+                description: Whether to refresh the cache before returning the metadata.
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT metadata returned in the response:
+              alchemy.nft.getNftMetadataBatch(
+                [
+                  {
+                    contractAddress: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+                    tokenId: "3",
+                    tokenType: "ERC721"
+                  },
+                  {
+                    contractAddress: "0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e",
+                    tokenId: "4",
+                    tokenType: "ERC721"
+                  }
+                ],
+                {
+                  tokenUriTimeoutInMs: 5000,
+                  refreshCache: true
+                }
+              ).then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/get_nft_metadata_batch_response'
+      operationId: sdk-getNftMetadataBatch
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -2452,6 +2531,23 @@ components:
         type: string
       required: false
 
+    token:
+      type: object
+      required:
+        - contractAddress
+        - tokenId
+      properties:
+        contractAddress:
+          type: string
+          description: The contract address of the NFT.
+        tokenId:
+          type: string
+          description: The unique identifier of the NFT.
+        tokenType:
+          type: string
+          description: The type of the NFT, such as ERC721.
+          nullable: true
+
     # ===== Response Objects ========
     tokenType_response:
       type: string
@@ -2873,3 +2969,108 @@ components:
         - DROPPED_TRANSACTION
         - ADDRESS_ACTIVITY
         - NFT_ACTIVITY
+
+    get_nft_metadata_batch_response:
+      type: object
+      required:
+        - contract
+        - tokenId
+        - tokenType
+        - title
+        - description
+        - timeLastUpdated
+      properties:
+        contract:
+          type: object
+          required:
+            - address
+            - name
+            - symbol
+            - totalSupply
+            - tokenType
+          properties:
+            address:
+              type: string
+              description: The contract address of the NFT.
+            name:
+              type: string
+              description: The name of the NFT contract.
+            symbol:
+              type: string
+              description: The symbol of the NFT contract.
+            totalSupply:
+              type: string
+              description: The total supply of the NFT contract.
+            tokenType:
+              type: string
+              description: The type of the NFT contract, such as ERC721.
+        tokenId:
+          type: string
+          description: The unique identifier of the NFT.
+        tokenType:
+          type: string
+          description: The type of the NFT, such as ERC721.
+        title:
+          type: string
+          description: The title of the NFT.
+          nullable: true
+        description:
+          type: string
+          description: The description of the NFT.
+          nullable: true
+        timeLastUpdated:
+          type: string
+          format: date-time
+          description: The time when the metadata was last updated.
+        metadataError:
+          type: string
+          description: An error message if there was a problem fetching the metadata.
+          nullable: true
+        rawMetadata:
+          type: object
+          description: The raw metadata of the NFT.
+          nullable: true
+          properties:
+            image:
+              type: string
+              description: The IPFS hash of the image associated with the NFT.
+            attributes:
+              type: array
+              items:
+                type: object
+                required:
+                  - key
+                  - value
+                properties:
+                  key:
+                    type: string
+                    description: The key of the attribute.
+                  value:
+                    type: string
+                    description: The value of the attribute.
+        tokenUri:
+          type: object
+          description: The URI of the NFT.
+          nullable: true
+          properties:
+            raw:
+              type: string
+              description: The raw URI of the NFT.
+            gateway:
+              type: string
+              description: The URI of the NFT accessed through a gateway.
+        media:
+          type: array
+          items:
+            type: object
+            required:
+              - url
+            properties:
+              url:
+                type: string
+                description: The URL of the media.
+                nullable: true
+        spamInfo:
+          type: object
+          description: Information about whether the NFT has been flagged as spam.
+          nullable: true
