@@ -1448,6 +1448,96 @@ paths:
               alchemy.nft.searchContractMetadata("hair").then(console.log);
       operationId: sdk-searchContractMetadata
 
+  '/{apiKey}/getNftsForOwnerIterator':
+    get:
+      summary: getNftsForOwnerIterator
+      description: Fetches all NFTs for a given owner and yields them in an async iterable.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: owner
+          in: query
+          required: true
+          description: The address of the owner.
+          schema:
+            type: string
+        - name: options
+          in: query
+          required: false
+          description: The optional parameters to use for the request.
+          schema:
+            type: object
+            properties:
+              contractAddresses:
+                type: array
+                items:
+                  type: string
+                  description: Optional list of contract addresses to filter the results by. Limit is 20.
+              excludeFilters:
+                type: array
+                items:
+                  type: object
+                  description: Optional list of filters applied to the query. NFTs that match one or more of these filters are excluded from the response.
+              omitMetadata:
+                type: boolean
+                description: Optional boolean flag to omit NFT metadata. Defaults to false.
+              pageKey:
+                type: string
+                description: A page key returned in a previous response to request the next page of results.
+              pageSize:
+                type: integer
+                description: The number of results to return per page.
+              tokenUriTimeoutInMs:
+                type: integer
+                description: Timeout for the `tokenURI` field in the returned `OwnedNFT` objects.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // define the owner address whose NFTs you want to fetch
+              const owner = "0xe5cb067e90d5cd1f8052b83562ae670ba4a211a8";
+
+              // create an async generator function that uses the getNftsForOwnerIterator method
+              async function getNftsForOwner() {
+                try {
+                  // Get the async iterable for the owner's NFTs.
+                  const nftsIterable = alchemy.nft.getNftsForOwnerIterator(owner);
+                  
+                  // Iterate over the NFTs and log them to the console.
+                  for await (const nft of nftsIterable) {
+                    console.log(nft);
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+      operationId: sdk-getNftsForOwnerIterator
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
