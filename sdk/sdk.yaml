@@ -1525,18 +1525,107 @@ paths:
               // create an async generator function that uses the getNftsForOwnerIterator method
               async function getNftsForOwner() {
                 try {
+                  let nfts = [];
                   // Get the async iterable for the owner's NFTs.
                   const nftsIterable = alchemy.nft.getNftsForOwnerIterator(owner);
                   
-                  // Iterate over the NFTs and log them to the console.
+                  // Iterate over the NFTs and add them to the nfts array.
                   for await (const nft of nftsIterable) {
-                    console.log(nft);
+                    nfts.push(nft);
                   }
+
+                  // Log the NFTs.
+                  console.log(nfts);
                 } catch (error) {
                   console.log(error);
                 }
               }
+
+              // call the async generator function
+              getNftsForOwner();
       operationId: sdk-getNftsForOwnerIterator
+
+  '/{apiKey}/getNftsForContractIterator':
+    get:
+      summary: getNftsForContractIterator
+      description: Fetches all NFTs for a given contract address and yields them in an async iterable.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - name: options
+          in: query
+          required: false
+          description: The optional parameters to use for the request.
+          schema:
+            type: object
+            properties:
+              omitMetadata:
+                type: boolean
+                description: Optional boolean flag to omit NFT metadata. Defaults to false.
+              pageKey:
+                type: string
+                description: A page key returned in a previous response to request the next page of results.
+              pageSize:
+                type: integer
+                description: Sets the total number of NFTs to return in the response. Defaults to 100. Maximum page size is 100.
+              tokenUriTimeoutInMs:
+                type: integer
+                description: No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to only access the cache and not live fetch any metadata for cache misses then set this value to 0.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // define the contract address whose NFTs you want to fetch
+              const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
+
+              // create an async generator function that uses the getNftsForContractIterator method
+              async function getNftsForContract() {
+                try {
+                  let nfts = [];
+                  // Get the async iterable for the contract's NFTs.
+                  alchemy.nft.getNftsForContractIterator(contractAddress);
+                  
+                  // Iterate over the NFTs and add them to the nfts array.
+                  for await (const nft of nftsIterable) {
+                    nfts.push(nft);
+                  }
+
+                  // Log the NFTs.
+                  console.log(nfts);
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+
+              // call the async generator function
+              getNftsForContract();
+      operationId: sdk-getNftsForContractIterator
 
   '/{apiKey}/getContractMetadata':
     get:
