@@ -23,6 +23,8 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/debug_traceTransaction
+      x-readme:
+        explorer-enabled: false
       responses:
         '200':
           description: 'Returns - transaction trace'

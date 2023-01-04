@@ -18,6 +18,8 @@ paths:
             default: docs-demo
             description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
           required: true
+      x-readme:
+        explorer-enabled: false
       requestBody:
         content:
           application/json:

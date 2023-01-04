@@ -1195,8 +1195,8 @@ debug_traceCall:
             - debug_traceCall
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 1
+          maxItems: 1
           description: |
             1. `object` - Transaction Object
             2. `string` - Block Identifier: Block hash, block number (in hex), or block tag
@@ -1241,8 +1241,8 @@ debug_traceBlockByHash:
           description: |
             1. `string` - Block hash for the block to be traced
             2. `tracer` Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           items:
             anyOf:
               - type: string
@@ -1271,8 +1271,8 @@ debug_traceBlockByNumber:
           description: |
             1. String - Block number (in hex) or block tag
             2. `tracer` Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           items:
             anyOf:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
@@ -1296,8 +1296,8 @@ debug_traceTransaction:
             - debug_traceTransaction
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. String - Transaction hash
             2. Object - options for call, can be any of the following options:
