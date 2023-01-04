@@ -1146,6 +1146,487 @@ paths:
               schema:
                 $ref: '#/components/schemas/ownedNFT'
       operationId: sdk-getNftMetadata
+
+  '/{apiKey}/getNftMetadataBatch':
+    get:
+      summary: getNftMetadataBatch
+      description: Gets the metadata for a batch of NFTs.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: tokens
+          in: query
+          description: 'An array of objects with the following properties: contractAddress, tokenId, tokenType.'
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/token'
+        - name: options
+          in: query
+          description: 'An object with the following properties: tokenUriTimeoutInMs, refreshCache.'
+          required: false
+          schema:
+            type: object
+            properties:
+              tokenUriTimeoutInMs:
+                type: integer
+                description: The amount of time in milliseconds to wait before timing out when trying to fetch the token URI.
+              refreshCache:
+                type: boolean
+                description: Whether to refresh the cache before returning the metadata.
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT metadata returned in the response:
+              alchemy.nft.getNftMetadataBatch(
+                [
+                  {
+                    contractAddress: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+                    tokenId: "3",
+                    tokenType: "ERC721"
+                  },
+                  {
+                    contractAddress: "0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e",
+                    tokenId: "4",
+                    tokenType: "ERC721"
+                  }
+                ],
+                {
+                  tokenUriTimeoutInMs: 5000,
+                  refreshCache: true
+                }
+              ).then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/get_nft_metadata_batch_response'
+      operationId: sdk-getNftMetadataBatch
+
+  '/{apiKey}/refreshNftMetadata':
+    post:
+      summary: refreshNftMetadata
+      description: Refreshes the metadata for a given NFT.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/tokenId'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Refresh NFT Metadata for a given NFT contract address and token ID.
+              alchemy.nft
+                .refreshNftMetadata("0x06012c8cf97bead5deae237070f9587f8e7a266d", "1")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: Indicates whether the metadata was refreshed.
+      operationId: sdk-refreshNftMetadata
+
+  '/{apiKey}/getNftSales':
+    get:
+      summary: getNftSales
+      description: Gets a list of NFT sales that have happened through on-chain marketplaces.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: options
+          in: query
+          schema:
+            type: object
+            properties:
+              buyerAddress:
+                type: string
+                description: The address of the NFT buyer to filter sales by.
+              fromBlock:
+                type: integer
+                description: The block number to start fetching NFT sales data from.
+              limit:
+                type: integer
+                description: The maximum number of NFT sales to return.
+              marketplace:
+                type: string
+                description: The on-chain marketplace to filter sales by.
+              order:
+                type: string
+                description: Whether to return the results in ascending or descending order by block number.
+                enum: [asc, desc]
+              pageKey:
+                type: string
+                description: The pagination key for the next page of results.
+              sellerAddress:
+                type: string
+                description: The address of the NFT seller to filter sales by.
+              taker:
+                type: string
+                description: Whether the buyer or seller was the taker in the sale.
+                enum: [buyer, seller]
+              toBlock:
+                type: integer
+                description: The block number to stop fetching NFT sales data at.
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print NFT sales returned in the response:
+              alchemy.nft
+                .getNftSales()
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageKey:
+                    type: string
+                    description: The pagination key for the next page of results, if available.
+                  nftSales:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/nftSale'
+      operationId: sdk-getNftSales
+
+  '/{apiKey}/summarizeNftAttributes':
+    get:
+      summary: summarizeNftAttributes
+      description: Generate a summary of attribute prevalence for an NFT collection.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Get the summary of attribute prevalence for the given NFT collection.
+              alchemy.nft
+                .summarizeNftAttributes("0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'Prevalence counts for each attribute within a collection.'
+                properties:
+                  totalSupply:
+                    type: number
+                    description: 'Total number of NFTs for the input contract.'
+                  summary:
+                    type: object
+                    description: 'Object mapping trait types to the prevalence of each trait within that type.'
+                  contract:
+                    $ref: '#/components/schemas/contractAddress'
+      operationId: sdk-summarizeNftAttributes
+
+  '/{apiKey}/searchContractMetadata':
+    get:
+      summary: searchContractMetadata
+      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: query
+          in: query
+          schema:
+            type: string
+            description: The search string that you want to search for in contract metadata.
+          required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: An array of object containing information about the NFT contracts whose metadata matches with the given query.
+                items:
+                  $ref: '#/components/schemas/matchedNftContractInfo'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Search for "hair" string across metadata of all NFT collections.
+              alchemy.nft.searchContractMetadata("hair").then(console.log);
+      operationId: sdk-searchContractMetadata
+
+  '/{apiKey}/getNftsForOwnerIterator':
+    get:
+      summary: getNftsForOwnerIterator
+      description: Fetches all NFTs for a given owner and yields them in an async iterable.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - name: owner
+          in: query
+          required: true
+          description: The address of the owner.
+          schema:
+            type: string
+        - name: options
+          in: query
+          required: false
+          description: The optional parameters to use for the request.
+          schema:
+            type: object
+            properties:
+              contractAddresses:
+                type: array
+                items:
+                  type: string
+                  description: Optional list of contract addresses to filter the results by. Limit is 20.
+              excludeFilters:
+                type: array
+                items:
+                  type: object
+                  description: Optional list of filters applied to the query. NFTs that match one or more of these filters are excluded from the response.
+              omitMetadata:
+                type: boolean
+                description: Optional boolean flag to omit NFT metadata. Defaults to false.
+              pageKey:
+                type: string
+                description: A page key returned in a previous response to request the next page of results.
+              pageSize:
+                type: integer
+                description: The number of results to return per page.
+              tokenUriTimeoutInMs:
+                type: integer
+                description: Timeout for the `tokenURI` field in the returned `OwnedNFT` objects.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // define the owner address whose NFTs you want to fetch
+              const owner = "0xe5cb067e90d5cd1f8052b83562ae670ba4a211a8";
+
+              // create an async generator function that uses the getNftsForOwnerIterator method
+              async function getNftsForOwner() {
+                try {
+                  let nfts = [];
+                  // Get the async iterable for the owner's NFTs.
+                  const nftsIterable = alchemy.nft.getNftsForOwnerIterator(owner);
+                  
+                  // Iterate over the NFTs and add them to the nfts array.
+                  for await (const nft of nftsIterable) {
+                    nfts.push(nft);
+                  }
+
+                  // Log the NFTs.
+                  console.log(nfts);
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+
+              // call the async generator function
+              getNftsForOwner();
+      operationId: sdk-getNftsForOwnerIterator
+
+  '/{apiKey}/getNftsForContractIterator':
+    get:
+      summary: getNftsForContractIterator
+      description: Fetches all NFTs for a given contract address and yields them in an async iterable.
+      tags: ['SDK NFT Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - name: options
+          in: query
+          required: false
+          description: The optional parameters to use for the request.
+          schema:
+            type: object
+            properties:
+              omitMetadata:
+                type: boolean
+                description: Optional boolean flag to omit NFT metadata. Defaults to false.
+              pageKey:
+                type: string
+                description: A page key returned in a previous response to request the next page of results.
+              pageSize:
+                type: integer
+                description: Sets the total number of NFTs to return in the response. Defaults to 100. Maximum page size is 100.
+              tokenUriTimeoutInMs:
+                type: integer
+                description: No set timeout by default - When metadata is requested, this parameter is the timeout (in milliseconds) for the website hosting the metadata to respond. If you want to only access the cache and not live fetch any metadata for cache misses then set this value to 0.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // define the contract address whose NFTs you want to fetch
+              const contractAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
+
+              // create an async generator function that uses the getNftsForContractIterator method
+              async function getNftsForContract() {
+                try {
+                  let nfts = [];
+                  // Get the async iterable for the contract's NFTs.
+                  alchemy.nft.getNftsForContractIterator(contractAddress);
+                  
+                  // Iterate over the NFTs and add them to the nfts array.
+                  for await (const nft of nftsIterable) {
+                    nfts.push(nft);
+                  }
+
+                  // Log the NFTs.
+                  console.log(nfts);
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+
+              // call the async generator function
+              getNftsForContract();
+      operationId: sdk-getNftsForContractIterator
+
   '/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
@@ -1648,38 +2129,6 @@ paths:
                 description: 'Boolean representing if the given contract address holds an NFT from the given NFT contract.'
       operationId: sdk-verifyNftOwnership
 
-  # '/{apiKey}/summarizeNftAttributes':
-  #   get:
-  #     summary: summarizeNftAttributes
-  #     description: Generate a summary of attribute prevalence for an NFT collection.
-  #     tags: ['SDK NFT Endpoints']
-  #     parameters:
-  #       - $ref: '#/components/schemas/apiKey'
-  #       - $ref: '#/components/schemas/contractAddress'
-  #     x-readme:
-  #       samples-languages:
-  #         - javascript
-  #         - curl
-  #         - python
-  #         - go
-  #     responses:
-  #       '200':
-  #         description: ''
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               description: 'Prevalence counts for each attribute within a collection.'
-  #               properties:
-  #                 totalSupply:
-  #                   type: number
-  #                   description: 'Total number of NFTs for the input contract.'
-  #                 summmary:
-  #                   type: object
-  #                   description: 'Object mapping trait types to the prevalence of each trait within that type.'
-  #                 contract:
-  #                   $ref: '#/components/schemas/contractAddress'
-  #     operationId: sdk-summarizeNftAttributes
   # '/{apiKey}/isHolderOfCollection':
   #   get:
   #     summary: isHolderOfCollection
@@ -2405,6 +2854,7 @@ components:
       in: query
       schema:
         type: string
+        default: '1'
       required: true
     tokenType:
       name: tokenType
@@ -2451,6 +2901,23 @@ components:
       schema:
         type: string
       required: false
+
+    token:
+      type: object
+      required:
+        - contractAddress
+        - tokenId
+      properties:
+        contractAddress:
+          type: string
+          description: The contract address of the NFT.
+        tokenId:
+          type: string
+          description: The unique identifier of the NFT.
+        tokenType:
+          type: string
+          description: The type of the NFT, such as ERC721.
+          nullable: true
 
     # ===== Response Objects ========
     tokenType_response:
@@ -2873,3 +3340,229 @@ components:
         - DROPPED_TRANSACTION
         - ADDRESS_ACTIVITY
         - NFT_ACTIVITY
+
+    get_nft_metadata_batch_response:
+      type: object
+      required:
+        - contract
+        - tokenId
+        - tokenType
+        - title
+        - description
+        - timeLastUpdated
+      properties:
+        contract:
+          type: object
+          required:
+            - address
+            - name
+            - symbol
+            - totalSupply
+            - tokenType
+          properties:
+            address:
+              type: string
+              description: The contract address of the NFT.
+            name:
+              type: string
+              description: The name of the NFT contract.
+            symbol:
+              type: string
+              description: The symbol of the NFT contract.
+            totalSupply:
+              type: string
+              description: The total supply of the NFT contract.
+            tokenType:
+              type: string
+              description: The type of the NFT contract, such as ERC721.
+        tokenId:
+          type: string
+          description: The unique identifier of the NFT.
+        tokenType:
+          type: string
+          description: The type of the NFT, such as ERC721.
+        title:
+          type: string
+          description: The title of the NFT.
+          nullable: true
+        description:
+          type: string
+          description: The description of the NFT.
+          nullable: true
+        timeLastUpdated:
+          type: string
+          format: date-time
+          description: The time when the metadata was last updated.
+        metadataError:
+          type: string
+          description: An error message if there was a problem fetching the metadata.
+          nullable: true
+        rawMetadata:
+          type: object
+          description: The raw metadata of the NFT.
+          nullable: true
+          properties:
+            image:
+              type: string
+              description: The IPFS hash of the image associated with the NFT.
+            attributes:
+              type: array
+              items:
+                type: object
+                required:
+                  - key
+                  - value
+                properties:
+                  key:
+                    type: string
+                    description: The key of the attribute.
+                  value:
+                    type: string
+                    description: The value of the attribute.
+        tokenUri:
+          type: object
+          description: The URI of the NFT.
+          nullable: true
+          properties:
+            raw:
+              type: string
+              description: The raw URI of the NFT.
+            gateway:
+              type: string
+              description: The URI of the NFT accessed through a gateway.
+        media:
+          type: array
+          items:
+            type: object
+            required:
+              - url
+            properties:
+              url:
+                type: string
+                description: The URL of the media.
+                nullable: true
+        spamInfo:
+          type: object
+          description: Information about whether the NFT has been flagged as spam.
+          nullable: true
+
+    nftSale:
+      type: object
+      properties:
+        marketplace:
+          type: string
+          description: The on-chain marketplace where the sale took place.
+        contractAddress:
+          type: string
+          description: The contract address of the NFT.
+        tokenId:
+          type: string
+          description: The token id of the NFT.
+        quantity:
+          type: string
+          description: The quantity of NFTs sold in the sale.
+        buyerAddress:
+          type: string
+          description: The address of the NFT buyer.
+        sellerAddress:
+          type: string
+          description: The address of the NFT seller.
+        taker:
+          type: string
+          description: Whether the buyer or seller was the taker in the sale.
+          enum: [buyer, seller]
+        sellerFee:
+          type: object
+          description: The fee paid by the seller in the sale.
+          properties:
+            amount:
+              type: string
+              description: The amount of the fee.
+            currency:
+              type: string
+              description: The currency of the fee.
+              enum: [eth]
+        marketplaceFee:
+          type: object
+          description: The fee paid to the marketplace in the sale, if applicable.
+          properties:
+            amount:
+              type: string
+              description: The amount of the fee.
+            currency:
+              type: string
+              description: The currency of the fee.
+              enum: [eth]
+        royaltyFee:
+          type: object
+          description: The royalty fee paid in the sale, if applicable.
+          properties:
+            amount:
+              type: string
+              description: The amount of the fee.
+            currency:
+              type: string
+              description: The currency of the fee.
+              enum: [eth]
+        blockNumber:
+          type: integer
+          description: The block number where the sale took place.
+        logIndex:
+          type: integer
+          description: The log index of the sale in the block.
+        bundleIndex:
+          type: integer
+          description: The bundle index of the sale.
+        transactionHash:
+          type: string
+          description: The transaction hash of the sale.
+
+    matchedNftContractInfo:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Address of the NFT contract.
+        name:
+          type: string
+          description: Name of the NFT contract.
+        symbol:
+          type: string
+          description: Symbol of the NFT contract.
+        totalSupply:
+          type: string
+          description: Total supply of NFTs for the contract.
+        tokenType:
+          type: string
+          description: Type of the NFT contract, either "ERC721" or "ERC1155".
+        openSea:
+          type: object
+          description: OpenSea metadata for the NFT contract.
+          properties:
+            floorPrice:
+              type: number
+              description: Minimum price for an NFT to be sold on OpenSea.
+            collectionName:
+              type: string
+              description: Name of the collection on OpenSea.
+            safelistRequestStatus:
+              type: string
+              description: Current status of the contract's safelist request on OpenSea.
+            imageUrl:
+              type: string
+              description: URL of the main image for the NFT contract.
+            description:
+              type: string
+              description: Description of the NFT contract.
+            externalUrl:
+              type: string
+              description: External URL of the NFT contract.
+            twitterUsername:
+              type: string
+              description: Twitter username for the NFT contract.
+            discordUrl:
+              type: string
+              description: URL for the NFT contract's Discord server.
+            lastIngestedAt:
+              type: string
+              description: Timestamp of the last time the contract's metadata was updated on OpenSea.
