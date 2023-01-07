@@ -1291,7 +1291,7 @@ components:
           $ref: '#/components/schemas/gateway'
     metadata:
       type: object
-      description: 'String - Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
+      description: 'Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
       properties:
         image:
           type: string
