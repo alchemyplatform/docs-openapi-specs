@@ -450,7 +450,7 @@ paths:
 
   /delete-webhook:
     delete:
-      summary: Delete Webhook
+      summary: Delete webhook
       description: 'Allows you to delete a webhook.'
       tags: ['Notify API Endpoints']
       parameters:
