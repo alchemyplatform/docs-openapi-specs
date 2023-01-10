@@ -7,7 +7,7 @@ OpenAPI Specs for methods on docs
 Get the `rdme` dev dependency
 
 ```
-npm install
+npm i rdme
 ```
 
 Run `rdme` commands by prefixing commands with `npx` to use the installed version
