@@ -1,6 +1,7 @@
 openapi: 3.1.0
 info:
-  title: API Title
+  # readme reflects this as category name
+  title: bastien test
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2'
@@ -8,8 +9,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      # if ommited, readme uses method_path as url (e.g. /reference/post_apikey)
+      operationId: alchemy-simulateAssetChanges
       parameters:
-        - $ref: ParamApiKey
+        - $ref: '#/components/parameters/ParamApiKey'
       requestBody:
         content:
           application/json:
