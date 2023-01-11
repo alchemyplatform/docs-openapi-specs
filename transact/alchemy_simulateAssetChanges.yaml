@@ -42,13 +42,18 @@ paths:
                     properties:
                       # required - TODO: are from, value, and data required?
                       from:
-                        $ref: '#/components/schemas/Address' 
+                        $ref: '#/components/schemas/Address'
+                        # override default address
+                        default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
                       to:
-                        $ref: '#/components/schemas/Hex' 
+                        $ref: '#/components/schemas/Address'
+                        default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
                       value:
-                        type: string
+                        $ref: '#/components/schemas/Hex'
+                        default: '0x0'
                       data:
-                        $ref: '#/components/schemas/Hex' 
+                        $ref: '#/components/schemas/Hex'
+                        default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
                       
                       # optional
                       gas:
