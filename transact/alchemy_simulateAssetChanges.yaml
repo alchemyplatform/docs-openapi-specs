@@ -76,7 +76,7 @@ components:
       type: string
       pattern: '^0[xX][0-9a-fA-F]+$'
     
-    # TODO: this does not allow for ENS addresses (e.g. vitalik.eth)
+    # TODO: this does not currently allow for ENS addresses (e.g. vitalik.eth)
     Address:
       $ref: '#/components/schemas/Hex'
       minLength: 42
@@ -128,6 +128,7 @@ components:
     ParamApiKey:
       name: apiKey
       in: path
+      # TODO: should we link to /signup directly?
       description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**.
       required: true
       schema:
