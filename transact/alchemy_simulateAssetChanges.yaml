@@ -44,16 +44,26 @@ paths:
                 id:
                   type: integer
                   default: 1
+                  # readOnly: true hides field in Readme UI!
+                  readOnly: true
                 jsonrpc:
                   type: string
                   default: '2.0'
+                  readOnly: true
                 # Note: use enum rather than string so users cannot change the method name in Try it editor!
                 method:
-                  type: enum
-                  # TODO: readme currently shows an empty option - bug needs to be fixed on their end
-                  enum:
-                    - alchemy_simulateAssetChanges
+                  # Option 1
+                  # type: enum
+                  # # TODO: readme currently shows an empty option - bug needs to be fixed on their end
+                  # enum:
+                  #   - alchemy_simulateAssetChanges
+                  # default: alchemy_simulateAssetChanges
+
+                  # Option 2
+                  type: string
                   default: alchemy_simulateAssetChanges
+                  readOnly: true
+
                 params:
                   type: array
                   # TODO: are minItems and maxItems in the spec? or readme extensions?
