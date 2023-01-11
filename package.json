@@ -1,4 +1,17 @@
 {
+  "description": "OpenAPI Specs for methods on docs",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemyplatform/docs-openapi-specs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alchemyplatform/docs-openapi-specs/issues"
+  },
+  "homepage": "https://github.com/alchemyplatform/docs-openapi-specs#readme",
   "devDependencies": {
     "rdme": "^6.5.0"
   }
