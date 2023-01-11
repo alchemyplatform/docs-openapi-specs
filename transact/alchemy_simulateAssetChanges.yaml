@@ -10,6 +10,46 @@ paths:
     post:
       parameters:
         - $ref: ParamApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  default: 1
+                jsonrpc:
+                  type: string
+                  default: '2.0'
+                method:
+                  type: string
+                  default: alchemy_simulateAssetChanges
+                params:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      # required
+                      from:
+                        type: string
+                      to:
+                        type: string
+                      value:
+                        type: string
+                      data:
+                        type: string
+                      
+                      # optional
+                      gas:
+                        type: string
+                      gasPrice:
+                        type: string
+                      maxFeePerGas:
+                        type: string
+                      maxPriorityFeePerGas:
+                        type: string
+                  # TODO: add blocktag as 2nd param
       responses:
         '200':
           description: OK
