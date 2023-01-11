@@ -78,26 +78,23 @@ components:
     
     # TODO: this does not allow for ENS addresses (e.g. vitalik.eth)
     Address:
-      allOf:
-        - $ref: '#/components/schemas/Hex'
-        - minLength: 42
-        - maxLength: 42
-        # vitalik.eth ETH address
-        - default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
+      $ref: '#/components/schemas/Hex'
+      minLength: 42
+      maxLength: 42
+      # vitalik.eth ETH address
+      default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
 
     FromAddress:
-      allOf:
-        - $ref: '#/components/schemas/Address'
-        - description: '20 Bytes - (optional) The address the transaction is sent from.'
+      $ref: '#/components/schemas/Address'
+      description: '20 Bytes - (optional) The address the transaction is sent from.'
         # override Address default
-        - default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
+      default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
 
     ToAddress:
-      allOf:
-        - $ref: '#/components/schemas/Address'
-        - description: '20 Bytes - The address the transaction is directed to.'
+      $ref: '#/components/schemas/Address'
+      description: '20 Bytes - The address the transaction is directed to.'
         # USDC contract
-        - default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+      default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
   parameters:
     ParamApiKey:
