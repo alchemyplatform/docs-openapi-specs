@@ -63,7 +63,7 @@ components:
     ParamApiKey:
       name: apiKey
       in: path
-      description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+      description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**.
       required: true
       schema:
         type: string
