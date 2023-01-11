@@ -13,6 +13,6 @@
   },
   "homepage": "https://github.com/alchemyplatform/docs-openapi-specs#readme",
   "devDependencies": {
-    "rdme": "^6.5.0"
+    "rdme": "^8.4.0"
   }
 }
