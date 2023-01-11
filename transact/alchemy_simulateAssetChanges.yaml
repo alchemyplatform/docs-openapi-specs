@@ -4,9 +4,20 @@ info:
   title: bastien test
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2'
-  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
-  
+  # Option 1 - shows dropdown with full url in readme
+  # - url: 'https://eth-mainnet.g.alchemy.com/v2'
+  # - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+
+  # Option 2 - shows dropdown with server in readme
+  - url: 'https://{network}.g.alchemy.com/v2'
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - polygon-mainnet
+          - arb-mainnet
+        default: eth-mainnet
+
 paths:
   /{apiKey}:
     post:
