@@ -145,4 +145,6 @@ components:
       required: true
       schema:
         type: string
+        # uncommenting below will hide API key but toggles password managers..
+        # format: password
         default: docs-demo
