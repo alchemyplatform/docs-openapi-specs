@@ -42,13 +42,13 @@ paths:
                     properties:
                       # required - TODO: are from, value, and data required?
                       from:
-                        type: string
+                        $ref: '#/components/schemas/Hex' 
                       to:
-                        type: string
+                        $ref: '#/components/schemas/Hex' 
                       value:
                         type: string
                       data:
-                        type: string
+                        $ref: '#/components/schemas/Hex' 
                       
                       # optional
                       gas:
@@ -66,7 +66,13 @@ paths:
       responses:
         '200':
           description: OK
+
 components:
+  schemas:
+    Hex:
+      type: string
+      pattern: '^0[xX][0-9a-fA-F]+$'
+
   parameters:
     ParamApiKey:
       name: apiKey
