@@ -32,10 +32,15 @@ paths:
                   default: alchemy_simulateAssetChanges
                 params:
                   type: array
+                  # TODO: are minItems and maxItems in the spec? or readme extensions?
+                  # does minItems work - readme allows me to delete all params
+                  minItems: 1
+                  # maxItems works!
+                  maxItems: 1
                   items:
                     type: object
                     properties:
-                      # required
+                      # required - TODO: are from, value, and data required?
                       from:
                         type: string
                       to:
@@ -54,6 +59,9 @@ paths:
                         type: string
                       maxPriorityFeePerGas:
                         type: string
+
+                    required:
+                      - to
                   # TODO: add blocktag as 2nd param
       responses:
         '200':
