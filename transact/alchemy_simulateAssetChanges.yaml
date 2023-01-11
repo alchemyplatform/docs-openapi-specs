@@ -42,7 +42,7 @@ paths:
                     properties:
                       # required - TODO: are from, value, and data required?
                       from:
-                        $ref: '#/components/schemas/Hex' 
+                        $ref: '#/components/schemas/Address' 
                       to:
                         $ref: '#/components/schemas/Hex' 
                       value:
@@ -72,6 +72,15 @@ components:
     Hex:
       type: string
       pattern: '^0[xX][0-9a-fA-F]+$'
+    
+    # TODO: this does not allow for ENS addresses (e.g. vitalik.eth)
+    Address:
+      allOf:
+        - $ref: '#/components/schemas/Hex'
+        - minLength: 42
+        - maxLength: 42
+        # vitalik.eth ETH address
+        - default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
 
   parameters:
     ParamApiKey:
