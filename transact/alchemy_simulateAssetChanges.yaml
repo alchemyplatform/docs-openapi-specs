@@ -9,7 +9,9 @@ servers:
 paths:
   /{apiKey}:
     post:
-      # if ommited, readme uses method_path as url (e.g. /reference/post_apikey)
+      # if omitted, readme uses method as title
+      summary: alchemy_simulateAssetChanges
+      # if omitted, readme uses method_path as url (e.g. /reference/post_apikey)
       operationId: alchemy-simulateAssetChanges
       parameters:
         - $ref: '#/components/parameters/ParamApiKey'
