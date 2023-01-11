@@ -529,10 +529,10 @@ paths:
             application/json:
               schema:
                 $ref: sdk_responses.yaml#/string_result_response
-  /{apiKey}/feeData:
+  /{apiKey}/getFeeData:
     post:
-      operationId: sdk-feeData
-      summary: feeData
+      operationId: sdk-getFeeData
+      summary: getFeeData
       description: Returns the recommended fee data to use in a transaction. For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas should be used. For legacy transactions and networks which do not support EIP-1559, the gasPrice should be used.
       tags: ['SDK Core Endpoints']
       parameters:
