@@ -62,28 +62,7 @@ paths:
                   # maxItems works!
                   maxItems: 1
                   items:
-                    type: object
-                    properties:
-                      from:
-                        $ref: '#/components/schemas/FromAddress'
-                      to:
-                        $ref: '#/components/schemas/ToAddress'
-                      value:
-                        $ref: '#/components/schemas/Value'
-                      data:
-                        $ref: '#/components/schemas/Data'
-                      gas:
-                        $ref: '#/components/schemas/GasLimit'
-                      gasPrice:
-                        $ref: '#/components/schemas/GasPrice'
-                      maxFeePerGas:
-                        $ref: '#/components/schemas/MaxFeePerGas'
-                      maxPriorityFeePerGas:
-                        $ref: '#/components/schemas/MaxPriorityFeePerGas'
-
-                    # TODO: what about empty to address when deploying contract?  
-                    required:
-                      - to
+                    $ref: '#/components/schemas/TxObject'
                   # TODO: add blocktag as 2nd param
       responses:
         '200':
@@ -142,7 +121,31 @@ components:
     MaxFeePerGas:
       type: string
       description: '(optional) max amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)'
-      
+    
+    TxObject:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/FromAddress'
+        to:
+          $ref: '#/components/schemas/ToAddress'
+        value:
+          $ref: '#/components/schemas/Value'
+        data:
+          $ref: '#/components/schemas/Data'
+        gas:
+          $ref: '#/components/schemas/GasLimit'
+        gasPrice:
+          $ref: '#/components/schemas/GasPrice'
+        maxFeePerGas:
+          $ref: '#/components/schemas/MaxFeePerGas'
+        maxPriorityFeePerGas:
+          $ref: '#/components/schemas/MaxPriorityFeePerGas'
+
+      # TODO: what about empty to address when deploying contract?  
+      required:
+        - to
+
   parameters:
     # once we move to header auth - we can move to securitySchemes instead of parameters
     ApiKey:
