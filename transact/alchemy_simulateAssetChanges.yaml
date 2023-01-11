@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  # readme reflects this as category name
-  title: bastien test
+  # title => top level category in Readme
+  title: Alchemy Transact - Simulation APIs
   version: '1.0'
 
 servers:
@@ -28,6 +28,8 @@ x-readme:
 paths:
   /{apiKey}:
     post:
+      # see https://docs.readme.com/main/docs/openapi-categories-pages-subpages
+      tags: ['Simulation API Endpoints']
       # if omitted, readme uses method as page title
       summary: alchemy_simulateAssetChanges
       # if omitted, readme uses method_path as page url 
@@ -89,20 +91,18 @@ components:
       $ref: '#/components/schemas/Hex'
       minLength: 42
       maxLength: 42
-      # vitalik.eth ETH address
+      # Vitalik's ETH address
       default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
 
     FromAddress:
       $ref: '#/components/schemas/Address'
       # TODO: would hex make more sense than 20 bytes here?
       description: '20 Bytes - (optional) The address the transaction is sent from.'
-        # override Address default
-      default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
- 
+
     ToAddress:
       $ref: '#/components/schemas/Address'
       description: '20 Bytes - The address the transaction is directed to.'
-        # USDC contract
+      # USDC contract
       default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
     
     Value:
