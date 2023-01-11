@@ -34,7 +34,7 @@ paths:
       # e.g. /reference/post_apikey
       operationId: alchemy-simulateAssetChanges
       parameters:
-        - $ref: '#/components/parameters/ParamApiKey'
+        - $ref: '#/components/parameters/ApiKey'
       requestBody:
         content:
           application/json:
@@ -144,7 +144,8 @@ components:
       description: '(optional) max amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)'
       
   parameters:
-    ParamApiKey:
+    # once we move to header auth - we can move to securitySchemes instead of parameters
+    ApiKey:
       name: apiKey
       in: path
       # TODO: should we link to /signup directly?
