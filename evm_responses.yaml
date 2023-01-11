@@ -216,10 +216,10 @@ transaction_receipt:
           description: 256 Bytes - Bloom filter for light clients to quickly retrieve related logs
         root:
           type: string
-          description: 32 bytes of post-transaction stateroot (pre Byzantium)
+          description: 32 bytes of post-transaction stateroot. (pre Byzantium hard fork at block 4,370,000)
         status:
           type: integer
-          description: Either 1 (success) or 0 (failure)
+          description: Either 1 (success) or 0 (failure). (post Byzantium hard fork at block 4,370,000)
           enum:
             - 0
             - 1
@@ -325,20 +325,20 @@ getTxn_result_response:
               description: transaction hash for the mined transaction if it has been mined
             transactionHashWithErrors:
               type: array
-              description: An array of object errors that occured with the transaction, omitted if no errors occured. 
+              description: An array of object errors that occured with the transaction, omitted if no errors occured.
               items:
                 type: object
                 properties:
-                  hash: 
+                  hash:
                     type: string
                     description: hash for the transaction that had the error
                   errors:
                     type: array
-                    description: error objects 
+                    description: error objects
                     properties:
                       code:
                         type: integer
-                        description: error code 
+                        description: error code
                       message:
                         type: string
                         description: error message
