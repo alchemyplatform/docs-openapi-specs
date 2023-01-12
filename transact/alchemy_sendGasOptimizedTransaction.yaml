@@ -3,31 +3,26 @@ info:
   title: alchemy_sendGasOptimizedTransaction
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: 'https://eth-mainnet.g.alchemy.com/v2'
+x-readme:
+  id: 634f72885e2a9200e4ebf268
 paths:
   /{apiKey}:
     post:
-      operationId: alchemy_sendGasOptimizedTransaction
       summary: alchemy_sendGasOptimizedTransaction
-      description: Submits a bundle of indentical transactions, each individually with a range of different gas values
-      tags: []
+      description: Submits a bundle of indentical transactions, each individually with a range of different gas values.
+      operationId: alchemy-sendGasOptimizedTransaction
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-          required: true
+        - $ref: 'components/parameters.yaml#/ApiKey'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/bundled_signed_transaction_param
+              $ref: evm_body.yaml#/bundled_signed_transaction_param
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/sendTxn_result_response
+                $ref: evm_responses.yaml#/sendTxn_result_response

@@ -3,31 +3,26 @@ info:
   title: alchemy_getGasOptimizedTransactionStatus
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: 'https://eth-mainnet.g.alchemy.com/v2'
+x-readme:
+  id: 634f71298eef9100ad7d99f9
 paths:
   /{apiKey}:
     post:
-      operationId: alchemy-getgasoptimizedtransactionstatus
       summary: alchemy_getGasOptimizedTransactionStatus
-      description: Returns the progression/status of transactions sent in via alchemy_sendGasOptimizedTransaction
-      tags: []
+      description: Returns the progression/status of transactions sent in via alchemy_sendGasOptimizedTransaction.
+      operationId: alchemy-getgasoptimizedtransactionstatus
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
-          required: true
+        - $ref: 'components/parameters.yaml#/ApiKey'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/alchemy_getGasOptimizedTransactionStatus
+              $ref: evm_body.yaml#/alchemy_getGasOptimizedTransactionStatus
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/getTxn_result_response
+                $ref: evm_responses.yaml#/getTxn_result_response
