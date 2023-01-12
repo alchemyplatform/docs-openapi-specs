@@ -20,6 +20,7 @@ servers:
         default: eth-mainnet
 
 x-readme:
+  id: 63bf3a4216b101005eb70580
   samples-languages:
     - curl
     - javascript
