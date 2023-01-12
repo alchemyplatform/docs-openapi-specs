@@ -29,6 +29,7 @@ paths:
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
         - $ref: '#/components/schemas/excludeFilters'
         - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/orderBy'
       x-readme:
         samples-languages:
           - javascript
@@ -266,7 +267,11 @@ paths:
                 contractAddresses:
                   type: array
                   description: list of contract addresses to batch metadata requests for
-                  default: ['0xe785E82358879F061BC3dcAC6f0444462D4b5330', '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d']
+                  default:
+                    [
+                      '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+                      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+                    ]
                   items:
                     $ref: '#/components/schemas/contractAddress'
       responses:
@@ -977,6 +982,7 @@ paths:
         - $ref: '#/components/schemas/pageSize'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/orderBy'
       x-readme:
         samples-languages:
           - javascript
@@ -1033,7 +1039,14 @@ components:
       in: path
       schema:
         type: string
-        default: demo
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
       required: true
     owner:
       name: owner
@@ -1199,9 +1212,21 @@ components:
           - asc
           - desc
         default: asc
+    orderBy:
+      name: orderBy
+      description: |-
+        Enum - ordering scheme to use for ordering NFTs in the response. If unspecified, NFTs will be ordered by contract address and token ID.
+          - transferTime: NFTs will be ordered by the time they were transferred into the wallet, with newest NFTs first. NOTE: this ordering is only supported on Ethereum Mainnet and Polygon Mainnet.
+      in: query
+      schema:
+        type: string
+        enum:
+          - transferTime
+          - null
+      required: false
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", and "x2y2". Defaults to returning sales from all supported marketplaces.
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", "x2y2", and "blur". Defaults to returning sales from all supported marketplaces.
       in: query
       schema:
         type: string
@@ -1210,6 +1235,7 @@ components:
           - looksrare
           - x2y2
           - wyvern
+          - blur
       required: false
     buyerAddress:
       name: buyerAddress
@@ -1271,7 +1297,7 @@ components:
           $ref: '#/components/schemas/gateway'
     metadata:
       type: object
-      description: 'String - Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
+      description: 'Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
       properties:
         image:
           type: string

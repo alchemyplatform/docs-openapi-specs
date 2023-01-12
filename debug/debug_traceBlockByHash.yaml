@@ -15,13 +15,22 @@ paths:
           in: path
           schema:
             type: string
-            default: demo
+            default: docs-demo
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/debug_traceBlockByHash
+      x-readme:
+        explorer-enabled: false
       responses:
         '200':
           description: 'Returns - array of block traces'
