@@ -1446,6 +1446,12 @@ components:
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
         opensea:
           $ref: '#/components/schemas/opensea'
     spamInfo:
