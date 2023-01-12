@@ -1,8 +1,8 @@
 # Alchemy Docs
 
-Hey there - thanks for checking our API docs!
+Hey there - thanks for checking our API docs! 👋
 
-This repo holds the OpenAPI specs that power our API Playgrounds ("Try it" sections on the right) at [docs.alchemy.com/reference](https://docs.alchemy.com/reference).
+This repo holds the OpenAPI specs that power our API Playgrounds at [docs.alchemy.com/reference](https://docs.alchemy.com/reference) ("Try it" sections on the right).
 
 ## Getting started
 
@@ -18,7 +18,7 @@ git clone https://github.com/alchemyplatform/docs-openapi-specs
 npm i
 ```
 
-## Frens 👋
+## Frens
 
 Feedback? Issues? Typos?
 
@@ -28,7 +28,7 @@ You can:
 
 - suggest edits (top right of Tutorials pages)
 - share feedback using 'Did this page help you? sections (bottom of Tutorials / API Reference pages)
-- open an issue [here](https://github.com/alchemyplatform/docs-openapi-specs/issues/new)
+- open issues [here](https://github.com/alchemyplatform/docs-openapi-specs/issues/new)
 
 If you're feeling adventurous, feel free to open a pull request [here](https://github.com/alchemyplatform/docs-openapi-specs/compare).
 
@@ -41,7 +41,8 @@ To speed up your development, 2 scripts exists in the `scripts` directory.
 - `scripts/create.js`
 - `scripts/update.js`
 
-You no longer need to run the `rdme` command line passing API key and Readme id to push to staging.
+You no longer need to run the `rdme` command line directly to push to staging.
+You also no longer need to pass an API key and readme id! 🎉
 
 ### First time?
 
