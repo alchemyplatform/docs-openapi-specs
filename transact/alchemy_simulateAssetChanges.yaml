@@ -75,84 +75,8 @@ paths:
                   # maxItems works!
                   maxItems: 1
                   items:
-                    $ref: '#/components/schemas/TxObject'
+                    $ref: './components/schemas.yaml#/TxObject'
                   # TODO: add blocktag as 2nd param
       responses:
         '200':
           description: OK
-
-components:
-  schemas:
-    Hex:
-      type: string
-      pattern: '^0[xX][0-9a-fA-F]+$'
-    
-    # TODO: this does not currently allow for ENS addresses (e.g. vitalik.eth)
-    Address:
-      $ref: '#/components/schemas/Hex'
-      minLength: 42
-      maxLength: 42
-      # Vitalik's ETH address
-      default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
-
-    FromAddress:
-      $ref: '#/components/schemas/Address'
-      # TODO: would hex make more sense than 20 bytes here?
-      description: '20 Bytes - (optional) The address the transaction is sent from.'
-
-    ToAddress:
-      $ref: '#/components/schemas/Address'
-      description: '20 Bytes - The address the transaction is directed to.'
-      # USDC contract
-      default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-    
-    Value:
-      $ref: '#/components/schemas/Hex'
-      description: '(optional) amount of ETH to transfer from sender to recipient (in WEI, a denomination of ETH)'
-      default: '0x0'
-    
-    Data:
-      $ref: '#/components/schemas/Hex'
-      description: '(optional)'
-      # transfer 1 USDC to address
-      default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
-
-    GasLimit:
-      type: string
-      description: '(optional) max amount of gas units that can be consumed by the transaction'
-    
-    GasPrice:
-      type: string
-      description: '(optional)'
-
-    MaxPriorityFeePerGas:
-      type: string
-      description: '(optional) max amount of gas to be included as a tip to the validator'
-
-    MaxFeePerGas:
-      type: string
-      description: '(optional) max amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)'
-    
-    TxObject:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/FromAddress'
-        to:
-          $ref: '#/components/schemas/ToAddress'
-        value:
-          $ref: '#/components/schemas/Value'
-        data:
-          $ref: '#/components/schemas/Data'
-        gas:
-          $ref: '#/components/schemas/GasLimit'
-        gasPrice:
-          $ref: '#/components/schemas/GasPrice'
-        maxFeePerGas:
-          $ref: '#/components/schemas/MaxFeePerGas'
-        maxPriorityFeePerGas:
-          $ref: '#/components/schemas/MaxPriorityFeePerGas'
-
-      # TODO: what about empty to address when deploying contract?  
-      required:
-        - to
