@@ -112,6 +112,12 @@ We are progressively expanding linting using [Spectral](https://github.com/stopl
 Rules we follow:
 
 - version: 3.1.0
+- x-readme.id is required
+- at least 1 servers.url
+- operation keys order: summary, description, operationId, parameters
+- operationId: must use - not \_ (used in url)
+- operationId: standardize naming
+- responses: should have 200, and list of errors
 
 Full list [here]() (coming soon).
 
@@ -119,7 +125,13 @@ Full list [here]() (coming soon).
 
 - OAS Components / Schemas: coming soon
 - Linting: coming soon
-- Duplication: scripts shared a lot of code (can be simplified)
+- Fix paths: ref path do not allow clicking in VS Code
+
+**Scripts**
+
+- update multiple specs at once!
+- `create` and `update` scripts share a lot of code (can be simplified)
+- `create` script remove comments
 
 ## Resources
 
