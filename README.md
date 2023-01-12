@@ -60,11 +60,11 @@ cp .env.template .env
 
 ### Creating new spec
 
-Still a manual process - TBD how we can improve this step.
+> Known issue: will remove comments and format spec when run.
 
-1. Create your spec (e.g. `transact/spec.yaml`).
+1. Write your spec (e.g. `transact/spec.yaml`).
 
-2. Run `create` script.
+2. Run `create` script passing the path to your spec.
 
 ```bash
   node scripts/create.js transact/spec.yaml
