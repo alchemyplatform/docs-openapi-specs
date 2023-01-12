@@ -37,7 +37,7 @@ paths:
       # e.g. /reference/post_apikey
       operationId: alchemy-simulateAssetChanges
       parameters:
-        - $ref: './components/parameters.yaml#/ApiKey'
+        - $ref: 'components/parameters.yaml#/ApiKey'
       requestBody:
         content:
           application/json:
@@ -75,7 +75,7 @@ paths:
                   # maxItems works!
                   maxItems: 1
                   items:
-                    $ref: './components/schemas.yaml#/TxObject'
+                    $ref: 'components/schemas.yaml#/TxObject'
                   # TODO: add blocktag as 2nd param
       responses:
         '200':
