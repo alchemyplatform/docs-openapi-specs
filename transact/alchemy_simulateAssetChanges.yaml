@@ -20,7 +20,7 @@ servers:
         default: eth-mainnet
 
 x-readme:
-  id: 63bf3a4216b101005eb70580
+  id: 63bf872c29340f040b3a141e
   samples-languages:
     - curl
     - javascript
@@ -37,7 +37,7 @@ paths:
       # e.g. /reference/post_apikey
       operationId: alchemy-simulateAssetChanges
       parameters:
-        - $ref: '#/components/parameters/ApiKey'
+        - $ref: './components/parameters.yaml#/ApiKey'
       requestBody:
         content:
           application/json:
@@ -156,17 +156,3 @@ components:
       # TODO: what about empty to address when deploying contract?  
       required:
         - to
-
-  parameters:
-    # once we move to header auth - we can move to securitySchemes instead of parameters
-    ApiKey:
-      name: apiKey
-      in: path
-      # TODO: should we link to /signup directly?
-      description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**.
-      required: true
-      schema:
-        type: string
-        # uncommenting below will hide API key but toggles password managers..
-        # format: password
-        default: docs-demo
