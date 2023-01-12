@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   # title => top level category in Readme
-  title: Alchemy Transact - Simulation APIs
+  title: alchemy_simulateAssetChanges
   version: '1.0'
 
 servers:
@@ -30,7 +30,7 @@ paths:
   /{apiKey}:
     post:
       # see https://docs.readme.com/main/docs/openapi-categories-pages-subpages
-      tags: ['Simulation API Endpoints']
+      # tags: ['Simulation API Endpoints']
       # if omitted, readme uses method as page title
       summary: alchemy_simulateAssetChanges
       # if omitted, readme uses method_path as page url 
