@@ -60,12 +60,33 @@ cp .env.template .env
 
 ### Creating new spec
 
-Currently a manual process - TBD how we can automate this step.
+Still a manual process - TBD how we can improve this step.
 
-1. Create a new .yaml file.
-2. Run rdme command line.
+1. Create your spec (e.g. `transact/spec.yaml`).
+
+2. Run `create` script.
+
+```bash
+  node scripts/create.js transact/spec.yaml
+```
+
+This will run the `rdme` command line tool 3 under the hood.
+
+3. Select 'Create a new spec'.
+
+This will
+
+- deploy your spec to readme
+- create a page and id
+- associate page id with your spec
+
+4. Your spec will be updated with a `x-readme.id` field. This is super important to ensure updates work smoothly in the future!
+
+> Script is slightly hacky - could improve in future by using Readme's API to get id.
 
 ### Updating spec
+
+Run `update` script. Ensure `x-readme.id` is set
 
 ```bash
 node scripts/update.js pathtospec.yml
@@ -98,6 +119,7 @@ Full list [here]() (coming soon).
 
 - OAS Components / Schemas: coming soon
 - Linting: coming soon
+- Duplication: scripts shared a lot of code (can be simplified)
 
 ## Resources
 
