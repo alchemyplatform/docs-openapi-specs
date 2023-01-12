@@ -74,7 +74,7 @@ This will run the `rdme` command line tool 3 under the hood.
 
 3. Select 'Create a new spec'.
 
-This will
+This will:
 
 - deploy your spec to readme
 - create a page and id

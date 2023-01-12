@@ -1,7 +1,6 @@
 node_modules
 
 .github/
-scripts/
 
 .DS_Store
 .env
