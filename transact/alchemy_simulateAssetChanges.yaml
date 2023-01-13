@@ -50,7 +50,7 @@ paths:
                   $ref: 'components/schemas.yaml#/JsonRpc'
                 method:
                   $ref: 'components/schemas.yaml#/Method'
-                  # default: 'alchemy_simulateAssetChanges'
+                  default: 'alchemy_simulateAssetChanges'
 
                 params:
                   type: array
