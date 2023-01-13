@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/alchemyplatform/docs-openapi-specs#readme",
   "devDependencies": {
+    "@stoplight/spectral-cli": "^6.6.0",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3",
     "oas-normalize": "^8.3.1",
