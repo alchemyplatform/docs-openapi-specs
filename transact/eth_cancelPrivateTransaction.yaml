@@ -18,7 +18,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: evm_body.yaml#/eth_cancelPrivateTransaction
+              type: object
+              properties:
+                id:
+                  $ref: 'components/schemas.yaml#/Id'
+                jsonrpc:
+                  $ref: 'components/schemas.yaml#/JsonRpc'
+                method:
+                  $ref: 'components/schemas.yaml#/Method'
+                  default: 'eth_cancelPrivateTransaction'
+                  
+                params:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: object
+                    properties:
+                      txHash:
+                        type: string
+                        description: Transaction hash for private transaction to be cancelled.
       responses:
         '200':
           description: 'Returns true if transaction was successfully cancelled, false if not.'
