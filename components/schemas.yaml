@@ -4,30 +4,30 @@ Hex:
 
 # TODO: this does not currently allow for ENS addresses (e.g. vitalik.eth)
 Address:
-  $ref: '#/components/schemas/Hex'
+  $ref: '#/Hex'
   minLength: 42
   maxLength: 42
   # Vitalik's ETH address
   default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
 
 FromAddress:
-  $ref: '#/components/schemas/Address'
+  $ref: '#/Address'
   # TODO: would hex make more sense than 20 bytes here?
   description: '20 Bytes - (optional) The address the transaction is sent from.'
 
 ToAddress:
-  $ref: '#/components/schemas/Address'
+  $ref: '#/Address'
   description: '20 Bytes - The address the transaction is directed to.'
   # USDC contract
   default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
 Value:
-  $ref: '#/components/schemas/Hex'
+  $ref: '#/Hex'
   description: '(optional) amount of ETH to transfer from sender to recipient (in WEI, a denomination of ETH)'
   default: '0x0'
 
 Data:
-  $ref: '#/components/schemas/Hex'
+  $ref: '#/Hex'
   description: '(optional)'
   # transfer 1 USDC to address
   default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
@@ -52,21 +52,21 @@ TxObject:
   type: object
   properties:
     from:
-      $ref: '#FromAddress'
+      $ref: '#/FromAddress'
     to:
-      $ref: '#ToAddress'
+      $ref: '#/ToAddress'
     value:
-      $ref: '#Value'
+      $ref: '#/Value'
     data:
-      $ref: '#Data'
+      $ref: '#/Data'
     gas:
-      $ref: '#GasLimit'
+      $ref: '#/GasLimit'
     gasPrice:
-      $ref: '#GasPrice'
+      $ref: '#/GasPrice'
     maxFeePerGas:
-      $ref: '#MaxFeePerGas'
+      $ref: '#/MaxFeePerGas'
     maxPriorityFeePerGas:
-      $ref: '#MaxPriorityFeePerGas'
+      $ref: '#/MaxPriorityFeePerGas'
 
   # TODO: what about empty to address when deploying contract?  
   required:
