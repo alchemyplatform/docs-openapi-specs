@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  # title => top level category in Readme
+  title: alchemy_simulateAssetChanges
+  version: '1.0'
+
+servers:
+  # Option 1 - shows dropdown with full url in readme
+  # - url: 'https://eth-mainnet.g.alchemy.com/v2'
+  # - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+
+  # Option 2 - shows dropdown with server in readme
+  - url: 'https://{network}.g.alchemy.com/v2'
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - polygon-mainnet
+          - arb-mainnet
+        default: eth-mainnet
+
+x-readme:
+  id: 63c18f5c68b7e4004406888f
+  samples-languages:
+    - curl
+    - javascript
+    - python
+
+paths:
+  /{apiKey}:
+    post:
+      # see https://docs.readme.com/main/docs/openapi-categories-pages-subpages
+      # tags: ['Simulation API Endpoints']
+      # if omitted, readme uses method as page title
+      summary: alchemy_simulateAssetChanges
+      # if omitted, readme uses method_path as page url 
+      # e.g. /reference/post_apikey
+      operationId: alchemy-simulateAssetChanges
+      parameters:
+        - $ref: 'components/parameters.yaml#/ApiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  $ref: 'components/schemas.yaml#/Id'
+                jsonrpc:
+                  $ref: 'components/schemas.yaml#/JsonRpc'
+                method:
+                  $ref: 'components/schemas.yaml#/Method'
+                  default: 'alchemy_simulateAssetChanges'
+
+                params:
+                  type: array
+                  # TODO: are minItems and maxItems in the spec? or readme extensions?
+                  # does minItems work - readme allows me to delete all params
+                  minItems: 1
+                  # maxItems works!
+                  maxItems: 1
+                  items:
+                    $ref: 'components/schemas.yaml#/TxObject'
+                  # TODO: add blocktag as 2nd param
+      responses:
+        '200':
+          description: OK
