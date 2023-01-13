@@ -26,9 +26,18 @@ const { Readme } = require('./Readme');
   });
 
   const validatedSpec = await oas.validate();
+  // cloning required - else, validatedSpec becomes deref spec after call to oas.deref()
+  const clonedSpec = JSON.parse(JSON.stringify(validatedSpec));
 
   // derefSpec will have replaced refs with imported definitions
   const derefSpec = await oas.deref();
+  if (derefSpec['x-readme']?.id) {
+    throw new Error(`Id found.\nAre you sure you want to create a new spec?
+
+update new spec => run scripts/update.js spec.yaml
+create new spec => remove id from spec`);
+  }
+
   // spec needs to be string to upload to readme
   const spec = JSON.stringify(derefSpec, null, 2);
   // console.log(spec);
@@ -38,11 +47,10 @@ const { Readme } = require('./Readme');
   const id = await readme.spec.upload({ spec });
 
   // 4. Add id to spec!
-  const updatedSpec = { ...validatedSpec };
-  updatedSpec['x-readme'].id = id;
+  clonedSpec['x-readme'].id = id;
 
-  fs.writeFileSync(filePath, stringify(updatedSpec));
-  console.log(`${filePath} => added id ${id} (x-readme.id)\n`);
+  fs.writeFileSync(filePath, stringify(clonedSpec));
+  console.log(`Added id ${id} (x-readme.id)\n`);
 
   const found = await readme.spec.find({ id });
   if (found) {
