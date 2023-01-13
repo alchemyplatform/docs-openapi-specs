@@ -57,7 +57,7 @@ class Readme {
             page,
             perPage: PAGE_SIZE,
           });
-          console.log(results.length);
+          // console.log(results.length);
 
           found = results.find((res) => res.id === id);
           page++;
