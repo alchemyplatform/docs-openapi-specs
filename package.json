@@ -13,9 +13,9 @@
   },
   "homepage": "https://github.com/alchemyplatform/docs-openapi-specs#readme",
   "devDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.1.0",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3",
+    "oas-normalize": "^8.3.1",
     "rdme": "^8.4.0",
     "yaml": "^2.2.1"
   }
