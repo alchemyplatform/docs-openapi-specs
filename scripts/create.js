@@ -24,21 +24,24 @@ const { Readme } = require('./Readme');
     enablePaths: true,
     colorizeErrors: true,
   });
-  await oas.validate();
 
-  const spec = await oas.deref();
-  console.log(JSON.stringify(spec, null, 2));
+  const validatedSpec = await oas.validate();
 
-  // 3. Upload specification / get id back from Readme API
+  // derefSpec will have replaced refs with imported definitions
+  const derefSpec = await oas.deref();
+  // spec needs to be string to upload to readme
+  const spec = JSON.stringify(derefSpec, null, 2);
+  // console.log(spec);
+
+  // 3. Upload new specification / get id back from Readme API
   const readme = new Readme(key);
   const id = await readme.spec.upload({ spec });
-  console.log(id);
 
   // 4. Add id to spec!
-  const updatedYaml = { ...spec };
-  updatedYaml['x-readme'].id = id;
+  const updatedSpec = { ...validatedSpec };
+  updatedSpec['x-readme'].id = id;
 
-  fs.writeFileSync(filePath, stringify(updatedYaml));
+  fs.writeFileSync(filePath, stringify(updatedSpec));
   console.log(`${filePath} => added id ${id} (x-readme.id)\n`);
 
   const found = await readme.spec.find({ id });
