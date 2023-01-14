@@ -34,12 +34,17 @@ If you're feeling adventurous, feel free to open a pull request [here](https://g
 
 > You currently can only modify API playgrounds. For pages or markdown edits in API Reference, please use one of the above options.
 
+# WIP 👷‍♀️
+
+> Below section is WIP.
+> Until we had ids to every spec, deploy specs as you normally would
+
 ## Alchemists 👩‍🔬
 
-To speed up your development, 2 scripts exists in the `scripts` directory.
+To speed up your development, 2 commands are now available.
 
-- `scripts/create.js`
-- `scripts/update.js`
+- `npm run create spec.yaml`
+- `npm run update spec.yaml`
 
 You no longer need to run the `rdme` command line directly to push to staging.
 You also no longer need to pass an API key and readme id! 🎉
