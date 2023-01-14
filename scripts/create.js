@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const fs = require('fs');
-const { stringify } = require('yaml');
-const OASNormalize = require('oas-normalize').default;
+const fs = require('node:fs');
+const { parse, stringify } = require('yaml');
+const parser = require('@openapi-generator-plus/json-schema-ref-parser');
 const { Readme } = require('./Readme');
 
 // TODO: lint OpenAPI?
@@ -19,18 +19,11 @@ const { Readme } = require('./Readme');
   }
   console.log(`File path => ${filePath}`);
 
-  // 2. Deference and validate spec
-  const oas = new OASNormalize(filePath, {
-    enablePaths: true,
-    colorizeErrors: true,
-  });
-
-  const validatedSpec = await oas.validate();
-  // cloning required - else, validatedSpec becomes deref spec after call to oas.deref()
-  const clonedSpec = JSON.parse(JSON.stringify(validatedSpec));
+  const contents = fs.readFileSync(filePath, 'utf-8');
+  const originalSpec = parse(contents);
 
   // derefSpec will have replaced refs with imported definitions
-  const derefSpec = await oas.deref();
+  const derefSpec = await parser.dereference(filePath);
   if (derefSpec['x-readme']?.id) {
     throw new Error(`Id found.\nAre you sure you want to create a new spec?
 
@@ -47,9 +40,9 @@ create new spec => remove id from spec`);
   const id = await readme.spec.upload({ spec });
 
   // 4. Add id to spec!
-  clonedSpec['x-readme'].id = id;
+  originalSpec['x-readme'].id = id;
 
-  fs.writeFileSync(filePath, stringify(clonedSpec));
+  fs.writeFileSync(filePath, stringify(originalSpec));
   console.log(`Added id ${id} (x-readme.id)\n`);
 
   const found = await readme.spec.find({ id });

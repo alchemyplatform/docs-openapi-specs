@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const OASNormalize = require('oas-normalize').default;
+const parser = require('@openapi-generator-plus/json-schema-ref-parser');
 const { Readme } = require('./Readme');
 
 // TODO: lint OpenAPI?
@@ -17,28 +17,21 @@ const { Readme } = require('./Readme');
   }
   console.log(`File path => ${filePath}`);
 
-  // 2. Deference and validate spec
-  const oas = new OASNormalize(filePath, {
-    enablePaths: true,
-    colorizeErrors: true,
-  });
-
-  await oas.validate();
-
+  // 3. Dereference the spec
   // derefSpec will have replaced refs with imported definitions
-  const derefSpec = await oas.deref();
+  const derefSpec = await parser.dereference(filePath);
   // spec needs to be string to upload to readme
   const spec = JSON.stringify(derefSpec, null, 2);
   // console.log(spec);
 
-  // 3. Search for x-readme id
+  // 4. Search for x-readme id
   const id = derefSpec['x-readme']?.id;
   if (!id) {
     throw new Error('No id found at x-readme.id');
   }
   console.log(`Readme id => ${id}`);
 
-  // 4. Update specification
+  // 5. Update specification
   const readme = new Readme(key);
   await readme.spec.update({ id, spec });
 
