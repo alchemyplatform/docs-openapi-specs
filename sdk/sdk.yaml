@@ -17,7 +17,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         description: Accepts the transaction call object.
@@ -79,7 +85,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -134,7 +146,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -183,7 +201,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -238,7 +262,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -284,7 +314,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -353,7 +389,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       x-readme:
         explorer-enabled: false
@@ -405,7 +447,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -495,7 +543,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -541,7 +595,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       x-readme:
         explorer-enabled: false
@@ -582,7 +642,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       x-readme:
         explorer-enabled: false
@@ -624,7 +690,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -702,7 +774,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -748,7 +826,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -798,7 +882,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -846,7 +936,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -892,7 +988,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -941,7 +1043,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -992,7 +1100,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -2174,7 +2288,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -2229,7 +2349,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -2290,7 +2416,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -2351,7 +2483,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -2401,7 +2539,13 @@ paths:
           schema:
             type: string
             default: docs-demo
-            description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
       requestBody:
         content:
@@ -2775,7 +2919,13 @@ components:
       schema:
         type: string
         default: docs-demo
-        description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
       required: true
     owner:
       name: owner

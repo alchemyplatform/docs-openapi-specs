@@ -348,6 +348,11 @@ paths:
                           $ref: '#/components/schemas/tokenUri'
                         metadata:
                           $ref: '#/components/schemas/metadata'
+                        timeLastUpdated:
+                          type: string
+                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+                        contractMetadata:
+                          $ref: '#/components/schemas/contractMetadata'
                   nextToken:
                     type: string
                     description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
@@ -1040,7 +1045,13 @@ components:
       schema:
         type: string
         default: docs-demo
-        description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
       required: true
     owner:
       name: owner
@@ -1346,6 +1357,12 @@ components:
         tokenType:
           description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
           type: string
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
         media:
           $ref: '#/components/schemas/media'
         opensea:
@@ -1466,6 +1483,12 @@ components:
           description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
         opensea:
           $ref: '#/components/schemas/opensea'
     spamInfo:
