@@ -37,7 +37,7 @@ If you're feeling adventurous, feel free to open a pull request [here](https://g
 # WIP 👷‍♀️
 
 > Below section is WIP.
-> Until we had ids to every spec, deploy specs as you normally would
+> Until we add ids to every spec, deploy specs as you normally would.
 
 ## Alchemists 👩‍🔬
 
