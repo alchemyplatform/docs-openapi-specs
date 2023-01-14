@@ -21,9 +21,9 @@ paths:
   "/{apiKey}":
     post:
       summary: alchemy_simulateAssetChanges
-      operationId: alchemy-simulateAssetChanges
+      operationId: alchemy-simulateassetchanges
       parameters:
-        - $ref: components/parameters.yaml#/ApiKey
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -31,18 +31,18 @@ paths:
               type: object
               properties:
                 id:
-                  $ref: components/schemas.yaml#/Id
+                  $ref: ../components/schemas.yaml#/Id
                 jsonrpc:
-                  $ref: components/schemas.yaml#/JsonRpc
+                  $ref: ../components/schemas.yaml#/JsonRpc
                 method:
-                  $ref: components/schemas.yaml#/Method
+                  $ref: ../components/schemas.yaml#/Method
                   default: alchemy_simulateAssetChanges
                 params:
                   type: array
                   minItems: 1
                   maxItems: 1
                   items:
-                    $ref: components/schemas.yaml#/TxObject
+                    $ref: ../components/schemas.yaml#/TxObject
       responses:
         "200":
           description: OK
