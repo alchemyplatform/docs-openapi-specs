@@ -75,23 +75,17 @@ cp .env.template .env
   npm run create transact/newspec.yaml
 ```
 
-This will run the `rdme` command line tool 3 under the hood.
-
-3. Select 'Create a new spec'.
-
 This will:
 
 - deploy your spec to readme
 - create a page and id
 - associate page id with your spec
 
-4. Your spec will be updated with a `x-readme.id` field. This is super important to ensure updates work smoothly in the future!
-
-> Script is slightly hacky - could improve in future by using Readme's API to get id.
+3. Your spec will be updated with a `x-readme.id` field. This is super important to ensure updates work smoothly in the future!
 
 ### Updating spec
 
-Run `update` script. Ensure `x-readme.id` is set
+Run `update` script. Ensure `x-readme.id` is set.
 
 ```bash
 npm run update spec.yml
@@ -107,30 +101,20 @@ npm run create spec.yaml
 npm run update spec.yaml
 ```
 
-3. Check the spec has an `id` under `x-readme`. This Readme id is used to match the spec to a given API playground.
+3. Check the spec has a `x-readme.id` property. This id is used to match the spec on Readme's side.
 4. Reach out to Bastien if you have any issues running the scripts.
 
 ## Linting
 
-Linting is ran automatically using `npm run create` and `npm run update` powered by [Spectral](https://github.com/stoplightio/spectral).
+Linting is ran automatically when using `npm run create` and `npm run update` (powered by [Spectral](https://github.com/stoplightio/spectral)).
 
-You can also run it manually using
+You can run it manually using
 
 ```bash
 npx spectral lint spec.yaml
 ```
 
-Rules we follow:
-
-- version: 3.1.0
-- x-readme.id is required
-- at least 1 servers.url
-- operation keys order: summary, description, operationId, parameters
-- operationId: must use - not \_ (used in url)
-- operationId: standardize naming
-- responses: should have 200, and list of errors
-
-Full list [here](.spectral.yaml).
+Rules we currently adhere - [here](.spectral.yaml).
 
 You should also install the extension for your editor.
 
@@ -147,18 +131,15 @@ It relies on [`@readme/openapi-parser`](https://github.com/readmeio/openapi-pars
 
 This is a known issue of `json-schema-ref-parser` - see [here](https://github.com/APIDevTools/json-schema-ref-parser/issues/200#issuecomment-1157687009).
 
-Until the issue gets resolved and changes merged upstream, the solution is to dereference the spec using `@openapi-generator-plus/json-schema-ref-parser`(https://www.npmjs.com/package/@openapi-generator-plus/json-schema-ref-parser).
+Until the issue gets resolved and changes get merged upstream, solution is to dereference the spec using `@openapi-generator-plus/json-schema-ref-parser`(https://www.npmjs.com/package/@openapi-generator-plus/json-schema-ref-parser).
 
-This also means validation needs to be done via another package than `oas-normalize` - we use Spectral to validate and lint the spec.
+This also means validation is done prior to running scripts via Spectral rather than with `oas-normalize`.
 
 ## Future improvements
 
-- OAS Components / Schemas: coming soon
-- add more linting rules
-
-**Scripts**
-
-- update multiple specs at once!
+- Refactoring (OAS Components / Schemas, break up `nfts.yaml`, `sdk.yaml`).
+- More linting rules
+- update multiple specs at once
 - `create` and `update` scripts share a lot of code (can be simplified)
 - `create` script remove comments
 
