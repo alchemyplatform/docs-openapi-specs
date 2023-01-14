@@ -133,6 +133,21 @@ Full list [here]() (coming soon).
 - `create` and `update` scripts share a lot of code (can be simplified)
 - `create` script remove comments
 
+## Linting
+
+Linting is run automatically if you use the `scripts/create.js` and `scripts/update.js`.
+
+You can run it manually using
+
+```bash
+npx spectral lint spec.yaml
+```
+
+You should also install the extension for your editor.
+
+- [JetBrains Plugin](https://plugins.jetbrains.com/plugin/18520-spectral)
+- [VS Code Spectral Extension](https://marketplace.visualstudio.com/items?itemName=stoplight.spectral)
+
 ## Resources
 
 - [OpenAPI Specification v3.1.0](https://spec.openapis.org/oas/latest.html)
@@ -142,3 +157,6 @@ Full list [here]() (coming soon).
 
 - [Swagger.io - OpenAPI Guide](https://swagger.io/docs/specification/about/)
 - [Documenting APIs - OpenAPI tutorial](https://idratherbewriting.com/learnapidoc/pubapis_openapi_step1_openapi_object.html)
+
+- [Stoplight.io - Spectral](https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview)
+- [JSONPath](https://goessner.net/articles/JsonPath/index.html)
