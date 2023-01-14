@@ -16,7 +16,7 @@ x-readme:
     - curl
     - javascript
     - python
-  id: 63c1dbac59795a0026b53c64
+  id: 63c22160f3c53800167bbb73
 paths:
   "/{apiKey}":
     post:
