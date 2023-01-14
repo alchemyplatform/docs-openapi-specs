@@ -26,8 +26,8 @@ We are continously trying to improve our docs - any help is very welcomed! 😀
 
 You can:
 
-- suggest edits (top right of Tutorials pages)
-- share feedback using 'Did this page help you? sections (bottom of Tutorials / API Reference pages)
+- suggest edits (top right of [Tutorials](https://docs.alchemy.com/docs) pages)
+- share feedback using 'Did this page help you? sections (bottom of [Tutorials](https://docs.alchemy.com/docs) / [API Reference](https://docs.alchemy.com/reference/api-overview) pages)
 - open issues [here](https://github.com/alchemyplatform/docs-openapi-specs/issues/new)
 
 If you're feeling adventurous, feel free to open a pull request [here](https://github.com/alchemyplatform/docs-openapi-specs/compare).
