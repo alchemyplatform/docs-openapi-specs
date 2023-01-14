@@ -62,12 +62,12 @@ cp .env.template .env
 
 > Known issue: will remove comments and format spec when run.
 
-1. Write your spec (e.g. `transact/spec.yaml`).
+1. Write your spec (e.g. `newspec.yaml`).
 
 2. Run `create` script passing the path to your spec.
 
 ```bash
-  node scripts/create.js transact/spec.yaml
+  npm run create transact/newspec.yaml
 ```
 
 This will run the `rdme` command line tool 3 under the hood.
@@ -89,7 +89,7 @@ This will:
 Run `update` script. Ensure `x-readme.id` is set
 
 ```bash
-node scripts/update.js pathtospec.yml
+npm run update spec.yml
 ```
 
 ### Troubleshooting
@@ -98,16 +98,22 @@ node scripts/update.js pathtospec.yml
 2. Check you provided a valid path to a `.yaml` file when running the scripts.
 
 ```bash
-node scripts/create.js newspec.yaml
-node scripts/update.js existingspec.yaml
+npm run create spec.yaml
+npm run update spec.yaml
 ```
 
 3. Check the spec has an `id` under `x-readme`. This Readme id is used to match the spec to a given API playground.
 4. Reach out to Bastien if you have any issues running the scripts.
 
-## Open API Specifications
+## Linting
 
-We are progressively expanding linting using [Spectral](https://github.com/stoplightio/spectral).
+Linting is ran automatically using `npm run create` and `npm run update` powered by [Spectral](https://github.com/stoplightio/spectral).
+
+You can also run it manually using
+
+```bash
+npx spectral lint spec.yaml
+```
 
 Rules we follow:
 
@@ -119,34 +125,37 @@ Rules we follow:
 - operationId: standardize naming
 - responses: should have 200, and list of errors
 
-Full list [here]() (coming soon).
+Full list [here](.spectral.yaml).
+
+You should also install the extension for your editor.
+
+- [JetBrains Plugin](https://plugins.jetbrains.com/plugin/18520-spectral)
+- [VS Code Spectral Extension](https://marketplace.visualstudio.com/items?itemName=stoplight.spectral)
+
+### Quirks
+
+We currently cannot use [`oas-normalize`](https://github.com/readmeio/oas-normalize) to resolve $refs in specs.
+
+It relies on [`@readme/openapi-parser`](https://github.com/readmeio/openapi-parser) which relies on [`@readme/json-schema-ref-parser`](https://github.com/readmeio/json-schema-ref-parser).
+
+`@readme/json-schema-ref-parser` is a fork of [`@apidevtools/json-schema-ref-parser`](https://github.com/APIDevTools/json-schema-ref-parser).
+
+This is a known issue of `json-schema-ref-parser` - see [here](https://github.com/APIDevTools/json-schema-ref-parser/issues/200#issuecomment-1157687009).
+
+Until the issue gets resolved and changes merged upstream, the solution is to dereference the spec using `@openapi-generator-plus/json-schema-ref-parser`(https://www.npmjs.com/package/@openapi-generator-plus/json-schema-ref-parser).
+
+This also means validation needs to be done via another package than `oas-normalize` - we use Spectral to validate and lint the spec.
 
 ## Future improvements
 
 - OAS Components / Schemas: coming soon
-- Linting: coming soon
-- Fix paths: ref path do not allow clicking in VS Code
+- add more linting rules
 
 **Scripts**
 
 - update multiple specs at once!
 - `create` and `update` scripts share a lot of code (can be simplified)
 - `create` script remove comments
-
-## Linting
-
-Linting is run automatically if you use the `scripts/create.js` and `scripts/update.js`.
-
-You can run it manually using
-
-```bash
-npx spectral lint spec.yaml
-```
-
-You should also install the extension for your editor.
-
-- [JetBrains Plugin](https://plugins.jetbrains.com/plugin/18520-spectral)
-- [VS Code Spectral Extension](https://marketplace.visualstudio.com/items?itemName=stoplight.spectral)
 
 ## Resources
 
