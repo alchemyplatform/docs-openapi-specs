@@ -75,7 +75,7 @@ rules:
   alchemy-x-readme-id:
     severity: warn
     given: $.x-readme
-    description: "Id should be set."
+    message: "{{property}} missing. If creating a new spec, ignore this warning. If updating an existing one, id should be set."
     then:
       field: id
       function: defined
@@ -157,7 +157,7 @@ rules:
   #       function: defined
 
   alchemy-operation-operationId-casing:
-    severity: warn
+    severity: error
     message: "{{property}} must be kebab cased and without digits."
     given: $.paths.*.*
     then:
