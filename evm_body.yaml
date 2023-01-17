@@ -806,8 +806,8 @@ trace_rawTransaction:
             - trace_rawTransaction
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. `string` - Raw transaction data
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
