@@ -35,6 +35,7 @@ components:
               schema:
                 $ref: ../evm_body.yaml#/eth_getBlockByNumber
         x-readme:
+          explorer-enabled: false
           samples-languages:
             - javascript
             - curl
