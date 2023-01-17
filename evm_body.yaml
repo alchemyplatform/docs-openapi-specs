@@ -780,8 +780,8 @@ trace_call:
             - trace_call
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 1
+          maxItems: 1
           description: |
             1. `object` - Transaction Object (select in 1st box)
             2. `string` - Type of trace, one or more of "trace" or "stateDiff". (select in 2nd box)
@@ -877,6 +877,8 @@ trace_block:
             - trace_block
         params:
           type: array
+          minItems: 1
+          maxItems: 1
           description: |
             Array of HEX String.
             </br>The following options are possible for the defaultBlock parameter.
