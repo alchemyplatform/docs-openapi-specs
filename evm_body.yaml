@@ -852,8 +852,8 @@ trace_replayTransaction:
             - trace_replayTransaction
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. `string` - transaction hash
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
