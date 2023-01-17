@@ -780,8 +780,8 @@ trace_call:
             - trace_call
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 1
+          maxItems: 1
           description: |
             1. `object` - Transaction Object (select in 1st box)
             2. `string` - Type of trace, one or more of "trace" or "stateDiff". (select in 2nd box)
@@ -806,8 +806,8 @@ trace_rawTransaction:
             - trace_rawTransaction
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. `string` - Raw transaction data
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
@@ -830,8 +830,8 @@ trace_replayBlockTransactions:
             - trace_replayBlockTransactions
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. `string` - Block Identifier: Block hash, block number (in hex), or block tag
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
@@ -852,8 +852,8 @@ trace_replayTransaction:
             - trace_replayTransaction
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. `string` - transaction hash
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
@@ -877,6 +877,8 @@ trace_block:
             - trace_block
         params:
           type: array
+          minItems: 1
+          maxItems: 1
           description: |
             Array of HEX String.
             </br>The following options are possible for the defaultBlock parameter.
@@ -941,8 +943,8 @@ trace_get:
           description: |
             1. `string` - transaction hash
             2. `array` - index position of traces to get, in hex
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           items:
             anyOf:
               - type: string
@@ -1366,8 +1368,8 @@ eth_call_550_gas:
             - eth_call
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           items:
             oneOf:
               - allOf:

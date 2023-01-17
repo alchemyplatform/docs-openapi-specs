@@ -22,12 +22,12 @@ components:
               type: string
               default: docs-demo
               description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
             required: true
         requestBody:
           description: Accepts the transaction call object.
@@ -36,11 +36,11 @@ components:
               schema:
                 $ref: ../evm_body.yaml#/eth_call_550_gas
         x-readme:
+          explorer-enabled: false
           samples-languages:
             - javascript
-            - curl
             - python
-            - go
+            - curl
           code-samples:
             - language: javascript
               name: Alchemy SDK
