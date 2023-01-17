@@ -29,6 +29,18 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/trace_replayBlockTransactions
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - shell
+        code-samples:
+          - language: shell
+            name: cURL
+            code: |
+              curl https://eth-mainnet.g.alchemy.com/v2/your-api-key \
+              -X POST \
+              -H "Content-Type: application/json" \
+              -d '{"method":"trace_replayBlockTransactions","params":["0x2ed119",["trace"]],"id":1,"jsonrpc":"2.0"}'
       responses:
         '200':
           description: 'Returns - Array of block transactions traces.'

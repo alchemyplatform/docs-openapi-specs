@@ -830,8 +830,8 @@ trace_replayBlockTransactions:
             - trace_replayBlockTransactions
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           description: |
             1. `string` - Block Identifier: Block hash, block number (in hex), or block tag
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
