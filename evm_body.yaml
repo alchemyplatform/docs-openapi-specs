@@ -1368,8 +1368,8 @@ eth_call_550_gas:
             - eth_call
         params:
           type: array
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           items:
             oneOf:
               - allOf:
