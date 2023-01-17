@@ -943,8 +943,8 @@ trace_get:
           description: |
             1. `string` - transaction hash
             2. `array` - index position of traces to get, in hex
-          minItems: 2
-          maxItems: 2
+          minItems: 1
+          maxItems: 1
           items:
             anyOf:
               - type: string
