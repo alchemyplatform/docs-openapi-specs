@@ -26,6 +26,48 @@ paths:
           required: true
       x-readme:
         explorer-enabled: false
+        samples-languages:
+          - javascript
+          - shell
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Importing the Alchemy SDK
+              const { Network, Alchemy } = require("alchemy-sdk");
+
+              // Configuring the Alchemy SDK
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              // Creating a new Alchemy instance to interact with the Alchemy APIs
+              const alchemy = new Alchemy(settings);
+
+              // Creating a function to run the code
+              async function main() {
+                // Block number you want to trace
+                let blockNumber = 15530600;
+
+                // Using the traceBlock method to get the traces of the block
+                let blockTraces = await alchemy.debug.traceBlock(blockNumber, {
+                  type: "callTracer",
+                });
+
+                // Logging the traces of the block
+                console.log(blockTraces);
+              }
+
+              // Calling the main function to run the code
+              main();
+          - language: shell
+            code: |
+              curl https://eth-mainnet.g.alchemy.com/v2/demo \
+              -X POST \
+              -H "Content-Type: application/json" \
+              --data '{"method":"debug_traceBlockByNumber","params":["0xccde12", {"tracer": "callTracer"}],"id":1,"jsonrpc":"2.0"}'
+            name: cURL
       requestBody:
         content:
           application/json:

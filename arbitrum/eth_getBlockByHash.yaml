@@ -10,6 +10,7 @@ paths:
       operationId: eth-getblockbyhash-arbitrum
       $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path/post
       x-readme:
+        explorer-enabled: false
         samples-languages:
           - javascript
           - curl
