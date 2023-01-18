@@ -9,3 +9,37 @@ paths:
     post:
       $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path/post
       operationId: eth-getproof-arbitrum
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+            - javascript
+            - curl
+            - python
+            - go
+          code-samples:
+            - language: javascript
+              name: Alchemy SDK
+              code: |
+                // Setup: npm install alchemy-sdk
+                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+                import { Network, Alchemy } from "alchemy-sdk";
+
+                // Optional config object, but defaults to demo api-key and eth-mainnet.
+                const settings = {
+                  apiKey: "demo", // Replace with your Alchemy API Key.
+                  network: Network.ETH_MAINNET, // Replace with your network.
+                };
+                const alchemy = new Alchemy(settings);
+
+                // Using send method from alchemy-sdk with specific transaction details
+                const res = await alchemy.core.send('eth_getProof', [
+                  '0x7F0d15C7FAae65896648C8273B6d7E43f58Fa842',
+                  ["0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"],
+                  "latest",
+                ]);
+
+                console.log(res);
+        responses:
+          '200':
+            description: 'Returns the account and storage values of the specified account.'
+        operationId: eth-getproof-arbitrum
