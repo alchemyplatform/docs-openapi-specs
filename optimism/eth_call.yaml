@@ -8,14 +8,13 @@ paths:
   /{apiKey}:
     post:
       $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
-      operationId: eth-call-optimism      
+      operationId: eth-call-optimism
       x-readme:
         explorer-enabled: false
         samples-languages:
           - javascript
-          - curl
           - python
-          - go
+          - curl
         code-samples:
           - language: javascript
             name: Alchemy SDK

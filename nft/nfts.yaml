@@ -1231,7 +1231,7 @@ components:
       required: false
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", "x2y2", and "blur". Defaults to returning sales from all supported marketplaces.
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", "x2y2", "blur", and "cryptopunks". Defaults to returning sales from all supported marketplaces.
       in: query
       schema:
         type: string
@@ -1241,6 +1241,7 @@ components:
           - x2y2
           - wyvern
           - blur
+          - cryptopunks
       required: false
     buyerAddress:
       name: buyerAddress
