@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: alchemy_simulateAssetChanges
+  title: alchemy_simulateExecution
   version: "1.0"
 servers:
   - url: https://{network}.g.alchemy.com/v2
@@ -8,14 +8,18 @@ servers:
       network:
         enum:
           - eth-mainnet
+          - eth-goerli
           - polygon-mainnet
+          - polygon-mumbai
           - arb-mainnet
+          - arb-goerli
         default: eth-mainnet
 x-readme:
   samples-languages:
     - curl
     - javascript
     - python
+  id: 63ca1a91b91f350016a8c977
 paths:
   "/{apiKey}":
     post:
