@@ -49,3 +49,81 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result: 
+                    $ref: "#/components/schemas/Result"
+                example:
+                  {
+                  "jsonrpc": "2.0",
+                  "id": 1,
+                  "result": {
+                    "changes": [
+                      {
+                        "asset_type": "ERC20",
+                        "change_type": "TRANSFER",
+                        "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                        "to": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
+                        "raw_amount": "1000000",
+                        "contract_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                        "token_id": null,
+                        "decimals": 6,
+                        "symbol": "USDC",
+                        "name": "USD Coin",
+                        "logo": "https://static.alchemyapi.io/images/assets/3408.png",
+                        "amount": "1"
+                      }
+                    ],
+                    "error": null
+                  }
+                }
+
+components:
+  schemas:
+    Result:
+      type: object
+      properties:
+        changes:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssetChange"
+        error:
+          type: [string, 'null']
+
+    AssetChange:
+      type: object
+      properties:
+        "asset_type":
+          type: string
+        "change_type":
+          type: string
+        from:
+          $ref: ../components/schemas.yaml#/FromAddress
+        to:
+          $ref: ../components/schemas.yaml#/ToAddress
+        raw_amount:
+          type: string
+        amount:
+          type: string
+        symbol:
+          type: string
+        decimals:
+          type: [number, 'null']
+        contract_address:
+          anyOf:
+            - $ref: ../components/schemas.yaml#/Address
+            - type: 'null'
+        name:
+          type: [string, 'null']
+        logo:
+          type: [string, 'null']
+        token_id:
+          type: [number, 'null']
+          
