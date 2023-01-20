@@ -35,9 +35,10 @@ const { Readme } = require('./Readme');
   const readme = new Readme(key);
   await readme.spec.update({ id, spec });
 
-  const found = await readme.spec.find({ id });
-  if (found) {
-    const url = Readme.utils.createUrlFromSlug(found.category?.slug);
-    console.log(`URL => ${url}`);
-  }
+  console.log('Updated!');
+  // const found = await readme.spec.find({ id });
+  // if (found) {
+  //   const url = Readme.utils.createUrlFromSlug(found.category?.slug);
+  //   console.log(`URL => ${url}`);
+  // }
 })();
