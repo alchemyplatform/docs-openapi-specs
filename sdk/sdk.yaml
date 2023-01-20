@@ -1270,7 +1270,7 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - name: tokens
           in: query
-          description: 'An array of objects with the following properties: contractAddress, tokenId, tokenType. Maximum 100.'
+          description: List of token objects to batch request NFT metadata for. Maximum 100. 
           required: true
           schema:
             type: array
