@@ -48,4 +48,146 @@ paths:
                     $ref: ../components/schemas.yaml#/TxObject
       responses:
         "200":
-          description: OK
+          description: Flat - Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result: 
+                    $ref: "#/components/schemas/Result"
+
+components:
+  schemas:
+    Result:
+      type: object
+      properties:
+        calls:
+          type: array
+          items:
+            $ref: "#/components/schemas/Call"
+        logs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Log"
+        error:
+          type: [string, 'null']
+
+    Call:
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/CallType"
+        from:
+          $ref: ../components/schemas.yaml#/FromAddress
+        to:
+          $ref: ../components/schemas.yaml#/ToAddress
+        value:
+          anyOf:
+            - $ref: ../components/schemas.yaml#/Value
+            - type: 'null'
+        data:
+          $ref: ../components/schemas.yaml#/Data
+        gas:
+          $ref: ../components/schemas.yaml#/GasPrice
+        gasUsed:
+          $ref: ../components/schemas.yaml#/Hex
+        input:
+          $ref: ../components/schemas.yaml#/Hex
+        output:
+          $ref: ../components/schemas.yaml#/Hex
+        decoded:
+          anyOf:
+            - $ref: "#/components/schemas/DecodedCall"
+            - type: 'null'
+
+    CallType:
+      type: string
+      enum:
+        - CALL
+        - STATICCALL
+        - DELEGATECALL
+    
+    DecodingAuthority:
+      type: string
+      enum:
+        - ETHERSCAN
+
+    DecodedCall:
+      type: object
+      properties:
+        methodName:
+          type: string
+        inputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/DecodedCallParam"
+        outputs:
+          type: array
+          $ref: "#/components/schemas/DecodedCallParam"
+        authority:
+          type:
+            $ref: "#/components/schemas/DecodingAuthority"
+
+    DecodedCallParam:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          anyOf:
+            - $ref: ../components/schemas.yaml#/Hex
+            - type: string
+            - type: boolean
+
+    Log:
+      type: object
+      properties:
+        topics:
+          type: array
+          items:
+            $ref: ../components/schemas.yaml#/Hex
+        address:
+          type:
+            $ref: ../components/schemas.yaml#/Hex
+        data:
+          type:
+            $ref: ../components/schemas.yaml#/Hex 
+        decoded:
+          anyOf:
+            - $ref: "#/components/schemas/DecodedLog"
+            - type: 'null'
+
+    DecodedLog:
+      type: object
+      properties:
+        eventName:
+          type: string
+        inputs:
+          type: array
+          items:
+            $ref: "#/components/schemas/DecodedLogInput"
+        authority:
+          type:
+            $ref: "#/components/schemas/DecodingAuthority"
+    
+    DecodedLogInput:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        value:
+          anyOf:
+            - $ref: ../components/schemas.yaml#/Hex
+            - type: string
+            - type: boolean
+        indexed:
+          type: boolean
