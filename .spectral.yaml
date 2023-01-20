@@ -46,8 +46,11 @@ rules:
         functionOptions:
           values:
           - eth-mainnet
+          - eth-goerli
           - polygon-mainnet
+          - polygon-mumbai
           - arb-mainnet
+          - arb-goerli
 
   alchemy-servers-network-casing:
     severity: error

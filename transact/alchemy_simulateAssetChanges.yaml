@@ -8,8 +8,11 @@ servers:
       network:
         enum:
           - eth-mainnet
+          - eth-goerli
           - polygon-mainnet
+          - polygon-mumbai
           - arb-mainnet
+          - arb-goerli
         default: eth-mainnet
 x-readme:
   samples-languages:
