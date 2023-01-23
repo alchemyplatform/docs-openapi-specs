@@ -173,9 +173,7 @@ eth_getTransactionCount:
     - type: object
       properties:
         address:
-          type: string
-          description: 20 Bytes - Address
-          pattern: '^0[xX][0-9a-fA-F]{40}$'
+          $ref: '#/AddressParam'
         blockNumberOrTagOrHash:
           $ref: '#/BlockNumberOrTagOrHash'
         method:
@@ -295,9 +293,7 @@ eth_getBalance:
     - type: object
       properties:
         address:
-          type: string
-          description: 20 Bytes - Address
-          pattern: '^0[xX][0-9a-fA-F]{40}$'
+          $ref: '#/AddressParam'
         blockNumberOrTagOrHash:
           $ref: '#/BlockNumberOrTagOrHash'
         method:
@@ -317,9 +313,7 @@ eth_getStorageAt:
           enum:
             - eth_getStorageAt
         address:
-          type: string
-          description: 20 Bytes - Address of the storage
-          pattern: '^0[xX][0-9a-fA-F]{40}$'
+          $ref: '#/AddressParam'
         position:
           type: string
           description: Integer of the slot position in the storage (in hex)
@@ -331,9 +325,7 @@ eth_getCode:
     - type: object
       properties:
         address:
-          type: string
-          description: 20 Bytes - Address
-          pattern: '^0[xX][0-9a-fA-F]{40}$'
+          $ref: '#/AddressParam'
         blockNumberOrTagOrHash:
           $ref: '#/BlockNumberOrTagOrHash'
         method:
@@ -357,9 +349,7 @@ eth_getProof:
     - type: object
       properties:
         address:
-          type: string
-          description: 20 Bytes - Address of the account
-          pattern: '^0[xX][0-9a-fA-F]{40}$'
+          $ref: '#/AddressParam'
         storageKeys:
           type: array
           description: array of storage-keys which should be proofed and included
@@ -1585,7 +1575,14 @@ BlockNumberOrTagOrHash:
     - title: Block Tag
       $ref: '#/BlockTag'
     - title: Block Hash
-      $ref: '#/BlockHash'
+      $ref: '#/BlockHashEIP1898'
+
+AddressParam:
+  title: Address
+  type: string
+  description: 20 Bytes - Address
+  pattern: '^0[xX][0-9a-fA-F]{40}$'
+  default: '0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8'
 
 BlockTag:
   title: Block tag
@@ -1605,16 +1602,16 @@ BlockNumber:
   title: Block number
   type: string
   description: The hex value of a **block number**.
+  default: '0x61A80'
 
-BlockHash:
+BlockHashEIP1898:
   title: Block hash
   type: object
   required:
     - blockHash
   properties:
     blockHash:
-      title: Block hash
-      type: string
+      $ref: '#/blockHash_param'
     requireCanonical:
       title: Require canonical
       type: boolean
