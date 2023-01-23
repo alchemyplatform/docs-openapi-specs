@@ -39,8 +39,8 @@ rules:
 
   alchemy-servers-networks-supported:
     severity: error
-    description: "\"network\" property must be one of eth-mainnet, polygon-mainnet, arb-mainnet."
-    given: $.servers[0].variables.network.enum[*]
+    description: "\"network\" property must be one of supported networks."
+    given: $.servers[0].variables.network.enum.*
     then:
       - function: enumeration
         functionOptions:
@@ -55,7 +55,7 @@ rules:
   alchemy-servers-network-casing:
     severity: error
     description: "\"network\" must be kebab cased and without digits."
-    given: $.servers[0].variables.network.enum[*]
+    given: $.servers[0].variables.network.enum.*
     then:
       - function: casing
         functionOptions:
@@ -173,7 +173,7 @@ rules:
   # PARAMETERS
   alchemy-json-rpc-auth:
     severity: error
-    # description: "JSON RPC needs to use ApiKey parameter."
+    description: "JSON RPC needs to use ApiKey parameter."
     given: $.paths.*.*.parameters[0]
     # very important to set to false so ref is not resolved
     resolved: false
@@ -182,4 +182,16 @@ rules:
       function: "pattern"
       functionOptions:
         match: "../components/parameters.yaml#/ApiKey"
-      
+  
+  # ENUMS
+  # TODO: this clashes with network enum above - fix this
+  alchemy-enums-casing:
+    severity: warn
+    message: "Enums must be macro case (uppercase and separated by _)."
+    given: $..enum.*
+    then:
+      function: casing
+      functionOptions:
+        type: macro
+
+  # TODO: add rule to check response fields are camelCased
