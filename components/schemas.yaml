@@ -13,40 +13,40 @@ Address:
 FromAddress:
   $ref: '#/Address'
   # TODO: would hex make more sense than 20 bytes here?
-  description: '20 Bytes - The address the transaction is sent from.'
+  description: 'address the transaction is sent from'
 
 ToAddress:
   $ref: '#/Address'
-  description: '20 Bytes - The address the transaction is directed to.'
+  description: 'address the transaction is directed to'
   # USDC contract
   default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
 Value:
   $ref: '#/Hex'
-  description: 'amount of ETH to transfer from sender to recipient (in WEI, a denomination of ETH)'
+  description: 'amount in wei of ETH to transfer from sender to recipient'
   default: '0x0'
 
 Data:
   $ref: '#/Hex'
-  description: '(optional)'
+  description: ''
   # transfer 1 USDC to address
   default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
-
+    
 GasLimit:
-  type: string
-  description: 'max amount of gas units that can be consumed by the transaction'
+  $ref: '#/Hex'
+  description: 'max amount of gas available to the transaction'
 
 GasPrice:
-  type: string
-  description: '(optional)'
+  $ref: '#/Hex'
+  description: '(type 0) amount in wei per unit of gas'
 
 MaxPriorityFeePerGas:
-  type: string
-  description: 'max amount of gas to be included as a tip to the validator'
+  $ref: '#/Hex'
+  description: '(type 2) max amount of gas to be included as a tip to the validator'
 
 MaxFeePerGas:
-  type: string
-  description: 'max amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)'
+  $ref: '#/Hex'
+  description: '(type 2) max amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)'
 
 TxObject:
   type: object
