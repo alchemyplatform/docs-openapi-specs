@@ -487,7 +487,7 @@ components:
         to:
           $ref: ../components/schemas.yaml#/ToAddress
         value:
-          anyOf:
+          oneOf:
             - $ref: ../components/schemas.yaml#/Value
             - type: 'null'
         gas:
@@ -497,9 +497,10 @@ components:
         input:
           $ref: ../components/schemas.yaml#/Hex
         output:
-          $ref: ../components/schemas.yaml#/Hex
+          type: string
+          # $ref: ../components/schemas.yaml#/Hex
         decoded:
-          anyOf:
+          oneOf:
             - $ref: "#/components/schemas/DecodedCall"
             - type: 'null'
 
@@ -548,7 +549,7 @@ components:
         type:
           type: string
         value:
-          anyOf:
+          oneOf:
             - $ref: ../components/schemas.yaml#/Hex
             - type: string
 
@@ -569,7 +570,7 @@ components:
         data:
           $ref: ../components/schemas.yaml#/Hex 
         decoded:
-          anyOf:
+          oneOf:
             - $ref: "#/components/schemas/DecodedLog"
             - type: 'null'
 
@@ -602,7 +603,7 @@ components:
         type:
           type: string
         value:
-          anyOf:
+          oneOf:
             - $ref: ../components/schemas.yaml#/Hex
             - type: string
         indexed:
