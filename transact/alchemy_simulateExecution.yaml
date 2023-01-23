@@ -88,7 +88,6 @@ components:
         - from
         - to
         - value
-        - data
         - gas
         - gasUsed
         - input
@@ -105,8 +104,6 @@ components:
           anyOf:
             - $ref: ../components/schemas.yaml#/Value
             - type: 'null'
-        data:
-          $ref: ../components/schemas.yaml#/Data
         gas:
           $ref: ../components/schemas.yaml#/GasPrice
         gasUsed:
@@ -168,7 +165,6 @@ components:
           anyOf:
             - $ref: ../components/schemas.yaml#/Hex
             - type: string
-            - type: boolean
 
     Log:
       type: object
@@ -216,7 +212,7 @@ components:
         - name
         - type
         - value
-        - index
+        - indexed
       properties:
         name:
           type: string
@@ -226,6 +222,5 @@ components:
           anyOf:
             - $ref: ../components/schemas.yaml#/Hex
             - type: string
-            - type: boolean
         indexed:
           type: boolean
