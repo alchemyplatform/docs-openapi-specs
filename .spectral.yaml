@@ -127,7 +127,7 @@ rules:
         function: defined
 
   # OPERATIONS
-  operation-description: off
+  operation-description: warn
   operation-tags: off
 
   alchemy-operation-json-rpc-post:
