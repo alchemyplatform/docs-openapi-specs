@@ -13,7 +13,6 @@ components:
       post:
         summary: eth_getProof
         description: Returns the account and storage values of the specified account including the Merkle-proof. This call can be used to verify that the data you are pulling from is not tampered with.
-        tags: []
         parameters:
           - name: apiKey
             in: path
@@ -35,7 +34,7 @@ components:
                 $ref: ../evm_body.yaml#/eth_getProof
         responses:
           '200':
-            description: ''
+            description: 'Returns the account and storage values of the specified account.'
             content:
               application/json:
                 schema:
@@ -47,7 +46,6 @@ components:
             - javascript
             - curl
             - python
-            - go
           code-samples:
             - language: javascript
               name: Alchemy SDK
@@ -71,8 +69,3 @@ components:
                 ]);
 
                 console.log(res);
-        responses:
-          '200':
-            description: 'Returns the account and storage values of the specified account.'
-        operationId: eth-getProof
-

@@ -6,16 +6,46 @@ servers:
   - url: 'https://arb-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
-    post:
-      $ref: ../ethereum/eth_getProof.yaml#/components/pathItems/path/post
-      operationId: eth-getproof-arbitrum
-      x-readme:
-        explorer-enabled: false
-        samples-languages:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth-getProof-arbitrum
+        description: Returns the account and storage values of the specified account including the Merkle-proof on Arbitrum. This call can be used to verify that the data you are pulling from is not tampered with.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getProof
+        responses:
+          '200':
+            description: 'Returns the account and storage values of the specified account.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getProof
+        operationId: eth-getProof-polygon
+        x-readme:
+          explorer-enabled: false
+          samples-languages:
             - javascript
             - curl
             - python
-            - go
           code-samples:
             - language: javascript
               name: Alchemy SDK
@@ -39,7 +69,3 @@ paths:
                 ]);
 
                 console.log(res);
-        responses:
-          '200':
-            description: 'Returns the account and storage values of the specified account.'
-        operationId: eth-getproof-arbitrum
