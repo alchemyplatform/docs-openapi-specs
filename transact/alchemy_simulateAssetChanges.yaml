@@ -118,8 +118,17 @@ components:
       properties:
         "asset_type":
           type: string
+          enum:
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+            - SPECIAL_NFT
         "change_type":
           type: string
+          enum:
+            - APPROVE
+            - TRANSFER
         from:
           $ref: ../components/schemas.yaml#/FromAddress
         to:
