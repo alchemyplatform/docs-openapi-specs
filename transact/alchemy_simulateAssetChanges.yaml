@@ -63,28 +63,28 @@ paths:
                     $ref: "#/components/schemas/Result"
                 example:
                   {
-                  "jsonrpc": "2.0",
-                  "id": 1,
-                  "result": {
-                    "changes": [
-                      {
-                        "assetType": "ERC20",
-                        "changeType": "TRANSFER",
-                        "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
-                        "to": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
-                        "rawAmount": "1000000",
-                        "contractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-                        "tokenId": null,
-                        "decimals": 6,
-                        "symbol": "USDC",
-                        "name": "USD Coin",
-                        "logo": "https://static.alchemyapi.io/images/assets/3408.png",
-                        "amount": "1"
-                      }
-                    ],
-                    "error": null
+                    "jsonrpc": "2.0",
+                    "id": 1,
+                    "result": {
+                      "changes": [
+                        {
+                          "assetType": "ERC20",
+                          "changeType": "TRANSFER",
+                          "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                          "to": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
+                          "rawAmount": "1000000",
+                          "contractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                          "tokenId": null,
+                          "decimals": 6,
+                          "symbol": "USDC",
+                          "name": "USD Coin",
+                          "logo": "https://static.alchemyapi.io/images/assets/3408.png",
+                          "amount": "1"
+                        }
+                      ],
+                      "error": null
+                    }
                   }
-                }
 
 components:
   schemas:
