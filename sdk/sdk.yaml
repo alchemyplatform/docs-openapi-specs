@@ -7,7 +7,7 @@ servers:
 paths:
   /{apiKey}/call:
     post:
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       operationId: sdk-call
       summary: call
       description: Executes a new message call immediately without creating a transaction on the block chain.
@@ -78,7 +78,7 @@ paths:
       operationId: sdk-estimateGas
       summary: estimateGas
       description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -139,7 +139,7 @@ paths:
       operationId: sdk-findContractDeployer
       summary: findContractDeployer
       description: Finds the address that deployed the provided contract and block number it was deployed in.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -191,7 +191,7 @@ paths:
                 $ref: sdk_responses.yaml#/findContractDeployerResponse
   /{apiKey}/getAssetTransfers:
     post:
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       operationId: sdk-getAssetTransfers
       summary: getAssetTransfers
       description: The Transfers API allows you to easily fetch historical transactions for any address across Ethereum and supported L2s including Polygon, Arbitrum, and Optimism.
@@ -255,7 +255,7 @@ paths:
       operationId: sdk-getBalance
       summary: getBalance
       description: Returns the balance of the account of a given address.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -304,7 +304,7 @@ paths:
                 $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getBlock:
     post:
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       operationId: sdk-getBlock
       summary: getBlock
       description: Returns the block from the network based on the provided block number or hash.
@@ -379,7 +379,7 @@ paths:
                     }
   /{apiKey}/getBlockNumber:
     post:
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       operationId: sdk-getblocknumber
       summary: getBlockNumber
       description: Returns the number of the most recent block.
@@ -437,7 +437,7 @@ paths:
                   value: '15534524'
   /{apiKey}/getBlockWithTransactions:
     post:
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       operationId: sdk-getBlockWithTransactions
       summary: getBlockWithTransactions
       description: Returns the block from the network based on the provided block number or hash. Includes fully transactions from the block.
@@ -536,7 +536,7 @@ paths:
       operationId: sdk-getCode
       summary: getCode
       description: Returns code at a given address.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -588,7 +588,7 @@ paths:
       operationId: sdk-getFeeData
       summary: getFeeData
       description: Returns the recommended fee data to use in a transaction. For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas should be used. For legacy transactions and networks which do not support EIP-1559, the gasPrice should be used.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -635,7 +635,7 @@ paths:
       operationId: sdk-getGasPrice
       summary: getGasPrice
       description: Returns the current price per gas in wei.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -679,7 +679,7 @@ paths:
                 $ref: sdk_responses.yaml#/string_result_response
   /{apiKey}/getLogs:
     post:
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       operationId: sdk-getlogs
       summary: getLogs
       description: |
@@ -767,7 +767,7 @@ paths:
       operationId: sdk-getStorageAt
       summary: getStorageAt
       description: Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -819,7 +819,7 @@ paths:
       operationId: sdk-getTokenBalances
       summary: getTokenBalances
       description: Returns token balances for a specific address given a list of contracts. Alchemy Enhanced API.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -875,7 +875,7 @@ paths:
       operationId: sdk-getTokenMetadata
       summary: getTokenMetadata
       description: Returns metadata (name, symbol, decimals, logo) for a given token contract address.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -929,7 +929,7 @@ paths:
       operationId: sdk-getTransactionCount
       summary: getTransactionCount
       description: Returns the number of transactions sent from an address.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -981,7 +981,7 @@ paths:
       operationId: sdk-getTransactionReceipt
       summary: getTransactionReceipt
       description: Returns the receipt of a transaction by transaction hash.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -1036,7 +1036,7 @@ paths:
     post:
       summary: getTransactionReceipts
       description: An Alchemy Enhanced API that gets all transaction receipts for a given block by number or block hash. Supported on all networks for Ethereum, Polygon, and Arbitrum.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -1093,7 +1093,7 @@ paths:
       operationId: sdk-send
       summary: send
       description: Allows sending a raw message to the Alchemy backend.
-      tags: ['SDK Core Endpoints']
+      tags: ['SDK Core Methods']
       parameters:
         - name: apiKey
           in: path
@@ -1144,14 +1144,14 @@ paths:
                 $ref: sdk_responses.yaml#/any_result_response
 
   # ////////////////////////////////////////////////////////////////////////////////
-  # /////////////////////////////////// NFT ENDPOINTS //////////////////////////////
+  # /////////////////////////////////// NFT Methods //////////////////////////////
   # ////////////////////////////////////////////////////////////////////////////////
 
   '/{apiKey}/getNftsForOwner':
     get:
       summary: getNftsForOwner
       description: Gets all NFTs currently owned by a given address.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       operationId: sdk-getNfts
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -1219,7 +1219,7 @@ paths:
     get:
       summary: getNftMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1265,7 +1265,7 @@ paths:
     get:
       summary: getNftMetadataBatch
       description: Gets the metadata for a batch of NFTs.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - name: tokens
@@ -1343,7 +1343,7 @@ paths:
     post:
       summary: refreshNftMetadata
       description: Refreshes the metadata for a given NFT.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1386,7 +1386,7 @@ paths:
     get:
       summary: getNftSales
       description: Gets a list of NFT sales that have happened through on-chain marketplaces.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - name: options
@@ -1468,7 +1468,7 @@ paths:
     get:
       summary: summarizeNftAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1519,7 +1519,7 @@ paths:
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - name: query
@@ -1566,7 +1566,7 @@ paths:
     get:
       summary: getNftsForOwnerIterator
       description: Fetches all NFTs for a given owner and yields them in an async iterable.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - name: owner
@@ -1663,7 +1663,7 @@ paths:
     get:
       summary: getNftsForContractIterator
       description: Fetches all NFTs for a given contract address and yields them in an async iterable.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1745,7 +1745,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1802,7 +1802,7 @@ paths:
     get:
       summary: getNftsForContract
       description: Gets all NFTs for a given NFT contract.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1862,7 +1862,7 @@ paths:
     get:
       summary: getOwnersForNft
       description: Get the owner(s) for a token.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1905,7 +1905,7 @@ paths:
     get:
       summary: getOwnersForContract
       description: Gets all owners for a given NFT contract.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1949,7 +1949,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
@@ -1989,7 +1989,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -2030,7 +2030,7 @@ paths:
     get:
       summary: refreshContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -2089,7 +2089,7 @@ paths:
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -2151,7 +2151,7 @@ paths:
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -2205,7 +2205,7 @@ paths:
     get:
       summary: verifyNftOwnership
       description: Checks if the given address holds an NFT from the given NFT contract.
-      tags: ['SDK NFT Endpoints']
+      tags: ['SDK NFT Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/walletAddress'
@@ -2247,7 +2247,7 @@ paths:
   #   get:
   #     summary: isHolderOfCollection
   #     description: Checks whether a wallet holds a NFT in a given collection
-  #     tags: ['SDK NFT Endpoints']
+  #     tags: ['SDK NFT Methods']
   #     parameters:
   #       - $ref: '#/components/schemas/apiKey'
   #       - $ref: '#/components/schemas/wallet'
@@ -2273,7 +2273,7 @@ paths:
   #     operationId: sdk-isHolderOfCollection
 
   # ////////////////////////////////////////////////////////////////////////////////
-  # /////////////////////////////////// TRANSACT ENDPOINTS /////////////////////////
+  # /////////////////////////////////// TRANSACT Methods /////////////////////////
   # ////////////////////////////////////////////////////////////////////////////////
 
   /{apiKey}/getTransaction:
@@ -2281,7 +2281,7 @@ paths:
       operationId: sdk-getTransaction
       summary: getTransaction
       description: 'Returns the information about a transaction requested by transaction hash or number. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
-      tags: ['SDK Transact Endpoints']
+      tags: ['SDK Transact Methods']
       parameters:
         - name: apiKey
           in: path
@@ -2342,7 +2342,7 @@ paths:
       operationId: sdk-sendTransaction
       summary: sendTransaction
       description: Creates a new message call transaction or a contract creation for signed transactions.
-      tags: ['SDK Transact Endpoints']
+      tags: ['SDK Transact Methods']
       parameters:
         - name: apiKey
           in: path
@@ -2409,7 +2409,7 @@ paths:
       summary: sendPrivateTransaction
       operationId: sdk-sendPrivateTransaction
       description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.
-      tags: ['SDK Transact Endpoints']
+      tags: ['SDK Transact Methods']
       parameters:
         - name: apiKey
           in: path
@@ -2476,7 +2476,7 @@ paths:
       operationId: sdk-cancelPrivateTransaction
       summary: cancelPrivateTransaction
       description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.
-      tags: ['SDK Transact Endpoints']
+      tags: ['SDK Transact Methods']
       parameters:
         - name: apiKey
           in: path
@@ -2532,7 +2532,7 @@ paths:
       operationId: sdk-waitForTransaction
       summary: waitForTransaction
       description: Returns a promise which will not resolve until specified transaction hash is mined. If confirmations is 0, this method is non-blocking and if the transaction has not been mined returns null. Otherwise, this method will block until the transaction has confirmed blocks mined on top of the block in which it was mined.
-      tags: ['SDK Transact Endpoints']
+      tags: ['SDK Transact Methods']
       parameters:
         - name: apiKey
           in: path
@@ -2585,14 +2585,14 @@ paths:
                 $ref: sdk_responses.yaml#/transaction_receipt
 
   # ////////////////////////////////////////////////////////////////////////////////
-  # /////////////////////////////////// NOTIFY ENDPOINTS ///////////////////////////
+  # /////////////////////////////////// NOTIFY Methods ///////////////////////////
   # ////////////////////////////////////////////////////////////////////////////////
 
   /get-all-webhooks:
     get:
       summary: getAllWebhooks
       description: This endpoint allows you to get all webhooks from every app on your team.
-      tags: ['SDK Notify Endpoints']
+      tags: ['SDK Notify Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
       x-readme:
@@ -2631,7 +2631,7 @@ paths:
     get:
       summary: getAddresses
       description: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
-      tags: ['SDK Notify Endpoints']
+      tags: ['SDK Notify Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
@@ -2680,7 +2680,7 @@ paths:
     get:
       summary: getNftFilters
       description: Paginated endpoint to list all of the NFT filter objects a given webhook is subscribed to.
-      tags: ['SDK Notify Endpoints']
+      tags: ['SDK Notify Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'
@@ -2728,7 +2728,7 @@ paths:
     put:
       summary: updateWebhook
       description: 'Allows you to update the state of an existing webhook. Input parameters is a webhook ID or object, followed by exactly one of the Update objects listed below.'
-      tags: ['SDK Notify Endpoints']
+      tags: ['SDK Notify Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
@@ -2797,7 +2797,7 @@ paths:
     post:
       summary: createWebhook
       description: 'This endpoint allows you to create a webhook.'
-      tags: ['SDK Notify Endpoints']
+      tags: ['SDK Notify Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
       requestBody:
@@ -2873,7 +2873,7 @@ paths:
     delete:
       summary: deleteWebhook
       description: 'Allows you to delete a webhook.'
-      tags: ['SDK Notify Endpoints']
+      tags: ['SDK Notify Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/webhook_id'

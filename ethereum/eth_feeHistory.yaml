@@ -71,7 +71,3 @@ components:
                 ]);
 
                 console.log(res);
-        responses:
-          '200':
-            description: 'Returns latest block and gas fee details.'
-        operationId: eth-feehistory-arbitrum
