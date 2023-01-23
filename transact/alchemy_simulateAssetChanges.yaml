@@ -89,6 +89,9 @@ components:
   schemas:
     Result:
       type: object
+      required:
+        - changes
+        - error
       properties:
         changes:
           type: array

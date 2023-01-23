@@ -65,6 +65,10 @@ components:
   schemas:
     Result:
       type: object
+      required:
+        - calls
+        - logs
+        - error
       properties:
         calls:
           type: array
@@ -79,6 +83,17 @@ components:
 
     Call:
       type: object
+      required:
+        - type
+        - from
+        - to
+        - value
+        - data
+        - gas
+        - gasUsed
+        - input
+        - output
+        - decoded
       properties:
         type:
           $ref: "#/components/schemas/CallType"
@@ -119,6 +134,11 @@ components:
 
     DecodedCall:
       type: object
+      required:
+        - methodName
+        - inputs
+        - outputs
+        - authority
       properties:
         methodName:
           type: string
@@ -135,6 +155,10 @@ components:
 
     DecodedCallParam:
       type: object
+      required:
+        - name
+        - type
+        - value
       properties:
         name:
           type: string
@@ -148,6 +172,11 @@ components:
 
     Log:
       type: object
+      required:
+        - topics
+        - address
+        - data
+        - decoded
       properties:
         topics:
           type: array
@@ -166,6 +195,10 @@ components:
 
     DecodedLog:
       type: object
+      required:
+        - eventName
+        - inputs
+        - authority
       properties:
         eventName:
           type: string
@@ -179,6 +212,11 @@ components:
     
     DecodedLogInput:
       type: object
+      required:
+        - name
+        - type
+        - value
+        - index
       properties:
         name:
           type: string
