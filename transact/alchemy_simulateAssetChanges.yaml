@@ -54,6 +54,10 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
                 properties:
                   id:
                     $ref: ../components/schemas.yaml#/Id
