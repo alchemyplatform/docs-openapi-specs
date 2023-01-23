@@ -99,6 +99,19 @@ components:
 
     AssetChange:
       type: object
+      required:
+        - asset_type
+        - change_type
+        - from
+        - to
+        - raw_amount
+        - amount
+        - symbol
+        - decimals
+        - contract_address
+        - name
+        - logo
+        - token_id
       properties:
         "asset_type":
           type: string
