@@ -487,7 +487,7 @@ components:
         to:
           $ref: ../components/schemas.yaml#/ToAddress
         value:
-          oneOf:
+          anyOf:
             - $ref: ../components/schemas.yaml#/Value
             - type: 'null'
         gas:
@@ -498,9 +498,10 @@ components:
           $ref: ../components/schemas.yaml#/Hex
         output:
           type: string
+          # TODO: unsure if 0x is allowed here - not a valid hex
           # $ref: ../components/schemas.yaml#/Hex
         decoded:
-          oneOf:
+          anyOf:
             - $ref: "#/components/schemas/DecodedCall"
             - type: 'null'
 
@@ -549,7 +550,7 @@ components:
         type:
           type: string
         value:
-          oneOf:
+          anyOf:
             - $ref: ../components/schemas.yaml#/Hex
             - type: string
 
@@ -570,7 +571,7 @@ components:
         data:
           $ref: ../components/schemas.yaml#/Hex 
         decoded:
-          oneOf:
+          anyOf:
             - $ref: "#/components/schemas/DecodedLog"
             - type: 'null'
 
@@ -603,7 +604,7 @@ components:
         type:
           type: string
         value:
-          oneOf:
+          anyOf:
             - $ref: ../components/schemas.yaml#/Hex
             - type: string
         indexed:
