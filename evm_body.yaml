@@ -170,7 +170,7 @@ eth_getBlockTransactionCountByNumber:
 eth_getTransactionCount:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_param_eth'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898'
     - type: object
       properties:
         method:
@@ -178,6 +178,7 @@ eth_getTransactionCount:
           default: eth_getTransactionCount
           enum:
             - eth_getTransactionCount
+
 eth_getTransactionByBlockHashAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
@@ -284,10 +285,11 @@ eth_cancelPrivateTransaction:
               txHash:
                 type: string
                 description: Transaction hash for private transaction to be cancelled.
+
 eth_getBalance:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_param_eth'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898'
     - type: object
       properties:
         method:
@@ -295,6 +297,7 @@ eth_getBalance:
           default: eth_getBalance
           enum:
             - eth_getBalance
+
 eth_getStorageAt:
   allOf:
     - $ref: '#/common_request_fields'
@@ -310,7 +313,7 @@ eth_getStorageAt:
           description: |
             1. String - 20 Bytes - address of the storage
             2. String - Integer of the slot position in the storage (in hex)
-            3. String - Either the hex value of a **block number** OR One of the following **block tags**:
+            3. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
               * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
               * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
               * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
@@ -320,10 +323,13 @@ eth_getStorageAt:
           maxItems: 3
           items:
             type: string
+          default:
+            ['0x407d73d8a49eeb85d32cf465507dd71d507100c1', '0x0', 'latest']
+
 eth_getCode:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/address_and_blockNumber_param_eth'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898'
     - type: object
       properties:
         method:
@@ -331,6 +337,7 @@ eth_getCode:
           default: eth_getCode
           enum:
             - eth_getCode
+
 eth_accounts:
   allOf:
     - $ref: '#/common_request_fields'
@@ -362,20 +369,19 @@ eth_getProof:
               * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
               * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 1
+          maxItems: 1
           items:
             anyOf:
-              - type: string
-                title: Address
-                description: Address of the account
+              - $ref: '#/AddressParam'
               - type: array
                 title: Array of storage keys
                 description: array of storage-keys which should be proofed and included
                 items:
                   type: string
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Block Number or Block Tag
+              - $ref: '#/BlockNumberOrTagOrHash'
+                title: Block Number or Block Hash or Block Tag
+
 eth_protocolVersion:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1356,6 +1362,7 @@ topics:
   description: Array of 32 Bytes DATA topics. Topics are order-dependent. Each topic can also be an array of DATA with "or" options.
   items:
     type: string
+
 eth_call_550_gas:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1376,8 +1383,8 @@ eth_call_550_gas:
                   - $ref: '#/transaction_object'
                     title: Transaction Object
                   - $ref: '#/gas_550'
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Block number or block tag
+              - $ref: '#/BlockNumberOrTagOrHash'
+                title: Block number or block tag or block hash
 
 transaction_object:
   type: object
@@ -1578,6 +1585,74 @@ address_and_blockNumber_param_eth:
       maxItems: 2
       items:
         type: string
+
+address_and_blockNumberOrTagOrHash_param_EIP1898:
+  type: object
+  properties:
+    params:
+      type: array
+      description: |
+        1. String - 20 Bytes - Address
+        2. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
+            * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+      default: ['0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8', 'latest']
+
+BlockNumberOrTagOrHash:
+  title: Block number or tag, or block hash
+  oneOf:
+    - title: Block Number
+      $ref: '#/BlockNumber'
+    - title: Block Tag
+      $ref: '#/BlockTag'
+    - title: Block Hash
+      $ref: '#/BlockHashEIP1898'
+
+AddressParam:
+  title: Address
+  type: string
+  description: 20 Bytes - Address
+  pattern: '^0[xX][0-9a-fA-F]{40}$'
+  default: '0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8'
+
+BlockTag:
+  title: Block tag
+  type: string
+  description: |
+    One of the following **block tags**:
+      * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+  enum:
+    - pending
+    - latest
+    - earliest
+  default: latest
+
+BlockNumber:
+  title: Block number
+  type: string
+  description: The hex value of a **block number**.
+  default: '0x61A80'
+
+BlockHashEIP1898:
+  title: Block hash
+  type: object
+  required:
+    - blockHash
+  properties:
+    blockHash:
+      $ref: '#/blockHash_param'
+    requireCanonical:
+      title: Require canonical
+      type: boolean
+      default: false
+
 address_and_blockNumber_param_l2:
   type: object
   properties:
