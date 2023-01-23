@@ -142,9 +142,12 @@ components:
         decimals:
           type: [number, 'null']
         contractAddress:
-          anyOf:
-            - $ref: ../components/schemas.yaml#/Address
-            - type: 'null'
+          type: [string, 'null']
+          # Readme currently renders Address just as string
+          # keep uncommented for now
+          # anyOf:
+          #   - $ref: ../components/schemas.yaml#/Address
+          #   - type: 'null'
         name:
           type: [string, 'null']
         logo:
