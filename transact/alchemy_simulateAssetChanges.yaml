@@ -67,13 +67,13 @@ paths:
                   "result": {
                     "changes": [
                       {
-                        "asset_type": "ERC20",
-                        "change_type": "TRANSFER",
+                        "assetType": "ERC20",
+                        "changeType": "TRANSFER",
                         "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
                         "to": "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de",
-                        "raw_amount": "1000000",
-                        "contract_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-                        "token_id": null,
+                        "rawAmount": "1000000",
+                        "contractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                        "tokenId": null,
                         "decimals": 6,
                         "symbol": "USDC",
                         "name": "USD Coin",
@@ -103,20 +103,20 @@ components:
     AssetChange:
       type: object
       required:
-        - asset_type
-        - change_type
+        - assetType
+        - changeType
         - from
         - to
-        - raw_amount
+        - rawAmount
         - amount
         - symbol
         - decimals
-        - contract_address
+        - contractAddress
         - name
         - logo
-        - token_id
+        - tokenId
       properties:
-        "asset_type":
+        assetType:
           type: string
           enum:
             - NATIVE
@@ -124,7 +124,7 @@ components:
             - ERC721
             - ERC1155
             - SPECIAL_NFT
-        "change_type":
+        changeType:
           type: string
           enum:
             - APPROVE
@@ -133,7 +133,7 @@ components:
           $ref: ../components/schemas.yaml#/FromAddress
         to:
           $ref: ../components/schemas.yaml#/ToAddress
-        raw_amount:
+        rawAmount:
           type: string
         amount:
           type: string
@@ -141,7 +141,7 @@ components:
           type: string
         decimals:
           type: [number, 'null']
-        contract_address:
+        contractAddress:
           anyOf:
             - $ref: ../components/schemas.yaml#/Address
             - type: 'null'
@@ -149,5 +149,5 @@ components:
           type: [string, 'null']
         logo:
           type: [string, 'null']
-        token_id:
+        tokenId:
           type: [number, 'null']
