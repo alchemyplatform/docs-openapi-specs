@@ -2915,7 +2915,7 @@ paths:
     delete:
       summary: debug_traceCall
       description: 'Runs an eth_call within the context of the given block execution using the final state of parent block as the base.'
-      tags: ['Debug APIs']
+      tags: ['SDK Debug APis']
       parameters:
         - name: apiKey
           in: path
@@ -2934,7 +2934,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceCall
+              $ref: ./evm_body.yaml#/debug_traceCall
       x-readme:
         explorer-enabled: false
       responses:
@@ -2943,14 +2943,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/debug_traceCall
+                $ref: ./evm_responses.yaml#/debug_traceCall
       operationId: debug-tracecall
   
   /{apiKey}/debug_tracetransaction:
     delete:
       summary: debug_tracetransaction
       description: 'Attempts to run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.'
-      tags: ['Debug APIs']
+      tags: ['SDK Debug APis']
       parameters:
         - name: apiKey
           in: path
@@ -2969,7 +2969,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceTransaction
+              $ref: ./evm_body.yaml#/debug_traceTransaction
       x-readme:
         explorer-enabled: false
       responses:
@@ -2978,14 +2978,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/debug_traceTransaction
+                $ref: ./evm_responses.yaml#/debug_traceTransaction
       operationId: debug-tracetransaction
   
   /{apiKey}/debug_traceBlockByNumber:
     delete:
       summary: debug_traceBlockByNumber
       description: 'Replays the block that is already present in the database.'
-      tags: ['Debug APIs']
+      tags: ['SDK Debug APis']
       parameters:
         - name: apiKey
           in: path
@@ -3004,7 +3004,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceBlockByNumber
+              $ref: ./evm_body.yaml#/debug_traceBlockByNumber
       x-readme:
         explorer-enabled: false
       responses:
@@ -3013,14 +3013,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/debug_traceBlockByNumber
+                $ref: ./evm_responses.yaml#/debug_traceBlockByNumber
       operationId: debug-traceblockbynumber
 
   /{apiKey}/debug_traceBlockByHash:
     delete:
       summary: debug_traceBlockByHash
       description: 'Replays the block that is already present in the database.'
-      tags: ['Debug APIs']
+      tags: ['SDK Debug APis']
       parameters:
         - name: apiKey
           in: path
@@ -3039,7 +3039,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceBlockByHash
+              $ref: ./evm_body.yaml#/debug_traceBlockByHash
       x-readme:
         explorer-enabled: false
       responses:
@@ -3048,7 +3048,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/debug_traceBlockByHash
+                $ref: ./evm_responses.yaml#/debug_traceBlockByHash
       operationId: debug-traceblockbyhash
   
 
