@@ -149,7 +149,7 @@ paths:
               properties:
                 tokens:
                   type: array
-                  description: list of token objects to batch request NFT metadata for
+                  description: List of token objects to batch request NFT metadata for. Maximum 100. 
                   items:
                     type: object
                     properties:
@@ -1231,7 +1231,7 @@ components:
       required: false
     marketplace:
       name: marketplace
-      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", "x2y2", and "blur". Defaults to returning sales from all supported marketplaces.
+      description: Enum - The name of the NFT marketplace to filter sales by. The endpoint currently supports "seaport", "wyvern", "looksrare", "x2y2", "blur", and "cryptopunks". Defaults to returning sales from all supported marketplaces.
       in: query
       schema:
         type: string
@@ -1241,6 +1241,7 @@ components:
           - x2y2
           - wyvern
           - blur
+          - cryptopunks
       required: false
     buyerAddress:
       name: buyerAddress

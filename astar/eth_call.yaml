@@ -13,9 +13,8 @@ paths:
         explorer-enabled: false
         samples-languages:
           - javascript
-          - curl
           - python
-          - go
+          - curl
         code-samples:
           - language: javascript
             name: Alchemy SDK

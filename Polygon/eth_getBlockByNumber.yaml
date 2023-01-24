@@ -11,6 +11,7 @@ paths:
       $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblockbynumber-polygon
       x-readme:
+        explorer-enabled: false
         samples-languages:
           - javascript
           - curl
@@ -33,14 +34,13 @@ paths:
 
               alchemy.core.getBlock(15221026).then(console.log);
 
-
 # testing block number definition update
 #/{apiKey}:
- #   post:
-  #    $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
-   #   operationId: eth-getblockbynumber-polygon
-    #  requestBody:
-     #   content:
-      #    application/json:
-       #     schema:
-        #      $ref: ../evm_body.yaml#/eth_getBlockByNumber_l2
+#   post:
+#    $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
+#   operationId: eth-getblockbynumber-polygon
+#  requestBody:
+#   content:
+#    application/json:
+#     schema:
+#      $ref: ../evm_body.yaml#/eth_getBlockByNumber_l2

@@ -29,6 +29,26 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/trace_call
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - shell
+        code-samples:
+          - language: shell
+            name: cURL
+            code: |
+              curl https://eth-mainnet.g.alchemy.com/v2/your-api-key \
+              -X POST \
+              -H "Content-Type: application/json" \
+              -d '{"method":"trace_call",
+                  "params":[{
+                    "from": "0x6f1FB6EFDf50F34bFA3F2bC0E5576EdD71631638",
+                    "to": "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e",
+                    "value": "0x0",
+                    "data": "0xa67a6a45000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000"},
+                    ["trace"]],
+                  "id":1,
+                  "jsonrpc":"2.0"}'
       responses:
         '200':
           description: 'Returns - Array of Block traces'
