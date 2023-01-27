@@ -257,7 +257,7 @@ eth_sendPrivateTransaction:
               tx:
                 type: string
                 description: 'Raw, signed transaction'
-                default: '0x'
+                default: '0x02f87205158459682f00850c51e9727a82520894477db63b8e73aea96f201c3c4f5e8fbfcdd18b5c87038d7ea4c6800080c080a0312d6375e578ab953a41456d4be583a46dced97a9e38f349bb8e7b63d14cfc1ea001daea40332180670568a1864e6d3f910b194903128d4a0a5c499597f3f6ff40'
               maxBlockNumber:
                 type: string
                 description: Hex-encoded number for highest block number in which the transaction should be included.
