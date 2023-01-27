@@ -706,7 +706,7 @@ alchemy_getTransactionReceipts_param:
                 type: string
                 description: The block hash you want to get transaction receipts for
                 pattern: '^0[xX][0-9a-fA-F]+$'
-                default: '0xb3e8c898cfbf4072eaad440e8606e578a33ca4fafc27d7936d83d7392ba3e939'
+                # Did not use the blockHash_param component because it has a default value and we don't want that here, because this method only accepts either blockNumber or blockHash, not both and in this way we can also provide a better description.
 
 # ============= Token API Methods ===============
 alchemy_getTokenAllowance:
