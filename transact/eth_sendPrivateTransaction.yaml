@@ -29,6 +29,50 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/eth_sendPrivateTransaction
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - javascript
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              const { Alchemy, Network, Wallet, Utils } = require("alchemy-sdk");
+
+              const dotenv = require("dotenv");
+              dotenv.config();
+
+              const { API_KEY, PRIVATE_KEY } = process.env;
+
+              const config = {
+                apiKey: API_KEY,
+                network: Network.ETH_MAINNET,
+              };
+
+              const alchemy = new Alchemy(config);
+
+              const wallet = new Wallet(PRIVATE_KEY);
+
+              async function main() {
+                const feeData = await alchemy.core.getFeeData();
+
+                const transaction = {
+                  to: "0x477dB63b8e73AeA96F201C3C4F5e8FbfCdd18B5c",
+                  value: Utils.parseEther("0.001"),
+                  gasLimit: Utils.parseUnits("21000", "wei"),
+                  maxPriorityFeePerGas: feeData.maxPriorityFeePerGas,
+                  maxFeePerGas: feeData.maxFeePerGas,
+                  nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                  type: 2,
+                  chainId: 1,
+                };
+
+                const rawTransaction = await wallet.signTransaction(transaction);
+                console.log(rawTransaction);
+                alchemy.transact.sendPrivateTransaction(rawTransaction).then(console.log);
+              }
+
+              main();
       responses:
         '200':
           description: ''
