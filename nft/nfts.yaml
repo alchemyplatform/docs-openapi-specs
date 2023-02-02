@@ -3,13 +3,16 @@ info:
   title: 🎨 NFT API
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/v2
-    variables:
-      network:
-        enum:
-          - eth-mainnet
-          - eth-goerli
-        default: eth-mainnet
+  - description: Ethereum Mainnet
+    url: 'https://eth-mainnet.g.alchemy.com/nft/v2'
+  - description: Ethereum Rinkeby
+    url: 'https://eth-rinkeby.g.alchemy.com/nft/v2'
+  - description: Ethereum Goerli
+    url: 'https://eth-goerli.g.alchemy.com/nft/v2'
+  - description: Polygon Mainnet
+    url: 'https://polygon-mainnet.g.alchemy.com/nft/v2'
+  - description: Polygon Mumbai
+    url: 'https://polygon-mumbai.g.alchemy.com/nft/v2'
 paths:
   '/{apiKey}/getNFTs':
     get:
@@ -146,7 +149,7 @@ paths:
               properties:
                 tokens:
                   type: array
-                  description: List of token objects to batch request NFT metadata for. Maximum 100.
+                  description: List of token objects to batch request NFT metadata for. Maximum 100. 
                   items:
                     type: object
                     properties:
