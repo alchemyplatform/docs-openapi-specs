@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: alchemy_simulateAssetChangesBundle
+  version: "1.0"
+servers:
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - eth-goerli
+          - polygon-mainnet
+          - polygon-mumbai
+          - arb-mainnet
+          - arb-goerli
+        default: eth-mainnet
+x-readme:
+  samples-languages:
+    - curl
+    - javascript
+    - python
+  id: 63dc3dd7c80b5f001335b9b1
+paths:
+  "/{apiKey}":
+    post:
+      summary: alchemy_simulateAssetChangesBundle
+      operationId: alchemy-simulateassetchangesbundle
+      description: Simulates multiple transactions and returns a list of asset changes.
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  $ref: ../components/schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ../components/schemas.yaml#/JsonRpc
+                method:
+                  $ref: ../components/schemas.yaml#/Method
+                  default: alchemy_simulateAssetChangesBundle
+                params:
+                  type: array
+                  minItems: 1
+                  maxItems: 3
+                  items:
+                    $ref: ../components/schemas.yaml#/TxObject
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    $ref: "#/components/schemas/Result"
+                example:
+                  jsonrpc: "2.0"
+                  id: 1
+                  result:
+                    changes:
+                      - assetType: ERC20
+                        changeType: TRANSFER
+                        from: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+                        to: "0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de"
+                        rawAmount: "1000000"
+                        contractAddress: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                        tokenId: null
+                        decimals: 6
+                        symbol: USDC
+                        name: USD Coin
+                        logo: https://static.alchemyapi.io/images/assets/3408.png
+                        amount: "1"
+                    error: null
+components:
+  schemas:
+    Result:
+      type: object
+      required:
+        - changes
+        - error
+      properties:
+        changes:
+          type: array
+          items:
+            $ref: "#/components/schemas/AssetChange"
+        error:
+          type:
+            - string
+            - "null"
+    AssetChange:
+      type: object
+      required:
+        - assetType
+        - changeType
+        - from
+        - to
+        - rawAmount
+        - amount
+        - symbol
+        - decimals
+        - contractAddress
+        - name
+        - logo
+        - tokenId
+      properties:
+        assetType:
+          type: string
+          enum:
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+            - SPECIAL_NFT
+        changeType:
+          type: string
+          enum:
+            - APPROVE
+            - TRANSFER
+        from:
+          $ref: ../components/schemas.yaml#/FromAddress
+        to:
+          $ref: ../components/schemas.yaml#/ToAddress
+        rawAmount:
+          type: string
+        amount:
+          type: string
+        symbol:
+          type: string
+        decimals:
+          type:
+            - number
+            - "null"
+        contractAddress:
+          type:
+            - string
+            - "null"
+        name:
+          type:
+            - string
+            - "null"
+        logo:
+          type:
+            - string
+            - "null"
+        tokenId:
+          type:
+            - number
+            - "null"
