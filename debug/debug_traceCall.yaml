@@ -3,19 +3,7 @@ info:
   title: debug_traceCall
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/v2
-    variables:
-      network:
-        enum:
-          - eth-mainnet
-          - eth-goerli
-          - polygon-mainnet
-          - polygon-mumbai
-          - arb-mainnet
-          - arb-goerli
-          - opt-mainnet
-          - opt-goerli
-        default: eth-mainnet
+  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
 paths:
   /{apiKey}:
     post:

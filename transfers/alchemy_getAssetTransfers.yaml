@@ -3,19 +3,14 @@ info:
   title: 💸 Transfers API (Tx History)
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/v2
-    variables:
-      network:
-        enum:
-          - eth-mainnet
-          - eth-goerli
-          - polygon-mainnet
-          - polygon-mumbai
-          - arb-mainnet
-          - arb-goerli
-          - opt-mainnet
-          - opt-goerli
-        default: eth-mainnet
+  - description: Ethereum
+    url: 'https://eth-mainnet.g.alchemy.com/v2'
+  - description: Polygon
+    url: 'https://polygon-mainnet.g.alchemy.com/v2'
+  - description: Arbitrum
+    url: 'https://arb-mainnet.g.alchemy.com/v2'
+  - description: Optimism
+    url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
@@ -76,5 +71,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_responses.yaml#/alchemy_getAssetTransfers
+                $ref: evm_responses.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_responses.yaml#/alchemy_getAssetTransfers
       operationId: alchemy-getAssetTransfers
