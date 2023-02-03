@@ -47,7 +47,9 @@ paths:
                   minItems: 1
                   maxItems: 3
                   items:
-                    $ref: ../components/schemas.yaml#/TxObject
+                    type: array
+                    items:
+                      $ref: ../components/schemas.yaml#/TxObject
       responses:
         "200":
           description: Flat Response

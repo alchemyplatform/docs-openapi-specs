@@ -44,9 +44,11 @@ paths:
                 params:
                   type: array
                   minItems: 1
-                  maxItems: 3
+                  maxItems: 1
                   items:
-                    $ref: ../components/schemas.yaml#/TxObject
+                    type: array
+                    items:
+                      $ref: ../components/schemas.yaml#/TxObject
       responses:
         "200":
           description: OK
