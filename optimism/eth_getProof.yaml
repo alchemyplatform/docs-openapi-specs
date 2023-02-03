@@ -39,7 +39,7 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_getProof
-        operationId: eth-getProof-polygon
+        operationId: eth-getProof-optimism
         x-readme:
           explorer-enabled: false
           samples-languages:
