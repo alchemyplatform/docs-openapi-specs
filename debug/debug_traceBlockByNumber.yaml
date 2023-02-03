@@ -3,7 +3,19 @@ info:
   title: debug_traceBlockByNumber
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - eth-goerli
+          - polygon-mainnet
+          - polygon-mumbai
+          - arb-mainnet
+          - arb-goerli
+          - opt-mainnet
+          - opt-goerli
+        default: eth-mainnet
 paths:
   /{apiKey}:
     post:
