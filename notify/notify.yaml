@@ -566,9 +566,12 @@ components:
         webhook_url:
           type: string
           description: 'URL where requests are sent'
+        graphql_query:
+          type: string
+          descrition: 'A valid, stringified GraphQL query that you would like to host on Alchemy'
         app_id:
           type: string
-          description: 'Required for mined and dropped webhooks, optional for address activity.'
+          description: 'Required for mined and dropped webhooks, optional for address activity or custom webhooks.'
         addresses:
           type: array
           description: 'List of addresses you want to track. Required for address activity webhooks only.'
@@ -793,6 +796,7 @@ components:
       type: string
       description: 'Type of webhook.'
       enum:
+        - GRAPHQL
         - MINED_TRANSACTION
         - DROPPED_TRANSACTION
         - ADDRESS_ACTIVITY
