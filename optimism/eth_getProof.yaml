@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth-getProof-optimism
+        summary: eth-getProof
         description: Returns the account and storage values of the specified account including the Merkle-proof on Optimism. This call can be used to verify that the data you are pulling from is not tampered with.
         parameters:
           - name: apiKey
