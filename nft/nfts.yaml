@@ -3,7 +3,7 @@ info:
   title: 🎨 NFT API
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/v2
+  - url: https://{network}.g.alchemy.com/nft/v2
     variables:
       network:
         enum:
