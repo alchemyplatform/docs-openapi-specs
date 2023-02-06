@@ -9,6 +9,12 @@ servers:
         enum:
           - eth-mainnet
           - eth-goerli
+          - polygon-mainnet
+          - polygon-mumbai
+          - arb-mainnet
+          - arb-goerli
+          - opt-mainnet
+          - opt-goerli
         default: eth-mainnet
 paths:
   '/{apiKey}/getNFTs':
