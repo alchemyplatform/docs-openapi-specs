@@ -988,6 +988,7 @@ paths:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
+        - $ref: '#/components/schemas/withMetadata'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/excludeFilters'
         - $ref: '#/components/schemas/orderBy'
@@ -1014,6 +1015,11 @@ paths:
                   totalCount:
                     type: string
                     description: 'String - Total number of NFT contracts held by the given address.'
+              examples:
+                withoutMetadata:
+                  $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
+                withMetadata:
+                  $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'                  
       operationId: getContractsForOwner
   '/{apiKey}/reportSpam':
     get:
@@ -1355,6 +1361,9 @@ components:
         name:
           description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
           type: string
+        title:
+          description: 'The title of the token held by the owner i.e. "Something #22".'
+          type: string
         symbol:
           description: 'The symbol of the contract, i.e. BAYC.'
           type: string
@@ -1642,6 +1651,72 @@ components:
           "totalCount": 6,
           "blockHash": "0xf9a2a4e15116680e22b160c734529f62d89d54cde0759daf5135672fad0ecebc"
         }
+    withoutMetadataGetContractsForOwner_response:
+      summary: 'Response (withMetadata = false)'
+      value: >
+        {
+          "contracts": [
+            {
+              "address": "0x000386e3f7559d9b6a2f5c46b4ad1a9587d59dc3",
+              "totalBalance": 912,
+              "numDistinctTokensOwned": 80,
+              "isSpam": true,
+              "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001"
+            },
+            {
+              "address": "0x0015f391949f25c3211063104ad4afc99210f85c",
+              "totalBalance": 17,
+              "numDistinctTokensOwned": 6,
+              "isSpam": true,
+              "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000002"
+            },
+            {
+              "address": "0x005b92d71a934dbe48e985b6469881cf4b0308fc",
+              "totalBalance": 1,
+              "numDistinctTokensOwned": 1,
+              "isSpam": true,
+              "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000003"
+            }
+          ],
+          "totalCount": 2120,
+          "pageKey": "20ef9df5-0d81-42e5-b741-140f595a407b"
+        }
+    withMetadataGetContractsForOwner_response:
+      summary: 'Response (withMetadata = true)'
+      value: >
+        {
+          "contracts": [
+            {
+              "address": "0x000386e3f7559d9b6a2f5c46b4ad1a9587d59dc3",
+              "totalBalance": 912,
+              "numDistinctTokensOwned": 80,
+              "isSpam": true,
+              "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+              "name": "Bored Ape Nike Club",
+              "title": "",
+              "symbol": "BANC",
+              "tokenType": "ERC721",
+              "contractDeployer": "0x51d7d428041e23ef51422e110dfeff906e821cfe",
+              "deployedBlockNumber": 14276343,
+              "opensea": {
+                "collectionName": "BoredApeNikeClub",
+                "safelistRequestStatus": "not_requested",
+                "imageUrl": "https://i.seadn.io/gae/yJ9DgXqjRwgdCkrQmHj7krCbixM8fPVAyYJWJ5NHXap1L0c3QL5MPvrNT0QDINIStGOK857lOvab8MpNQS9X4pkHPktmhVmN82qoVw?w=500&auto=format",
+                "description": "COUNTDOWN OVER. MINTING LIVE.\n\n[Mint on the website.](https://nikemetaverse.xyz)\n",
+                "externalUrl": "https://nikemetaverse.xyz",
+                "lastIngestedAt": "2023-02-06T14:36:57.000Z"
+              },
+              "media": [
+                {
+                  "raw": "",
+                  "gateway": ""
+                }
+              ]
+            }
+          ],
+          "totalCount": 2120,
+          "pageKey": "03949322-9b2c-4fdd-aab6-1369e29fa5b2"
+        }     
     withContractFiltering_response:
       summary: 'Response (with contract filtering)'
       value: >
