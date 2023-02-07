@@ -25,33 +25,41 @@ eth_block:
         result:
           $ref: '#/block_object'
 log_object:
-  allOf:
-    - $ref: '#/hash_number_transactionIndex'
-    - type: object
-      properties:
-        address:
-          type: string
-          description: 20 Bytes - address from which this log originated.
-        logIndex:
-          type: string
-          description: Integer of the log index position in the block. null when its pending log.
-        data:
-          type: string
-          description: Contains one or more 32 Bytes non-indexed arguments of the log.
-        removed:
-          type: boolean
-          description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
-        topics:
-          type: array
-          items:
-            type: string
-          description: 'Array of zero to four 32 Bytes DATA of indexed log arguments. In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declare the event with the anonymous specifier.'
-        transactionHash:
-          type: string
-          description: Hash of the transactions this log was created from. null when its pending log.
+  type: object
+  properties:
+    blockHash:
+      type: string
+      description: 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log
+    blockNumber:
+      type: string
+      description: The block number where this log was in. null when its pending. null when its pending log.
+    transactionIndex:
+      type: string
+      description: Integer of the transactions index position log was created from. null when its pending log.
+    address:
+      type: string
+      description: 20 Bytes - address from which this log originated.
+    logIndex:
+      type: string
+      description: Integer of the log index position in the block. null when its pending log.
+    data:
+      type: string
+      description: Contains one or more 32 Bytes non-indexed arguments of the log.
+    removed:
+      type: boolean
+      description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
+    topics:
+      type: array
+      items:
+        type: string
+      description: 'Array of zero to four 32 Bytes DATA of indexed log arguments. In solidity: The first topic is the hash of the signature of the event (e.g. Deposit(address,bytes32,uint256)), except you declare the event with the anonymous specifier.'
+    transactionHash:
+      type: string
+      description: Hash of the transactions this log was created from. null when its pending log.
+
 block_object:
   allOf:
-    - $ref: '#/nonce_hash'
+    - $ref: '#/nonce_hash_block'
     - type: object
       description: 'A block object with the following fields, or null when no block was found.'
       properties:
@@ -120,19 +128,21 @@ common_response_fields:
       type: integer
     jsonrpc:
       type: string
+
 hash_number_transactionIndex:
   type: object
   properties:
     blockHash:
       type: string
-      description: 32 Bytes - hash of the block where this log was in. null when its pending. null when its pending log
+      description: 32 Bytes - The hash of the block where the given transaction was included.
     blockNumber:
       type: string
-      description: The block number where this log was in. null when its pending. null when its pending log.
+      description: The number of the block where the given transaction was included.
     transactionIndex:
       type: string
-      description: Integer of the transactions index position log was created from. null when its pending log.
-nonce_hash:
+      description: The index of the transaction within the block.
+
+nonce_hash_block:
   type: object
   properties:
     nonce:
@@ -141,6 +151,17 @@ nonce_hash:
     hash:
       type: string
       description: 32 Bytes - hash of the block. null when its pending block.
+
+nonce_hash_txn:
+  type: object
+  properties:
+    nonce:
+      type: string
+      description: The number of transactions made by the sender prior to this one.
+    hash:
+      type: string
+      description: 32 Bytes - hash of the transaction.
+
 eth_getTransactionByHash:
   allOf:
     - $ref: '#/common_response_fields'
@@ -149,10 +170,11 @@ eth_getTransactionByHash:
         result:
           description: 'A transaction object, or null when no transaction was found'
           $ref: '#/transaction_object'
+
 transaction_object:
   allOf:
     - $ref: '#/hash_number_transactionIndex'
-    - $ref: '#/nonce_hash'
+    - $ref: '#/nonce_hash_txn'
     - type: object
       properties:
         from:
@@ -182,6 +204,7 @@ transaction_object:
         value:
           type: string
           description: value transferred in Wei
+
 transaction_receipt:
   description: 'A transaction receipt object, or null when no receipt was found'
   allOf:
