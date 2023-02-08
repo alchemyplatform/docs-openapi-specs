@@ -25,8 +25,7 @@ paths:
     post:
       summary: alchemy_simulateExecutionBundle
       operationId: alchemy-simulateexecutionbundle
-      description: Simulates multiple transactions and returns decoded execution
-        traces and decoded logs.
+      description: Simulates multiple transactions sequentially and returns decoded execution traces and decoded logs.
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -41,7 +40,7 @@ paths:
                   $ref: ../components/schemas.yaml#/JsonRpc
                 method:
                   $ref: ../components/schemas.yaml#/Method
-                  default: alchemy_simulateExecution
+                  default: alchemy_simulateExecutionBundle
                 params:
                   type: array
                   minItems: 1
