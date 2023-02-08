@@ -2277,7 +2277,7 @@ paths:
   # ////////////////////////////////////////////////////////////////////////////////
 
   /{apiKey}/getTransaction:
-    post:
+    get:
       operationId: sdk-getTransaction
       summary: getTransaction
       description: 'Returns the information about a transaction requested by transaction hash or number. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
@@ -2291,7 +2291,7 @@ paths:
             description: |
               <style>
                 .custom-style {
-                  color: #048FF4;
+                  color: #FFFFFF;
                 }
               </style>
               For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>

@@ -1,2 +1,7 @@
-.github/
 node_modules
+
+.github/
+
+.DS_Store
+.env
+.env.template

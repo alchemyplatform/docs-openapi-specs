@@ -3,27 +3,26 @@ info:
   title: eth_sendPrivateTransaction
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+        default: eth-mainnet
+x-readme:
+  id: 62d6beb6c58877026441688c
+  samples-languages:
+    - curl
+    - javascript
+    - python
 paths:
   /{apiKey}:
     post:
       summary: eth_sendPrivateTransaction
       description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.
-      tags: []
+      operationId: eth-sendprivatetransaction
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -31,8 +30,6 @@ paths:
               $ref: ../evm_body.yaml#/eth_sendPrivateTransaction
       x-readme:
         explorer-enabled: false
-        samples-languages:
-          - javascript
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -80,4 +77,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/string_result_response
-      operationId: eth-sendPrivateTransaction

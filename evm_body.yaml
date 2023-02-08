@@ -268,7 +268,6 @@ eth_sendPrivateTransaction:
                   fast:
                     type: boolean
                     description: Sends transaction with fast mode when true.
-                    default: false
 eth_cancelPrivateTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -289,8 +288,6 @@ eth_cancelPrivateTransaction:
               txHash:
                 type: string
                 description: Transaction hash for private transaction to be cancelled.
-                default: '0x5749f97abbf5553cb1c26f862b2b86a273d8e6f08b17c3c4fbf51be5ede59329'
-
 eth_getBalance:
   allOf:
     - $ref: '#/common_request_fields'

@@ -1,0 +1,98 @@
+Hex:
+  type: string
+  pattern: '^0[xX][0-9a-fA-F]+$'
+
+# TODO: this does not currently allow for ENS addresses (e.g. vitalik.eth)
+Address:
+  $ref: '#/Hex'
+  minLength: 42
+  maxLength: 42
+  # Vitalik's ETH address
+  default: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
+
+FromAddress:
+  $ref: '#/Address'
+  # TODO: would hex make more sense than 20 bytes here?
+  description: 'address the transaction is sent from'
+
+ToAddress:
+  $ref: '#/Address'
+  description: 'address the transaction is directed to'
+  # USDC contract
+  default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+
+Value:
+  $ref: '#/Hex'
+  description: 'amount in wei of ETH to transfer from sender to recipient'
+  default: '0x0'
+
+Data:
+  $ref: '#/Hex'
+  description: ''
+  # transfer 1 USDC to address
+  default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
+    
+GasLimit:
+  $ref: '#/Hex'
+  description: 'max amount of gas available to the transaction'
+
+GasPrice:
+  $ref: '#/Hex'
+  description: '(type 0) amount in wei per unit of gas'
+
+MaxPriorityFeePerGas:
+  $ref: '#/Hex'
+  description: '(type 2) max amount of gas to be included as a tip to the validator'
+
+MaxFeePerGas:
+  $ref: '#/Hex'
+  description: '(type 2) max amount of gas willing to be paid for the transaction (inclusive of baseFeePerGas and maxPriorityFeePerGas)'
+
+TxObject:
+  type: object
+  properties:
+    from:
+      $ref: '#/FromAddress'
+    to:
+      $ref: '#/ToAddress'
+    value:
+      $ref: '#/Value'
+    data:
+      $ref: '#/Data'
+    gas:
+      $ref: '#/GasLimit'
+    gasPrice:
+      $ref: '#/GasPrice'
+    maxFeePerGas:
+      $ref: '#/MaxFeePerGas'
+    maxPriorityFeePerGas:
+      $ref: '#/MaxPriorityFeePerGas'
+
+  # TODO: what about empty to address when deploying contract?  
+  required:
+    - to
+
+Id:
+  type: integer
+  default: 1
+  # readOnly: true hides field in Readme UI!
+  readOnly: true
+
+JsonRpc:
+  type: string
+  default: '2.0'
+  readOnly: true
+
+Method:
+  # Option 1
+  # type: enum
+  # # TODO: readme currently shows an empty option - bug needs to be fixed on their end
+  # enum:
+  #   - alchemy_simulateAssetChanges
+  # default: alchemy_simulateAssetChanges
+  # readOnly: true
+  
+  # Option 2
+  type: string
+  default: 'TODO: override with own method name'
+  readOnly: true
