@@ -3,17 +3,22 @@ info:
   title: eth_cancelPrivateTransaction
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2'
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+        default: eth-mainnet
 x-readme:
   id: 62d189bd28710500453ac689
 paths:
-  /{apiKey}:
+  "/{apiKey}":
     post:
       summary: eth_cancelPrivateTransaction
       description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.
-      operationId: eth-cancelPrivateTransaction
+      operationId: eth-cancelprivatetransaction
       parameters:
-        - $ref: 'components/parameters.yaml#/ApiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -21,12 +26,12 @@ paths:
               type: object
               properties:
                 id:
-                  $ref: 'components/schemas.yaml#/Id'
+                  $ref: ../components/schemas.yaml#/Id
                 jsonrpc:
-                  $ref: 'components/schemas.yaml#/JsonRpc'
+                  $ref: ../components/schemas.yaml#/JsonRpc
                 method:
-                  $ref: 'components/schemas.yaml#/Method'
-                  default: 'eth_cancelPrivateTransaction'
+                  $ref: ../components/schemas.yaml#/Method
+                  default: eth_cancelPrivateTransaction
                   
                 params:
                   type: array
@@ -44,4 +49,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: evm_responses.yaml#/eth_cancelPrivateTransaction
+                $ref: ../evm_responses.yaml#/eth_cancelPrivateTransaction
