@@ -1019,7 +1019,7 @@ paths:
                 withoutMetadata:
                   $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
                 withMetadata:
-                  $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'                  
+                  $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
       operationId: getContractsForOwner
   '/{apiKey}/reportSpam':
     get:
@@ -1119,6 +1119,7 @@ components:
           enum:
             - SPAM
             - AIRDROPS
+          default: [SPAM]
       in: query
     address:
       name: address
@@ -1141,6 +1142,7 @@ components:
           enum:
             - SPAM
             - AIRDROPS
+          default: [SPAM]
       in: query
     contractAddress:
       name: contractAddress
@@ -1716,7 +1718,7 @@ components:
           ],
           "totalCount": 2120,
           "pageKey": "03949322-9b2c-4fdd-aab6-1369e29fa5b2"
-        }     
+        }
     withContractFiltering_response:
       summary: 'Response (with contract filtering)'
       value: >
