@@ -619,6 +619,8 @@ trace_filter:
           type: array
           items:
             $ref: '#/trace_filter_object'
+      example:
+        $ref: ./evm_examples.yaml#/trace_filter
 trace_filter_object:
   type: object
   properties:
@@ -682,6 +684,8 @@ trace_get:
       properties:
         result:
           $ref: '#/trace_get_object'
+      example:
+        $ref: ./evm_examples.yaml#/trace_get
 trace_transaction:
   allOf:
     - $ref: '#/common_response_fields'
@@ -691,6 +695,8 @@ trace_transaction:
           type: array
           items:
             $ref: '#/trace_get_object'
+      example:
+        $ref: ./evm_examples.yaml#/trace_transaction
 trace_replayBlockTransactions:
   allOf:
     - $ref: '#/common_response_fields'
@@ -705,6 +711,8 @@ trace_replayBlockTransactions:
                 properties:
                   transactionHash:
                     type: string
+      example:
+        $ref: ./evm_examples.yaml#/trace_replayBlockTransactions
 
 # ===== Debug API Responses ============
 callTracer:
@@ -754,6 +762,8 @@ debug_traceCall:
           description: Array of block traces
           items:
             $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceCall
 
 debug_traceTransaction:
   allOf:
@@ -763,6 +773,8 @@ debug_traceTransaction:
         result:
           description: trace for the transaction
           $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceTransaction
 
 debug_traceBlockByHash:
   allOf:
@@ -774,6 +786,8 @@ debug_traceBlockByHash:
           description: array of block traces
           items:
             $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceBlockByHash
 
 debug_traceBlockByNumber:
   allOf:
@@ -785,6 +799,8 @@ debug_traceBlockByNumber:
           description: array of block traces
           items:
             $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceBlockByNumber
 
 # ===== Polygon API Responses ============
 bor_getAuthor:
@@ -795,6 +811,8 @@ bor_getAuthor:
         result:
           description: AUTHOR - address.
           type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getAuthor
 bor_getCurrentValidators:
   allOf:
     - $ref: '#/common_response_fields'
@@ -814,6 +832,8 @@ bor_getCurrentValidators:
                 type: integer
               accum:
                 type: integer
+      example:
+        $ref: ./evm_examples.yaml#/bor_getCurrentValidators
 bor_getCurrentProposer:
   allOf:
     - $ref: '#/common_response_fields'
@@ -822,6 +842,8 @@ bor_getCurrentProposer:
         result:
           description: AUTHOR - address.
           type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getCurrentProposer
 bor_getRootHash:
   allOf:
     - $ref: '#/common_response_fields'
@@ -830,6 +852,8 @@ bor_getRootHash:
         result:
           description: Hash
           type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getRootHash
 eth_getSignersAtHash:
   allOf:
     - $ref: '#/common_response_fields'
@@ -840,6 +864,8 @@ eth_getSignersAtHash:
           type: array
           items:
             type: string
+      example:
+        $ref: ./evm_examples.yaml#/eth_getSignersAtHash
 
 eth_getTransactionReceiptsByBlock:
   allOf:
@@ -851,6 +877,8 @@ eth_getTransactionReceiptsByBlock:
           type: array
           items:
             $ref: '#/transaction_receipt'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getTransactionReceiptsByBlock
 eth_syncing:
   allOf:
     - $ref: '#/common_response_fields'
@@ -871,6 +899,8 @@ eth_syncing:
                   type: string
                   description: 'The estimated highest block.'
             - type: boolean
+      example:
+        $ref: ./evm_examples.yaml#/eth_syncing
 
 # ============= Arbitrum API Methods ===============
 eth_createAccessList:
@@ -899,6 +929,8 @@ eth_createAccessList:
             gasUsed:
               type: string
               description: estimated gas consumed when the access list is added. Note, adding an `accessList` to your transaction does not necessary result in lower gas usage compared to a transaction without an `accessList`.
+          example:
+            $ref: ./evm_examples.yaml#/eth_createAccessList
 
 # ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:
@@ -918,6 +950,8 @@ alchemy_getAssetTransfers:
               description: 'Array of objects - sorted in ascending order by block number, ties broken by category (external , internal, token transfers).'
               items:
                 $ref: '#/transfer'
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_getAssetTransfers
 transfer:
   type: object
   properties:
