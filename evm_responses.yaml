@@ -8,6 +8,8 @@ eth_getLogs:
           description: 'Array of log objects, or an empty array if nothing has changed since last poll.'
           items:
             $ref: '#/log_object'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getLogs
 eth_blockNumber:
   allOf:
     - $ref: '#/common_response_fields'
@@ -17,6 +19,8 @@ eth_blockNumber:
         result:
           type: string
           description: Integer of the current block number the client is on.
+      example:
+        $ref: ./evm_examples.yaml#/eth_blockNumber
 eth_block:
   allOf:
     - $ref: '#/common_response_fields'
@@ -24,6 +28,9 @@ eth_block:
       properties:
         result:
           $ref: '#/block_object'
+      example:
+        $ref: ./evm_examples.yaml#/eth_block
+
 log_object:
   type: object
   properties:
@@ -121,6 +128,7 @@ block_object:
           items:
             type: string
           description: Array of uncle hashes.
+
 common_response_fields:
   type: object
   properties:
@@ -170,6 +178,8 @@ eth_getTransactionByHash:
         result:
           description: 'A transaction object, or null when no transaction was found'
           $ref: '#/transaction_object'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getTransactionByHash
 
 transaction_object:
   allOf:
@@ -257,6 +267,9 @@ eth_getTransactionReceipt:
       properties:
         result:
           $ref: '#/transaction_receipt'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getTransactionReceipt
+
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_response_fields'
@@ -266,6 +279,8 @@ eth_getBlockReceipts:
           type: array
           items:
             $ref: '#/transaction_receipt'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getBlockReceipts
 eth_cancelPrivateTransaction:
   allOf:
     - $ref: '#/common_response_fields'
@@ -273,6 +288,8 @@ eth_cancelPrivateTransaction:
       properties:
         result:
           type: boolean
+      example:
+        $ref: ./evm_examples.yaml#/eth_cancelPrivateTransaction
 eth_getProof:
   allOf:
     - $ref: '#/common_response_fields'
@@ -315,6 +332,8 @@ eth_getProof:
                     items:
                       type: string
                     description: 'Array of rlp-serialized MerkleTree-Nodes, starting with the storageHash-Node, following the path of the SHA3 (key) as path.'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getProof
 string_result_response:
   allOf:
     - $ref: '#/common_response_fields'
@@ -322,6 +341,7 @@ string_result_response:
       properties:
         result:
           type: string
+          example: '0x'
 getTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'
@@ -365,6 +385,8 @@ getTxn_result_response:
                       message:
                         type: string
                         description: error message
+      example:
+        $ref: ./evm_examples.yaml#/getTxn_result_response
 sendTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'
@@ -381,6 +403,8 @@ sendTxn_result_response:
               description: 'An array of currently submitted transaction hashes'
               items:
                 type: string
+      example:
+        $ref: ./evm_examples.yaml#/sendTxn_result_response
 eth_feeHistory:
   allOf:
     - $ref: '#/common_response_fields'
@@ -412,6 +436,8 @@ eth_feeHistory:
                 type: array
                 items:
                   type: string
+      example:
+        $ref: ./evm_examples.yaml#/eth_feeHistory
 net_version:
   allOf:
     - $ref: '#/common_response_fields'
@@ -426,6 +452,8 @@ net_version:
             - '3'
             - '4'
             - '42'
+      example:
+        $ref: ./evm_examples.yaml#/net_version
 eth_subscribe:
   type: object
   properties:
@@ -471,6 +499,8 @@ eth_subscribe:
                       type: integer
                     knownStates:
                       type: integer
+  example:
+    $ref: ./evm_examples.yaml#/eth_subscribe
 alchemy_getTokenAllowance:
   allOf:
     - $ref: '#/common_response_fields'
@@ -479,6 +509,8 @@ alchemy_getTokenAllowance:
         result:
           type: string
           description: The allowance amount.
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_getTokenAllowance
 alchemy_getTokenBalances:
   allOf:
     - $ref: '#/common_response_fields'
@@ -502,6 +534,8 @@ alchemy_getTokenBalances:
                     type: string
                   error:
                     type: string
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_getTokenBalances
 alchemy_getTokenMetadata:
   allOf:
     - $ref: '#/common_response_fields'
@@ -522,6 +556,8 @@ alchemy_getTokenMetadata:
             logo:
               type: string
               description: String - URL of the token's logo image. null if not available.
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_getTokenMetadata
 trace_call:
   allOf:
     - $ref: '#/common_response_fields'
@@ -529,6 +565,8 @@ trace_call:
       properties:
         result:
           $ref: '#/trace_block'
+      example:
+        $ref: ./evm_examples.yaml#/trace_call
 trace_block:
   type: object
   properties:
@@ -555,6 +593,8 @@ trace_block:
             type: string
     vmTrace:
       type: string
+  example:
+    $ref: ./evm_examples.yaml#/trace_block
 action_object:
   type: object
   properties:
@@ -570,15 +610,6 @@ action_object:
       type: string
     value:
       type: string
-trace_callMany:
-  allOf:
-    - $ref: '#/common_response_fields'
-    - type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/trace_block'
 trace_filter:
   allOf:
     - $ref: '#/common_response_fields'
@@ -588,6 +619,8 @@ trace_filter:
           type: array
           items:
             $ref: '#/trace_filter_object'
+      example:
+        $ref: ./evm_examples.yaml#/trace_filter
 trace_filter_object:
   type: object
   properties:
@@ -651,6 +684,8 @@ trace_get:
       properties:
         result:
           $ref: '#/trace_get_object'
+      example:
+        $ref: ./evm_examples.yaml#/trace_get
 trace_transaction:
   allOf:
     - $ref: '#/common_response_fields'
@@ -660,6 +695,8 @@ trace_transaction:
           type: array
           items:
             $ref: '#/trace_get_object'
+      example:
+        $ref: ./evm_examples.yaml#/trace_transaction
 trace_replayBlockTransactions:
   allOf:
     - $ref: '#/common_response_fields'
@@ -674,6 +711,8 @@ trace_replayBlockTransactions:
                 properties:
                   transactionHash:
                     type: string
+      example:
+        $ref: ./evm_examples.yaml#/trace_replayBlockTransactions
 
 # ===== Debug API Responses ============
 callTracer:
@@ -723,6 +762,8 @@ debug_traceCall:
           description: Array of block traces
           items:
             $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceCall
 
 debug_traceTransaction:
   allOf:
@@ -732,6 +773,8 @@ debug_traceTransaction:
         result:
           description: trace for the transaction
           $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceTransaction
 
 debug_traceBlockByHash:
   allOf:
@@ -743,6 +786,8 @@ debug_traceBlockByHash:
           description: array of block traces
           items:
             $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceBlockByHash
 
 debug_traceBlockByNumber:
   allOf:
@@ -754,6 +799,8 @@ debug_traceBlockByNumber:
           description: array of block traces
           items:
             $ref: '#/callTracer'
+      example:
+        $ref: ./evm_examples.yaml#/debug_traceBlockByNumber
 
 # ===== Polygon API Responses ============
 bor_getAuthor:
@@ -764,6 +811,8 @@ bor_getAuthor:
         result:
           description: AUTHOR - address.
           type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getAuthor
 bor_getCurrentValidators:
   allOf:
     - $ref: '#/common_response_fields'
@@ -783,6 +832,8 @@ bor_getCurrentValidators:
                 type: integer
               accum:
                 type: integer
+      example:
+        $ref: ./evm_examples.yaml#/bor_getCurrentValidators
 bor_getCurrentProposer:
   allOf:
     - $ref: '#/common_response_fields'
@@ -791,6 +842,8 @@ bor_getCurrentProposer:
         result:
           description: AUTHOR - address.
           type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getCurrentProposer
 bor_getRootHash:
   allOf:
     - $ref: '#/common_response_fields'
@@ -799,6 +852,8 @@ bor_getRootHash:
         result:
           description: Hash
           type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getRootHash
 eth_getSignersAtHash:
   allOf:
     - $ref: '#/common_response_fields'
@@ -809,6 +864,8 @@ eth_getSignersAtHash:
           type: array
           items:
             type: string
+      example:
+        $ref: ./evm_examples.yaml#/eth_getSignersAtHash
 
 eth_getTransactionReceiptsByBlock:
   allOf:
@@ -820,6 +877,8 @@ eth_getTransactionReceiptsByBlock:
           type: array
           items:
             $ref: '#/transaction_receipt'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getTransactionReceiptsByBlock
 eth_syncing:
   allOf:
     - $ref: '#/common_response_fields'
@@ -840,6 +899,8 @@ eth_syncing:
                   type: string
                   description: 'The estimated highest block.'
             - type: boolean
+      example:
+        $ref: ./evm_examples.yaml#/eth_syncing
 
 # ============= Arbitrum API Methods ===============
 eth_createAccessList:
@@ -868,6 +929,8 @@ eth_createAccessList:
             gasUsed:
               type: string
               description: estimated gas consumed when the access list is added. Note, adding an `accessList` to your transaction does not necessary result in lower gas usage compared to a transaction without an `accessList`.
+          example:
+            $ref: ./evm_examples.yaml#/eth_createAccessList
 
 # ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:
@@ -887,6 +950,8 @@ alchemy_getAssetTransfers:
               description: 'Array of objects - sorted in ascending order by block number, ties broken by category (external , internal, token transfers).'
               items:
                 $ref: '#/transfer'
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_getAssetTransfers
 transfer:
   type: object
   properties:
