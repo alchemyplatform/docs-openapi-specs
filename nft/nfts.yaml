@@ -33,6 +33,7 @@ paths:
         - $ref: '#/components/schemas/excludeFilters'
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/orderBy'
+        - $ref: '#/components/schemas/spamConfidenceLevel'
       x-readme:
         samples-languages:
           - javascript
@@ -1144,6 +1145,31 @@ components:
             - AIRDROPS
           default: [SPAM]
       in: query
+    spamConfidenceLevel:
+      name: spamConfidenceLevel
+      description: |-
+        Enum - the confidence level at which to filter spam at.
+
+        Confidence Levels:
+          - VERY_HIGH
+          - HIGH
+          - MEDIUM
+          - LOW
+
+        The confidence level set means that any spam that is at that confidence level or higher will be filtered out.
+        For example, if the confidence level is HIGH, contracts that we have HIGH or VERY_HIGH confidence in being spam will be 
+        filtered out from the response.
+
+        Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for Matic Mainnet
+      schema:
+        type: string
+        enum:
+          - VERY_HIGH
+          - HIGH
+          - MEDIUM
+          - LOW
+      in: query
+      required: false
     contractAddress:
       name: contractAddress
       description: String - Contract address for the NFT collection (ERC721 and ERC1155 supported).
