@@ -341,7 +341,8 @@ string_result_response:
       properties:
         result:
           type: string
-          example: '0x'
+      example:
+        $ref: ./evm_examples.yaml#/string_result_response
 getTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'
