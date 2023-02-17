@@ -1156,11 +1156,8 @@ components:
           - MEDIUM
           - LOW
 
-        The confidence level set means that any spam that is at that confidence level or higher will be filtered out.
-        For example, if the confidence level is HIGH, contracts that we have HIGH or VERY_HIGH confidence in being spam will be 
-        filtered out from the response.
-
-        Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for Matic Mainnet
+        The confidence level set means that any spam that is at that confidence level or higher will be filtered out. For example, if the confidence level is HIGH, contracts that we have HIGH or VERY_HIGH confidence in being spam will be 
+        filtered out from the response. Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for Matic Mainnet.
       schema:
         type: string
         enum:
