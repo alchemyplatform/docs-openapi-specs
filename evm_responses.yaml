@@ -341,6 +341,7 @@ string_result_response:
       properties:
         result:
           type: string
+          description: '32 Bytes String - The Transaction Hash.'
       example:
         $ref: ./evm_examples.yaml#/string_result_response
 getTxn_result_response:
