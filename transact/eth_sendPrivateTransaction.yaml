@@ -72,7 +72,7 @@ paths:
               main();
       responses:
         '200':
-          description: ''
+          description: 'Returns 32 Bytes String - The Transaction Hash.'
           content:
             application/json:
               schema:

@@ -2441,3 +2441,10 @@ alchemy_getAssetTransfers:
           ],
       },
   }
+
+string_result_response:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result': '0xb1770efb14906e509893b6190359658208ae64d0c56e22f748a1b0869885559e',
+  }
