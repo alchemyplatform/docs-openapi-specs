@@ -53,4 +53,4 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/requestAirdrop
-      operationId: getVoteAccounts
+      operationId: requestAirdrop
