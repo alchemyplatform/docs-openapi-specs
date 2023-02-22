@@ -867,6 +867,33 @@ getTransaction:
                     type: number
                     description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
 
+requestAirdrop:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          type: string
+          default: requestAirdrop
+          enum:
+            - requestAirdrop
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            oneOf:
+              - type: string
+                description: Pubkey of account to receive lamports, as a base-58 encoded string
+                default: '83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri'
+              - type: number
+                description: Lamports to airdrop, as a "u64"
+                default: 1000000000
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
+
 # ============= Solana API Models ===============
 common_request_fields:
   type: object
