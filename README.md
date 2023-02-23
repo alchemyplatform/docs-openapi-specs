@@ -22,7 +22,7 @@ npm i
 
 Feedback? Issues? Typos?
 
-We are continously trying to improve our docs - any help is very welcomed! 😀
+We are continuously trying to improve our docs - any help is very welcomed! 😀
 
 You can:
 
