@@ -23,17 +23,17 @@ paths:
       description: Gets all NFTs currently owned by a given address.
       tags: ['Ownership & Token Gating']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
-        - $ref: '#/components/schemas/pageKey'
-        - $ref: '#/components/schemas/pageSize'
         - $ref: '#/components/schemas/contractAddresses'
         - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+        - $ref: '#/components/schemas/orderBy'
         - $ref: '#/components/schemas/excludeFilters'
         - $ref: '#/components/schemas/includeFilters'
-        - $ref: '#/components/schemas/orderBy'
         - $ref: '#/components/schemas/spamConfidenceLevel'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
       x-readme:
         samples-languages:
           - javascript
