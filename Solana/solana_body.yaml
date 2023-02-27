@@ -5,10 +5,8 @@ getBlockHeight:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlockHeight
-          enum:
-            - getBlockHeight
         params:
           type: array
           items:
@@ -23,10 +21,8 @@ getBlock:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlock
-          enum:
-            - getBlock
         params:
           type: array
           items:
@@ -63,10 +59,8 @@ getBlocks:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlocks
-          enum:
-            - getBlocks
         params:
           type: array
           items:
@@ -86,10 +80,8 @@ getBlocksWithLimit:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlocksWithLimit
-          enum:
-            - getBlocksWithLimit
         params:
           type: array
           items:
@@ -100,10 +92,8 @@ getBlockTime:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlockTime
-          enum:
-            - getBlockTime
         params:
           type: array
           minItems: 1
@@ -116,10 +106,8 @@ getBlockCommitment:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlockCommitment
-          enum:
-            - getBlockCommitment
         params:
           type: array
           minItems: 1
@@ -132,10 +120,8 @@ getBlockProduction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBlockProduction
-          enum:
-            - getBlockProduction
         params:
           type: array
           items:
@@ -168,10 +154,8 @@ isBlockhashValid:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: isBlockhashValid
-          enum:
-            - isBlockhashValid
         params:
           type: array
           minItems: 2
@@ -187,10 +171,8 @@ getAccountInfo:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getAccountInfo
-          enum:
-            - getAccountInfo
         params:
           type: array
           minItems: 2
@@ -212,10 +194,8 @@ getBalance:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getBalance
-          enum:
-            - getBalance
         params:
           type: array
           items:
@@ -229,10 +209,8 @@ getMultipleAccounts:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getMultipleAccounts
-          enum:
-            - getMultipleAccounts
         params:
           type: array
           minItems: 2
@@ -258,10 +236,8 @@ getProgramAccounts:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getProgramAccounts
-          enum:
-            - getProgramAccounts
         params:
           type: array
           items:
@@ -287,10 +263,8 @@ getVoteAccounts:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getVoteAccounts
-          enum:
-            - getVoteAccounts
         params:
           type: array
           items:
@@ -315,10 +289,8 @@ getLargestAccounts:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getLargestAccounts
-          enum:
-            - getLargestAccounts
         params:
           type: array
           items:
@@ -339,30 +311,24 @@ getClusterNodes:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getClusterNodes
-          enum:
-            - getClusterNodes
 getVersion:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getVersion
-          enum:
-            - getVersion
 getEpochInfo:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getVersion
-          enum:
-            - getVersion
         params:
           type: array
           items:
@@ -373,20 +339,16 @@ getEpochSchedule:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getEpochSchedule
-          enum:
-            - getEpochSchedule
 getFeeForMessage:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getFeeForMessage
-          enum:
-            - getFeeForMessage
         params:
           type: array
           description: |
@@ -402,40 +364,32 @@ getFirstAvailableBlock:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getFirstAvailableBlock
-          enum:
-            - getFirstAvailableBlock
 getGenesisHash:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getGenesisHash
-          enum:
-            - getGenesisHash
 getHighestSnapshotSlot:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getHighestSnapshotSlot
-          enum:
-            - getHighestSnapshotSlot
 getMinimumBalanceForRentExemption:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getMinimumBalanceForRentExemption
-          enum:
-            - getMinimumBalanceForRentExemption
         params:
           type: array
           items:
@@ -452,10 +406,8 @@ getRecentPerformanceSamples:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getRecentPerformanceSamples
-          enum:
-            - getRecentPerformanceSamples
         params:
           type: array
           description: Array of number of samples to return (maximum 720).
@@ -469,30 +421,24 @@ getHealth:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getHealth
-          enum:
-            - getHealth
 getIdentity:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getIdentity
-          enum:
-            - getIdentity
 getInflationGovernor:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getInflationGovernor
-          enum:
-            - getInflationGovernor
         params:
           type: array
           items:
@@ -506,20 +452,16 @@ getInflationRate:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getInflationRate
-          enum:
-            - getInflationRate
 getInflationReward:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getInflationReward
-          enum:
-            - getInflationReward
         params:
           type: array
           items:
@@ -544,10 +486,8 @@ getSupply:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getSupply
-          enum:
-            - getSupply
         params:
           type: array
           items:
@@ -565,10 +505,8 @@ getSlot:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getSlot
-          enum:
-            - getSlot
         params:
           type: array
           items:
@@ -579,10 +517,8 @@ getSlotLeaders:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getSlotLeaders
-          enum:
-            - getSlotLeaders
         params:
           type: array
           default: [165768577, 5]
@@ -597,40 +533,32 @@ getMaxRetransmitSlot:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getMaxRetransmitSlot
-          enum:
-            - getMaxRetransmitSlot
 getMaxShredInsertSlot:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getMaxShredInsertSlot
-          enum:
-            - getMaxShredInsertSlot
 minimumLedgerSlot:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: minimumLedgerSlot
-          enum:
-            - minimumLedgerSlot
 getTokenAccountBalance:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getTokenAccountBalance
-          enum:
-            - getTokenAccountBalance
         params:
           type: array
           items:
@@ -647,10 +575,8 @@ getTokenAccountsByOwner:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getTokenAccountsByOwner
-          enum:
-            - getTokenAccountsByOwner
         params:
           type: array
           items:
@@ -683,10 +609,8 @@ getTokenSupply:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getTokenSupply
-          enum:
-            - getTokenSupply
         params:
           type: array
           items:
@@ -703,10 +627,8 @@ getSignaturesForAddress:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getSignaturesForAddress
-          enum:
-            - getSignaturesForAddress
         params:
           type: array
           items:
@@ -735,10 +657,8 @@ getSignatureStatuses:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getSignatureStatuses
-          enum:
-            - getSignatureStatuses
         params:
           type: array
           minItems: 2
@@ -758,10 +678,8 @@ sendTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: sendTransaction
-          enum:
-            - sendTransaction
         params:
           type: array
           minItems: 2
@@ -792,10 +710,8 @@ simulateTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: simulateTransaction
-          enum:
-            - simulateTransaction
         params:
           type: array
           minItems: 2
@@ -845,10 +761,8 @@ getTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: getTransaction
-          enum:
-            - getTransaction
         params:
           type: array
           minItems: 2
@@ -873,10 +787,8 @@ requestAirdrop:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ../components/schemas.yaml#/Method
           default: requestAirdrop
-          enum:
-            - requestAirdrop
         params:
           type: array
           minItems: 1

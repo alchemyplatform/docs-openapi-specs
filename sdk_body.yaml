@@ -78,10 +78,8 @@ eth_sendPrivateTransaction:
       - tx
     properties:
       method:
-        type: string
+        $ref: ./components/schemas.yaml#/Method
         default: eth_sendPrivateTransaction
-        enum:
-          - eth_sendPrivateTransaction
       tx:
         type: string
         description: 'Raw, signed transaction'

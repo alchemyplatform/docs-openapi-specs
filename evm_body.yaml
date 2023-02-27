@@ -5,20 +5,16 @@ eth_blockNumber:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_blockNumber
-          enum:
-            - eth_blockNumber
 eth_getBlockByHash:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBlockByHash
-          enum:
-            - eth_getBlockByHash
         params:
           type: array
           description: |
@@ -38,10 +34,8 @@ eth_getBlockByNumber:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBlockByNumber
-          enum:
-            - eth_getBlockByNumber
         params:
           type: array
           description: |
@@ -67,10 +61,8 @@ eth_getBlockByNumber_l2:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBlockByNumber
-          enum:
-            - eth_getBlockByNumber
         params:
           type: array
           description: |
@@ -90,10 +82,8 @@ eth_getLogs:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getLogs
-          enum:
-            - eth_getLogs
         params:
           type: array
           minItems: 1
@@ -107,10 +97,8 @@ eth_getTransactionByHash:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionByHash
-          enum:
-            - eth_getTransactionByHash
 eth_getTransactionReceipt:
   allOf:
     - $ref: '#/common_request_fields'
@@ -118,20 +106,16 @@ eth_getTransactionReceipt:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionReceipt
-          enum:
-            - eth_getTransactionReceipt
 eth_getBlockTransactionCountByHash:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBlockTransactionCountByHash
-          enum:
-            - eth_getBlockTransactionCountByHash
         params:
           type: array
           minItems: 1
@@ -144,10 +128,8 @@ eth_getBlockTransactionCountByNumber:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBlockTransactionCountByNumber
-          enum:
-            - eth_getBlockTransactionCountByNumber
         params:
           type: array
           description: |
@@ -175,10 +157,8 @@ eth_getTransactionCount:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionCount
-          enum:
-            - eth_getTransactionCount
 
 eth_getTransactionByBlockHashAndIndex:
   allOf:
@@ -187,10 +167,9 @@ eth_getTransactionByBlockHashAndIndex:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionByBlockHashAndIndex
-          enum:
-            - eth_getTransactionByBlockHashAndIndex
+
 eth_getTransactionByBlockNumberAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
@@ -198,20 +177,17 @@ eth_getTransactionByBlockNumberAndIndex:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionByBlockNumberAndIndex
-          enum:
-            - eth_getTransactionByBlockNumberAndIndex
+
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBlockReceipts
-          enum:
-            - eth_getBlockReceipts
         params:
           $ref: '#/blockNumber_or_blockHash_param_eth'
 
@@ -222,10 +198,8 @@ eth_sendRawTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_sendRawTransaction
-          enum:
-            - eth_sendRawTransaction
 alchemy_getGasOptimizedTransactionStatus:
   allOf:
     - $ref: '#/common_request_fields'
@@ -233,20 +207,16 @@ alchemy_getGasOptimizedTransactionStatus:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: alchemy_getGasOptimizedTransactionStatus
-          enum:
-            - alchemy_getGasOptimizedTransactionStatus
 eth_sendPrivateTransaction:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_sendPrivateTransaction
-          enum:
-            - eth_sendPrivateTransaction
         params:
           type: array
           minItems: 1
@@ -274,10 +244,8 @@ eth_cancelPrivateTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_cancelPrivateTransaction
-          enum:
-            - eth_cancelPrivateTransaction
         params:
           type: array
           minItems: 1
@@ -295,10 +263,8 @@ eth_getBalance:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getBalance
-          enum:
-            - eth_getBalance
 
 eth_getStorageAt:
   allOf:
@@ -306,10 +272,8 @@ eth_getStorageAt:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getStorageAt
-          enum:
-            - eth_getStorageAt
         params:
           type: array
           description: |
@@ -335,10 +299,8 @@ eth_getCode:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getCode
-          enum:
-            - eth_getCode
 
 eth_accounts:
   allOf:
@@ -346,20 +308,16 @@ eth_accounts:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_accounts
-          enum:
-            - eth_accounts
 eth_getProof:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getProof
-          enum:
-            - eth_getProof
         params:
           description: |
             1. String - 20 Bytes - Address of the account
@@ -395,30 +353,24 @@ eth_protocolVersion:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_protocolVersion
-          enum:
-            - eth_protocolVersion
 eth_gasPrice:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_gasPrice
-          enum:
-            - eth_gasPrice
 eth_estimateGas_550:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_estimateGas
-          enum:
-            - eth_estimateGas
         params:
           type: array
           minItems: 2
@@ -435,10 +387,8 @@ eth_feeHistory:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_feeHistory
-          enum:
-            - eth_feeHistory
         params:
           type: array
           minItems: 3
@@ -469,40 +419,32 @@ eth_maxPriorityFeePerGas:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_maxPriorityFeePerGas
-          enum:
-            - eth_maxPriorityFeePerGas
 eth_chainId:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_chainId
-          enum:
-            - eth_chainId
 net_version:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: net_version
-          enum:
-            - net_version
 net_listening:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: net_listening
-          enum:
-            - net_listening
 eth_getUncleByBlockHashAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
@@ -510,10 +452,8 @@ eth_getUncleByBlockHashAndIndex:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getUncleByBlockHashAndIndex
-          enum:
-            - eth_getUncleByBlockHashAndIndex
 eth_getUncleByBlockNumberAndIndex:
   allOf:
     - $ref: '#/common_request_fields'
@@ -521,20 +461,16 @@ eth_getUncleByBlockNumberAndIndex:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getUncleByBlockNumberAndIndex
-          enum:
-            - eth_getUncleByBlockNumberAndIndex
 eth_getUncleCountByBlockHash:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getUncleCountByBlockHash
-          enum:
-            - eth_getUncleCountByBlockHash
         params:
           type: array
           minItems: 1
@@ -548,10 +484,8 @@ eth_getUncleCountByBlockNumber:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getUncleCountByBlockNumber
-          enum:
-            - eth_getUncleCountByBlockNumber
 eth_getFilterChanges:
   allOf:
     - $ref: '#/common_request_fields'
@@ -559,10 +493,8 @@ eth_getFilterChanges:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getFilterChanges
-          enum:
-            - eth_getFilterChanges
 eth_getFilterLogs:
   allOf:
     - $ref: '#/common_request_fields'
@@ -570,30 +502,24 @@ eth_getFilterLogs:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getFilterLogs
-          enum:
-            - eth_getFilterLogs
 eth_newBlockFilter:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_newBlockFilter
-          enum:
-            - eth_newBlockFilter
 eth_newFilter:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_newFilter
-          enum:
-            - eth_newFilter
         params:
           type: array
           minItems: 1
@@ -606,10 +532,8 @@ eth_newPendingTransactionFilter:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_newPendingTransactionFilter
-          enum:
-            - eth_newPendingTransactionFilter
 eth_uninstallFilter:
   allOf:
     - $ref: '#/common_request_fields'
@@ -617,20 +541,16 @@ eth_uninstallFilter:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_uninstallFilter
-          enum:
-            - eth_uninstallFilter
 web3_clientVersion:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: web3_clientVersion
-          enum:
-            - web3_clientVersion
 web3_sha3:
   allOf:
     - $ref: '#/common_request_fields'
@@ -638,10 +558,8 @@ web3_sha3:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: web3_sha3
-          enum:
-            - web3_sha3
 eth_getTransactionReceiptsByBlock:
   allOf:
     - $ref: '#/common_request_fields'
@@ -649,10 +567,8 @@ eth_getTransactionReceiptsByBlock:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionReceiptsByBlock
-          enum:
-            - eth_getTransactionReceiptsByBlock
         params:
           type: array
           minItems: 1
@@ -670,10 +586,8 @@ eth_syncing:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_syncing
-          enum:
-            - eth_syncing
 
 # ============= Transaction Receipts API Method ===============
 alchemy_getTransactionReceipts_param:
@@ -682,10 +596,8 @@ alchemy_getTransactionReceipts_param:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: alchemy_getTransactionReceipts
-          enum:
-            - alchemy_getTransactionReceipts
         params:
           type: array
           description: 'The api only takes in one parameter - an object with at least a blockNumber or blockHash. If both are provided, an error is returned asking you to choose either blockNumber or blockHash.'
@@ -712,10 +624,8 @@ alchemy_getTokenAllowance:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: alchemy_getTokenAllowance
-          enum:
-            - alchemy_getTokenAllowance
         params:
           type: array
           description: null
@@ -746,10 +656,8 @@ alchemy_getTokenBalances:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: alchemy_getTokenBalances
-          enum:
-            - alchemy_getTokenBalances
         params:
           type: array
           description: |
@@ -771,10 +679,8 @@ alchemy_getTokenMetadata:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: alchemy_getTokenMetadata
-          enum:
-            - alchemy_getTokenMetadata
         params:
           type: array
           description: 'string, 20 Bytes - Singluar address for the token contract.'
@@ -792,10 +698,8 @@ trace_call:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_call
-          enum:
-            - trace_call
         params:
           type: array
           minItems: 1
@@ -818,10 +722,8 @@ trace_rawTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_rawTransaction
-          enum:
-            - trace_rawTransaction
         params:
           type: array
           minItems: 1
@@ -842,10 +744,8 @@ trace_replayBlockTransactions:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_replayBlockTransactions
-          enum:
-            - trace_replayBlockTransactions
         params:
           type: array
           minItems: 1
@@ -864,10 +764,8 @@ trace_replayTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_replayTransaction
-          enum:
-            - trace_replayTransaction
         params:
           type: array
           minItems: 1
@@ -889,10 +787,8 @@ trace_block:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_block
-          enum:
-            - trace_block
         params:
           type: array
           minItems: 1
@@ -911,10 +807,8 @@ trace_filter:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_filter
-          enum:
-            - trace_filter
         params:
           type: array
           minItems: 1
@@ -954,10 +848,8 @@ trace_get:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_get
-          enum:
-            - trace_get
         params:
           type: array
           description: |
@@ -986,10 +878,8 @@ trace_transaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: trace_transaction
-          enum:
-            - trace_transaction
 
 # ============= Polygon API Methods ===============
 bor_getAuthor:
@@ -998,10 +888,8 @@ bor_getAuthor:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: bor_getAuthor
-          enum:
-            - bor_getAuthor
         params:
           description: Array of block number (in hexadecimal format).
           type: array
@@ -1014,30 +902,24 @@ bor_getCurrentValidators:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: bor_getCurrentValidators
-          enum:
-            - bor_getCurrentValidators
 bor_getCurrentProposer:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: bor_getCurrentProposer
-          enum:
-            - bor_getCurrentProposer
 bor_getRootHash:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: bor_getCurrentProposer
-          enum:
-            - bor_getCurrentProposer
         params:
           type: array
           items:
@@ -1057,10 +939,8 @@ eth_getRootHash:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getRootHash
-          enum:
-            - eth_getRootHash
         params:
           type: array
           items:
@@ -1080,10 +960,8 @@ eth_getSignersAtHash:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getSignersAtHash
-          enum:
-            - eth_getSignersAtHash
         params:
           type: array
           minItems: 1
@@ -1103,10 +981,8 @@ eth_createAccessList:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_createAccessList
-          enum:
-            - eth_createAccessList
         params:
           type: array
           description: |
@@ -1129,10 +1005,8 @@ alchemy_getAssetTransfers:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: alchemy_getAssetTransfers
-          enum:
-            - alchemy_getAssetTransfers
         params:
           type: array
           minItems: 1
@@ -1221,10 +1095,8 @@ debug_traceCall:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: debug_traceCall
-          enum:
-            - debug_traceCall
         params:
           type: array
           minItems: 1
@@ -1264,10 +1136,8 @@ debug_traceBlockByHash:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: debug_traceBlockByHash
-          enum:
-            - debug_traceBlockByHash
         params:
           type: array
           description: |
@@ -1294,10 +1164,8 @@ debug_traceBlockByNumber:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: debug_traceBlockByNumber
-          enum:
-            - debug_traceBlockByNumber
         params:
           type: array
           description: |
@@ -1322,10 +1190,8 @@ debug_traceTransaction:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: debug_traceTransaction
-          enum:
-            - debug_traceTransaction
         params:
           type: array
           minItems: 1
@@ -1398,10 +1264,8 @@ eth_call_550_gas:
     - type: object
       properties:
         method:
-          type: string
+          $ref: ./components/schemas.yaml#/Method
           default: eth_call
-          enum:
-            - eth_call
         params:
           type: array
           minItems: 1
@@ -1525,10 +1389,8 @@ bundled_signed_transaction_param:
   type: object
   properties:
     method:
-      type: string
+      $ref: ./components/schemas.yaml#/Method
       default: alchemy_sendGasOptimizedTransaction
-      enum:
-        - alchemy_sendGasOptimizedTransaction
     params:
       type: array
       minItems: 1
