@@ -1356,11 +1356,9 @@ common_request_fields:
   type: object
   properties:
     id:
-      type: integer
-      default: 1
+      $ref: ./components/schemas.yaml#/Id
     jsonrpc:
-      type: string
-      default: '2.0'
+      $ref: ./components/schemas.yaml#/JsonRpc
 filter_options:
   type: object
   properties:
