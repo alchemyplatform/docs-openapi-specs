@@ -141,7 +141,7 @@ paths:
   '/{apiKey}/getNFTMetadataBatch':
     post:
       summary: getNFTMetadataBatch
-      description: Gets the metadata associated with the given NFTs.
+      description: Gets the metadata associated with up to a 100 given NFT contracts.
       tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -1114,6 +1114,7 @@ components:
         Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. May not be used in conjunction with includeFilters[]. Filter Options:
           - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs.
           - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
+          - To learn more about spam, you can refer this article: <span class="custom-style"><a href="https://www.alchemy.com/overviews/spam-nfts" target="_blank">Spam NFTs and how to fix them</a></span>
       schema:
         type: array
         items:
@@ -1137,6 +1138,7 @@ components:
         Array of filters (as ENUMS) that will be applied to the query. Only NFTs that match one or more of these filters will be included in the response. May not be used in conjunction with excludeFilters[]. Filter Options:
           - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs.
           - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
+          - To learn more about spam, you can refer this article: <span class="custom-style"><a href="https://www.alchemy.com/overviews/spam-nfts" target="_blank">Spam NFTs and how to fix them</a></span>
       schema:
         type: array
         items:
