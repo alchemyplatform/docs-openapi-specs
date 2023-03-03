@@ -1144,11 +1144,11 @@ alchemy_getAssetTransfers:
             properties:
               fromBlock:
                 type: string
-                description: 'String - Inclusive from block (hex string, int, or latest). Defaults to `0x0`'
+                description: 'String - Inclusive from block (hex string, int, `latest`, or `indexed`). Defaults to `0x0`'
                 default: '0x0'
               toBlock:
                 type: string
-                description: 'String - Inclusive to block (hex string, int, or latest). Defaults to `latest`'
+                description: 'String - Inclusive to block (hex string, int, `latest`, or `indexed`). Defaults to `latest`'
                 default: latest
               fromAddress:
                 type: string
