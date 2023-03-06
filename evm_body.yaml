@@ -1148,7 +1148,7 @@ alchemy_getAssetTransfers:
                 default: '0x0'
               toBlock:
                 type: string
-                description: 'String - Inclusive to block (hex string, int, `latest`, or `indexed`). Defaults to `latest`'
+                description: 'String - Inclusive to block (hex string, int, `latest`, or `indexed`). Defaults to `latest`. Read more about block tags <span class="custom-style"><a href="https://docs.alchemy.com/reference/transfers-api-quickstart#what-are-the-different-types-of-block-tags" target="_blank">here</a></span>'
                 default: latest
               fromAddress:
                 type: string
