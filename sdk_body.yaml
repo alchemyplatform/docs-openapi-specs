@@ -1,14 +1,14 @@
 # ========= EVM Methods ==============
 eth_getBlock:
   allOf:
-  - type: object
-    properties:
-      params:
-        type: array
-        description: | 
-          One of the following:
-          1. String - Hash associated with the block
-          2. Number - Number associated with the block
+    - type: object
+      properties:
+        params:
+          type: array
+          description: |
+            One of the following:
+            1. String - Hash associated with the block
+            2. Number - Number associated with the block
 eth_getLogs:
   allOf:
     - type: object
@@ -78,10 +78,8 @@ eth_sendPrivateTransaction:
       - tx
     properties:
       method:
-        type: string
+        $ref: ./components/schemas.yaml#/Method
         default: eth_sendPrivateTransaction
-        enum:
-          - eth_sendPrivateTransaction
       tx:
         type: string
         description: 'Raw, signed transaction'
@@ -108,17 +106,17 @@ eth_cancelPrivateTransaction:
               txHash:
                 type: string
                 description: Transaction hash for private transaction to be cancelled.
-waitForTransaction: 
-  allOf: 
+waitForTransaction:
+  allOf:
     - type: object
-      properties: 
-        transactionHash: 
+      properties:
+        transactionHash:
           type: string
           description: The hash of the transaction to wait for.
-        confirmations: 
+        confirmations:
           type: number
           description: The number of blocks to wait for.
-        timeout: 
+        timeout:
           type: number
           description: The maximum time to wait for the transaction to confirm.
 eth_getBalance:
@@ -159,7 +157,7 @@ eth_getProof:
     - type: object
       properties:
         params:
-          description: | 
+          description: |
             1. String - 20 Bytes - Address of the account
             2. Array - 32 Bytes - array of storage-keys which should be proofed and included
             3. String - Either the hex value of a **block number** OR One of the following **block tags**: 
@@ -199,14 +197,14 @@ eth_estimateGas_550:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-sdk_send: 
-  allOf: 
+sdk_send:
+  allOf:
     - type: object
-      properties: 
-        method: 
+      properties:
+        method:
           type: string
           description: The method to call.
-        params: 
+        params:
           type: array
           description: The parameters to pass to the method.
 
@@ -748,11 +746,9 @@ common_request_fields:
   type: object
   properties:
     id:
-      type: integer
-      default: 1
+      $ref: ./components/schemas.yaml#/Id
     jsonrpc:
-      type: string
-      default: '2.0'
+      $ref: ./components/schemas.yaml#/JsonRpc
 filter_options:
   type: object
   properties:
@@ -942,13 +938,12 @@ shaHash_param:
         type: string
         pattern: '^0[xX][0-9a-fA-F]+$'
 
-
 # ======= Definitions for blockNumber methods ==========
 # After the merge, Ethereum offers more block tags than other EVM chains so we separated them out
 
 blockNumber_or_blocktag_param_eth:
   type: string
-  description: | 
+  description: |
     String - Either the hex value of a **block number** OR One of the following **block tags**: 
       * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
       * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
@@ -957,7 +952,7 @@ blockNumber_or_blocktag_param_eth:
       * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
 blockNumber_or_blocktag_param_l2:
   type: string
-  description: | 
+  description: |
     String - Either the hex value of a **block number** OR One of the following **block tags**: 
       * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
       * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
@@ -967,7 +962,7 @@ address_and_blockNumber_param_eth:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         1. String - 20 Bytes - Address
         2. String - Either the hex value of a **block number** OR One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
@@ -984,7 +979,7 @@ address_and_blockNumber_param_l2:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         1. String - 20 Bytes - Address
         2. String - Either the hex value of a **block number** OR One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
@@ -999,7 +994,7 @@ blockNumber_and_index_param_eth:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         1. String - either the hex value of a **block number** OR One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
@@ -1016,7 +1011,7 @@ blockNumber_and_index_param_eth_l2:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         1. String - either the hex value of a **block number** OR One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
@@ -1031,7 +1026,7 @@ blockNumber_or_blockHash_param_eth:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         String - One of the following options:
           1. **block hash** 
           2. **block number** (in hex)
@@ -1040,7 +1035,7 @@ blockNumber_or_blockHash_param_eth:
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
             * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Goerli**.
             * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Goerli**.
-            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.      
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
       minItems: 1
       maxItems: 1
       items:
@@ -1050,14 +1045,14 @@ blockNumber_or_blockHash_param_l2:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         String - One of the following options:
           1. **block hash** 
           2. **block number** (in hex)
           3. One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.      
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
       minItems: 1
       maxItems: 1
       items:
@@ -1067,7 +1062,7 @@ blockNumber_uncleIndex_param_eth:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         1. String - either the hex value of a **block number** OR One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
@@ -1084,7 +1079,7 @@ blockNumber_uncleIndex_param_l2:
   properties:
     params:
       type: array
-      description: | 
+      description: |
         1. String - either the hex value of a **block number** OR One of the following **block tags**: 
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
