@@ -31,6 +31,100 @@ eth_block:
       example:
         $ref: ./evm_examples.yaml#/eth_block
 
+block_object_arb:
+  type: object
+  properties:
+    number:
+      type: string
+      description: The block number. null when its pending block.
+    hash:
+      type: string
+      description: 32 Bytes - hash of the block. null when its pending block.
+    parentHash:
+      type: string
+      description: 32 Bytes - hash of the parent block.
+    nonce:
+      type: string
+      description: 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+    sha3Uncles:
+      type: string
+      description: 32 Bytes - SHA3 of the uncles data in the block.
+    logsBloom:
+      type: string
+      description: 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+    transactionsRoot:
+      type: string
+      description: 32 Bytes - the root of the transaction trie of the block.
+    stateRoot:
+      type: string
+      description: 32 Bytes - the root of the final state trie of the block.
+    receiptsRoot:
+      type: string
+      description: 32 Bytes - the root of the receipts trie of the block.
+    miner:
+      type: string
+      description: 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+    difficulty:
+      type: string
+      description: Fixed at `0x1`
+      example: '0x1'
+    totalDifficulty:
+      type: string
+      description: Integer of the total difficulty of the chain until this block.
+    size:
+      type: string
+      description: Integer the size of this block in bytes.
+    extraData:
+      type: string
+      description: The Merkle root of the Outbox tree state - same as `sendRoot`.
+      example: '0x1992458362ac0d6c8e5f33d32a83edc9e7c53723d3f13dc3f41f710e2c2c5091'
+    gasLimit:
+      type: string
+      description: Value is fixed at `0x4000000000000`, but it's important to note that Arbitrum currently has a 32M gas limit per block
+      example: '0x4000000000000'
+    gasUsed:
+      type: string
+      description: The total used gas by all transactions in this block.
+    timestamp:
+      type: string
+      description: The unix timestamp for when the block was collated.
+    transactions:
+      type: array
+      description: Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
+      items:
+        type: string
+    uncles:
+      type: array
+      description: Array of uncle hashes.
+      items:
+        type: string
+    l1BlockNumber:
+      type: string
+      description: An approximate L1 block number hex string that occurred before this L2 block.
+      example: '0x1000755'
+    sendCount:
+      type: string
+      description: The hex-number of L2-to-L1 messages since Nitro genesis.
+      example: '0xdd2d'
+    sendRoot:
+      type: string
+      description: The Merkle root of the Outbox tree state.
+      example: '0x1992458362ac0d6c8e5f33d32a83edc9e7c53723d3f13dc3f41f710e2c2c5091'
+    mixHash:
+      type: string
+      description: First 8 bytes is equivalent to `sendCount`, second 8 bytes is equivalent to `l1BlockNumber`
+      example: '0x000000000000df4f00000000010036d5000000000000000a0000000000000000'
+
+arb_block:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: '#/block_object_arb'
+      example:
+        $ref: ./evm_examples.yaml#/arb_block
+
 log_object:
   type: object
   properties:
