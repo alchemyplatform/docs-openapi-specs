@@ -427,6 +427,25 @@ eth_getTransactionReceipt:
       example:
         $ref: ./evm_examples.yaml#/eth_getTransactionReceipt
 
+eth_getTransactionReceipt_arb:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          allOf:
+            - $ref: '#/transaction_receipt'
+            - type: object
+              properties:
+                l1BlockNumber:
+                  type: string
+                  description: The L1 block number that would be used for `block.number` calls.
+                gasUsedForL1:
+                  type: string
+                  description: Amount of gas spent on L1 calldata in units of L2 gas.
+      example:
+        $ref: ./evm_examples.yaml#/eth_getTransactionReceipt_arb
+
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_response_fields'
