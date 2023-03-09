@@ -12,7 +12,7 @@ components:
   pathItems:
     path:
       post:
-        operationId: eth-getBlockByHash
+        operationId: eth-getBlockByHash-arbitrum
         summary: eth_getBlockByHash
         description: Returns information about a block by block hash.
         parameters:

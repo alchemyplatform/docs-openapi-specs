@@ -12,7 +12,7 @@ components:
   pathItems:
     path:
       post:
-        operationId: eth-getBlockByNumber
+        operationId: eth-getBlockByNumber-arbitrum
         summary: eth_getBlockByNumber
         description: Returns information about a block by block number.
         parameters:

@@ -2485,3 +2485,28 @@ arb_block:
         'uncles': [],
       },
   }
+
+eth_getTransactionByHash_arb:
+  {
+    'jsonrpc': '2.0',
+    'id': 0,
+    'result':
+      {
+        'blockHash': '0x37ec67a3cfb835920332eb027a749d177a897949073f2ef979d246139b1f5de2',
+        'blockNumber': '0x4116fbd',
+        'from': '0x5370cfc1b8f98177bdc6895ea56468790c693758',
+        'gas': '0xe4be5',
+        'gasPrice': '0x5f5e100',
+        'hash': '0x413d390eebe79c32f41684dbe11dcdaec8dc4b7bc41e2a99560c80661b8442b3',
+        'input': '0xa144819400000000000000000000000004dea1c0bf20c14672d9b3fcdb0f4f94877ed41900000000000000000000000000000000000000000000000000000000001fc7db',
+        'nonce': '0x14293',
+        'to': '0x6b2641bb98ca944f8806652626f7513fcdc13816',
+        'transactionIndex': '0x1',
+        'value': '0x0',
+        'type': '0x0',
+        'chainId': '0xa4b1',
+        'v': '0x14986',
+        'r': '0x1061e5efe22f02b29b1407ba64cdeec6dcfeb30c74164bc53aa86c8b90043845',
+        's': '0x41114e10abd1114d9532529bd5990f25c6839ec357efc4851f6b7bff7b0ac012',
+      },
+  }
