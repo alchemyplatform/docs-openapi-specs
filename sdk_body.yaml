@@ -452,7 +452,7 @@ alchemy_getTokenMetadata:
       properties:
         params:
           type: array
-          description: 'DATA, 20 Bytes - Singluar address for the token contract.'
+          description: 'DATA, 20 Bytes - Singular address for the token contract.'
           minItems: 1
           maxItems: 1
           items:
@@ -697,7 +697,7 @@ getAssetTransfers_eth_mainnet:
     order:
       type: string
       description: |
-        String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, decending order is from newest to oldest. Defaults to "asc" if omitted.
+        String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, descending order is from newest to oldest. Defaults to "asc" if omitted.
       enum:
         - asc
         - desc

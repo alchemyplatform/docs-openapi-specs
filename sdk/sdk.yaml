@@ -3453,7 +3453,7 @@ components:
           description: 'Contract address of the NFT in the NFT filter.'
         tokenId:
           type: string
-          description: 'Token ID of the NFT in the NFT Filter. 0x-prefixed hexidecimal or decimal string.'
+          description: 'Token ID of the NFT in the NFT Filter. 0x-prefixed hexadecimal or decimal string.'
 
     webhook_nft_filters_response:
       type: object

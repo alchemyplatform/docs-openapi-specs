@@ -821,7 +821,7 @@ paths:
                   totalSupply:
                     type: number
                     description: 'Total number of NFTs for the input contract.'
-                  summmary:
+                  summary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
                   contractAddress:

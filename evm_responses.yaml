@@ -370,7 +370,7 @@ getTxn_result_response:
               description: transaction hash for the mined transaction if it has been mined
             transactionHashWithErrors:
               type: array
-              description: An array of object errors that occured with the transaction, omitted if no errors occured.
+              description: An array of object errors that occurred with the transaction, omitted if no errors occurred.
               items:
                 type: object
                 properties:
