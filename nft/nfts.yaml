@@ -1103,10 +1103,10 @@ components:
       in: query
     withMetadata:
       name: withMetadata
-      description: 'Boolean - if set to `true`, returns NFT metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `false`.'
+      description: 'Boolean - if set to `true`, returns NFT metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
       schema:
         type: boolean
-        default: false
+        default: true
       in: query
     excludeFilters:
       name: excludeFilters[]
@@ -1409,21 +1409,23 @@ components:
         opensea:
           $ref: '#/components/schemas/opensea'
     media:
-      type: object
-      properties:
-        raw:
-          $ref: '#/components/schemas/raw'
-        gateway:
-          $ref: '#/components/schemas/gateway'
-        thumbnail:
-          type: string
-          description: URL for a resized thumbnail of the NFT media asset.
-        format:
-          type: string
-          description: The media format (jpg, gif, png, etc.) of the gateway and thumbnail assets.
-        bytes:
-          type: integer
-          description: The size of the media asset in bytes.
+      type: array
+      items:
+        type: object
+        properties:
+          raw:
+            $ref: '#/components/schemas/raw'
+          gateway:
+            $ref: '#/components/schemas/gateway'
+          thumbnail:
+            type: string
+            description: URL for a resized thumbnail of the NFT media asset.
+          format:
+            type: string
+            description: The media format (jpg, gif, png, etc.) of the gateway and thumbnail assets.
+          bytes:
+            type: integer
+            description: The size of the media asset in bytes.
     ownedNFT:
       type: object
       properties:

@@ -32,7 +32,6 @@ paths:
                 method:
                   $ref: ../components/schemas.yaml#/Method
                   default: eth_cancelPrivateTransaction
-                  
                 params:
                   type: array
                   minItems: 1
@@ -49,4 +48,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/eth_cancelPrivateTransaction
+                type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    type: boolean
+                example:
+                  { 
+                    'id': 1, 
+                    'jsonrpc': '2.0', 
+                    'result': true 
+                  }

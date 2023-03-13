@@ -698,8 +698,6 @@ eth_getBlockReceipts:
       ],
   }
 
-eth_cancelPrivateTransaction: { 'id': 0, 'jsonrpc': '2.0', 'result': true }
-
 eth_getProof:
   {
     'jsonrpc': '2.0',

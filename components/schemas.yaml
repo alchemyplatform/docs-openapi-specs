@@ -31,7 +31,7 @@ Data:
   description: ''
   # transfer 1 USDC to address
   default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
-    
+
 GasLimit:
   $ref: '#/Hex'
   description: 'max amount of gas available to the transaction'
@@ -68,7 +68,7 @@ TxObject:
     maxPriorityFeePerGas:
       $ref: '#/MaxPriorityFeePerGas'
 
-  # TODO: what about empty to address when deploying contract?  
+  # TODO: what about empty to address when deploying contract?
   required:
     - to
 
@@ -76,12 +76,10 @@ Id:
   type: integer
   default: 1
   # readOnly: true hides field in Readme UI!
-  readOnly: true
 
 JsonRpc:
   type: string
   default: '2.0'
-  readOnly: true
 
 Method:
   # Option 1
@@ -91,8 +89,7 @@ Method:
   #   - alchemy_simulateAssetChanges
   # default: alchemy_simulateAssetChanges
   # readOnly: true
-  
+
   # Option 2
   type: string
   default: 'TODO: override with own method name'
-  readOnly: true
