@@ -39,5 +39,5 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/eth_block
+                  $ref: ../evm_responses.yaml#/eth_getTransactionByHash
         operationId: eth-getTransactionByBlockHashAndIndex
