@@ -1357,11 +1357,11 @@ blockHash_and_index_param:
       items:
         type: string
         pattern: '^0[xX][0-9a-fA-F]+$'
-      default:
-        [
-          '0xbf06c77f6ed9a65441795eb8c2ccd694b3fc9b4d1be6066bf7ed52c73c5ec97c',
-          '0x64',
-        ]
+    default:
+      [
+        '0xbf06c77f6ed9a65441795eb8c2ccd694b3fc9b4d1be6066bf7ed52c73c5ec97c',
+        '0x64',
+      ]
 signed_transaction_param:
   type: object
   properties:
