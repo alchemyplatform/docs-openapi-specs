@@ -165,7 +165,7 @@ getBlockTime:
       nullable: true
       properties:
         result:
-          description: 'i64 - Estimated production time, as a Unix timestamp (seconds since the Unix epoch. If timestamp is not availabe for this block, returns <null>'
+          description: 'i64 - Estimated production time, as a Unix timestamp (seconds since the Unix epoch. If timestamp is not available for this block, returns <null>'
           type: integer
           format: int64
 getBlockCommitment:
@@ -653,7 +653,7 @@ getInflationReward:
           properties:
             epoch:
               type: integer
-              description: u64 - Epoch for which reward occured.
+              description: u64 - Epoch for which reward occurred.
             effectiveSlot:
               type: itneger
               format: int64

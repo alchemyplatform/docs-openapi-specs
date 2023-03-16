@@ -18,7 +18,7 @@ paths:
   "/{apiKey}":
     post:
       summary: alchemy_sendGasOptimizedTransaction
-      description: Submits a bundle of indentical transactions, each individually with a range of different gas values.
+      description: Submits a bundle of identical transactions, each individually with a range of different gas values.
       operationId: alchemy-sendgasoptimizedtransaction
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
