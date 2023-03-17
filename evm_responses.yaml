@@ -1023,6 +1023,18 @@ bor_getRootHash:
           type: string
       example:
         $ref: ./evm_examples.yaml#/bor_getRootHash
+bor_getSignersAtHash:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          description: Array of signers for the specified block hash
+          type: array
+          items:
+            type: string
+      example:
+        $ref: ./evm_examples.yaml#/bor_getSignersAtHash
 eth_getSignersAtHash:
   allOf:
     - $ref: '#/common_response_fields'
