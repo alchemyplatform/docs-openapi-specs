@@ -919,7 +919,7 @@ bor_getRootHash:
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
-          default: bor_getCurrentProposer
+          default: bor_getRootHash
         params:
           type: array
           items:
