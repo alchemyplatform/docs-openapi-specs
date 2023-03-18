@@ -919,7 +919,7 @@ bor_getRootHash:
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
-          default: bor_getCurrentProposer
+          default: bor_getRootHash
         params:
           type: array
           items:
@@ -933,6 +933,28 @@ bor_getRootHash:
                 type: integer
                 description: Block number (in int format).
                 default: 100
+
+bor_getSignersAtHash:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: bor_getSignersAtHash
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              blockHash:
+                type: string
+                description: Block hash (in hexadecimal format).
+                default: '0x1890044c3e2cbd530f0a9a6d0d77f238866d725ddd801d34fa42c5e062fc7d62'
+                pattern: '^0[xX][0-9a-fA-F]+$'
+
 eth_getRootHash:
   allOf:
     - $ref: '#/common_request_fields'
