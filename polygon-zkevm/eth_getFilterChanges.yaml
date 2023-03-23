@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  title: eth_getFilterChanges - Polygon zkEVM
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - polygonzkevm-mainnet
+          - polygonzkevm-testnet
+        default: polygonzkevm-testnet
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_getFilterChanges - Polygon zkEVM
+      description: 'Polling method for a filter, which returns an array of logs which occurred since last poll on Polygon zkEVM.'
+      $ref: ../ethereum/eth_getFilterChanges.yaml#/components/pathItems/path/post
+      operationId: eth-getfilterchanges-polygon-zkevm
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+          - go
