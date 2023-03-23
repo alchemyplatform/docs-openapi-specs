@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  title: eth_getBlockByHash - Polygon zkEVM
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemypreview.com/v2/'
+    variables:
+      network:
+        enum:
+          - polygonzkevm-mainnet
+          - polygonzkevm-testnet
+        default: polygonzkevm-testnet
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_getBlockByHash - Polygon zkEVM
+      description: Returns information about a block on Polygon zkEVM by block hash.
+      $ref: ../ethereum/eth_getBlockByHash.yaml#/components/pathItems/path/post
+      operationId: eth-getblockbyhash-polygon-zkevm
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+          - go
