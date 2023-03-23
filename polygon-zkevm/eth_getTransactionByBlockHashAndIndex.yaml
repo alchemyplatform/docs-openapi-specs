@@ -16,7 +16,7 @@ paths:
       summary: eth_getTransactionByBlockHashAndIndex - Polygon zkEVM
       description: Returns information about a transaction by block hash and transaction index position on Polygon zkEVM.
       $ref: ../ethereum/eth_getTransactionByBlockHashAndIndex.yaml#/components/pathItems/path/post
-      operationId: eth-gettransactionbyblockhashandindex-polygon
+      operationId: eth-gettransactionbyblockhashandindex-polygon-zkevm
       x-readme:
         samples-languages:
           - curl
