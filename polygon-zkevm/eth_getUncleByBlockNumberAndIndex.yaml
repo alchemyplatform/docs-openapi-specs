@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getUncleByBlockHashAndIndex - Polygon zkEVM
+  title: eth_getUncleByBlockNumberAndIndex - Polygon zkEVM
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -17,7 +17,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getUncleByBlockHashAndIndex - Polygon zkEVM
+        summary: eth_getUncleByBlockNumberAndIndex - Polygon zkEVM
         description: Response is always empty on Polygon zkEVM.
         tags: []
         parameters:
@@ -38,7 +38,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUncleByBlockHashAndIndex
+                $ref: ../evm_body.yaml#/eth_getUncleByBlockNumberAndIndex
         responses:
           '200':
             description: Response is always empty.
@@ -55,4 +55,4 @@ components:
                     items:
                       type: string
                     example: []
-        operationId: eth-getUncleByBlockHashAndIndex-polygon-zkevm
+        operationId: eth-getUncleByBlockNumberAndIndex-polygon-zkevm
