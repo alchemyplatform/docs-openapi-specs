@@ -302,6 +302,32 @@ eth_getStorageAt:
           default:
             ['0x407d73d8a49eeb85d32cf465507dd71d507100c1', '0x0', 'latest']
 
+eth_getStorageAt_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getStorageAt
+        params:
+          type: array
+          description: |
+            1. String - 20 Bytes - address of the storage
+            2. String - Integer of the slot position in the storage (in hex)
+            3. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
+              * `pending` - This is the same as `latest` for Polygon zkEVM.
+              * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+              * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
+              * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
+              * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+          minItems: 3
+          maxItems: 3
+          items:
+            type: string
+          default:
+            ['0x407d73d8a49eeb85d32cf465507dd71d507100c1', '0x0', 'latest']
+
 eth_getCode:
   allOf:
     - $ref: '#/common_request_fields'
