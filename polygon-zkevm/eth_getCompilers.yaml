@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: eth_getCompilers - Polygon zkEVM
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemypreview.com/v2/'
+    variables:
+      network:
+        enum:
+          - polygonzkevm-mainnet
+          - polygonzkevm-testnet
+        default: polygonzkevm-testnet
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getCompilers - Polygon zkEVM
+        description: Returns an array of strings representing the available compilers.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          description: Accepts nothing.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  method:
+                    $ref: ../components/schemas.yaml#/Method
+                    default: eth_getCompilers
+                  params:
+                    type: array
+                    items: {}
+                    example: []
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python
+            - go
+        responses:
+          '200':
+            description: Returns an empty response.
+            content:
+              application/json:
+                schema:
+                  properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    example: []
+        operationId: eth-getCompilers-polygon-zkevm
