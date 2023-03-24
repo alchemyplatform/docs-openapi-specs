@@ -312,6 +312,16 @@ eth_getCode:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getCode
 
+eth_getCode_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getCode
+
 eth_accounts:
   allOf:
     - $ref: '#/common_request_fields'
