@@ -60,18 +60,23 @@ components:
             - go
         responses:
           '200':
-            description: Returns an empty response.
+            description: Response is always empty.
             content:
               application/json:
                 schema:
+                  type: object
+                  required:
+                    - id
+                    - jsonrpc
+                    - result
                   properties:
-                  id:
-                    $ref: ../components/schemas.yaml#/Id
-                  jsonrpc:
-                    $ref: ../components/schemas.yaml#/JsonRpc
-                  result:
-                    type: array
-                    items:
-                      type: string
-                    example: []
+                    id:
+                      $ref: ../components/schemas.yaml#/Id
+                    jsonrpc:
+                      $ref: ../components/schemas.yaml#/JsonRpc
+                    result:
+                      type: array
+                      items:
+                        type: string
+                      example: []
         operationId: eth-getCompilers-polygon-zkevm
