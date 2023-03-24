@@ -180,6 +180,16 @@ eth_getTransactionByBlockNumberAndIndex:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionByBlockNumberAndIndex
 
+eth_getTransactionByBlockNumberAndIndex_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - $ref: '#/blockNumber_and_index_param_polygon_zkevm'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getTransactionByBlockNumberAndIndex
+
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1719,6 +1729,25 @@ blockNumber_and_index_param_eth:
       maxItems: 2
       items:
         type: string
+
+blockNumber_and_index_param_polygon_zkevm:
+  type: object
+  properties:
+    params:
+      type: array
+      description: |
+        1. String - either the hex value of a **block number** OR One of the following **block tags**:
+            * `pending` - This is the same as `latest` for Polygon zkEVM.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The transaction index position (in hex)
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+
 blockNumber_and_index_param_eth_l2:
   type: object
   properties:
