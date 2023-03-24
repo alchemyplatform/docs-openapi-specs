@@ -266,6 +266,16 @@ eth_getBalance:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getBalance
 
+eth_getBalance_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getBalance
+
 eth_getStorageAt:
   allOf:
     - $ref: '#/common_request_fields'
@@ -381,6 +391,26 @@ eth_estimateGas_550:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
+
+eth_estimateGas_polygon_zkEVM:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_estimateGas
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
+
 eth_feeHistory:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1497,6 +1527,19 @@ blockNumber_or_blocktag_param_eth:
         * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
   default: finalized
 
+blockNumber_or_blocktag_param_polygon_zkevm:
+  type: string
+  description: |
+    String - Either the hex value of a **block number** OR **block tags**:
+      1. **block number** (in hex) OR
+      2. **block tag** (one of the following):
+        * `pending` - This is the same as `latest` for Polygon zkEVM.
+        * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+        * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
+        * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. **Only available on Ethereum Mainnet and Goerli**.
+        * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+  default: finalized
+
 blockNumber_or_blocktag_param_l2:
   type: string
   description: |
@@ -1533,6 +1576,23 @@ address_and_blockNumberOrTagOrHash_param_EIP1898:
         1. String - 20 Bytes - Address
         2. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
             * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+      default: ['0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8', 'latest']
+
+address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm:
+  type: object
+  properties:
+    params:
+      type: array
+      description: |
+        1. String - 20 Bytes - Address
+        2. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
+            * `pending` - This is the same as `latest` for Polygon zkEVM.
             * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
             * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
       minItems: 2
