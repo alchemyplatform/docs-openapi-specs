@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getUncleCountByBlockHash - Polygon zkEVM
+  title: eth_getUncleCountByBlockNumber - Polygon zkEVM
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -17,7 +17,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getUncleCountByBlockHash - Polygon zkEVM
+        summary: eth_getUncleCountByBlockNumber - Polygon zkEVM
         description: Response for this method is always 0 on Polygon zkEVM.
         tags: []
         parameters:
@@ -38,7 +38,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUncleCountByBlockHash
+                $ref: ../evm_body.yaml#/eth_getUncleCountByBlockNumber
         x-readme:
           samples-languages:
             - curl
@@ -64,4 +64,4 @@ components:
                     result:
                       type: integer
                       example: 0
-        operationId: eth-getUncleCountByBlockHash-polygon-zkevm
+        operationId: eth-getUncleCountByBlockNumber-polygon-zkevm
