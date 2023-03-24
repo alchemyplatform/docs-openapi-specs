@@ -522,6 +522,18 @@ string_result_response:
           description: '32 Bytes String - The Transaction Hash.'
       example:
         $ref: ./evm_examples.yaml#/string_result_response
+
+eth_call:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: string
+          description: 'The result of the call'
+      example:
+        $ref: ./evm_examples.yaml#/string_result_response
+
 getTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'

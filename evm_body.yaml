@@ -1377,6 +1377,27 @@ eth_call_550_gas:
               - $ref: '#/BlockNumberOrTagOrHash'
                 title: Block number or block tag or block hash
 
+eth_call_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_call
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                    title: Transaction Object
+                  - $ref: '#/gas_550'
+              - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
+                title: Block number or block tag or block hash
+
 transaction_object:
   type: object
   description: The transaction call object
@@ -1657,6 +1678,16 @@ BlockNumberOrTagOrHash:
     - title: Block Hash
       $ref: '#/BlockHashEIP1898'
 
+BlockNumberOrTagOrHash_polygon_zkevm:
+  title: Block number or tag, or block hash
+  oneOf:
+    - title: Block Number
+      $ref: '#/BlockNumber'
+    - title: Block Tag
+      $ref: '#/BlockTag_polygon_zkevm'
+    - title: Block Hash
+      $ref: '#/BlockHashEIP1898'
+
 AddressParam:
   title: Address
   type: string
@@ -1674,6 +1705,18 @@ BlockTag:
       * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
   enum:
     - pending
+    - latest
+    - earliest
+  default: latest
+
+BlockTag_polygon_zkevm:
+  title: Block tag
+  type: string
+  description: |
+    One of the following **block tags**:
+      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+  enum:
     - latest
     - earliest
   default: latest
