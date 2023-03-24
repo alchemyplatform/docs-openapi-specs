@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getCompilers - Polygon zkEVM
+  title: eth_getUncleByBlockHashAndIndex - Polygon zkEVM
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemypreview.com/v2/'
@@ -17,7 +17,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getCompilers - Polygon zkEVM
+        summary: eth_getUncleByBlockHashAndIndex - Polygon zkEVM
         description: Response is always empty in Polygon zkEVM.
         tags: []
         parameters:
@@ -35,32 +35,13 @@ components:
                 For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
             required: true
         requestBody:
-          description: Accepts nothing.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    $ref: ../components/schemas.yaml#/Id
-                  jsonrpc:
-                    $ref: ../components/schemas.yaml#/JsonRpc
-                  method:
-                    $ref: ../components/schemas.yaml#/Method
-                    default: eth_getCompilers
-                  params:
-                    type: array
-                    items: {}
-                    example: []
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-            - go
+                $ref: ../evm_body.yaml#/eth_getUncleByBlockHashAndIndex
         responses:
           '200':
-            description: Returns an empty response.
+            description: Response is always empty.
             content:
               application/json:
                 schema:
@@ -74,4 +55,4 @@ components:
                     items:
                       type: string
                     example: []
-        operationId: eth-getCompilers-polygon-zkevm
+        operationId: eth-getUncleByBlockHashAndIndex-polygon-zkevm
