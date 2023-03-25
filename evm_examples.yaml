@@ -2746,3 +2746,5 @@ eth_getTransactionReceipt_arb:
 
 zkevm_consolidatedBlockNumber:
   { 'jsonrpc': '2.0', 'id': 1, 'result': '0xfd2fdb' }
+
+zkevm_isBlockVirtualized: { 'jsonrpc': '2.0', 'id': 1, 'result': true }

@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
-  title: zkevm_consolidatedBlockNumber - Polygon zkEVM
-  description: Returns the latest block number that is connected to the latest batch verified.
+  title: zkevm_isBlockVirtualized - Polygon zkEVM
+  description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
   version: '1.0'
 servers:
-  - url: 'https://{network}.g.alchemy.com/v2/'
+  - url: 'https://{network}.g.alchemypreview.com/v2/'
     variables:
       network:
         enum:
@@ -18,9 +18,9 @@ components:
   pathItems:
     path:
       post:
-        operationId: zkevm-consolidatedBlockNumber-polygon-zkevm
-        summary: zkevm_consolidatedBlockNumber - Polygon zkEVM
-        description: Returns the latest block number that is connected to the latest batch verified.
+        operationId: zkevm-isBlockVirtualized-polygon-zkevm
+        summary: zkevm_isBlockVirtualized - Polygon zkEVM
+        description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
         parameters:
           - name: apiKey
             in: path
@@ -36,11 +36,11 @@ components:
                 For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
             required: true
         requestBody:
-          description: Accepts no parameters.
+          description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/zkevm_consolidatedBlockNumber
+                $ref: ../evm_body.yaml#/zkevm_isBlockVirtualized
         x-readme:
           samples-languages:
             - curl
@@ -48,8 +48,8 @@ components:
             - python
         responses:
           '200':
-            description: The latest block number that is connected to the latest batch verified.
+            description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/zkevm_consolidatedBlockNumber
+                  $ref: ../evm_responses.yaml#/zkevm_isBlockVirtualized

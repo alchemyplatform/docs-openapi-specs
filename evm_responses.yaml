@@ -1214,4 +1214,16 @@ zkevm_consolidatedBlockNumber:
           type: string
           description: The latest block number that is connected to the latest batch verified.
       example:
-        $ref: ./evm_examples.yaml#/eth_blockNumber
+        $ref: ./evm_examples.yaml#/zkevm_consolidatedBlockNumber
+
+zkevm_isBlockVirtualized:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
+      properties:
+        result:
+          type: boolean
+          description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_isBlockVirtualized

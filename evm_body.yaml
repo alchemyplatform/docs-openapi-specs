@@ -1719,3 +1719,21 @@ zkevm_consolidatedBlockNumber:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_consolidatedBlockNumber
+
+zkevm_isBlockVirtualized:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_isBlockVirtualized
+        params:
+          type: array
+          description: |
+            1. String - The block number (in hex)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+          default: ['0x0']
