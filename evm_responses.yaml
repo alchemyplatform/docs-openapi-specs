@@ -1239,3 +1239,40 @@ zkevm_isBlockConsolidated:
           description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
       example:
         $ref: ./evm_examples.yaml#/zkevm_isBlockConsolidated
+# the response body is based on the below:
+# {
+#       "name": "zkevm_batchNumberByBlockNumber",
+#       "summary": "Returns the batch number of the batch connected to the block.",
+#       "params": [
+#         {
+#           "$ref": "#/components/contentDescriptors/BlockNumber"
+#         }
+#       ],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+#       "examples": [
+#         {
+#           "name": "example",
+#           "description": "",
+#           "params": [],
+#           "result": {
+#             "name": "exampleResult",
+#             "description": "",
+#             "value": "0x1"
+#           }
+#         }
+#       ]
+#     },
+
+zkevm_batchNumberByBlockNumber:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns the batch number of the batch connected to the block.
+      properties:
+        result:
+          type: string
+          description: Returns the batch number of the batch connected to the block.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_batchNumberByBlockNumber

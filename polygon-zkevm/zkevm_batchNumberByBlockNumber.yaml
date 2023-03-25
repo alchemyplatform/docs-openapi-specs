@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: zkevm_isBlockConsolidated - Polygon zkEVM
-  description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
+  title: zkevm_batchNumberByBlockNumber - Polygon zkEVM
+  description: Returns the batch number of the batch connected to the block.
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -18,9 +18,9 @@ components:
   pathItems:
     path:
       post:
-        operationId: zkevm-isBlockConsolidated-polygon-zkevm
-        summary: zkevm_isBlockConsolidated - Polygon zkEVM
-        description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
+        operationId: zkevm-batchNumberByBlockNumber-polygon-zkevm
+        summary: zkevm_batchNumberByBlockNumber - Polygon zkEVM
+        description: Returns the batch number of the batch connected to the block.
         parameters:
           - name: apiKey
             in: path
@@ -36,11 +36,10 @@ components:
                 For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
             required: true
         requestBody:
-          description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/zkevm_isBlockConsolidated
+                $ref: '../evm_body.yaml#/zkevm_batchNumberByBlockNumber'
         x-readme:
           samples-languages:
             - curl
@@ -48,8 +47,8 @@ components:
             - python
         responses:
           '200':
-            description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
+            description: Returns the batch number of the batch connected to the block.
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/zkevm_isBlockConsolidated
+                  $ref: ../evm_responses.yaml#/zkevm_batchNumberByBlockNumber

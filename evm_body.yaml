@@ -1755,3 +1755,21 @@ zkevm_isBlockConsolidated:
           items:
             type: string
           default: ['0x0']
+
+zkevm_batchNumberByBlockNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_batchNumberByBlockNumber
+        params:
+          type: array
+          description: |
+            1. String - The block number (in hex)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+          default: ['0x0']

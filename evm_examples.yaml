@@ -2750,3 +2750,5 @@ zkevm_consolidatedBlockNumber:
 zkevm_isBlockVirtualized: { 'jsonrpc': '2.0', 'id': 1, 'result': true }
 
 zkevm_isBlockConsolidated: { 'jsonrpc': '2.0', 'id': 1, 'result': false }
+
+zkevm_batchNumberByBlockNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
