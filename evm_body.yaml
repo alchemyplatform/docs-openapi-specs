@@ -1820,3 +1820,33 @@ zkevm_virtualBatchNumber:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_virtualBatchNumber
+
+#  {
+#       "name": "zkevm_verifiedBatchNumber",
+#       "summary": "Returns the latest verified batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+#       "examples": [
+#         {
+#           "name": "example",
+#           "description": "",
+#           "params": [],
+#           "result": {
+#             "name": "exampleResult",
+#             "description": "",
+#             "value": "0x1"
+#           }
+#         }
+#       ]
+#     },
+
+zkevm_verifiedBatchNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_verifiedBatchNumber
