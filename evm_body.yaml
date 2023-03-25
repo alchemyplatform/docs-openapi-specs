@@ -1708,3 +1708,14 @@ blockNumber_uncleIndex_param_l2:
       items:
         type: string
       default: ['latest', '0x0']
+
+# ======= zkEVM Methods =======
+
+zkevm_consolidatedBlockNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_consolidatedBlockNumber

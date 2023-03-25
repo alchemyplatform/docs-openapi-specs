@@ -1201,3 +1201,17 @@ transfer:
         blockTimestamp:
           type: string
           description: 'Timestamp of the block from which the transaction event originated (ISO-formatted timestamp).'
+
+# ============= zkEVM Responses ===============
+
+zkevm_consolidatedBlockNumber:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: The latest block number that is connected to the latest batch verified.
+      properties:
+        result:
+          type: string
+          description: The latest block number that is connected to the latest batch verified.
+      example:
+        $ref: ./evm_examples.yaml#/eth_blockNumber

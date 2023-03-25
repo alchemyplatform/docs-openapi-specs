@@ -2741,3 +2741,8 @@ eth_getTransactionReceipt_arb:
         'gasUsedForL1': '0xb0a00',
       },
   }
+
+# ========== zkEVM examples ==========
+
+zkevm_consolidatedBlockNumber:
+  { 'jsonrpc': '2.0', 'id': 1, 'result': '0xfd2fdb' }
