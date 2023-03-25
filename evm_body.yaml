@@ -1773,3 +1773,20 @@ zkevm_batchNumberByBlockNumber:
           items:
             type: string
           default: ['0x0']
+
+# {
+#       "name": "zkevm_batchNumber",
+#       "summary": "Returns the latest batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+
+zkevm_batchNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_batchNumber

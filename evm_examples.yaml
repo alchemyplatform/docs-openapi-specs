@@ -2752,3 +2752,26 @@ zkevm_isBlockVirtualized: { 'jsonrpc': '2.0', 'id': 1, 'result': true }
 zkevm_isBlockConsolidated: { 'jsonrpc': '2.0', 'id': 1, 'result': false }
 
 zkevm_batchNumberByBlockNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
+
+#  {
+#       "name": "zkevm_batchNumber",
+#       "summary": "Returns the latest batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+#       "examples": [
+#         {
+#           "name": "example",
+#           "description": "",
+#           "params": [],
+#           "result": {
+#             "name": "exampleResult",
+#             "description": "",
+#             "value": "0x1"
+#           }
+#         }
+#       ]
+#     },
+
+zkevm_batchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }

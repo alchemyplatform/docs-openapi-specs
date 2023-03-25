@@ -1276,3 +1276,23 @@ zkevm_batchNumberByBlockNumber:
           description: Returns the batch number of the batch connected to the block.
       example:
         $ref: ./evm_examples.yaml#/zkevm_batchNumberByBlockNumber
+
+# {
+#       "name": "zkevm_batchNumber",
+#       "summary": "Returns the latest batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+
+zkevm_batchNumber:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns the latest batch number.
+      properties:
+        result:
+          type: string
+          description: Returns the latest batch number.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_batchNumber
