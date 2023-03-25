@@ -2748,3 +2748,5 @@ zkevm_consolidatedBlockNumber:
   { 'jsonrpc': '2.0', 'id': 1, 'result': '0xfd2fdb' }
 
 zkevm_isBlockVirtualized: { 'jsonrpc': '2.0', 'id': 1, 'result': true }
+
+zkevm_isBlockConsolidated: { 'jsonrpc': '2.0', 'id': 1, 'result': false }

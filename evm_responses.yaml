@@ -1227,3 +1227,15 @@ zkevm_isBlockVirtualized:
           description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
       example:
         $ref: ./evm_examples.yaml#/zkevm_isBlockVirtualized
+
+zkevm_isBlockConsolidated:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
+      properties:
+        result:
+          type: boolean
+          description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_isBlockConsolidated
