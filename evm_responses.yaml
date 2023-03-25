@@ -1296,3 +1296,36 @@ zkevm_batchNumber:
           description: Returns the latest batch number.
       example:
         $ref: ./evm_examples.yaml#/zkevm_batchNumber
+
+# {
+#       "name": "zkevm_virtualBatchNumber",
+#       "summary": "Returns the latest virtual batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+#       "examples": [
+#         {
+#           "name": "example",
+#           "description": "",
+#           "params": [],
+#           "result": {
+#             "name": "exampleResult",
+#             "description": "",
+#             "value": "0x1"
+#           }
+#         }
+#       ]
+#     },
+
+zkevm_virtualBatchNumber:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns the latest virtual batch number.
+      properties:
+        result:
+          type: string
+          description: Returns the latest virtual batch number.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_virtualBatchNumber

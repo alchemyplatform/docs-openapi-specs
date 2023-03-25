@@ -2775,3 +2775,26 @@ zkevm_batchNumberByBlockNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
 #     },
 
 zkevm_batchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
+
+# {
+#       "name": "zkevm_virtualBatchNumber",
+#       "summary": "Returns the latest virtual batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+#       "examples": [
+#         {
+#           "name": "example",
+#           "description": "",
+#           "params": [],
+#           "result": {
+#             "name": "exampleResult",
+#             "description": "",
+#             "value": "0x1"
+#           }
+#         }
+#       ]
+#     },
+
+zkevm_virtualBatchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }

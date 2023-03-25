@@ -1790,3 +1790,33 @@ zkevm_batchNumber:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_batchNumber
+
+# {
+#       "name": "zkevm_virtualBatchNumber",
+#       "summary": "Returns the latest virtual batch number.",
+#       "params": [],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/BatchNumber"
+#       },
+#       "examples": [
+#         {
+#           "name": "example",
+#           "description": "",
+#           "params": [],
+#           "result": {
+#             "name": "exampleResult",
+#             "description": "",
+#             "value": "0x1"
+#           }
+#         }
+#       ]
+#     },
+
+zkevm_virtualBatchNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_virtualBatchNumber
