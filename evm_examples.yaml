@@ -2742,6 +2742,10 @@ eth_getTransactionReceipt_arb:
       },
   }
 
+eth_cancelPrivateTransaction: { 'id': 1, 'jsonrpc': '2.0', 'result': true }
+
+eth_syncing: { 'id': 1, 'jsonrpc': '2.0', 'result': false }
+
 # ========== zkEVM examples ==========
 
 zkevm_consolidatedBlockNumber:

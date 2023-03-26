@@ -180,6 +180,16 @@ eth_getTransactionByBlockNumberAndIndex:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionByBlockNumberAndIndex
 
+eth_getTransactionByBlockNumberAndIndex_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - $ref: '#/blockNumber_and_index_param_polygon_zkevm'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getTransactionByBlockNumberAndIndex
+
 eth_getBlockReceipts:
   allOf:
     - $ref: '#/common_request_fields'
@@ -266,6 +276,16 @@ eth_getBalance:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getBalance
 
+eth_getBalance_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getBalance
+
 eth_getStorageAt:
   allOf:
     - $ref: '#/common_request_fields'
@@ -292,10 +312,46 @@ eth_getStorageAt:
           default:
             ['0x407d73d8a49eeb85d32cf465507dd71d507100c1', '0x0', 'latest']
 
+eth_getStorageAt_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getStorageAt
+        params:
+          type: array
+          description: |
+            1. String - 20 Bytes - address of the storage
+            2. String - Integer of the slot position in the storage (in hex)
+            3. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
+              * `pending` - This is the same as `latest` for Polygon zkEVM.
+              * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+              * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. 
+              * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. 
+              * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+          minItems: 3
+          maxItems: 3
+          items:
+            type: string
+          default:
+            ['0x407d73d8a49eeb85d32cf465507dd71d507100c1', '0x0', 'latest']
+
 eth_getCode:
   allOf:
     - $ref: '#/common_request_fields'
     - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getCode
+
+eth_getCode_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - $ref: '#/address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm'
     - type: object
       properties:
         method:
@@ -381,6 +437,26 @@ eth_estimateGas_550:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
+
+eth_estimateGas_polygon_zkEVM:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_estimateGas
+        params:
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
+
 eth_feeHistory:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1301,6 +1377,27 @@ eth_call_550_gas:
               - $ref: '#/BlockNumberOrTagOrHash'
                 title: Block number or block tag or block hash
 
+eth_call_polygon_zkevm:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_call
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                    title: Transaction Object
+                  - $ref: '#/gas_550'
+              - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
+                title: Block number or block tag or block hash
+
 transaction_object:
   type: object
   description: The transaction call object
@@ -1497,6 +1594,19 @@ blockNumber_or_blocktag_param_eth:
         * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
   default: finalized
 
+blockNumber_or_blocktag_param_polygon_zkevm:
+  type: string
+  description: |
+    String - Either the hex value of a **block number** OR **block tags**:
+      1. **block number** (in hex) OR
+      2. **block tag** (one of the following):
+        * `pending` - This is the same as `latest` for Polygon zkEVM.
+        * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+        * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. 
+        * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. 
+        * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+  default: finalized
+
 blockNumber_or_blocktag_param_l2:
   type: string
   description: |
@@ -1541,6 +1651,23 @@ address_and_blockNumberOrTagOrHash_param_EIP1898:
         type: string
       default: ['0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8', 'latest']
 
+address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm:
+  type: object
+  properties:
+    params:
+      type: array
+      description: |
+        1. String - 20 Bytes - Address
+        2. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
+            * `pending` - This is the same as `latest` for Polygon zkEVM.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+      default: ['0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8', 'latest']
+
 BlockNumberOrTagOrHash:
   title: Block number or tag, or block hash
   oneOf:
@@ -1548,6 +1675,16 @@ BlockNumberOrTagOrHash:
       $ref: '#/BlockNumber'
     - title: Block Tag
       $ref: '#/BlockTag'
+    - title: Block Hash
+      $ref: '#/BlockHashEIP1898'
+
+BlockNumberOrTagOrHash_polygon_zkevm:
+  title: Block number or tag, or block hash
+  oneOf:
+    - title: Block Number
+      $ref: '#/BlockNumber'
+    - title: Block Tag
+      $ref: '#/BlockTag_polygon_zkevm'
     - title: Block Hash
       $ref: '#/BlockHashEIP1898'
 
@@ -1568,6 +1705,18 @@ BlockTag:
       * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
   enum:
     - pending
+    - latest
+    - earliest
+  default: latest
+
+BlockTag_polygon_zkevm:
+  title: Block tag
+  type: string
+  description: |
+    One of the following **block tags**:
+      * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+      * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+  enum:
     - latest
     - earliest
   default: latest
@@ -1623,6 +1772,25 @@ blockNumber_and_index_param_eth:
       maxItems: 2
       items:
         type: string
+
+blockNumber_and_index_param_polygon_zkevm:
+  type: object
+  properties:
+    params:
+      type: array
+      description: |
+        1. String - either the hex value of a **block number** OR One of the following **block tags**:
+            * `pending` - This is the same as `latest` for Polygon zkEVM.
+            * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+            * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged.
+            * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged.
+            * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+        2. String - The transaction index position (in hex)
+      minItems: 2
+      maxItems: 2
+      items:
+        type: string
+
 blockNumber_and_index_param_eth_l2:
   type: object
   properties:

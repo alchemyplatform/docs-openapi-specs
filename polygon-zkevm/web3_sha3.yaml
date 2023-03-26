@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  title: web3_sha3 - Polygon zkEVM
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - polygonzkevm-mainnet
+          - polygonzkevm-testnet
+        default: polygonzkevm-testnet
+paths:
+  /{apiKey}:
+    post:
+      summary: web3_sha3 - Polygon zkEVM
+      description: Returns Keccak-256 (not the standardized SHA3-256) of the given data on Polygon zkEVM.
+      $ref: ../ethereum/web3_sha3.yaml#/components/pathItems/path/post
+      operationId: web3-sha3-polygon-zkevm
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+          - go
