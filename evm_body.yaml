@@ -1876,3 +1876,129 @@ blockNumber_uncleIndex_param_l2:
       items:
         type: string
       default: ['latest', '0x0']
+
+# ======= zkEVM Methods =======
+
+zkevm_consolidatedBlockNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_consolidatedBlockNumber
+
+zkevm_isBlockVirtualized:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_isBlockVirtualized
+        params:
+          type: array
+          description: |
+            1. String - The block number (in hex)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            pattern: '^0x[0-9a-fA-F]+$'
+          default: ['0x0']
+
+zkevm_isBlockConsolidated:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_isBlockConsolidated
+        params:
+          type: array
+          description: |
+            1. String - The block number (in hex)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            pattern: '^0x[0-9a-fA-F]+$'
+          default: ['0x0']
+
+zkevm_batchNumberByBlockNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_batchNumberByBlockNumber
+        params:
+          type: array
+          description: |
+            1. String - The block number (in hex)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            pattern: '^0x[0-9a-fA-F]+$'
+          default: ['0x0']
+
+zkevm_batchNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_batchNumber
+
+zkevm_virtualBatchNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_virtualBatchNumber
+
+zkevm_verifiedBatchNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_verifiedBatchNumber
+
+zkevm_getBatchByNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_getBatchByNumber
+        params:
+          type: array
+          description: |
+            1. String - The batch number (in hex) or batch tag
+
+              The optional batch height descriptions are:
+              * `latest` - The most recent batch in the canonical chain observed by the client, this batch may be re-orged out of the canonical chain even under healthy/normal conditions. 
+              * `earliest` - The lowest numbered batch the client has available. Intuitively, you can think of this as the first batch created.
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+          default: ['0x0']
+
+zkevm_getBroadcastURI:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_getBroadcastURI

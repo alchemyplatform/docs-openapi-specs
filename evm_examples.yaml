@@ -2745,3 +2745,42 @@ eth_getTransactionReceipt_arb:
 eth_cancelPrivateTransaction: { 'id': 1, 'jsonrpc': '2.0', 'result': true }
 
 eth_syncing: { 'id': 1, 'jsonrpc': '2.0', 'result': false }
+
+# ========== zkEVM examples ==========
+
+zkevm_consolidatedBlockNumber:
+  { 'jsonrpc': '2.0', 'id': 1, 'result': '0xfd2fdb' }
+
+zkevm_isBlockVirtualized: { 'jsonrpc': '2.0', 'id': 1, 'result': true }
+
+zkevm_isBlockConsolidated: { 'jsonrpc': '2.0', 'id': 1, 'result': false }
+
+zkevm_batchNumberByBlockNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
+
+zkevm_batchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
+
+zkevm_virtualBatchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
+
+zkevm_verifiedBatchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
+
+zkevm_getBatchByNumber:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'number': '0x0',
+        'coinbase': '0x0000000000000000000000000000000000000000',
+        'stateRoot': '0x13a14c4a8288e782863d7ce916d224546c69dc428fbfa7115a0cc33a27a05b26',
+        'globalExitRoot': '0x0000000000000000000000000000000000000000000000000000000000000000',
+        'localExitRoot': '0x0000000000000000000000000000000000000000000000000000000000000000',
+        'accInputHash': '0x0000000000000000000000000000000000000000000000000000000000000000',
+        'timestamp': '0x63fe2c8c',
+        'sendSequencesTxHash': '0x0000000000000000000000000000000000000000000000000000000000000000',
+        'verifyBatchTxHash': '0x0000000000000000000000000000000000000000000000000000000000000000',
+        'transactions': null,
+      },
+  }
+
+zkevm_getBroadcastURI:
+  { 'jsonrpc': '2.0', 'id': 1, 'result': 'public-grpc.zkevm-test.net:61090' }
