@@ -46,7 +46,6 @@ components:
             - curl
             - javascript
             - python
-          operation-id: eth-call-polygon-zkevm
         responses:
           '200':
             description: The result of the call.
