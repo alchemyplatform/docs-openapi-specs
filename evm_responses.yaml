@@ -1239,31 +1239,6 @@ zkevm_isBlockConsolidated:
           description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
       example:
         $ref: ./evm_examples.yaml#/zkevm_isBlockConsolidated
-# the response body is based on the below:
-# {
-#       "name": "zkevm_batchNumberByBlockNumber",
-#       "summary": "Returns the batch number of the batch connected to the block.",
-#       "params": [
-#         {
-#           "$ref": "#/components/contentDescriptors/BlockNumber"
-#         }
-#       ],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
 
 zkevm_batchNumberByBlockNumber:
   allOf:
@@ -1277,14 +1252,6 @@ zkevm_batchNumberByBlockNumber:
       example:
         $ref: ./evm_examples.yaml#/zkevm_batchNumberByBlockNumber
 
-# {
-#       "name": "zkevm_batchNumber",
-#       "summary": "Returns the latest batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-
 zkevm_batchNumber:
   allOf:
     - $ref: '#/common_response_fields'
@@ -1296,27 +1263,6 @@ zkevm_batchNumber:
           description: Returns the latest batch number.
       example:
         $ref: ./evm_examples.yaml#/zkevm_batchNumber
-
-# {
-#       "name": "zkevm_virtualBatchNumber",
-#       "summary": "Returns the latest virtual batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
 
 zkevm_virtualBatchNumber:
   allOf:
@@ -1330,27 +1276,6 @@ zkevm_virtualBatchNumber:
       example:
         $ref: ./evm_examples.yaml#/zkevm_virtualBatchNumber
 
-#  {
-#       "name": "zkevm_verifiedBatchNumber",
-#       "summary": "Returns the latest verified batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
-
 zkevm_verifiedBatchNumber:
   allOf:
     - $ref: '#/common_response_fields'
@@ -1362,49 +1287,6 @@ zkevm_verifiedBatchNumber:
           description: Returns the latest verified batch number.
       example:
         $ref: ./evm_examples.yaml#/zkevm_verifiedBatchNumber
-
-# {
-#       "name": "zkevm_getBatchByNumber",
-#       "summary": "",
-#       "params": [
-#         {
-#           "$ref": "#/components/contentDescriptors/BatchNumberOrTag"
-#         }
-#       ],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/Batch"
-#       }
-#     }
-
-# "Batch": {
-#         "title": "Batch",
-#         "type": "object",
-#         "readOnly": true,
-#         "properties": {
-#           "number": {
-#             "$ref": "#/components/schemas/BlockNumber"
-#           },
-
-# Example response for zkevm_getBatchByNumber:
-
-# {
-#   "jsonrpc": "2.0",
-#   "id": 1,
-#   "result": {
-#     "number": "0x64",
-#     "coinbase": "0x33d89d254c0f9893a4c8d0978f4ab37455bf35e7",
-#     "stateRoot": "0xcded097664f0bb7b436caf6699f036ebc1388c73f22ce859f220411f23f5d5a9",
-#     "globalExitRoot": "0xfd7aea63747bce38da9d8e06e2547a19d0653f9a66513dcb341ac8a268e3363f",
-#     "localExitRoot": "0x4ed194b1f1ecd5a9cdb0fda8f3d90ca265ab4690cf6c9f7a30227c6ee996dd1c",
-#     "accInputHash": "0x9eccf3b7277bee19bbacdcd6fe8048b4a379e08526ebddb2fd2fb55ddada3d13",
-#     "timestamp": "0x63ff9294",
-#     "sendSequencesTxHash": "0xafd9b6666990f23d0fc4834cb738d03590732c1c6799ba3b31b149f68dcf8190",
-#     "verifyBatchTxHash": "0x467802e0e527a533deef0bd101110895b577430b9046db55213b2897fb3439a3",
-#     "transactions": [
-#       "0xdb64b2b5a1d13ead5dda937dacd811c8d30a8a1f490350f61c8430deacb39299"
-#     ]
-#   }
-# }
 
 zkevm_getBatchByNumber:
   allOf:
@@ -1450,3 +1332,15 @@ zkevm_getBatchByNumber:
                 type: string
       example:
         $ref: ./evm_examples.yaml#/zkevm_getBatchByNumber
+
+zkevm_getBroadcastURI:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns the configured Broadcast URL of the Trusted Sequencer.
+      properties:
+        result:
+          type: string
+          description: Returns the configured Broadcast URL of the Trusted Sequencer.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_getBroadcastURI

@@ -2753,96 +2753,11 @@ zkevm_isBlockConsolidated: { 'jsonrpc': '2.0', 'id': 1, 'result': false }
 
 zkevm_batchNumberByBlockNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
 
-#  {
-#       "name": "zkevm_batchNumber",
-#       "summary": "Returns the latest batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
-
 zkevm_batchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
-
-# {
-#       "name": "zkevm_virtualBatchNumber",
-#       "summary": "Returns the latest virtual batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
 
 zkevm_virtualBatchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
 
-#  {
-#       "name": "zkevm_verifiedBatchNumber",
-#       "summary": "Returns the latest verified batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
-
 zkevm_verifiedBatchNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1' }
-
-# {
-#       "name": "zkevm_getBatchByNumber",
-#       "summary": "",
-#       "params": [
-#         {
-#           "$ref": "#/components/contentDescriptors/BatchNumberOrTag"
-#         }
-#       ],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/Batch"
-#       }
-#     }
-
-# "Batch": {
-#         "title": "Batch",
-#         "type": "object",
-#         "readOnly": true,
-#         "properties": {
-#           "number": {
-#             "$ref": "#/components/schemas/BlockNumber"
-#           },
 
 zkevm_getBatchByNumber:
   {
@@ -2862,3 +2777,6 @@ zkevm_getBatchByNumber:
         'transactions': null,
       },
   }
+
+zkevm_getBroadcastURI:
+  { 'jsonrpc': '2.0', 'id': 1, 'result': 'public-grpc.zkevm-test.net:61090' }

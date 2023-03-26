@@ -1774,14 +1774,6 @@ zkevm_batchNumberByBlockNumber:
             type: string
           default: ['0x0']
 
-# {
-#       "name": "zkevm_batchNumber",
-#       "summary": "Returns the latest batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-
 zkevm_batchNumber:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1790,27 +1782,6 @@ zkevm_batchNumber:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_batchNumber
-
-# {
-#       "name": "zkevm_virtualBatchNumber",
-#       "summary": "Returns the latest virtual batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
 
 zkevm_virtualBatchNumber:
   allOf:
@@ -1821,27 +1792,6 @@ zkevm_virtualBatchNumber:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_virtualBatchNumber
 
-#  {
-#       "name": "zkevm_verifiedBatchNumber",
-#       "summary": "Returns the latest verified batch number.",
-#       "params": [],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/BatchNumber"
-#       },
-#       "examples": [
-#         {
-#           "name": "example",
-#           "description": "",
-#           "params": [],
-#           "result": {
-#             "name": "exampleResult",
-#             "description": "",
-#             "value": "0x1"
-#           }
-#         }
-#       ]
-#     },
-
 zkevm_verifiedBatchNumber:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1850,36 +1800,6 @@ zkevm_verifiedBatchNumber:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_verifiedBatchNumber
-
-# {
-#       "name": "zkevm_getBatchByNumber",
-#       "summary": "",
-#       "params": [
-#         {
-#           "$ref": "#/components/contentDescriptors/BatchNumberOrTag"
-#         }
-#       ],
-#       "result": {
-#         "$ref": "#/components/contentDescriptors/Batch"
-#       }
-#     }
-
-# "BatchNumber": {
-#   "title": "batchNumber",
-#   "type": "string",
-#   "description": "The hex representation of the batch's height",
-#   "$ref": "#/components/schemas/Integer"
-# },
-
-# "BatchNumberTag": {
-#   "title": "batchNumberTag",
-#   "type": "string",
-#   "description": "The optional batch height description",
-#   "enum": [
-#     "earliest",
-#     "latest"
-#   ]
-# },
 
 zkevm_getBatchByNumber:
   allOf:
@@ -1902,3 +1822,12 @@ zkevm_getBatchByNumber:
           items:
             type: string
           default: ['0x0']
+
+zkevm_getBroadcastURI:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_getBroadcastURI
