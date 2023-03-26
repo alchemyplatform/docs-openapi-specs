@@ -1850,3 +1850,55 @@ zkevm_verifiedBatchNumber:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_verifiedBatchNumber
+
+# {
+#       "name": "zkevm_getBatchByNumber",
+#       "summary": "",
+#       "params": [
+#         {
+#           "$ref": "#/components/contentDescriptors/BatchNumberOrTag"
+#         }
+#       ],
+#       "result": {
+#         "$ref": "#/components/contentDescriptors/Batch"
+#       }
+#     }
+
+# "BatchNumber": {
+#   "title": "batchNumber",
+#   "type": "string",
+#   "description": "The hex representation of the batch's height",
+#   "$ref": "#/components/schemas/Integer"
+# },
+
+# "BatchNumberTag": {
+#   "title": "batchNumberTag",
+#   "type": "string",
+#   "description": "The optional batch height description",
+#   "enum": [
+#     "earliest",
+#     "latest"
+#   ]
+# },
+
+zkevm_getBatchByNumber:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_getBatchByNumber
+        params:
+          type: array
+          description: |
+            1. String - The batch number (in hex) or batch tag
+
+              The optional batch height descriptions are:
+              * `latest` - The most recent batch in the canonical chain observed by the client, this batch may be re-orged out of the canonical chain even under healthy/normal conditions. 
+              * `earliest` - The lowest numbered batch the client has available. Intuitively, you can think of this as the first batch created.
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+          default: ['0x0']
