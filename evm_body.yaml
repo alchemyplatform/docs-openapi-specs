@@ -1736,6 +1736,7 @@ zkevm_isBlockVirtualized:
           maxItems: 1
           items:
             type: string
+            pattern: '^0x[0-9a-fA-F]+$'
           default: ['0x0']
 
 zkevm_isBlockConsolidated:
@@ -1754,6 +1755,7 @@ zkevm_isBlockConsolidated:
           maxItems: 1
           items:
             type: string
+            pattern: '^0x[0-9a-fA-F]+$'
           default: ['0x0']
 
 zkevm_batchNumberByBlockNumber:
@@ -1772,6 +1774,7 @@ zkevm_batchNumberByBlockNumber:
           maxItems: 1
           items:
             type: string
+            pattern: '^0x[0-9a-fA-F]+$'
           default: ['0x0']
 
 zkevm_batchNumber:
