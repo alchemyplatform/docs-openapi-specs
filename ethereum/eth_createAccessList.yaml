@@ -31,12 +31,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/eth_createAccessList'
+                $ref: ../evm_body.yaml#/eth_createAccessList
         responses:
           '200':
             description: ''
             content:
               application/json:
                 schema:
-                  $ref: '../evm_responses.yaml#/eth_createAccessList'
+                  $ref: ../evm_responses.yaml#/eth_createAccessList
         operationId: eth-createaccesslist
