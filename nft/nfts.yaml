@@ -363,9 +363,9 @@ paths:
                     type: string
                     description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
       operationId: getNFTsForCollection
-  '/v3/{apiKey}/getOwnersForToken':
+  '/v3/{apiKey}/getOwnersForNFT':
     get:
-      summary: getOwnersForToken
+      summary: getOwnersForNFT
       description: Get the owner(s) for a token.
       tags: ['Ownership & Token Gating']
       parameters:
@@ -410,7 +410,7 @@ paths:
                 properties:
                   owners:
                     $ref: '#/components/schemas/owners'
-      operationId: getOwnersForToken
+      operationId: getOwnersForNFT
   '/v3/{apiKey}/getOwnersForCollection':
     get:
       summary: getOwnersForCollection
@@ -829,9 +829,9 @@ paths:
                   contractAddress:
                     $ref: '#/components/schemas/contractAddress'
       operationId: summarizeNFTAttributes
-  '/v3/{apiKey}/isHolderOfCollection':
+  '/v3/{apiKey}/isHolderOfContract':
     get:
-      summary: isHolderOfCollection
+      summary: isHolderOfContract
       description: Checks whether a wallet holds a NFT in a given collection
       tags: ['Ownership & Token Gating']
       parameters:
@@ -857,7 +857,7 @@ paths:
                   isHolderOfCollection:
                     type: boolean
                     description: 'Whether the given wallet owns any token in the given NFT collection.'
-      operationId: isHolderOfCollection
+      operationId: isHolderOfContract
   '/v3/{apiKey}/getNFTSales':
     get:
       summary: getNFTSales
@@ -1790,7 +1790,7 @@ paths:
                 items:
                   type: object
                   properties:
-                    trait_type:
+                    traitType:
                       type: string
                       description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
                     value:
