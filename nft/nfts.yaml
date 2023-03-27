@@ -3,7 +3,7 @@ info:
   title: 🎨 NFT API
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/nft/v2
+  - url: https://{network}.g.alchemy.com/nft
     variables:
       network:
         enum:
@@ -17,11 +17,11 @@ servers:
           - opt-goerli
         default: eth-mainnet
 paths:
-  '/{apiKey}/getNFTs':
+  '/v2/{apiKey}/getNFTs':
     get:
       summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: ['Ownership & Token Gating']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/contractAddresses'
@@ -88,12 +88,12 @@ paths:
                   $ref: '#/components/schemas/withContractFiltering_response'
                 withPagination:
                   $ref: '#/components/schemas/withPagination_response'
-      operationId: getNFTs
-  '/{apiKey}/getNFTMetadata':
+      operationId: getNFTs-v2
+  '/v2/{apiKey}/getNFTMetadata':
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -137,12 +137,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ownedNFT'
-      operationId: getNFTMetadata
-  '/{apiKey}/getNFTMetadataBatch':
+      operationId: getNFTMetadata-v2
+  '/v2/{apiKey}/getNFTMetadataBatch':
     post:
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -206,12 +206,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ownedNFT'
-      operationId: getNFTMetadataBatch
-  '/{apiKey}/getContractMetadata':
+      operationId: getNFTMetadataBatch-v2
+  '/v2/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -254,12 +254,12 @@ paths:
                     description: 'String - Contract address for the queried NFT collection'
                   contractMetadata:
                     $ref: '#/components/schemas/contractMetadata'
-      operationId: getContractMetadata
-  '/{apiKey}/getContractMetadataBatch':
+      operationId: getContractMetadata-v2
+  '/v2/{apiKey}/getContractMetadataBatch':
     post:
       summary: getContractMetadataBatch
       description: Gets the metadata associated with the given list of contract addresses
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -292,12 +292,12 @@ paths:
                       $ref: '#/components/schemas/address'
                     contractMetadata:
                       $ref: '#/components/schemas/ownedContract'
-      operationId: getContractMetadataBatch
-  '/{apiKey}/getNFTsForCollection':
+      operationId: getContractMetadataBatch-v2
+  '/v2/{apiKey}/getNFTsForCollection':
     get:
       summary: getNFTsForCollection
       description: Gets all NFTs for a given NFT contract.
-      tags: ['Collections']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -360,12 +360,12 @@ paths:
                   nextToken:
                     type: string
                     description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForCollection
-  '/{apiKey}/getOwnersForToken':
+      operationId: getNFTsForCollection-v2
+  '/v2/{apiKey}/getOwnersForToken':
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: ['Ownership & Token Gating']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -408,12 +408,12 @@ paths:
                 properties:
                   owners:
                     $ref: '#/components/schemas/owners'
-      operationId: getOwnersForToken
-  '/{apiKey}/getOwnersForCollection':
+      operationId: getOwnersForToken-v2
+  '/v2/{apiKey}/getOwnersForCollection':
     get:
       summary: getOwnersForCollection
       description: Gets all owners for a given NFT contract.
-      tags: ['Ownership & Token Gating']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -455,12 +455,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/owners'
-      operationId: getOwnersForCollection
-  '/{apiKey}/getSpamContracts':
+      operationId: getOwnersForCollection-v2
+  '/v2/{apiKey}/getSpamContracts':
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
@@ -497,12 +497,12 @@ paths:
                 items:
                   type: string
                 description: A list of contract addresses earmarked as spam by Alchemy.
-      operationId: getSpamContracts
-  '/{apiKey}/isSpamContract':
+      operationId: getSpamContracts-v2
+  '/v2/{apiKey}/isSpamContract':
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -541,12 +541,12 @@ paths:
               schema:
                 type: boolean
                 description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
-      operationId: isSpamContract
-  '/{apiKey}/isAirdrop':
+      operationId: isSpamContract-v2
+  '/v2/{apiKey}/isAirdrop':
     get:
       summary: isAirdrop
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
-      tags: ['Spam Detection']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -567,12 +567,12 @@ paths:
               schema:
                 type: boolean
                 description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
-      operationId: isAirdrop
-  '/{apiKey}/invalidateContract':
+      operationId: isAirdrop-v2
+  '/v2/{apiKey}/invalidateContract':
     get:
       summary: invalidateContract
       description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -598,12 +598,12 @@ paths:
                   numTokensInvalidated:
                     type: number
                     description: The number of tokens that were invalidated as a result of running this query.
-      operationId: invalidateContract
-  '/{apiKey}/reingestContract':
+      operationId: invalidateContract-v2
+  '/v2/{apiKey}/reingestContract':
     get:
       summary: reingestContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -660,12 +660,12 @@ paths:
                   progress:
                     type: string
                     description: 'String - Percentage of tokens successfully refreshed.'
-      operationId: reingestContract
-  '/{apiKey}/getFloorPrice':
+      operationId: reingestContract-v2
+  '/v2/{apiKey}/getFloorPrice':
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['Sales & Marketplace Data']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -725,12 +725,12 @@ paths:
                       error:
                         type: string
                         description: 'String - Returns an error if there was an error fetching floor prices from the given marketplace.'
-      operationId: getFloorPrice
-  '/{apiKey}/computeRarity':
+      operationId: getFloorPrice-v2
+  '/v2/{apiKey}/computeRarity':
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['Rarity Data']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -763,12 +763,12 @@ paths:
                     prevalence:
                       type: number
                       description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
-      operationId: computeRarity
-  '/{apiKey}/searchContractMetadata':
+      operationId: computeRarity-v2
+  '/v2/{apiKey}/searchContractMetadata':
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT Metadata Access']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/query'
@@ -793,12 +793,12 @@ paths:
                       $ref: '#/components/schemas/contractAddress'
                     contractMetadata:
                       $ref: '#/components/schemas/contractMetadata'
-      operationId: searchContractMetadata
-  '/{apiKey}/summarizeNFTAttributes':
+      operationId: searchContractMetadata-v2
+  '/v2/{apiKey}/summarizeNFTAttributes':
     get:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['Rarity Data']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -826,12 +826,12 @@ paths:
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
                   contractAddress:
                     $ref: '#/components/schemas/contractAddress'
-      operationId: summarizeNFTAttributes
-  '/{apiKey}/isHolderOfCollection':
+      operationId: summarizeNFTAttributes-v2
+  '/v2/{apiKey}/isHolderOfCollection':
     get:
       summary: isHolderOfCollection
       description: Checks whether a wallet holds a NFT in a given collection
-      tags: ['Ownership & Token Gating']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
@@ -855,12 +855,12 @@ paths:
                   isHolderOfCollection:
                     type: boolean
                     description: 'Whether the given wallet owns any token in the given NFT collection.'
-      operationId: isHolderOfCollection
-  '/{apiKey}/getNFTSales':
+      operationId: isHolderOfCollection-v2
+  '/v2/{apiKey}/getNFTSales':
     get:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['Sales & Marketplace Data']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/fromBlock'
@@ -978,12 +978,12 @@ paths:
               examples:
                 nftSales_response:
                   $ref: '#/components/schemas/nftSales_response'
-      operationId: getNFTSales
-  '/{apiKey}/getContractsForOwner':
+      operationId: getNFTSales-v2
+  '/v2/{apiKey}/getContractsForOwner':
     get:
       summary: getContractsForOwner
       description: Gets all NFT contracts held by an owner address.
-      tags: ['Ownership & Token Gating']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -1022,12 +1022,12 @@ paths:
                   $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
                 withMetadata:
                   $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
-      operationId: getContractsForOwner
-  '/{apiKey}/reportSpam':
+      operationId: getContractsForOwner-v2
+  '/v2/{apiKey}/reportSpam':
     get:
       summary: reportSpam
       description: Report a particular address to our APIs if you think it is spam
-      tags: ['Spam Detection']
+      tags: ['v2']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/address'
@@ -1046,7 +1046,7 @@ paths:
               schema:
                 type: string
                 description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
-      operationId: reportSpam
+      operationId: reportSpam-v2
 
 components:
   schemas:
