@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
-  title: net_version - astar
+  title: net_version - Astar
   version: '1.0'
 servers:
   - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: net_version - Astar
       $ref: ../ethereum/net_version.yaml#/components/pathItems/path/post
       operationId: net-version-astar
