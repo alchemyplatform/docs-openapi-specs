@@ -18,7 +18,7 @@ components:
     path:
       post:
         summary: eth_getUncleCountByBlockHash - Polygon zkEVM
-        description: Response for this method is always 0 on Polygon zkEVM.
+        description: Returns the number of uncles in a block specified by block hash. Response for this method is always 0 on Polygon zkEVM.
         tags: []
         parameters:
           - name: apiKey

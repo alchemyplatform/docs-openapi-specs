@@ -18,7 +18,7 @@ components:
     path:
       post:
         summary: eth_getCompilers - Polygon zkEVM
-        description: Response is always empty in Polygon zkEVM.
+        description: Returns a list of installed compilers (Deprecated). Response is always empty in Polygon zkEVM.
         tags: []
         parameters:
           - name: apiKey

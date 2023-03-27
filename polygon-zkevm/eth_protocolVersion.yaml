@@ -18,7 +18,7 @@ components:
     path:
       post:
         summary: eth_protocolVersion - Polygon zkEVM
-        description: Response for this method is always 0 on Polygon zkEVM.
+        description: Returns the current network protocol version as a string. Response for this method is always 0 on Polygon zkEVM.
         tags: []
         parameters:
           - name: apiKey

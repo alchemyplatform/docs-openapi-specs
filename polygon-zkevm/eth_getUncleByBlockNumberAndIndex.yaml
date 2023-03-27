@@ -18,7 +18,7 @@ components:
     path:
       post:
         summary: eth_getUncleByBlockNumberAndIndex - Polygon zkEVM
-        description: Response is always empty on Polygon zkEVM.
+        description: Returns information about an uncle block by block number and uncle index position. Response for this method is always empty on Polygon zkEVM.
         tags: []
         parameters:
           - name: apiKey
