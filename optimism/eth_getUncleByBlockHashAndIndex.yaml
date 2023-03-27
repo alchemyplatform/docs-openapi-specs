@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
-  title: eth_getUncleByBlockHashAndIndex - optimism
+  title: eth_getUncleByBlockHashAndIndex - Optimism
   version: '1.0'
 servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getUncleByBlockHashAndIndex - Optimism
       $ref: ../ethereum/eth_getUncleByBlockHashAndIndex.yaml#/components/pathItems/path/post
       operationId: eth-getunclebyblockhashandindex-optimism
