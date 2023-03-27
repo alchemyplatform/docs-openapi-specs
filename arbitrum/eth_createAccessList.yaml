@@ -7,7 +7,7 @@ servers:
 paths:
   /{apiKey}:
     post:
-      summary: eth_createAccessList
+      summary: eth_createAccessList - Arbitrum
       description: 'Arbitrum API - Creates an EIP2930 type `accessList` based on a given Transaction object. Returns list of addresses and storage keys that are read and written by the transaction (except the sender account and precompiles), plus the estimated gas consumed when the access list is added.'
       parameters:
         - name: apiKey

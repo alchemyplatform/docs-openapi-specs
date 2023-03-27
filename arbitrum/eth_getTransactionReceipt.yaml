@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getTransactionReceipt - arbitrum
+  title: eth_getTransactionReceipt - Arbitrum
   version: '1.0'
 servers:
   - url: 'https://arb-mainnet.g.alchemy.com/v2'
@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getTransactionReceipt # can update this name to eth_getTransactionReceipt - arbitrum to avoid confusion on docs while searching
+        summary: eth_getTransactionReceipt - Arbitrum
         description: Returns the receipt of a transaction by transaction hash.
         tags: []
         parameters:
