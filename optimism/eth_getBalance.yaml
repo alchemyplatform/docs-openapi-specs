@@ -1,12 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_getBalance - optimism
+  title: eth_getBalance - Optimism
   version: '1.0'
 servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getBalance - Optimism
       $ref: ../ethereum/eth_getBalance.yaml#/components/pathItems/path/post
       operationId: eth-getbalance-optimism
       x-readme:

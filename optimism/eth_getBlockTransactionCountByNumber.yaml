@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockTransactionCountByNumber - optimism
+  title: eth_getBlockTransactionCountByNumber - Optimism
   version: '1.0'
 servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getBlockTransactionCountByNumber - Optimism
       $ref: ../ethereum/eth_getBlockTransactionCountByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblocktransactioncountbynumber-optimism
