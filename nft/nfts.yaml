@@ -309,8 +309,25 @@ paths:
                   properties:
                     address:
                       $ref: '#/components/schemas/address'
-                    contractMetadata:
-                      $ref: '#/components/schemas/ownedContract'
+                    name:
+                      type: string
+                      description: 'String - NFT contract name.'
+                    symbol:
+                      type: string
+                      description: 'String - NFT contract symbol abbreviation.'
+                    totalSupply:
+                      type: string
+                      description: 'String - Total number of NFTs in a given NFT collection.'
+                    tokenType:
+                      $ref: '#/components/schemas/tokenType_response'
+                    contractDeployer:
+                      type: string
+                      description: 'String - Address that deployed the smart contract'
+                    deployedBlockNumber:
+                      type: number
+                      description: 'Number - The Block Number when the deployment transaction is successfully mined'
+                    openseaMetadata:
+                      $ref: '#/components/schemas/opensea'
       operationId: getContractMetadataBatch
   '/v3/{apiKey}/getNFTsForCollection':
     get:
