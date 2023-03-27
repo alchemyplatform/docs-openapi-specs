@@ -1586,7 +1586,7 @@ paths:
                 type: array
                 items:
                   type: string
-                  description: Optional list of contract addresses to filter the results by. Limit is 20.
+                  description: Optional list of contract addresses to filter the results by. Limit is 45.
               excludeFilters:
                 type: array
                 items:
