@@ -827,8 +827,33 @@ paths:
                   properties:
                     address:
                       $ref: '#/components/schemas/contractAddress'
-                    contractMetadata:
-                      $ref: '#/components/schemas/contractMetadata'
+                    name:
+                      type: string
+                      description: 'String - NFT contract name.'
+                    symbol:
+                      type: string
+                      description: 'String - NFT contract symbol abbreviation.'
+                    totalSupply:
+                      type: string
+                      description: 'String - Total number of NFTs in a given NFT collection.'
+                    tokenType:
+                      $ref: '#/components/schemas/tokenType_response'
+                    contractDeployer:
+                      type: string
+                      description: 'String - Address that deployed the smart contract'
+                    deployedBlockNumber:
+                      type: number
+                      description: 'Number - The Block Number when the deployment transaction is successfully mined'
+                    openseaMetadata:
+                      $ref: '#/components/schemas/opensea'
+                    isSpam:
+                      type: string
+                      description: '"true" if contract is spam, else "false"'
+                    spamClassifications:
+                      description: 'List of reasons why a contract was classified as spam.'
+                      type: array
+                      items:
+                        type: string                  
       operationId: searchContractMetadata
   '/v3/{apiKey}/summarizeNFTAttributes':
     get:
