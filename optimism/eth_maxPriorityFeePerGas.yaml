@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_maxPriorityFeePerGas - optimism
+  title: eth_maxPriorityFeePerGas - Optimism
   version: '1.0'
 servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
-      summary: eth_maxPriorityFeePerGas
+      summary: eth_maxPriorityFeePerGas - Optimism
       description: "Returns a fee per gas that is an estimate of how much you can pay as a priority fee, or 'tip', to get a transaction included in the current block."
       tags: []
       parameters:

@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
-  title: net_listening - arbitrum
+  title: net_listening - Arbitrum
   version: '1.0'
 servers:
   - url: 'https://arb-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: net_listening - Arbitrum
       operationId: net-listening-arbitrum
       $ref: ../ethereum/net_listening.yaml#/components/pathItems/path/post

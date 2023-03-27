@@ -1,12 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_blockNumber - astar
+  title: eth_blockNumber - Astar
   version: '1.0'
 servers:
   - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_blockNumber - Astar
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       operationId: eth-blocknumber-astar
       x-readme:

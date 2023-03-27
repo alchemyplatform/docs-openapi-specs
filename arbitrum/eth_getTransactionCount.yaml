@@ -1,12 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_getTransactionCount - arbitrum
+  title: eth_getTransactionCount - Arbitrum
   version: '1.0'
 servers:
   - url: 'https://arb-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getTransactionCount - Arbitrum
       operationId: eth-gettransactioncount-arbitrum
       $ref: ../ethereum/eth_getTransactionCount.yaml#/components/pathItems/path/post
       x-readme:

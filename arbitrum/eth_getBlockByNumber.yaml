@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockByNumber - arbitrum
+  title: eth_getBlockByNumber - Arbitrum
   description: Retrieves information from a particular block in the blockchain on the Arbitrum network.
   version: '1.0'
 servers:
@@ -13,7 +13,7 @@ components:
     path:
       post:
         operationId: eth-getBlockByNumber-arbitrum
-        summary: eth_getBlockByNumber
+        summary: eth_getBlockByNumber - Arbitrum
         description: Returns information about a block by block number on the Arbitrum network.
         parameters:
           - name: apiKey

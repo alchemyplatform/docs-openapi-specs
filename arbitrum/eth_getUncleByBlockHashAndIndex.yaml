@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
-  title: eth_getUncleByBlockHashAndIndex - arbitrum
+  title: eth_getUncleByBlockHashAndIndex - Arbitrum
   version: '1.0'
 servers:
   - url: 'https://arb-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getUncleByBlockHashAndIndex - Arbitrum
       operationId: eth-getunclebyblockhashandindex-arbitrum
       $ref: ../ethereum/eth_getUncleByBlockHashAndIndex.yaml#/components/pathItems/path/post

@@ -1,12 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_getTransactionCount - astar
+  title: eth_getTransactionCount - Astar
   version: '1.0'
 servers:
   - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getTransactionCount - Astar
       $ref: ../ethereum/eth_getTransactionCount.yaml#/components/pathItems/path/post
       operationId: eth-gettransactioncount-astar
       x-readme:
