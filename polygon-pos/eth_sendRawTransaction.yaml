@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: eth_sendRawTransaction - Polygon PoS
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_sendRawTransaction - Polygon PoS
+      description: |
+        Creates a new message call transaction or a contract creation for signed transactions.
+        </br><strong> Note: </strong> Due to network constraints, transactions on Polygon Mainnet must be submitted with a minimum gasPrice of 30 gwei.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_sendRawTransaction
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              import { Network, Alchemy, Wallet, Utils } from "alchemy-sdk";
+              import dotenv from "dotenv";
+              dotenv.config();
+
+              const { API_KEY, PRIVATE_KEY } = process.env;
+
+              const settings = {
+                apiKey: API_KEY,
+                network: Network.MATIC_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const wallet = new Wallet(PRIVATE_KEY);
+
+              const transaction = {
+                to: "0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd",
+                value: Utils.parseEther("0.001"),
+                gasLimit: "21000",
+                maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
+                maxFeePerGas: Utils.parseUnits("20", "gwei"),
+                nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                type: 2,
+                chainId: 137, // Corresponds to MATIC_MAINNET
+              };
+
+              const rawTransaction = await wallet.signTransaction(transaction);
+              await alchemy.transact.sendTransaction(rawTransaction);
+      responses:
+        '200':
+          description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/string_result_response
+      operationId: eth-sendRawTransaction-polygon

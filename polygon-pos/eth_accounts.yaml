@@ -1,0 +1,13 @@
+openapi: 3.1.0
+info:
+  title: eth_accounts - Polygon PoS
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_accounts - Polygon PoS
+      description: Returns a list of addresses owned by client on Polygon. Since Alchemy does not store keys, this will always return empty.
+      $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
+      operationId: eth-accounts-polygon

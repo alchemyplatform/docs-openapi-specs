@@ -1,0 +1,13 @@
+openapi: 3.1.0
+info:
+  title: eth_newFilter - Polygon PoS
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_newFilter - Polygon PoS
+      description: Polygon API - Creates a filter object, based on filter options, to notify when the state changes (logs).
+      $ref: ../ethereum/eth_newFilter.yaml#/components/pathItems/path/post
+      operationId: eth-newfilter-polygon

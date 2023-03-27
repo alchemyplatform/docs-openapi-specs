@@ -1,0 +1,13 @@
+openapi: 3.1.0
+info:
+  title: eth_getTransactionByBlockNumberAndIndex - Polygon PoS
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_getTransactionByBlockNumberAndIndex - Polygon PoS
+      description: Returns information about a transaction by block number and transaction index position on Polygon.
+      $ref: ../ethereum/eth_getTransactionByBlockNumberAndIndex.yaml#/components/pathItems/path/post
+      operationId: eth-gettransactionbyblocknumberandindex-polygon
