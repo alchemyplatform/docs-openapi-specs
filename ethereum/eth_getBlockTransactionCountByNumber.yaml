@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockTransactionCountByNumber
+  title: eth_getBlockTransactionCountByNumber - Ethereum
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2 '
@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getBlockTransactionCountByNumber
+        summary: eth_getBlockTransactionCountByNumber - Ethereum
         description: Returns the number of transactions in a block matching the given block number.
         tags: []
         parameters:

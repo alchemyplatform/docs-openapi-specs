@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getLogs
+  title: eth_getLogs - Ethereum
   description: 'Returns logs which are records that denote/provide context on specific events within a smart contract, like a token transfer or a change of ownership for example.'
   version: '1.0'
 servers:
@@ -13,7 +13,7 @@ components:
     path:
       post:
         operationId: eth-getlogs
-        summary: eth_getLogs
+        summary: eth_getLogs - Ethereum
         description: |
           Returns an array of all logs matching a given filter object.
         parameters:
