@@ -16,7 +16,7 @@ paths:
           schema:
             type: string
             default: docs-demo
-              description: |
+            description: |
               <style>
                 .custom-style {
                   color: #048FF4;
