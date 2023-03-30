@@ -2164,3 +2164,36 @@ eth_supportedEntryPoints:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: eth_supportedEntryPoints
+
+alchemy_requestUserOperationSponsorship:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: alchemy_requestUserOperationSponsorship
+        params:
+          type: array
+          description: Parameters for requesting sponsorship
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              policyId:
+                type: string
+                description: The policy ID
+                default: '0x1234567890123456789012345678901234567890123456789012345678901234'
+              entryPoint:
+                type: string
+                description: The entry point address
+                pattern: '^0x[0-9a-fA-F]{40}$'
+                default: '0x0576a174D229E3cFA37253523E645A78A0C91B57'
+              paymasterTrackedSenderNonce:
+                type: string
+                description: The paymaster tracked sender nonce, unique for each sender and incremental
+                default: '0x1'
+              userOperation:
+                $ref: ./components/schemas.yaml#/UserOperation
+                description: Partial UserOperation object, missing paymasterAndData and signature fields

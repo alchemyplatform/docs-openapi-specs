@@ -3005,3 +3005,37 @@ eth_supportedEntryPoints:
         '0x7A0A0d159218E6a2f407B99173A2b12A6DDfC2a6',
       ],
   }
+
+# alchemy_requestUserOperationSponsorship:
+#   allOf:
+#     - $ref: '#/common_response_fields'
+#     - type: object
+#       properties:
+#         result:
+#           type: object
+#           properties:
+#             paymasterAndData:
+#               type: string
+#               description: |
+#                 The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
+#                 Contains paymaster address, sigTimeRange, and secp256k1 signature.
+#             error:
+#               type: object
+#               description: Error object if the sponsorship request is not approved
+#               properties:
+#                 code:
+#                   type: integer
+#                   description: Error code
+#                 message:
+#                   type: string
+#                   description: Error message
+#                 data:
+#                   type: object
+#                   description: Additional error data
+
+alchemy_requestUserOperationSponsorship:
+  {
+    'id': 1,
+    'jsonrpc': '2.0',
+    'result': { 'paymasterAndData': '0x', 'error': error },
+  }

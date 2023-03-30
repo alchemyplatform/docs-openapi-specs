@@ -1459,3 +1459,32 @@ eth_supportedEntryPoints:
             pattern: '^0x[a-fA-F0-9]{40}$'
       example:
         $ref: ./evm_examples.yaml#/eth_supportedEntryPoints
+
+alchemy_requestUserOperationSponsorship:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            paymasterAndData:
+              type: string
+              description: |
+                The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
+                Contains paymaster address, sigTimeRange, and secp256k1 signature.
+            error:
+              type: object
+              description: Error object if the sponsorship request is not approved
+              properties:
+                code:
+                  type: integer
+                  description: Error code
+                message:
+                  type: string
+                  description: Error message
+                data:
+                  type: object
+                  description: Additional error data
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_requestUserOperationSponsorship
