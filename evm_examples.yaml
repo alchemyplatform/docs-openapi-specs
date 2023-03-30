@@ -2786,3 +2786,15 @@ zkevm_getBroadcastURI:
   { 'jsonrpc': '2.0', 'id': 1, 'result': 'public-grpc.zkevm-test.net:61090' }
 
 eth_sendUserOperation: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1234...5678' }
+
+eth_estimateUserOperationGas:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'preVerificationGas': '0x1',
+        'verificationGasLimit': '0x1',
+        'callGasLimit': '0x1',
+      },
+  }

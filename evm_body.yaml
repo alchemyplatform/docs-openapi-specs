@@ -2113,3 +2113,19 @@ eth_sendUserOperation:
               - type: string
                 description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
                 default: '0xc944E90C64B2c07662A292be6244BDf05Cda44a7'
+
+eth_estimateUserOperationGas:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_estimateUserOperationGas
+        params:
+          type: array
+          description: The `UserOperation` object (gas limits and prices are optional)
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: ./components/schemas.yaml#/UserOperation

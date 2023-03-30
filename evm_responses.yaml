@@ -1380,3 +1380,26 @@ eth_sendUserOperation:
           description: The calculated `userOpHash` for the valid `UserOperation`
       example:
         $ref: ./evm_examples.yaml#/eth_sendUserOperation
+
+eth_estimateUserOperationGas:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            preVerificationGas:
+              type: integer
+              format: int256
+              description: Gas overhead of this UserOperation
+            verificationGasLimit:
+              type: integer
+              format: int256
+              description: Actual gas used by the validation of this UserOperation
+            callGasLimit:
+              type: integer
+              format: int256
+              description: Value used by inner account execution
+      example:
+        $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
