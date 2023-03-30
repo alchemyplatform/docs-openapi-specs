@@ -2155,3 +2155,12 @@ eth_getUserOperationReceipt:
       properties:
         method:
           default: eth_getUserOperationReceipt
+
+eth_supportedEntryPoints:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_supportedEntryPoints

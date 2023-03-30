@@ -1391,15 +1391,12 @@ eth_estimateUserOperationGas:
           properties:
             preVerificationGas:
               type: integer
-              format: int256
               description: Gas overhead of this UserOperation
             verificationGasLimit:
               type: integer
-              format: int256
               description: Actual gas used by the validation of this UserOperation
             callGasLimit:
               type: integer
-              format: int256
               description: Value used by inner account execution
       example:
         $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
@@ -1426,18 +1423,15 @@ eth_getUserOperationByHash:
               properties:
                 entryPoint:
                   type: string
-                  format: address
                   description: EntryPoint address
                 blockNumber:
                   type: integer
                   description: Block number in which UserOperation is included
                 blockHash:
                   type: string
-                  format: bytes
                   description: Block hash of the block containing UserOperation
                 transactionHash:
                   type: string
-                  format: bytes
                   description: Transaction hash of the UserOperation
       example:
         $ref: './evm_examples.yaml#/eth_getUserOperationByHash'
@@ -1451,3 +1445,17 @@ eth_getUserOperationReceipt:
           $ref: ./components/schemas.yaml#/UserOperationReceipt
       example:
         $ref: './evm_examples.yaml#/eth_getUserOperationReceipt'
+
+eth_supportedEntryPoints:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: Array of supported entryPoint addresses
+          items:
+            type: string
+            pattern: '^0x[a-fA-F0-9]{40}$'
+      example:
+        $ref: ./evm_examples.yaml#/eth_supportedEntryPoints
