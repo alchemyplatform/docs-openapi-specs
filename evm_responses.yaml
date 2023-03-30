@@ -1403,3 +1403,41 @@ eth_estimateUserOperationGas:
               description: Value used by inner account execution
       example:
         $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
+
+#  * eth_getUserOperationByHash
+# Return a UserOperation based on a hash (userOpHash) returned by eth_sendUserOperation
+
+# Parameters
+
+# hash a userOpHash value returned by eth_sendUserOperation
+# Return value:
+
+# null in case the UserOperation is not yet included in a block, or a full UserOperation, with the addition of entryPoint, blockNumber, blockHash and transactionHash
+
+eth_getUserOperationByHash:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          allOf:
+            - $ref: ./components/schemas.yaml#/UserOperation
+            - type: object
+              properties:
+                entryPoint:
+                  type: string
+                  format: address
+                  description: EntryPoint address
+                blockNumber:
+                  type: integer
+                  description: Block number in which UserOperation is included
+                blockHash:
+                  type: string
+                  format: bytes
+                  description: Block hash of the block containing UserOperation
+                transactionHash:
+                  type: string
+                  format: bytes
+                  description: Transaction hash of the UserOperation
+      example:
+        $ref: './evm_examples.yaml#/eth_getUserOperationByHash'

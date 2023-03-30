@@ -2129,3 +2129,21 @@ eth_estimateUserOperationGas:
           maxItems: 1
           items:
             $ref: ./components/schemas.yaml#/UserOperation
+
+eth_getUserOperationByHash:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getUserOperationByHash
+        params:
+          type: array
+          description: The `userOpHash` of the UserOperation to get (as returned by `eth_sendUserOperation`)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            description: The `userOpHash` of the UserOperation to get
+            default: '0x77c0b560eb0b042902abc5613f768d2a6b2d67481247e9663bf4d68dec0ca122'
