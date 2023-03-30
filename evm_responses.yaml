@@ -1401,16 +1401,6 @@ eth_estimateUserOperationGas:
       example:
         $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
 
-#  * eth_getUserOperationByHash
-# Return a UserOperation based on a hash (userOpHash) returned by eth_sendUserOperation
-
-# Parameters
-
-# hash a userOpHash value returned by eth_sendUserOperation
-# Return value:
-
-# null in case the UserOperation is not yet included in a block, or a full UserOperation, with the addition of entryPoint, blockNumber, blockHash and transactionHash
-
 eth_getUserOperationByHash:
   allOf:
     - $ref: '#/common_response_fields'
@@ -1488,3 +1478,17 @@ alchemy_requestUserOperationSponsorship:
                   description: Additional error data
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestUserOperationSponsorship
+
+alchemy_paymasterSupportedEntryPoints:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: An array of supported EntryPoint addresses
+          items:
+            type: string
+            pattern: '^0x[a-fA-F0-9]{40}$'
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_paymasterSupportedEntryPoints
