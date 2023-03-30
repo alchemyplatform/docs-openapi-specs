@@ -1367,3 +1367,16 @@ zkevm_getBroadcastURI:
           description: Returns the configured Broadcast URL of the Trusted Sequencer.
       example:
         $ref: ./evm_examples.yaml#/zkevm_getBroadcastURI
+
+# ============= Account Abstraction ===============
+
+eth_sendUserOperation:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: string
+          description: The calculated `userOpHash` for the valid `UserOperation`
+      example:
+        $ref: ./evm_examples.yaml#/eth_sendUserOperation
