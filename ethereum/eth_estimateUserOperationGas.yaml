@@ -20,7 +20,7 @@ components:
     path:
       post:
         summary: eth_estimateUserOperationGas - Ethereum
-        description: Estimates the gas values for a UserOperation.
+        description: Estimates the gas values for a `UserOperation`.
         tags: []
         parameters:
           - name: apiKey

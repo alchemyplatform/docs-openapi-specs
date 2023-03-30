@@ -20,7 +20,7 @@ components:
     path:
       post:
         summary: eth_getUserOperationByHash - Ethereum
-        description: Return a UserOperation based on a hash (userOpHash).
+        description: Return a `UserOperation` based on a hash (`userOpHash`).
         tags: []
         parameters:
           - name: apiKey

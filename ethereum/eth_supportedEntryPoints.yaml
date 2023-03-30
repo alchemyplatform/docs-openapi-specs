@@ -20,7 +20,7 @@ components:
     path:
       post:
         summary: eth_supportedEntryPoints - Ethereum
-        description: Returns an array of the entryPoint addresses supported by the client.
+        description: Returns an array of the `entryPoint` addresses supported by the client.
         tags: []
         parameters:
           - name: apiKey

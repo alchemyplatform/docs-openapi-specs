@@ -20,7 +20,7 @@ components:
     path:
       post:
         summary: eth_getUserOperationReceipt - Ethereum
-        description: Get the UserOperationReceipt based on the userOpHash value.
+        description: Get the `UserOperationReceipt` based on the `userOpHash` value.
         tags: []
         parameters:
           - name: apiKey
