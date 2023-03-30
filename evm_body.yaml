@@ -2145,5 +2145,13 @@ eth_getUserOperationByHash:
           maxItems: 1
           items:
             type: string
-            description: The `userOpHash` of the UserOperation to get
+            description: The `userOpHash` of the UserOperation
             default: '0x77c0b560eb0b042902abc5613f768d2a6b2d67481247e9663bf4d68dec0ca122'
+
+eth_getUserOperationReceipt:
+  allOf:
+    - $ref: '#/eth_getUserOperationByHash'
+    - type: object
+      properties:
+        method:
+          default: eth_getUserOperationReceipt

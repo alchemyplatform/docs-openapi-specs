@@ -1441,3 +1441,13 @@ eth_getUserOperationByHash:
                   description: Transaction hash of the UserOperation
       example:
         $ref: './evm_examples.yaml#/eth_getUserOperationByHash'
+
+eth_getUserOperationReceipt:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: ./components/schemas.yaml#/UserOperationReceipt
+      example:
+        $ref: './evm_examples.yaml#/eth_getUserOperationReceipt'
