@@ -114,8 +114,9 @@ UserOperation:
       default: '0x'
     callData:
       type: string
-      description: The data to pass to the sender during the main execution call
-      default: '0x'
+      description: |
+        Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
+      default: '0xf86d808504a817c8008252089435673546dac357595acd835353535da7c35353535880de0b6b3a7640000801ca0e0d2e3f3d8de8a0c9f25d0b02c7a8a91e7e1c818e6f37a49d8b04f9a9a96a1a0620a6c8d95e0f289bfbf2b3d3e476de6b9bc6d0e974c06f1e4de5be7c5ef0e10'
     callGasLimit:
       type: integer
       description: The amount of gas to allocate the main execution call
@@ -139,11 +140,11 @@ UserOperation:
     paymasterAndData:
       type: string
       description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
-      default: '0x'
+      default: '0x9C98B1528C26Cf36E78527308c1b21d89baED700'
     signature:
       type: string
       description: Data passed into the account along with the nonce during the verification step
-      default: '0x'
+      default: '0xf86d808504a817c8008252089435673546dac357595acd835353535da7c35353535880de0b6b3a7640000801ca0e0d2e3f3d8de8a0c9f25d0b02c7a8a91e7e1c818e6f37a49d8b04f9a9a96a1a0620a6c8d95e0f289bfbf2b3d3e476de6b9bc6d0e974c06f1e4de5be7c5ef0e10'
 
 UserOperationReceipt:
   type: object
