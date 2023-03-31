@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: alchemy_paymasterSupportedEntryPoints - Ethereum
+  title: alchemy_paymasterSupportedEntryPoints
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -19,7 +19,7 @@ components:
   pathItems:
     path:
       post:
-        summary: alchemy_paymasterSupportedEntryPoints - Ethereum
+        summary: alchemy_paymasterSupportedEntryPoints
         description: Returns supported EntryPoints by the paymaster service for a given chain.
         tags: []
         parameters:

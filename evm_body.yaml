@@ -2027,6 +2027,7 @@ eth_sendUserOperation:
             oneOf:
               - $ref: ./components/schemas.yaml#/UserOperation
               - type: string
+                title: Entrypoint address
                 description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
                 default: '0xc944E90C64B2c07662A292be6244BDf05Cda44a7'
 

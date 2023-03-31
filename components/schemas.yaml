@@ -97,6 +97,7 @@ Method:
 # ================= Account Abstraction =================
 
 UserOperation:
+  title: User Operation
   type: object
   properties:
     sender:

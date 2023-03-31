@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getUserOperationByHash - Ethereum
+  title: eth_getUserOperationReceipt
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -19,8 +19,8 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getUserOperationByHash - Ethereum
-        description: Return a `UserOperation` based on a hash (`userOpHash`).
+        summary: eth_getUserOperationReceipt
+        description: Get the `UserOperationReceipt` based on the `userOpHash` value.
         tags: []
         parameters:
           - name: apiKey
@@ -41,7 +41,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUserOperationByHash
+                $ref: ../evm_body.yaml#/eth_getUserOperationReceipt
         x-readme:
           samples-languages:
             - curl
@@ -53,5 +53,5 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/eth_getUserOperationByHash
-        operationId: eth-getUserOperationByHash
+                  $ref: ../evm_responses.yaml#/eth_getUserOperationReceipt
+        operationId: eth-getUserOperationReceipt
