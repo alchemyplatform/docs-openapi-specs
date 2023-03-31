@@ -2784,3 +2784,141 @@ zkevm_getBatchByNumber:
 
 zkevm_getBroadcastURI:
   { 'jsonrpc': '2.0', 'id': 1, 'result': 'public-grpc.zkevm-test.net:61090' }
+
+# ========== Account Abstraction Method Examples ==========
+
+eth_sendUserOperation: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1234...5678' }
+
+eth_estimateUserOperationGas:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'preVerificationGas': '0x1',
+        'verificationGasLimit': '0x1',
+        'callGasLimit': '0x1',
+      },
+  }
+
+eth_getUserOperationByHash:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'sender': '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+        'nonce': 1,
+        'initCode': '0x',
+        'callData': '0x',
+        'callGasLimit': 0,
+        'verificationGasLimit': 0,
+        'preVerificationGas': 0,
+        'maxFeePerGas': 0,
+        'maxPriorityFeePerGas': 0,
+        'paymasterAndData': '0x',
+        'signature': '0x',
+        'entryPoint': '0x',
+        'blockNumber': '0x',
+        'blockHash': '0x',
+        'transactionHash': '0x',
+      },
+  }
+
+eth_getUserOperationReceipt:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'userOpHash': '0x77c0b560eb0b042902abc5613f768d2a6b2d67481247e9663bf4d68dec0ca122',
+        'entryPoint': '0xc944E90C64B2c07662A292be6244BDf05Cda44a7',
+        'sender': '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+        'nonce': 42,
+        'paymaster': '0x7A0A0d159218E6a2f407B99173A2b12A6DDfC2a6',
+        'actualGasCost': 21000,
+        'actualGasUsed': 314159,
+        'success': true,
+        'reason': '',
+        'logs': [],
+        'receipt':
+          {
+            'transactionHash': '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae',
+            'blockHash': '0x58a945e1558810523df00490ff28cbe111b37851c44679ce5be1eeaebb4b4907',
+            'blockNumber': '0xeb8822',
+            'logs':
+              [
+                {
+                  'transactionHash': '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae',
+                  'address': '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+                  'blockHash': '0x58a945e1558810523df00490ff28cbe111b37851c44679ce5be1eeaebb4b4907',
+                  'blockNumber': '0xeb8822',
+                  'data': '0x000000000000000000000000000000000000000000000000000000001debea42',
+                  'logIndex': '0x6c',
+                  'removed': false,
+                  'topics':
+                    [
+                      '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+                      '0x0000000000000000000000005067c042e35881843f2b31dfc2db1f4f272ef48c',
+                      '0x0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585',
+                    ],
+                  'transactionIndex': '0x4e',
+                },
+                {
+                  'transactionHash': '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae',
+                  'address': '0x98f3c9e6e3face36baad05fe09d375ef1464288b',
+                  'blockHash': '0x58a945e1558810523df00490ff28cbe111b37851c44679ce5be1eeaebb4b4907',
+                  'blockNumber': '0xeb8822',
+                  'data': '0x000000000000000000000000000000000000000000000000000000000001371e000000000000000000000000000000000000000000000000000000006eca00000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000f000000000000000000000000000000000000000000000000000000000000008501000000000000000000000000000000000000000000000000000000001debea42000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000267c46aa713cfe47608dd1c16f8a0325208df084c3cbebf9f366ad0eafc2653e4000100000000000000000000000000000000000000000000000000000000001e8542000000000000000000000000000000000000000000000000000000',
+                  'logIndex': '0x6d',
+                  'removed': false,
+                  'topics':
+                    [
+                      '0x6eb224fb001ed210e379b335e35efe88672a8ce935d981a6896b27ffdf52a3b2',
+                      '0x0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585',
+                    ],
+                  'transactionIndex': '0x4e',
+                },
+              ],
+            'contractAddress': null,
+            'effectiveGasPrice': '0x2d7003407',
+            'cumulativeGasUsed': '0x76c649',
+            'from': '0x5067c042e35881843f2b31dfc2db1f4f272ef48c',
+            'gasUsed': '0x1a14b',
+            'logsBloom': '0x00000000000100000000008000000000000000000000000000000000000000000010000000000000001000000000000000000000000000000000000000000000000000000000000008008008000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000010000000000000000000000000000000000000000000000000010002000000000000000400000000000400200001000000000000000000000000040000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000',
+            'status': '0x1',
+            'to': '0x3ee18b2214aff97000d974cf647e7c347e8fa585',
+            'transactionIndex': '0x4e',
+            'type': '0x0',
+          },
+      },
+  }
+
+eth_supportedEntryPoints:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      [
+        '0xcd01C8aa8995A59eB7B2627E69b40e0524B5ecf8',
+        '0x7A0A0d159218E6a2f407B99173A2b12A6DDfC2a6',
+      ],
+  }
+
+alchemy_requestUserOperationSponsorship:
+  {
+    'id': 1,
+    'jsonrpc': '2.0',
+    'result': { 'paymasterAndData': '0x', 'error': error },
+  }
+
+alchemy_paymasterSupportedEntryPoints:
+  {
+    'id': 1,
+    'jsonrpc': '2.0',
+    'result':
+      [
+        '0xcd01C8aa8995A59eB7B2627E69b40e0524B5ecf8',
+        '0x7A0A0d159218E6a2f407B99173A2b12A6DDfC2a6',
+      ],
+  }
