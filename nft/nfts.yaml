@@ -372,6 +372,8 @@ paths:
           required: true
         - $ref: '#/components/schemas/tokenId'
           required: true
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/getOwnersForTokenPageSize'
       x-readme:
         samples-languages:
           - javascript
@@ -1092,6 +1094,12 @@ components:
       schema:
         type: integer
         default: 100
+      in: query
+    getOwnersForTokenPageSize:
+      name: pageSize
+      description: 'Number of owners to be returned per page.'
+      schema:
+        type: integer
       in: query
     contractAddresses:
       name: contractAddresses[]
