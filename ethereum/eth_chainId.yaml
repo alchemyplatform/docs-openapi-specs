@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_chainId
+  title: eth_chainId - Ethereum
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2 '
@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_chainId
+        summary: eth_chainId - Ethereum
         description: 'Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155.'
         tags: []
         parameters:

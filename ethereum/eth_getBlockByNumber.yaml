@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockByNumber
+  title: eth_getBlockByNumber - Ethereum
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
@@ -13,7 +13,7 @@ components:
     path:
       post:
         operationId: eth-getBlockByNumber
-        summary: eth_getBlockByNumber
+        summary: eth_getBlockByNumber - Ethereum
         description: Returns information about a block by block number.
         parameters:
           - name: apiKey

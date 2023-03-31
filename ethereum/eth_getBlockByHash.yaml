@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockByHash
+  title: eth_getBlockByHash - Ethereum
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
@@ -13,7 +13,7 @@ components:
     path:
       post:
         operationId: eth-getBlockByHash
-        summary: eth_getBlockByHash
+        summary: eth_getBlockByHash - Ethereum
         description: Returns information about a block by block hash.
         parameters:
           - name: apiKey
