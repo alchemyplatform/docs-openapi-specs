@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_estimateGas
+  title: eth_estimateGas - Ethereum
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2 '
@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_estimateGas
+        summary: eth_estimateGas - Ethereum
         description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
         tags: []
         parameters:

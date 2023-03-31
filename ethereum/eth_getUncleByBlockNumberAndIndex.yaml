@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getUncleByBlockNumberAndIndex
+  title: eth_getUncleByBlockNumberAndIndex - Ethereum
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2 '
@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getUncleByBlockNumberAndIndex
+        summary: eth_getUncleByBlockNumberAndIndex - Ethereum
         description: Returns information about an uncle of a block by number and uncle index position.
         tags: []
         parameters:

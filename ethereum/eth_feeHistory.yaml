@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_feeHistory
+        summary: eth_feeHistory - Ethereum
         description: Returns a collection of historical gas information.
         tags: []
         parameters:

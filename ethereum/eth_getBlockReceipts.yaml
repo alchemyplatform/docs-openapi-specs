@@ -1,13 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockReceipts
+  title: eth_getBlockReceipts - Ethereum
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2 '
 paths:
   /{apiKey}:
     post:
-      summary: eth_getBlockReceipts
+      summary: eth_getBlockReceipts - Ethereum
       description: Get all transaction receipts for a given block on Ethereum.
       tags: []
       parameters:

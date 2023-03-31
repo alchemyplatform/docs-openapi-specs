@@ -1,0 +1,18 @@
+openapi: 3.1.0
+info:
+  title: eth_getLogs - Astar
+  version: '1.0'
+servers:
+  - url: 'https://astar-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_getLogs - Astar
+      operationId: eth-getlogs-astar
+      $ref: ../ethereum/eth_getLogs.yaml#/components/pathItems/path/post
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
