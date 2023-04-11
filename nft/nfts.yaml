@@ -432,6 +432,8 @@ paths:
                 properties:
                   owners:
                     $ref: '#/components/schemas/owners'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'                  
       operationId: getOwnersForNFT
   '/v3/{apiKey}/getOwnersForCollection':
     get:
