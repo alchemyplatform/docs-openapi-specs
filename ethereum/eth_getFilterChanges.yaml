@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getFilterChanges
+  title: eth_getFilterChanges - Ethereum
   version: '1.0'
 servers:
   - url: 'https://eth-mainnet.g.alchemy.com/v2 '
@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getFilterChanges
+        summary: eth_getFilterChanges - Ethereum
         description: 'Polling method for a filter, which returns an array of logs which occurred since last poll.'
         tags: []
         parameters:

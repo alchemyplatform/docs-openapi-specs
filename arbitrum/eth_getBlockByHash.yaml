@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_getBlockByHash - arbitrum
+  title: eth_getBlockByHash - Arbitrum
   description: Retrieves information about a block by block hash on the Arbitrum network.
   version: '1.0'
 servers:
@@ -12,8 +12,8 @@ components:
   pathItems:
     path:
       post:
+        summary: eth_getBlockByHash - Arbitrum
         operationId: eth-getBlockByHash-arbitrum
-        summary: eth_getBlockByHash
         description: Returns information about a block by block hash on the Arbitrum network.
         parameters:
           - name: apiKey

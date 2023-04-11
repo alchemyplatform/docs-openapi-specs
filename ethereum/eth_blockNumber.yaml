@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: eth_blockNumber
+  title: eth_blockNumber - Ethereum
   description: Retrieves information from a particular block in the blockchain.
   version: '1.0'
 servers:
@@ -12,7 +12,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_blockNumber
+        summary: eth_blockNumber - Ethereum
         operationId: eth-blocknumber
         description: Returns the number of the most recent block.
         parameters:

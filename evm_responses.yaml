@@ -1367,3 +1367,128 @@ zkevm_getBroadcastURI:
           description: Returns the configured Broadcast URL of the Trusted Sequencer.
       example:
         $ref: ./evm_examples.yaml#/zkevm_getBroadcastURI
+
+# ============= Account Abstraction ===============
+
+eth_sendUserOperation:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: string
+          description: The calculated `userOpHash` for the valid `UserOperation`
+      example:
+        $ref: ./evm_examples.yaml#/eth_sendUserOperation
+
+eth_estimateUserOperationGas:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            preVerificationGas:
+              type: integer
+              description: Gas overhead of this UserOperation
+            verificationGasLimit:
+              type: integer
+              description: Actual gas used by the validation of this UserOperation
+            callGasLimit:
+              type: integer
+              description: Value used by inner account execution
+      example:
+        $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
+
+eth_getUserOperationByHash:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          allOf:
+            - $ref: ./components/schemas.yaml#/UserOperation
+            - type: object
+              properties:
+                entryPoint:
+                  type: string
+                  description: EntryPoint address
+                blockNumber:
+                  type: integer
+                  description: Block number in which UserOperation is included
+                blockHash:
+                  type: string
+                  description: Block hash of the block containing UserOperation
+                transactionHash:
+                  type: string
+                  description: Transaction hash of the UserOperation
+      example:
+        $ref: './evm_examples.yaml#/eth_getUserOperationByHash'
+
+eth_getUserOperationReceipt:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: ./components/schemas.yaml#/UserOperationReceipt
+      example:
+        $ref: './evm_examples.yaml#/eth_getUserOperationReceipt'
+
+eth_supportedEntryPoints:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: Array of supported entryPoint addresses
+          items:
+            type: string
+            pattern: '^0x[a-fA-F0-9]{40}$'
+      example:
+        $ref: ./evm_examples.yaml#/eth_supportedEntryPoints
+
+alchemy_requestUserOperationSponsorship:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            paymasterAndData:
+              type: string
+              description: |
+                The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
+                Contains paymaster address, sigTimeRange, and secp256k1 signature.
+            error:
+              type: object
+              description: Error object if the sponsorship request is not approved
+              properties:
+                code:
+                  type: integer
+                  description: Error code
+                message:
+                  type: string
+                  description: Error message
+                data:
+                  type: object
+                  description: Additional error data
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_requestUserOperationSponsorship
+
+alchemy_paymasterSupportedEntryPoints:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: An array of supported EntryPoint addresses
+          items:
+            type: string
+            pattern: '^0x[a-fA-F0-9]{40}$'
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_paymasterSupportedEntryPoints

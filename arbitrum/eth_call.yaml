@@ -1,12 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_call - arbitrum
+  title: eth_call - Arbitrum
   version: '1.0'
 servers:
   - url: 'https://polygon-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_call - Arbitrum
       $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       operationId: eth-call-arbitrum
       x-readme:

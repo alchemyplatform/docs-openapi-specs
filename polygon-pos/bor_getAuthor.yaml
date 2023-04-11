@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info:
+  title: bor_getAuthor - Polygon PoS
+  version: '1.0'
+servers:
+  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+paths:
+  /{apiKey}:
+    post:
+      summary: bor_getAuthor - Polygon PoS
+      description: 'Returns address of Author on Polygon.'
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+          required: true
+      requestBody:
+        description: 'Block number (in hexadecimal format).'
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/bor_getAuthor
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/bor_getAuthor
+      operationId: bor-getauthor-polygon

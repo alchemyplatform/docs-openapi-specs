@@ -1,12 +1,13 @@
 openapi: 3.1.0
 info:
-  title: eth_getStorageAt - astar
+  title: eth_getStorageAt - Astar
   version: '1.0'
 servers:
   - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getStorageAt - Astar
       $ref: ../ethereum/eth_getStorageAt.yaml#/components/pathItems/path/post
       operationId: eth-getstorageat-astar
       x-readme:

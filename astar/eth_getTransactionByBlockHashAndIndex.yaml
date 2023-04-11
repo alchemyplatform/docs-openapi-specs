@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
-  title: eth_getTransactionByBlockHashAndIndex - astar
+  title: eth_getTransactionByBlockHashAndIndex - Astar
   version: '1.0'
 servers:
   - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     post:
+      summary: eth_getTransactionByBlockHashAndIndex - Astar
       $ref: ../ethereum/eth_getTransactionByBlockHashAndIndex.yaml#/components/pathItems/path/post
       operationId: eth-gettransactionbyblockhashandindex-astar

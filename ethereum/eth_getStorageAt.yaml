@@ -11,7 +11,7 @@ components:
   pathItems:
     path:
       post:
-        summary: eth_getStorageAt
+        summary: eth_getStorageAt - Ethereum
         description: "Returns the value from a storage position at a given address, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods."
         tags: []
         parameters:
