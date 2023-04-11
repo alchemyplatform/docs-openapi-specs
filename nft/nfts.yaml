@@ -435,9 +435,9 @@ paths:
                   pageKey:
                     $ref: '#/components/schemas/pageKey'                  
       operationId: getOwnersForNFT
-  '/v3/{apiKey}/getOwnersForCollection':
+  '/v3/{apiKey}/getOwnersForContract':
     get:
-      summary: getOwnersForCollection
+      summary: getOwnersForContract
       description: Gets all owners for a given NFT contract.
       tags: ['Ownership & Token Gating']
       parameters:
@@ -481,7 +481,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/owners'
-      operationId: getOwnersForCollection
+      operationId: getOwnersForContract
   '/v3/{apiKey}/getSpamContracts':
     get:
       summary: getSpamContracts
