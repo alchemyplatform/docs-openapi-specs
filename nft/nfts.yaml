@@ -2533,26 +2533,15 @@ components:
         address:
           description: 'Address of the held contract'
           type: string
-        totalBalance:
-          type: number
-          description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
-        numDistinctTokensOwned:
-          type: number
-          description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
-        isSpam:
-          type: boolean
-        tokenId:
-          description: 'One of the tokens from this contract held by the owner.'
-          type: string
         name:
           description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
-          type: string
-        title:
-          description: 'The title of the token held by the owner i.e. "Something #22".'
           type: string
         symbol:
           description: 'The symbol of the contract, i.e. BAYC.'
           type: string
+        totalSupply:
+          type: string
+          description: 'String - Total number of NFTs in a given NFT collection.'
         tokenType:
           description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
           type: string
@@ -2562,13 +2551,29 @@ components:
         deployedBlockNumber:
           type: number
           description: 'Number - The Block Number when the deployment transaction is successfully mined'
-        totalSupply:
-          type: string
-          description: 'String - Total number of NFTs in a given NFT collection.'
-        image:
-          $ref: '#/components/schemas/imagev3'
         openseaMetadata:
           $ref: '#/components/schemas/opensea'
+        totalBalance:
+          type: number
+          description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
+        numDistinctTokensOwned:
+          type: number
+          description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
+        isSpam:
+          type: boolean
+        displayNft:
+          $ref: '#/components/schemas/displaynftv3'
+        image:
+          $ref: '#/components/schemas/imagev3'
+    displaynftv3:
+      type: object
+      properties:
+        tokenId:
+          description: 'One of the tokens from this contract held by the owner.'
+          type: string
+        name:
+          description: 'The title of the token held by the owner i.e. "Something #22".'
+          type: string
     media:
       type: array
       items:
