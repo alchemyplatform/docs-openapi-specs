@@ -1478,17 +1478,3 @@ alchemy_requestUserOperationSponsorship:
                   description: Additional error data
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestUserOperationSponsorship
-
-alchemy_paymasterSupportedEntryPoints:
-  allOf:
-    - $ref: '#/common_response_fields'
-    - type: object
-      properties:
-        result:
-          type: array
-          description: An array of supported EntryPoint addresses
-          items:
-            type: string
-            pattern: '^0x[a-fA-F0-9]{40}$'
-      example:
-        $ref: ./evm_examples.yaml#/alchemy_paymasterSupportedEntryPoints

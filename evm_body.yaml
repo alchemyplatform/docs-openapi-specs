@@ -2114,12 +2114,3 @@ alchemy_requestUserOperationSponsorship:
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperation
                 description: Partial UserOperation object, missing paymasterAndData and signature fields
-
-alchemy_paymasterSupportedEntryPoints:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          $ref: ./components/schemas.yaml#/Method
-          default: alchemy_paymasterSupportedEntryPoints
