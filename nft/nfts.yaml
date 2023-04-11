@@ -2734,6 +2734,9 @@ components:
     contractv3:
       type: object
       properties:
+        address:
+          description: 'Address of the held contract'
+          type: string
         name:
           type: string
           description: 'String - NFT contract name.'
