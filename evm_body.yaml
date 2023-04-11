@@ -2082,14 +2082,14 @@ eth_supportedEntryPoints:
           $ref: ./components/schemas.yaml#/Method
           default: eth_supportedEntryPoints
 
-alchemy_requestUserOperationSponsorship:
+alchemy_requestPaymasterAndData:
   allOf:
     - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
-          default: alchemy_requestUserOperationSponsorship
+          default: alchemy_requestPaymasterAndData
         params:
           type: array
           description: Parameters for requesting sponsorship
@@ -2114,12 +2114,3 @@ alchemy_requestUserOperationSponsorship:
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperation
                 description: Partial UserOperation object, missing paymasterAndData and signature fields
-
-alchemy_paymasterSupportedEntryPoints:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          $ref: ./components/schemas.yaml#/Method
-          default: alchemy_paymasterSupportedEntryPoints
