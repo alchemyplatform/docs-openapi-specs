@@ -565,8 +565,12 @@ paths:
           content:
             application/json:
               schema:
-                type: boolean
-                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+                type: object
+                description: "This object has the boolean value inside it"
+                properties:
+                  isSpamContract:
+                    type: boolean
+                    description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
       operationId: isSpamContract
   '/v3/{apiKey}/isAirdropNFT':
     get:
@@ -591,8 +595,12 @@ paths:
           content:
             application/json:
               schema:
-                type: boolean
-                description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
+                type: object
+                description: "This object has the boolean value inside it"
+                properties:
+                  isAirdrop:
+                    type: boolean
+                    description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
       operationId: isAirdropNFT
   # '/v3/{apiKey}/invalidateContract':
   #   get:
