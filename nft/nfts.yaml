@@ -72,7 +72,7 @@ paths:
                   ownedNfts:
                     type: array
                     items:
-                      $ref: '#/components/schemas/ownedNFT'
+                      $ref: '#/components/schemas/ownedNFTv3'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
@@ -138,7 +138,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ownedNFT'
+                $ref: '#/components/schemas/ownedNFTv3'
       operationId: getNFTMetadata
   '/v3/{apiKey}/getNFTMetadataBatch':
     post:
@@ -207,7 +207,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ownedNFT'
+                  $ref: '#/components/schemas/ownedNFTv3'
       operationId: getNFTMetadataBatch
   '/v3/{apiKey}/getContractMetadata':
     get:
@@ -329,9 +329,9 @@ paths:
                     openseaMetadata:
                       $ref: '#/components/schemas/opensea'
       operationId: getContractMetadataBatch
-  '/v3/{apiKey}/getNFTsForCollection':
+  '/v3/{apiKey}/getNFTsForContract':
     get:
-      summary: getNFTsForCollection
+      summary: getNFTsForContract
       description: Gets all NFTs for a given NFT contract.
       tags: ['Collections']
       parameters:
@@ -380,23 +380,11 @@ paths:
                     description: 'List of objects that represent NFTs stored under the queried contract address.'
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          $ref: '#/components/schemas/id'
-                        tokenUri:
-                          $ref: '#/components/schemas/tokenUri'
-                        metadata:
-                          $ref: '#/components/schemas/metadata'
-                        timeLastUpdated:
-                          type: string
-                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
-                        contractMetadata:
-                          $ref: '#/components/schemas/contractMetadata'
-                  nextToken:
+                      $ref: '#/components/schemas/ownedNFTv3'
+                  pageKey:
                     type: string
                     description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForCollection
+      operationId: getNFTsForContract
   '/v3/{apiKey}/getOwnersForNFT':
     get:
       summary: getOwnersForNFT
@@ -1072,7 +1060,7 @@ paths:
                   contracts:
                     type: array
                     items:
-                      $ref: '#/components/schemas/ownedContract'
+                      $ref: '#/components/schemas/ownedContractv3'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
@@ -2418,6 +2406,35 @@ components:
     raw:
       type: string
       description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+    rawv3:
+      type: object
+      properties:
+        tokenUri:
+          type: string
+          description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+        metadata:
+          $ref: '#/components/schemas/metadata'
+    imagev3:
+      type: object
+      properties:
+        originalUrl:
+          type: string
+          description: "The original Url of the image coming straight from the smart contract"
+        cachedUrl:
+          type: string
+          description: "The Url of the image stored in Alchemy cache"
+        thumbnailUrl:
+          type: string
+          description: "The Url that has the thumbnail version of the NFT"
+        pngUrl:
+          type: string
+          description: "The Url that has the NFT image in png"
+        contentType:
+          type: string
+          description: "The Url of the image stored in Alchemy cache"
+        size:
+          type: integer
+          description: The size of the media asset in bytes.    
     gateway:
       type: string
       description: 'String - Public gateway uri for the raw uri above.'
@@ -2508,6 +2525,48 @@ components:
           $ref: '#/components/schemas/media'
         opensea:
           $ref: '#/components/schemas/opensea'
+    ownedContractv3:
+      type: object
+      properties:
+        address:
+          description: 'Address of the held contract'
+          type: string
+        totalBalance:
+          type: number
+          description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
+        numDistinctTokensOwned:
+          type: number
+          description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
+        isSpam:
+          type: boolean
+        tokenId:
+          description: 'One of the tokens from this contract held by the owner.'
+          type: string
+        name:
+          description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
+          type: string
+        title:
+          description: 'The title of the token held by the owner i.e. "Something #22".'
+          type: string
+        symbol:
+          description: 'The symbol of the contract, i.e. BAYC.'
+          type: string
+        tokenType:
+          description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
+          type: string
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+        totalSupply:
+          type: string
+          description: 'String - Total number of NFTs in a given NFT collection.'
+        image:
+          $ref: '#/components/schemas/imagev3'
+        openseaMetadata:
+          $ref: '#/components/schemas/opensea'
     media:
       type: array
       items:
@@ -2577,6 +2636,34 @@ components:
           $ref: '#/components/schemas/contractMetadata'
         spamInfo:
           $ref: '#/components/schemas/spamInfo'
+    ownedNFTv3:
+      type: object
+      properties:
+        tokenId:
+          $ref: '#/components/schemas/tokenId'
+        tokenType:
+          $ref: '#/components/schemas/tokenType'
+        raw:
+          $ref: '#/components/schemas/rawv3'
+        balance:
+          type: string
+          description: 'String - Token balance'
+        name:
+          type: string
+          description: 'String - Name of the NFT asset.'
+        description:
+          type: string
+          description: 'String - Brief human-readable description'
+        image:
+          $ref: '#/components/schemas/imagev3' 
+        timeLastUpdated:
+          type: string
+          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+        error:
+          type: string
+          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+        contract:
+          $ref: '#/components/schemas/contractv3' 
     opensea:
       type: object
       properties:
@@ -2634,6 +2721,36 @@ components:
           description: 'Number - The Block Number when the deployment transaction is successfully mined'
         opensea:
           $ref: '#/components/schemas/opensea'
+    contractv3:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'String - NFT contract name.'
+        symbol:
+          type: string
+          description: 'String - NFT contract symbol abbreviation.'
+        totalSupply:
+          type: string
+          description: 'String - Total number of NFTs in a given NFT collection.'
+        tokenType:
+          $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+        openseaMetadata:
+          $ref: '#/components/schemas/opensea'
+        isSpam:
+          type: string
+          description: '"true" if contract is spam, else "false"'
+        classifications:
+          description: 'List of reasons why a contract was classified as spam.'
+          type: array
+          items:
+            type: string
     spamInfo:
       type: object
       properties:
@@ -2817,31 +2934,39 @@ components:
         {
           "contracts": [
             {
-              "address": "0x000386e3f7559d9b6a2f5c46b4ad1a9587d59dc3",
-              "totalBalance": 912,
-              "numDistinctTokensOwned": 80,
-              "isSpam": true,
-              "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
-              "name": "Bored Ape Nike Club",
-              "title": "",
-              "symbol": "BANC",
-              "tokenType": "ERC721",
-              "contractDeployer": "0x51d7d428041e23ef51422e110dfeff906e821cfe",
-              "deployedBlockNumber": 14276343,
-              "opensea": {
-                "collectionName": "BoredApeNikeClub",
+              "address": "0x1C310c2fbB0D9755A6b918F990bC8D3504f2c684",
+              "name": "The Wonderful Husl Founder Cards",
+              "symbol": "The Wonderful Husl Founder Cards",
+              "totalSupply": null,
+              "tokenType": "ERC1155",
+              "contractDeployer": "0x0bdD0AEC835F92a465290cdd57b27FBd00376F53",
+              "deployedBlockNumber": 15664554,
+              "openSeaMetadata": {
+                "floorPrice": null,
+                "collectionName": "The Wonderful Husl Founder Cards",
                 "safelistRequestStatus": "not_requested",
-                "imageUrl": "https://i.seadn.io/gae/yJ9DgXqjRwgdCkrQmHj7krCbixM8fPVAyYJWJ5NHXap1L0c3QL5MPvrNT0QDINIStGOK857lOvab8MpNQS9X4pkHPktmhVmN82qoVw?w=500&auto=format",
-                "description": "COUNTDOWN OVER. MINTING LIVE.\n\n[Mint on the website.](https://nikemetaverse.xyz)\n",
-                "externalUrl": "https://nikemetaverse.xyz",
-                "lastIngestedAt": "2023-02-06T14:36:57.000Z"
+                "imageUrl": "https://i.seadn.io/gcs/files/754e38769c80c9d6188444dddb10ec80.png?w=500&auto=format",
+                "description": "[Husl](https://www.huslnft.xyz) is building the bridge between business and NFTs. Husl Founders are the driven, the passionate and the focused members of the community ready to change their future. Owning a Founders Card gets you exclusive perks, early access to business management, and discounts on managed services for your business as NFT. [Learn More](https://www.huslnft.xyz)",
+                "externalUrl": "https://www.huslnft.xyz",
+                "twitterUsername": null,
+                "discordUrl": null,
+                "lastIngestedAt": "2023-03-20T01:36:19.000Z"
               },
-              "media": [
-                {
-                  "raw": "",
-                  "gateway": ""
-                }
-              ]
+              "totalBalance": "1",
+              "numDistinctTokensOwned": "1",
+              "isSpam": true,
+              "displayNft": {
+              "tokenId": "233",
+              "name": null
+              },
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/d08d0d0fac8edf36ea09eae34b332814",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/d08d0d0fac8edf36ea09eae34b332814",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/d08d0d0fac8edf36ea09eae34b332814",
+                "contentType": "video/mp4",
+                "size": 36190302,
+                "originalUrl": "https://ipfs.io/ipfs/QmX2mM8r33W7KUBQSWXFAKNC2t654EXmWiX9vkrfrEaEnS"
+              }
             }
           ],
           "totalCount": 2120,
