@@ -2905,7 +2905,7 @@ eth_supportedEntryPoints:
       ],
   }
 
-alchemy_requestUserOperationSponsorship:
+alchemy_requestPaymasterAndData:
   {
     'id': 1,
     'jsonrpc': '2.0',

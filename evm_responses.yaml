@@ -1450,7 +1450,7 @@ eth_supportedEntryPoints:
       example:
         $ref: ./evm_examples.yaml#/eth_supportedEntryPoints
 
-alchemy_requestUserOperationSponsorship:
+alchemy_requestPaymasterAndData:
   allOf:
     - $ref: '#/common_response_fields'
     - type: object
@@ -1477,4 +1477,4 @@ alchemy_requestUserOperationSponsorship:
                   type: object
                   description: Additional error data
       example:
-        $ref: ./evm_examples.yaml#/alchemy_requestUserOperationSponsorship
+        $ref: ./evm_examples.yaml#/alchemy_requestPaymasterAndData
