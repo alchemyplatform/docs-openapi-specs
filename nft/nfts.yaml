@@ -73,14 +73,14 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ownedNFTv3'
-                  pageKey:
-                    $ref: '#/components/schemas/pageKey'
                   totalCount:
                     type: string
                     description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
                   blockHash:
                     type: string
                     description: 'String - The canonical head block hash of when your request was received'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
               examples:
                 byDefault:
                   $ref: '#/components/schemas/byDefault_response'
@@ -2639,15 +2639,12 @@ components:
     ownedNFTv3:
       type: object
       properties:
+        contract:
+          $ref: '#/components/schemas/contractv3' 
         tokenId:
           $ref: '#/components/schemas/tokenId'
         tokenType:
           $ref: '#/components/schemas/tokenType'
-        raw:
-          $ref: '#/components/schemas/rawv3'
-        balance:
-          type: string
-          description: 'String - Token balance'
         name:
           type: string
           description: 'String - Name of the NFT asset.'
@@ -2656,14 +2653,20 @@ components:
           description: 'String - Brief human-readable description'
         image:
           $ref: '#/components/schemas/imagev3' 
+        raw:
+          $ref: '#/components/schemas/rawv3'
+        tokenUri:
+          type: string
+          description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
         timeLastUpdated:
           type: string
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+        balance:
+          type: string
+          description: 'String - Token balance'
         error:
           type: string
           description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
-        contract:
-          $ref: '#/components/schemas/contractv3' 
     opensea:
       type: object
       properties:
