@@ -54,4 +54,4 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/alchemy_requestPaymasterAndData
-        operationId: alchemy-alchemy_requestPaymasterAndData
+        operationId: alchemy-requestPaymasterAndData
