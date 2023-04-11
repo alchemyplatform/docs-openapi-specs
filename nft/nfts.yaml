@@ -903,7 +903,7 @@ paths:
                 type: object
                 description: "Data related to a wallet's ownership of any token in an NFT collection."
                 properties:
-                  isHolderOfCollection:
+                  isHolderOfContract:
                     type: boolean
                     description: 'Whether the given wallet owns any token in the given NFT collection.'
       operationId: isHolderOfContract
