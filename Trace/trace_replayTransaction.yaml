@@ -38,7 +38,9 @@ paths:
       x-readme:
         explorer-enabled: false
         samples-languages:
-          - shell
+          - curl
+          - javascript
+          - python
         code-samples:
           - language: shell
             name: cURL

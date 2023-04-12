@@ -45,6 +45,7 @@ paths:
         samples-languages:
           - curl
           - javascript
+          - python
         code-samples:
           - language: javascript
             name: Alchemy SDK

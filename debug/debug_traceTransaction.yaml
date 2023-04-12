@@ -44,8 +44,9 @@ paths:
       x-readme:
         explorer-enabled: false
         samples-languages:
+          - curl
           - javascript
-          - shell
+          - python
         code-samples:
           - language: javascript
             name: Alchemy SDK
