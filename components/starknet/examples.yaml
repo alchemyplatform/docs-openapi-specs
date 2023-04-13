@@ -1,0 +1,30 @@
+starknet_getBlockWithTxHashes:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'status': 'ACCEPTED_ON_L1',
+        'block_hash': '0x3b6581f3222ff1f79c0e9959462aef03bd464999e998292772a0c51da53f9b1',
+        'parent_hash': '0x68e1f762d4b0ff81e5e8ef6b94d9fec87571c411ee38478798b5d97e6df073c',
+        'block_number': 38,
+        'new_root': '0x3f3694f5b56ef5c935e91f514a551adcd7c513066e5047788fb8298b22c112f',
+        'timestamp': 1637371860,
+        'sequencer_address': '0x0',
+        'transactions':
+          [
+            '0x67252dd6ea55397e93bbf19b809802693c786fc31deebdf937d89387ff8b642',
+            '0xbad8dd068c67cf88b18c816f8ecf578fa177f58d7af9cb8b955a26e3de1c6b',
+            '0x613384fead7a70c9e295fe12e4a11b5e2049415a7172b46ed0b69b93d9b2cc8',
+            '0x34464a0db1ecfcecda9347ee54e2139892acd5468e2c2c66e582e3ff0f8b222',
+            '0x531f102b5b3ed5ecde098d538f625f09b46c2dc0bc73fa76a36b5578c03a13a',
+            '0x5837789866de4e9ada68cf7ceca01902765f6422155e4545f67fbb8aa53acdb',
+            '0x114665e0dec19015793a1081b03f75dafa413f7700cba5b13bd031cfae0edee',
+            '0xc0e8aac72256967663dbb3b40c5289dd782c16774ec88733b16ecb89e7592f',
+            '0x64aa3aa8458b971948ef1f4e4f740997a86981d966ef043007275cc46ddf3e1',
+            '0x4bb4fae069ccf6c22336cca8e262a452596d686acf2e3865ba6ac16b9721e1f',
+            '0x3a4f629913d65ecfba5e37835ad68f248b11c1576429f6019a900f31f799d8f',
+            '0x19d6408b6cc25e50f69b365012f563d41706f1bf97f079ae485e276bd332e74',
+          ],
+      },
+    'id': 1,
+  }

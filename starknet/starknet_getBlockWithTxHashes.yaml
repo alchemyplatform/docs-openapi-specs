@@ -65,8 +65,13 @@ components:
             content:
               application/json:
                 schema:
-                  oneOf:
-                    - $ref: '../components/starknet/schemas.yaml#/BlockWithTxHashes'
-                    - $ref: '../components/starknet/schemas.yaml#/PendingBlockWithTxHashes'
-          '400':
-            description: Block not found
+                  allOf:
+                    - $ref: '../evm_responses.yaml#/common_response_fields'
+                    - type: object
+                      properties:
+                        result:
+                          oneOf:
+                            - $ref: '../components/starknet/schemas.yaml#/BlockWithTxHashes'
+                            - $ref: '../components/starknet/schemas.yaml#/PendingBlockWithTxHashes'
+                      example:
+                        $ref: '../components/starknet/examples.yaml#/starknet_getBlockWithTxHashes'
