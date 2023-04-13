@@ -119,6 +119,7 @@ BlockId:
 BlockTag:
   type: string
   description: A tag specifying a dynamic reference to a block
+  default: latest
   enum:
     - latest
     - pending
@@ -282,9 +283,11 @@ BlockNumber:
   description: The block's number (its height)
   type: integer
   minimum: 0
+  default: 38
 
 BlockHash:
   $ref: '#/Felt'
+  default: '0x03b6581f3222ff1f79c0e9959462aef03bd464999e998292772a0c51da53f9b1'
 
 BlockBodyWithTxHashes:
   type: object
