@@ -221,3 +221,111 @@ starknet_getBlockWithTxs:
       },
     'id': 1,
   }
+
+starknet_getStateUpdate:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'block_hash': '0x3b6581f3222ff1f79c0e9959462aef03bd464999e998292772a0c51da53f9b1',
+        'new_root': '0x3f3694f5b56ef5c935e91f514a551adcd7c513066e5047788fb8298b22c112f',
+        'old_root': '0x14ccc47d6a9c4916c5dd20861beea01d9bc3fb53073fb45c498176d71bf0001',
+        'state_diff':
+          {
+            'storage_diffs':
+              [
+                {
+                  'address': '0x4c9ca7b8de7262bca2b084b09c6eb3a04723ad0c6fc525739e1aef35133e8fa',
+                  'storage_entries': [{ 'key': '0x5', 'value': '0x456' }],
+                },
+                {
+                  'address': '0x6c9c26e56252dd847d4f9ed7ec91a0273248933b1eed5503f56154f752b3160',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x50eefdee1d0918ab0e5a992067acf3fb51879f2a9d5d79c9c19b2568390ebc4',
+                        'value': '0x6b41c5eb6cb17da9806eb0b666cd9f48b2bddb240b79651e5d9aad3b4117be0',
+                      },
+                    ],
+                },
+                {
+                  'address': '0x421203c58e1b4a6c3675be26cfaa18d2b6b42695ca206be1f08ce29f7f1bc7c',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x663965d6828eab7d2e4b421771ce74a99757d612c34382bcf6db6a474257e56',
+                        'value': '0x7e5',
+                      },
+                    ],
+                },
+                {
+                  'address': '0x7d8fdcced162098fa4c359080263d11887130643dfd4237ecacba6eb2248251',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x663965d6828eab7d2e4b421771ce74a99757d612c34382bcf6db6a474257e56',
+                        'value': '0x7c7',
+                      },
+                    ],
+                },
+                {
+                  'address': '0x43324c97e376d7d164abded1af1e73e9ce8214249f711edb7059c1ca34560e8',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x22fbb73f56a08c4b038f3a3922843fbfa9a3ade8dee9c21df38b437911713be',
+                        'value': '0x474c554c6529b8c87f81a8db6543d7f188724942747cfe62a620946b09a895',
+                      },
+                    ],
+                },
+                {
+                  'address': '0x41ee80bbcbdb9e35dbd49a743c1cb888fed643e4ebe804d876d7bacec2a0094',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x336da2dad44398d52363c708d436991e3c63f927b41e94f4c388134957e4a00',
+                        'value': '0x7c7',
+                      },
+                    ],
+                },
+                {
+                  'address': '0x50137661cece75f04db34c7cad49348a842506abf86a9b6e4c56019ce6fb68e',
+                  'storage_entries': [{ 'key': '0x5', 'value': '0x22b' }],
+                },
+                {
+                  'address': '0x656888c3cf86a42cd4f1f0de6dc0d1890064d49d3ef31328f60e90f7a41343f',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x192edc12338dc25dc59169e819208390b3f3df134cbd49a21174334741654a6',
+                        'value': '0xc8882b70bb9e030905f7a204be2ce96112c4f963c8851de964dff401087d77',
+                      },
+                      {
+                        'key': '0x192edc12338dc25dc59169e819208390b3f3df134cbd49a21174334741654a7',
+                        'value': '0x49eded17213ed59d4620cb0e6be02b7c575072b6389f113259d5ab6433e1e2c',
+                      },
+                    ],
+                },
+                {
+                  'address': '0x462771527aabe76a9c47880d34b2c0155c46f4144146a2ed06e2ff7ccc02baa',
+                  'storage_entries':
+                    [
+                      {
+                        'key': '0x336da2dad44398d52363c708d436991e3c63f927b41e94f4c388134957e4a00',
+                        'value': '0x7e5',
+                      },
+                      { 'key': '0x5', 'value': '0x66' },
+                    ],
+                },
+                {
+                  'address': '0x6967f231f5bd99922269416c32ab2ff3c8ab8d9bb3bc968c27103493a2ab6b5',
+                  'storage_entries': [{ 'key': '0x5', 'value': '0x65' }],
+                },
+              ],
+            'declared_contract_hashes': [],
+            'deployed_contracts': [],
+            'nonces': [],
+          },
+      },
+    'id': 1,
+  }

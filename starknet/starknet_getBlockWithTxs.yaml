@@ -59,7 +59,6 @@ components:
             - curl
             - javascript
             - python
-          id: 64387dd29447f9006cab96fd
         responses:
           '200':
             description: The resulting block information with full transactions
