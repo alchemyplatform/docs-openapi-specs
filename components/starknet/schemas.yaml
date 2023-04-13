@@ -1,0 +1,1163 @@
+EventsChunk:
+  type: object
+  properties:
+    events:
+      type: array
+      title: Matching Events
+      items:
+        $ref: '#/EmittedEvent'
+    continuation_token:
+      description: Use this token in a subsequent query to obtain the next page. Should not appear if there are no more pages.
+      type: string
+  required:
+    - events
+
+ResultPageRequest:
+  type: object
+  properties:
+    continuation_token:
+      description: The token returned from the previous query. If no token is provided the first page is returned.
+      type: string
+    chunk_size:
+      type: integer
+      minimum: 1
+  required:
+    - chunk_size
+
+EmittedEvent:
+  title: An event emitted as a result of transaction execution
+  description: Event information decorated with metadata on where it was emitted
+  allOf:
+    - title: The event information
+      $ref: '#/Event'
+    - title: The event emission information
+      type: object
+      properties:
+        block_hash:
+          title: The hash of the block in which the event was emitted
+          $ref: '#/BlockHash'
+        block_number:
+          title: The number of the block in which the event was emitted
+          $ref: '#/BlockNumber'
+        transaction_hash:
+          title: The transaction that emitted the event
+          $ref: '#/TxnHash'
+      required:
+        - block_hash
+        - block_number
+        - transaction_hash
+
+Event:
+  title: A StarkNet event
+  allOf:
+    - type: object
+      properties:
+        from_address:
+          $ref: '#/Address'
+      required:
+        - from_address
+    - $ref: '#/EventContent'
+
+EventContent:
+  title: Event Content
+  description: The content of an event
+  type: object
+  properties:
+    keys:
+      type: array
+      items:
+        $ref: '#/Felt'
+    data:
+      type: array
+      items:
+        $ref: '#/Felt'
+  required:
+    - keys
+    - data
+
+EventFilter:
+  title: An event filter/query
+  type: object
+  properties:
+    from_block:
+      title: from block
+      $ref: '#/BlockId'
+    to_block:
+      title: to block
+      $ref: '#/BlockId'
+    address:
+      title: from contract
+      $ref: '#/Address'
+    keys:
+      title: filter key values
+      description: The values used to filter the events
+      type: array
+      items:
+        title: Possible values, per key
+        description: Per key (by position), designate the possible values to be matched for events to be returned. Empty array designates 'any' value
+        type: array
+        items:
+          $ref: '#/Felt'
+
+BlockId:
+  title: Block hash, number or tag
+  oneOf:
+    - type: object
+      properties:
+        block_hash:
+          $ref: '#/BlockHash'
+      required:
+        - block_hash
+    - type: object
+      properties:
+        block_number:
+          $ref: '#/BlockNumber'
+      required:
+        - block_number
+    - $ref: '#/BlockTag'
+
+BlockTag:
+  type: string
+  description: A tag specifying a dynamic reference to a block
+  enum:
+    - latest
+    - pending
+
+SyncStatus:
+  type: object
+  description: An object describing the node synchronization status
+  properties:
+    starting_block_hash:
+      description: The hash of the block from which the sync started
+      $ref: '#/BlockHash'
+    starting_block_num:
+      description: The number (height) of the block from which the sync started
+      $ref: '#/NumAsHex'
+    current_block_hash:
+      description: The hash of the current block being synchronized
+      $ref: '#/BlockHash'
+    current_block_num:
+      description: The number (height) of the current block being synchronized
+      $ref: '#/NumAsHex'
+    highest_block_hash:
+      description: The hash of the estimated highest block to be synchronized
+      $ref: '#/BlockHash'
+    highest_block_num:
+      description: The number (height) of the estimated highest block to be synchronized
+      $ref: '#/NumAsHex'
+  required:
+    - starting_block_hash
+    - starting_block_num
+    - current_block_hash
+    - current_block_num
+    - highest_block_hash
+    - highest_block_num
+
+NumAsHex:
+  title: An integer number in hex format (0x...)
+  type: string
+  pattern: '^0x[a-fA-F0-9]+$'
+
+ChainId:
+  title: chainId
+  description: StarkNet chain id, given in hex representation.
+  type: string
+  pattern: '^0x[a-fA-F0-9]+$'
+
+StateUpdate:
+  type: object
+  allOf:
+    - type: object
+      properties:
+        block_hash:
+          $ref: '#/BlockHash'
+        new_root:
+          description: The new global state root
+          $ref: '#/Felt'
+      required:
+        - block_hash
+        - new_root
+    - $ref: '#/PendingStateUpdate'
+
+PendingStateUpdate:
+  type: object
+  properties:
+    old_root:
+      description: The previous global state root
+      $ref: '#/Felt'
+    state_diff:
+      description: The change in state applied in this block, given as a mapping of addresses to the new values and/or new contracts
+      type: object
+      properties:
+        storage_diffs:
+          type: array
+          items:
+            description: The changes in the storage per contract address
+            $ref: '#/ContractStorageDiffItem'
+        deprecated_declared_classes:
+          type: array
+          items:
+            description: The hash of the declared class
+            $ref: '#/Felt'
+        declared_classes:
+          type: array
+          items:
+            description: The declared class hash and compiled class hash
+            type: object
+            properties:
+              class_hash:
+                description: The hash of the declared class
+                $ref: '#/Felt'
+              compiled_class_hash:
+                description: The Cairo assembly hash corresponding to the declared class
+                $ref: '#/Felt'
+        deployed_contracts:
+          type: array
+          items:
+            description: A new contract deployed as part of the state update
+            $ref: '#/DeployedContractItem'
+        replaced_classes:
+          type: array
+          items:
+            description: The list of contracts whose class was replaced
+            type: object
+            properties:
+              contract_address:
+                description: The address of the contract whose class was replaced
+                $ref: '#/Address'
+              class_hash:
+                description: The new class hash
+                $ref: '#/Felt'
+        nonces:
+          type: array
+          items:
+            description: The updated nonce per contract address
+            type: object
+            properties:
+              contract_address:
+                description: The address of the contract
+                $ref: '#/Address'
+              nonce:
+                description: The nonce for the given address at the end of the block
+                $ref: '#/Felt'
+      required:
+        - storage_diffs
+        - deprecated_declared_classes
+        - declared_classes
+        - replaced_classes
+        - deployed_contracts
+        - nonces
+  required:
+    - old_root
+    - state_diff
+
+Address:
+  $ref: '#/Felt'
+
+StorageKey:
+  type: string
+  title: A storage key
+  $comment: A storage key, represented as a string of hex digits
+  description: A storage key. Represented as up to 62 hex digits, 3 bits, and 5 leading zeroes.
+  pattern: '^0x0[0-7]{1}[a-fA-F0-9]{0,62}$'
+
+EthAddress:
+  type: string
+  $comment: An ethereum address
+  description: An ethereum address represented as 40 hex digits
+  pattern: '^0x[a-fA-F0-9]{40}$'
+
+TxnHash:
+  $ref: '#/Felt'
+  description: The transaction hash, as assigned in StarkNet
+  title: A transaction's hash
+
+Felt:
+  type: string
+  title: Field element
+  description: A field element. represented by at most 63 hex digits
+  pattern: '^0x(0|[a-fA-F1-9]{1}[a-fA-F0-9]{0,62})$'
+
+BlockNumber:
+  description: The block's number (its height)
+  type: integer
+  minimum: 0
+
+BlockHash:
+  $ref: '#/Felt'
+
+BlockBodyWithTxHashes:
+  type: object
+  properties:
+    transactions:
+      description: The hashes of the transactions included in this block
+      type: array
+      items:
+        description: The hash of a single transaction
+        $ref: '#/TxnHash'
+  required:
+    - transactions
+
+BlockBodyWithTxs:
+  type: object
+  properties:
+    transactions:
+      description: The transactions in this block
+      type: array
+      items:
+        $ref: '#/Txn'
+  required:
+    - transactions
+
+BlockHeader:
+  type: object
+  properties:
+    block_hash:
+      $ref: '#/BlockHash'
+    parent_hash:
+      description: The hash of this block's parent
+      $ref: '#/BlockHash'
+    block_number:
+      description: The block number (its height)
+      $ref: '#/BlockNumber'
+    new_root:
+      description: The new global state root
+      $ref: '#/Felt'
+    timestamp:
+      description: The time in which the block was created, encoded in Unix time
+      type: integer
+      minimum: 0
+    sequencer_address:
+      description: The StarkNet identity of the sequencer submitting this block
+      $ref: '#/Felt'
+  required:
+    - block_hash
+    - parent_hash
+    - block_number
+    - new_root
+    - timestamp
+    - sequencer_address
+
+BlockWithTxHashes:
+  title: The block object
+  allOf:
+    - type: object
+      properties:
+        status:
+          $ref: '#/BlockStatus'
+      required:
+        - status
+    - $ref: '#/BlockHeader'
+    - $ref: '#/BlockBodyWithTxHashes'
+
+BlockWithTxs:
+  title: The block object
+  allOf:
+    - type: object
+      properties:
+        status:
+          $ref: '#/BlockStatus'
+      required:
+        - status
+    - $ref: '#/BlockHeader'
+    - $ref: '#/BlockBodyWithTxs'
+
+PendingBlockWithTxHashes:
+  title: Pending block object with tx hashes
+  description: The dynamic block being constructed by the sequencer. Note that this object will be deprecated upon decentralization.
+  allOf:
+    - $ref: '#/BlockBodyWithTxHashes'
+    - type: object
+      properties:
+        timestamp:
+          description: The time in which the block was created, encoded in Unix time
+          type: integer
+          minimum: 0
+        sequencer_address:
+          description: The StarkNet identity of the sequencer submitting this block
+          $ref: '#/Felt'
+        parent_hash:
+          description: The hash of this block's parent
+          $ref: '#/BlockHash'
+
+PendingBlockWithTxs:
+  description: The dynamic block being constructed by the sequencer. Note that this object will be deprecated upon decentralization.
+  allOf:
+    - $ref: '#/BlockBodyWithTxs'
+    - type: object
+      properties:
+        timestamp:
+          description: The time in which the block was created, encoded in Unix time
+          type: integer
+          minimum: 0
+        sequencer_address:
+          description: The StarkNet identity of the sequencer submitting this block
+          $ref: '#/Felt'
+        parent_hash:
+          description: The hash of this block's parent
+          $ref: '#/BlockHash'
+
+DeployedContractItem:
+  type: object
+  properties:
+    address:
+      description: The address of the contract
+      $ref: '#/Felt'
+    class_hash:
+      description: The hash of the contract code
+      $ref: '#/Felt'
+  required:
+    - address
+    - class_hash
+
+ContractStorageDiffItem:
+  type: object
+  properties:
+    address:
+      description: The contract address for which the storage changed
+      $ref: '#/Felt'
+    storage_entries:
+      description: The changes in the storage of the contract
+      type: array
+      items:
+        type: object
+        properties:
+          key:
+            description: The key of the changed value
+            $ref: '#/Felt'
+          value:
+            description: The new value applied to the given address
+            $ref: '#/Felt'
+  required:
+    - address
+    - storage_entries
+
+Txn:
+  title: Transaction
+  description: The transaction schema, as it appears inside a block
+  oneOf:
+    - $ref: '#/InvokeTxn'
+    - $ref: '#/L1HandlerTxn'
+    - $ref: '#/DeclareTxn'
+    - $ref: '#/DeployTxn'
+    - $ref: '#/DeployAccountTxn'
+
+BroadcastedTxn:
+  description: the transaction's representation when it's sent to the sequencer (but not yet in a block)
+  title: Transaction
+  oneOf:
+    - $ref: '#/BroadcastedInvokeTxn'
+    - $ref: '#/BroadcastedDeclareTxn'
+    - $ref: '#/BroadcastedDeployAccountTxn'
+
+Signature:
+  title: A transaction signature
+  type: array
+  items:
+    $ref: '#/Felt'
+
+BroadcastedTxnCommonProperties:
+  type: object
+  description: common properties of a transaction that is sent to the sequencer (but is not yet in a block)
+  properties:
+    max_fee:
+      $ref: '#/Felt'
+      description: The maximal fee that can be charged for including the transaction
+    version:
+      description: Version of the transaction scheme
+      $ref: '#/NumAsHex'
+    signature:
+      $ref: '#/Signature'
+    nonce:
+      $ref: '#/Felt'
+  required:
+    - max_fee
+    - version
+    - signature
+    - nonce
+
+CommonTxnProperties:
+  allOf:
+    - type: object
+      properties:
+        transaction_hash:
+          $ref: '#/TxnHash'
+          description: The hash identifying the transaction
+      required:
+        - transaction_hash
+    - $ref: '#/BroadcastedTxnCommonProperties'
+
+DeclareTxn:
+  oneOf:
+    - $ref: '#/DeclareTxnV1'
+    - $ref: '#/DeclareTxnV2'
+
+DeclareTxnV1:
+  title: Declare Contract Transaction
+  allOf:
+    - $ref: '#/CommonTxnProperties'
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - DECLARE
+        class_hash:
+          description: The hash of the declared class
+          $ref: '#/Felt'
+        sender_address:
+          description: The address of the account contract sending the declaration transaction
+          $ref: '#/Address'
+      required:
+        - type
+        - class_hash
+        - sender_address
+
+DeclareTxnV2:
+  title: Declare Contract Transaction
+  allOf:
+    - $ref: '#/DeclareTxnV1'
+    - type: object
+      properties:
+        compiled_class_hash:
+          description: The hash of the Cairo assembly resulting from the Sierra compilation
+          $ref: '#/Felt'
+
+BroadcastedDeclareTxn:
+  oneOf:
+    - $ref: '#/BroadcastedDeclareTxnV1'
+    - $ref: '#/BroadcastedDeclareTxnV2'
+
+BroadcastedDeclareTxnV1:
+  title: mempool representation of a declare transaction
+  allOf:
+    - $ref: '#/BroadcastedTxnCommonProperties'
+    - type: object
+      properties:
+        contract_class:
+          description: The class to be declared
+          $ref: '#/DeprecatedContractClass'
+        sender_address:
+          description: The address of the account contract sending the declaration transaction
+          $ref: '#/Address'
+
+BroadcastedDeclareTxnV2:
+  title: mempool representation of a declare transaction
+  allOf:
+    - $ref: '#/BroadcastedTxnCommonProperties'
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - DECLARE
+        contract_class:
+          description: The class to be declared
+          $ref: '#/ContractClass'
+        sender_address:
+          description: The address of the account contract sending the declaration transaction
+          $ref: '#/Address'
+        compiled_class_hash:
+          description: The hash of the Cairo assembly resulting from the Sierra compilation
+          $ref: '#/Felt'
+      required:
+        - type
+        - contract_class
+        - sender_address
+
+DeployAccountTxn:
+  title: Deploy Account Transaction
+  description: Deploys an account contract, charges fee from the pre-funded account addresses
+  allOf:
+    - $ref: '#/CommonTxnProperties'
+    - $ref: '#/DeployAccountTxnProperties'
+
+BroadcastedDeployAccountTxn:
+  description: Mempool representation of a deploy account transaction
+  allOf:
+    - $ref: '#/BroadcastedTxnCommonProperties'
+    - $ref: '#/DeployAccountTxnProperties'
+
+DeployAccountTxnProperties:
+  type: object
+  properties:
+    type:
+      type: string
+      enum:
+        - DEPLOY_ACCOUNT
+    contract_address_salt:
+      description: The salt for the address of the deployed contract
+      $ref: '#/Felt'
+    constructor_calldata:
+      type: array
+      description: The parameters passed to the constructor
+      items:
+        $ref: '#/Felt'
+    class_hash:
+      description: The hash of the deployed contract's class
+      $ref: '#/Felt'
+  required:
+    - type
+    - contract_address_salt
+    - constructor_calldata
+    - class_hash
+
+DeployTxn:
+  title: Deploy Contract Transaction
+  description: The structure of a deploy transaction. Note that this transaction type is deprecated and will no longer be supported in future versions
+  allOf:
+    - type: object
+      properties:
+        transaction_hash:
+          $ref: '#/TxnHash'
+          description: The hash identifying the transaction
+        class_hash:
+          description: The hash of the deployed contract's class
+          $ref: '#/Felt'
+      required:
+        - transaction_hash
+        - class_hash
+    - $ref: '#/DeployTxnProperties'
+
+DeployTxnProperties:
+  type: object
+  properties:
+    version:
+      description: Version of the transaction scheme
+      $ref: '#/NumAsHex'
+    type:
+      type: string
+      enum:
+        - DEPLOY
+    contract_address_salt:
+      description: The salt for the address of the deployed contract
+      $ref: '#/Felt'
+    constructor_calldata:
+      type: array
+      description: The parameters passed to the constructor
+      items:
+        $ref: '#/Felt'
+  required:
+    - version
+    - type
+    - contract_address_salt
+    - constructor_calldata
+
+InvokeTxnV0:
+  title: version 0 invoke transaction
+  description: invokes a specific function in the desired contract (not necessarily an account)
+  $ref: '#/FunctionCall'
+
+InvokeTxnV1:
+  title: version 1 invoke transaction
+  description: initiates a transaction from a given account
+  type: object
+  properties:
+    sender_address:
+      $ref: '#/Address'
+    calldata:
+      type: array
+      description: The data expected by the account's `execute` function (in most usecases, this includes the called contract address and a function selector)
+      items:
+        $ref: '#/Felt'
+  required:
+    - sender_address
+    - calldata
+
+InvokeTxn:
+  title: Initiate a transaction from an account
+  allOf:
+    - $ref: '#/CommonTxnProperties'
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - INVOKE
+      required:
+        - type
+    - oneOf:
+        - $ref: '#/InvokeTxnV0'
+        - $ref: '#/InvokeTxnV1'
+
+BroadcastedInvokeTxn:
+  description: mempool representation of an invoke transaction
+  allOf:
+    - $ref: '#/BroadcastedTxnCommonProperties'
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - INVOKE
+      required:
+        - type
+    - oneOf:
+        - $ref: '#/InvokeTxnV0'
+        - $ref: '#/InvokeTxnV1'
+
+L1HandlerTxn:
+  title: l1-->l2 message transaction
+  description: a call to an l1_handler on an L2 contract induced by a message from L1
+  allOf:
+    - type: object
+      properties:
+        transaction_hash:
+          $ref: '#/TxnHash'
+          description: The hash identifying the transaction
+        version:
+          description: Version of the transaction scheme
+          $ref: '#/NumAsHex'
+        type:
+          type: string
+          enum:
+            - L1_HANDLER
+        nonce:
+          description: The L1->L2 message nonce field of the SN Core L1 contract at the time the transaction was sent
+          $ref: '#/NumAsHex'
+      required:
+        - transaction_hash
+        - version
+        - type
+        - nonce
+    - $ref: '#/FunctionCall'
+
+CommonReceiptProperties:
+  title: Common properties for a transaction receipt
+  type: object
+  properties:
+    transaction_hash:
+      $ref: '#/TxnHash'
+      description: The hash identifying the transaction
+    actual_fee:
+      $ref: '#/Felt'
+      description: The fee that was charged by the sequencer
+    status:
+      $ref: '#/TxnStatus'
+    block_hash:
+      $ref: '#/BlockHash'
+    block_number:
+      $ref: '#/BlockNumber'
+    messages_sent:
+      type: array
+      items:
+        $ref: '#/MsgToL1'
+    events:
+      description: The events emitted as part of this transaction
+      type: array
+      items:
+        $ref: '#/Event'
+  required:
+    - transaction_hash
+    - actual_fee
+    - status
+    - block_hash
+    - block_number
+    - messages_sent
+    - events
+
+InvokeTxnReceipt:
+  title: Invoke Transaction Receipt
+  allOf:
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - INVOKE
+      required:
+        - type
+    - $ref: '#/CommonReceiptProperties'
+
+DeclareTxnReceipt:
+  title: Declare Transaction Receipt
+  allOf:
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - DECLARE
+      required:
+        - type
+    - $ref: '#/CommonReceiptProperties'
+
+DeployAccountTxnReceipt:
+  title: Deploy Account Transaction Receipt
+  allOf:
+    - $ref: '#/CommonReceiptProperties'
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - DEPLOY_ACCOUNT
+        contract_address:
+          description: The address of the deployed contract
+          $ref: '#/Felt'
+      required:
+        - type
+        - contract_address
+
+DeployTxnReceipt:
+  title: Deploy Transaction Receipt
+  allOf:
+    - $ref: '#/CommonReceiptProperties'
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - DEPLOY
+        contractAddress:
+          description: The address of the deployed contract
+          $ref: '#/Felt'
+      required:
+        - type
+        - contractAddress
+
+L1HandlerTxnReceipt:
+  title: Receipt for L1 handler transaction
+  allOf:
+    - type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - L1_HANDLER
+      required:
+        - type
+    - $ref: '#/CommonReceiptProperties'
+
+TxnReceipt:
+  oneOf:
+    - $ref: '#/InvokeTxnReceipt'
+    - $ref: '#/L1HandlerTxnReceipt'
+    - $ref: '#/DeclareTxnReceipt'
+    - $ref: '#/DeployTxnReceipt'
+    - $ref: '#/DeployAccountTxnReceipt'
+    - $ref: '#/PendingTxnReceipt'
+
+PendingCommonReceiptProperties:
+  title: Common properties for a pending transaction receipt
+  type: object
+  properties:
+    transaction_hash:
+      $ref: '#/TxnHash'
+      description: The hash identifying the transaction
+    actual_fee:
+      $ref: '#/Felt'
+      description: The fee that was charged by the sequencer
+    type:
+      $ref: '#/TxnType'
+    messages_sent:
+      type: array
+      items:
+        $ref: '#/MsgToL1'
+    events:
+      description: The events emitted as part of this transaction
+      type: array
+      items:
+        $ref: '#/Event'
+  required:
+    - transaction_hash
+    - actual_fee
+    - messages_sent
+    - events
+
+PendingDeployTxnReceipt:
+  title: Pending deploy Transaction Receipt
+  allOf:
+    - $ref: '#/PendingCommonReceiptProperties'
+    - type: object
+      properties:
+        contract_address:
+          description: The address of the deployed contract
+          $ref: '#/Felt'
+
+PendingTxnReceipt:
+  oneOf:
+    - $ref: '#/PendingDeployTxnReceipt'
+    - $ref: '#/PendingCommonReceiptProperties'
+
+MsgToL1:
+  type: object
+  properties:
+    to_address:
+      description: The target L1 address the message is sent to
+      $ref: '#/Felt'
+    payload:
+      description: The payload of the message
+      type: array
+      items:
+        $ref: '#/Felt'
+  required:
+    - to_address
+    - payload
+
+TxnStatus:
+  type: string
+  enum:
+    - PENDING
+    - ACCEPTED_ON_L2
+    - ACCEPTED_ON_L1
+    - REJECTED
+  description: The status of the transaction
+
+TxnType:
+  type: string
+  enum:
+    - DECLARE
+    - DEPLOY
+    - DEPLOY_ACCOUNT
+    - INVOKE
+    - L1_HANDLER
+  description: The type of the transaction
+
+BlockStatus:
+  type: string
+  enum:
+    - PENDING
+    - ACCEPTED_ON_L2
+    - ACCEPTED_ON_L1
+    - REJECTED
+  description: The status of the block
+
+FunctionCall:
+  type: object
+  title: Function call information
+  properties:
+    contract_address:
+      $ref: '#/Address'
+    entry_point_selector:
+      $ref: '#/Felt'
+    calldata:
+      type: array
+      description: The parameters passed to the function
+      items:
+        $ref: '#/Felt'
+  required:
+    - contract_address
+    - entry_point_selector
+    - calldata
+
+ContractClass:
+  type: object
+  properties:
+    sierraProgram:
+      type: array
+      description: The list of Sierra instructions of which the program consists
+      items:
+        $ref: '#/Felt'
+    contractClassVersion:
+      type: string
+      description: The version of the contract class object. Currently, the Starknet OS supports version 0.1.0
+    entryPointsByType:
+      type: object
+      properties:
+        CONSTRUCTOR:
+          type: array
+          items:
+            $ref: '#/SierraEntryPoint'
+        EXTERNAL:
+          type: array
+          items:
+            $ref: '#/SierraEntryPoint'
+        L1_HANDLER:
+          type: array
+          items:
+            $ref: '#/SierraEntryPoint'
+    abi:
+      type: string
+      description: The class ABI, as supplied by the user declaring the class
+  required:
+    - sierraProgram
+    - contractClassVersion
+    - entryPointsByType
+DeprecatedContractClass:
+  title: The definition of a StarkNet contract class
+  type: object
+  properties:
+    program:
+      type: string
+      description: A base64 representation of the compressed program code
+      pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$'
+    entryPointsByType:
+      type: object
+      properties:
+        CONSTRUCTOR:
+          type: array
+          items:
+            $ref: '#/DeprecatedCairoEntryPoint'
+        EXTERNAL:
+          type: array
+          items:
+            $ref: '#/DeprecatedCairoEntryPoint'
+        L1_HANDLER:
+          type: array
+          items:
+            $ref: '#/DeprecatedCairoEntryPoint'
+    abi:
+      $ref: '#/ContractAbi'
+  required:
+    - program
+    - entryPointsByType
+DeprecatedCairoEntryPoint:
+  type: object
+  properties:
+    offset:
+      description: The offset of the entry point in the program
+      $ref: '#/NumAsHex'
+    selector:
+      description: A unique identifier of the entry point (function) in the program
+      $ref: '#/Felt'
+SierraEntryPoint:
+  type: object
+  properties:
+    selector:
+      description: A unique identifier of the entry point (function) in the program
+      $ref: '#/Felt'
+    functionIdx:
+      description: The index of the function in the program
+      type: integer
+ContractAbi:
+  type: array
+  items:
+    $ref: '#/ContractAbiEntry'
+ContractAbiEntry:
+  oneOf:
+    - $ref: '#/FunctionAbiEntry'
+    - $ref: '#/EventAbiEntry'
+    - $ref: '#/StructAbiEntry'
+StructAbiType:
+  type: string
+  enum:
+    - struct
+EventAbiType:
+  type: string
+  enum:
+    - event
+FunctionAbiType:
+  type: string
+  enum:
+    - function
+    - l1_handler
+    - constructor
+
+StructAbiEntry:
+  type: object
+  properties:
+    type:
+      $ref: '#/StructAbiType'
+    name:
+      description: The struct name
+      type: string
+    size:
+      type: integer
+      minimum: 1
+    members:
+      type: array
+      items:
+        $ref: '#/StructMember'
+
+StructMember:
+  allOf:
+    - $ref: '#/TypedParameter'
+    - type: object
+      properties:
+        offset:
+          description: Offset of this property within the struct
+          type: integer
+
+EventAbiEntry:
+  type: object
+  properties:
+    type:
+      $ref: '#/EventAbiType'
+    name:
+      description: The event name
+      type: string
+    keys:
+      type: array
+      items:
+        $ref: '#/TypedParameter'
+    data:
+      type: array
+      items:
+        $ref: '#/TypedParameter'
+
+FunctionAbiEntry:
+  type: object
+  properties:
+    type:
+      $ref: '#/FunctionAbiType'
+    name:
+      description: The function name
+      type: string
+    inputs:
+      type: array
+      items:
+        $ref: '#/TypedParameter'
+    outputs:
+      type: array
+      items:
+        $ref: '#/TypedParameter'
+
+TypedParameter:
+  type: object
+  properties:
+    name:
+      description: The parameter's name
+      type: string
+    type:
+      description: The parameter's type
+      type: string
+
+FeeEstimate:
+  type: object
+  properties:
+    gasConsumed:
+      description: The Ethereum gas cost of the transaction (see https://docs.starknet.io/docs/Fees/fee-mechanism for more info)
+      $ref: '#/NumAsHex'
+    gasPrice:
+      description: The gas price (in gwei) that was used in the cost estimation
+      $ref: '#/NumAsHex'
+    overallFee:
+      description: The estimated fee for the transaction (in gwei), product of gasConsumed and gasPrice
+      $ref: '#/NumAsHex'
+
+#========== errors ==========
+
+FailedToReceiveTxn:
+  code: 1
+  message: 'Failed to write transaction'
+ContractNotFound:
+  code: 20
+  message: 'Contract not found'
+BlockNotFound:
+  code: 24
+  message: 'Block not found'
+TxnHashNotFound:
+  code: 25
+  message: 'Transaction hash not found'
+InvalidTxnIndex:
+  code: 27
+  message: 'Invalid transaction index in a block'
+ClassHashNotFound:
+  code: 28
+  message: 'Class hash not found'
+PageSizeTooBig:
+  code: 31
+  message: 'Requested page size is too big'
+NoBlocks:
+  code: 32
+  message: 'There are no blocks'
+InvalidContinuationToken:
+  code: 33
+  message: 'The supplied continuation token is invalid or unknown'
+TooManyKeysInFilter:
+  code: 34
+  message: 'Too many keys provided in a filter'
+ContractError:
+  code: 40
+  message: 'Contract error'
