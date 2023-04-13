@@ -329,3 +329,5 @@ starknet_getStateUpdate:
       },
     'id': 1,
   }
+
+starknet_getStorageAt: { 'jsonrpc': '2.0', 'result': '0x0', 'id': 1 }
