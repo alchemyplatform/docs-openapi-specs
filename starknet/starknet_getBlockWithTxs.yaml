@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: starknet_getBlockWithTxHashes
-  description: Get block information with transaction hashes given the block id
+  title: starknet_getBlockWithTxs
+  description: Get block information with full transactions given the block id
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -18,9 +18,9 @@ components:
   pathItems:
     path:
       post:
-        operationId: starknet-getBlockWithTxHashes
-        summary: starknet_getBlockWithTxHashes
-        description: Get block information with transaction hashes given the block id
+        operationId: starknet-getBlockWithTxs
+        summary: starknet_getBlockWithTxs
+        description: Get block information with full transactions given the block id
         parameters:
           - name: apiKey
             in: path
@@ -46,7 +46,7 @@ components:
                     properties:
                       method:
                         $ref: ../components/schemas.yaml#/Method
-                        default: starknet_getBlockWithTxHashes
+                        default: starknet_getBlockWithTxs
                       params:
                         type: array
                         title: block_id
@@ -59,10 +59,10 @@ components:
             - curl
             - javascript
             - python
-          id: 64385ddd09f30a0073850bed
+          id: 64387dd29447f9006cab96fd
         responses:
           '200':
-            description: The resulting block information with transaction hashes
+            description: The resulting block information with full transactions
             content:
               application/json:
                 schema:
@@ -72,7 +72,7 @@ components:
                       properties:
                         result:
                           oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BlockWithTxHashes'
-                            - $ref: '../components/starknet/schemas.yaml#/PendingBlockWithTxHashes'
+                            - $ref: '../components/starknet/schemas.yaml#/BlockWithTxs'
+                            - $ref: '../components/starknet/schemas.yaml#/PendingBlockWithTxs'
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getBlockWithTxHashes'
+                        $ref: '../components/starknet/examples.yaml#/starknet_getBlockWithTxs'
