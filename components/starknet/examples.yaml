@@ -432,3 +432,124 @@ starknet_getTransactionByBlockIdAndIndex:
       },
     'id': 1,
   }
+
+starknet_getTransactionReceipt:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'type': 'INVOKE',
+        'transaction_hash': '0x4355883d8129d45e5d9a2c845a0336b0d1e89d23116d91f856df0e3db87b858',
+        'actual_fee': '0x18b20a97bc940',
+        'status': 'ACCEPTED_ON_L1',
+        'block_hash': '0x5ef07660bdead0bce93be37be77d55a241de1d74608a255adb23a733fda557',
+        'block_number': 38493,
+        'messages_sent': [],
+        'events':
+          [
+            {
+              'from_address': '0x53c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8',
+              'keys':
+                [
+                  '0x134692b230b9e1ffa39098904722134159652b09c5bc41d88d6698779d228ff',
+                ],
+              'data':
+                [
+                  '0x49374e0000328ee212f888ac2a2be068d8176cb0c157557462cbe60743346d9',
+                  '0x7a6f98c03379b9513ca84cca1373ff452a7462a3b61598f0af5bb27ad7f76d1',
+                  '0xab977d',
+                  '0x0',
+                ],
+            },
+            {
+              'from_address': '0x53c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8',
+              'keys':
+                [
+                  '0x99cd8bde557814842a3121e8ddfd433a539b8c9f14bf31ebf108d12e6196e9',
+                ],
+              'data':
+                [
+                  '0x49374e0000328ee212f888ac2a2be068d8176cb0c157557462cbe60743346d9',
+                  '0x23c72abdf49dffc85ae3ede714f2168ad384cc67d08524732acea90df325',
+                  '0xab977d',
+                  '0x0',
+                ],
+            },
+            {
+              'from_address': '0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7',
+              'keys':
+                [
+                  '0x99cd8bde557814842a3121e8ddfd433a539b8c9f14bf31ebf108d12e6196e9',
+                ],
+              'data':
+                [
+                  '0x23c72abdf49dffc85ae3ede714f2168ad384cc67d08524732acea90df325',
+                  '0x49374e0000328ee212f888ac2a2be068d8176cb0c157557462cbe60743346d9',
+                  '0x12e3b592ca69ca',
+                  '0x0',
+                ],
+            },
+            {
+              'from_address': '0x23c72abdf49dffc85ae3ede714f2168ad384cc67d08524732acea90df325',
+              'keys':
+                [
+                  '0xe14a408baf7f453312eec68e9b7d728ec5337fbdf671f917ee8c80f3255232',
+                ],
+              'data': ['0x13ea35a030f120740e', '0xb45dc4e869'],
+            },
+            {
+              'from_address': '0x23c72abdf49dffc85ae3ede714f2168ad384cc67d08524732acea90df325',
+              'keys':
+                [
+                  '0xe316f0d9d2a3affa97de1d99bb2aac0538e2666d0d8545545ead241ef0ccab',
+                ],
+              'data':
+                [
+                  '0x7a6f98c03379b9513ca84cca1373ff452a7462a3b61598f0af5bb27ad7f76d1',
+                  '0x0',
+                  '0x0',
+                  '0xab977d',
+                  '0x0',
+                  '0x12e3b592ca69ca',
+                  '0x0',
+                  '0x0',
+                  '0x0',
+                  '0x49374e0000328ee212f888ac2a2be068d8176cb0c157557462cbe60743346d9',
+                ],
+            },
+            {
+              'from_address': '0x49374e0000328ee212f888ac2a2be068d8176cb0c157557462cbe60743346d9',
+              'keys':
+                [
+                  '0x5ad857f66a5b55f1301ff1ed7e098ac6d4433148f0b72ebc4a2945ab85ad53',
+                ],
+              'data':
+                [
+                  '0x4355883d8129d45e5d9a2c845a0336b0d1e89d23116d91f856df0e3db87b858',
+                  '0x6',
+                  '0x1',
+                  '0x2',
+                  '0xab977d',
+                  '0x0',
+                  '0x12e3b592ca69ca',
+                  '0x0',
+                ],
+            },
+            {
+              'from_address': '0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7',
+              'keys':
+                [
+                  '0x99cd8bde557814842a3121e8ddfd433a539b8c9f14bf31ebf108d12e6196e9',
+                ],
+              'data':
+                [
+                  '0x49374e0000328ee212f888ac2a2be068d8176cb0c157557462cbe60743346d9',
+                  '0x1176a1bd84444c89232ec27754698e5d2e7e1a7f1539f12027f28b23ec9f3d8',
+                  '0x18b20a97bc940',
+                  '0x0',
+                ],
+            },
+          ],
+      },
+    'id': 1,
+  }
