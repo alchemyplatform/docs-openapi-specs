@@ -331,3 +331,49 @@ starknet_getStateUpdate:
   }
 
 starknet_getStorageAt: { 'jsonrpc': '2.0', 'result': '0x0', 'id': 1 }
+
+starknet_getTransactionByHash:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'type': 'INVOKE',
+        'version': '0x1',
+        'transaction_hash': '0x19041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
+        'max_fee': '0x8700360d2a0ca',
+        'signature':
+          [
+            '0x7e48be00e49de40c369de84ce48643ade7f90d82b94a8bcdd1b4e184e2a885f',
+            '0x44d0b49310cc6272d088f0ebd2c6b74adf7dce3409a10edf209acf7b87875bd',
+          ],
+        'nonce': '0x18',
+        'sender_address': '0xd548daff55dce43fa2d35b69501342184da498ff30d57be87b0f104f20b354',
+        'calldata':
+          [
+            '0x2',
+            '0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7',
+            '0x219209e083275171774dab1df80982e9df2096516f06319c5c6d71ae0a8480c',
+            '0x0',
+            '0x3',
+            '0x41fd22b238fa21cfcf5dd45a8548974d8263b3a531a60388411c5e230f97023',
+            '0x3b1bf5248b545038b97fc53525d5be840cf237a3faddfcaa7b9e4c8439fdaad',
+            '0x3',
+            '0xa',
+            '0xd',
+            '0x41fd22b238fa21cfcf5dd45a8548974d8263b3a531a60388411c5e230f97023',
+            '0x1b7e0d703ed5a',
+            '0x0',
+            '0xf4240',
+            '0x0',
+            '0x1b7e0d703ed5a',
+            '0x0',
+            '0x3',
+            '0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7',
+            '0xda114221cb83fa859dbdb4c44beeaa0bb37c7537ad5ae66fe5e0efd20e6eb3',
+            '0x68f5c6a61780768455de69077e07e89787839bf8166decfbf92b645209c0fb8',
+            '0xd548daff55dce43fa2d35b69501342184da498ff30d57be87b0f104f20b354',
+            '0x6438fb21',
+          ],
+      },
+    'id': 1,
+  }

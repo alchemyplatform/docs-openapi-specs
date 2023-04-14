@@ -275,6 +275,7 @@ TxnHash:
   $ref: '#/Felt'
   description: The transaction hash, as assigned in StarkNet
   title: A transaction's hash
+  default: '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728'
 
 Felt:
   type: string
