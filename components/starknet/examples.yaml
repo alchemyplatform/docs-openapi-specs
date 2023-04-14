@@ -377,3 +377,58 @@ starknet_getTransactionByHash:
       },
     'id': 1,
   }
+
+starknet_getTransactionByBlockIdAndIndex:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'type': 'INVOKE',
+        'version': '0x1',
+        'transaction_hash': '0x30bfe654fbddda008ff510e1bbd0feda228f78d20da432f276b1c4cd3a9620f',
+        'max_fee': '0x37ef15a758000',
+        'signature':
+          [
+            '0xb46bde4e6684978ba908dad803cc660ec4acded440be300322a60a01006c36',
+            '0x4b980f0a433fb04f8b13096af98b263d918d3437cef2694caee7011253b1f8d',
+          ],
+        'nonce': '0xd',
+        'sender_address': '0x3467d9ce99e4d7ffc934237f302786d5443db7234bf44c71a40cd7c5c274455',
+        'calldata':
+          [
+            '0x3',
+            '0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7',
+            '0x219209e083275171774dab1df80982e9df2096516f06319c5c6d71ae0a8480c',
+            '0x0',
+            '0x3',
+            '0x53c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8',
+            '0x219209e083275171774dab1df80982e9df2096516f06319c5c6d71ae0a8480c',
+            '0x3',
+            '0x3',
+            '0x41fd22b238fa21cfcf5dd45a8548974d8263b3a531a60388411c5e230f97023',
+            '0x2cfb12ff9e08412ec5009c65ea06e727119ad948d25c8a8cc2c86fec4adee70',
+            '0x6',
+            '0xc',
+            '0x12',
+            '0x41fd22b238fa21cfcf5dd45a8548974d8263b3a531a60388411c5e230f97023',
+            '0x119e003002e2b1',
+            '0x0',
+            '0x41fd22b238fa21cfcf5dd45a8548974d8263b3a531a60388411c5e230f97023',
+            '0x9d49a1',
+            '0x0',
+            '0x49d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7',
+            '0x53c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8',
+            '0x119e003002e2b1',
+            '0x0',
+            '0x9d49a1',
+            '0x0',
+            '0x1143ccfbd9de28',
+            '0x0',
+            '0x9a2450',
+            '0x0',
+            '0x3467d9ce99e4d7ffc934237f302786d5443db7234bf44c71a40cd7c5c274455',
+            '0x6439a622',
+          ],
+      },
+    'id': 1,
+  }
