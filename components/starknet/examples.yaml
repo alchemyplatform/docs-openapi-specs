@@ -695,3 +695,5 @@ starknet_getClassAt:
   }
 
 starknet_getBlockTransactionCount: { 'jsonrpc': '2.0', 'result': 180, 'id': 1 }
+
+starknet_blockNumber: { 'jsonrpc': '2.0', 'result': 39715, 'id': 1 }
