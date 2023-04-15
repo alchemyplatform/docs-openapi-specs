@@ -710,3 +710,5 @@ starknet_blockHashAndNumber:
   }
 
 starknet_chainId: { 'jsonrpc': '2.0', 'result': '0x534e5f4d41494e', 'id': 1 }
+
+starknet_pendingTransactions: { 'jsonrpc': '2.0', 'result': [], 'id': 1 }
