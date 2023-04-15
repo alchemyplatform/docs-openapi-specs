@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: starknet_estimateFee
+  description: Estimate the fee for StarkNet transactions
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - starknet-mainnet
+          - starknet-goerli
+        default: starknet-mainnet
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        operationId: starknet-estimateFee
+        summary: starknet_estimateFee
+        description: Estimates the resources required by transactions when applied on a given state.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          description: Request Body
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - type: object
+                    properties:
+                      method:
+                        $ref: '../components/schemas.yaml#/Method'
+                        default: starknet_estimateFee
+                      params:
+                        type: array
+                        title: Params
+                        items:
+                          oneOf:
+                            - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
+                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                        description: The transaction to estimate and the block_id for the block referencing the state or call the transaction on.
+                        minItems: 2
+                        maxItems: 2
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python
+        responses:
+          '200':
+            description: The fee estimations
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '../evm_responses.yaml#/common_response_fields'
+                    - type: object
+                      properties:
+                        result:
+                          type: array
+                          description: A sequence of fee estimates where the i'th estimate corresponds to the i'th transaction.
+                          items:
+                            $ref: '../components/starknet/schemas.yaml#/FeeEstimate'
+                      example:
+                        id: 1
+                        jsonrpc: '2.0'
+                        result: [{ gas_limit: 12345, cairo_usage: 123 }]

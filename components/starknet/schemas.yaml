@@ -1124,7 +1124,7 @@ FeeEstimate:
   type: object
   properties:
     gasConsumed:
-      description: The Ethereum gas cost of the transaction (see https://docs.starknet.io/docs/Fees/fee-mechanism for more info)
+      description: The Ethereum gas cost of the transaction (see https://docs.starknet.io/documentation/architecture_and_concepts/Fees/fee-mechanism/ for more info)
       $ref: '#/NumAsHex'
     gasPrice:
       description: The gas price (in gwei) that was used in the cost estimation
