@@ -712,3 +712,18 @@ starknet_blockHashAndNumber:
 starknet_chainId: { 'jsonrpc': '2.0', 'result': '0x534e5f4d41494e', 'id': 1 }
 
 starknet_pendingTransactions: { 'jsonrpc': '2.0', 'result': [], 'id': 1 }
+
+starknet_syncing:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'starting_block_num': '0x7fffffffffffffff',
+        'current_block_num': '0x9b33',
+        'highest_block_num': '0x9b33',
+        'starting_block_hash': '0x0',
+        'current_block_hash': '0x5d0c6a4ad062a92a7e6e4272d8c87be188ab7e84b283396e548d601726521b4',
+        'highest_block_hash': '0x5d0c6a4ad062a92a7e6e4272d8c87be188ab7e84b283396e548d601726521b4',
+      },
+    'id': 1,
+  }
