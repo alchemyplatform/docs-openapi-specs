@@ -727,3 +727,5 @@ starknet_syncing:
       },
     'id': 1,
   }
+
+starknet_getNonce: { 'jsonrpc': '2.0', 'result': '0x0', 'id': 1 }
