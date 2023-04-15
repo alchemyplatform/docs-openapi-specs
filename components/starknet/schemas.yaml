@@ -21,6 +21,7 @@ ResultPageRequest:
     chunk_size:
       type: integer
       minimum: 1
+      default: 10
   required:
     - chunk_size
 
