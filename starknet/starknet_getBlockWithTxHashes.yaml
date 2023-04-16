@@ -53,6 +53,7 @@ components:
                         items:
                           $ref: '../components/starknet/schemas.yaml#/BlockId'
                         description: The hash of the requested block, or number (height) of the requested block, or a block tag
+                        minItems: 1
                         maxItems: 1
         x-readme:
           samples-languages:

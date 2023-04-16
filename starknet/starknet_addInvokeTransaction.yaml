@@ -54,6 +54,7 @@ components:
                           $ref: '../components/starknet/schemas.yaml#/BroadcastedInvokeTxn'
                           title: invoke_transaction
                           description: The information needed to invoke the function (or account, for version 1 transactions)
+                        minItems: 1
                         maxItems: 1
         x-readme:
           samples-languages:
