@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: starknet_addDeclareTransaction
-  description: Submit a new class declaration transaction
+  title: starknet_addDeployAccountTransaction
+  description: Submit a new deploy account transaction
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -18,9 +18,9 @@ components:
   pathItems:
     path:
       post:
-        operationId: starknet-addDeclareTransaction
-        summary: starknet_addDeclareTransaction
-        description: Submit a new class declaration transaction
+        operationId: starknet-addDeployAccountTransaction
+        summary: starknet_addDeployAccountTransaction
+        description: Submit a new deploy account transaction
         parameters:
           - name: apiKey
             in: path
@@ -46,13 +46,13 @@ components:
                     properties:
                       method:
                         $ref: ../components/schemas.yaml#/Method
-                        default: starknet_addDeclareTransaction
+                        default: starknet_addDeployAccountTransaction
                       params:
                         type: array
-                        title: declare_transaction
+                        title: deploy_account_transaction
                         items:
-                          $ref: '../components/starknet/schemas.yaml#/BroadcastedDeclareTxn'
-                        description: The declaration transaction to be submitted
+                          $ref: '../components/starknet/schemas.yaml#/BroadcastedDeployAccountTxn'
+                        description: The deploy account transaction
                         maxItems: 1
         x-readme:
           samples-languages:
@@ -73,10 +73,10 @@ components:
                           type: object
                           properties:
                             transactionHash:
-                              title: The hash of the declare transaction
+                              title: The hash of the deploy transaction
                               $ref: '../components/starknet/schemas.yaml#/TxnHash'
-                            classHash:
-                              title: The hash of the declared class
+                            contractAddress:
+                              title: The address of the new contract
                               $ref: '../components/starknet/schemas.yaml#/Felt'
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_addDeclareTransaction'
+                        $ref: '../components/starknet/examples.yaml#/starknet_addDeployAccountTransaction'

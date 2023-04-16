@@ -750,3 +750,14 @@ starknet_addDeclareTransaction:
         'class_hash': '0x4a3b912eb0a984f27e7841a7b01f8b61c7b1f2ebc7d791f0e2e1ebc6a535b57a',
       },
   }
+
+starknet_addDeployAccountTransaction:
+  {
+    'id': 1,
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'transaction_hash': '0x7f8c4f6e1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d',
+        'account_address': '0x1234abcd5678efgh9012ijkl3456mnop',
+      },
+  }
