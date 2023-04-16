@@ -739,3 +739,14 @@ starknet_addInvokeTransaction:
         'transaction_hash': '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
       },
   }
+
+starknet_addDeclareTransaction:
+  {
+    'id': 1,
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'transaction_hash': '0xd9ac1c7ebe5eb5ab40c5d6f3c6b5a6f4370d7c76f9a22c7f73a0e0b7e2e2d4a7',
+        'class_hash': '0x4a3b912eb0a984f27e7841a7b01f8b61c7b1f2ebc7d791f0e2e1ebc6a535b57a',
+      },
+  }
