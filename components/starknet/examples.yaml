@@ -729,3 +729,13 @@ starknet_syncing:
   }
 
 starknet_getNonce: { 'jsonrpc': '2.0', 'result': '0x0', 'id': 1 }
+
+starknet_addInvokeTransaction:
+  {
+    'id': 1,
+    'jsonrpc': '2.0',
+    'result':
+      {
+        'transaction_hash': '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
+      },
+  }
