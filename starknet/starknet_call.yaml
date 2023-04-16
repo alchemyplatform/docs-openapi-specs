@@ -49,6 +49,16 @@ components:
                         default: starknet_call
                       params:
                         type: array
+                        default:
+                          [
+                            {
+                              'contract_address': '0x049E0cCb70e1F1684F43116e9E42e60D0f64d3D254Be8D8A1143dba43dEad733',
+                              'calldata':
+                                ['0xbfc2ea1a458d7cac752a4a688dbb8e0cff399e1b'],
+                              'entry_point_selector': '0x12ead94ae9d3f9d2bdb6b847cf255f1f398193a1f88884a0ae8e18f24a037b6',
+                            },
+                            'latest',
+                          ]
                         title: Params
                         items:
                           oneOf:
@@ -77,6 +87,4 @@ components:
                           items:
                             $ref: '../components/starknet/schemas.yaml#/Felt'
                       example:
-                        id: 1
-                        jsonrpc: '2.0'
-                        result: [42]
+                        $ref: '../components/starknet/examples.yaml#/starknet_call'

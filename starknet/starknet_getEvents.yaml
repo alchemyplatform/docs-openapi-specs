@@ -49,14 +49,23 @@ components:
                         default: starknet_getEvents
                       params:
                         type: array
+                        default:
+                          [
+                            {
+                              'from_block': 'latest',
+                              'to_block': 'latest',
+                              'address': '0x044e5b3f0471a26bc749ffa1d8dd8e43640e05f1b33cf05cef6adee6f5b1b4cf',
+                              'chunk_size': 10,
+                            },
+                          ]
                         title: filter
                         items:
                           oneOf:
                             - $ref: '../components/starknet/schemas.yaml#/EventFilter'
                             - $ref: '../components/starknet/schemas.yaml#/ResultPageRequest'
                         description: The conditions used to filter the returned events
-                        minItems: 2
-                        maxItems: 2
+                        minItems: 1
+                        maxItems: 1
         x-readme:
           samples-languages:
             - curl
@@ -76,3 +85,5 @@ components:
                           $ref: '../components/starknet/schemas.yaml#/EventsChunk'
                           title: events
                           description: All the event objects matching the filter
+                      example:
+                        $ref: '../components/starknet/examples.yaml#/starknet_getEvents'

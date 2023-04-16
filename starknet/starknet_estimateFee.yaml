@@ -55,9 +55,10 @@ components:
                             - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
                             - $ref: '../components/starknet/schemas.yaml#/BlockId'
                         description: The transaction to estimate and the block_id for the block referencing the state or call the transaction on.
-                        minItems: 2
-                        maxItems: 2
+                        maxItems: 1
+                        minItems: 1
         x-readme:
+          explorer-enabled: false
           samples-languages:
             - curl
             - javascript
@@ -78,6 +79,4 @@ components:
                           items:
                             $ref: '../components/starknet/schemas.yaml#/FeeEstimate'
                       example:
-                        id: 1
-                        jsonrpc: '2.0'
-                        result: [{ gas_limit: 12345, cairo_usage: 123 }]
+                        $ref: '../components/starknet/examples.yaml#/starknet_estimateFee'

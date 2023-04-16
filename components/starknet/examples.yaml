@@ -761,3 +761,15 @@ starknet_addDeployAccountTransaction:
         'account_address': '0x1234abcd5678efgh9012ijkl3456mnop',
       },
   }
+
+starknet_call: { 'jsonrpc': '2.0', 'result': [], 'id': 1 }
+
+starknet_getEvents: { 'jsonrpc': '2.0', 'result': { 'events': [] }, 'id': 1 }
+
+starknet_estimateFee:
+  {
+    'jsonrpc': '2.0',
+    'result':
+      { 'gas_consumed': '0x6df0', 'gas_price': '0x0', 'overall_fee': '0x0' },
+    'id': 1,
+  }
