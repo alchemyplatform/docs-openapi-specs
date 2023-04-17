@@ -12,6 +12,7 @@ components:
     path:
       post:
         summary: eth_getFilterLogs - Ethereum
+        operationId: eth-getfilterlogs
         description: Returns an array of all logs matching filter with given id. Can compute the same results with an eth_getLogs call.
         tags: []
         parameters:
@@ -40,4 +41,3 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_getLogs
-        operationId: eth-getFilterLogs

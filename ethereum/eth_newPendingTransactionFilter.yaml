@@ -12,6 +12,7 @@ components:
     path:
       post:
         summary: eth_newPendingTransactionFilter - Ethereum
+        operationId: eth-newpendingtransactionfilter
         description: 'Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges.'
         tags: []
         parameters:
@@ -41,4 +42,3 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-newPendingTransactionFilter
