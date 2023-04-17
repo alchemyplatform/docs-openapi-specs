@@ -14,10 +14,9 @@ paths:
         - $ref: '#/components/schemas/X-Alchemy-Token'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -59,10 +58,9 @@ paths:
       x-readme:
         explorer-enabled: false
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -112,10 +110,9 @@ paths:
               $ref: '#/components/schemas/create_webhook'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -191,10 +188,9 @@ paths:
               $ref: '#/components/schemas/update_webhook_addresses'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -241,10 +237,9 @@ paths:
               $ref: '#/components/schemas/replace_webhook_addresses'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -288,10 +283,9 @@ paths:
               $ref: '#/components/schemas/update_webhook'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -332,10 +326,9 @@ paths:
               $ref: '#/components/schemas/update_webhook_nft_filters'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -409,10 +402,9 @@ paths:
         - $ref: '#/components/schemas/after'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -458,10 +450,9 @@ paths:
         - $ref: '#/components/schemas/webhook_id'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
