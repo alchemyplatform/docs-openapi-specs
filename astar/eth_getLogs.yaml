@@ -10,9 +10,3 @@ paths:
       summary: eth_getLogs - Astar
       operationId: eth-getlogs-astar
       $ref: ../ethereum/eth_getLogs.yaml#/components/pathItems/path/post
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
