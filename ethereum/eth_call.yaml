@@ -38,9 +38,9 @@ components:
         x-readme:
           explorer-enabled: false
           samples-languages:
+            - curl
             - javascript
             - python
-            - curl
           code-samples:
             - language: javascript
               name: Alchemy SDK

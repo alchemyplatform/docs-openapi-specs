@@ -44,7 +44,6 @@ components:
             - curl
             - javascript
             - python
-            - go
         responses:
           '200':
             description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'

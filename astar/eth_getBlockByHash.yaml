@@ -13,10 +13,9 @@ paths:
       x-readme:
         explorer-enabled: false
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
