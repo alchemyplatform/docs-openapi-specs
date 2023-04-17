@@ -6,21 +6,7 @@ servers:
   - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
-      post:
-        summary: eth_getFilterChanges - Astar
-        operationId: eth-getFilterChanges
-        description: 'Polling method for a filter, which returns an array of logs which occurred since last poll.'
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_body.yaml#/eth_getFilterChanges
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_getLogs
+    post:
+      summary: eth_getFilterChanges - Astar
+      operationId: eth-getfilterchanges-astar
+      $ref: ../ethereum/eth_getFilterChanges.yaml#/components/pathItems/path/post

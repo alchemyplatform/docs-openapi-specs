@@ -1,44 +1,12 @@
 openapi: 3.1.0
 info:
-  title: eth_newPendingTransactionFilter - Ethereum
+  title: eth_newPendingTransactionFilter - Astar
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: 'https://astar-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_newPendingTransactionFilter - Ethereum
-        description: 'Creates a filter in the node, to notify when new pending transactions arrive. To check if the state has changed, call eth_getFilterChanges.'
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Accepts nothing.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_body.yaml#/eth_newPendingTransactionFilter
-        responses:
-          '200':
-            description: Returns a filter id.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-newPendingTransactionFilter
+    post:
+      summary: eth_newPendingTransactionFilter - Astar
+      operationId: eth-newpendingtransactionfilter-astar
+      $ref: ../ethereum/eth_newPendingTransactionFilter.yaml#/components/pathItems/path/post
