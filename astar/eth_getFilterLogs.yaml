@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: eth_getFilterLogs - Ethereum
+  version: '1.0'
+servers:
+  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getFilterLogs - Ethereum
+        description: Returns an array of all logs matching filter with given id. Can compute the same results with an eth_getLogs call.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getFilterLogs
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getLogs
+        operationId: eth-getFilterLogs
