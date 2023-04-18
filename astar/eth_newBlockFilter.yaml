@@ -9,4 +9,4 @@ paths:
     post:
       $ref: ../ethereum/eth_newBlockFilter.yaml#/components/pathItems/path/post
       summary: eth_newBlockFilter - Astar
-      operationId: eth-getfilterlogs-astar
+      operationId: eth-newblockfilter-astar
