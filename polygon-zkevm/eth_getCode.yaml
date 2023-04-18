@@ -44,7 +44,6 @@ components:
             - curl
             - javascript
             - python
-            - go
         responses:
           '200':
             description: Returns the code from the given address.

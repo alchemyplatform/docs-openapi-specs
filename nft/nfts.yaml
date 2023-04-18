@@ -36,10 +36,9 @@ paths:
         - $ref: '#/components/schemas/pageSize'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -105,10 +104,9 @@ paths:
         - $ref: '#/components/schemas/refreshCache'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -172,10 +170,9 @@ paths:
                   default: false
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -218,10 +215,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -308,10 +304,9 @@ paths:
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -376,10 +371,9 @@ paths:
         - $ref: '#/components/schemas/getOwnersForTokenPageSize'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -426,10 +420,9 @@ paths:
           description: String - used for collections with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -467,10 +460,9 @@ paths:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -511,10 +503,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -557,10 +548,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -581,10 +571,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -612,10 +601,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -674,10 +662,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
         code-samples:
           - language: javascript
             name: Alchemy SDK
@@ -741,10 +728,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -776,10 +762,9 @@ paths:
         - $ref: '#/components/schemas/query'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: 'Returns the list of NFT contracts where the metadata has one or more keywords from the search string.'
@@ -807,10 +792,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -841,10 +825,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -881,10 +864,9 @@ paths:
         - $ref: '#/components/schemas/pageKey'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -998,10 +980,9 @@ paths:
         - $ref: '#/components/schemas/spamConfidenceLevel'
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''
@@ -1036,10 +1017,9 @@ paths:
           required: true
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go
       responses:
         '200':
           description: ''

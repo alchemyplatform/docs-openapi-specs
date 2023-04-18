@@ -43,8 +43,8 @@ components:
         x-readme:
           explorer-enabled: false
           samples-languages:
-            - javascript
             - curl
+            - javascript
             - python
           code-samples:
             - language: javascript
