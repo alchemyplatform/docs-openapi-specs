@@ -7,6 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../ethereum/eth_getFilterLogs.yaml#/components/pathItems/path/post
       summary: eth_getFilterLogs - Astar
       operationId: eth-getfilterlogs-astar
-      $ref: ../ethereum/eth_getFilterLogs.yaml#/components/pathItems/path/post

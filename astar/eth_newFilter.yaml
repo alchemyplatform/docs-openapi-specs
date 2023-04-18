@@ -7,6 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../ethereum/eth_newFilter.yaml#/components/pathItems/path/post
       summary: eth_newFilter - Astar
       operationId: eth-newfilter-astar
-      $ref: ../ethereum/eth_newFilter.yaml#/components/pathItems/path/post
