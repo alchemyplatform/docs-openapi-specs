@@ -12,13 +12,43 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    post:
-      summary: eth_getTransactionReceipt - Polygon zkEVM
-      description: Returns the receipt of a transaction by transaction hash on Polygon zkEVM.
-      $ref: ../ethereum/eth_getTransactionReceipt.yaml#/components/pathItems/path/post
-      operationId: eth-gettransactionreceipt-polygon-zkevm
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getTransactionReceipt - Polygon zkEVM
+        description: Returns the receipt of a transaction by transaction hash on Polygon zkEVM.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getTransactionReceipt
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getTransactionReceipt_zkevm
+        operationId: eth-getTransactionReceipt-zkevm
