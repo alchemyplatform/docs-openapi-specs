@@ -57,7 +57,7 @@ paths:
               const alchemy = new Alchemy(settings);
 
               // Print all NFTs returned in the response:
-              alchemy.nft.getNftsForOwner("0xshah.eth").then(console.log);
+              alchemy.nft.getNftsForOwner("vitalik.eth").then(console.log);
       responses:
         '200':
           description: 'Returns true if transaction was successfully cancelled, false if not.'
