@@ -2417,7 +2417,7 @@ components:
       description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
     totalContractCount:
       type: string
-      description: 'String - Total number of NFT contracts held by the given address.'
+      description: 'String - Total number of NFT contracts held by the given address returned in this page.'
     rawv3:
       type: object
       properties:
