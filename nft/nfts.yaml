@@ -19,9 +19,9 @@ servers:
 paths:
 ##
 ## Below are all the v3 methods
-  '/v3/{apiKey}/getNFTs':
+  '/v3/{apiKey}/getNFTsForOwner':
     get:
-      summary: getNFTs
+      summary: getNFTsForOwner
       description: Gets all NFTs currently owned by a given address.
       tags: ['Ownership & Token Gating']
       parameters:
@@ -89,7 +89,7 @@ paths:
                   $ref: '#/components/schemas/withContractFiltering_response'
                 withPagination:
                   $ref: '#/components/schemas/withPagination_response'
-      operationId: getNFTs
+      operationId: getNFTsForOwner
   '/v3/{apiKey}/getNFTMetadata':
     get:
       summary: getNFTMetadata
