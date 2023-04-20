@@ -2344,10 +2344,13 @@ components:
           description: 'Collection homepage'
         twitterUsername:
           type: string
+          description: 'The twitter username of the collection'
         discordUrl:
           type: string
+          description: 'The discord URL of the collection'
         lastIngestedAt:
           type: string
+          description: 'The timestamp when the collection was last ingested by us'
     owners:
       type: object
       properties:
