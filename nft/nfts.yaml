@@ -77,7 +77,7 @@ paths:
                     $ref: '#/components/schemas/totalNFTCount'
                   blockHash:
                     type: string
-                    description: 'String - The canonical head block hash of when your request was received'
+                    description: 'String - The canonical head block hash of when your request was received i.e. the block corresponding to `latest`'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
               examples:
@@ -1168,7 +1168,7 @@ paths:
                     $ref: '#/components/schemas/totalNFTCount'
                   blockHash:
                     type: string
-                    description: 'String - The canonical head block hash of when your request was received'
+                    description: 'String - The canonical head block hash of when your request was received i.e. the block corresponding to `latest`'
               examples:
                 byDefault:
                   $ref: '#/components/schemas/byDefault_response'
