@@ -521,7 +521,7 @@ paths:
                 properties:
                   totalSupply:
                     $ref: '#/components/schemas/totalSupply'
-                  summmary:
+                  summary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
                   contractAddress:
@@ -530,7 +530,7 @@ paths:
   '/v3/{apiKey}/isHolderOfContract':
     get:
       summary: isHolderOfContract
-      description: Checks whether a wallet holds a NFT in a given collection
+      description: Checks whether a wallet holds a NFT from a given contract
       tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -550,11 +550,11 @@ paths:
             application/json:
               schema:
                 type: object
-                description: "Data related to a wallet's ownership of any token in an NFT collection."
+                description: "Data related to a wallet's ownership of any token in an NFT contract."
                 properties:
                   isHolderOfContract:
                     type: boolean
-                    description: 'Whether the given wallet owns any token in the given NFT collection.'
+                    description: 'Whether the given wallet owns any token in the given NFT contract.'
       operationId: isHolderOfContract
   '/v3/{apiKey}/getNFTSales':
     get:
@@ -1794,7 +1794,7 @@ components:
       required: true
     wallet:
       name: wallet
-      description: String - Wallet address to check for collection ownership.
+      description: String - Wallet address to check for contract ownership.
       schema:
         type: string
         default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
@@ -1898,7 +1898,7 @@ components:
       required: false
     contractAddress:
       name: contractAddress
-      description: String - Contract address for the NFT collection (ERC721 and ERC1155 supported).
+      description: String - Contract address for the NFT contract (ERC721 and ERC1155 supported).
       in: query
       schema:
         type: string
