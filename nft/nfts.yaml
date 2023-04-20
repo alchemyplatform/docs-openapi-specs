@@ -169,29 +169,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  address:
-                    type: string
-                    description: 'String - Contract address for the queried NFT collection'
-                  name:
-                    type: string
-                    description: 'String - NFT contract name.'
-                  symbol:
-                    type: string
-                    description: 'String - NFT contract symbol abbreviation.'
-                  totalSupply:
-                    $ref: '#/components/schemas/totalSupply'
-                  tokenType:
-                    $ref: '#/components/schemas/tokenType_response'
-                  contractDeployer:
-                    type: string
-                    description: 'String - Address that deployed the smart contract'
-                  deployedBlockNumber:
-                    type: number
-                    description: 'Number - The Block Number when the deployment transaction is successfully mined'
-                  openseaMetadata:
-                    $ref: '#/components/schemas/opensea'
+                $ref: '#/components/schemas/contractMetadatav3'                
       operationId: getContractMetadata
   '/v3/{apiKey}/getContractMetadataBatch':
     post:
@@ -224,28 +202,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    address:
-                      $ref: '#/components/schemas/address'
-                    name:
-                      type: string
-                      description: 'String - NFT contract name.'
-                    symbol:
-                      type: string
-                      description: 'String - NFT contract symbol abbreviation.'
-                    totalSupply:
-                      $ref: '#/components/schemas/totalSupply'
-                    tokenType:
-                      $ref: '#/components/schemas/tokenType_response'
-                    contractDeployer:
-                      type: string
-                      description: 'String - Address that deployed the smart contract'
-                    deployedBlockNumber:
-                      type: number
-                      description: 'Number - The Block Number when the deployment transaction is successfully mined'
-                    openseaMetadata:
-                      $ref: '#/components/schemas/opensea'
+                  $ref: '#/components/schemas/contractMetadatav3'
       operationId: getContractMetadataBatch
   '/v3/{apiKey}/getNFTsForContract':
     get:
@@ -528,28 +485,7 @@ paths:
                 type: array
                 description: 'List of contracts where the metadata contains one or more keywords from the search string.'
                 items:
-                  type: object
-                  properties:
-                    address:
-                      $ref: '#/components/schemas/contractAddress'
-                    name:
-                      type: string
-                      description: 'String - NFT contract name.'
-                    symbol:
-                      type: string
-                      description: 'String - NFT contract symbol abbreviation.'
-                    totalSupply:
-                      $ref: '#/components/schemas/totalSupply'
-                    tokenType:
-                      $ref: '#/components/schemas/tokenType_response'
-                    contractDeployer:
-                      type: string
-                      description: 'String - Address that deployed the smart contract'
-                    deployedBlockNumber:
-                      type: number
-                      description: 'Number - The Block Number when the deployment transaction is successfully mined'
-                    openseaMetadata:
-                      $ref: '#/components/schemas/opensea'                 
+                  $ref: '#/components/schemas/contractMetadatav3'                
       operationId: searchContractMetadata
   '/v3/{apiKey}/summarizeNFTAttributes':
     get:
@@ -2440,6 +2376,30 @@ components:
           type: number
           description: 'Number - The Block Number when the deployment transaction is successfully mined'
         opensea:
+          $ref: '#/components/schemas/opensea'
+    contractMetadatav3:
+      type: object
+      properties:
+        address:
+          type: string
+          description: 'String - Contract address for the queried NFT collection'
+        name:
+          type: string
+          description: 'String - NFT contract name.'
+        symbol:
+          type: string
+          description: 'String - NFT contract symbol abbreviation.'
+        totalSupply:
+          $ref: '#/components/schemas/totalSupply'
+        tokenType:
+          $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+        openseaMetadata:
           $ref: '#/components/schemas/opensea'
     contractv3:
       type: object
