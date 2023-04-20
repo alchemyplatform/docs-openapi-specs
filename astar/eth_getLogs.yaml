@@ -12,7 +12,6 @@ paths:
       $ref: ../ethereum/eth_getLogs.yaml#/components/pathItems/path/post
       x-readme:
         samples-languages:
-          - javascript
           - curl
+          - javascript
           - python
-          - go

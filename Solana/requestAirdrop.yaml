@@ -33,6 +33,8 @@ paths:
         explorer-enabled: false
         samples-languages:
           - curl
+          - javascript
+          - python
         code-samples:
           - language: shell
             name: cURL

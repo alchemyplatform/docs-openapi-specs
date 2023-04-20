@@ -44,7 +44,6 @@ components:
             - curl
             - javascript
             - python
-            - go
         responses:
           '200':
             description: Response is always 0.

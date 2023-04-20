@@ -417,6 +417,51 @@ transaction_receipt:
           type: string
         type:
           type: string
+
+transaction_receipt_zkevm:
+  description: 'A transaction receipt object, or null when no receipt was found'
+  allOf:
+    - $ref: '#/hash_number_transactionIndex'
+    - type: object
+      properties:
+        transactionHash:
+          type: string
+          description: 32 Bytes - hash of the transaction
+        from:
+          type: string
+          description: 20 Bytes - address of the sender
+        to:
+          type: string
+          description: 20 Bytes - address of the receiver. null when its a contract creation transaction
+        cumulativeGasUsed:
+          type: string
+          description: The total amount of gas used when this transaction was executed in the block.
+        gasUsed:
+          type: string
+          description: The amount of gas used by this specific transaction alone
+        contractAddress:
+          type: string
+          description: '20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null'
+        logs:
+          type: array
+          description: 'Array of log objects, which this transaction generated'
+          items:
+            $ref: '#/log_object'
+        logsBloom:
+          type: string
+          description: 256 Bytes - Bloom filter for light clients to quickly retrieve related logs
+        root:
+          type: string
+          description: 32 bytes of post-transaction stateroot. (pre Byzantium hard fork at block 4,370,000)
+        status:
+          type: integer
+          description: Either 1 (success) or 0 (failure). (post Byzantium hard fork at block 4,370,000)
+          enum:
+            - 0
+            - 1
+        type:
+          type: string
+
 eth_getTransactionReceipt:
   allOf:
     - $ref: '#/common_response_fields'
@@ -426,6 +471,16 @@ eth_getTransactionReceipt:
           $ref: '#/transaction_receipt'
       example:
         $ref: ./evm_examples.yaml#/eth_getTransactionReceipt
+
+eth_getTransactionReceipt_zkevm:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: '#/transaction_receipt_zkevm'
+      example:
+        $ref: ./evm_examples.yaml#/eth_getTransactionReceipt_zkevm
 
 eth_cancelPrivateTransaction:
   allOf:
@@ -1450,7 +1505,7 @@ eth_supportedEntryPoints:
       example:
         $ref: ./evm_examples.yaml#/eth_supportedEntryPoints
 
-alchemy_requestUserOperationSponsorship:
+alchemy_requestPaymasterAndData:
   allOf:
     - $ref: '#/common_response_fields'
     - type: object
@@ -1477,18 +1532,4 @@ alchemy_requestUserOperationSponsorship:
                   type: object
                   description: Additional error data
       example:
-        $ref: ./evm_examples.yaml#/alchemy_requestUserOperationSponsorship
-
-alchemy_paymasterSupportedEntryPoints:
-  allOf:
-    - $ref: '#/common_response_fields'
-    - type: object
-      properties:
-        result:
-          type: array
-          description: An array of supported EntryPoint addresses
-          items:
-            type: string
-            pattern: '^0x[a-fA-F0-9]{40}$'
-      example:
-        $ref: ./evm_examples.yaml#/alchemy_paymasterSupportedEntryPoints
+        $ref: ./evm_examples.yaml#/alchemy_requestPaymasterAndData
