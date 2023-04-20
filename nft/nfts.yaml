@@ -261,8 +261,7 @@ paths:
                     type: string
                     description: 'String - NFT contract symbol abbreviation.'
                   totalSupply:
-                    type: string
-                    description: 'String - Total number of NFTs in a given NFT collection.'
+                    $ref: '#/components/schemas/totalSupply'
                   tokenType:
                     $ref: '#/components/schemas/tokenType_response'
                   contractDeployer:
@@ -316,8 +315,7 @@ paths:
                       type: string
                       description: 'String - NFT contract symbol abbreviation.'
                     totalSupply:
-                      type: string
-                      description: 'String - Total number of NFTs in a given NFT collection.'
+                      $ref: '#/components/schemas/totalSupply'
                     tokenType:
                       $ref: '#/components/schemas/tokenType_response'
                     contractDeployer:
@@ -739,8 +737,7 @@ paths:
                       type: string
                       description: 'String - NFT contract symbol abbreviation.'
                     totalSupply:
-                      type: string
-                      description: 'String - Total number of NFTs in a given NFT collection.'
+                      $ref: '#/components/schemas/totalSupply'
                     tokenType:
                       $ref: '#/components/schemas/tokenType_response'
                     contractDeployer:
@@ -785,8 +782,7 @@ paths:
                 description: 'Prevalence counts for each attribute within a collection.'
                 properties:
                   totalSupply:
-                    type: number
-                    description: 'Total number of NFTs for the input contract.'
+                    $ref: '#/components/schemas/totalSupply'
                   summmary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
@@ -1817,8 +1813,7 @@ paths:
                 description: 'Prevalence counts for each attribute within a collection.'
                 properties:
                   totalSupply:
-                    type: number
-                    description: 'Total number of NFTs for the input contract.'
+                    $ref: '#/components/schemas/totalSupply'
                   summary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
@@ -2326,6 +2321,9 @@ components:
     totalContractCount:
       type: string
       description: 'String - Total number of NFT contracts held by the given address returned in this page.'
+    totalSupply:
+      type: string
+      description: 'String - Total number of NFTs in a given NFT collection.'
     rawv3:
       type: object
       properties:
@@ -2460,8 +2458,7 @@ components:
           description: 'The symbol of the contract, i.e. BAYC.'
           type: string
         totalSupply:
-          type: string
-          description: 'String - Total number of NFTs in a given NFT collection.'
+          $ref: '#/components/schemas/totalSupply'
         tokenType:
           description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
           type: string
@@ -2641,8 +2638,7 @@ components:
           type: string
           description: 'String - NFT contract symbol abbreviation.'
         totalSupply:
-          type: string
-          description: 'String - Total number of NFTs in a given NFT collection.'
+          $ref: '#/components/schemas/totalSupply'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
         contractDeployer:
@@ -2666,8 +2662,7 @@ components:
           type: string
           description: 'String - NFT contract symbol abbreviation.'
         totalSupply:
-          type: string
-          description: 'String - Total number of NFTs in a given NFT collection.'
+          $ref: '#/components/schemas/totalSupply'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
         contractDeployer:
