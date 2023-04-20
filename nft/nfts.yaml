@@ -2030,7 +2030,7 @@ components:
       in: query
       schema:
         type: string
-        default: sunglasses
+        default: bored
       required: true
 
     # ===== Response Objects ========
