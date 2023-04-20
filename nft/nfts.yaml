@@ -2071,7 +2071,10 @@ components:
           type: string
           description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
         metadata:
-          $ref: '#/components/schemas/metadata'
+          $ref: '#/components/schemas/metadatav3'
+        error:
+          type: string
+          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
     imagev3:
       type: object
       properties:
@@ -2144,6 +2147,29 @@ components:
           description: 'Object - Traits/attributes/characteristics for each NFT asset.'
         media:
           $ref: '#/components/schemas/media'
+    metadatav3:
+      type: object
+      description: 'Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
+      properties:
+        image:
+          type: string
+          description: 'String - URL to the NFT asset image. Can be standard URLs pointing to images on conventional servers, IPFS, or Arweave. Most types of images (SVGs, PNGs, JPEGs, etc.) are supported by NFT marketplaces.'
+        name:
+          type: string
+          description: 'String - Name of the NFT asset.'
+        description:
+          type: string
+          description: 'String - Human-readable description of the NFT asset. (Markdown is supported/rendered on OpenSea and other NFT platforms)'
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              trait_type:
+                type: string
+          description: 'Object - Traits/attributes/characteristics for each NFT asset.'
     ownedContract:
       type: object
       description: "The object that represents a smart contract and has all data corresponding to that contract"
@@ -2325,12 +2351,9 @@ components:
         timeLastUpdated:
           type: string
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
-        balance:
-          type: string
-          description: 'String - Token balance'
-        error:
-          type: string
-          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+        #balance:
+        #  type: string
+        #  description: 'String - Token balance'
     opensea:
       type: object
       properties:
