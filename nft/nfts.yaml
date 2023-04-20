@@ -316,10 +316,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-                description: A list of contract addresses earmarked as spam by Alchemy.
+                type: object
+                description: Object that has list of contract addresses
+                properties:
+                  contractAddresses:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of contract addresses earmarked as spam by Alchemy.
       operationId: getSpamContracts
   '/v3/{apiKey}/isSpamContract':
     get:
@@ -404,7 +408,7 @@ paths:
                 properties:
                   nftMarketplace:
                     type: object
-                    description: 'Name of the NFT marketplace where the collection is listed. Current marketplaces supported -  OpenSea, LooksRare'
+                    description: 'Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported -  openSea, looksRare'
                     properties:
                       floorPrice:
                         type: number
@@ -1211,10 +1215,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-                description: A list of contract addresses earmarked as spam by Alchemy.
+                type: object
+                description: Object that has list of contract addresses
+                properties:
+                  contractAddresses:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of contract addresses earmarked as spam by Alchemy.
       operationId: getSpamContracts-v2
   '/v2/{apiKey}/isSpamContract':
     get:
@@ -1257,7 +1265,7 @@ paths:
             application/json:
               schema:
                 type: boolean
-                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid or if the contract hasn't been evaluated by us yet.
       operationId: isSpamContract-v2
   '/v2/{apiKey}/isAirdrop':
     get:
