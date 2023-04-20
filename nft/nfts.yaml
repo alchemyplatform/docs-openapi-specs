@@ -2078,9 +2078,6 @@ components:
     imagev3:
       type: object
       properties:
-        originalUrl:
-          type: string
-          description: "The original Url of the image coming straight from the smart contract"
         cachedUrl:
           type: string
           description: "The Url of the image stored in Alchemy cache"
@@ -2095,7 +2092,10 @@ components:
           description: "The Url of the image stored in Alchemy cache"
         size:
           type: integer
-          description: The size of the media asset in bytes.    
+          description: The size of the media asset in bytes.
+        originalUrl:
+          type: string
+          description: "The original Url of the image coming straight from the smart contract"    
     gateway:
       type: string
       description: 'String - Public gateway uri for the raw uri above.'
