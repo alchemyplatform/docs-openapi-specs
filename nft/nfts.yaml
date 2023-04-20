@@ -549,15 +549,7 @@ paths:
                       type: number
                       description: 'Number - The Block Number when the deployment transaction is successfully mined'
                     openseaMetadata:
-                      $ref: '#/components/schemas/opensea'
-                    isSpam:
-                      type: string
-                      description: '"true" if contract is spam, else "false"'
-                    spamClassifications:
-                      description: 'List of reasons why a contract was classified as spam.'
-                      type: array
-                      items:
-                        type: string                  
+                      $ref: '#/components/schemas/opensea'                 
       operationId: searchContractMetadata
   '/v3/{apiKey}/summarizeNFTAttributes':
     get:
@@ -2251,8 +2243,7 @@ components:
       description: "The object that represents a smart contract and has all data corresponding to that contract"
       properties:
         address:
-          description: 'Address of the held contract'
-          type: string
+          $ref: '#/components/schemas/contractAddress'
         name:
           description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
           type: string
@@ -2262,8 +2253,7 @@ components:
         totalSupply:
           $ref: '#/components/schemas/totalSupply'
         tokenType:
-          description: 'The NFT standard used by the contract, i.e. ERC721 or ERC1155.'
-          type: string
+          $ref: '#/components/schemas/tokenType'
         contractDeployer:
           type: string
           description: 'String - Address that deployed the smart contract'
