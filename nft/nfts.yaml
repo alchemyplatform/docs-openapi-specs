@@ -9,6 +9,7 @@ servers:
         enum:
           - eth-mainnet
           - eth-goerli
+          - eth-sepolia
           - polygon-mainnet
           - polygon-mumbai
           - arb-mainnet
