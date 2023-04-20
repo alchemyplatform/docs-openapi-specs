@@ -2500,6 +2500,7 @@ components:
           $ref: '#/components/schemas/media'
     ownedContract:
       type: object
+      description: "The object that represents a smart contract and has all data corresponding to that contract"
       properties:
         address:
           description: 'Address of the held contract'
@@ -2539,6 +2540,7 @@ components:
           $ref: '#/components/schemas/opensea'
     ownedContractv3:
       type: object
+      description: "The object that represents a smart contract and has all data corresponding to that contract"
       properties:
         address:
           description: 'Address of the held contract'
@@ -2604,6 +2606,7 @@ components:
             description: The size of the media asset in bytes.
     ownedNFT:
       type: object
+      description: "The object that represents an NFT and has all data corresponding to that NFT"
       properties:
         contract:
           description: 'Object - Contract for returned NFT'
@@ -2655,6 +2658,7 @@ components:
           $ref: '#/components/schemas/spamInfo'
     ownedNFTv3:
       type: object
+      description: "The object that represents an NFT and has all data corresponding to that NFT"
       properties:
         contract:
           $ref: '#/components/schemas/contractv3' 
