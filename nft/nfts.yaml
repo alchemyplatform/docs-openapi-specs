@@ -74,8 +74,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/ownedNFTv3'
                   totalCount:
-                    type: string
-                    description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
+                    $ref: '#/components/schemas/totalNFTCount'
                   blockHash:
                     type: string
                     description: 'String - The canonical head block hash of when your request was received'
@@ -1074,8 +1073,7 @@ paths:
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
-                    type: string
-                    description: 'String - Total number of NFT contracts held by the given address.'
+                    $ref: '#/components/schemas/totalContractCount'
               examples:
                 withoutMetadata:
                   $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
@@ -1167,8 +1165,7 @@ paths:
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
-                    type: string
-                    description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
+                    $ref: '#/components/schemas/totalNFTCount'
                   blockHash:
                     type: string
                     description: 'String - The canonical head block hash of when your request was received'
@@ -2108,8 +2105,7 @@ paths:
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
-                    type: string
-                    description: 'String - Total number of NFT contracts held by the given address.'
+                    $ref: '#/components/schemas/totalContractCount'
               examples:
                 withoutMetadata:
                   $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
@@ -2416,6 +2412,12 @@ components:
     raw:
       type: string
       description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+    totalNFTCount:
+      type: string
+      description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
+    totalContractCount:
+      type: string
+      description: 'String - Total number of NFT contracts held by the given address.'
     rawv3:
       type: object
       properties:
