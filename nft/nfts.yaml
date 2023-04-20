@@ -43,25 +43,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Setup: npm install alchemy-sdk
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: demo, // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print all NFTs returned in the response:
-              alchemy.nft.getNftsForOwner("0xshah.eth").then(console.log);
       responses:
         '200':
           description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
@@ -111,27 +92,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print NFT metadata returned in the response:
-              alchemy.nft.getNftMetadata(
-                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
-                "1590"
-              ).then(console.log);
       responses:
         '200':
           description: ''
@@ -178,27 +138,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print NFT metadata returned in the response:
-              alchemy.nft.getNftMetadata(
-                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
-                "1590"
-              ).then(console.log);
       responses:
         '200':
           description: ''
@@ -224,25 +163,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              alchemy.nft
-                .getContractMetadata("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
-                .then(console.log);
       responses:
         '200':
           description: ''
@@ -346,26 +266,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT collection returned in the response:
-              alchemy.nft
-                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
-                .then(console.log);
       responses:
         '200':
           description: ''
@@ -400,26 +300,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT count returned in the response:
-              alchemy.nft.getOwnersForNft("0x5180db8F5c931aaE63c74266b211F580155ecac8", "1590").then(
-                console.log
-              );
       responses:
         '200':
           description: ''
@@ -452,26 +332,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT count returned in the response:
-              alchemy.nft
-                .getOwnersForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
-                .then(console.log);
       responses:
         '200':
           description: ''
@@ -493,24 +353,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print all spam NFT contracts returned in the response:
-              alchemy.nft.getSpamContracts().then(console.log);
       responses:
         '200':
           description: ''
@@ -537,26 +379,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print whether an NFT contract is spam
-              alchemy.nft
-                .isSpamContract("0x000440f08436a7b866d1ae42db5e0be801da722a")
-                .then(console.log);
       responses:
         '200':
           description: ''
@@ -615,26 +437,6 @@ paths:
           - curl
           - python
           - go
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print the NFT floor price for a contract
-              alchemy.nft
-                .getFloorPrice("0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d")
-                .then(console.log);
       responses:
         '200':
           description: ''
