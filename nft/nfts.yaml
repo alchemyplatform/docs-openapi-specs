@@ -451,20 +451,24 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                description: 'NFT attributes and their associated prevalence.'
-                items:
-                  type: object
-                  properties:
-                    trait_type:
-                      type: string
-                      description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
-                    value:
-                      type: string
-                      description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
-                    prevalence:
-                      type: number
-                      description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
+                type: object
+                description: Object containing the rarity info of the collection
+                properties:
+                  rarities:
+                    type: array
+                    description: 'NFT attributes and their associated prevalence.'
+                    items:
+                      type: object
+                      properties:
+                        trait_type:
+                          type: string
+                          description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
+                        value:
+                          type: string
+                          description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
+                        prevalence:
+                          type: number
+                          description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
       operationId: computeRarity
   '/v3/{apiKey}/searchContractMetadata':
     get:
@@ -1469,20 +1473,24 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                description: 'NFT attributes and their associated prevalence.'
-                items:
-                  type: object
-                  properties:
-                    traitType:
-                      type: string
-                      description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
-                    value:
-                      type: string
-                      description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
-                    prevalence:
-                      type: number
-                      description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
+                type: object
+                description: Object containing the rarity info of the collection
+                properties:
+                  rarities:
+                    type: array
+                    description: 'NFT attributes and their associated prevalence.'
+                    items:
+                      type: object
+                      properties:
+                        trait_type:
+                          type: string
+                          description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
+                        value:
+                          type: string
+                          description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
+                        prevalence:
+                          type: number
+                          description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
       operationId: computeRarity-v2
   '/v2/{apiKey}/searchContractMetadata':
     get:
