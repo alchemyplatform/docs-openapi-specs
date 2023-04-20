@@ -282,7 +282,7 @@ paths:
         - $ref: '#/components/schemas/withTokenBalances'
         - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
-          description: String - used for collections with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
+          description: String - used for contracts with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
       x-readme:
         samples-languages:
           - javascript
@@ -295,7 +295,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/owners'
+                type: object
+                properties:
+                  owners:
+                    description: 'List of all addresses that own one of the NFTs from the queried contract address.'
+                    type: array
+                    items:
+                      type: string
       operationId: getOwnersForContract
   '/v3/{apiKey}/getSpamContracts':
     get:
