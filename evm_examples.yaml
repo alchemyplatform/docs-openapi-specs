@@ -2785,6 +2785,29 @@ zkevm_getBatchByNumber:
 zkevm_getBroadcastURI:
   { 'jsonrpc': '2.0', 'id': 1, 'result': 'public-grpc.zkevm-test.net:61090' }
 
+eth_getTransactionReceipt_zkevm:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'root': '0xc8b6b9907131e8037c27fa84e5c72f4d08a20b68d6e2d0f8a40fd3de67a5d366',
+        'cumulativeGasUsed': '0x5208',
+        'logsBloom': '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+        'logs': [],
+        'status': '0x1',
+        'transactionHash': '0xd86c492317952209994a65afd9877da836117304c5024b1a37f6fdba5e072934',
+        'transactionIndex': '0x0',
+        'blockHash': '0xccf0cca6b21fd1aa094a0213cfa90e1a722ebe2591dfb57be21be202462d7e0d',
+        'blockNumber': '0x2336a',
+        'gasUsed': '0x5208',
+        'from': '0xc3a6f32c13d1400ff5cdc5bffd07a29268b7ba3b',
+        'to': '0x80c67432656d59144ceff962e8faf8926599bcf8',
+        'contractAddress': null,
+        'type': '0x0',
+      },
+  }
+
 # ========== Account Abstraction Method Examples ==========
 
 eth_sendUserOperation: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1234...5678' }
@@ -2905,20 +2928,9 @@ eth_supportedEntryPoints:
       ],
   }
 
-alchemy_requestUserOperationSponsorship:
+alchemy_requestPaymasterAndData:
   {
     'id': 1,
     'jsonrpc': '2.0',
     'result': { 'paymasterAndData': '0x', 'error': error },
-  }
-
-alchemy_paymasterSupportedEntryPoints:
-  {
-    'id': 1,
-    'jsonrpc': '2.0',
-    'result':
-      [
-        '0xcd01C8aa8995A59eB7B2627E69b40e0524B5ecf8',
-        '0x7A0A0d159218E6a2f407B99173A2b12A6DDfC2a6',
-      ],
   }
