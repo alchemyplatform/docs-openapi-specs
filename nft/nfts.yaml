@@ -63,7 +63,7 @@ paths:
               alchemy.nft.getNftsForOwner("0xshah.eth").then(console.log);
       responses:
         '200':
-          description: 'Returns true if transaction was successfully cancelled, false if not.'
+          description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
           content:
             application/json:
               schema:
@@ -1154,7 +1154,7 @@ paths:
               alchemy.nft.getNftsForOwner("0xshah.eth").then(console.log);
       responses:
         '200':
-          description: 'Returns true if transaction was successfully cancelled, false if not.'
+          description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
           content:
             application/json:
               schema:
