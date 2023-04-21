@@ -53,6 +53,7 @@ paths:
                 properties:
                   ownedNfts:
                     type: array
+                    description: 'Array of the NFT objects corresponding to the NFTs owned by the owner'
                     items:
                       $ref: '#/components/schemas/ownedNFTv3'
                   totalCount:
@@ -145,6 +146,7 @@ paths:
             application/json:
               schema:
                 type: array
+                description: 'Array of NFT objects corresponding to the query'
                 items:
                   $ref: '#/components/schemas/ownedNFTv3'
       operationId: getNFTMetadataBatch
@@ -2351,7 +2353,7 @@ components:
           $ref: '#/components/schemas/spamInfo'
     ownedNFTv3:
       type: object
-      description: 'String - The object that represents an NFT and has all data corresponding to that NFT'
+      description: 'The object that represents an NFT and has all data corresponding to that NFT'
       properties:
         contract:
           $ref: '#/components/schemas/contractv3' 
@@ -2463,6 +2465,7 @@ components:
           $ref: '#/components/schemas/opensea'
     contractv3:
       type: object
+      description: 'The contract object that has details of a contract'
       properties:
         address:
           description: 'Address of the held contract'
