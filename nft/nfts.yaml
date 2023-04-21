@@ -606,6 +606,9 @@ paths:
                         marketplace:
                           type: string
                           description: String - The marketplace the sale took place on.
+                        marketplaceAddress:
+                          type: string
+                          description: String - The address of the marketplace contract.
                         contractAddress:
                           type: string
                           description: String - The contract address of the collection the NFT belongs to.
@@ -634,6 +637,9 @@ paths:
                             amount:
                               type: string
                               description: String - The amount of the payment from the buyer to seller as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
@@ -647,6 +653,9 @@ paths:
                             amount:
                               type: string
                               description: String - The amount of the payment to the marketplace as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
@@ -660,6 +669,9 @@ paths:
                             amount:
                               type: string
                               description: String - The amount of the payment to the royalty collector as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
                             symbol:
                               type: string
                               description: String - The symbol of the token used for the payment.
@@ -2026,13 +2038,13 @@ components:
         type: string
     taker:
       name: taker
-      description: Enum - Filter by whether the buyer or seller was the taker in the NFT trade. Allowed filter values are "buyer" and "seller". Defaults to returning both buyer and seller taker trades.
+      description: Enum - Filter by whether the buyer or seller was the taker in the NFT trade. Allowed filter values are "BUYER" and "SELLER". Defaults to returning both buyer and seller taker trades.
       in: query
       schema:
         type: string
         enum:
-          - buyer
-          - seller
+          - BUYER
+          - SELLER
         required: false
     query:
       name: query
