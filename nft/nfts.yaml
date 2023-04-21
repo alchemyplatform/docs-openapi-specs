@@ -414,9 +414,9 @@ paths:
               schema:
                 type: object
                 properties:
-                  nftMarketplace:
+                  nftMarketplaceName:
                     type: object
-                    description: 'Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported -  openSea, looksRare'
+                    description: 'Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported - `openSea`, `looksRare`. So instead of the word `nftMarketplaceName` you will see marketplace names like `openSea` here.'
                     properties:
                       floorPrice:
                         type: number
@@ -434,7 +434,7 @@ paths:
                         description: 'String - UTC timestamp of when the floor price was retrieved from the marketplace.'
                       error:
                         type: string
-                        description: 'String - Returns an error if there was an error fetching floor prices from the given marketplace.'
+                        description: 'String - Returns the error `unable to fetch floor price` if there was an error fetching floor prices from the given marketplace.'
       operationId: getFloorPrice
   '/v3/{apiKey}/computeRarity':
     get:
