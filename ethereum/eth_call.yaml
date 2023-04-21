@@ -4,7 +4,7 @@ info:
   description: Executes a new message call immediately without creating a transaction on the block chain.
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: 'https://eth-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

@@ -3,7 +3,7 @@ info:
   title: eth_uninstallFilter - Ethereum
   version: '1.0'
 servers:
-  - url: 'https://eth-mainnet.g.alchemy.com/v2 '
+  - url: 'https://eth-mainnet.g.alchemy.com/v2'
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'
@@ -12,6 +12,7 @@ components:
     path:
       post:
         summary: eth_uninstallFilter - Ethereum
+        operationId: eth-uninstallfilter
         description: 'Uninstalls a filter with given id. Should always be called when watch is no longer needed. Additionally, Filters timeout when they aren’t requested with eth_getFilterChangesfor a period of time.'
         tags: []
         parameters:
@@ -40,4 +41,3 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_cancelPrivateTransaction
-        operationId: eth-uninstallFilter
