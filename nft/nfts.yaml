@@ -575,7 +575,7 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-        - $ref: '#/components/schemas/tokenId'
+        - $ref: '#/components/schemas/tokenIdForNFTSales'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
@@ -1611,7 +1611,7 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-        - $ref: '#/components/schemas/tokenId'
+        - $ref: '#/components/schemas/tokenIdForNFTSales'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
@@ -1923,6 +1923,14 @@ components:
         default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
       required: false
     tokenId:
+      name: tokenId
+      description: String - The ID of the token. Can be in hex or decimal format.
+      in: query
+      schema:
+        type: string
+        default: '44'
+      required: true
+    tokenIdForNFTSales:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
