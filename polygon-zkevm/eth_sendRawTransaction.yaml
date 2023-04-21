@@ -44,6 +44,49 @@ components:
             - curl
             - javascript
             - python
+          code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Imports the Alchemy SDK
+              const { Alchemy, Network, Wallet, Utils } = require("alchemy-sdk");
+              const dotenv = require("dotenv");
+              dotenv.config();
+
+              //Replace with your own private key
+              const {PRIVATE_KEY} = process.env;
+
+              // Configures the Alchemy SDK
+              const config = {
+                apiKey: "alchemy-replit", // Replace with your API key
+                network: Network.ETH_MAINNET, // Replace with your network
+              };
+
+              // Creates an Alchemy object instance with the config to use for making requests
+              const alchemy = new Alchemy(config);
+              const wallet = new Wallet(PRIVATE_KEY);
+
+              const main = async () => {
+                // define the transaction
+                const transaction = {
+                  to: "0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd",
+                  value: Utils.parseEther("0.001"),
+                  gasLimit: "21000",
+                  maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
+                  maxFeePerGas: Utils.parseUnits("20", "gwei"),
+                  nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                  type: 2,
+                  chainId: 5, // Corresponds to ETH_GOERLI
+                };
+
+                const rawTransaction = await wallet.signTransaction(transaction);
+                const response = await alchemy.transact.sendTransaction(rawTransaction)
+
+                //Logging the response to the console
+                console.log(response)
+              }
+
+              main();
         responses:
           '200':
             description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
