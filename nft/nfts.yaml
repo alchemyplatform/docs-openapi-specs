@@ -2086,6 +2086,7 @@ components:
       description: 'String - Total number of NFTs in a given NFT collection.'
     rawv3:
       type: object
+      description: 'Raw details of the NFT like its tokenUri and metadata info obtained directly from the smart contract'
       properties:
         tokenUri:
           type: string
@@ -2097,6 +2098,7 @@ components:
           description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
     imagev3:
       type: object
+      description: 'Details of the image corresponding to this contract'
       properties:
         cachedUrl:
           type: string
@@ -2262,12 +2264,14 @@ components:
           description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
         isSpam:
           type: boolean
+          description: '`True` if the contract is detected as spam contract. `False` if it is not spam or has not been evaluated by our system yet'
         displayNft:
           $ref: '#/components/schemas/displaynftv3'
         image:
           $ref: '#/components/schemas/imagev3'
     displaynftv3:
       type: object
+      description: 'Details of the display NFT for this contract. This NFT and its image can be used to represent the contract when displaying info about it.'
       properties:
         tokenId:
           description: 'One of the tokens from this contract held by the owner.'
@@ -2347,7 +2351,7 @@ components:
           $ref: '#/components/schemas/spamInfo'
     ownedNFTv3:
       type: object
-      description: "The object that represents an NFT and has all data corresponding to that NFT"
+      description: 'String - The object that represents an NFT and has all data corresponding to that NFT'
       properties:
         contract:
           $ref: '#/components/schemas/contractv3' 
