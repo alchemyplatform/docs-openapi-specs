@@ -117,6 +117,19 @@ paths:
                 tokens:
                   type: array
                   description: List of token objects to batch request NFT metadata for. Maximum 100.
+                  default:
+                    [
+                      {
+                        contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+                        tokenId: '44',
+                        tokenType: 'ERC721'
+                      },
+                      {
+                        contractAddress: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+                        tokenId: '888',
+                        tokenType: 'ERC721'
+                      }                      
+                    ]
                   items:
                     type: object
                     properties:
@@ -271,6 +284,9 @@ paths:
                     $ref: '#/components/schemas/owners'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'                  
+              examples:
+                getOwnersForNFT_response:
+                  $ref: '#/components/schemas/getOwnersForNFT_response'   
       operationId: getOwnersForNFT
   '/v3/{apiKey}/getOwnersForContract':
     get:
@@ -2411,13 +2427,10 @@ components:
           type: string
           description: 'The timestamp when the collection was last ingested by us'
     owners:
-      type: object
-      properties:
-        ownerAddresses:
-          description: 'List of all addresses that own one of the NFTs from the queried contract address.'
-          type: array
-          items:
-            type: string
+      type: array
+      description: 'List of all addresses that own the given NFT.'
+      items:
+        type: string
     contractMetadata:
       type: object
       properties:
@@ -2716,6 +2729,14 @@ components:
           ],
           "totalCount": 2120,
           "pageKey": "03949322-9b2c-4fdd-aab6-1369e29fa5b2"
+        }
+    getOwnersForNFT_response:
+      value: >
+        {
+          "owners": [
+            "0x9f4F78A6c4a5E6F8AFA81631b9120ae3C831b494"
+          ],
+          "pageKey": null
         }
     withContractFiltering_response:
       summary: 'Response (with contract filtering)'
