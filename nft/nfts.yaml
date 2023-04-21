@@ -65,13 +65,13 @@ paths:
                     $ref: '#/components/schemas/pageKey'
               examples:
                 byDefault:
-                  $ref: '#/components/schemas/byDefault_response'
+                  $ref: '#/components/schemas/v3byDefault_response'
                 withoutMetadata:
-                  $ref: '#/components/schemas/withoutMetadata_response'
+                  $ref: '#/components/schemas/v3withoutMetadata_response'
                 withContractFiltering:
-                  $ref: '#/components/schemas/withContractFiltering_response'
+                  $ref: '#/components/schemas/v3withContractFiltering_response'
                 withPagination:
-                  $ref: '#/components/schemas/withPagination_response'
+                  $ref: '#/components/schemas/v3withPagination_response'
       operationId: getNFTsForOwner
   '/v3/{apiKey}/getNFTMetadata':
     get:
@@ -3159,3 +3159,301 @@ components:
           "totalSupply": "10000",
           "contractAddress": "0xe785E82358879F061BC3dcAC6f0444462D4b5330"
         }
+    # === getNFTs v3 example responses ===
+    v3byDefault_response:
+      summary: 'Response (By Default)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contract": {
+                "address": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+                "name": "DuskBreakers",
+                "symbol": "DUSK",
+                "totalSupply": "10000",
+                "tokenType": "ERC721",
+                "contractDeployer": "0x9c78DDec1F16685ee6E58637a640514A1eD87BC4",
+                "deployedBlockNumber": 13736379,
+                "openSeaMetadata": {
+                  "floorPrice": 0.0582,
+                  "collectionName": "DuskBreakers",
+                  "safelistRequestStatus": "verified",
+                  "imageUrl": "https://i.seadn.io/gae/LGbFRVdClz6-HDd-7WZKONJ5Ody0sBXTvFOQL71BYo3j2iU2wWCX_zlk-Zs0KEhq1qgXViF-6aG_0WS2MdIVNJx2GRSIIYTiciuf-A?w=500&auto=format",
+                  "description": "Being a DuskBreaker means joining a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology. You will be part of a community that directly influences the development of upcoming interactive media and gaming experiences within the DuskBreakers universe. Each of you will play an important role in building out this world. You break it, you take it! \r\n\r\nVisit [DuskBreakers](https://duskbreakers.gg) to learn more.",
+                  "externalUrl": "http://duskbreakers.gg",
+                  "twitterUsername": "duskbreakers",
+                  "discordUrl": "https://discord.gg/duskbreakers",
+                  "lastIngestedAt": "2023-04-19T17:25:59.000Z"
+                },
+                "isSpam": null,
+                "spamClassifications": []
+              },
+              "tokenId": "28",
+              "tokenType": "ERC721",
+              "name": "DuskBreaker #28",
+              "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/1f9e8be3feb42b5b66452537a4032668",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/1f9e8be3feb42b5b66452537a4032668",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/1f9e8be3feb42b5b66452537a4032668",
+                "contentType": "image/png",
+                "size": 1474037,
+                "originalUrl": "https://duskbreakers.gg/breaker_images/28.png"
+              },
+              "raw": {
+                "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/28",
+                "metadata": {
+                  "name": "DuskBreaker #28",
+                  "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+                  "image": "https://duskbreakers.gg/breaker_images/28.png",
+                  "external_url": "https://duskbreakers.gg/",
+                  "attributes": [
+                    {
+                      "value": "Locust Rider Armor (Red)",
+                      "trait_type": "Clothes"
+                    },
+                    {
+                      "value": "Base Drone (Blue)",
+                      "trait_type": "Drone"
+                    },
+                    {
+                      "value": "Thin",
+                      "trait_type": "Eyebrows"
+                    },
+                    {
+                      "value": "Button",
+                      "trait_type": "Nose"
+                    },
+                    {
+                      "value": "Mohawk (Black)",
+                      "trait_type": "Hair"
+                    },
+                    {
+                      "value": "Almond 2 (Red)",
+                      "trait_type": "Eyes"
+                    },
+                    {
+                      "value": "Big Smile (Purple)",
+                      "trait_type": "Mouth"
+                    },
+                    {
+                      "value": "Light Brown",
+                      "trait_type": "Skin Tone"
+                    },
+                    {
+                      "value": "Yellow",
+                      "trait_type": "Background"
+                    },
+                    {
+                      "value": "Facepaint (Stripe)",
+                      "trait_type": "Face Augments"
+                    }
+                  ]
+                },
+                "error": null
+              },
+              "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/28",
+              "timeLastUpdated": "2023-04-19T21:25:39.563Z",
+              "balance": "1"
+            },
+            {
+              "contract": {
+                "address": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+                "name": "DuskBreakers",
+                "symbol": "DUSK",
+                "totalSupply": "10000",
+                "tokenType": "ERC721",
+                "contractDeployer": "0x9c78DDec1F16685ee6E58637a640514A1eD87BC4",
+                "deployedBlockNumber": 13736379,
+                "openSeaMetadata": {
+                  "floorPrice": 0.0582,
+                  "collectionName": "DuskBreakers",
+                  "safelistRequestStatus": "verified",
+                  "imageUrl": "https://i.seadn.io/gae/LGbFRVdClz6-HDd-7WZKONJ5Ody0sBXTvFOQL71BYo3j2iU2wWCX_zlk-Zs0KEhq1qgXViF-6aG_0WS2MdIVNJx2GRSIIYTiciuf-A?w=500&auto=format",
+                  "description": "Being a DuskBreaker means joining a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology. You will be part of a community that directly influences the development of upcoming interactive media and gaming experiences within the DuskBreakers universe. Each of you will play an important role in building out this world. You break it, you take it! \r\n\r\nVisit [DuskBreakers](https://duskbreakers.gg) to learn more.",
+                  "externalUrl": "http://duskbreakers.gg",
+                  "twitterUsername": "duskbreakers",
+                  "discordUrl": "https://discord.gg/duskbreakers",
+                  "lastIngestedAt": "2023-04-19T17:25:59.000Z"
+                },
+                "isSpam": null,
+                "spamClassifications": []
+              },
+              "tokenId": "29",
+              "tokenType": "ERC721",
+              "name": "DuskBreaker #29",
+              "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/4eb0b7f434746250ff3c8200d10a2226",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/4eb0b7f434746250ff3c8200d10a2226",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/4eb0b7f434746250ff3c8200d10a2226",
+                "contentType": "image/png",
+                "size": 1480183,
+                "originalUrl": "https://duskbreakers.gg/breaker_images/29.png"
+              },
+              "raw": {
+                "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/29",
+                "metadata": {
+                  "name": "DuskBreaker #29",
+                  "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+                  "image": "https://duskbreakers.gg/breaker_images/29.png",
+                  "external_url": "https://duskbreakers.gg/",
+                  "attributes": [
+                    {
+                      "value": "Standard Issue Armor 1 (Orange)",
+                      "trait_type": "Clothes"
+                    },
+                    {
+                      "value": "Dark Metal",
+                      "trait_type": "SmartSkin"
+                    },
+                    {
+                      "value": "Base Drone (Purple)",
+                      "trait_type": "Drone"
+                    },
+                    {
+                      "value": "Thin",
+                      "trait_type": "Eyebrows"
+                    },
+                    {
+                      "value": "Broad",
+                      "trait_type": "Nose"
+                    },
+                    {
+                      "value": "Slick Back (Red)",
+                      "trait_type": "Hair"
+                    },
+                    {
+                      "value": "Sharp (Blue)",
+                      "trait_type": "Eyes"
+                    },
+                    {
+                      "value": "Smirk (Neutral)",
+                      "trait_type": "Mouth"
+                    },
+                    {
+                      "value": "Tan",
+                      "trait_type": "Skin Tone"
+                    },
+                    {
+                      "value": "Purple",
+                      "trait_type": "Background"
+                    }
+                  ]
+                },
+                "error": null
+              },
+              "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/29",
+              "timeLastUpdated": "2023-04-19T21:25:39.704Z",
+              "balance": "1"
+            },
+            {
+              "contract": {
+                "address": "0x209cE666978779756Ae1E747608cD93e4dFf45fD",
+                "name": "Knight of Chains Genesis",
+                "symbol": "Knight of Chains Genesis",
+                "totalSupply": null,
+                "tokenType": "ERC1155",
+                "contractDeployer": "0xA92520aFF50c5A1a4d25FCF90c972AA49EbE5299",
+                "deployedBlockNumber": 14847327,
+                "openSeaMetadata": {
+                  "floorPrice": null,
+                  "collectionName": "Knight of Chains Genesis.",
+                  "safelistRequestStatus": "not_requested",
+                  "imageUrl": "https://i.seadn.io/gae/eRhkkVikIOW_-lDc1moMrZlTcd5DPygPRmTJ69Anb-CfG_RMAxIsichM5kDvfdnXc6gfnKuGZOFCbP_58pUvz57TyUeNbFMKGydHoac?w=500&auto=format",
+                  "description": "[The KnightsOfChain] (https://knightsofchain.link) is an exclusive community that can only be entered by owning a Knight.\n\nVisit [Website](https://knightsofchain.link) and get your benefits.\n\n(Genesis Knights #1-#31 were pre-minted by the team, and are held by high ranking community members. OG Knights #32-#231 have special benefits.)",
+                  "externalUrl": "https://knightsofchain.link",
+                  "twitterUsername": null,
+                  "discordUrl": null,
+                  "lastIngestedAt": "2023-03-20T03:52:07.000Z"
+                },
+                "isSpam": null,
+                "spamClassifications": []
+              },
+              "tokenId": "97",
+              "tokenType": "ERC1155",
+              "name": null,
+              "description": null,
+              "image": {
+                "cachedUrl": null,
+                "thumbnailUrl": null,
+                "pngUrl": null,
+                "contentType": null,
+                "size": null,
+                "originalUrl": null
+              },
+              "raw": {
+                "tokenUri": "https://knightsofchain.link/ipfs/97",
+                "metadata": {},
+                "error": null
+              },
+              "tokenUri": "https://knightsofchain.link/ipfs/97",
+              "timeLastUpdated": "2023-04-20T15:44:29.965Z",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 3,
+          "blockHash": "0x44e726037e48bb890fd889463d2b29e0779d638c7053cdf5157968b7ab9a5707",
+          "pageKey": null
+        }
+    v3withoutMetadata_response:
+      summary: 'Response (withMetadata = false)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "28",
+              "balance": "1"
+            },
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "29",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 2,
+          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "pageKey": null
+        }
+    v3withContractFiltering_response:
+      summary: 'Response (with contract filtering)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "28",
+              "balance": "1"
+            },
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "29",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 2,
+          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "pageKey": null
+        }
+    v3withPagination_response:
+      summary: 'Response (with pagination)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "28",
+              "balance": "1"
+            },
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "29",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 2,
+          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "pageKey": "88434286-7eaa-472d-8739-32a0497c2a18"
+        }
+      
