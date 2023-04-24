@@ -3,12 +3,13 @@ info:
   title: 🎨 NFT API
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/nft/v2
+  - url: https://{network}.g.alchemy.com/nft
     variables:
       network:
         enum:
           - eth-mainnet
           - eth-goerli
+          - eth-sepolia
           - polygon-mainnet
           - polygon-mumbai
           - arb-mainnet
@@ -17,11 +18,787 @@ servers:
           - opt-goerli
         default: eth-mainnet
 paths:
-  '/{apiKey}/getNFTs':
+##
+## Below are all the v3 methods
+  '/v3/{apiKey}/getNFTsForOwner':
+    get:
+      summary: getNFTsForOwner
+      description: Gets all NFTs currently owned by a given address.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/contractAddresses'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/orderBy'
+        - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/spamConfidenceLevel'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ownedNfts:
+                    type: array
+                    description: 'Array of the NFT objects corresponding to the NFTs owned by the owner'
+                    items:
+                      $ref: '#/components/schemas/ownedNFTv3'
+                  totalCount:
+                    $ref: '#/components/schemas/totalNFTCount'
+                  blockHash:
+                    type: string
+                    description: 'String - The canonical head block hash of when your request was received i.e. the block corresponding to `latest`'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+              examples:
+                byDefault:
+                  $ref: '#/components/schemas/v3byDefault_response'
+                withoutMetadata:
+                  $ref: '#/components/schemas/v3withoutMetadata_response'
+                withContractFiltering:
+                  $ref: '#/components/schemas/v3withContractFiltering_response'
+                withPagination:
+                  $ref: '#/components/schemas/v3withPagination_response'
+      operationId: getNFTsForOwner
+  '/v3/{apiKey}/getNFTMetadata':
+    get:
+      summary: getNFTMetadata
+      description: Gets the metadata associated with a given NFT.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+        - $ref: '#/components/schemas/tokenType'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+        - $ref: '#/components/schemas/refreshCache'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ownedNFTv3'
+      operationId: getNFTMetadata
+  '/v3/{apiKey}/getNFTMetadataBatch':
+    post:
+      summary: getNFTMetadataBatch
+      description: Gets the metadata associated with up to 100 given NFT contracts.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokens:
+                  type: array
+                  description: List of token objects to batch request NFT metadata for. Maximum 100.
+                  default:
+                    [
+                      {
+                        contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+                        tokenId: '44',
+                        tokenType: 'ERC721'
+                      },
+                      {
+                        contractAddress: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+                        tokenId: '888',
+                        tokenType: 'ERC721'
+                      }                      
+                    ]
+                  items:
+                    type: object
+                    properties:
+                      contractAddress:
+                        $ref: '#/components/schemas/contractAddress'
+                      tokenId:
+                        $ref: '#/components/schemas/tokenId'
+                      tokenType:
+                        $ref: '#/components/schemas/tokenType'
+                tokenUriTimeoutInMs:
+                  $ref: '#/components/schemas/tokenUriTimeoutInMs'
+                  type: number
+                refreshCache:
+                  $ref: '#/components/schemas/refreshCache'
+                  type: boolean
+                  default: false
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 'Array of NFT objects corresponding to the query'
+                items:
+                  $ref: '#/components/schemas/ownedNFTv3'
+      operationId: getNFTMetadataBatch
+  '/v3/{apiKey}/getContractMetadata':
+    get:
+      summary: getContractMetadata
+      description: Queries NFT high-level collection/contract level information.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/contractMetadatav3'                
+      operationId: getContractMetadata
+  '/v3/{apiKey}/getContractMetadataBatch':
+    post:
+      summary: getContractMetadataBatch
+      description: Gets the metadata associated with the given list of contract addresses
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contractAddresses:
+                  type: array
+                  description: list of contract addresses to batch metadata requests for
+                  default:
+                    [
+                      '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+                      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+                    ]
+                  items:
+                    $ref: '#/components/schemas/contractAddress'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/contractMetadatav3'
+      operationId: getContractMetadataBatch
+  '/v3/{apiKey}/getNFTsForContract':
+    get:
+      summary: getNFTsForContract
+      description: Gets all NFTs for a given NFT contract.
+      tags: ['Collections']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/startToken'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nfts:
+                    description: 'List of objects that represent NFTs stored under the queried contract address.'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedNFTv3'
+                  pageKey:
+                    type: string
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
+      operationId: getNFTsForContract
+  '/v3/{apiKey}/getOwnersForNFT':
+    get:
+      summary: getOwnersForNFT
+      description: Get the owner(s) for a token.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  owners:
+                    $ref: '#/components/schemas/owners'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'                  
+              examples:
+                getOwnersForNFT_response:
+                  $ref: '#/components/schemas/getOwnersForNFT_response'   
+      operationId: getOwnersForNFT
+  '/v3/{apiKey}/getOwnersForContract':
+    get:
+      summary: getOwnersForContract
+      description: Gets all owners for a given NFT contract.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/withTokenBalances'
+        - $ref: '#/components/schemas/block'
+        - $ref: '#/components/schemas/pageKey'
+          description: String - used for contracts with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  owners:
+                    description: 'List of all addresses that own one of the NFTs from the queried contract address. The below format is applicable when `withTokenBalances=true`'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ownerAddress:
+                          $ref: '#/components/schemas/address'
+                        tokenBalances:
+                          $ref: '#/components/schemas/tokenBalances'
+      operationId: getOwnersForContract
+  '/v3/{apiKey}/getSpamContracts':
+    get:
+      summary: getSpamContracts
+      description: Returns a list of all spam contracts marked by Alchemy.
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Object that has list of contract addresses
+                properties:
+                  contractAddresses:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of contract addresses earmarked as spam by Alchemy.
+      operationId: getSpamContracts
+  '/v3/{apiKey}/isSpamContract':
+    get:
+      summary: isSpamContract
+      description: Returns whether a contract is marked as spam or not by Alchemy.
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "This object has the boolean value inside it"
+                properties:
+                  isSpamContract:
+                    type: boolean
+                    description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+      operationId: isSpamContract
+  '/v3/{apiKey}/isAirdropNFT':
+    get:
+      summary: isAirdropNFT
+      description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "This object has the boolean value inside it"
+                properties:
+                  isAirdrop:
+                    type: boolean
+                    description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
+      operationId: isAirdropNFT
+  '/v3/{apiKey}/getFloorPrice':
+    get:
+      summary: getFloorPrice
+      description: Returns the floor prices of a NFT collection by marketplace.
+      tags: ['Sales & Marketplace Data']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nftMarketplaceName:
+                    type: object
+                    description: 'Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported - `openSea`, `looksRare`. So instead of the word `nftMarketplaceName` you will see marketplace names like `openSea` here.'
+                    properties:
+                      floorPrice:
+                        type: number
+                        description: 'Number - The floor price of the collection on the given marketplace.'
+                      priceCurrency:
+                        type: string
+                        description: 'String - The currency in which the floor price is denominated. Typically, denominated in ETH'
+                        enum:
+                          - ETH
+                      collectionUrl:
+                        type: string
+                        description: 'String - Link to the collection on the given marketplace.'
+                      retrievedAt:
+                        type: string
+                        description: 'String - UTC timestamp of when the floor price was retrieved from the marketplace.'
+                      error:
+                        type: string
+                        description: 'String - Returns the error `unable to fetch floor price` if there was an error fetching floor prices from the given marketplace.'
+      operationId: getFloorPrice
+  '/v3/{apiKey}/computeRarity':
+    get:
+      summary: computeRarity
+      description: Computes the rarity of each attribute of an NFT.
+      tags: ['Rarity Data']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Object containing the rarity info of the collection
+                properties:
+                  rarities:
+                    type: array
+                    description: 'NFT attributes and their associated prevalence.'
+                    items:
+                      type: object
+                      properties:
+                        trait_type:
+                          type: string
+                          description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
+                        value:
+                          type: string
+                          description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
+                        prevalence:
+                          type: number
+                          description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
+      operationId: computeRarity
+  '/v3/{apiKey}/searchContractMetadata':
+    get:
+      summary: searchContractMetadata
+      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/query'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns the list of NFT contracts where the metadata has one or more keywords from the search string.'
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 'List of contracts where the metadata contains one or more keywords from the search string.'
+                items:
+                  $ref: '#/components/schemas/contractMetadatav3'                
+      operationId: searchContractMetadata
+  '/v3/{apiKey}/summarizeNFTAttributes':
+    get:
+      summary: summarizeNFTAttributes
+      description: Generate a summary of attribute prevalence for an NFT collection.
+      tags: ['Rarity Data']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'Prevalence counts for each attribute within a collection.'
+                properties:
+                  totalSupply:
+                    $ref: '#/components/schemas/totalSupply'
+                  summary:
+                    type: object
+                    description: 'Object mapping trait types to the prevalence of each trait within that type.'
+                  contractAddress:
+                    $ref: '#/components/schemas/contractAddress'
+              examples:
+                summarizeNFTAttributes_response:
+                  $ref: '#/components/schemas/summarizeNFTAttributes_response'
+      operationId: summarizeNFTAttributes
+  '/v3/{apiKey}/isHolderOfContract':
+    get:
+      summary: isHolderOfContract
+      description: Checks whether a wallet holds a NFT from a given contract
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/wallet'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "Data related to a wallet's ownership of any token in an NFT contract."
+                properties:
+                  isHolderOfContract:
+                    type: boolean
+                    description: 'Whether the given wallet owns any token in the given NFT contract.'
+      operationId: isHolderOfContract
+  '/v3/{apiKey}/getNFTSales':
+    get:
+      summary: getNFTSales
+      description: Gets NFT sales that have happened through on-chain marketplaces
+      tags: ['Sales & Marketplace Data']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/fromBlock'
+        - $ref: '#/components/schemas/toBlock'
+        - $ref: '#/components/schemas/order'
+        - $ref: '#/components/schemas/marketplace'
+        - $ref: '#/components/schemas/contractAddress'
+          description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
+        - $ref: '#/components/schemas/tokenIdForNFTSales'
+          description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
+        - $ref: '#/components/schemas/buyerAddress'
+        - $ref: '#/components/schemas/sellerAddress'
+        - $ref: '#/components/schemas/taker'
+        - $ref: '#/components/schemas/limit'
+          description: Integer - The maximum number of NFT sales to return. Maximum and default values are 1000.
+        - $ref: '#/components/schemas/pageKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nftSales:
+                    description: 'List of NFT sales that match the query'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        marketplace:
+                          type: string
+                          description: String - The marketplace the sale took place on.
+                        marketplaceAddress:
+                          type: string
+                          description: String - The address of the marketplace contract.
+                        contractAddress:
+                          type: string
+                          description: String - The contract address of the collection the NFT belongs to.
+                        tokenId:
+                          type: string
+                          description: String - The decimal token ID of the NFT being sold.
+                        quantity:
+                          type: string
+                          description: Integer - The number of tokens sold in the sale as a decimal integer string.
+                        buyerAddress:
+                          type: string
+                          description: String - The address of the buyer in the NFT sale.
+                        sellerAddress:
+                          type: string
+                          description: String - The address of the seller in the NFT sale.
+                        taker:
+                          type: string
+                          description: String - Whether the price taker in the trade was the buyer or the seller.
+                          enum:
+                            - BUYER
+                            - SELLER
+                        sellerFee:
+                          type: object
+                          description: The payment from buyer to the seller
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment from the buyer to seller as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimals:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        protocolFee:
+                          type: object
+                          description: The payment from buyer to the NFT marketplace protocol
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the marketplace as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimals:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        royaltyFee:
+                          type: object
+                          description: The payment from buyer to the royalty address of the NFT collection
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the royalty collector as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimals:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        blockNumber:
+                          type: integer
+                          description: Integer - The block number the NFT sale took place in.
+                        logIndex:
+                          type: integer
+                          description: Integer - The log number of the sale event emitted within the block.
+                        bundleIndex:
+                          type: integer
+                          description: Integer - The index of the token within the bundle of NFTs sold in the sale.
+                        transactionHash:
+                          type: string
+                          description: String - The transaction hash of the transaction containing the sale.
+                  pageKey:
+                    type: string
+                    description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
+              examples:
+                nftSales_response:
+                  $ref: '#/components/schemas/nftSales_response'
+      operationId: getNFTSales
+  '/v3/{apiKey}/getContractsForOwner':
+    get:
+      summary: getContractsForOwner
+      description: Gets all NFT contracts held by an owner address.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/orderBy'
+        - $ref: '#/components/schemas/spamConfidenceLevel'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contracts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedContractv3'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+                  totalCount:
+                    $ref: '#/components/schemas/totalContractCount'
+              examples:
+                withoutMetadata:
+                  $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
+                withMetadata:
+                  $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
+      operationId: getContractsForOwner
+  '/v3/{apiKey}/reportSpam':
+    get:
+      summary: reportSpam
+      description: Report a particular address to our APIs if you think it is spam
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/address'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
+      operationId: reportSpam
+## End of v3 methods
+##
+## Below are all the v2 methods
+##
+  '/v2/{apiKey}/getNFTs':
     get:
       summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/contractAddresses'
@@ -60,7 +837,7 @@ paths:
               alchemy.nft.getNftsForOwner("vitalik.eth").then(console.log);
       responses:
         '200':
-          description: 'Returns true if transaction was successfully cancelled, false if not.'
+          description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
           content:
             application/json:
               schema:
@@ -73,11 +850,10 @@ paths:
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
-                    type: string
-                    description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
+                    $ref: '#/components/schemas/totalNFTCount'
                   blockHash:
                     type: string
-                    description: 'String - The canonical head block hash of when your request was received'
+                    description: 'String - The canonical head block hash of when your request was received i.e. the block corresponding to `latest`'
               examples:
                 byDefault:
                   $ref: '#/components/schemas/byDefault_response'
@@ -87,12 +863,12 @@ paths:
                   $ref: '#/components/schemas/withContractFiltering_response'
                 withPagination:
                   $ref: '#/components/schemas/withPagination_response'
-      operationId: getNFTs
-  '/{apiKey}/getNFTMetadata':
+      operationId: getNFTs-v2
+  '/v2/{apiKey}/getNFTMetadata':
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -135,12 +911,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ownedNFT'
-      operationId: getNFTMetadata
-  '/{apiKey}/getNFTMetadataBatch':
+      operationId: getNFTMetadata-v2
+  '/v2/{apiKey}/getNFTMetadataBatch':
     post:
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -203,12 +979,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ownedNFT'
-      operationId: getNFTMetadataBatch
-  '/{apiKey}/getContractMetadata':
+      operationId: getNFTMetadataBatch-v2
+  '/v2/{apiKey}/getContractMetadata':
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -250,12 +1026,12 @@ paths:
                     description: 'String - Contract address for the queried NFT collection'
                   contractMetadata:
                     $ref: '#/components/schemas/contractMetadata'
-      operationId: getContractMetadata
-  '/{apiKey}/getContractMetadataBatch':
+      operationId: getContractMetadata-v2
+  '/v2/{apiKey}/getContractMetadataBatch':
     post:
       summary: getContractMetadataBatch
       description: Gets the metadata associated with the given list of contract addresses
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -288,12 +1064,12 @@ paths:
                       $ref: '#/components/schemas/address'
                     contractMetadata:
                       $ref: '#/components/schemas/ownedContract'
-      operationId: getContractMetadataBatch
-  '/{apiKey}/getNFTsForCollection':
+      operationId: getContractMetadataBatch-v2
+  '/v2/{apiKey}/getNFTsForCollection':
     get:
       summary: getNFTsForCollection
       description: Gets all NFTs for a given NFT contract.
-      tags: ['Collections']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -355,12 +1131,12 @@ paths:
                   nextToken:
                     type: string
                     description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForCollection
-  '/{apiKey}/getOwnersForToken':
+      operationId: getNFTsForCollection-v2
+  '/v2/{apiKey}/getOwnersForToken':
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -404,12 +1180,12 @@ paths:
                 properties:
                   owners:
                     $ref: '#/components/schemas/owners'
-      operationId: getOwnersForToken
-  '/{apiKey}/getOwnersForCollection':
+      operationId: getOwnersForToken-v2
+  '/v2/{apiKey}/getOwnersForCollection':
     get:
       summary: getOwnersForCollection
       description: Gets all owners for a given NFT contract.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -450,12 +1226,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/owners'
-      operationId: getOwnersForCollection
-  '/{apiKey}/getSpamContracts':
+      operationId: getOwnersForCollection-v2
+  '/v2/{apiKey}/getSpamContracts':
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
@@ -487,16 +1263,20 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-                description: A list of contract addresses earmarked as spam by Alchemy.
-      operationId: getSpamContracts
-  '/{apiKey}/isSpamContract':
+                type: object
+                description: Object that has list of contract addresses
+                properties:
+                  contractAddresses:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of contract addresses earmarked as spam by Alchemy.
+      operationId: getSpamContracts-v2
+  '/v2/{apiKey}/isSpamContract':
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -533,13 +1313,13 @@ paths:
             application/json:
               schema:
                 type: boolean
-                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
-      operationId: isSpamContract
-  '/{apiKey}/isAirdrop':
+                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid or if the contract hasn't been evaluated by us yet.
+      operationId: isSpamContract-v2
+  '/v2/{apiKey}/isAirdrop':
     get:
       summary: isAirdrop
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -559,12 +1339,12 @@ paths:
               schema:
                 type: boolean
                 description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
-      operationId: isAirdrop
-  '/{apiKey}/invalidateContract':
+      operationId: isAirdrop-v2
+  '/v2/{apiKey}/invalidateContract':
     get:
       summary: invalidateContract
       description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -589,12 +1369,12 @@ paths:
                   numTokensInvalidated:
                     type: number
                     description: The number of tokens that were invalidated as a result of running this query.
-      operationId: invalidateContract
-  '/{apiKey}/reingestContract':
+      operationId: invalidateContract-v2
+  '/v2/{apiKey}/reingestContract':
     get:
       summary: reingestContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -650,12 +1430,12 @@ paths:
                   progress:
                     type: string
                     description: 'String - Percentage of tokens successfully refreshed.'
-      operationId: reingestContract
-  '/{apiKey}/getFloorPrice':
+      operationId: reingestContract-v2
+  '/v2/{apiKey}/getFloorPrice':
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['Sales & Marketplace Data']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -714,12 +1494,12 @@ paths:
                       error:
                         type: string
                         description: 'String - Returns an error if there was an error fetching floor prices from the given marketplace.'
-      operationId: getFloorPrice
-  '/{apiKey}/computeRarity':
+      operationId: getFloorPrice-v2
+  '/v2/{apiKey}/computeRarity':
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['Rarity Data']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -737,26 +1517,30 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                description: 'NFT attributes and their associated prevalence.'
-                items:
-                  type: object
-                  properties:
-                    trait_type:
-                      type: string
-                      description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
-                    value:
-                      type: string
-                      description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
-                    prevalence:
-                      type: number
-                      description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
-      operationId: computeRarity
-  '/{apiKey}/searchContractMetadata':
+                type: object
+                description: Object containing the rarity info of the collection
+                properties:
+                  rarities:
+                    type: array
+                    description: 'NFT attributes and their associated prevalence.'
+                    items:
+                      type: object
+                      properties:
+                        trait_type:
+                          type: string
+                          description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
+                        value:
+                          type: string
+                          description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
+                        prevalence:
+                          type: number
+                          description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
+      operationId: computeRarity-v2
+  '/v2/{apiKey}/searchContractMetadata':
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/query'
@@ -780,12 +1564,12 @@ paths:
                       $ref: '#/components/schemas/contractAddress'
                     contractMetadata:
                       $ref: '#/components/schemas/contractMetadata'
-      operationId: searchContractMetadata
-  '/{apiKey}/summarizeNFTAttributes':
+      operationId: searchContractMetadata-v2
+  '/v2/{apiKey}/summarizeNFTAttributes':
     get:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['Rarity Data']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -805,19 +1589,18 @@ paths:
                 description: 'Prevalence counts for each attribute within a collection.'
                 properties:
                   totalSupply:
-                    type: number
-                    description: 'Total number of NFTs for the input contract.'
+                    $ref: '#/components/schemas/totalSupply'
                   summary:
                     type: object
                     description: 'Object mapping trait types to the prevalence of each trait within that type.'
                   contractAddress:
                     $ref: '#/components/schemas/contractAddress'
-      operationId: summarizeNFTAttributes
-  '/{apiKey}/isHolderOfCollection':
+      operationId: summarizeNFTAttributes-v2
+  '/v2/{apiKey}/isHolderOfCollection':
     get:
       summary: isHolderOfCollection
       description: Checks whether a wallet holds a NFT in a given collection
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
@@ -840,12 +1623,12 @@ paths:
                   isHolderOfCollection:
                     type: boolean
                     description: 'Whether the given wallet owns any token in the given NFT collection.'
-      operationId: isHolderOfCollection
-  '/{apiKey}/getNFTSales':
+      operationId: isHolderOfCollection-v2
+  '/v2/{apiKey}/getNFTSales':
     get:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['Sales & Marketplace Data']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/fromBlock'
@@ -854,7 +1637,7 @@ paths:
         - $ref: '#/components/schemas/marketplace'
         - $ref: '#/components/schemas/contractAddress'
           description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-        - $ref: '#/components/schemas/tokenId'
+        - $ref: '#/components/schemas/tokenIdForNFTSales'
           description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
         - $ref: '#/components/schemas/buyerAddress'
         - $ref: '#/components/schemas/sellerAddress'
@@ -962,12 +1745,12 @@ paths:
               examples:
                 nftSales_response:
                   $ref: '#/components/schemas/nftSales_response'
-      operationId: getNFTSales
-  '/{apiKey}/getContractsForOwner':
+      operationId: getNFTSales-v2
+  '/v2/{apiKey}/getContractsForOwner':
     get:
       summary: getContractsForOwner
       description: Gets all NFT contracts held by an owner address.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -998,19 +1781,18 @@ paths:
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
-                    type: string
-                    description: 'String - Total number of NFT contracts held by the given address.'
+                    $ref: '#/components/schemas/totalContractCount'
               examples:
                 withoutMetadata:
                   $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
                 withMetadata:
                   $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
-      operationId: getContractsForOwner
-  '/{apiKey}/reportSpam':
+      operationId: getContractsForOwner-v2
+  '/v2/{apiKey}/reportSpam':
     get:
       summary: reportSpam
       description: Report a particular address to our APIs if you think it is spam
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/address'
@@ -1028,7 +1810,7 @@ paths:
               schema:
                 type: string
                 description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
-      operationId: reportSpam
+      operationId: reportSpam-v2
 
 components:
   schemas:
@@ -1056,7 +1838,7 @@ components:
       required: true
     wallet:
       name: wallet
-      description: String - Wallet address to check for collection ownership.
+      description: String - Wallet address to check for contract ownership.
       schema:
         type: string
         default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
@@ -1160,13 +1942,21 @@ components:
       required: false
     contractAddress:
       name: contractAddress
-      description: String - Contract address for the NFT collection (ERC721 and ERC1155 supported).
+      description: String - Contract address for the NFT contract (ERC721 and ERC1155 supported).
       in: query
       schema:
         type: string
         default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
       required: false
     tokenId:
+      name: tokenId
+      description: String - The ID of the token. Can be in hex or decimal format.
+      in: query
+      schema:
+        type: string
+        default: '44'
+      required: true
+    tokenIdForNFTSales:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
       in: query
@@ -1282,13 +2072,13 @@ components:
         type: string
     taker:
       name: taker
-      description: Enum - Filter by whether the buyer or seller was the taker in the NFT trade. Allowed filter values are "buyer" and "seller". Defaults to returning both buyer and seller taker trades.
+      description: Enum - Filter by whether the buyer or seller was the taker in the NFT trade. Allowed filter values are "BUYER" and "SELLER". Defaults to returning both buyer and seller taker trades.
       in: query
       schema:
         type: string
         enum:
-          - buyer
-          - seller
+          - BUYER
+          - SELLER
         required: false
     query:
       name: query
@@ -1296,7 +2086,7 @@ components:
       in: query
       schema:
         type: string
-        default: sunglasses
+        default: bored
       required: true
 
     # ===== Response Objects ========
@@ -1311,6 +2101,49 @@ components:
     raw:
       type: string
       description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+    totalNFTCount:
+      type: string
+      description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
+    totalContractCount:
+      type: string
+      description: 'String - Total number of NFT contracts held by the given address returned in this page.'
+    totalSupply:
+      type: string
+      description: 'String - Total number of NFTs in a given NFT collection.'
+    rawv3:
+      type: object
+      description: 'Raw details of the NFT like its tokenUri and metadata info obtained directly from the smart contract'
+      properties:
+        tokenUri:
+          type: string
+          description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+        metadata:
+          $ref: '#/components/schemas/metadatav3'
+        error:
+          type: string
+          description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+    imagev3:
+      type: object
+      description: 'Details of the image corresponding to this contract'
+      properties:
+        cachedUrl:
+          type: string
+          description: "The Url of the image stored in Alchemy cache"
+        thumbnailUrl:
+          type: string
+          description: "The Url that has the thumbnail version of the NFT"
+        pngUrl:
+          type: string
+          description: "The Url that has the NFT image in png"
+        contentType:
+          type: string
+          description: "The Url of the image stored in Alchemy cache"
+        size:
+          type: integer
+          description: The size of the media asset in bytes.
+        originalUrl:
+          type: string
+          description: "The original Url of the image coming straight from the smart contract"    
     gateway:
       type: string
       description: 'String - Public gateway uri for the raw uri above.'
@@ -1362,8 +2195,32 @@ components:
           description: 'Object - Traits/attributes/characteristics for each NFT asset.'
         media:
           $ref: '#/components/schemas/media'
+    metadatav3:
+      type: object
+      description: 'Relevant metadata for NFT contract. This is useful for viewing image url, traits, etc. without having to follow the metadata url in tokenUri to parse manually.'
+      properties:
+        image:
+          type: string
+          description: 'String - URL to the NFT asset image. Can be standard URLs pointing to images on conventional servers, IPFS, or Arweave. Most types of images (SVGs, PNGs, JPEGs, etc.) are supported by NFT marketplaces.'
+        name:
+          type: string
+          description: 'String - Name of the NFT asset.'
+        description:
+          type: string
+          description: 'String - Human-readable description of the NFT asset. (Markdown is supported/rendered on OpenSea and other NFT platforms)'
+        attributes:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              trait_type:
+                type: string
+          description: 'Object - Traits/attributes/characteristics for each NFT asset.'
     ownedContract:
       type: object
+      description: "The object that represents a smart contract and has all data corresponding to that contract"
       properties:
         address:
           description: 'Address of the held contract'
@@ -1401,6 +2258,53 @@ components:
           $ref: '#/components/schemas/media'
         opensea:
           $ref: '#/components/schemas/opensea'
+    ownedContractv3:
+      type: object
+      description: "The object that represents a smart contract and has all data corresponding to that contract"
+      properties:
+        address:
+          $ref: '#/components/schemas/contractAddress'
+        name:
+          description: 'The name of the contract, i.e. "Bored Ape Yacht Club".'
+          type: string
+        symbol:
+          description: 'The symbol of the contract, i.e. BAYC.'
+          type: string
+        totalSupply:
+          $ref: '#/components/schemas/totalSupply'
+        tokenType:
+          $ref: '#/components/schemas/tokenType'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+        openseaMetadata:
+          $ref: '#/components/schemas/opensea'
+        totalBalance:
+          type: number
+          description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
+        numDistinctTokensOwned:
+          type: number
+          description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
+        isSpam:
+          type: boolean
+          description: '`True` if the contract is detected as spam contract. `False` if it is not spam or has not been evaluated by our system yet'
+        displayNft:
+          $ref: '#/components/schemas/displaynftv3'
+        image:
+          $ref: '#/components/schemas/imagev3'
+    displaynftv3:
+      type: object
+      description: 'Details of the display NFT for this contract. This NFT and its image can be used to represent the contract when displaying info about it.'
+      properties:
+        tokenId:
+          description: 'One of the tokens from this contract held by the owner.'
+          type: string
+        name:
+          description: 'The title of the token held by the owner i.e. "Something #22".'
+          type: string
     media:
       type: array
       items:
@@ -1421,6 +2325,7 @@ components:
             description: The size of the media asset in bytes.
     ownedNFT:
       type: object
+      description: "The object that represents an NFT and has all data corresponding to that NFT"
       properties:
         contract:
           description: 'Object - Contract for returned NFT'
@@ -1470,6 +2375,35 @@ components:
           $ref: '#/components/schemas/contractMetadata'
         spamInfo:
           $ref: '#/components/schemas/spamInfo'
+    ownedNFTv3:
+      type: object
+      description: 'The object that represents an NFT and has all data corresponding to that NFT'
+      properties:
+        contract:
+          $ref: '#/components/schemas/contractv3' 
+        tokenId:
+          $ref: '#/components/schemas/tokenId'
+        tokenType:
+          $ref: '#/components/schemas/tokenType'
+        name:
+          type: string
+          description: 'String - Name of the NFT asset.'
+        description:
+          type: string
+          description: 'String - Brief human-readable description'
+        image:
+          $ref: '#/components/schemas/imagev3' 
+        raw:
+          $ref: '#/components/schemas/rawv3'
+        tokenUri:
+          type: string
+          description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+        timeLastUpdated:
+          type: string
+          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+        #balance:
+        #  type: string
+        #  description: 'String - Token balance'
     opensea:
       type: object
       properties:
@@ -1493,18 +2427,18 @@ components:
           description: 'Collection homepage'
         twitterUsername:
           type: string
+          description: 'The twitter username of the collection'
         discordUrl:
           type: string
+          description: 'The discord URL of the collection'
         lastIngestedAt:
           type: string
+          description: 'The timestamp when the collection was last ingested by us'
     owners:
-      type: object
-      properties:
-        ownerAddresses:
-          description: 'List of all addresses that own one of the NFTs from the queried contract address.'
-          type: array
-          items:
-            type: string
+      type: array
+      description: 'List of all addresses that own the given NFT.'
+      items:
+        type: string
     contractMetadata:
       type: object
       properties:
@@ -1515,8 +2449,7 @@ components:
           type: string
           description: 'String - NFT contract symbol abbreviation.'
         totalSupply:
-          type: string
-          description: 'String - Total number of NFTs in a given NFT collection.'
+          $ref: '#/components/schemas/totalSupply'
         tokenType:
           $ref: '#/components/schemas/tokenType_response'
         contractDeployer:
@@ -1527,6 +2460,63 @@ components:
           description: 'Number - The Block Number when the deployment transaction is successfully mined'
         opensea:
           $ref: '#/components/schemas/opensea'
+    contractMetadatav3:
+      type: object
+      properties:
+        address:
+          type: string
+          description: 'String - Contract address for the queried NFT collection'
+        name:
+          type: string
+          description: 'String - NFT contract name.'
+        symbol:
+          type: string
+          description: 'String - NFT contract symbol abbreviation.'
+        totalSupply:
+          $ref: '#/components/schemas/totalSupply'
+        tokenType:
+          $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+        openseaMetadata:
+          $ref: '#/components/schemas/opensea'
+    contractv3:
+      type: object
+      description: 'The contract object that has details of a contract'
+      properties:
+        address:
+          description: 'Address of the held contract'
+          type: string
+        name:
+          type: string
+          description: 'String - NFT contract name.'
+        symbol:
+          type: string
+          description: 'String - NFT contract symbol abbreviation.'
+        totalSupply:
+          $ref: '#/components/schemas/totalSupply'
+        tokenType:
+          $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+        openseaMetadata:
+          $ref: '#/components/schemas/opensea'
+        isSpam:
+          type: string
+          description: '"true" if contract is spam, else "false"'
+        classifications:
+          description: 'List of reasons why a contract was classified as spam.'
+          type: array
+          items:
+            type: string
     spamInfo:
       type: object
       properties:
@@ -1539,6 +2529,18 @@ components:
           type: array
           items:
             type: string
+    tokenBalances:
+      type: array
+      description: a list of the token ids and balances for the owner of the collection
+      items:
+        type: object
+        properties:
+          tokenId:
+            type: string
+            description: tokenId of the NFT in the collection that an owner has
+          balance:
+            type: integer
+            description: the number of the specified token in the collection that the user owns
     # === getNFTs example responses ===
     byDefault_response:
       summary: 'Response (By Default)'
@@ -1710,31 +2712,39 @@ components:
         {
           "contracts": [
             {
-              "address": "0x000386e3f7559d9b6a2f5c46b4ad1a9587d59dc3",
-              "totalBalance": 912,
-              "numDistinctTokensOwned": 80,
-              "isSpam": true,
-              "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
-              "name": "Bored Ape Nike Club",
-              "title": "",
-              "symbol": "BANC",
-              "tokenType": "ERC721",
-              "contractDeployer": "0x51d7d428041e23ef51422e110dfeff906e821cfe",
-              "deployedBlockNumber": 14276343,
-              "opensea": {
-                "collectionName": "BoredApeNikeClub",
+              "address": "0x1C310c2fbB0D9755A6b918F990bC8D3504f2c684",
+              "name": "The Wonderful Husl Founder Cards",
+              "symbol": "The Wonderful Husl Founder Cards",
+              "totalSupply": null,
+              "tokenType": "ERC1155",
+              "contractDeployer": "0x0bdD0AEC835F92a465290cdd57b27FBd00376F53",
+              "deployedBlockNumber": 15664554,
+              "openSeaMetadata": {
+                "floorPrice": null,
+                "collectionName": "The Wonderful Husl Founder Cards",
                 "safelistRequestStatus": "not_requested",
-                "imageUrl": "https://i.seadn.io/gae/yJ9DgXqjRwgdCkrQmHj7krCbixM8fPVAyYJWJ5NHXap1L0c3QL5MPvrNT0QDINIStGOK857lOvab8MpNQS9X4pkHPktmhVmN82qoVw?w=500&auto=format",
-                "description": "COUNTDOWN OVER. MINTING LIVE.\n\n[Mint on the website.](https://nikemetaverse.xyz)\n",
-                "externalUrl": "https://nikemetaverse.xyz",
-                "lastIngestedAt": "2023-02-06T14:36:57.000Z"
+                "imageUrl": "https://i.seadn.io/gcs/files/754e38769c80c9d6188444dddb10ec80.png?w=500&auto=format",
+                "description": "[Husl](https://www.huslnft.xyz) is building the bridge between business and NFTs. Husl Founders are the driven, the passionate and the focused members of the community ready to change their future. Owning a Founders Card gets you exclusive perks, early access to business management, and discounts on managed services for your business as NFT. [Learn More](https://www.huslnft.xyz)",
+                "externalUrl": "https://www.huslnft.xyz",
+                "twitterUsername": null,
+                "discordUrl": null,
+                "lastIngestedAt": "2023-03-20T01:36:19.000Z"
               },
-              "media": [
-                {
-                  "raw": "",
-                  "gateway": ""
-                }
-              ]
+              "totalBalance": "1",
+              "numDistinctTokensOwned": "1",
+              "isSpam": true,
+              "displayNft": {
+              "tokenId": "233",
+              "name": null
+              },
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/d08d0d0fac8edf36ea09eae34b332814",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/d08d0d0fac8edf36ea09eae34b332814",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/d08d0d0fac8edf36ea09eae34b332814",
+                "contentType": "video/mp4",
+                "size": 36190302,
+                "originalUrl": "https://ipfs.io/ipfs/QmX2mM8r33W7KUBQSWXFAKNC2t654EXmWiX9vkrfrEaEnS"
+              }
             }
           ],
           "totalCount": 2120,
@@ -1855,6 +2865,15 @@ components:
                 balance:
                   type: integer
                   description: the number of the specified token in the collection that the user owns
+    # === getOwnersForNFT example responses ===
+    getOwnersForNFT_response:
+      value: >
+        {
+          "owners": [
+            "0x9f4F78A6c4a5E6F8AFA81631b9120ae3C831b494"
+          ],
+          "pageKey": null
+        }
     # === getNFTSales example response ===
     nftSales_response:
       summary: 'Response (with pagination)'
@@ -1920,3 +2939,521 @@ components:
           ],
           "pageKey":"MTUwMDAwNzgsODcsMA"
         }
+    # === summarizeNFTAttributes example responses ===
+    summarizeNFTAttributes_response:
+      value: >
+        {
+          "summary": {
+            "Earrings": {
+              "WoW Coins": 437,
+              "Pizza Lovers": 188,
+              "Lucky Charms": 415,
+              "White Ovals": 210,
+              "Artist Palettes": 21,
+              "Queen's Emeralds": 206,
+              "Silver Drops": 822,
+              "Flower Power": 366,
+              "Pearls": 833,
+              "Spikes": 776,
+              "Yam's Fave": 381,
+              "Classic Hoops": 780,
+              "Ocean Hoops": 770,
+              "Triple Rings": 823,
+              "60s Fantasy": 399,
+              "Lightning Bolts": 226,
+              "Empresses Of Darkness": 103
+            },
+            "Necklace": {
+              "WoW Coin": 481,
+              "Malka": 494,
+              "Amazonite Energy": 490,
+              "Satin Choker": 721,
+              "Back To The 90s": 706,
+              "Empress of Darkness": 58,
+              "Spike Choker": 449,
+              "Golden Bib": 251,
+              "Golden Flakes": 710,
+              "Art Lover": 29,
+              "Rainbow": 474,
+              "Gold Ruler": 477,
+              "Wolf Pendant": 229,
+              "Tutti Frutti Beads": 691,
+              "Sun Keeper": 730
+            },
+            "Eyes": {
+              "Purple To The Left": 158,
+              "Heterochromia To The Left": 57,
+              "Brown To The Right": 455,
+              "Black Eye Roll": 881,
+              "Yellow To The Left": 141,
+              "Purple Eye Roll": 145,
+              "Green Straight": 433,
+              "Blue To The Left": 407,
+              "Green To The Right": 410,
+              "Black Straight": 794,
+              "Purple To The Right": 145,
+              "Black To The Right": 870,
+              "Green Eye Roll": 413,
+              "Yellow Straight": 128,
+              "Brown To The Left": 465,
+              "Brown Eye Roll": 416,
+              "Heterochromia To The Right": 76,
+              "Blue Straight": 415,
+              "Black To The Left": 877,
+              "Heterochromia Eye Roll": 85,
+              "Purple Straight": 158,
+              "Brown Straight": 434,
+              "Yellow Eye Roll": 141,
+              "Heterochromia Straight": 77,
+              "Yellow To The Right": 139,
+              "Blue To The Right": 416,
+              "Green To The Left": 424,
+              "Blue Eye Roll": 440
+            },
+            "Background": {
+              "Green Purple": 905,
+              "Purple Pink": 905,
+              "Dark Emerald": 924,
+              "Yellow Pink": 896,
+              "Pink Pastel": 849,
+              "Blue Green": 924,
+              "Soft Purple": 983,
+              "Green Orange": 907,
+              "Dark Purple": 876,
+              "Red Turquoise": 914,
+              "Orange Yellow": 917
+            },
+            "Mouth": {
+              "Cigarette": 502,
+              "Whistle": 868,
+              "Slight Smile": 1666,
+              "Stern": 1733,
+              "Countryside": 927,
+              "Huh": 506,
+              "Slightly Open": 1661,
+              "Bubble Gum": 404,
+              "Surprised": 1733
+            },
+            "Clothes": {
+              "80s Silk Shirt": 400,
+              "70s Shirt": 421,
+              "Fantasy Shirt": 542,
+              "Adventurer": 583,
+              "Striped Tee": 567,
+              "Naiade": 98,
+              "Tunic": 193,
+              "Checkmate": 396,
+              "Painter's Overall": 550,
+              "Witch Dress": 198,
+              "Little Red Dress": 437,
+              "Cabaret Corset": 535,
+              "Polka Dot Top": 573,
+              "Freedom Is Power Tee": 368,
+              "Warrior Armor": 177,
+              "Emerald Elven Cape": 117,
+              "Faux Fur Coat": 404,
+              "Red Leather Jacket": 374,
+              "White Tee": 533,
+              "Tuxedo": 100,
+              "Steampunk Octopus Top": 186,
+              "Queen's Dress": 391,
+              "Cherry Tee": 590,
+              "NFT Goddesses Top": 189,
+              "Gala Dress": 192,
+              "Psychedelic Dress": 492,
+              "Futuristic Dress": 394
+            },
+            "Facial Features": {
+              "Nose Piercing": 598,
+              "Red Eyeliner": 608,
+              "Leader": 224,
+              "Neck Tattoo": 227,
+              "Pearl Eyes": 207,
+              "Red Blue Bolt": 97,
+              "Rose Tattoo": 286,
+              "Feline Eyes": 590,
+              "Elven Warrior": 99,
+              "Marilyn": 633,
+              "Freckles": 581,
+              "Flashy Blue": 304,
+              "Sunset": 297,
+              "Heart Tattoo": 591,
+              "Rainbow": 578,
+              "Eyebrow Tattoo MMXXI": 303,
+              "Eye Scar": 308,
+              "Treble Bass Clef Tattoo": 210,
+              "Crystal Queen": 221,
+              "Antoinette": 582,
+              "Cyber Warrior": 120,
+              "Eyebrow Piercing": 619,
+              "Claw Scar": 236
+            },
+            "Hairstyle": {
+              "Badass Bob": 178,
+              "Curly Ponytail": 390,
+              "Finger Waves": 398,
+              "Colorful": 186,
+              "Fuchsia": 562,
+              "Retro": 408,
+              "Royal": 227,
+              "Boy Cut": 566,
+              "Bob": 653,
+              "Bun": 607,
+              "Long Dark": 416,
+              "Curly Pearl Updo": 122,
+              "Lucky Green": 417,
+              "Lioness": 600,
+              "Natural Red": 608,
+              "Double Buns": 182,
+              "Cotton Candy": 228,
+              "Rose Hair": 388,
+              "Purple Rainbow": 187,
+              "Lollipop": 612,
+              "Silver": 205,
+              "Braided Ponytail": 561,
+              "Platinum Pixie": 570,
+              "Black And White": 110,
+              "Feeling Turquoise": 412
+            },
+            "Lips Color": {
+              "Space": 195,
+              "Gold": 622,
+              "Purple": 1967,
+              "Burgundy": 1995,
+              "Party Pink": 1114,
+              "Passion Red": 3008,
+              "Flashy Blue": 1099
+            },
+            "Skin Tone": {
+              "Rainbow Bright": 197,
+              "Light Warm Yellow": 1021,
+              "Burning Red": 497,
+              "Cyber Green": 511,
+              "Night Goddess": 85,
+              "Deep Warm Gold": 1026,
+              "Light Medium Warm Gold": 997,
+              "Deep Bronze": 1047,
+              "Medium Olive": 976,
+              "Deep Neutral": 996,
+              "Medium Gold": 937,
+              "Light Warm Olive": 1031,
+              "Cool Blue": 486,
+              "Golden": 193
+            },
+            "Face Accessories": {
+              "Oversized Statement Sunglasses": 396,
+              "Psychedelic Sunglasses": 390,
+              "Resting Butterfly": 83,
+              "Red Round Sunglasses": 695,
+              "Classic Aviator WoW": 414,
+              "Black Mask": 398,
+              "Cateye Sunglasses": 221,
+              "On Fire": 116,
+              "70s Feels": 718,
+              "3D Glasses": 216,
+              "Round Glasses": 704,
+              "Black Round Retro": 403,
+              "Hypnotic Glasses": 209
+            }
+          },
+          "totalSupply": "10000",
+          "contractAddress": "0xe785E82358879F061BC3dcAC6f0444462D4b5330"
+        }
+    # === getNFTs v3 example responses ===
+    v3byDefault_response:
+      summary: 'Response (By Default)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contract": {
+                "address": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+                "name": "DuskBreakers",
+                "symbol": "DUSK",
+                "totalSupply": "10000",
+                "tokenType": "ERC721",
+                "contractDeployer": "0x9c78DDec1F16685ee6E58637a640514A1eD87BC4",
+                "deployedBlockNumber": 13736379,
+                "openSeaMetadata": {
+                  "floorPrice": 0.0582,
+                  "collectionName": "DuskBreakers",
+                  "safelistRequestStatus": "verified",
+                  "imageUrl": "https://i.seadn.io/gae/LGbFRVdClz6-HDd-7WZKONJ5Ody0sBXTvFOQL71BYo3j2iU2wWCX_zlk-Zs0KEhq1qgXViF-6aG_0WS2MdIVNJx2GRSIIYTiciuf-A?w=500&auto=format",
+                  "description": "Being a DuskBreaker means joining a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology. You will be part of a community that directly influences the development of upcoming interactive media and gaming experiences within the DuskBreakers universe. Each of you will play an important role in building out this world. You break it, you take it! \r\n\r\nVisit [DuskBreakers](https://duskbreakers.gg) to learn more.",
+                  "externalUrl": "http://duskbreakers.gg",
+                  "twitterUsername": "duskbreakers",
+                  "discordUrl": "https://discord.gg/duskbreakers",
+                  "lastIngestedAt": "2023-04-19T17:25:59.000Z"
+                },
+                "isSpam": null,
+                "spamClassifications": []
+              },
+              "tokenId": "28",
+              "tokenType": "ERC721",
+              "name": "DuskBreaker #28",
+              "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/1f9e8be3feb42b5b66452537a4032668",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/1f9e8be3feb42b5b66452537a4032668",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/1f9e8be3feb42b5b66452537a4032668",
+                "contentType": "image/png",
+                "size": 1474037,
+                "originalUrl": "https://duskbreakers.gg/breaker_images/28.png"
+              },
+              "raw": {
+                "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/28",
+                "metadata": {
+                  "name": "DuskBreaker #28",
+                  "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+                  "image": "https://duskbreakers.gg/breaker_images/28.png",
+                  "external_url": "https://duskbreakers.gg/",
+                  "attributes": [
+                    {
+                      "value": "Locust Rider Armor (Red)",
+                      "trait_type": "Clothes"
+                    },
+                    {
+                      "value": "Base Drone (Blue)",
+                      "trait_type": "Drone"
+                    },
+                    {
+                      "value": "Thin",
+                      "trait_type": "Eyebrows"
+                    },
+                    {
+                      "value": "Button",
+                      "trait_type": "Nose"
+                    },
+                    {
+                      "value": "Mohawk (Black)",
+                      "trait_type": "Hair"
+                    },
+                    {
+                      "value": "Almond 2 (Red)",
+                      "trait_type": "Eyes"
+                    },
+                    {
+                      "value": "Big Smile (Purple)",
+                      "trait_type": "Mouth"
+                    },
+                    {
+                      "value": "Light Brown",
+                      "trait_type": "Skin Tone"
+                    },
+                    {
+                      "value": "Yellow",
+                      "trait_type": "Background"
+                    },
+                    {
+                      "value": "Facepaint (Stripe)",
+                      "trait_type": "Face Augments"
+                    }
+                  ]
+                },
+                "error": null
+              },
+              "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/28",
+              "timeLastUpdated": "2023-04-19T21:25:39.563Z",
+              "balance": "1"
+            },
+            {
+              "contract": {
+                "address": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+                "name": "DuskBreakers",
+                "symbol": "DUSK",
+                "totalSupply": "10000",
+                "tokenType": "ERC721",
+                "contractDeployer": "0x9c78DDec1F16685ee6E58637a640514A1eD87BC4",
+                "deployedBlockNumber": 13736379,
+                "openSeaMetadata": {
+                  "floorPrice": 0.0582,
+                  "collectionName": "DuskBreakers",
+                  "safelistRequestStatus": "verified",
+                  "imageUrl": "https://i.seadn.io/gae/LGbFRVdClz6-HDd-7WZKONJ5Ody0sBXTvFOQL71BYo3j2iU2wWCX_zlk-Zs0KEhq1qgXViF-6aG_0WS2MdIVNJx2GRSIIYTiciuf-A?w=500&auto=format",
+                  "description": "Being a DuskBreaker means joining a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology. You will be part of a community that directly influences the development of upcoming interactive media and gaming experiences within the DuskBreakers universe. Each of you will play an important role in building out this world. You break it, you take it! \r\n\r\nVisit [DuskBreakers](https://duskbreakers.gg) to learn more.",
+                  "externalUrl": "http://duskbreakers.gg",
+                  "twitterUsername": "duskbreakers",
+                  "discordUrl": "https://discord.gg/duskbreakers",
+                  "lastIngestedAt": "2023-04-19T17:25:59.000Z"
+                },
+                "isSpam": null,
+                "spamClassifications": []
+              },
+              "tokenId": "29",
+              "tokenType": "ERC721",
+              "name": "DuskBreaker #29",
+              "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/4eb0b7f434746250ff3c8200d10a2226",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/4eb0b7f434746250ff3c8200d10a2226",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/4eb0b7f434746250ff3c8200d10a2226",
+                "contentType": "image/png",
+                "size": 1480183,
+                "originalUrl": "https://duskbreakers.gg/breaker_images/29.png"
+              },
+              "raw": {
+                "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/29",
+                "metadata": {
+                  "name": "DuskBreaker #29",
+                  "description": "Breakers have the honor of serving humanity through their work on The Dusk. They are part of a select squad of 10,000 recruits who spend their days exploring a mysterious alien spaceship filled with friends, foes, and otherworldly technology.",
+                  "image": "https://duskbreakers.gg/breaker_images/29.png",
+                  "external_url": "https://duskbreakers.gg/",
+                  "attributes": [
+                    {
+                      "value": "Standard Issue Armor 1 (Orange)",
+                      "trait_type": "Clothes"
+                    },
+                    {
+                      "value": "Dark Metal",
+                      "trait_type": "SmartSkin"
+                    },
+                    {
+                      "value": "Base Drone (Purple)",
+                      "trait_type": "Drone"
+                    },
+                    {
+                      "value": "Thin",
+                      "trait_type": "Eyebrows"
+                    },
+                    {
+                      "value": "Broad",
+                      "trait_type": "Nose"
+                    },
+                    {
+                      "value": "Slick Back (Red)",
+                      "trait_type": "Hair"
+                    },
+                    {
+                      "value": "Sharp (Blue)",
+                      "trait_type": "Eyes"
+                    },
+                    {
+                      "value": "Smirk (Neutral)",
+                      "trait_type": "Mouth"
+                    },
+                    {
+                      "value": "Tan",
+                      "trait_type": "Skin Tone"
+                    },
+                    {
+                      "value": "Purple",
+                      "trait_type": "Background"
+                    }
+                  ]
+                },
+                "error": null
+              },
+              "tokenUri": "https://api.duskbreakers.gg/metadata/duskbreakers/29",
+              "timeLastUpdated": "2023-04-19T21:25:39.704Z",
+              "balance": "1"
+            },
+            {
+              "contract": {
+                "address": "0x209cE666978779756Ae1E747608cD93e4dFf45fD",
+                "name": "Knight of Chains Genesis",
+                "symbol": "Knight of Chains Genesis",
+                "totalSupply": null,
+                "tokenType": "ERC1155",
+                "contractDeployer": "0xA92520aFF50c5A1a4d25FCF90c972AA49EbE5299",
+                "deployedBlockNumber": 14847327,
+                "openSeaMetadata": {
+                  "floorPrice": null,
+                  "collectionName": "Knight of Chains Genesis.",
+                  "safelistRequestStatus": "not_requested",
+                  "imageUrl": "https://i.seadn.io/gae/eRhkkVikIOW_-lDc1moMrZlTcd5DPygPRmTJ69Anb-CfG_RMAxIsichM5kDvfdnXc6gfnKuGZOFCbP_58pUvz57TyUeNbFMKGydHoac?w=500&auto=format",
+                  "description": "[The KnightsOfChain] (https://knightsofchain.link) is an exclusive community that can only be entered by owning a Knight.\n\nVisit [Website](https://knightsofchain.link) and get your benefits.\n\n(Genesis Knights #1-#31 were pre-minted by the team, and are held by high ranking community members. OG Knights #32-#231 have special benefits.)",
+                  "externalUrl": "https://knightsofchain.link",
+                  "twitterUsername": null,
+                  "discordUrl": null,
+                  "lastIngestedAt": "2023-03-20T03:52:07.000Z"
+                },
+                "isSpam": null,
+                "spamClassifications": []
+              },
+              "tokenId": "97",
+              "tokenType": "ERC1155",
+              "name": null,
+              "description": null,
+              "image": {
+                "cachedUrl": null,
+                "thumbnailUrl": null,
+                "pngUrl": null,
+                "contentType": null,
+                "size": null,
+                "originalUrl": null
+              },
+              "raw": {
+                "tokenUri": "https://knightsofchain.link/ipfs/97",
+                "metadata": {},
+                "error": null
+              },
+              "tokenUri": "https://knightsofchain.link/ipfs/97",
+              "timeLastUpdated": "2023-04-20T15:44:29.965Z",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 3,
+          "blockHash": "0x44e726037e48bb890fd889463d2b29e0779d638c7053cdf5157968b7ab9a5707",
+          "pageKey": null
+        }
+    v3withoutMetadata_response:
+      summary: 'Response (withMetadata = false)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "28",
+              "balance": "1"
+            },
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "29",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 2,
+          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "pageKey": null
+        }
+    v3withContractFiltering_response:
+      summary: 'Response (with contract filtering)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "28",
+              "balance": "1"
+            },
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "29",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 2,
+          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "pageKey": null
+        }
+    v3withPagination_response:
+      summary: 'Response (with pagination)'
+      value: >
+        {
+          "ownedNfts": [
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "28",
+              "balance": "1"
+            },
+            {
+              "contractAddress": "0x0bEed7099AF7514cCEDF642CfEA435731176Fb02",
+              "tokenId": "29",
+              "balance": "1"
+            }
+          ],
+          "totalCount": 2,
+          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "pageKey": "88434286-7eaa-472d-8739-32a0497c2a18"
+        }
+      
