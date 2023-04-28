@@ -1045,7 +1045,7 @@ paths:
     get:
       summary: getNFTsForOwner
       description: Gets all NFTs currently owned by a given address.
-      tags: ['Ownership & Token Gating']
+      tags: ['Ownership & Token Gating (BETA)']
       parameters:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/contractAddresses'
@@ -1097,7 +1097,7 @@ paths:
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT Metadata Access (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1125,7 +1125,7 @@ paths:
     post:
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT Metadata Access (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -1187,7 +1187,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT Metadata Access (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1210,7 +1210,7 @@ paths:
     post:
       summary: getContractMetadataBatch
       description: Gets the metadata associated with the given list of contract addresses
-      tags: ['NFT Metadata Access']
+      tags: ['NFT Metadata Access (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -1243,7 +1243,7 @@ paths:
     get:
       summary: getNFTsForContract
       description: Gets all NFTs for a given NFT contract.
-      tags: ['Collections']
+      tags: ['Collections (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1279,7 +1279,7 @@ paths:
     get:
       summary: getOwnersForNFT
       description: Get the owner(s) for a token.
-      tags: ['Ownership & Token Gating']
+      tags: ['Ownership & Token Gating (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1312,7 +1312,7 @@ paths:
     get:
       summary: getOwnersForContract
       description: Gets all owners for a given NFT contract.
-      tags: ['Ownership & Token Gating']
+      tags: ['Ownership & Token Gating (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1350,7 +1350,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['Spam Detection (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
@@ -1378,7 +1378,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['Spam Detection (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1406,7 +1406,7 @@ paths:
     get:
       summary: isAirdropNFT
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
-      tags: ['Spam Detection']
+      tags: ['Spam Detection (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1436,7 +1436,7 @@ paths:
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['Sales & Marketplace Data']
+      tags: ['Sales & Marketplace Data (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1481,7 +1481,7 @@ paths:
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['Rarity Data']
+      tags: ['Rarity Data (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1523,7 +1523,7 @@ paths:
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT Metadata Access']
+      tags: ['NFT Metadata Access (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/query'
@@ -1548,7 +1548,7 @@ paths:
     get:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['Rarity Data']
+      tags: ['Rarity Data (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1583,7 +1583,7 @@ paths:
     get:
       summary: isHolderOfContract
       description: Checks whether a wallet holds a NFT from a given contract
-      tags: ['Ownership & Token Gating']
+      tags: ['Ownership & Token Gating (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
@@ -1612,7 +1612,7 @@ paths:
     get:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['Sales & Marketplace Data']
+      tags: ['Sales & Marketplace Data (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/fromBlock'
@@ -1749,7 +1749,7 @@ paths:
     get:
       summary: getContractsForOwner
       description: Gets all NFT contracts held by an owner address.
-      tags: ['Ownership & Token Gating']
+      tags: ['Ownership & Token Gating (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -1792,7 +1792,7 @@ paths:
     get:
       summary: reportSpam
       description: Report a particular address to our APIs if you think it is spam
-      tags: ['Spam Detection']
+      tags: ['Spam Detection (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/address'
