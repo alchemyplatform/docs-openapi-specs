@@ -1079,11 +1079,10 @@ paths:
                       $ref: '#/components/schemas/ownedNFTv3'
                   totalCount:
                     $ref: '#/components/schemas/totalNFTCount'
-                  blockHash:
-                    type: string
-                    description: 'String - The canonical head block hash of when your request was received i.e. the block corresponding to `latest`'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
+                  validAt:
+                    $ref: '#/components/schemas/validAt'
               examples:
                 byDefault:
                   $ref: '#/components/schemas/v3byDefault_response'
@@ -1740,6 +1739,8 @@ paths:
                   pageKey:
                     type: string
                     description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
+                  validAt:
+                    $ref: '#/components/schemas/validAt'
               examples:
                 nftSales_response:
                   $ref: '#/components/schemas/nftSales_response'
@@ -2542,6 +2543,19 @@ components:
           balance:
             type: integer
             description: the number of the specified token in the collection that the user owns
+    validAt:
+      type: object
+      description: Block Information of the block as of which the corresponding data is valid
+      properties:
+        blockNumber:
+          type: string
+          description: 'The block number above information is valid as of'
+        blockHash:
+          type: string
+          description: 'The block hash above information is valid as of'
+        blockTimestamp:
+          type: string
+          description: 'The block timestamp above information is valid as of'   
     # === getNFTs example responses ===
     byDefault_response:
       summary: 'Response (By Default)'
@@ -2938,7 +2952,12 @@ components:
               "transactionHash":"0x4c23163e4f855e143e573776bc6129bee370dff6ce760e71553fc93201b292e2"
             }
           ],
-          "pageKey":"MTUwMDAwNzgsODcsMA"
+          "pageKey":"MTUwMDAwNzgsODcsMA",
+          "validAt": {
+            "blockNumber": 17091500,
+            "blockHash": "0x2a34a65c4e0cd7fdf187d6a497214ad2bee255d2d3501868a6b8c09b4d1261bd",
+            "blockTimestamp": "2023-04-21T01:25:59Z"
+          },
         }
     # === summarizeNFTAttributes example responses ===
     summarizeNFTAttributes_response:
@@ -3394,7 +3413,11 @@ components:
             }
           ],
           "totalCount": 3,
-          "blockHash": "0x44e726037e48bb890fd889463d2b29e0779d638c7053cdf5157968b7ab9a5707",
+          "validAt": {
+            "blockNumber": 17091500,
+            "blockHash": "0x2a34a65c4e0cd7fdf187d6a497214ad2bee255d2d3501868a6b8c09b4d1261bd",
+            "blockTimestamp": "2023-04-21T01:25:59Z"
+          },
           "pageKey": null
         }
     v3withoutMetadata_response:
@@ -3414,7 +3437,11 @@ components:
             }
           ],
           "totalCount": 2,
-          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "validAt": {
+            "blockNumber": 17091500,
+            "blockHash": "0x2a34a65c4e0cd7fdf187d6a497214ad2bee255d2d3501868a6b8c09b4d1261bd",
+            "blockTimestamp": "2023-04-21T01:25:59Z"
+          },
           "pageKey": null
         }
     v3withContractFiltering_response:
@@ -3434,7 +3461,11 @@ components:
             }
           ],
           "totalCount": 2,
-          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "validAt": {
+            "blockNumber": 17091500,
+            "blockHash": "0x2a34a65c4e0cd7fdf187d6a497214ad2bee255d2d3501868a6b8c09b4d1261bd",
+            "blockTimestamp": "2023-04-21T01:25:59Z"
+          },
           "pageKey": null
         }
     v3withPagination_response:
@@ -3454,7 +3485,11 @@ components:
             }
           ],
           "totalCount": 2,
-          "blockHash": "0x52b5854aaf61287951e962fa6f805ad34f066c5f85a5812787bdbce81bd03d9a",
+          "validAt": {
+            "blockNumber": 17091500,
+            "blockHash": "0x2a34a65c4e0cd7fdf187d6a497214ad2bee255d2d3501868a6b8c09b4d1261bd",
+            "blockTimestamp": "2023-04-21T01:25:59Z"
+          },
           "pageKey": "88434286-7eaa-472d-8739-32a0497c2a18"
         }
       
