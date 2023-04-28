@@ -18,8 +18,46 @@ paths:
   /{apiKey}:
     post:
       summary: alchemy_getTransactionReceipts
-      description: 'An enhanced api that gets all transaction receipts for a given block by number or block hash. Supported on all networks for Ethereum, Polygon, and Arbitrum.'
-      tags: ['Transaction Receipts Endpoints']
+      description: 'An enhanced API that gets all transaction receipts for a given block by number or block hash. Supported on all networks for Ethereum, Polygon, and Arbitrum.'
+      tags: ['Transaction Receipts Endpoints'] 
+      operationId: alchemy-getTransactionReceipts
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Imports the Alchemy SDK
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              const { Alchemy, Network } = require("alchemy-sdk");
+
+              // Configures the Alchemy SDK
+              const config = {
+                apiKey: "demo", // Replace with your API key
+                network: Network.ETH_MAINNET, // Replace with your network
+              };
+
+              // Creates an Alchemy object instance with the config to use for making requests
+              const alchemy = new Alchemy(config);
+              const main = async () => {
+                //Define the params object
+                const params = {
+                  // Define the blockNumber of the transaction
+                  blockNumber: "0x18760312114f3fdf11f9d5846245995835aa59994d5fc4203faee52d2f7eaabe"
+                };
+
+                //The response returns the transaction receipts of the `blockNumber`
+                let response = await alchemy.core.getTransactionReceipts(params);
+
+                //Logging the response to the console
+                console.log(response)
+              };
+
+              main();
       parameters:
         - name: apiKey
           in: path
@@ -46,4 +84,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/transaction_receipt
-      operationId: alchemy-getTransactionReceipts
