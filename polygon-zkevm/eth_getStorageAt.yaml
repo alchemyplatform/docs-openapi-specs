@@ -59,7 +59,7 @@ components:
                 };
                 const alchemy = new Alchemy(settings);
 
-                alchemy.core.getStorageAt("registrar.firefly.eth", 0).then(console.log);
+                alchemy.core.getStorageAt("0xbed9dA8f130aCC29F2580df183F3995eff78fb4D", 0).then(console.log);
         responses:
           '200':
             description: Returns the value at this storage position.

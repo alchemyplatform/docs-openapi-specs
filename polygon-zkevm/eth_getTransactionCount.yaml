@@ -37,4 +37,4 @@ paths:
               };
               const alchemy = new Alchemy(settings);
 
-              alchemy.core.getTransactionCount("vitalik.eth").then(console.log);
+              alchemy.core.getTransactionCount("0xbed9dA8f130aCC29F2580df183F3995eff78fb4D").then(console.log);

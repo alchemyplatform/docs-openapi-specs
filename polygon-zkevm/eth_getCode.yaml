@@ -59,7 +59,7 @@ components:
                 };
                 const alchemy = new Alchemy(settings);
 
-                alchemy.core.getCode("registrar.firefly.eth").then(console.log);
+                alchemy.core.getCode("0xbed9dA8f130aCC29F2580df183F3995eff78fb4D").then(console.log);
         responses:
           '200':
             description: Returns the code from the given address.

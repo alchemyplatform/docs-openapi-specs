@@ -59,7 +59,7 @@ components:
                 };
                 const alchemy = new Alchemy(settings);
 
-                alchemy.core.getBalance("vitalik.eth", "latest").then(console.log);
+                alchemy.core.getBalance("0xbed9dA8f130aCC29F2580df183F3995eff78fb4D", "latest").then(console.log);
         responses:
           '200':
             description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
