@@ -7,11 +7,12 @@ servers:
     variables:
       network:
         enum:
-          - eth-mainnet
-          - polygon-mainnet
-          - arb-mainnet
-          - opt-mainnet
-        default: eth-mainnet
+          - eth-sepolia
+          - eth-goerli
+          - arb-goerli
+          - opt-goerli
+          - polygon-mumbi
+        default: eth-sepolia
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'
