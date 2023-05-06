@@ -101,51 +101,45 @@ UserOperation:
   type: object
   properties:
     sender:
-      type: string
+      $ref: '#/Hex'
       description: The account making the operation
       default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
-      pattern: '^0[xX][0-9a-fA-F]+$'
     nonce:
-      type: integer
+      $ref: '#/Hex'
       description: Anti-replay parameter; also used as the salt for first-time account creation
-      default: 1
+      default: '0x1'
     initCode:
-      type: string
+      $ref: '#/Hex'
       description: The initCode of the account (needed if and only if the account is not yet on-chain and needs to be created)
       default: '0x'
     callData:
-      type: string
+      $ref: '#/Hex'
       description: |
         Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
-      default: '0xf86d808504a817c8008252089435673546dac357595acd835353535da7c35353535880de0b6b3a7640000801ca0e0d2e3f3d8de8a0c9f25d0b02c7a8a91e7e1c818e6f37a49d8b04f9a9a96a1a0620a6c8d95e0f289bfbf2b3d3e476de6b9bc6d0e974c06f1e4de5be7c5ef0e10'
+      default: '0xb61d27f6000000000000000000000000b856dbd4fa1a79a46d426f537455e7d3e79ab7c4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000004d087d28800000000000000000000000000000000000000000000000000000000'
     callGasLimit:
-      type: integer
+      $ref: '#/Hex'
       description: The amount of gas to allocate the main execution call
-      default: 0
     verificationGasLimit:
-      type: integer
+      $ref: '#/Hex'
       description: The amount of gas to allocate for the verification step
-      default: 0
     preVerificationGas:
-      type: integer
+      $ref: '#/Hex'
       description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
-      default: 0
     maxFeePerGas:
-      type: integer
+      $ref: '#/Hex'
       description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
-      default: 0
     maxPriorityFeePerGas:
-      type: integer
+      $ref: '#/Hex'
       description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
-      default: 0
     paymasterAndData:
-      type: string
+      $ref: '#/Hex'
       description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
-      default: '0x9C98B1528C26Cf36E78527308c1b21d89baED700'
+      default: '0xc03aac639bb21233e0139381970328db8bceeb67fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
     signature:
-      type: string
+      $ref: '#/Hex'
       description: Data passed into the account along with the nonce during the verification step
-      default: '0xf86d808504a817c8008252089435673546dac357595acd835353535da7c35353535880de0b6b3a7640000801ca0e0d2e3f3d8de8a0c9f25d0b02c7a8a91e7e1c818e6f37a49d8b04f9a9a96a1a0620a6c8d95e0f289bfbf2b3d3e476de6b9bc6d0e974c06f1e4de5be7c5ef0e10'
+      default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
 
 UserOperationReceipt:
   type: object
@@ -155,9 +149,7 @@ UserOperationReceipt:
       type: string
       description: The request hash of the UserOperation.
     entryPoint:
-      type: string
-      format: address
-      description: The entry point used for the UserOperation.
+      $ref: '#/EntryPoint'
     sender:
       type: string
       format: address
@@ -192,3 +184,9 @@ UserOperationReceipt:
     receipt:
       $ref: ../evm_responses.yaml#/transaction_receipt
       description: The TransactionReceipt object for the entire bundle, not only for this UserOperation.
+
+EntryPoint:
+  $ref: '#/Hex'
+  title: Entrypoint Address
+  description: The entrypoint address the request should be sent through. This MUST be one of the entry points returned by the `supportedEntryPoints` rpc call.
+  default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
