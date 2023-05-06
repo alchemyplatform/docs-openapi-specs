@@ -38,5 +38,5 @@ paths:
               const alchemy = new Alchemy(settings);
 
               alchemy.core
-                .getBlock("0x63392b0dbab8cecbf16a8174f6ee7c2fd58a01d1f9bd5599aa422d0c782908d5")
+                .getBlock("0x698bfceb5e29f916d838a4888235636d36a62c71234600b9b5b13dca7ecc4a99")
                 .then(console.log);

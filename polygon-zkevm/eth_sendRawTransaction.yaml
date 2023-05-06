@@ -48,7 +48,7 @@ components:
             - language: javascript
               name: Alchemy SDK
               code: |
-                // Importing the Alchemy SDK
+                // Import the Alchemy SDK
                 const { Network, Alchemy, Wallet, Utils } = require("alchemy-sdk");
 
                 const API_KEY = "demo" // Replace with your Alchemy API key
@@ -73,14 +73,14 @@ components:
 
                   // creating the transaction object
                   const transaction = {
-                    to: "0x0B53E89cFD388f54A3683AAfc5974db4593B6641",
+                    to: "0xbed9dA8f130aCC29F2580df183F3995eff78fb4D",
                     value: Utils.parseEther("0.001"),
                     gasLimit: "21000",
                     maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
                     maxFeePerGas: Utils.parseUnits("20", "gwei"),
                     nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
                     type: 2,
-                    chainId: 5, // Corresponds to ETH_GOERLI
+                    chainId: 1442, 
                   };
 
                   // signing the transaction
