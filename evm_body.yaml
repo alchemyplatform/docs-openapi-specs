@@ -2021,15 +2021,14 @@ eth_sendUserOperation:
           description: |
             1. Object - The `UserOperation` object
             2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
+          
+            **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
           maxItems: 2
           items:
             oneOf:
               - $ref: ./components/schemas.yaml#/UserOperation
-              - type: string
-                title: Entrypoint address
-                description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
-                default: '0xc944E90C64B2c07662A292be6244BDf05Cda44a7'
+              - $ref: ./components/schemas.yaml#/EntryPoint
 
 eth_estimateUserOperationGas:
   allOf:
@@ -2041,11 +2040,17 @@ eth_estimateUserOperationGas:
           default: eth_estimateUserOperationGas
         params:
           type: array
-          description: The `UserOperation` object (gas limits and prices are optional)
-          minItems: 1
-          maxItems: 1
+          description: | 
+            1. Object - The `UserOperation` object (gas limits and prices are optional)
+            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
+            
+            **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
+          minItems: 2
+          maxItems: 2
           items:
-            $ref: ./components/schemas.yaml#/UserOperation
+            oneOf:
+              - $ref: ./components/schemas.yaml#/UserOperation
+              - $ref: ./components/schemas.yaml#/EntryPoint
 
 eth_getUserOperationByHash:
   allOf:
@@ -2103,14 +2108,7 @@ alchemy_requestPaymasterAndData:
                 description: The policy ID
                 default: '0x1234567890123456789012345678901234567890123456789012345678901234'
               entryPoint:
-                type: string
-                description: The entry point address
-                pattern: '^0x[0-9a-fA-F]{40}$'
-                default: '0x0576a174D229E3cFA37253523E645A78A0C91B57'
-              paymasterTrackedSenderNonce:
-                type: string
-                description: The paymaster tracked sender nonce, unique for each sender and incremental
-                default: '0x1'
+                $ref: ./components/schemas.yaml#/EntryPoint
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperation
                 description: Partial UserOperation object, missing paymasterAndData and signature fields
