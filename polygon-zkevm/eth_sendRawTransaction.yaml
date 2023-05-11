@@ -44,6 +44,56 @@ components:
             - curl
             - javascript
             - python
+          code-samples:
+            - language: javascript
+              name: Alchemy SDK
+              code: |
+                // Import the Alchemy SDK
+                const { Network, Alchemy, Wallet, Utils } = require("alchemy-sdk");
+
+                const API_KEY = "demo" // Replace with your Alchemy API key
+
+                // Replace with your Private Key
+                const PRIVATE_KEY = "ae43266e69d4bcc923fe66083fe8f027be148af839a70b2f11cad554a6f0798b"
+
+                // NOTE: A demo private key is given in this case but never use it for real transactions as it's now public.
+
+                // Configuring the Alchemy SDK
+                const settings = {
+                  apiKey: API_KEY,
+                  network: Network.POLYGONZKEVM_TESTNET, // Replace with your network.
+                };
+
+                // Creating a new alchemy instance
+                const alchemy = new Alchemy(settings);
+
+                async function main() {
+                  // Creating a new wallet instance
+                  const wallet = new Wallet(PRIVATE_KEY);
+
+                  // creating the transaction object
+                  const transaction = {
+                    to: "0xbed9dA8f130aCC29F2580df183F3995eff78fb4D",
+                    value: Utils.parseEther("0.001"),
+                    gasLimit: "21000",
+                    maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
+                    maxFeePerGas: Utils.parseUnits("20", "gwei"),
+                    nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                    type: 2,
+                    chainId: 1442, 
+                  };
+
+                  // signing the transaction
+                  const rawTransaction = await wallet.signTransaction(transaction);
+
+                  // sending the transaction
+                  let sentTx = await alchemy.transact.sendTransaction(rawTransaction);
+
+                  // Logging the sent tx object
+                  console.log(sentTx);
+                }
+
+                main();
         responses:
           '200':
             description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'

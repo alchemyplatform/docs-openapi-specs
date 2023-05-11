@@ -44,6 +44,26 @@ components:
             - curl
             - javascript
             - python
+          code-samples:
+            - language: javascript
+              name: Alchemy SDK
+              code: |
+                // Setup: npm install alchemy-sdk
+                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+                const { Alchemy, Network } = require("alchemy-sdk");
+
+                // Optional config object, but defaults to demo api-key and eth-mainnet.
+                const settings = {
+                  apiKey: "demo", // Replace with your Alchemy API Key.
+                  network: Network.POLYGONZKEVM_TESTNET, // Replace with your network.
+                };
+                const alchemy = new Alchemy(settings);
+
+                alchemy.core
+                  .getTransactionReceipt(
+                    "0x60b66de803f7bd34e40a122c30526b74914154ccba03f1f770958cccc9b59038"
+                  )
+                  .then(console.log);
         responses:
           '200':
             description: ''
