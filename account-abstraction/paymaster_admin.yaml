@@ -7,8 +7,10 @@ servers:
 paths:
   '/api/paymaster/policy':
     post:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Create Policy
       description: Creates a new paymaster policy with the specified rules. Returns the policy id of a successfully created policy. The newly created policy will be in the “inactive” status.
+      operationId: create-policy
       requestBody:
         content:
           application/json:
@@ -42,8 +44,10 @@ paths:
 
   '/api/paymaster/policy/{id}':
     get:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Get Policy
       description: Returns a policy by id.
+      operationId: get-policy
       parameters:
         - name: id
           in: path
@@ -71,8 +75,10 @@ paths:
                         type: string
 
     delete:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Delete Policy
       description: Deletes a policy by id.
+      operationId: delete-policy
       parameters:
         - name: id
           in: path
@@ -85,8 +91,10 @@ paths:
           description: Policy deleted successfully
 
     put:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Replace Policy
       description: Replaces all rules in an existing policy by id.
+      operationId: replace-policy
       parameters:
         - name: id
           in: path
@@ -123,8 +131,10 @@ paths:
 
   '/api/paymaster/policies':
     get:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Get All Policies
       description: Returns all policies under an app.
+      operationId: get-all-policies
       parameters:
         - name: app
           in: query
@@ -160,8 +170,10 @@ paths:
 
   '/api/paymaster/policy/{id}/status':
     put:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Update Policy Status
       description: Modifies the status of a policy to either "active" or "inactive".
+      operationId: update-policy-status
       parameters:
         - name: id
           in: path
@@ -200,8 +212,10 @@ paths:
 
   '/api/paymaster/policy/{id}/stats':
     get:
+      tags: ['Paymaster Admin API Endpoints']
       summary: Get Policy Stats
       description: Returns stats about a policy specified by ID, including signatures mined, signatures expired, signatures pending, USD mined, and USD pending.
+      operationId: get-policy-stats
       parameters:
         - name: id
           in: path
