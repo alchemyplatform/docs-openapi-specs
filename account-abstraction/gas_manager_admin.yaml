@@ -5,7 +5,7 @@ info:
 servers:
   - url: https://manage.alchemy.com/
 paths:
-  '/api/paymaster/policy':
+  '/api/gas-manager/policy':
     post:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Create Policy
@@ -42,7 +42,7 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policy/{id}':
+  '/api/gas-manager/policy/{id}':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy
@@ -129,7 +129,7 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policies':
+  '/api/gas-manager/policies':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get All Policies
@@ -168,7 +168,7 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policy/{id}/status':
+  '/api/gas-manager/policy/{id}/status':
     put:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Update Policy Status
@@ -210,7 +210,7 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policy/{id}/stats':
+  '/api/gas-manager/policy/{id}/stats':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy Stats
