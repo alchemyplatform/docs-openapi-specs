@@ -21,7 +21,7 @@ components:
     path:
       post:
         summary: alchemy_requestPaymasterAndData
-        description: Requests sponsorship for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
+        description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
         tags: []
         parameters:
           - name: apiKey

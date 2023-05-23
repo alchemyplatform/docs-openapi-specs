@@ -1517,7 +1517,7 @@ alchemy_requestPaymasterAndData:
               type: string
               description: |
                 The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
-                Contains paymaster address, sigTimeRange, and secp256k1 signature.
+                Contains gas manager address, sigTimeRange, and secp256k1 signature.
             error:
               type: object
               description: Error object if the sponsorship request is not approved
