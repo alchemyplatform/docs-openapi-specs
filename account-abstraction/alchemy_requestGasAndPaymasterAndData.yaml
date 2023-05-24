@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: alchemy_requestPaymasterAndData
+  title: alchemy_requestGasAndPaymasterAndData
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
@@ -20,8 +20,8 @@ components:
   pathItems:
     path:
       post:
-        summary: alchemy_requestPaymasterAndData
-        description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
+        summary: alchemy_requestGasAndPaymasterAndData
+        description: Requests gas and coverage for a `UserOperation`. Returns `paymasterAndData` and gas parameters if approved, errors if not.
         tags: []
         parameters:
           - name: apiKey
@@ -42,7 +42,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/alchemy_requestPaymasterAndData
+                $ref: ../evm_body.yaml#/alchemy_requestGasAndPaymasterAndData
         x-readme:
           samples-languages:
             - curl
@@ -54,5 +54,5 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/alchemy_requestPaymasterAndData
-        operationId: alchemy-requestPaymasterAndData
+                  $ref: ../evm_responses.yaml#/alchemy_requestGasAndPaymasterAndData
+        operationId: alchemy-requestGasAndPaymasterAndData

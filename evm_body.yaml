@@ -2097,7 +2097,7 @@ alchemy_requestPaymasterAndData:
           default: alchemy_requestPaymasterAndData
         params:
           type: array
-          description: Parameters for requesting sponsorship
+          description: Parameters for requesting coverage
           minItems: 1
           maxItems: 1
           items:
@@ -2112,3 +2112,34 @@ alchemy_requestPaymasterAndData:
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperation
                 description: Partial UserOperation object, missing paymasterAndData and signature fields
+
+alchemy_requestGasAndPaymasterAndData:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: alchemy_requestGasAndPaymasterAndData
+        params:
+          type: array
+          description: Parameters for requesting gas and coverage
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              policyId:
+                type: string
+                description: The policy ID
+                default: '69d524a7-e932-4214-8673-dcdcba31bb42'
+              entryPoint:
+                $ref: ./components/schemas.yaml#/EntryPoint
+                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+              dummySignature:
+                type: string
+                description: Dummy signature for the operation. This is useful for estimating gas costs.
+                default: '0xe8fe34b166b64d118dccf44c7198648127bf8a76a48a042862321af6058026d276ca6abb4ed4b60ea265d1e57e33840d7466de75e13f072bbd3b7e64387eebfe1b'
+              userOperation:
+                $ref: ./components/schemas.yaml#/UserOperationPartial
+                description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.

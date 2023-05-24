@@ -5,7 +5,7 @@ components:
       properties:
         max_spend_usd:
           type: string
-          description: Maximum amount of USD that can be spent by the paymaster
+          description: Maximum amount of USD that can be spent by the Gas Manager
           default: '5000.00'
         max_spend_per_sender_usd:
           type: string
@@ -13,7 +13,7 @@ components:
           default: '100.00'
         max_count_global:
           type: string
-          description: Maximum number of transactions that can be sent by the paymaster
+          description: Maximum number of transactions that can be sent by the Gas Manager
           default: '100'
         max_count_per_sender:
           type: string

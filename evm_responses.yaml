@@ -1517,7 +1517,7 @@ alchemy_requestPaymasterAndData:
               type: string
               description: |
                 The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
-                Contains paymaster address, sigTimeRange, and secp256k1 signature.
+                Contains gas manager address, sigTimeRange, and secp256k1 signature.
             error:
               type: object
               description: Error object if the sponsorship request is not approved
@@ -1533,3 +1533,47 @@ alchemy_requestPaymasterAndData:
                   description: Additional error data
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestPaymasterAndData
+
+alchemy_requestGasAndPaymasterAndData:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            paymasterAndData:
+              type: string
+              description: |
+                The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
+                Contains gas manager address, sigTimeRange, and secp256k1 signature.
+            callGasLimit:
+              type: string
+              description: The amount of gas to allocate the main execution call
+            verificationGasLimit:
+              type: string
+              description: The amount of gas to allocate for the verification step
+            preVerificationGas:
+              type: string
+              description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
+            maxFeePerGas:
+              type: string
+              description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
+            maxPriorityFeePerGas:
+              type: string
+              description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
+            error:
+              type: object
+              description: Error object if the gas and sponsorship request is not approved
+              properties:
+                code:
+                  type: integer
+                  description: Error code
+                message:
+                  type: string
+                  description: Error message
+                data:
+                  type: object
+                  description: Additional error data
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_requestGasAndPaymasterAndData

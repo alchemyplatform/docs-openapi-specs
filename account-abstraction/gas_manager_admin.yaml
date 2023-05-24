@@ -1,15 +1,15 @@
 openapi: 3.1.0
 info:
-  title: 🪄 Paymaster Admin API
+  title: 🪄 Gas Manager Admin API
   version: '1.0'
 servers:
   - url: https://manage.alchemy.com/
 paths:
-  '/api/paymaster/policy':
+  '/api/gas-manager/policy':
     post:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Create Policy
-      description: Creates a new paymaster policy with the specified rules. Returns the policy id of a successfully created policy. The newly created policy will be in the “inactive” status.
+      description: Creates a new gas manager policy with the specified rules. Returns the policy id of a successfully created policy. The newly created policy will be in the “inactive” status.
       operationId: create-policy
       requestBody:
         content:
@@ -42,9 +42,9 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policy/{id}':
+  '/api/gas-manager/policy/{id}':
     get:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy
       description: Returns a policy by id.
       operationId: get-policy
@@ -75,7 +75,7 @@ paths:
                         type: string
 
     delete:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Delete Policy
       description: Deletes a policy by id.
       operationId: delete-policy
@@ -91,7 +91,7 @@ paths:
           description: Policy deleted successfully
 
     put:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Replace Policy
       description: Replaces all rules in an existing policy by id.
       operationId: replace-policy
@@ -129,9 +129,9 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policies':
+  '/api/gas-manager/policies':
     get:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Get All Policies
       description: Returns all policies under an app.
       operationId: get-all-policies
@@ -168,9 +168,9 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policy/{id}/status':
+  '/api/gas-manager/policy/{id}/status':
     put:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Update Policy Status
       description: Modifies the status of a policy to either "active" or "inactive".
       operationId: update-policy-status
@@ -210,9 +210,9 @@ paths:
                       msg:
                         type: string
 
-  '/api/paymaster/policy/{id}/stats':
+  '/api/gas-manager/policy/{id}/stats':
     get:
-      tags: ['Paymaster Admin API Endpoints']
+      tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy Stats
       description: Returns stats about a policy specified by ID, including signatures mined, signatures expired, signatures pending, USD mined, and USD pending.
       operationId: get-policy-stats

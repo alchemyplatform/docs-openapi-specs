@@ -96,18 +96,19 @@ Method:
 
 # ================= Account Abstraction =================
 
-UserOperation:
-  title: User Operation
+
+UserOperationPartial:
+  title: User Operation Partial
   type: object
   properties:
     sender:
       $ref: '#/Hex'
       description: The account making the operation
-      default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+      default: '0x0be71941D041a32fe7DF4A61Eb2fCff3b03502C0'
     nonce:
       $ref: '#/Hex'
       description: Anti-replay parameter; also used as the salt for first-time account creation
-      default: '0x1'
+      default: '0x2a'
     initCode:
       $ref: '#/Hex'
       description: The initCode of the account (needed if and only if the account is not yet on-chain and needs to be created)
@@ -116,30 +117,38 @@ UserOperation:
       $ref: '#/Hex'
       description: |
         Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
-      default: '0xb61d27f6000000000000000000000000b856dbd4fa1a79a46d426f537455e7d3e79ab7c4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000004d087d28800000000000000000000000000000000000000000000000000000000'
-    callGasLimit:
-      $ref: '#/Hex'
-      description: The amount of gas to allocate the main execution call
-    verificationGasLimit:
-      $ref: '#/Hex'
-      description: The amount of gas to allocate for the verification step
-    preVerificationGas:
-      $ref: '#/Hex'
-      description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
-    maxFeePerGas:
-      $ref: '#/Hex'
-      description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
-    maxPriorityFeePerGas:
-      $ref: '#/Hex'
-      description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
-    paymasterAndData:
-      $ref: '#/Hex'
-      description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
-      default: '0xc03aac639bb21233e0139381970328db8bceeb67fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
-    signature:
-      $ref: '#/Hex'
-      description: Data passed into the account along with the nonce during the verification step
-      default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
+      default: '0xb61d27f60000000000000000000000000be71941d041a32fe7df4a61eb2fcff3b03502c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000004d087d28800000000000000000000000000000000000000000000000000000000'
+
+UserOperation:
+  title: User Operation
+  type: object
+  allOf:
+    - $ref: '#/UserOperationPartial'
+    - type: object
+      properties:
+        signature:
+          $ref: '#/Hex'
+          description: Data passed into the account along with the nonce during the verification step
+          default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
+        callGasLimit:
+          $ref: '#/Hex'
+          description: The amount of gas to allocate the main execution call
+        verificationGasLimit:
+          $ref: '#/Hex'
+          description: The amount of gas to allocate for the verification step
+        preVerificationGas:
+          $ref: '#/Hex'
+          description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
+        maxFeePerGas:
+          $ref: '#/Hex'
+          description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
+        maxPriorityFeePerGas:
+          $ref: '#/Hex'
+          description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
+        paymasterAndData:
+          $ref: '#/Hex'
+          description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
+          default: '0xc03aac639bb21233e0139381970328db8bceeb67fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
 
 UserOperationReceipt:
   type: object
