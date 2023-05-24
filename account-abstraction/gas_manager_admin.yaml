@@ -22,7 +22,7 @@ paths:
                   description: String ID of the app
                   default: '6d834x9k1yh4dx6z'
                 rules:
-                  $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions
+                  $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions, use "./schemas.yaml#/components/schemas/Rules" to update from CLI
       responses:
         '200':
           description: Policy created successfully
@@ -35,7 +35,7 @@ paths:
                     type: object
                     properties:
                       policy:
-                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions
+                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions, use "./schemas.yaml#/components/schemas/Policy" to update from CLI
                   error:
                     type: object
                     properties:
@@ -67,7 +67,7 @@ paths:
                     type: object
                     properties:
                       policy:
-                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions
+                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions, use "./schemas.yaml#/components/schemas/Policy" to update from CLI
                   error:
                     type: object
                     properties:
@@ -109,7 +109,7 @@ paths:
               type: object
               properties:
                 rules:
-                  $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions
+                  $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions, use "./schemas.yaml#/components/schemas/Rules" to update from CLI
       responses:
         '200':
           description: Policy rules replaced successfully
@@ -122,7 +122,7 @@ paths:
                     type: object
                     properties:
                       policy:
-                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions
+                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions, use "./schemas.yaml#/components/schemas/Policy" to update from CLI
                   error:
                     type: object
                     properties:
@@ -161,7 +161,7 @@ paths:
                       policies:
                         type: array
                         items:
-                          $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions
+                          $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions, use "./schemas.yaml#/components/schemas/Policy" to update from CLI
                   error:
                     type: object
                     properties:
@@ -203,7 +203,7 @@ paths:
                     type: object
                     properties:
                       policy:
-                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions
+                        $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions, use "./schemas.yaml#/components/schemas/Policy" to update from CLI
                   error:
                     type: object
                     properties:
