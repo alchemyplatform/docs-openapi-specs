@@ -40,3 +40,9 @@ jobs:
         uses: readmeio/rdme@7.5.0
         with:
           rdme: openapi transfers/alchemy_getAssetTransfers.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.TRANSFERS_API_ID }} 
+
+      # Update Paymaster Admin API in docs
+      - name: GitHub action to update Gas Manager Admin API
+        uses: readmeio/rdme@7.5.0
+        with:
+          rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.GAS_MANAGER_ADMIN_API_ID }}
