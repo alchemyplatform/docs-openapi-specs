@@ -740,7 +740,7 @@ alchemy_getTokenBalances:
             1. String, 20 Bytes - The address to check token balances for.
             2. OneOf the following token specifications, defaults to `erc20`
               - **[omitted below]** Array - A list of contract addresses. Suggested limit: 100 addresses
-              - The String `DEFAULT_TOKENS` - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
+              - **[Deprecated - use `erc20` instead]** The String `DEFAULT_TOKENS` - denotes a query for the top 100 tokens by 24 hour volume - only available on Mainnet for Ethereum, Polygon, and Arbitrum.
               - The String `erc20` - denotes the set of erc20 tokens that the address has ever held.
             3. **[omitted below]**  Object `pageKey` - A string address used for pagination. If more results are available, a pageKey will be returned in the response.
           minItems: 1
