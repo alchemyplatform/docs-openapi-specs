@@ -2412,6 +2412,7 @@ components:
         #  description: 'String - Token balance'
     acquiredAt:
       type: object
+      description: 'Only present if the request specified `orderBy=transferTime`.'
       properties:
         blockTimestamp:
           type: string
