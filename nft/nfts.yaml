@@ -2377,6 +2377,8 @@ components:
           $ref: '#/components/schemas/contractMetadata'
         spamInfo:
           $ref: '#/components/schemas/spamInfo'
+        acquiredAt:
+          $ref: '#/components/schemas/acquiredAt'
     ownedNFTv3:
       type: object
       description: 'The object that represents an NFT and has all data corresponding to that NFT'
@@ -2403,9 +2405,21 @@ components:
         timeLastUpdated:
           type: string
           description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+        acquiredAt:
+          $ref: '#/components/schemas/acquiredAt'
         #balance:
         #  type: string
         #  description: 'String - Token balance'
+    acquiredAt:
+      type: object
+      description: 'Only present if the request specified `orderBy=transferTime`.'
+      properties:
+        blockTimestamp:
+          type: string
+          description: 'Block timestamp of the block where the NFT was most recently acquired.'
+        blockNumber:
+          type: string
+          description: 'Block number of the block where the NFT was most recently acquired.'
     opensea:
       type: object
       properties:
