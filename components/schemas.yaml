@@ -98,7 +98,7 @@ Method:
 
 
 UserOperationPartial:
-  title: User Operation Partial
+  title: User Operation ( missing signature, paymasterData, and gas fields )
   type: object
   properties:
     sender:
@@ -119,17 +119,13 @@ UserOperationPartial:
         Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
       default: '0xb61d27f60000000000000000000000000be71941d041a32fe7df4a61eb2fcff3b03502c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000004d087d28800000000000000000000000000000000000000000000000000000000'
 
-UserOperation:
-  title: User Operation
+UserOperationPartialWithGasFields:
+  title: User Operation ( missing signature and paymasterData ) 
   type: object
   allOf:
     - $ref: '#/UserOperationPartial'
     - type: object
       properties:
-        signature:
-          $ref: '#/Hex'
-          description: Data passed into the account along with the nonce during the verification step
-          default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
         callGasLimit:
           $ref: '#/Hex'
           description: The amount of gas to allocate the main execution call
@@ -145,6 +141,18 @@ UserOperation:
         maxPriorityFeePerGas:
           $ref: '#/Hex'
           description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
+
+UserOperation:
+  title: User Operation
+  type: object
+  allOf:
+    - $ref: '#/UserOperationPartialWithGasFields'
+    - type: object
+      properties:
+        signature:
+          $ref: '#/Hex'
+          description: Data passed into the account along with the nonce during the verification step
+          default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
         paymasterAndData:
           $ref: '#/Hex'
           description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
