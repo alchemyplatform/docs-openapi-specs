@@ -2112,7 +2112,7 @@ alchemy_requestPaymasterAndData:
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
               userOperation:
-                $ref: ./components/schemas.yaml#/UserOperation
+                $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
                 description: Partial UserOperation object, missing paymasterAndData and signature fields
 
 alchemy_requestGasAndPaymasterAndData:
