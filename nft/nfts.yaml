@@ -733,6 +733,8 @@ paths:
           required: true
         - $ref: '#/components/schemas/tokenId'
           required: true
+        - $ref: '#/components/schemas/refreshCache'
+          description: 'Boolean - If true, will refresh the cache for the given token. If false, will use the cached data. Defaults to false.'
       x-readme:
         samples-languages:
           - curl
@@ -801,6 +803,8 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
           required: true
+        - $ref: '#/components/schemas/refreshCache'
+          description: 'Boolean - If true, will refresh the cache for the given NFT collection. If false, will use the cached data. Defaults to false.'
       x-readme:
         samples-languages:
           - curl
@@ -1488,6 +1492,8 @@ paths:
           required: true
         - $ref: '#/components/schemas/tokenId'
           required: true
+        - $ref: '#/components/schemas/refreshCache'
+          description: 'Boolean - If true, will refresh the cache for the given token. If false, will use the cached data. Defaults to false.'
       x-readme:
         samples-languages:
           - javascript
@@ -1553,6 +1559,8 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
           required: true
+        - $ref: '#/components/schemas/refreshCache'
+          description: 'Boolean - If true, will refresh the cache for the given NFT collection. If false, will use the cached data. Defaults to false.'
       x-readme:
         samples-languages:
           - javascript
