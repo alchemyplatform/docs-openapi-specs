@@ -1812,6 +1812,40 @@ paths:
                 type: string
                 description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
       operationId: reportSpam-v3
+  '/v3/{apiKey}/refreshNftMetadata':
+    get:
+      summary: refreshNftMetadata
+      description: Submit a request that Alchemy refresh the cached NFT metadata for a particular token.
+      tags: ['NFT API V3 Methods (BETA)']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/address'
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: 'If the token is successfully queued for ingestion the value will be "Queued"'
+                  estimatedMsToRefresh:
+                    type: string
+                    description: 'Estimated time until we are done refreshing metadata for this token'
+              examples:
+                byDefault:
+                  $ref: '#/components/schemas/refreshNftMetadata_response'
+      operationId: refreshNftMetadata-v3
 ## End of v3 methods
 
 components:
@@ -3505,4 +3539,12 @@ components:
             "blockTimestamp": "2023-04-21T01:25:59Z"
           },
           "pageKey": "88434286-7eaa-472d-8739-32a0497c2a18"
+        }
+    # === getNFTs v3 example responses ===
+    refreshNftMetadata_response:
+      summary: 'Successful Response'
+      value: >
+        {
+          "status": "Queued",
+          "estimatedMsToRefresh": 10000
         }
