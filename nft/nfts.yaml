@@ -1819,7 +1819,7 @@ paths:
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/address'
+        - $ref: '#/components/schemas/contractAddress'
         - $ref: '#/components/schemas/tokenId'
           required: true
       x-readme:
