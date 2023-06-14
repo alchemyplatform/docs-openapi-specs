@@ -1828,6 +1828,20 @@ paths:
           - curl
           - python
           - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contractAddress:
+                  type: string
+                  description: Contract address of the token you want to refresh.
+                  $ref: '#/components/schemas/contractAddress'
+                tokenId:
+                  type: string
+                  description: Token ID of the token you want to refresh. Must belong to the contract address.
+                  $ref: '#/components/schemas/tokenId'
       responses:
         '200':
           description: ''
