@@ -1819,9 +1819,6 @@ paths:
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-        - $ref: '#/components/schemas/tokenId'
-          required: true
       x-readme:
         samples-languages:
           - javascript
@@ -1838,10 +1835,12 @@ paths:
                   type: string
                   description: Contract address of the token you want to refresh.
                   $ref: '#/components/schemas/contractAddress'
+                  default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
                 tokenId:
                   type: string
                   description: Token ID of the token you want to refresh. Must belong to the contract address.
                   $ref: '#/components/schemas/tokenId'
+                  default: '44'
       responses:
         '200':
           description: ''
