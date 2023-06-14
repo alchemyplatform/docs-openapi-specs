@@ -1813,7 +1813,7 @@ paths:
                 description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
       operationId: reportSpam-v3
   '/v3/{apiKey}/refreshNftMetadata':
-    get:
+    post:
       summary: refreshNftMetadata
       description: Submit a request that Alchemy refresh the cached NFT metadata for a particular token.
       tags: ['NFT API V3 Methods (BETA)']
