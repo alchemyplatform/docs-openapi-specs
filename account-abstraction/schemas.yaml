@@ -11,19 +11,19 @@ components:
           type: string
           description: Maximum amount of USD that can be spent by a single sender
           default: '100.00'
-        maxCountGlobal:
+        maxCount:
           type: string
-          description: Maximum number of transactions that can be sent by the Gas Manager
+          description: Maximum number of operations that can be sponsored through the policy
           default: '100'
         maxCountPerSender:
           type: string
-          description: Maximum number of transactions that can be sent by a single sender
+          description: Maximum number of operations that can be sponsored for a single sender through the policy
           default: '2'
         senderAllowlist:
           type: array
           items:
             type: string
-          description: List of addresses that are allowed to send transactions
+          description: List of addresses that are allowed to send operations
           default:
             [
               '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
@@ -33,17 +33,17 @@ components:
           type: array
           items:
             type: string
-          description: List of addresses that are not allowed to send transactions
+          description: List of addresses that are not allowed to send operations
           default:
             [
               '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
               '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
             ]
-        startTime:
+        startTimeUnix:
           type: string
           description: Unix timestamp of when the policy starts
           default: '1674228753'
-        endTime:
+        endTimeUnix:
           type: string
           description: Unix timestamp of when the policy ends
           default: '1679340742'
@@ -54,9 +54,9 @@ components:
         sponsorshipExpiryMs:
           type: string
           description: Milliseconds from signing that the sponsorship expires
-          default: '86400000'
+          default: '600000'
       required:
-        - startTime
+        - startTimeUnix
         - sponsorshipExpiryMs
 
     Policy:
