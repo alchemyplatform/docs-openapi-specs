@@ -29,7 +29,7 @@ paths:
                   default: 'SPONSORSHIP'
                 appId:
                   type: string
-                  description: ID of the app to which the newly created policy will belong
+                  description: ID for the app associated with the new policy
                   default: '6d834x9k1yh4dx6z'
                 rules:
                   description: Rules for the policy
