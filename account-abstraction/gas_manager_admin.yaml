@@ -207,6 +207,7 @@ paths:
               type: object
               properties:
                 status:
+                  description: The new status of the policy
                   type: string
                   enum: [active, inactive]
                   default: active
