@@ -3,23 +3,23 @@ components:
     Rules:
       type: object
       properties:
-        max_spend_usd:
+        maxSpendUsd:
           type: string
           description: Maximum amount of USD that can be spent by the Gas Manager
           default: '5000.00'
-        max_spend_per_sender_usd:
+        maxSpendPerSenderUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single sender
           default: '100.00'
-        max_count_global:
+        maxCountGlobal:
           type: string
           description: Maximum number of transactions that can be sent by the Gas Manager
           default: '100'
-        max_count_per_sender:
+        maxCountPerSender:
           type: string
           description: Maximum number of transactions that can be sent by a single sender
           default: '2'
-        sender_allowlist:
+        senderAllowlist:
           type: array
           items:
             type: string
@@ -29,7 +29,7 @@ components:
               '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
               '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
             ]
-        sender_blocklist:
+        senderBlocklist:
           type: array
           items:
             type: string
@@ -39,34 +39,34 @@ components:
               '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
               '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
             ]
-        start_time:
+        startTime:
           type: string
           description: Unix timestamp of when the policy starts
           default: '1674228753'
-        end_time:
+        endTime:
           type: string
           description: Unix timestamp of when the policy ends
           default: '1679340742'
-        max_spend_per_uo_usd:
+        maxSpendPerUoUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single user operation
           default: '20.00'
-        sponsorship_expiry_ms:
+        sponsorshipExpiryMs:
           type: string
           description: Milliseconds from signing that the sponsorship expires
           default: '86400000'
       required:
-        - start_time
-        - sponsorship_expiry_ms
+        - startTime
+        - sponsorshipExpiryMs
 
     Policy:
       type: object
       properties:
-        policy_id:
+        policyId:
           type: string
           description: String ID of the policy
           default: '0x1234567890abcdef'
-        app_id:
+        appId:
           type: string
           description: String ID of the app
           default: '0x1234567890abcdef'
@@ -77,7 +77,7 @@ components:
         rules:
           $ref: '#/components/schemas/Rules'
       required:
-        - policy_id
-        - app_id
+        - policyId
+        - appId
         - status
         - rules
