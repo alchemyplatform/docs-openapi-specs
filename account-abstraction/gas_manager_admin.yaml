@@ -11,6 +11,8 @@ paths:
       summary: Create Policy
       description: Creates a new gas manager policy with the specified rules. Returns the policy id of a successfully created policy. The newly created policy will be in the “inactive” status.
       operationId: create-policy
+      security:
+        - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -49,6 +51,8 @@ paths:
       summary: Get Policy
       description: Returns a policy by id.
       operationId: get-policy
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
           description: ID of the policy to be fetched
@@ -81,6 +85,8 @@ paths:
       summary: Delete Policy
       description: Deletes a policy by id.
       operationId: delete-policy
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
           description: ID of the policy to be deleted
@@ -98,6 +104,8 @@ paths:
       summary: Replace Policy
       description: Replaces all rules in an existing policy by id.
       operationId: replace-policy
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
           description: ID of the policy to be replaced
@@ -139,6 +147,8 @@ paths:
       summary: Get All Policies
       description: Returns all policies under an app.
       operationId: get-all-policies
+      security:
+        - BearerAuth: []
       parameters:
         - name: app
           in: query
@@ -180,6 +190,8 @@ paths:
       summary: Update Policy Status
       description: Modifies the status of a policy to either "active" or "inactive".
       operationId: update-policy-status
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
           description: ID of the policy to be updated
@@ -223,6 +235,8 @@ paths:
       summary: Get Policy Stats
       description: Returns stats about a policy specified by ID, including signatures mined, signatures expired, signatures pending, USD mined, and USD pending.
       operationId: get-policy-stats
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
           description: ID of the policy to be fetched
@@ -262,3 +276,10 @@ paths:
                     properties:
                       msg:
                         type: string
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
