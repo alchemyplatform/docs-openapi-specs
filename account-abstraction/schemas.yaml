@@ -34,11 +34,6 @@ components:
           items:
             type: string
           description: List of addresses that are not allowed to send operations
-          default:
-            [
-              '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-              '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
-            ]
         startTimeUnix:
           type: string
           description: Unix timestamp of when the policy starts

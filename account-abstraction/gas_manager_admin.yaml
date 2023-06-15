@@ -19,6 +19,14 @@ paths:
             schema:
               type: object
               properties:
+                policyName:
+                  type: string
+                  description: Name of the policy
+                  default: 'My Policy'
+                policyType:
+                  type: string
+                  description: Type of the policy
+                  default: 'SPONSORSHIP'
                 appId:
                   type: string
                   description: ID of the app to which the newly created policy will belong
@@ -120,6 +128,10 @@ paths:
             schema:
               type: object
               properties:
+                policyName:
+                  type: string
+                  description: Name of the policy
+                  default: 'My Policy'
                 rules:
                   $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions, use "./schemas.yaml#/components/schemas/Rules" to update from CLI
       responses:
