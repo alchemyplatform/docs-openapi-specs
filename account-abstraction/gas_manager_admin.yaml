@@ -3,25 +3,36 @@ info:
   title: 🪄 Gas Manager Admin API
   version: '1.0'
 servers:
-  - url: https://manage.alchemy.com/
+  - url: https://manage.g.alchemy.com/
 paths:
-  '/api/gas-manager/policy':
+  '/api/gasManager/policy':
     post:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Create Policy
       description: Creates a new gas manager policy with the specified rules. Returns the policy id of a successfully created policy. The newly created policy will be in the “inactive” status.
       operationId: create-policy
+      security:
+        - BearerAuth: []
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                app_id:
+                policyName:
                   type: string
-                  description: String ID of the app
+                  description: Name of the policy
+                  default: 'My Policy'
+                policyType:
+                  type: string
+                  description: Type of the policy
+                  default: 'SPONSORSHIP'
+                appId:
+                  type: string
+                  description: ID for the app associated with the new policy
                   default: '6d834x9k1yh4dx6z'
                 rules:
+                  description: Rules for the policy
                   $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions, use "./schemas.yaml#/components/schemas/Rules" to update from CLI
       responses:
         '200':
@@ -42,14 +53,17 @@ paths:
                       msg:
                         type: string
 
-  '/api/gas-manager/policy/{id}':
+  '/api/gasManager/policy/{id}':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy
       description: Returns a policy by id.
       operationId: get-policy
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
+          description: ID of the policy to be fetched
           in: path
           required: true
           schema:
@@ -79,8 +93,11 @@ paths:
       summary: Delete Policy
       description: Deletes a policy by id.
       operationId: delete-policy
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
+          description: ID of the policy to be deleted
           in: path
           required: true
           schema:
@@ -95,8 +112,11 @@ paths:
       summary: Replace Policy
       description: Replaces all rules in an existing policy by id.
       operationId: replace-policy
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
+          description: ID of the policy to be replaced
           in: path
           required: true
           schema:
@@ -108,6 +128,10 @@ paths:
             schema:
               type: object
               properties:
+                policyName:
+                  type: string
+                  description: Name of the policy
+                  default: 'My Policy'
                 rules:
                   $ref: './account-abstraction/schemas.yaml#/components/schemas/Rules' # path for using github actions, use "./schemas.yaml#/components/schemas/Rules" to update from CLI
       responses:
@@ -129,19 +153,23 @@ paths:
                       msg:
                         type: string
 
-  '/api/gas-manager/policies':
+  '/api/gasManager/policies':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get All Policies
       description: Returns all policies under an app.
       operationId: get-all-policies
+      security:
+        - BearerAuth: []
       parameters:
         - name: app
           in: query
+          description: An optional app id to filter results by policies associated with that app.
           schema:
             type: string
             default: '6d834x9k1yh4dx6z'
         - name: after
+          description: A base64 url encoded string of the policy UUID. Should be opaque to the end user.
           in: query
           schema:
             type: string
@@ -168,14 +196,17 @@ paths:
                       msg:
                         type: string
 
-  '/api/gas-manager/policy/{id}/status':
+  '/api/gasManager/policy/{id}/status':
     put:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Update Policy Status
       description: Modifies the status of a policy to either "active" or "inactive".
       operationId: update-policy-status
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
+          description: ID of the policy to be updated
           in: path
           required: true
           schema:
@@ -188,6 +219,7 @@ paths:
               type: object
               properties:
                 status:
+                  description: The new status of the policy
                   type: string
                   enum: [active, inactive]
                   default: active
@@ -210,14 +242,17 @@ paths:
                       msg:
                         type: string
 
-  '/api/gas-manager/policy/{id}/stats':
+  '/api/gasManager/policy/{id}/stats':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy Stats
       description: Returns stats about a policy specified by ID, including signatures mined, signatures expired, signatures pending, USD mined, and USD pending.
       operationId: get-policy-stats
+      security:
+        - BearerAuth: []
       parameters:
         - name: id
+          description: ID of the policy to be fetched
           in: path
           required: true
           schema:
@@ -234,19 +269,19 @@ paths:
                   data:
                     type: object
                     properties:
-                      signatures_mined:
+                      signaturesMined:
                         type: integer
                         default: 10
-                      signatures_expired:
+                      signaturesExpired:
                         type: integer
                         default: 1
-                      signatures_pending:
+                      signaturesPending:
                         type: integer
                         default: 1
-                      usd_pending:
+                      usdPending:
                         type: string
                         default: '25.03'
-                      usd_mined:
+                      usdMined:
                         type: string
                         default: '260.32'
                   error:
@@ -254,3 +289,10 @@ paths:
                     properties:
                       msg:
                         type: string
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
