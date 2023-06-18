@@ -157,24 +157,33 @@ paths:
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get All Policies
-      description: Returns all policies under an app.
+      description: Returns all policies under an app. The results are paginated.
       operationId: get-all-policies
       security:
         - BearerAuth: []
       parameters:
-        - name: app
+        - name: appId
           in: query
           description: An optional app id to filter results by policies associated with that app.
           schema:
             type: string
             default: '6d834x9k1yh4dx6z'
-        - name: after
-          description: A base64 url encoded string of the policy UUID. Should be opaque to the end user.
+        - name: limit
           in: query
+          description: An optional parameter to limit the number of results per page.
+          schema:
+            type: integer
+            default: 10
+        - name: before
+          in: query
+          description: String - used for pagination. If there are previous results, `before` field is returned in the response and can be passed in the request to fetch the previous page.
           schema:
             type: string
-            format: base64url
-            default: 'a844e221-3c13-40c6-95db-d2db390e14b5'
+        - name: after
+          in: query
+          description: String - used for pagination. If more results are available `after` field is returned in the response and can be passed in the request to fetch the next page.
+          schema:
+            type: string
       responses:
         '200':
           description: Policies fetched successfully
@@ -190,6 +199,12 @@ paths:
                         type: array
                         items:
                           $ref: './account-abstraction/schemas.yaml#/components/schemas/Policy' # path for using github actions, use "./schemas.yaml#/components/schemas/Policy" to update from CLI
+                      before:
+                        type: string
+                        description: String - used for pagination. If there are previous results, `before` field is returned in the response and can be passed in the request to fetch the previous page.
+                      after:
+                        type: string
+                        description: String - used for pagination. If more results are available `after` field is returned in the response and can be passed in the request to fetch the next page.
                   error:
                     type: object
                     properties:
