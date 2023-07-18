@@ -46,3 +46,63 @@ jobs:
         uses: readmeio/rdme@7.5.0
         with:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.GAS_MANAGER_ADMIN_API_ID }}
+
+      # Update Token APIs in docs
+      - name: GitHub action to update Token API
+        uses: readmeio/rdme@7.5.0
+        with:
+          rdme: openapi token/alchemy_getTokenAllowance.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ALCHEMY_GETTOKENALLOWANCE_ID }}
+          rdme: openapi token/alchemy_getTokenMetadata.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ALCHEMY_GETTOKENMETADATA_ID }}
+          rdme: openapi token/alchemy_getTokenBalances.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ALCHEMY_GETTOKENBALANCES_ID }}
+
+      # Update starknet APIs in docs 
+      # - name: GitHub action to update starknet APIs
+      #   uses: readmeio/rdme@7.5.0
+      #   with: 
+      #     rdme: openapi starknet/starknet_addDeclareTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_ADDDECLARETRANSACTION_ID }}        
+      #     rdme: openapi starknet/starknet_getClassAt.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETCLASSAT_ID }}
+      #     rdme: openapi starknet/starknet_addDeployAccountTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_ADDDEPLOYACCOUNTTRANSACTION_ID }}     
+      #     rdme: openapi starknet/starknet_getClassHashAt.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETCLASSHASHAT_ID }}
+      #     rdme: openapi starknet/starknet_addInvokeTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_ADDINVOKETRANSACTION_ID }}            
+      #     rdme: openapi starknet/starknet_getEvents.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETEVENTS_ID }}
+      #     rdme: openapi starknet/starknet_blockHashAndNumber.yaml --key=${{ secrets.README_API_KEY }}  --id=${{ secrets.starknet_BLOCKHASHANDNUMBER_ID }}             
+      #     rdme: openapi starknet/starknet_getNonce.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETNONCE_ID }}
+      #     rdme: openapi starknet/starknet_blockNumber.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_BLOCKNUMBER_ID }}                     
+      #     rdme: openapi starknet/starknet_getStateUpdate.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETSTATEUPDATE_ID }}
+      #     rdme: openapi starknet/starknet_call.yaml --key=${{ secrets.README_API_KEY }}  --id=${{ secrets.starknet_CALL_ID }}                           
+      #     rdme: openapi starknet/starknet_getStorageAt.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETSTORAGEAT_ID }}
+      #     rdme: openapi starknet/starknet_chainId.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_CHAINID_ID }}                          
+      #     rdme: openapi starknet/starknet_getTransactionByBlockIdAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETTRANSACTIONBYBLOCKIDANDINDEX_ID }}
+      #     rdme: openapi starknet/starknet_estimateFee.yaml  --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_ESTIMATEFEE_ID }}                     
+      #     rdme: openapi starknet/starknet_getTransactionByHash.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETTRANSACTIONBYHASH_ID }}
+      #     rdme: openapi starknet/starknet_getBlockTransactionCount.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETBLOCKTRANSACTIONCOUNT_ID }}         
+      #     rdme: openapi starknet/starknet_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETTRANSACTIONRECEIPT_ID }}
+      #     rdme: openapi starknet/starknet_getBlockWithTxHashes.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETBLOCKWITHTXHASHES_ID }}             
+      #     rdme: openapi starknet/starknet_pendingTransactions.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_PENDINGTRANSACTIONS_ID }}
+      #     rdme: openapi starknet/starknet_getBlockWithTxs.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETBLOCKWITHTXS_ID }}               
+      #     rdme: openapi starknet/starknet_syncing.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_SYNCING_ID }}
+      #     rdme: openapi starknet/starknet_getClass.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.starknet_GETCLASS_ID }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
