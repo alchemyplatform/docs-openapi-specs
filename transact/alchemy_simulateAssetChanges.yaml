@@ -13,6 +13,8 @@ servers:
           - polygon-mumbai
           - arb-mainnet
           - arb-goerli
+          - opt-mainnet
+          - opt-goerli
         default: eth-mainnet
 x-readme:
   samples-languages:
