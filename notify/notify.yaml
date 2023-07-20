@@ -12,11 +12,12 @@ paths:
       tags: ['Notify API Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/create_webhook'
+              $ref: '#/components/schemas/create_custom_webhook'
       x-readme:
         samples-languages:
           - curl
@@ -549,6 +550,13 @@ components:
       description: 'ID of the address activity webhook.'
       in: query
       required: true
+    variable:
+      name: variable
+      schema:
+        type: string
+      description: 'String denoting a Custom Webhook variable'
+      in: query
+      required: true
     limit:
       name: limit
       schema:
@@ -623,6 +631,14 @@ components:
           description: list of nft metadata filter objects to track metadata updates for
           items:
             $ref: '#/components/schemas/nft_metadata_filter_object'
+    create_custom_webhook:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: set
+          description: 'A variable defined as a set of addresses'
     update_webhook_addresses:
       type: object
       required:
