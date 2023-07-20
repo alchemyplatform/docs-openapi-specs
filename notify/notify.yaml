@@ -5,6 +5,51 @@ info:
 servers:
   - url: 'https://dashboard.alchemy.com/api'
 paths:
+  graphql/variable/:
+    post:
+      summary: Create a Custom Webhook variable
+      description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
+      tags: ['Notify API Methods']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_webhook'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
+      responses:
+        '200':
+          description: Returns list of webhook objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_object_response'
+      operationId: team-webhooks
   /team-webhooks:
     get:
       summary: Get all webhooks
