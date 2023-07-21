@@ -644,7 +644,7 @@ components:
       in: query
       required: true
     variable:
-      name: variable
+      - name: variable
       schema:
         type: string
       description: 'String denoting a Custom Webhook variable'
