@@ -767,8 +767,11 @@ components:
         - items
       properties:
         items:
-          type: array of strings
-          description: 'A variable defined as a set of addresses'
+          type: array
+          description: 'A variable defined as a set of addresses, use [] if none.'
+          default: []
+          items:
+            type: string
     update_webhook_addresses:
       type: object
       required:
