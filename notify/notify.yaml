@@ -39,11 +39,11 @@ paths:
         '200':
           description:  OK- Successful query of Custom Webhook variable
           content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/custom_webhook_object_response'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/custom_webhook_object_response'
         '404':
           description: Not found- The requested resource could not be found
         '500':
