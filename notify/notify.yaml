@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'https://dashboard.alchemy.com/api'
 paths:
-  graphql/variable/:
+  /graphql/variable/:
     post:
       summary: Create a Custom Webhook variable
       description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
