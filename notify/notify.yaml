@@ -819,10 +819,14 @@ components:
           type: set
           default: []
           description: 'Set of addresses to be ADDED to a given Custom Webhook variable'
+          items:
+            type: string
         remove:
           type: set
           default: []
           description: 'Set of addresses to be REMOVED for a given Custom Webhook variable'
+          items:
+            type: string
     update_webhook_nft_metadata_filters:
       type: object
       required:
