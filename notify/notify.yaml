@@ -6,7 +6,7 @@ servers:
   - url: 'https://dashboard.alchemy.com/api'
 paths:
   /graphql/variable/:
-    post:
+    put:
       summary: Create Custom Webhook Variable
       description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
       tags: ['Custom Webhook API Methods']
@@ -42,7 +42,7 @@ paths:
               alchemy.notify.getAllWebhooks().then(console.log);
       responses:
         '201':
-          description:  OK- Successful POST creation of a Custom Webhook variable
+          description:  OK- Successful PUT creation of a Custom Webhook variable
         '400':
           description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
         '500':
