@@ -645,11 +645,11 @@ components:
       required: true
     variable:
       - name: variable
-      schema:
+      - schema:
         type: string
-      description: 'String denoting a Custom Webhook variable'
-      in: path
-      required: true
+      - description: 'String denoting a Custom Webhook variable'
+      - in: path
+      - required: true
     limit:
       name: limit
       schema:
