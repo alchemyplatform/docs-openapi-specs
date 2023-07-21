@@ -61,11 +61,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/update_webhook_nft_filters'
+              $ref: '#/components/schemas/update_custom_webhook_variable'
       x-readme:
         samples-languages:
           - curl
-          - javascript
           - python
         code-samples:
           - language: javascript
@@ -607,7 +606,7 @@ components:
       in: query
       required: true
     variable:
-      name: 
+      name: variable
       schema:
         type: string
       description: 'String denoting a Custom Webhook variable'
@@ -735,6 +734,17 @@ components:
           description: 'List of addresses to remove, use [] if none.'
           items:
             $ref: '#/components/schemas/nft_filter_object'
+    update_custom_webhook_variable:
+      type: object
+      properties:
+        add:
+          type: set
+          default: []
+          description: 'Set of addresses to be ADDED to a given Custom Webhook variable'
+        remove:
+          type: set
+          default: []
+          description: 'Set of addresses to be REMOVED for a given Custom Webhook variable'
     update_webhook_nft_metadata_filters:
       type: object
       required:
