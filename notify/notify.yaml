@@ -7,7 +7,7 @@ servers:
 paths:
   /graphql/variable/{variable}:
     get:
-      summary: Get Variable Elements
+      summary: Read Variable Elements
       description: This endpoint allows you to read the values within a Custom Webhook variable
       tags: ['Custom Webhook API Methods']
       parameters:
