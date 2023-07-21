@@ -7,7 +7,7 @@ servers:
 paths:
   /graphql/variable/:
     post:
-      summary: Create a Custom Webhook Variable
+      summary: Create Custom Webhook Variable
       description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
       tags: ['Custom Webhook API Methods']
       parameters:
@@ -41,22 +41,21 @@ paths:
 
               alchemy.notify.getAllWebhooks().then(console.log);
       responses:
-        '200':
-          description: Returns list of webhook objects.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/webhook_object_response'
+        '201':
+          description:  OK: Successful POST creation of a Custom Webhook variable
+        '400':
+          description: Bad Request: The server cannot understand the request sent by the client, due to a malformed syntax or missing information
+        '500':
+          description: Internal Server Error: Try again
       operationId: create-custom-webhook
   /graphql/variable/update/:
     patch:
-      summary: Update elements within Custom Webhook variables
+      summary: Update Custom Webhook variables
       description: 'Add and remove elements within a Custom Webhook variable'
       tags: ['Custom Webhook API Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
       requestBody:
         content:
           application/json:
@@ -100,11 +99,13 @@ paths:
               });
       responses:
         '200':
-          description: 'Returns empty object.'
-          content:
-            application/json:
-              schema:
-                type: object
+          description:  OK: Successful update to Custom Webhook variable
+        '400':
+          description: Bad Request: The server cannot understand the request sent by the client, due to a malformed syntax or missing information
+        '401':
+          description: Unauthorized: missing or invalid authentication credentials 
+        '500':
+          description: Internal Server Error: Try again
       operationId: update-custom-webhook-variable
   /team-webhooks:
     get:
