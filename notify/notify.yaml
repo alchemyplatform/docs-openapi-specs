@@ -7,9 +7,9 @@ servers:
 paths:
   /graphql/variable/:
     post:
-      summary: Create a Custom Webhook variable
+      summary: Create a Custom Webhook Variable
       description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
-      tags: ['Notify API Methods']
+      tags: ['Custom Webhook API Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/variable'
@@ -21,7 +21,6 @@ paths:
       x-readme:
         samples-languages:
           - curl
-          - javascript
           - python
         code-samples:
           - language: javascript
@@ -51,6 +50,63 @@ paths:
                 items:
                   $ref: '#/components/schemas/webhook_object_response'
       operationId: create-custom-webhook
+  /graphql/variable/update/:
+    patch:
+      summary: Update elements within Custom Webhook variables
+      description: 'Add and remove elements within a Custom Webhook variable'
+      tags: ['Custom Webhook API Methods']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_nft_filters'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating NFT Filter Webhook: add/remove filters
+              await alchemy.notify.updateWebhook("wh_zyhqo5im08n6ougk", {
+                addFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "101",
+                  },
+                ],
+                removeFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "24",
+                  },
+                ],
+              });
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-custom-webhook-variable
   /team-webhooks:
     get:
       summary: Get all webhooks
@@ -551,7 +607,7 @@ components:
       in: query
       required: true
     variable:
-      name: variable
+      name: 
       schema:
         type: string
       description: 'String denoting a Custom Webhook variable'
