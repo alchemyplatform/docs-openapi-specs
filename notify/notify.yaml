@@ -50,7 +50,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/webhook_object_response'
-      operationId: team-webhooks
+      operationId: create-custom-webhook
   /team-webhooks:
     get:
       summary: Get all webhooks
