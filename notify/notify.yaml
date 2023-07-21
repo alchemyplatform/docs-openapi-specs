@@ -767,7 +767,7 @@ components:
         - items
       properties:
         items:
-          type: set
+          type: array of strings
           description: 'A variable defined as a set of addresses'
     update_webhook_addresses:
       type: object
