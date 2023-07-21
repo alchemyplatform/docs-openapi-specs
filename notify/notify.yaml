@@ -7,7 +7,7 @@ servers:
 paths:
   /graphql/variable/{variable}:
     get:
-      summary: Get Custom Webhook Variable
+      summary: Get Variable Elements
       description: This endpoint allows you to read the values within a Custom Webhook variable
       tags: ['Custom Webhook API Methods']
       parameters:
@@ -44,7 +44,7 @@ paths:
           description: Internal Server Error- Try again
       operationId: read-custom-webhook-variable
     put:
-      summary: Create Custom Webhook Variable
+      summary: Create a Variable
       description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
       tags: ['Custom Webhook API Methods']
       parameters:
@@ -85,9 +85,46 @@ paths:
         '500':
           description: Internal Server Error- Try again
       operationId: create-custom-webhook-variable
+    delete:
+      summary: Delete a Variable
+      description: This endpoint allows you to delete a Custom Webhook variable
+      tags: ['Custom Webhook API Methods']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
+      x-readme:
+        samples-languages:
+          - curl
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
+      responses:
+        '201':
+          description:  OK- Successful deletion of a Custom Webhook variable
+        '404':
+          description: Not found- The requested resource could not be found
+        '500':
+          description: Internal Server Error- Try again
+      operationId: delete-custom-webhook-variable
   /graphql/variable/update/{variable}:
     patch:
-      summary: Update Custom Webhook variables
+      summary: Update a Variable
       description: 'Add and remove elements within a Custom Webhook variable'
       tags: ['Custom Webhook API Methods']
       parameters:
