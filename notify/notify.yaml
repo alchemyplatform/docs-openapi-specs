@@ -85,14 +85,14 @@ paths:
         '500':
           description: Internal Server Error- Try again
       operationId: create-custom-webhook-variable
-  /graphql/variable/update/:
+  /graphql/variable/update/{variable}:
+    $ref: '#/components/schemas/variable'
     patch:
       summary: Update Custom Webhook variables
       description: 'Add and remove elements within a Custom Webhook variable'
       tags: ['Custom Webhook API Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
-        - $ref: '#/components/schemas/variable'
       requestBody:
         content:
           application/json:
