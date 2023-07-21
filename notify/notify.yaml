@@ -42,11 +42,11 @@ paths:
               alchemy.notify.getAllWebhooks().then(console.log);
       responses:
         '201':
-          description:  OK: Successful POST creation of a Custom Webhook variable
+          description:  OK- Successful POST creation of a Custom Webhook variable
         '400':
-          description: Bad Request: The server cannot understand the request sent by the client, due to a malformed syntax or missing information
+          description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
         '500':
-          description: Internal Server Error: Try again
+          description: Internal Server Error- Try again
       operationId: create-custom-webhook
   /graphql/variable/update/:
     patch:
@@ -99,13 +99,13 @@ paths:
               });
       responses:
         '200':
-          description:  OK: Successful update to Custom Webhook variable
+          description:  OK- Successful update to Custom Webhook variable
         '400':
-          description: Bad Request: The server cannot understand the request sent by the client, due to a malformed syntax or missing information
+          description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
         '401':
-          description: Unauthorized: missing or invalid authentication credentials 
+          description: Unauthorized- missing or invalid authentication credentials 
         '500':
-          description: Internal Server Error: Try again
+          description: Internal Server Error- Try again
       operationId: update-custom-webhook-variable
   /team-webhooks:
     get:
