@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'https://dashboard.alchemy.com/api'
 paths:
-  /graphql/variable/:
+  /graphql/variable/{variable}:
     get:
       summary: Get Custom Webhook Variable
       description: This endpoint allows you to read the values within a Custom Webhook variable
