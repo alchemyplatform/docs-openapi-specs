@@ -75,7 +75,7 @@ components:
                           properties:
                             transactionHash:
                               title: The hash of the declare transaction
-                              $ref: 'components/starknet/schemas.yaml#/TxnHash'
+                              $ref: 'components/starknet/schemas.yaml#/TxnHash' # path only works with gh actions for command line add ../ in the beginning
                             classHash:
                               title: The hash of the declared class
                               $ref: 'components/starknet/schemas.yaml#/Felt' # path only works with gh actions for command line add ../ in the beginning
