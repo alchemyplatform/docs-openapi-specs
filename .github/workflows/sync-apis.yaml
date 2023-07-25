@@ -47,21 +47,8 @@ jobs:
         with:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.GAS_MANAGER_ADMIN_API_ID }}
 
-      # Update Token APIs in docs
-      - name: GitHub action to update Token API - Get Token Allowance
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi token/alchemy_getTokenAllowance.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ALCHEMY_GETTOKENALLOWANCE_ID }}
 
-      - name: GitHub action to update Token API - Get Token Metadata
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi token/alchemy_getTokenMetadata.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ALCHEMY_GETTOKENMETADATA_ID }}
-
-      - name: GitHub action to update Token API - Get Token Balances
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi token/alchemy_getTokenBalances.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.ALCHEMY_GETTOKENBALANCES_ID }}
+      # =================================================== Update Starknet APIs in Docs ===================================================
 
       - name: Github action to update Starknet API - Add Declare Transaction
         uses: readmeio/rdme@8.6.4
@@ -177,3 +164,6 @@ jobs:
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getClass.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.STARKNET_GETCLASS_ID }}
+
+
+      # ====================================================================================================================================
