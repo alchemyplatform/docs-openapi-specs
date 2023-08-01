@@ -2952,7 +2952,7 @@ components:
           "totalCount": 2120,
           "pageKey": "20ef9df5-0d81-42e5-b741-140f595a407b"
         }
-    withMetadataGetContractsForOwner_response:
+    withMetadataGetCollectionsForOwner_response:
       summary: 'Response (withMetadata = true)'
       value: >
         {
