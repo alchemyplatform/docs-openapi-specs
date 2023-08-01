@@ -128,7 +128,7 @@ paths:
         '500':
           description: Internal Server Error- Try again
       operationId: delete-custom-webhook-variable
-  /graphql/variable/update/{variable}:
+  /graphql/variable/{variable}:
     patch:
       summary: Update a Variable
       description: 'Add and remove elements within a Custom Webhook variable'
