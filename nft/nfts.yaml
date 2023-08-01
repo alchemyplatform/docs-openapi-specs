@@ -300,7 +300,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
-          required: true
+        - $ref: '#/components/schemas/collectionSlug'
         - $ref: '#/components/schemas/withMetadata'
         - $ref: '#/components/schemas/startToken'
         - $ref: '#/components/schemas/limit'
@@ -339,7 +339,7 @@ paths:
                 type: object
                 properties:
                   nfts:
-                    description: 'List of objects that represent NFTs stored under the queried contract address.'
+                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
                     type: array
                     items:
                       type: object
@@ -2030,6 +2030,14 @@ components:
           - MEDIUM
           - LOW
       in: query
+      required: false
+    collectionSlug:
+      name: collectionSlug
+      description: String - OpenSea slug for the NFT collection.
+      in: query
+      schema:
+        type: string
+        default: 'boredapeyachtclub'
       required: false
     contractAddress:
       name: contractAddress
