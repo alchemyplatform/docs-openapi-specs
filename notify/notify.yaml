@@ -826,7 +826,7 @@ components:
           description: 'Set of addresses to be ADDED to a given Custom Webhook variable'
           items:
             type: string
-        remove:
+        delete:
           type: array
           default: []
           description: 'Set of addresses to be REMOVED for a given Custom Webhook variable'
