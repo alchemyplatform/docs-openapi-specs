@@ -2934,3 +2934,18 @@ alchemy_requestPaymasterAndData:
     'jsonrpc': '2.0',
     'result': { 'paymasterAndData': '0x', 'error': error },
   }
+
+alchemy_requestGasAndPaymasterAndData:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      {
+        'maxPriorityFeePerGas': '0x59682f00',
+        'maxFeePerGas': '0x59682f0e',
+        'paymasterAndData': '0xc03aac639bb21233e0139381970328db8bceeb670000646d44a60000646d49560000000000000000000000000000000000000000b23db2c979c814208be99801da74dcd45290c315b0af16ae32eef091eca8dc856fa10e2082234fb13db045bd6aa021e552d29d55d87eed54732259a804b0fcd71b',
+        'verificationGasLimit': '0xd333',
+        'callGasLimit': '0x238c',
+        'preVerificationGas': '0xab9c',
+      },
+  }
