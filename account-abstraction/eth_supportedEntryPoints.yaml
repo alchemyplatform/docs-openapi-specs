@@ -11,7 +11,7 @@ servers:
           - eth-goerli
           - arb-goerli
           - opt-goerli
-          - polygon-mumbi
+          - polygon-mumbai
         default: eth-sepolia
 paths:
   /{apiKey}:
