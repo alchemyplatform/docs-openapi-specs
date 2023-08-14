@@ -1227,7 +1227,7 @@ transfer:
       type: string
       description: 'To address of transfer (hex string). null if contract creation.'
     value:
-      type: string
+      type: number
       nullable: true
       description: 'Converted asset transfer value as a number (raw value divided by contract decimal). null if ERC721 transfer or contract decimal not available.'
     erc721TokenId:
