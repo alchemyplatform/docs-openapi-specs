@@ -2145,3 +2145,16 @@ alchemy_requestGasAndPaymasterAndData:
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartial
                 description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
+
+rundler_maxPriorityFeePerGas:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: rundler_maxPriorityFeePerGas
+        params:
+          type: array
+          items: {}
+          description: Accepts no parameters
