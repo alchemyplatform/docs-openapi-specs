@@ -773,7 +773,7 @@ components:
       properties:
         items:
           type: array
-          description: 'A variable defined as a set of addresses, use [] if none.'
+          description: 'A variable defined as a set of addresses or byte32 elements, use [] if none.'
           default: []
           items:
             type: string
@@ -823,13 +823,13 @@ components:
         add:
           type: array
           default: []
-          description: 'Set of addresses to be ADDED to a given Custom Webhook variable'
+          description: 'Set of addresses or byte32 elements to be ADDED to a given Custom Webhook variable'
           items:
             type: string
         delete:
           type: array
           default: []
-          description: 'Set of addresses to be REMOVED for a given Custom Webhook variable'
+          description: 'Set of addresses or byte32 elements to be DELETED for a given Custom Webhook variable'
           items:
             type: string
     update_webhook_nft_metadata_filters:
