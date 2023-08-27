@@ -1463,7 +1463,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
-          required: true
+        - $ref: '#/components/schemas/collectionSlug'
       x-readme:
         samples-languages:
           - javascript
@@ -2244,6 +2244,22 @@ components:
         error:
           type: string
           description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+    collectionv3:
+      type: object
+      description: 'The collection object that has details of a collection'
+      properties:
+        name:
+          type: String
+          description: 'String - Collection name'
+        openSeaSlug:
+          type: String
+          description: 'String - OpenSea collection slug'
+        externalUrl:
+          type: String
+          description: 'String - URL for the external site of the collection'
+        bannerImageUrl:
+          type: String
+          description: 'String - Banner image URL for the collection'
     imagev3:
       type: object
       description: 'Details of the image corresponding to this contract'
@@ -2586,6 +2602,8 @@ components:
           $ref: '#/components/schemas/imagev3'
         raw:
           $ref: '#/components/schemas/rawv3'
+        collection:
+          $ref: '#/components/schemas/collectionv3'
         tokenUri:
           type: string
           description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
