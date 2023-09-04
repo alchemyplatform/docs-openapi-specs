@@ -556,12 +556,17 @@ eth_getUncleCountByBlockHash:
 eth_getUncleCountByBlockNumber:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_or_blocktag_param_eth'
     - type: object
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getUncleCountByBlockNumber
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            -$ref: '#/blockNumber_or_blocktag_param_eth'
 eth_getFilterChanges:
   allOf:
     - $ref: '#/common_request_fields'
