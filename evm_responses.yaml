@@ -574,9 +574,20 @@ string_result_response:
       properties:
         result:
           type: string
-          description: 'The integer value of the number of uncles in the block encoded as hexadecimal.'
+          description: '32 Bytes String - The Transaction Hash.'
       example:
         $ref: ./evm_examples.yaml#/string_result_response
+
+eth_getUncleCountByNumber:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: string
+          description: 'The integer value of the number of uncles in the block encoded as hexadecimal.'
+        example:
+          $ref: ./evm_examples.yaml#/string_result_response
 
 eth_call:
   allOf:
