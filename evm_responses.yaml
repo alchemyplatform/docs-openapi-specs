@@ -578,7 +578,7 @@ string_result_response:
       example:
         $ref: ./evm_examples.yaml#/string_result_response
 
-eth_getUncleCountByNumber:
+eth_getUncleCountByBlockNumber:
   allOf:
     - $ref: '#/common_response_fields'
     - type: object
