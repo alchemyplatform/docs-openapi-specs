@@ -586,8 +586,8 @@ eth_getUncleCountByNumber:
         result:
           type: string
           description: 'The integer value of the number of uncles in the block encoded as hexadecimal.'
-        example:
-          $ref: ./evm_examples.yaml#/string_result_response
+      example:
+        $ref: ./evm_examples.yaml#/string_result_response
 
 eth_call:
   allOf:
