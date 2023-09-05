@@ -39,5 +39,5 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/eth_getUncleCountByNumber
+                  $ref: ../evm_responses.yaml#/eth_getUncleCountByBlockNumber
         operationId: eth-getUncleCountByBlockNumber
