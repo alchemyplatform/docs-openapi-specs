@@ -1168,3 +1168,30 @@ TooManyKeysInFilter:
 ContractError:
   code: 40
   message: 'Contract error'
+
+MSG_FROM_L1:
+  title: Message from L1
+  type: object
+  properties:
+    from_address:
+      description: The address of the L1 contract sending the message
+      $ref: '#/EthAddress'
+    to_address:
+      title: To address
+      description: The target L2 address the message is sent to
+      $ref: '#/Address'
+    entry_point_selector:
+      title: Selector
+      description: The selector of the l1_handler to invoke in the target contract
+      $ref: '#/Felt'
+    payload:
+      title: Payload
+      description: The payload of the message
+      type: array
+      items:
+        $ref: '#/Felt'
+  required:
+    - from_address
+    - to_address
+    - payload
+    - entry_point_selector
