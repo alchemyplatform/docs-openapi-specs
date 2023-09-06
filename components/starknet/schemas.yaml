@@ -1176,6 +1176,7 @@ MSG_FROM_L1:
     from_address:
       description: The address of the L1 contract sending the message
       $ref: '#/EthAddress'
+      default: '0xAbCdEf0123456789aBcDeF0123456789AbCdEf01'
     to_address:
       title: To address
       description: The target L2 address the message is sent to
@@ -1184,6 +1185,7 @@ MSG_FROM_L1:
       title: Selector
       description: The selector of the l1_handler to invoke in the target contract
       $ref: '#/Felt'
+      default: '0x00000'
     payload:
       title: Payload
       description: The payload of the message
