@@ -1838,10 +1838,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  contracts:
+                  collections:
                     type: array
                     items:
-                      $ref: '#/components/schemas/ownedContractv3'
+                      $ref: '#/components/schemas/ownedCollectionv3'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
