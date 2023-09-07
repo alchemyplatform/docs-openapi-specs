@@ -981,7 +981,7 @@ callTracer:
       description: amount of gas provided for the call (in hex)
     gasUsed:
       type: string
-      description: amount of gsa used during the call (in hex)
+      description: amount of gas used during the call (in hex)
     input:
       type: string
       description: call data
