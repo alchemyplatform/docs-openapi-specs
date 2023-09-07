@@ -16,6 +16,8 @@ servers:
           - opt-goerli
           - polygon-mainnet
           - polygon-mumbai
+          - base-mainnet
+          - base-goerli
         default: eth-mainnet
 paths:
   /{apiKey}:
