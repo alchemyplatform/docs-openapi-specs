@@ -7,12 +7,18 @@ servers:
     variables:
       network:
         enum:
+          - eth-mainnet
           - eth-sepolia
           - eth-goerli
+          - arb-mainnet
           - arb-goerli
+          - opt-mainnet
           - opt-goerli
+          - polygon-mainnet
           - polygon-mumbai
-        default: eth-sepolia
+          - base-mainnet
+          - base-goerli
+        default: eth-mainnet
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'
@@ -21,7 +27,7 @@ components:
     path:
       post:
         summary: alchemy_requestGasAndPaymasterAndData
-        description: Requests gas and coverage for a `UserOperation`. Returns `paymasterAndData` and gas parameters if approved, errors if not.
+        description: Requests gas and coverage for a `UserOperation`. Returns `paymasterAndData` and gas parameters if approved, errors if not. Optionally accepts fee parameter overrides to be used in the `UserOperation`.
         tags: []
         parameters:
           - name: apiKey
