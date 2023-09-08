@@ -2074,11 +2074,21 @@ eth_getUserOperationByHash:
 
 eth_getUserOperationReceipt:
   allOf:
-    - $ref: '#/eth_getUserOperationByHash'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getUserOperationReceipt
+        params:
+          type: array
+          description: The `userOpHash` of the UserOperation to get the receipt for (as returned by `eth_sendUserOperation`)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            description: The `userOpHash` of the UserOperation to get the receipt for
+            default: '0x93c06f3f5909cc2b192713ed9bf93e3e1fde4b22fcd2466304fa404f9b80ff90'
 
 eth_supportedEntryPoints:
   allOf:
