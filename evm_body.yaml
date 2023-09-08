@@ -566,7 +566,7 @@ eth_getUncleCountByBlockNumber:
           minItems: 1
           maxItems: 1
           items:
-            -$ref: '#/blockNumber_or_blocktag_param_eth'
+            -$ref: '#/BlockNumber'
 eth_getFilterChanges:
   allOf:
     - $ref: '#/common_request_fields'
