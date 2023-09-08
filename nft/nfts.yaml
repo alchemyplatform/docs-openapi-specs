@@ -1838,10 +1838,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  contracts:
+                  collections:
                     type: array
                     items:
-                      $ref: '#/components/schemas/ownedContractv3'
+                      $ref: '#/components/schemas/ownedCollectionv3'
                   pageKey:
                     $ref: '#/components/schemas/pageKey'
                   totalCount:
@@ -2444,7 +2444,7 @@ components:
           description: 'The human-readable string used to identify the collection on OpenSea.'
           type: string
         floorPrice:
-          $ref: '#component/schemas/collectionFloorPrice'
+          $ref: '#components/schemas/collectionFloorPrice'
         description:
           type: string
           description: 'OpenSea collection description'
@@ -2721,7 +2721,7 @@ components:
           description: 'The human-readable string used to identify the collection on OpenSea.'
           type: string
         floorPrice:
-          $ref: '#component/schemas/collectionFloorPrice'
+          $ref: '#components/schemas/collectionFloorPrice'
         description:
           type: string
           description: 'OpenSea collection description'
