@@ -2088,7 +2088,7 @@ eth_getUserOperationReceipt:
           items:
             type: string
             description: The `userOpHash` of the UserOperation to get the receipt for
-            default: '0x77c0b560eb0b042902abc5613f768d2a6b2d67481247e9663bf4d68dec0ca122'
+            default: '0x93c06f3f5909cc2b192713ed9bf93e3e1fde4b22fcd2466304fa404f9b80ff90'
 
 eth_supportedEntryPoints:
   allOf:
