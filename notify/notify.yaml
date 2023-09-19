@@ -784,7 +784,7 @@ components:
       properties:
         items:
           type: array
-          description: 'A variable defined as a set of addresses or byte32 elements, use [] if none.'
+          description: 'A variable defined as a set of addresses or byte32 elements. Must be a non-empty list.'
           default: []
           items:
             type: string
