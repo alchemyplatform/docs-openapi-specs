@@ -556,12 +556,17 @@ eth_getUncleCountByBlockHash:
 eth_getUncleCountByBlockNumber:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/blockNumber_or_blocktag_param_eth'
     - type: object
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getUncleCountByBlockNumber
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            -$ref: '#/BlockNumber'
 eth_getFilterChanges:
   allOf:
     - $ref: '#/common_request_fields'
@@ -2074,11 +2079,21 @@ eth_getUserOperationByHash:
 
 eth_getUserOperationReceipt:
   allOf:
-    - $ref: '#/eth_getUserOperationByHash'
+    - $ref: '#/common_request_fields'
     - type: object
       properties:
         method:
+          $ref: ./components/schemas.yaml#/Method
           default: eth_getUserOperationReceipt
+        params:
+          type: array
+          description: The `userOpHash` of the UserOperation to get the receipt for (as returned by `eth_sendUserOperation`)
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            description: The `userOpHash` of the UserOperation to get the receipt for
+            default: '0x93c06f3f5909cc2b192713ed9bf93e3e1fde4b22fcd2466304fa404f9b80ff90'
 
 eth_supportedEntryPoints:
   allOf:
@@ -2145,3 +2160,29 @@ alchemy_requestGasAndPaymasterAndData:
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartial
                 description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
+              feeOverride:
+                type: object
+                description: Optional fields to override default fee behavior
+                properties:
+                  maxFeePerGas:
+                    type: string
+                    description: Maximum fee per gas
+                  maxPriorityFeePerGas:
+                    type: string
+                    description: Maximum priority fee per gas
+                required: 
+                  - maxFeePerGas
+                  - maxPriorityFeePerGas
+
+rundler_maxPriorityFeePerGas:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: rundler_maxPriorityFeePerGas
+        params:
+          type: array
+          items: {}
+          description: Accepts no parameters
