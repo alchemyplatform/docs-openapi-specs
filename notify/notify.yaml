@@ -746,8 +746,19 @@ components:
           type: string
           description: 'URL where requests are sent'
         graphql_query:
-          type: string
-          description: 'A valid, stringified GraphQL query that you would like to host on Alchemy'
+          oneOf:
+            - type: string
+              description: 'A valid, stringified GraphQL query that you would like to host on Alchemy'
+            - type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: 'A valid, stringified GraphQL query that you would like to host on Alchemy'
+                skip_empty_messages:
+                  type: boolean
+                  description: 'Boolean parameter to skip sending webhooks for empty messages.'
         app_id:
           type: string
           description: 'Required for mined and dropped webhooks, optional for address activity or custom webhooks.'

@@ -3,7 +3,13 @@ info:
   title: eth_accounts - Arbitrum
   version: '1.0'
 servers:
-  - url: 'https://arb-mainnet.g.alchemy.com/v2'
+  - url: 'https://{network}.g.alchemy.com/v2/'
+      variables:
+        network:
+          enum:
+            - arb-mainnet
+            - arb-goerli
+          default: arb-mainnet
 paths:
   /{apiKey}:
     post:
