@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: eth_getBlockByNumber - Base
+  version: '1.0'
+servers:
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - base-mainnet
+          - base-goerli
+        default: base-mainnet
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_getBlockByNumber - Base
+      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
+      operationId: eth-getblockbynumber-base
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+      responses:
+        '200':
+          description: 'Returns a block object with the following fields, or null when no block was found.'
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      id:
+                        type: integer
+                      jsonrpc:
+                        type: string
+                  - type: object
+                    properties:
+                      result:
+                        allOf:
+                          - type: object
+                            properties:
+                              nonce:
+                                type: string
+                                description: 8 Bytes - hash of the generated proof-of-work. null when its pending block.
+                              hash:
+                                type: string
+                                description: 32 Bytes - hash of the block. null when its pending block.
+                          - type: object
+                            description: 'A block object with the following fields, or null when no block was found.'
+                            properties:
+                              number:
+                                type: string
+                                description: the block number. null when its pending block.
+                              parentHash:
+                                type: string
+                                description: 32 Bytes - hash of the parent block.
+                              sha3Uncles:
+                                type: string
+                                description: 32 Bytes - SHA3 of the uncles data in the block.
+                              logsBloom:
+                                type: string
+                                description: 256 Bytes - the bloom filter for the logs of the block. null when its pending block.
+                              transactionsRoot:
+                                type: string
+                                description: 32 Bytes - the root of the transaction trie of the block.
+                              stateRoot:
+                                type: string
+                                description: 32 Bytes - the root of the final state trie of the block.
+                              receiptsRoot:
+                                type: string
+                                description: 32 Bytes - the root of the receipts trie of the block.
+                              miner:
+                                type: string
+                                description: 20 Bytes - the address of the beneficiary to whom the mining rewards were given.
+                              difficulty:
+                                type: string
+                                description: integer of the difficulty for this block.
+                              totalDifficulty:
+                                type: string
+                                description: integer of the total difficulty of the chain until this block.
+                              extraData:
+                                type: string
+                                description: the "extra data" field of this block.
+                              size:
+                                type: string
+                                description: integer the size of this block in bytes.
+                              gasLimit:
+                                type: string
+                                description: the maximum gas allowed in this block.
+                              gasUsed:
+                                type: string
+                                description: the total used gas by all transactions in this block.
+                              timestamp:
+                                type: string
+                                description: the unix timestamp for when the block was collated.
+                              transactions:
+                                type: array
+                                items:
+                                  type: string
+                                description: 'Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.'
+                              uncles:
+                                type: array
+                                items:
+                                  type: string
+                                description: Array of uncle hashes.

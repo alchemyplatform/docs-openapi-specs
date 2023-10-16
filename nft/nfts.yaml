@@ -300,7 +300,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
-          required: true
+        - $ref: '#/components/schemas/collectionSlug'
         - $ref: '#/components/schemas/withMetadata'
         - $ref: '#/components/schemas/startToken'
         - $ref: '#/components/schemas/limit'
@@ -339,7 +339,7 @@ paths:
                 type: object
                 properties:
                   nfts:
-                    description: 'List of objects that represent NFTs stored under the queried contract address.'
+                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
                     type: array
                     items:
                       type: object
@@ -1206,6 +1206,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/contractMetadatav3'
       operationId: getContractMetadata-v3
+  '/v3/{apiKey}/getCollectionMetadata':
+    get:
+      summary: getCollectionMetadata
+      description: Queries NFT high-level collection/contract level information.
+      tags: ['NFT API V3 Methods (BETA)']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/collectionSlug'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collectionMetadatav3'
+      operationId: getCollectionMetadata-v3
   '/v3/{apiKey}/getContractMetadataBatch':
     post:
       summary: getContractMetadataBatch
@@ -1440,7 +1463,7 @@ paths:
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
-          required: true
+        - $ref: '#/components/schemas/collectionSlug'
       x-readme:
         samples-languages:
           - javascript
@@ -1788,6 +1811,48 @@ paths:
                 withMetadata:
                   $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
       operationId: getContractsForOwner-v3
+  '/v3/{apiKey}/getCollectionsForOwner':
+    get:
+      summary: getCollectionsForOwner
+      description: Gets all NFT collections held by an owner address.
+      tags: ['NFT API V3 Methods (BETA)']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/excludeFilters'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedCollectionv3'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+                  totalCount:
+                    type: string
+                    description: 'String - Total number of NFT collections held by the given address.'
+              examples:
+                withoutMetadata:
+                  $ref: '#/components/schemas/withoutMetadataGetCollectionsForOwner_response'
+                withMetadata:
+                  $ref: '#/components/schemas/withMetadataGetCollectionsForOwner_response'
+      operationId: getCollectionsForOwner-v3
   '/v3/{apiKey}/reportSpam':
     get:
       summary: reportSpam
@@ -1989,6 +2054,14 @@ components:
           - LOW
       in: query
       required: false
+    collectionSlug:
+      name: collectionSlug
+      description: String - OpenSea slug for the NFT collection.
+      in: query
+      schema:
+        type: string
+        default: 'boredapeyachtclub'
+      required: false
     contractAddress:
       name: contractAddress
       description: String - Contract address for the NFT contract (ERC721 and ERC1155 supported).
@@ -2171,6 +2244,22 @@ components:
         error:
           type: string
           description: 'String - A string describing a particular reason that we were unable to fetch complete metadata for the NFT.'
+    collectionv3:
+      type: object
+      description: 'The collection object that has details of a collection'
+      properties:
+        name:
+          type: String
+          description: 'String - Collection name'
+        slug:
+          type: String
+          description: 'String - OpenSea collection slug'
+        externalUrl:
+          type: String
+          description: 'String - URL for the external site of the collection'
+        bannerImageUrl:
+          type: String
+          description: 'String - Banner image URL for the collection'
     imagev3:
       type: object
       description: 'Details of the image corresponding to this contract'
@@ -2344,6 +2433,79 @@ components:
           $ref: '#/components/schemas/displaynftv3'
         image:
           $ref: '#/components/schemas/imagev3'
+    ownedCollectionv3:
+      type: object
+      description: 'Metadata for an NFT collection held by an owner address. Includes general metadata about the collection, as well as information specific to the owner such as the total balance and the token ID of a random NFT for display purposes.'
+      properties:
+        name:
+          description: 'The name of the collection, i.e. "Bored Ape Yacht Club".'
+          type: string
+        slug:
+          description: 'The human-readable string used to identify the collection on OpenSea.'
+          type: string
+        floorPrice:
+          $ref: '#/components/schemas/collectionFloorPrice'
+        description:
+          type: string
+          description: 'OpenSea collection description'
+        externalUrl:
+          type: string
+          description: 'Collection homepage'
+        twitterUsername:
+          type: string
+          description: 'The twitter username of the collection'
+        discordUrl:
+          type: string
+          description: 'The discord URL of the collection'
+        contract:
+          $ref: '#/components/schemas/ownedCollectionContract'
+        totalBalance:
+          type: number
+          description: 'Sum of NFT balances across all token IDs held by the owner. For non-fungible tokens this will be equal to the `numDistinctTokensOwned`, but it may be higher if the user holds some fungible ERC1155 tokens.'
+        numDistinctTokensOwned:
+          type: number
+          description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
+        isSpam:
+          type: string
+          description: '"true" if contract is spam, else "false"'
+        displayNft:
+          $ref: '#/components/schemas/displaynftv3'
+        image:
+          $ref: '#/components/schemas/imagev3'
+    ownedCollectionContract:
+      type: object
+      description: 'Contract-level data for a collection, such as contract type, name, and symbol.'
+      properties:
+        address:
+          description: 'Address of the contract'
+          type: string
+        name:
+          type: string
+          description: 'String - NFT contract name.'
+        symbol:
+          type: string
+          description: 'String - NFT contract symbol abbreviation.'
+        tokenType:
+          $ref: '#/components/schemas/tokenType_response'
+        contractDeployer:
+          type: string
+          description: 'String - Address that deployed the smart contract'
+        deployedBlockNumber:
+          type: number
+          description: 'Number - The Block Number when the deployment transaction is successfully mined'
+    collectionFloorPrice:
+      type: object
+      description: 'Floor price data for the collection'
+      properties:
+        marketplace:
+          description: 'The marketplace the floor price is on'
+          type: string
+        floorPrice:
+          description: 'Floor price of the collection on the marketplace'
+          type: number
+        priceCurrency:
+          description: 'The currency of the floor price'
+          type: string
     displaynftv3:
       type: object
       description: 'Details of the display NFT for this contract. This NFT and its image can be used to represent the contract when displaying info about it.'
@@ -2446,6 +2608,8 @@ components:
           $ref: '#/components/schemas/imagev3'
         raw:
           $ref: '#/components/schemas/rawv3'
+        collection:
+          $ref: '#/components/schemas/collectionv3'
         tokenUri:
           type: string
           description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
@@ -2547,6 +2711,29 @@ components:
           description: 'Number - The Block Number when the deployment transaction is successfully mined'
         openseaMetadata:
           $ref: '#/components/schemas/opensea'
+    collectionMetadatav3:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'String - Name of the queried NFT Collection'
+        slug:
+          description: 'The human-readable string used to identify the collection on OpenSea.'
+          type: string
+        floorPrice:
+          $ref: '#/components/schemas/collectionFloorPrice'
+        description:
+          type: string
+          description: 'OpenSea collection description'
+        externalUrl:
+          type: string
+          description: 'Collection homepage'
+        twitterUsername:
+          type: string
+          description: 'The twitter username of the collection'
+        discordUrl:
+          type: string
+          description: 'The discord URL of the collection'
     contractv3:
       type: object
       description: 'The contract object that has details of a contract'
@@ -2820,6 +3007,68 @@ components:
                 "contentType": "video/mp4",
                 "size": 36190302,
                 "originalUrl": "https://ipfs.io/ipfs/QmX2mM8r33W7KUBQSWXFAKNC2t654EXmWiX9vkrfrEaEnS"
+              }
+            }
+          ],
+          "totalCount": 2120,
+          "pageKey": "03949322-9b2c-4fdd-aab6-1369e29fa5b2"
+        }
+    withoutMetadataGetCollectionsForOwner_response:
+      summary: 'Response (withMetadata = false)'
+      value: >
+        {
+          "collections": [
+            {
+              "address": "0x3a5051566b2241285BE871f650C445A88A970edd",
+              "name": "The Humanoids ",
+              "slug": "thehumanoids",
+              "totalBalance": "1",
+              "numDistinctTokensOwned": "1",
+              "isSpam": false
+            },
+          ],
+          "totalCount": 2120,
+          "pageKey": "20ef9df5-0d81-42e5-b741-140f595a407b"
+        }
+    withMetadataGetCollectionsForOwner_response:
+      summary: 'Response (withMetadata = true)'
+      value: >
+        {
+          "collections": [
+            {
+              "name": "The Humanoids ",
+              "slug": "thehumanoids",
+              "floorPrice": {
+                "marketplace": "seaport",
+                "floorPrice": 0.37
+                "priceCurrency": "ETH"
+              },
+              "description": "The Humanoids (Gen 1) is a collection of 10,000 unique 3D 4K personalities.\n\n[GEN 1.1 (CUSTOMIZABLE PFP)](https://opensea.io/collection/the-humanoids-gen-1-1/) | [DISCORD](https://discord.gg/thehumanoids) | [TWITTER](https://twitter.com/thehumanoids)\n\nStake your Gen 1 Humanoid and earn $ION to customize Gen 1.1 Humanoids using our proprietary Trait Factory.\n\nNote: Holder Count is inaccurate as Humanoids are currently being staked.",
+              "externalUrl": "http://thehumanoids.com",
+              "twitterUsername": "thehumanoids",
+              "discordUrl": "https://discord.gg/thehumanoids",
+              "contract": {
+                "address": "0x3a5051566b2241285BE871f650C445A88A970edd",
+                "name": "The Humanoids ",
+                "symbol": "HMNDS",
+                "tokenType": "ERC721",
+                "contractDeployer": "0xB8256c1c6654cedb9607644b07deC91Ca15fb9f6",
+                "deployedBlockNumber": 13313830
+              },
+              "totalBalance": "1",
+              "numDistinctTokensOwned": "1",
+              "isSpam": false,
+              "displayNft": {
+                "tokenId": "5880",
+                "name": "Humanoid #5880"
+              },
+              "image": {
+                "cachedUrl": "https://nft-cdn.alchemy.com/eth-mainnet/57dab2f078ca70e310c387064f66daaa",
+                "thumbnailUrl": "https://res.cloudinary.com/alchemyapi/image/upload/thumbnailv2/eth-mainnet/57dab2f078ca70e310c387064f66daaa",
+                "pngUrl": "https://res.cloudinary.com/alchemyapi/image/upload/convert-png/eth-mainnet/57dab2f078ca70e310c387064f66daaa",
+                "contentType": "image/jpeg",
+                "size": 1898134,
+                "originalUrl": "https://ipfs.io/ipfs/QmcjYgWMokcqnaSGZ31GVbGDe9V9z1KeNerRGfgeBEkn4k/5880.jpg"
               }
             }
           ],
