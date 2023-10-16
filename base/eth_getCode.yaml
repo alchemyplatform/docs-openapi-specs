@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info:
+  title: eth_getCode - Base
+  version: '1.0'
+servers:
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - base-mainnet
+          - base-goerli
+        default: base-mainnet
+paths:
+  /{apiKey}:
+    post:
+      summary: eth_getCode - Base
+      $ref: ../ethereum/eth_getCode.yaml#/components/pathItems/path/post
+      operationId: eth-getcode-base
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
