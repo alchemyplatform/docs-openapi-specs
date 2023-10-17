@@ -19,8 +19,6 @@ const ignoreList = [
   'package.json',
   'package-lock.json',
   'scripts',
-  'sdk_body.yaml',
-  'sdk_responses.yaml',
 ];
 
 async function* walk(dir: string): AsyncGenerator {
