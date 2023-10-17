@@ -4,12 +4,12 @@ info:
   version: '1.0'
 servers:
   - url: 'https://{network}.g.alchemy.com/v2/'
-      variables:
-        network:
-          enum:
-          - opt-mainnet
-          - opt-goerli
-          default: opt-mainnet
+    variables:
+      network:
+        enum:
+        - opt-mainnet
+        - opt-goerli
+        default: opt-mainnet
 paths:
   /{apiKey}:
     post:

@@ -1,10 +1,10 @@
-extends: ["spectral:oas"]
+extends: ['spectral:oas']
 functions: [debug]
 rules:
   # OPEN API
   alchemy-version-3.1.0:
     severity: error
-    description: "OpenAPI `openapi` must be set to version 3.1.0."
+    description: 'OpenAPI `openapi` must be set to version 3.1.0.'
     given: $
     then:
       field: openapi
@@ -39,22 +39,22 @@ rules:
 
   alchemy-servers-networks-supported:
     severity: error
-    description: "\"network\" property must be one of supported networks."
+    description: '"network" property must be one of supported networks.'
     given: $.servers[0].variables.network.enum.*
     then:
       - function: enumeration
         functionOptions:
           values:
-          - eth-mainnet
-          - eth-goerli
-          - polygon-mainnet
-          - polygon-mumbai
-          - arb-mainnet
-          - arb-goerli
+            - eth-mainnet
+            - eth-goerli
+            - polygon-mainnet
+            - polygon-mumbai
+            - arb-mainnet
+            - arb-goerli
 
   alchemy-servers-network-casing:
     severity: error
-    description: "\"network\" must be kebab cased and without digits."
+    description: '"network" must be kebab cased and without digits.'
     given: $.servers[0].variables.network.enum.*
     then:
       - function: casing
@@ -70,35 +70,35 @@ rules:
       function: enumeration
       functionOptions:
         values:
-         - eth-mainnet
-         - polygon-mainnet
-         - arb-mainnet
+          - eth-mainnet
+          - polygon-mainnet
+          - arb-mainnet
 
   # X-README
   alchemy-x-readme-id:
     severity: warn
     given: $.x-readme
-    message: "{{property}} missing. If creating a new spec, ignore this warning. If updating an existing one, id should be set."
+    message: '{{property}} missing. If creating a new spec, ignore this warning. If updating an existing one, id should be set.'
     then:
       field: id
       function: defined
-  
+
   alchemy-x-readme-id-length:
     severity: warn
     given: $.x-readme
-    description: "Id should have a length of 24."
+    description: 'Id should have a length of 24.'
     then:
       field: id
       function: length
       functionOptions:
         min: 24
         max: 24
-  
+
   # does not check for order or duplicates
   alchemy-x-readme-samples-languages:
     severity: warn
     given: $.x-readme.samples-languages.*
-    description: "\"x-readme.samples-languages\" property must be one of [curl, javascript, python]"
+    description: '"x-readme.samples-languages" property must be one of [curl, javascript, python]'
     then:
       function: enumeration
       functionOptions:
@@ -111,19 +111,19 @@ rules:
   alchemy-paths-json-rpc-1-path:
     severity: error
     given: $.paths
-    description: "\"paths\" property must have exactly 1 path."
+    description: '"paths" property must have exactly 1 path.'
     then:
       function: length
       functionOptions:
         min: 1
         max: 1
-  
+
   alchemy-paths-json-rpc-path:
     severity: error
-    description: "\"paths\" must have a property \"/{apiKey}\"."
+    description: '"paths" must have a property "/{apiKey}".'
     given: $.paths
     then:
-      - field: "/{apiKey}"
+      - field: '/{apiKey}'
         function: defined
 
   # OPERATIONS
@@ -132,7 +132,7 @@ rules:
 
   alchemy-operation-json-rpc-post:
     severity: error
-    description: "\"/{apiKey}\" must just have property post."
+    description: '"/{apiKey}" must just have property post.'
     given: $.paths["/{apiKey}"]
     then:
       - function: length
@@ -144,7 +144,7 @@ rules:
 
   alchemy-operation-summary:
     severity: error
-    description: "Operation must have \"summary\""
+    description: 'Operation must have "summary"'
     given: $.paths.*.*
     then:
       - field: summary
@@ -161,33 +161,33 @@ rules:
 
   alchemy-operation-operationId-casing:
     severity: error
-    message: "{{property}} must be kebab cased and without digits."
+    message: '{{property}} must be kebab cased and without digits.'
     given: $.paths.*.*
     then:
       - field: operationId
         function: casing
-        functionOptions: 
+        functionOptions:
           type: kebab
           disallowDigits: true
 
   # PARAMETERS
   alchemy-json-rpc-auth:
     severity: error
-    description: "JSON RPC needs to use ApiKey parameter."
+    description: 'JSON RPC needs to use ApiKey parameter.'
     given: $.paths.*.*.parameters[0]
     # very important to set to false so ref is not resolved
     resolved: false
     then:
-      field: "$ref"
-      function: "pattern"
+      field: '$ref'
+      function: 'pattern'
       functionOptions:
-        match: "../components/parameters.yaml#/ApiKey"
-  
+        match: '../components/parameters.yaml#/ApiKey'
+
   # ENUMS
   # TODO: this clashes with network enum above - fix this
   alchemy-enums-casing:
     severity: warn
-    message: "Enums must be macro case (uppercase and separated by _)."
+    message: 'Enums must be macro case (uppercase and separated by _).'
     given: $..enum.*
     then:
       function: casing

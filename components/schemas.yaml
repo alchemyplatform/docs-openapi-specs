@@ -96,7 +96,6 @@ Method:
 
 # ================= Account Abstraction =================
 
-
 UserOperationPartial:
   title: User Operation ( missing signature, paymasterData, and gas fields )
   type: object
@@ -120,7 +119,7 @@ UserOperationPartial:
       default: '0xb61d27f60000000000000000000000000be71941d041a32fe7df4a61eb2fcff3b03502c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000004d087d28800000000000000000000000000000000000000000000000000000000'
 
 UserOperationPartialWithGasFields:
-  title: User Operation ( missing signature and paymasterData ) 
+  title: User Operation ( missing signature and paymasterData )
   type: object
   allOf:
     - $ref: '#/UserOperationPartial'

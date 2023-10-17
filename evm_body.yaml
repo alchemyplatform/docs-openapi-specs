@@ -2028,7 +2028,7 @@ eth_sendUserOperation:
           description: |
             1. Object - The `UserOperation` object
             2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
-          
+
             **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
           maxItems: 2
@@ -2047,10 +2047,10 @@ eth_estimateUserOperationGas:
           default: eth_estimateUserOperationGas
         params:
           type: array
-          description: | 
+          description: |
             1. Object - The `UserOperation` object (gas limits and prices are optional)
             2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
-            
+
             **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
           maxItems: 2
@@ -2170,7 +2170,7 @@ alchemy_requestGasAndPaymasterAndData:
                   maxPriorityFeePerGas:
                     type: string
                     description: Maximum priority fee per gas
-                required: 
+                required:
                   - maxFeePerGas
                   - maxPriorityFeePerGas
 
