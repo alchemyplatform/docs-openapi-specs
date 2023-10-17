@@ -45,13 +45,12 @@ async function main() {
     console.log(filePath);
 
     // Convert YAML to JSON
-    const contents = fs.readFileSync(
-      '/Users/bastien/Documents/code/alchemyplatform/docs-openapi-specs/debug/debug_traceTransaction.yaml',
-      'utf-8',
-    );
+    // 2. Get OpenAPI spec
+    const contents = fs.readFileSync(filePath, 'utf-8');
     const json = parse(contents);
     // console.log(json);
 
+    // 3. Parse / dereference OpenAPI specs
     try {
       const api = await SwaggerParser.validate(json);
       console.log(JSON.stringify(api, null, 2));
@@ -59,9 +58,6 @@ async function main() {
       console.error(err);
     }
   }
-
-  // 2. Get OpenAPI spec
-  // 3. Parse / dereference OpenAPI specs
 }
 
 main();
