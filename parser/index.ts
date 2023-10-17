@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+const { parse, stringify } = require('yaml');
+const parser = require('@openapi-generator-plus/json-schema-ref-parser');
 
 const ignoreList = [
   '.env',
@@ -21,7 +23,7 @@ const ignoreList = [
   'scripts',
 ];
 
-async function* walk(dir: string): AsyncGenerator {
+async function* walk(dir: string): AsyncGenerator<string> {
   for await (const d of await fs.promises.opendir(dir)) {
     const entry = path.join(dir, d.name);
     if (ignoreList.includes(d.name)) continue;
@@ -36,15 +38,22 @@ async function main() {
   const rootPath = path.join(__dirname, '../');
   console.log('Root path', rootPath);
 
+  // 1. Loop through directories / walk through files
   for await (const filePath of walk(rootPath)) {
-    console.log('File path', filePath);
+    console.log('_____***************______');
+    console.log(filePath);
+
+    const contents = fs.readFileSync(filePath, 'utf-8');
+    const originalSpec = parse(contents);
+    console.log(originalSpec);
+
+    // // derefSpec will have replaced refs with imported definitions
+    // const derefSpec = await parser.dereference(filePath);
+    // console.log('Deref spec', derefSpec);
   }
+
+  // 2. Get OpenAPI spec
+  // 3. Parse / dereference OpenAPI specs
 }
 
 main();
-
-// 1. Loop through directories / walk through files
-
-// 2. Get OpenAPI spec
-
-// 3. Parse / dereference OpenAPI specs
