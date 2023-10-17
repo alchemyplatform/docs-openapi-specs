@@ -16,6 +16,8 @@ servers:
           - arb-goerli
           - opt-mainnet
           - opt-goerli
+          - base-mainnet
+          - base-testnet
         default: eth-mainnet
 paths:
   ##
@@ -1944,10 +1946,10 @@ components:
       required: true
     owner:
       name: owner
-      description: String - Address for NFT owner (can be in ENS format!).
+      description: String - Address for NFT owner (can be in ENS format for Eth Mainnet).
       schema:
         type: string
-        default: vitalik.eth
+        default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
       in: query
       required: true
     wallet:

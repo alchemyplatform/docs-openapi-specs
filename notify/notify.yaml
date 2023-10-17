@@ -37,7 +37,7 @@ paths:
               alchemy.notify.getAllWebhooks().then(console.log);
       responses:
         '200':
-          description:  OK- Successful query of Custom Webhook variable
+          description: OK- Successful query of Custom Webhook variable
           content:
             application/json:
               schema:
@@ -85,7 +85,7 @@ paths:
               alchemy.notify.getAllWebhooks().then(console.log);
       responses:
         '201':
-          description:  OK- Successful PUT creation of a Custom Webhook variable
+          description: OK- Successful PUT creation of a Custom Webhook variable
         '400':
           description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
         '500':
@@ -122,7 +122,7 @@ paths:
               alchemy.notify.getAllWebhooks().then(console.log);
       responses:
         '201':
-          description:  OK- Successful deletion of a Custom Webhook variable
+          description: OK- Successful deletion of a Custom Webhook variable
         '404':
           description: Not found- The requested resource could not be found
         '500':
@@ -178,11 +178,11 @@ paths:
               });
       responses:
         '200':
-          description:  OK- Successful update to Custom Webhook variable
+          description: OK- Successful update to Custom Webhook variable
         '400':
           description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
         '401':
-          description: Unauthorized- missing or invalid authentication credentials 
+          description: Unauthorized- missing or invalid authentication credentials
         '500':
           description: Internal Server Error- Try again
       operationId: update-custom-webhook-variable
@@ -1013,6 +1013,9 @@ components:
         - ARB_RINKEBY
         - OPT_MAINNET
         - OPT_KOVAN
+        - BASE_MAINNET
+        - BASE_TESTNET
+
       default: ETH_MAINNET
     webhook_type:
       type: string
