@@ -15,7 +15,7 @@ servers:
 x-readme:
   id: 634f72885e2a9200e4ebf268
 paths:
-  "/{apiKey}":
+  '/{apiKey}':
     post:
       summary: alchemy_sendGasOptimizedTransaction
       description: Submits a bundle of identical transactions, each individually with a range of different gas values.

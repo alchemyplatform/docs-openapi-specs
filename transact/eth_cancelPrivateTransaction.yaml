@@ -12,7 +12,7 @@ servers:
 x-readme:
   id: 62d189bd28710500453ac689
 paths:
-  "/{apiKey}":
+  '/{apiKey}':
     post:
       summary: eth_cancelPrivateTransaction
       description: Request to cancel private transactions on Ethereum that are sent via eth_sendPrivateTransaction.
@@ -60,9 +60,4 @@ paths:
                     $ref: ../components/schemas.yaml#/JsonRpc
                   result:
                     type: boolean
-                example:
-                  { 
-                    'id': 1, 
-                    'jsonrpc': '2.0', 
-                    'result': true 
-                  }
+                example: { 'id': 1, 'jsonrpc': '2.0', 'result': true }

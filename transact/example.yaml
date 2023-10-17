@@ -33,7 +33,7 @@ paths:
       # tags: ['Simulation API Endpoints']
       # if omitted, readme uses method as page title
       summary: alchemy_simulateAssetChanges
-      # if omitted, readme uses method_path as page url 
+      # if omitted, readme uses method_path as page url
       # e.g. /reference/post_apikey
       operationId: alchemy-simulateAssetChanges
       parameters:

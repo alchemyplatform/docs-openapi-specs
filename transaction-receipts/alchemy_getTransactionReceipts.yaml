@@ -19,7 +19,7 @@ paths:
     post:
       summary: alchemy_getTransactionReceipts
       description: 'An enhanced API that gets all transaction receipts for a given block by number or block hash. Supported on all networks for Ethereum, Polygon, and Arbitrum.'
-      tags: ['Transaction Receipts Endpoints'] 
+      tags: ['Transaction Receipts Endpoints']
       operationId: alchemy-getTransactionReceipts
       x-readme:
         explorer-enabled: false
