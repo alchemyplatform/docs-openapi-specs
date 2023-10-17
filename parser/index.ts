@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-const { parse, stringify } = require('yaml');
-const parser = require('@openapi-generator-plus/json-schema-ref-parser');
+import { parse } from 'yaml';
+import SwaggerParser from '@apidevtools/swagger-parser';
 
 const ignoreList = [
   '.env',
@@ -20,6 +20,7 @@ const ignoreList = [
   'node_modules',
   'package.json',
   'package-lock.json',
+  'parser',
   'scripts',
 ];
 
@@ -40,16 +41,23 @@ async function main() {
 
   // 1. Loop through directories / walk through files
   for await (const filePath of walk(rootPath)) {
-    console.log('_____***************______');
+    console.log('\n\n');
     console.log(filePath);
 
-    const contents = fs.readFileSync(filePath, 'utf-8');
-    const originalSpec = parse(contents);
-    console.log(originalSpec);
+    // Convert YAML to JSON
+    const contents = fs.readFileSync(
+      '/Users/bastien/Documents/code/alchemyplatform/docs-openapi-specs/debug/debug_traceTransaction.yaml',
+      'utf-8',
+    );
+    const json = parse(contents);
+    // console.log(json);
 
-    // // derefSpec will have replaced refs with imported definitions
-    // const derefSpec = await parser.dereference(filePath);
-    // console.log('Deref spec', derefSpec);
+    try {
+      const api = await SwaggerParser.validate(json);
+      console.log(JSON.stringify(api, null, 2));
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   // 2. Get OpenAPI spec

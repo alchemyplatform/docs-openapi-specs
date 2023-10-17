@@ -15,11 +15,15 @@
     "url": "https://github.com/alchemyplatform/docs-openapi-specs/issues"
   },
   "homepage": "https://github.com/alchemyplatform/docs-openapi-specs#readme",
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0"
+  },
   "devDependencies": {
     "@openapi-generator-plus/json-schema-ref-parser": "^9.0.11",
     "@stoplight/spectral-cli": "^6.6.0",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3",
+    "oas": "^23.0.1",``
     "prettier": "^3.0.3",
     "rdme": "^8.4.0",
     "ts-node": "^10.9.1",
