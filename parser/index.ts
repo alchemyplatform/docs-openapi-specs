@@ -61,6 +61,7 @@ async function main() {
 
   type Entry = {
     filename: string;
+    url: string;
     chain: string;
     network: string;
     method: string;
@@ -85,7 +86,7 @@ async function main() {
 
       // @ts-ignore
       const servers = api.servers as OpenAPIV3_1.ServerObject[];
-      const chainsToNetworks = extractChainAndNetworks(servers[0]);
+      const { baseUrl, chainsToNetworks } = extractChainAndNetworks(servers[0]);
 
       const paths = api.paths;
       if (!paths) throw new Error('Paths not found in spec');
@@ -99,8 +100,13 @@ async function main() {
 
           for (const [chain, networks] of chainsToNetworks) {
             for (const network of networks) {
+              // TODO: hacky logic (should replace)
+              const parsedUrl = baseUrl.includes('{network}')
+                ? baseUrl.replace('{network}', [chain, network].join('-'))
+                : baseUrl;
               const entry = {
                 filename: fileName,
+                url: parsedUrl,
                 chain,
                 network,
                 method: method.toUpperCase(),
@@ -122,9 +128,10 @@ async function main() {
 
 main();
 
-function extractChainAndNetworks(
-  servers: OpenAPIV3_1.ServerObject,
-): Map<string, Set<string>> {
+function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
+  baseUrl: string;
+  chainsToNetworks: Map<string, Set<string>>;
+} {
   const { url, variables } = servers;
 
   // if variables key exists in spec - lets get the networks
@@ -168,7 +175,7 @@ function extractChainAndNetworks(
       chainsToNetworks.set(chain, new Set([network]));
     }
   }
-  return chainsToNetworks;
+  return { baseUrl: url, chainsToNetworks };
 }
 
 function extractSubdomain(url: string): string | null {
