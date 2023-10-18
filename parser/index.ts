@@ -46,6 +46,7 @@ async function main() {
     {
       fileName: '',
       chain: '',
+      url: '', // TODO: maybe best if we dont have an array of networks
       networks: ['mainnet', 'goerli'],
       category: '',
       method: 'eth_blockNumber',
@@ -71,7 +72,7 @@ async function main() {
       // @ts-ignore
       const servers = api.servers as Array<{
         url: string;
-        variables: {
+        variables?: {
           network: {
             enum: string[];
             default: string;
@@ -79,6 +80,23 @@ async function main() {
         };
       }>;
       console.log(JSON.stringify(servers, null, 2));
+
+      if (servers.length !== 1) {
+        throw new Error(`Expected 1 server, got ${servers.length}`);
+      }
+
+      // if variables key exists in spec - lets get the networks
+      // if not let's parse the URL
+
+      // TODO: do we want to add variables for all files?
+      // TODO: move Debug and Trace bodies out of shared files
+      if (servers[0].variables) {
+        const networks = servers[0].variables?.network.enum ?? [];
+        // console.log(networks);
+      } else {
+        const networks = extractSubdomain(url);
+        console.log(networks);
+      }
 
       // const paths = api.paths;
       // console.log(paths);
@@ -89,3 +107,28 @@ async function main() {
 }
 
 main();
+
+function extractSubdomain(url: string): string | null {
+  try {
+    const parsedUrl = new URL(url);
+    const hostParts = parsedUrl.host.split('.');
+
+    if (hostParts.length >= 2) {
+      return hostParts[0];
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Invalid URL:', error);
+    return null;
+  }
+}
+
+// Example usage:
+const url = 'https://astar-mainnet.g.alchemy.com/v2';
+const subdomain = extractSubdomain(url);
+if (subdomain) {
+  console.log(subdomain); // Output: "astar-mainnet"
+} else {
+  console.log('Subdomain not found in the URL.');
+}
