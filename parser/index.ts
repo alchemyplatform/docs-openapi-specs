@@ -85,7 +85,7 @@ async function main() {
 
       // @ts-ignore
       const servers = api.servers as OpenAPIV3_1.ServerObject[];
-      const { chains, networks } = extractChainAndNetworks(servers[0]);
+      const chainsToNetworks = extractChainAndNetworks(servers[0]);
 
       const paths = api.paths;
       if (!paths) throw new Error('Paths not found in spec');
@@ -97,8 +97,7 @@ async function main() {
         for (const [method, operation] of Object.entries(pathItem)) {
           // console.log(method, operation);
 
-          console.log(chains, networks);
-          for (const chain of chains) {
+          for (const [chain, networks] of chainsToNetworks) {
             for (const network of networks) {
               const entry = {
                 fileName,
@@ -121,17 +120,15 @@ async function main() {
 
 main();
 
-function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
-  chains: string[];
-  networks: string[];
-} {
+function extractChainAndNetworks(
+  servers: OpenAPIV3_1.ServerObject,
+): Map<string, Set<string>> {
   const { url, variables } = servers;
 
   // if variables key exists in spec - lets get the networks
   // if not let's parse the URL
 
-  const chains: string[] = [];
-  const networks: string[] = [];
+  const chainsToNetworks: Map<string, Set<string>> = new Map();
 
   if (variables) {
     const values = variables.network.enum ?? [];
@@ -142,8 +139,13 @@ function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
       }
       const chain = parts[0];
       const network = parts[1];
-      chains.push(chain);
-      networks.push(network);
+
+      const networks = chainsToNetworks.get(chain);
+      if (networks) {
+        chainsToNetworks.set(chain, networks.add(network));
+      } else {
+        chainsToNetworks.set(chain, new Set([network]));
+      }
     }
   } else {
     const subdomain = extractSubdomain(url);
@@ -156,10 +158,15 @@ function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
     }
     const chain = parts[0];
     const network = parts[1];
-    chains.push(chain);
-    networks.push(network);
+
+    const networks = chainsToNetworks.get(chain);
+    if (networks) {
+      chainsToNetworks.set(chain, networks.add(network));
+    } else {
+      chainsToNetworks.set(chain, new Set([network]));
+    }
   }
-  return { chains, networks };
+  return chainsToNetworks;
 }
 
 function extractSubdomain(url: string): string | null {
