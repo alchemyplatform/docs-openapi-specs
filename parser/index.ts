@@ -46,25 +46,15 @@ async function main() {
 
   // 1. Loop through directories / walk through files
 
-  // 1 entry per chain, per method
-  const example = [
-    {
-      fileName: '',
-      url: 'https://ethereum-mainnet.g.alchemy.com/v2', // TODO: add api key?
-      chain: 'ethereum',
-      networks: 'mainnet',
-      category: '',
-      method: 'POST',
-      params: [],
-    },
-  ];
-
   type Entry = {
     filename: string;
     url: string;
     chain: string;
     network: string;
+    path: string;
     method: string;
+    params: OpenAPIV3_1.ParameterObject[];
+    requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
   };
   const entries: Entry[] = [];
 
@@ -95,8 +85,10 @@ async function main() {
       for (const [path, pathItem] of Object.entries(paths)) {
         // TODO: fix types
         // TODO: method could actually be summary, description
-        for (const [method, operation] of Object.entries(pathItem)) {
+        for (const [method, op] of Object.entries(pathItem)) {
           // console.log(method, operation);
+
+          const operation = op as OpenAPIV3_1.OperationObject;
 
           for (const [chain, networks] of chainsToNetworks) {
             for (const network of networks) {
@@ -109,7 +101,11 @@ async function main() {
                 url: parsedUrl,
                 chain,
                 network,
+                path,
                 method: method.toUpperCase(),
+                params: operation.parameters as OpenAPIV3_1.ParameterObject[],
+                requestBody:
+                  operation.requestBody as OpenAPIV3_1.RequestBodyObject,
               };
               console.debug(entry);
               entries.push(entry);
