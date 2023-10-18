@@ -38,6 +38,8 @@ async function* walk(dir: string): AsyncGenerator<string> {
   }
 }
 
+const BASE_DOCS_URL = 'https://docs.alchemy.com/reference/';
+
 // Then, use it with a simple async for loop
 async function main() {
   console.log('Current directory', __dirname);
@@ -48,11 +50,15 @@ async function main() {
 
   type Entry = {
     filename: string;
-    url: string;
     chain: string;
     network: string;
+    url: string;
     path: string;
-    method: string;
+    method: {
+      name: string;
+      verb: string;
+      docsUrl: string;
+    };
     params: OpenAPIV3_1.ParameterObject[];
     requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
   };
@@ -96,13 +102,26 @@ async function main() {
               const parsedUrl = baseUrl.includes('{network}')
                 ? baseUrl.replace('{network}', [chain, network].join('-'))
                 : baseUrl;
+
+              if (!operation.operationId) {
+                throw new Error('Operation ID not found');
+              }
+
+              const methodName = operation.operationId;
+              const methodVerb = method.toUpperCase();
+              const readmeUrl =
+                BASE_DOCS_URL + operation.operationId.replace(/_/g, '-');
               const entry = {
                 filename: fileName,
-                url: parsedUrl,
                 chain,
                 network,
+                url: parsedUrl,
                 path,
-                method: method.toUpperCase(),
+                method: {
+                  name: methodName,
+                  verb: methodVerb,
+                  docsUrl: readmeUrl,
+                },
                 params: operation.parameters as OpenAPIV3_1.ParameterObject[],
                 requestBody:
                   operation.requestBody as OpenAPIV3_1.RequestBodyObject,
@@ -118,6 +137,7 @@ async function main() {
     }
   }
   console.log(`Generated ${entries.length} entries.`);
+
   const outputFilePath = path.join(__dirname, 'output.json');
   await fs.promises.writeFile(outputFilePath, JSON.stringify(entries, null, 2));
 }
