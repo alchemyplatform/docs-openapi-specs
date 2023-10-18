@@ -162,12 +162,17 @@ function extractMethods(
 ): {
   methods: string[];
 } {
-  console.log(paths);
   const methods: string[] = [];
 
   const tes = paths[0];
-  for (const [path, pathObject] of Object.entries(paths)) {
-    console.log(path, pathObject);
+
+  for (const [path, pathItemObject] of Object.entries(paths)) {
+    // TODO: fix types
+    // TODO: method could actually be summary, description
+    for (const [method, operationObject] of Object.entries(pathItemObject)) {
+      console.log(method, operationObject);
+      methods.push(method);
+    }
   }
 
   return { methods };
