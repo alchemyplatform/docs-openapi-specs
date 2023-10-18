@@ -60,7 +60,7 @@ async function main() {
   ];
 
   type Entry = {
-    fileName: string;
+    filename: string;
     chain: string;
     network: string;
     method: string;
@@ -100,7 +100,7 @@ async function main() {
           for (const [chain, networks] of chainsToNetworks) {
             for (const network of networks) {
               const entry = {
-                fileName,
+                filename: fileName,
                 chain,
                 network,
                 method: method.toUpperCase(),
@@ -116,6 +116,8 @@ async function main() {
     }
   }
   console.log(`Generated ${entries.length} entries.`);
+  const outputFilePath = path.join(__dirname, 'output.json');
+  await fs.promises.writeFile(outputFilePath, JSON.stringify(entries, null, 2));
 }
 
 main();
