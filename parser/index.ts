@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'yaml';
 import SwaggerParser from '@apidevtools/swagger-parser';
+import type { OpenAPIV3_1 } from '../node_modules/openapi-types/dist/index.d.ts';
 
 const ignoreList = [
   '.env',
@@ -70,34 +71,10 @@ async function main() {
       const fileName = filePath.split('/').at(-1);
 
       // @ts-ignore
-      const servers = api.servers as Array<{
-        url: string;
-        variables?: {
-          network: {
-            enum: string[];
-            default: string;
-          };
-        };
-      }>;
-      console.log(JSON.stringify(servers, null, 2));
-
-      if (servers.length !== 1) {
-        throw new Error(`Expected 1 server, got ${servers.length}`);
-      }
-
-      // if variables key exists in spec - lets get the networks
-      // if not let's parse the URL
-
-      // TODO: do we want to add variables for all files?
-      // TODO: move Debug and Trace bodies out of shared files
-      if (servers[0].variables) {
-        const networks = servers[0].variables?.network.enum ?? [];
-        // console.log(networks);
-      } else {
-        const networks = extractSubdomain(url);
-        console.log(networks);
-      }
-
+      const servers = api.servers as OpenAPIV3_1.ServerObject[];
+      console.log(servers);
+      const { chains, networks } = extractChainAndNetworks(servers[0]);
+      console.log(chains, networks);
       // const paths = api.paths;
       // console.log(paths);
     } catch (err) {
@@ -107,6 +84,36 @@ async function main() {
 }
 
 main();
+
+function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
+  chains: string[];
+  networks: string[];
+} {
+  const { url, variables } = servers;
+
+  // if variables key exists in spec - lets get the networks
+  // if not let's parse the URL
+
+  const networks: string[] = [];
+
+  if (variables) {
+    const values = variables.network.enum ?? [];
+    networks.push(...values);
+  } else {
+    const subdomain = extractSubdomain(url);
+    if (!subdomain) {
+      throw new Error(`Subdomain not found in the URL.`);
+    }
+    const parts = subdomain.split('-');
+    if (parts.length !== 2) {
+      throw new Error('Should have 2 parts');
+    }
+    const chain = subdomain[0];
+    const network = subdomain[1];
+    networks.push(subdomain);
+  }
+  return { chains: [], networks };
+}
 
 function extractSubdomain(url: string): string | null {
   try {
@@ -124,11 +131,5 @@ function extractSubdomain(url: string): string | null {
   }
 }
 
-// Example usage:
-const url = 'https://astar-mainnet.g.alchemy.com/v2';
-const subdomain = extractSubdomain(url);
-if (subdomain) {
-  console.log(subdomain); // Output: "astar-mainnet"
-} else {
-  console.log('Subdomain not found in the URL.');
-}
+// TODO: do we want to add variables for all files?
+// TODO: move Debug and Trace bodies out of shared files
