@@ -2,7 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'yaml';
 import SwaggerParser from '@apidevtools/swagger-parser';
-import type { OpenAPIV3_1 } from '../node_modules/openapi-types/dist/index.d.ts';
+import type {
+  OpenAPIV2,
+  OpenAPIV3,
+  OpenAPIV3_1,
+} from '../node_modules/openapi-types/dist/index.d.ts';
 
 const ignoreList = [
   '.env',
@@ -46,7 +50,7 @@ async function main() {
   const entries = [
     {
       fileName: '',
-      chain: '',
+      chain: 'ethereum',
       url: '', // TODO: maybe best if we dont have an array of networks
       networks: ['mainnet', 'goerli'],
       category: '',
@@ -72,11 +76,18 @@ async function main() {
 
       // @ts-ignore
       const servers = api.servers as OpenAPIV3_1.ServerObject[];
-      console.log(servers);
       const { chains, networks } = extractChainAndNetworks(servers[0]);
-      console.log(chains, networks);
-      // const paths = api.paths;
-      // console.log(paths);
+
+      const paths = api.paths;
+      if (!paths) throw new Error('Paths not found in spec');
+      const { methods } = extractMethods(paths);
+
+      console.log({
+        fileName,
+        chains,
+        networks,
+        methods,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -94,11 +105,22 @@ function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
   // if variables key exists in spec - lets get the networks
   // if not let's parse the URL
 
+  const chains: string[] = [];
   const networks: string[] = [];
 
   if (variables) {
     const values = variables.network.enum ?? [];
-    networks.push(...values);
+    for (const value of values) {
+      const parts = value.split('-');
+      if (parts.length !== 2) {
+        throw new Error('Should have 2 parts');
+      }
+      const chain = parts[0];
+      const network = parts[1];
+      console.log({ chain, network });
+      chains.push(chain);
+      networks.push(network);
+    }
   } else {
     const subdomain = extractSubdomain(url);
     if (!subdomain) {
@@ -108,11 +130,12 @@ function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
     if (parts.length !== 2) {
       throw new Error('Should have 2 parts');
     }
-    const chain = subdomain[0];
-    const network = subdomain[1];
-    networks.push(subdomain);
+    const chain = parts[0];
+    const network = parts[1];
+    chains.push(chain);
+    networks.push(network);
   }
-  return { chains: [], networks };
+  return { chains, networks };
 }
 
 function extractSubdomain(url: string): string | null {
@@ -129,6 +152,25 @@ function extractSubdomain(url: string): string | null {
     console.error('Invalid URL:', error);
     return null;
   }
+}
+
+function extractMethods(
+  paths:
+    | OpenAPIV2.PathsObject<{}>
+    | OpenAPIV3.PathsObject<{}, {}>
+    | OpenAPIV3_1.PathsObject<{}, {}>,
+): {
+  methods: string[];
+} {
+  console.log(paths);
+  const methods: string[] = [];
+
+  const tes = paths[0];
+  for (const [path, pathObject] of Object.entries(paths)) {
+    console.log(path, pathObject);
+  }
+
+  return { methods };
 }
 
 // TODO: do we want to add variables for all files?
