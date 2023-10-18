@@ -47,17 +47,25 @@ async function main() {
   // 1. Loop through directories / walk through files
 
   // 1 entry per chain, per method
-  const entries = [
+  const example = [
     {
       fileName: '',
+      url: 'https://ethereum-mainnet.g.alchemy.com/v2', // TODO: add api key?
       chain: 'ethereum',
-      url: '', // TODO: maybe best if we dont have an array of networks
-      networks: ['mainnet', 'goerli'],
+      networks: 'mainnet',
       category: '',
-      method: 'eth_blockNumber',
+      method: 'POST',
       params: [],
     },
   ];
+
+  type Entry = {
+    fileName: string;
+    chain: string;
+    network: string;
+    method: string;
+  };
+  const entries: Entry[] = [];
 
   for await (const filePath of walk(rootPath)) {
     console.log('\n\n');
@@ -73,6 +81,7 @@ async function main() {
     try {
       const api = await SwaggerParser.validate(json);
       const fileName = filePath.split('/').at(-1);
+      if (!fileName) throw new Error('File name not found');
 
       // @ts-ignore
       const servers = api.servers as OpenAPIV3_1.ServerObject[];
@@ -80,18 +89,34 @@ async function main() {
 
       const paths = api.paths;
       if (!paths) throw new Error('Paths not found in spec');
-      const { methods } = extractMethods(paths);
+      // const { methods } = extractMethods({ chains, networks, paths });
 
-      console.log({
-        fileName,
-        chains,
-        networks,
-        methods,
-      });
+      for (const [path, pathItem] of Object.entries(paths)) {
+        // TODO: fix types
+        // TODO: method could actually be summary, description
+        for (const [method, operation] of Object.entries(pathItem)) {
+          // console.log(method, operation);
+
+          console.log(chains, networks);
+          for (const chain of chains) {
+            for (const network of networks) {
+              const entry = {
+                fileName,
+                chain,
+                network,
+                method: method.toUpperCase(),
+              };
+              console.debug(entry);
+              entries.push(entry);
+            }
+          }
+        }
+      }
     } catch (err) {
       console.error(err);
     }
   }
+  console.log(`Generated ${entries.length} entries.`);
 }
 
 main();
@@ -117,7 +142,6 @@ function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
       }
       const chain = parts[0];
       const network = parts[1];
-      console.log({ chain, network });
       chains.push(chain);
       networks.push(network);
     }
@@ -152,30 +176,6 @@ function extractSubdomain(url: string): string | null {
     console.error('Invalid URL:', error);
     return null;
   }
-}
-
-function extractMethods(
-  paths:
-    | OpenAPIV2.PathsObject<{}>
-    | OpenAPIV3.PathsObject<{}, {}>
-    | OpenAPIV3_1.PathsObject<{}, {}>,
-): {
-  methods: string[];
-} {
-  const methods: string[] = [];
-
-  const tes = paths[0];
-
-  for (const [path, pathItemObject] of Object.entries(paths)) {
-    // TODO: fix types
-    // TODO: method could actually be summary, description
-    for (const [method, operationObject] of Object.entries(pathItemObject)) {
-      console.log(method, operationObject);
-      methods.push(method);
-    }
-  }
-
-  return { methods };
 }
 
 // TODO: do we want to add variables for all files?
