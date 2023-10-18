@@ -40,9 +40,22 @@ async function main() {
   console.log('Root path', rootPath);
 
   // 1. Loop through directories / walk through files
+
+  // 1 entry per chain, per method
+  const entries = [
+    {
+      fileName: '',
+      chain: '',
+      networks: ['mainnet', 'goerli'],
+      category: '',
+      method: 'eth_blockNumber',
+      params: [],
+    },
+  ];
+
   for await (const filePath of walk(rootPath)) {
     console.log('\n\n');
-    console.log(filePath);
+    // console.log(filePath);
 
     // Convert YAML to JSON
     // 2. Get OpenAPI spec
@@ -53,7 +66,22 @@ async function main() {
     // 3. Parse / dereference OpenAPI specs
     try {
       const api = await SwaggerParser.validate(json);
-      console.log(JSON.stringify(api, null, 2));
+      const fileName = filePath.split('/').at(-1);
+
+      // @ts-ignore
+      const servers = api.servers as Array<{
+        url: string;
+        variables: {
+          network: {
+            enum: string[];
+            default: string;
+          };
+        };
+      }>;
+      console.log(JSON.stringify(servers, null, 2));
+
+      // const paths = api.paths;
+      // console.log(paths);
     } catch (err) {
       console.error(err);
     }
