@@ -138,8 +138,36 @@ async function main() {
   }
   console.log(`Generated ${entries.length} entries.`);
 
+  // Group entries by chain, network, and method
+  const groupedEntries: {
+    [chain: string]: {
+      [network: string]: {
+        [method: string]: Entry[];
+      };
+    };
+  } = {};
+
+  for (const entry of entries) {
+    const { chain, network, method } = entry;
+    if (!groupedEntries[chain]) {
+      groupedEntries[chain] = {};
+    }
+    if (!groupedEntries[chain][network]) {
+      groupedEntries[chain][network] = {};
+    }
+    if (!groupedEntries[chain][network][method.name]) {
+      groupedEntries[chain][network][method.name] = [];
+    }
+    groupedEntries[chain][network][method.name].push(entry);
+  }
+
+  console.log(groupedEntries);
+
   const outputFilePath = path.join(__dirname, 'output.json');
-  await fs.promises.writeFile(outputFilePath, JSON.stringify(entries, null, 2));
+  await fs.promises.writeFile(
+    outputFilePath,
+    JSON.stringify(groupedEntries, null, 2),
+  );
 }
 
 main();
