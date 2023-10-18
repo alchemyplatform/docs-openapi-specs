@@ -110,7 +110,8 @@ async function main() {
               const methodName = operation.operationId;
               const methodVerb = method.toUpperCase();
               const readmeUrl =
-                BASE_DOCS_URL + operation.operationId.replace(/_/g, '-');
+                BASE_DOCS_URL +
+                operation.operationId.toLowerCase().replace(/_/g, '-');
               const entry = {
                 filename: fileName,
                 chain,
