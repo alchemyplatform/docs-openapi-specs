@@ -54,11 +54,12 @@ EthBlockNumber:
 
 EthCall:
   summary: "TODO: override this"
-  description: ''
+  description: Executes a new message call immediately without creating a transaction on the block chain
   operationId: "TODO: override this"
   parameters:
     - $ref: ./parameters.yaml#/ApiKey
   requestBody:
+    description: Accepts the transaction call object, state overrides and the block number / block hash / block tag to execute the call on.
     content:
       application/json:
         schema:
@@ -70,7 +71,19 @@ EthCall:
               $ref: ./schemas.yaml#/JsonRpc
             method:
               $ref: ./schemas.yaml#/Method
-              default: ''
+              default: 'eth_call'
+          params:
+            type: array
+            minItems: 1
+            maxItems: 1
+            items:
+              oneOf:
+                - allOf:
+                    - $ref: ./schemas.yaml#/TxObject
+                      # title: Transaction Object
+                    - $ref: '../evm_body.yaml#/gas_550'
+                - $ref: '#/BlockNumberOrTagOrHash'
+                  title: Block number or block tag or block hash
   responses:
     '200':
       description: ''

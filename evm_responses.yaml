@@ -271,7 +271,7 @@ eth_getTransactionByHash:
       properties:
         result:
           description: 'A transaction object, or null when no transaction was found'
-          $ref: '#/transaction_object'
+          $ref: './components/schemas.yaml#/TxObject'
       example:
         $ref: ./evm_examples.yaml#/eth_getTransactionByHash
 
@@ -282,7 +282,7 @@ eth_getTransactionByHash_arb:
       properties:
         result:
           description: 'A transaction object, or null when no transaction was found'
-          $ref: '#/transaction_object_arb'
+          $ref: './components/schemas.yaml#/TxObject_arb'
       example:
         $ref: ./evm_examples.yaml#/eth_getTransactionByHash_arb
 
@@ -735,7 +735,7 @@ eth_subscribe:
         result:
           description: An object whose contents vary depending on the type of subscription.
           oneOf:
-            - $ref: '#/transaction_object'
+            - $ref: './components/schemas.yaml#/TxObject'
             - type: string
             - $ref: '#/block_object'
             - $ref: '#/log_object'

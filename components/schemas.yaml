@@ -13,11 +13,11 @@ Address:
 FromAddress:
   $ref: '#/Address'
   # TODO: would hex make more sense than 20 bytes here?
-  description: 'address the transaction is sent from'
+  description: '20 Bytes - The address the transaction is sent from.'
 
 ToAddress:
   $ref: '#/Address'
-  description: 'address the transaction is directed to'
+  description: '20 Bytes - The address the transaction is directed to'
   # USDC contract
   default: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
 
@@ -28,9 +28,8 @@ Value:
 
 Data:
   $ref: '#/Hex'
-  description: ''
-  # transfer 1 USDC to address
-  default: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
+  description: Hash of the method signature and encoded parameters
+  default: '0x'
 
 GasLimit:
   $ref: '#/Hex'
@@ -50,6 +49,7 @@ MaxFeePerGas:
 
 TxObject:
   type: object
+  description: The transaction call object
   properties:
     from:
       $ref: '#/FromAddress'

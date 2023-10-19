@@ -418,7 +418,7 @@ eth_estimateGas_550:
           items:
             oneOf:
               - allOf:
-                  - $ref: '#/transaction_object'
+                  - $ref: './components/schemas.yaml#/TxObject'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
 
@@ -437,7 +437,7 @@ eth_estimateGas_polygon_zkEVM:
           items:
             oneOf:
               - allOf:
-                  - $ref: '#/transaction_object'
+                  - $ref: './components/schemas.yaml#/TxObject'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
 
@@ -777,7 +777,7 @@ trace_call:
             3. `string` - Block Identifier: Block hash, block number (in hex), or block tag (select in 3rd box)
           items:
             anyOf:
-              - $ref: '#/transaction_object'
+              - $ref: './components/schemas.yaml#/TxObject'
                 title: Transaction Object
                 description: transaction object.
               - $ref: '#/trace_type_array'
@@ -1081,7 +1081,7 @@ eth_createAccessList:
           maxItems: 2
           items:
             anyOf:
-              - $ref: '#/transaction_object'
+              - $ref: './components/schemas.yaml#/TxObject'
                 title: Transaction object
               - $ref: '#/blockNumber_or_blocktag_param_l2'
                 title: Block number or block tag
@@ -1196,7 +1196,7 @@ debug_traceCall:
             3. `tracer` - Object: Currently supports `callTracer` and `prestateTracer` (see above for definitions).
           items:
             anyOf:
-              - $ref: '#/transaction_object'
+              - $ref: './components/schemas.yaml#/TxObject'
                 title: Transaction object
               - type: string
                 title: Block identifier
@@ -1347,27 +1347,6 @@ topics:
       '0x00000000000000000000000054a2d42a40f51259dedd1978f6c118a0f0eff078',
     ]
 
-eth_call_550_gas:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          $ref: ./components/schemas.yaml#/Method
-          default: eth_call
-        params:
-          type: array
-          minItems: 1
-          maxItems: 1
-          items:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                    title: Transaction Object
-                  - $ref: '#/gas_550'
-              - $ref: '#/BlockNumberOrTagOrHash'
-                title: Block number or block tag or block hash
-
 eth_call_polygon_zkevm:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1383,55 +1362,17 @@ eth_call_polygon_zkevm:
           items:
             oneOf:
               - allOf:
-                  - $ref: '#/transaction_object'
+                  - $ref: './components/schemas.yaml#/TxObject'
                     title: Transaction Object
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
                 title: Block number or block tag or block hash
 
-transaction_object:
-  type: object
-  description: The transaction call object
-  properties:
-    from:
-      type: string
-      description: 20 Bytes - The address the transaction is sent from.
-      pattern: '^0[xX][0-9a-fA-F]+$'
-    to:
-      type: string
-      description: 20 Bytes - The address the transaction is directed to
-      default: '0xd46e8dd67c5d32be8058bb8eb970870f07244567'
-      pattern: '^0[xX][0-9a-fA-F]+$'
-    gas:
-      type: string
-      description: Integer of the gas provided for the transaction execution.
-      pattern: '^0[xX][0-9a-fA-F]+$'
-      default: '0x00'
-    gasPrice:
-      type: string
-      description: |
-        Integer of the gasPrice used for each paid gas.
-        <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
-      pattern: '^0[xX][0-9a-fA-F]+$'
-      default: '0x09184e72a000'
-    value:
-      type: string
-      description: Integer of the value sent with this transaction
-      pattern: '^0[xX][0-9a-fA-F]+$'
-      default: '0x00'
-    data:
-      type: string
-      description: Hash of the method signature and encoded parameters
-      pattern: '^0[xX][0-9a-fA-F]+$'
-      default: '0x'
-  required:
-    - to
 gas_550:
   type: object
   properties:
     gas:
-      type: string
-      pattern: '^0[xX][0-9a-fA-F]+$'
+      $ref: './components/schemas.yaml#/Hex'
       default: '0x1C9C380'
       description: |
         Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
