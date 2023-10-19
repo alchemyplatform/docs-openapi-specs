@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_getUncleByBlockNumberAndIndex - Ethereum
         description: Returns information about an uncle of a block by number and uncle index position.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

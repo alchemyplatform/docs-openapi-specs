@@ -20,7 +20,6 @@ components:
       post:
         summary: net_version - Ethereum
         description: Returns the current network id.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

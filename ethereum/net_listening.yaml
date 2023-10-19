@@ -20,7 +20,6 @@ components:
       post:
         summary: net_listening - Ethereum
         description: Returns true if client is actively listening for network connections.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

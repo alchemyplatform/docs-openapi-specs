@@ -21,7 +21,6 @@ components:
         summary: eth_newBlockFilter - Ethereum
         operationId: eth-newblockfilter
         description: 'Creates a filter in the node, to notify when a new block arrives.'
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

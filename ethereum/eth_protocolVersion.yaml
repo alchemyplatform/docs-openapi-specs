@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_protocolVersion - Ethereum
         description: Returns the current ethereum protocol version.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

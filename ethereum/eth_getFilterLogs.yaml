@@ -21,7 +21,6 @@ components:
         summary: eth_getFilterLogs - Ethereum
         operationId: eth-getfilterlogs
         description: Returns an array of all logs matching filter with given id. Can compute the same results with an eth_getLogs call.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

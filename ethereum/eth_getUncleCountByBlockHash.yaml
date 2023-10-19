@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_getUncleCountByBlockHash - Ethereum
         description: Returns the number of uncles in a block matching the given block hash.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

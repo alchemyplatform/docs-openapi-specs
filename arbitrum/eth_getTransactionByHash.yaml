@@ -17,7 +17,6 @@ components:
   pathItems:
     path:
       post:
-        tags: []
         summary: eth_getTransactionByHash - Arbitrum
         description: 'Returns the information about a transaction requested by transaction hash. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
         operationId: eth-getTransactionByHash-arbitrum

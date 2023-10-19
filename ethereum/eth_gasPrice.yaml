@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_gasPrice - Ethereum
         description: Returns the current price per gas in wei.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

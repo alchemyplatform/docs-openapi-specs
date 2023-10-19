@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_getTransactionReceipt - Ethereum
         description: Returns the receipt of a transaction by transaction hash.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

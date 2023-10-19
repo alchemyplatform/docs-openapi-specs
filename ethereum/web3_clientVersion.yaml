@@ -20,7 +20,6 @@ components:
       post:
         summary: web3_clientVersion - Ethereum
         description: Returns the current client version.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

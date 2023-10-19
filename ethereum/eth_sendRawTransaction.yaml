@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_sendRawTransaction - Ethereum
         description: Creates a new message call transaction or a contract creation for signed transactions.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_feeHistory - Ethereum
         description: Returns a collection of historical gas information.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

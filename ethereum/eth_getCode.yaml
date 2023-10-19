@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_getCode - Ethereum
         description: Returns code at a given address.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

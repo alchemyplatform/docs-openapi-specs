@@ -21,7 +21,6 @@ components:
         summary: eth_getFilterChanges - Ethereum
         operationId: eth-getfilterchanges
         description: 'Polling method for a filter, which returns an array of logs which occurred since last poll.'
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

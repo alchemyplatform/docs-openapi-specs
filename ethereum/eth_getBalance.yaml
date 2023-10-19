@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_getBalance - Ethereum
         description: Returns the balance of the account of a given address.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

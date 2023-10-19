@@ -20,7 +20,6 @@ components:
       post:
         summary: eth_accounts - Ethereum
         description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

@@ -21,7 +21,6 @@ components:
         summary: eth_newFilter - Ethereum
         operationId: eth-newfilter
         description: 'Creates a filter object, based on filter options, to notify when the state changes (logs).'
-        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
