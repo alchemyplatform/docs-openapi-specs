@@ -12,31 +12,27 @@ servers:
         default: base-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_feeHistory - Base
-        description: Returns a collection of historical gas information.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      tags: []
+      summary: eth_feeHistory - Base
+      description: Returns a collection of historical gas information.
+      operationId: eth-feeHistory-base
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_feeHistory
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_feeHistory
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_feeHistory
-        operationId: eth-feeHistory-base
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
+                $ref: ../evm_responses.yaml#/eth_feeHistory
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

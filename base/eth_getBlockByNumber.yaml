@@ -16,11 +16,6 @@ paths:
       summary: eth_getBlockByNumber - Base
       $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblockbynumber-base
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
       responses:
         '200':
           description: 'Returns a block object with the following fields, or null when no block was found.'
@@ -104,3 +99,8 @@ paths:
                                 items:
                                   type: string
                                 description: Array of uncle hashes.
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

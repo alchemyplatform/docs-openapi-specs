@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: eth_maxPriorityFeePerGas - Base
       description: "Returns a fee per gas that is an estimate of how much you can pay as a priority fee, or 'tip', to get a transaction included in the current block."
-      tags: []
+      operationId: eth-maxpriorityfeepergas-base
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/string_result_response
-      operationId: eth-maxpriorityfeepergas-base
