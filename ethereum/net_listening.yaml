@@ -26,7 +26,13 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/net_listening
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: net_listening
         responses:
           '200':
             description: 'Returns true when listening, otherwise false.'

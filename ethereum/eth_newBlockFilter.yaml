@@ -28,7 +28,13 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_newBlockFilter
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: eth_newBlockFilter
         responses:
           '200':
             description: Returns a filter id.

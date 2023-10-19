@@ -26,7 +26,13 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/web3_clientVersion
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: web3_clientVersion
         responses:
           '200':
             description: Returns the current client version.

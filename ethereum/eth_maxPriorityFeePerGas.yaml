@@ -22,7 +22,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/eth_maxPriorityFeePerGas
+              id:
+                $ref: ./schemas.yaml#/Id
+              jsonrpc:
+                $ref: ./schemas.yaml#/JsonRpc
+              method:
+                $ref: ./schemas.yaml#/Method
+                default: eth_maxPriorityFeePerGas
       responses:
         '200':
           description: Returns the estimated priority fee per gas.

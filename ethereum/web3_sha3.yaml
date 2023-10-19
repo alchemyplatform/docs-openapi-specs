@@ -20,6 +20,7 @@ components:
       post:
         summary: web3_sha3 - Ethereum
         description: Returns Keccak-256 (not the standardized SHA3-256) of the given data.
+        tags: []
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:

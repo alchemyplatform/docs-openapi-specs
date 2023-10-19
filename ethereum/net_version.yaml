@@ -26,7 +26,13 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/net_version
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: net_version
         responses:
           '200':
             description: Returns the current network id.
