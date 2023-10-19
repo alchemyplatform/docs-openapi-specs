@@ -39,7 +39,7 @@ EmittedEvent:
           $ref: '#/BlockHash'
         block_number:
           title: The number of the block in which the event was emitted
-          $ref: '#/BlockNumber'
+          $ref: './components/schemas.yaml#/BlockNumber'
         transaction_hash:
           title: The transaction that emitted the event
           $ref: '#/TxnHash'
@@ -113,7 +113,7 @@ BlockId:
     - type: object
       properties:
         block_number:
-          $ref: '#/BlockNumber'
+          $ref: './components/schemas.yaml#/BlockNumber'
       required:
         - block_number
     - $ref: '#/BlockTag'
@@ -326,7 +326,7 @@ BlockHeader:
       $ref: '#/BlockHash'
     block_number:
       description: The block number (its height)
-      $ref: '#/BlockNumber'
+      $ref: './components/schemas.yaml#/BlockNumber'
     new_root:
       description: The new global state root
       $ref: '#/Felt'
@@ -744,7 +744,7 @@ CommonReceiptProperties:
     block_hash:
       $ref: '#/BlockHash'
     block_number:
-      $ref: '#/BlockNumber'
+      $ref: './components/schemas.yaml#/BlockNumber'
     messages_sent:
       type: array
       items:

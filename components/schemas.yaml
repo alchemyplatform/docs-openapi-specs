@@ -72,6 +72,12 @@ TxObject:
   required:
     - to
 
+BlockNumber:
+  title: Block number
+  type: string
+  description: The hex value of a **block number**.
+  default: '0x61A80'
+
 Id:
   type: integer
   default: 1

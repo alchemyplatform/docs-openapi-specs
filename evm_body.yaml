@@ -550,7 +550,7 @@ eth_getUncleCountByBlockNumber:
           minItems: 1
           maxItems: 1
           items:
-            -$ref: '#/BlockNumber'
+            -$ref: './components/schemas.yaml#/BlockNumber'
 eth_getFilterChanges:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1607,7 +1607,7 @@ BlockNumberOrTagOrHash:
   title: Block number or tag, or block hash
   oneOf:
     - title: Block Number
-      $ref: '#/BlockNumber'
+      $ref: './components/schemas.yaml#/BlockNumber'
     - title: Block Tag
       $ref: '#/BlockTag'
     - title: Block Hash
@@ -1617,7 +1617,7 @@ BlockNumberOrTagOrHash_polygon_zkevm:
   title: Block number or tag, or block hash
   oneOf:
     - title: Block Number
-      $ref: '#/BlockNumber'
+      $ref: './components/schemas.yaml#/BlockNumber'
     - title: Block Tag
       $ref: '#/BlockTag_polygon_zkevm'
     - title: Block Hash
@@ -1655,12 +1655,6 @@ BlockTag_polygon_zkevm:
     - latest
     - earliest
   default: latest
-
-BlockNumber:
-  title: Block number
-  type: string
-  description: The hex value of a **block number**.
-  default: '0x61A80'
 
 BlockHashEIP1898:
   title: Block hash
