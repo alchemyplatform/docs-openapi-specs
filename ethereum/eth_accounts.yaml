@@ -13,7 +13,7 @@ servers:
         default: eth-mainnet
 paths:
   /{apiKey}:
-      post:
-        $ref: ../components/evm.yaml#/EthAccount
-        summary: eth_accounts - Ethereum
-        operationId: eth-accounts
+    post:
+      $ref: ../components/evm.yaml#/EthAccount
+      summary: eth_accounts - Ethereum
+      operationId: eth-accounts
