@@ -3,7 +3,13 @@ ApiKey:
   name: apiKey
   in: path
   # TODO: should we link to /signup directly?
-  description: For higher throughput, **[create your own API key](https://alchemy.com/?a=docs-demo)**.
+  description: |
+    <style>
+      .custom-style {
+        color: #048FF4;
+      }
+    </style>
+    For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
   required: true
   schema:
     type: string
