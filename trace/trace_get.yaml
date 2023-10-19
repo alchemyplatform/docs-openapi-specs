@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: trace_get
       description: Returns trace at given position.
-      tags: []
+      operationId: trace-get
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -23,6 +24,13 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/trace_get
+      responses:
+        '200':
+          description: 'Returns - Trace object.'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/trace_get
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -37,11 +45,3 @@ paths:
               -X POST \
               -H "Content-Type: application/json" \
               -d '{"method":"trace_get","params":["0x17104ac9d3312d8c136b7f44d4b8b47852618065ebfa534bd2d3b5ef218ca1f3",["0x0"]],"id":1,"jsonrpc":"2.0"}'
-      responses:
-        '200':
-          description: 'Returns - Trace object.'
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/trace_get
-      operationId: trace-get

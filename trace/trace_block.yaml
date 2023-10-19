@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: trace_block
       description: Returns traces created at given block.
-      tags: []
+      operationId: trace-block
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/trace_block
-      operationId: trace-block
