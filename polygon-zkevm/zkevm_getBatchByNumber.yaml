@@ -13,30 +13,26 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-getBatchByNumber-polygon-zkevm
-        summary: zkevm_getBatchByNumber - Polygon zkEVM
-        description: Returns information about the batch identified by the provided batch number or tag.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      summary: zkevm_getBatchByNumber - Polygon zkEVM
+      description: Returns information about the batch identified by the provided batch number or tag.
+      operationId: zkevm-getBatchByNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../evm_body.yaml#/zkevm_getBatchByNumber'
+      responses:
+        '200':
+          description: Returns information about the batch identified by the provided batch number or tag.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_getBatchByNumber'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns information about the batch identified by the provided batch number or tag.
-            content:
-              application/json:
-                schema:
-                  $ref: '../evm_responses.yaml#/zkevm_getBatchByNumber'
+                $ref: '../evm_responses.yaml#/zkevm_getBatchByNumber'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

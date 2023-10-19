@@ -13,31 +13,27 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-getBroadcastURI-polygon-zkevm
-        summary: zkevm_getBroadcastURI - Polygon zkEVM
+    post:
+      summary: zkevm_getBroadcastURI - Polygon zkEVM
+      description: Returns the configured Broadcast URL of the Trusted Sequencer.
+      operationId: zkevm-getBroadcastURI-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
         description: Returns the configured Broadcast URL of the Trusted Sequencer.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../evm_body.yaml#/zkevm_getBroadcastURI'
+      responses:
+        '200':
           description: Returns the configured Broadcast URL of the Trusted Sequencer.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_getBroadcastURI'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns the configured Broadcast URL of the Trusted Sequencer.
-            content:
-              application/json:
-                schema:
-                  $ref: '../evm_responses.yaml#/zkevm_getBroadcastURI'
+                $ref: '../evm_responses.yaml#/zkevm_getBroadcastURI'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

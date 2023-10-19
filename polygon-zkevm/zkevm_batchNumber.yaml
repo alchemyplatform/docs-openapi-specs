@@ -13,30 +13,26 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-batchNumber-polygon-zkevm
-        summary: zkevm_batchNumber - Polygon zkEVM
-        description: Returns the latest batch number.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      summary: zkevm_batchNumber - Polygon zkEVM
+      description: Returns the latest batch number.
+      operationId: zkevm-batchNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../evm_body.yaml#/zkevm_batchNumber'
+      responses:
+        '200':
+          description: Returns the latest batch number.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_batchNumber'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns the latest batch number.
-            content:
-              application/json:
-                schema:
-                  $ref: '../evm_responses.yaml#/zkevm_batchNumber'
+                $ref: '../evm_responses.yaml#/zkevm_batchNumber'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

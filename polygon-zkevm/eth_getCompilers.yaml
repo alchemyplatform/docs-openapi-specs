@@ -17,9 +17,10 @@ components:
   pathItems:
     path:
       post:
+        tags: []
         summary: eth_getCompilers - Polygon zkEVM
         description: Returns a list of installed compilers (Deprecated). Response is always empty in Polygon zkEVM.
-        tags: []
+        operationId: eth-getCompilers-polygon-zkevm
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
@@ -36,11 +37,6 @@ components:
                   method:
                     $ref: ../components/schemas.yaml#/Method
                     default: eth_getCompilers
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
         responses:
           '200':
             description: Response is always empty.
@@ -62,4 +58,8 @@ components:
                       items:
                         type: string
                       example: []
-        operationId: eth-getCompilers-polygon-zkevm
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python

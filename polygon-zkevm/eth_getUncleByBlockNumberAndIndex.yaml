@@ -12,40 +12,36 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getUncleByBlockNumberAndIndex - Polygon zkEVM
-        description: Returns information about an uncle block by block number and uncle index position. Response for this method is always empty on Polygon zkEVM.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      tags: []
+      summary: eth_getUncleByBlockNumberAndIndex - Polygon zkEVM
+      description: Returns information about an uncle block by block number and uncle index position. Response for this method is always empty on Polygon zkEVM.
+      operationId: eth-getUncleByBlockNumberAndIndex-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getUncleByBlockNumberAndIndex
+      responses:
+        '200':
+          description: Response is always empty.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUncleByBlockNumberAndIndex
-        responses:
-          '200':
-            description: Response is always empty.
-            content:
-              application/json:
-                schema:
-                  type: object
-                  required:
-                    - id
-                    - jsonrpc
-                    - result
-                  properties:
-                    id:
-                      $ref: ../components/schemas.yaml#/Id
-                    jsonrpc:
-                      $ref: ../components/schemas.yaml#/JsonRpc
-                    result:
-                      type: array
-                      items:
-                        type: string
-                      example: []
-        operationId: eth-getUncleByBlockNumberAndIndex-polygon-zkevm
+                type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    example: []

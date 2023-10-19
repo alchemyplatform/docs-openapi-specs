@@ -13,31 +13,27 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-consolidatedBlockNumber-polygon-zkevm
-        summary: zkevm_consolidatedBlockNumber - Polygon zkEVM
-        description: Returns the latest block number that is connected to the latest batch verified.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Accepts no parameters.
+    post:
+      summary: zkevm_consolidatedBlockNumber - Polygon zkEVM
+      description: Returns the latest block number that is connected to the latest batch verified.
+      operationId: zkevm-consolidatedBlockNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Accepts no parameters.
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/zkevm_consolidatedBlockNumber
+      responses:
+        '200':
+          description: The latest block number that is connected to the latest batch verified.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/zkevm_consolidatedBlockNumber
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The latest block number that is connected to the latest batch verified.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/zkevm_consolidatedBlockNumber
+                $ref: ../evm_responses.yaml#/zkevm_consolidatedBlockNumber
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

@@ -12,43 +12,39 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getUncleCountByBlockHash - Polygon zkEVM
-        description: Returns the number of uncles in a block specified by block hash. Response for this method is always 0 on Polygon zkEVM.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      tags: []
+      summary: eth_getUncleCountByBlockHash - Polygon zkEVM
+      description: Returns the number of uncles in a block specified by block hash. Response for this method is always 0 on Polygon zkEVM.
+      operationId: eth-getUncleCountByBlockHash-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getUncleCountByBlockHash
+      responses:
+        '200':
+          description: Response is always 0.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUncleCountByBlockHash
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Response is always 0.
-            content:
-              application/json:
-                schema:
-                  type: object
-                  required:
-                    - id
-                    - jsonrpc
-                    - result
-                  properties:
-                    id:
-                      $ref: ../components/schemas.yaml#/Id
-                    jsonrpc:
-                      $ref: ../components/schemas.yaml#/JsonRpc
-                    result:
-                      type: integer
-                      example: 0
-        operationId: eth-getUncleCountByBlockHash-polygon-zkevm
+                type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    type: integer
+                    example: 0
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

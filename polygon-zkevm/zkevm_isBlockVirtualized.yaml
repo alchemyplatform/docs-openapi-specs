@@ -13,31 +13,27 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-isBlockVirtualized-polygon-zkevm
-        summary: zkevm_isBlockVirtualized - Polygon zkEVM
+    post:
+      summary: zkevm_isBlockVirtualized - Polygon zkEVM
+      description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
+      operationId: zkevm-isBlockVirtualized-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
         description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/zkevm_isBlockVirtualized
+      responses:
+        '200':
           description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/zkevm_isBlockVirtualized
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/zkevm_isBlockVirtualized
+                $ref: ../evm_responses.yaml#/zkevm_isBlockVirtualized
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

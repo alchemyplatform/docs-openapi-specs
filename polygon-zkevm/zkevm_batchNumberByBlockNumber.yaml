@@ -13,30 +13,26 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-batchNumberByBlockNumber-polygon-zkevm
-        summary: zkevm_batchNumberByBlockNumber - Polygon zkEVM
-        description: Returns the batch number of the batch connected to the block.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      summary: zkevm_batchNumberByBlockNumber - Polygon zkEVM
+      description: Returns the batch number of the batch connected to the block.
+      operationId: zkevm-batchNumberByBlockNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../evm_body.yaml#/zkevm_batchNumberByBlockNumber'
+      responses:
+        '200':
+          description: Returns the batch number of the batch connected to the block.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_batchNumberByBlockNumber'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns the batch number of the batch connected to the block.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/zkevm_batchNumberByBlockNumber
+                $ref: ../evm_responses.yaml#/zkevm_batchNumberByBlockNumber
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

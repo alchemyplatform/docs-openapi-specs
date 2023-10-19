@@ -12,31 +12,27 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getTransactionByBlockNumberAndIndex - Polygon zkEVM
-        description: Returns information about a transaction by block number and transaction index position.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      tags: []
+      summary: eth_getTransactionByBlockNumberAndIndex - Polygon zkEVM
+      description: Returns information about a transaction by block number and transaction index position.
+      operationId: eth-getTransactionByBlockNumberAndIndex-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getTransactionByBlockNumberAndIndex_polygon_zkevm
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getTransactionByBlockNumberAndIndex_polygon_zkevm
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_block
-        operationId: eth-getTransactionByBlockNumberAndIndex-polygon-zkevm
+                $ref: ../evm_responses.yaml#/eth_block
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

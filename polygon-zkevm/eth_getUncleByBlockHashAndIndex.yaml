@@ -12,40 +12,36 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getUncleByBlockHashAndIndex - Polygon zkEVM
-        description: Returns information about an uncle block by block hash and uncle index position. Response for this method is always empty on Polygon zkEVM.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      tags: []
+      summary: eth_getUncleByBlockHashAndIndex - Polygon zkEVM
+      description: Returns information about an uncle block by block hash and uncle index position. Response for this method is always empty on Polygon zkEVM.
+      operationId: eth-getUncleByBlockHashAndIndex-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getUncleByBlockHashAndIndex
+      responses:
+        '200':
+          description: Response is always empty.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUncleByBlockHashAndIndex
-        responses:
-          '200':
-            description: Response is always empty.
-            content:
-              application/json:
-                schema:
-                  type: object
-                  required:
-                    - id
-                    - jsonrpc
-                    - result
-                  properties:
-                    id:
-                      $ref: ../components/schemas.yaml#/Id
-                    jsonrpc:
-                      $ref: ../components/schemas.yaml#/JsonRpc
-                    result:
-                      type: array
-                      items:
-                        type: string
-                      example: []
-        operationId: eth-getUncleByBlockHashAndIndex-polygon-zkevm
+                type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    example: []
