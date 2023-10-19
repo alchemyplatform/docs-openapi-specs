@@ -17,10 +17,24 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: ['Transaction Receipts Endpoints']
       summary: alchemy_getTransactionReceipts
       description: 'An enhanced API that gets all transaction receipts for a given block by number or block hash. Supported on all networks for Ethereum, Polygon, and Arbitrum.'
-      tags: ['Transaction Receipts Endpoints']
       operationId: alchemy-getTransactionReceipts
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/alchemy_getTransactionReceipts_param
+      responses:
+        '200':
+          description: A list of transaction receipts for each transaction in this block.
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/transaction_receipt
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -58,17 +72,3 @@ paths:
               };
 
               main();
-      parameters:
-        - $ref: ../components/parameters.yaml#/ApiKey
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../evm_body.yaml#/alchemy_getTransactionReceipts_param
-      responses:
-        '200':
-          description: A list of transaction receipts for each transaction in this block.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/transaction_receipt
