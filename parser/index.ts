@@ -33,7 +33,8 @@ async function* walk(dir: string): AsyncGenerator<string> {
   for await (const d of await fs.promises.opendir(dir)) {
     const entry = path.join(dir, d.name);
     if (ignoreList.includes(d.name)) continue;
-    if (d.isDirectory()) yield* walk(entry);
+    //if (d.name == 'account-abstraction') yield* walk(entry); // delete later
+    if (d.isDirectory()) yield* walk(entry); // uncomment later
     else if (d.isFile()) yield entry;
   }
 }
@@ -51,13 +52,13 @@ async function main() {
   type Entry = {
     filename: string;
     chain: string;
-    network: string;
-    url: string;
+    url: string; // need to figure out how to handle networks still
     path: string;
     method: {
       name: string;
       verb: string;
       docsUrl: string;
+      networks: Set<string>;
     };
     params: OpenAPIV3_1.ParameterObject[];
     requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
@@ -97,39 +98,32 @@ async function main() {
           const operation = op as OpenAPIV3_1.OperationObject;
 
           for (const [chain, networks] of chainsToNetworks) {
-            for (const network of networks) {
-              // TODO: hacky logic (should replace)
-              const parsedUrl = baseUrl.includes('{network}')
-                ? baseUrl.replace('{network}', [chain, network].join('-'))
-                : baseUrl;
-
-              if (!operation.operationId) {
-                throw new Error('Operation ID not found');
-              }
-
-              const methodName = operation.operationId;
-              const methodVerb = method.toUpperCase();
-              const readmeUrl =
-                BASE_DOCS_URL +
-                operation.operationId.toLowerCase().replace(/_/g, '-');
-              const entry = {
-                filename: fileName,
-                chain,
-                network,
-                url: parsedUrl,
-                path,
-                method: {
-                  name: methodName,
-                  verb: methodVerb,
-                  docsUrl: readmeUrl,
-                },
-                params: operation.parameters as OpenAPIV3_1.ParameterObject[],
-                requestBody:
-                  operation.requestBody as OpenAPIV3_1.RequestBodyObject,
-              };
-              console.debug(entry);
-              entries.push(entry);
+            if (!operation.operationId) {
+              throw new Error('Operation ID not found');
             }
+
+            const methodName = operation.operationId;
+            const methodVerb = method.toUpperCase();
+            const readmeUrl =
+              BASE_DOCS_URL +
+              operation.operationId.toLowerCase().replace(/_/g, '-');
+            const entry = {
+              filename: fileName,
+              chain,
+              url: baseUrl, // removed the network url, we can add this as a map in the networks property or just swap out the URL {network} based on the selected network
+              path,
+              method: {
+                name: methodName,
+                verb: methodVerb,
+                docsUrl: readmeUrl,
+                networks: networks,
+              },
+              params: operation.parameters as OpenAPIV3_1.ParameterObject[],
+              requestBody:
+                operation.requestBody as OpenAPIV3_1.RequestBodyObject,
+            };
+            console.debug(entry);
+            entries.push(entry);
           }
         }
       }
@@ -139,37 +133,34 @@ async function main() {
   }
   console.log(`Generated ${entries.length} entries.`);
 
-  // Group entries by chain, network, and method
+  // Group entries by chain and method
   const groupedEntries: {
     [chain: string]: {
-      [network: string]: {
-        [method: string]: Entry;
-        // [method: string]: Entry[];
-      };
+      [method: string]: Entry;
     };
   } = {};
 
   for (const entry of entries) {
-    const { chain, network, method } = entry;
+    const { chain, method } = entry;
     if (!groupedEntries[chain]) {
       groupedEntries[chain] = {};
     }
-    if (!groupedEntries[chain][network]) {
-      groupedEntries[chain][network] = {};
+
+    /*
+
+    if (!groupedEntries[chain][method.name]) {
+      groupedEntries[chain][method.name] = {};
     }
-    // if (!groupedEntries[chain][network][method.name]) {
-    //   groupedEntries[chain][network][method.name] = [];
-    // }
-    // groupedEntries[chain][network][method.name].push(entry);
-    if (groupedEntries[chain][network][method.name]) {
-      throw new Error(
-        `Duplicate entry found for ${chain} ${network} ${method.name}`,
-      );
+    */
+
+    if (groupedEntries[chain][method.name]) {
+      throw new Error(`Duplicate entry found for ${chain} ${method.name}`);
     }
-    groupedEntries[chain][network][method.name] = entry;
+    groupedEntries[chain][method.name] = entry;
   }
 
-  console.log(groupedEntries);
+  // print out the groupings
+  // console.log(groupedEntries);
 
   const outputFilePath = path.join(__dirname, 'output.json');
   await fs.promises.writeFile(
