@@ -16,6 +16,9 @@ paths:
       summary: eth_feeHistory - Arbitrum
       operationId: eth-feehistory-arbitrum
       $ref: ../ethereum/eth_feeHistory.yaml#/components/pathItems/path/post
+      responses:
+        '200':
+          description: 'Returns latest block and gas fee details.'
       x-readme:
         samples-languages:
           - curl
@@ -44,6 +47,3 @@ paths:
               ]);
 
               console.log(res);
-      responses:
-        '200':
-          description: 'Returns latest block and gas fee details.'

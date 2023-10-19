@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: eth_getTransactionByBlockNumberAndIndex - Arbitrum
       description: Returns information about a transaction by block number and transaction index position.
-      tags: []
+      operationId: eth-getTransactionByBlockNumberAndIndex-arbitrum
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -32,4 +33,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/eth_getTransactionByHash_arb
-      operationId: eth-getTransactionByBlockNumberAndIndex-arbitrum

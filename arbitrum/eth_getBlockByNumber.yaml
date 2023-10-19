@@ -13,47 +13,43 @@ servers:
         default: arb-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: eth-getBlockByNumber-arbitrum
-        summary: eth_getBlockByNumber - Arbitrum
-        description: Returns information about a block by block number on the Arbitrum network.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
+    post:
+      summary: eth_getBlockByNumber - Arbitrum
+      description: Returns information about a block by block number on the Arbitrum network.
+      operationId: eth-getBlockByNumber-arbitrum
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockByNumber
+      responses:
+        '200':
+          description: 'Returns a block object with the following fields, or null when no block was found.'
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getBlockByNumber
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - curl
-            - javascript
-            - python
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
+                $ref: ../evm_responses.yaml#/arb_block
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
 
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ARB_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ARB_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                alchemy.core.getBlock(15221026).then(console.log);
-        responses:
-          '200':
-            description: 'Returns a block object with the following fields, or null when no block was found.'
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/arb_block
+              alchemy.core.getBlock(15221026).then(console.log);

@@ -15,6 +15,7 @@ paths:
     post:
       summary: eth_createAccessList - Arbitrum
       description: 'Arbitrum API - Creates an EIP2930 type `accessList` based on a given Transaction object. Returns list of addresses and storage keys that are read and written by the transaction (except the sender account and precompiles), plus the estimated gas consumed when the access list is added.'
+      operationId: eth-createaccesslist-arbitrum
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -29,4 +30,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/eth_createAccessList
-      operationId: eth-createaccesslist-arbitrum

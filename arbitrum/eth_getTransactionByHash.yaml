@@ -17,9 +17,10 @@ components:
   pathItems:
     path:
       post:
+        tags: []
         summary: eth_getTransactionByHash - Arbitrum
         description: 'Returns the information about a transaction requested by transaction hash. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
-        tags: []
+        operationId: eth-getTransactionByHash-arbitrum
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
@@ -32,6 +33,13 @@ components:
                     [
                       '0x2d6da6ea7d7d7d1ca72576dc457a2b6f59fb798566fb97492b3f2835b0a59178',
                     ]
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getTransactionByHash_arb
         x-readme:
           samples-languages:
             - curl
@@ -57,11 +65,3 @@ components:
                     "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
                   )
                   .then(console.log);
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_getTransactionByHash_arb
-        operationId: eth-getTransactionByHash-arbitrum
