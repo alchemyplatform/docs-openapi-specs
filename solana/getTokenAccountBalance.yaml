@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getTokenAccountBalance
       description: Returns the token balance of an SPL Token account..
-      tags: []
+      operationId: getTokenAccountBalance
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getTokenAccountBalance
-      operationId: getTokenAccountBalance
       x-readme:
         explorer-enabled: false

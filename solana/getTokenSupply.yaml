@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getTokenSupply
       description: Returns the total supply of an SPL Token type.
-      tags: []
+      operationId: getTokenSupply
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getTokenSupply
-      operationId: getTokenSupply
       x-readme:
         explorer-enabled: false

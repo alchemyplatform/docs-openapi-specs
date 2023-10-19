@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getTransaction
       description: Returns transaction details for a confirmed transaction.
-      tags: []
+      operationId: getTransaction
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getTransaction
-      operationId: getTransaction
       x-readme:
         explorer-enabled: false

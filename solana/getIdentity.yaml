@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getIdentity
       description: Returns the identity pubkey for the current node.
-      tags: []
+      operationId: getIdentity
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getIdentity
-      operationId: getIdentity

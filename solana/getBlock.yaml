@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getBlock
       description: Returns identity and transaction information about a confirmed block in the ledger.
-      tags: []
+      operationId: getBlock
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getBlock
-      operationId: getBlock
       x-readme:
         explorer-enabled: false

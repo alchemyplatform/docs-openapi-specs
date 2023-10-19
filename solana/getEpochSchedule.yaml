@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getEpochSchedule
       description: Returns epoch schedule information from this cluster's genesis config.
-      tags: []
+      operationId: getEpochSchedule
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getEpochSchedule
-      operationId: getEpochSchedule

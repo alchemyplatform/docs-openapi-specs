@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: simulateTransaction
       description: Simulate sending a transaction.
-      tags: []
+      operationId: simulateTransaction
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/simulateTransaction
-      operationId: simulateTransaction
       x-readme:
         explorer-enabled: false

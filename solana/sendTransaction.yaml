@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: sendTransaction
       description: Submits a signed transaction to the cluster for processing.
-      tags: []
+      operationId: sendTransaction
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/sendTransaction
-      operationId: sendTransaction
       x-readme:
         explorer-enabled: false

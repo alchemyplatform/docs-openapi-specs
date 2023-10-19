@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getTokenAccountsByOwner
       description: Returns all SPL Token accounts by token owner.
-      tags: []
+      operationId: getTokenAccountsByOwner
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getTokenAccountsByOwner
-      operationId: getTokenAccountsByOwner
       x-readme:
         explorer-enabled: false

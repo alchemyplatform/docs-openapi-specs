@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getVersion
       description: Returns the current solana versions running on the node.
-      tags: []
+      operationId: getVersion
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getVersion
-      operationId: getVersion

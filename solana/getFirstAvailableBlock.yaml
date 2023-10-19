@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getFirstAvailableBlock
       description: Get the fee the network will charge for a particular message.
-      tags: []
+      operationId: getFirstAvailableBlock
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getFirstAvailableBlock
-      operationId: getFirstAvailableBlock

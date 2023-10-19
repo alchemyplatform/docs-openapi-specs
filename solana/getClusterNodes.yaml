@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getClusterNodes
       description: Returns information about all the nodes participating in the cluster.
-      tags: []
+      operationId: getClusterNodes
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getClusterNodes
-      operationId: getClusterNodes

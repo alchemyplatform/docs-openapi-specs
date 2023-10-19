@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getMultipleAccounts
       description: Returns the account information for a list of Pubkeys.
-      tags: []
+      operationId: getMultipleAccounts
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getMultipleAccounts
-      operationId: getMultipleAccounts
       x-readme:
         explorer-enabled: false

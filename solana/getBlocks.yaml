@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getBlocks
       description: Returns a list of confirmed blocks between two slots.
-      tags: []
+      operationId: getBlocks
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getBlocks
-      operationId: getBlocks
       x-readme:
         explorer-enabled: false

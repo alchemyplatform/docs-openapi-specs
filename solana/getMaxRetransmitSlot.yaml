@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getMaxRetransmitSlot
       description: Get the max slot seen from retransmit stage.
-      tags: []
+      operationId: getMaxRetransmitSlot
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getMaxRetransmitSlot
-      operationId: getMaxRetransmitSlot

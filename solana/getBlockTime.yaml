@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getBlockTime
       description: Returns the estimated production time of a block.
-      tags: []
+      operationId: getBlockTime
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getBlockTime
-      operationId: getBlockTime

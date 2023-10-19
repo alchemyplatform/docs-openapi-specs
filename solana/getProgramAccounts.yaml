@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getProgramAccounts
       description: Returns all accounts owned by the provided program Pubkey.
-      tags: []
+      operationId: getProgramAccounts
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getProgramAccounts
-      operationId: getProgramAccounts
       x-readme:
         explorer-enabled: false

@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getMinimumBalanceForRentExemption
       description: Returns minimum balance required to make account rent exempt.
-      tags: []
+      operationId: getMinimumBalanceForRentExemption
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,6 +31,5 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getMinimumBalanceForRentExemption
-      operationId: getMinimumBalanceForRentExemption
       x-readme:
         explorer-enabled: false

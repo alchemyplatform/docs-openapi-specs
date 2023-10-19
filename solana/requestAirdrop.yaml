@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: requestAirdrop
       description: Requests an airdrop of lamports to a Pubkey
-      tags: []
+      operationId: requestAirdrop
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -23,12 +24,6 @@ paths:
           application/json:
             schema:
               $ref: solana_body.yaml#/requestAirdrop
-      x-readme:
-        explorer-enabled: false
-        samples-languages:
-          - curl
-          - javascript
-          - python
         code-samples:
           - language: shell
             name: cURL
@@ -49,4 +44,9 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/requestAirdrop
-      operationId: requestAirdrop
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
