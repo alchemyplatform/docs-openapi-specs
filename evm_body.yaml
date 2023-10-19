@@ -358,14 +358,6 @@ eth_getCode_polygon_zkevm:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getCode
 
-eth_accounts:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          $ref: ./components/schemas.yaml#/Method
-          default: eth_accounts
 eth_getProof:
   allOf:
     - $ref: '#/common_request_fields'

@@ -1,0 +1,26 @@
+EthAccount:
+  summary: "TODO: override this"
+  description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: eth_accounts
+  responses:
+    '200':
+      description: Returns 20 Bytes - addresses owned by the client.
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
