@@ -28,7 +28,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceTransaction
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: debug_traceTransaction
+                params:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  description: |
+                    1. String - Transaction hash
+                    2. Object - options for call, can be any of the following options:
+                      - `tracer`: Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
+                      - `timeout`: String - A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
+                  items:
+                    anyOf:
+                      - $ref: '#/transactionHash_param'
+                      - type: object
+                        description: options for call
+                        title: Options
+                        properties:
+                          tracer:
+                            $ref: './components.yaml#/Tracer'
+                          tracerConfig:
+                            $ref: './components.yaml#/TracerConfig'
+                          timeout:
+                            type: string
+                            description: A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
+                            default: 5s
       responses:
         '200':
           description: 'Returns - transaction trace'

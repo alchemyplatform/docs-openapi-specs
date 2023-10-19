@@ -28,7 +28,35 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceBlockByHash
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: debug_traceBlockByHash
+                params:
+                  type: array
+                  description: |
+                    1. `string` - Block hash for the block to be traced
+                    2. `tracer` Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    anyOf:
+                      - type: string
+                        title: Block hash
+                        description: block hash
+                        default: '0x7bd8357213af34d3fe7f725d9b21187a5a58127e39aac5776fd0594e3391ea6e'
+                      - type: object
+                        title: Tracer
+                        properties:
+                          tracer:
+                            $ref: './components.yaml#/Tracer'
+                          tracerConfig:
+                            $ref: './components.yaml#/TracerConfig'
       responses:
         '200':
           description: 'Returns - array of block traces'

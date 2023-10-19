@@ -28,7 +28,33 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceBlockByNumber
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: debug_traceBlockByNumber
+                params:
+                  type: array
+                  description: |
+                    1. String - Block number (in hex) or block tag
+                    2. `tracer` Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    anyOf:
+                      - $ref: '#/blockNumber_or_blocktag_param_eth'
+                        title: Block Number or Block Tag
+                      - type: object
+                        title: tracer
+                        properties:
+                          tracer:
+                            $ref: './components.yaml#/Tracer'
+                          tracerConfig:
+                            $ref: './components.yaml#/TracerConfig'
       responses:
         '200':
           description: 'Returns - array of block traces'
