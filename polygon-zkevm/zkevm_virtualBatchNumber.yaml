@@ -23,7 +23,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../evm_body.yaml#/zkevm_virtualBatchNumber'
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_virtualBatchNumber
       responses:
         '200':
           description: Returns the latest virtual batch number.

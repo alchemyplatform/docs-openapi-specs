@@ -16,8 +16,8 @@ paths:
   /{apiKey}:
     post:
       $ref: ../components/evm.yaml#/EthCall
-      operationId: eth-call
       summary: eth_call - Ethereum
+      operationId: eth-call
       x-readme:
         explorer-enabled: false
         samples-languages:

@@ -24,7 +24,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../evm_body.yaml#/zkevm_getBroadcastURI'
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_getBroadcastURI
       responses:
         '200':
           description: Returns the configured Broadcast URL of the Trusted Sequencer.

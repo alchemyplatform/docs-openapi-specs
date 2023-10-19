@@ -24,7 +24,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/zkevm_isBlockVirtualized
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_isBlockVirtualized
+                params:
+                  type: array
+                  description: |
+                    1. String - The block number (in hex)
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: string
+                    pattern: '^0x[0-9a-fA-F]+$'
+                  default: ['0x0']
       responses:
         '200':
           description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.

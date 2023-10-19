@@ -23,7 +23,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../evm_body.yaml#/zkevm_getBatchByNumber'
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_getBatchByNumber
+                params:
+                  type: array
+                  description: |
+                    1. String - The batch number (in hex) or batch tag
+
+                      The optional batch height descriptions are:
+                      * `latest` - The most recent batch in the canonical chain observed by the client, this batch may be re-orged out of the canonical chain even under healthy/normal conditions. 
+                      * `earliest` - The lowest numbered batch the client has available. Intuitively, you can think of this as the first batch created.
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: string
+                  default: ['0x0']
       responses:
         '200':
           description: Returns information about the batch identified by the provided batch number or tag.

@@ -71,7 +71,7 @@ EthCall:
               $ref: ./schemas.yaml#/JsonRpc
             method:
               $ref: ./schemas.yaml#/Method
-              default: 'eth_call'
+              default: eth_call
           params:
             type: array
             minItems: 1

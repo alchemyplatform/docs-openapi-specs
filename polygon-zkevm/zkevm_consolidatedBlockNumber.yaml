@@ -24,7 +24,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/zkevm_consolidatedBlockNumber
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_consolidatedBlockNumber
       responses:
         '200':
           description: The latest block number that is connected to the latest batch verified.

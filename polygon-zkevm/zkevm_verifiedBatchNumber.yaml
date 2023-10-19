@@ -23,7 +23,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../evm_body.yaml#/zkevm_verifiedBatchNumber'
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_verifiedBatchNumber
       responses:
         '200':
           description: Returns the latest verified batch number.
