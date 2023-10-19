@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_feeHistory - Base
       description: Returns a collection of historical gas information.
       operationId: eth-feeHistory-base

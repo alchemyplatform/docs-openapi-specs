@@ -21,7 +21,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: alchemy_getTokenBalances
       description: 'Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.'
       operationId: alchemy-getTokenBalances

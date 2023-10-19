@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getUncleCountByBlockNumber - Polygon zkEVM
       description: Returns the number of uncles in a block specified by block number. Response for this method is always 0 on Polygon zkEVM.
       operationId: eth-getUncleCountByBlockNumber-polygon-zkevm

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getUncleByBlockNumberAndIndex - Polygon zkEVM
       description: Returns information about an uncle block by block number and uncle index position. Response for this method is always empty on Polygon zkEVM.
       operationId: eth-getUncleByBlockNumberAndIndex-polygon-zkevm

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_estimateGas - Polygon zkEVM
       description: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain.
       operationId: eth-estimateGas-polygon-zkevm

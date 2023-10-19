@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: minimumLedgerSlot
       description: Returns the lowest slot that the node has information about in its ledger. This value may increase over time if the node is configured to purge older ledger data.
       operationId: minimumLedgerSlot

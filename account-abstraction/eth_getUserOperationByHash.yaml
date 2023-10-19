@@ -22,7 +22,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getUserOperationByHash
       description: Return a `UserOperation` based on a hash (`userOpHash`).
       operationId: eth-getUserOperationByHash

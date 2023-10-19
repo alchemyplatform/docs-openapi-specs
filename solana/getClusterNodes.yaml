@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getClusterNodes
       description: Returns information about all the nodes participating in the cluster.
       operationId: getClusterNodes

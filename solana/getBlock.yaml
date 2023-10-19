@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getBlock
       description: Returns identity and transaction information about a confirmed block in the ledger.
       operationId: getBlock

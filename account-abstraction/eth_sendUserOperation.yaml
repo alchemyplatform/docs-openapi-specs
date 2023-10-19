@@ -22,7 +22,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_sendUserOperation
       description: Sends a user operation to the given EVM network.
       operationId: eth-sendUserOperation

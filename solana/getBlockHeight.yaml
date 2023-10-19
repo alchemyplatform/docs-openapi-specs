@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getBlockHeight
       description: Returns the current block height of the node.
       operationId: getBlockHeight

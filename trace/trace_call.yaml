@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: trace_call
       description: Executes the given call and returns a number of possible traces for it.
       operationId: trace-call

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getSlot
       description: Returns the slot that has reached the given or default commitment level.
       operationId: getSlot

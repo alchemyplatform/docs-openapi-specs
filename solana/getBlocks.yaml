@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getBlocks
       description: Returns a list of confirmed blocks between two slots.
       operationId: getBlocks

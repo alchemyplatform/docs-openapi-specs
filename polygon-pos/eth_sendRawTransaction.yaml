@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_sendRawTransaction - Polygon PoS
       description: |
         Creates a new message call transaction or a contract creation for signed transactions.

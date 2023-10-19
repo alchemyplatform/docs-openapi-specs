@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getVersion
       description: Returns the current solana versions running on the node.
       operationId: getVersion

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: bor_getCurrentProposer - Polygon PoS
       description: "Returns current proposer's address on Polygon."
       operationId: bor-getcurrentproposer-polygon

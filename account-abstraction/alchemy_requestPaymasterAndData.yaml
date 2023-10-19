@@ -22,7 +22,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: alchemy_requestPaymasterAndData
       description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
       operationId: alchemy-requestPaymasterAndData

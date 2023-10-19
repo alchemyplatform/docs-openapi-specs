@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: trace_rawTransaction
       description: Traces a call to eth_sendRawTransaction without making the call, returning the traces.
       operationId: trace-rawTransaction

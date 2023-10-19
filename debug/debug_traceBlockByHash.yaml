@@ -19,7 +19,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: debug_traceBlockByHash
       description: Replays the block that is already present in the database.
       operationId: debug-traceblockbyhash

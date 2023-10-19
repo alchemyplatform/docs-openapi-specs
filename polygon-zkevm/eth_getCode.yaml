@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getCode - Polygon zkEVM
       description: Returns code at a given address on the Polygon zkEVM network.
       operationId: eth-getCode-polygon-zkevm

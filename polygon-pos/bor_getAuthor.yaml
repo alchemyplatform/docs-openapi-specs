@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: bor_getAuthor - Polygon PoS
       description: 'Returns address of Author on Polygon.'
       operationId: bor-getauthor-polygon

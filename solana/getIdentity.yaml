@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getIdentity
       description: Returns the identity pubkey for the current node.
       operationId: getIdentity

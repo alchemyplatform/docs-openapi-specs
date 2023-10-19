@@ -22,7 +22,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_estimateUserOperationGas
       description: Estimates the gas values for a `UserOperation`.
       operationId: eth-estimateUserOperationGas

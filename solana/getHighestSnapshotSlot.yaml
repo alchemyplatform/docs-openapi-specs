@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getHighestSnapshotSlot
       description: Returns the highest slot information that the node has snapshots for.
       operationId: getHighestSnapshotSlot

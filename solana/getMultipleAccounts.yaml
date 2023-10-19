@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getMultipleAccounts
       description: Returns the account information for a list of Pubkeys.
       operationId: getMultipleAccounts

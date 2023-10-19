@@ -12,54 +12,49 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        tags: []
-        summary: eth_getCompilers - Polygon zkEVM
-        description: Returns a list of installed compilers (Deprecated). Response is always empty in Polygon zkEVM.
-        operationId: eth-getCompilers-polygon-zkevm
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Accepts nothing.
+    post:
+      summary: eth_getCompilers - Polygon zkEVM
+      description: Returns a list of installed compilers (Deprecated). Response is always empty in Polygon zkEVM.
+      operationId: eth-getCompilers-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Accepts nothing.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  $ref: ../components/schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ../components/schemas.yaml#/JsonRpc
+                method:
+                  $ref: ../components/schemas.yaml#/Method
+                  default: eth_getCompilers
+      responses:
+        '200':
+          description: Response is always empty.
           content:
             application/json:
               schema:
                 type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
                 properties:
                   id:
                     $ref: ../components/schemas.yaml#/Id
                   jsonrpc:
                     $ref: ../components/schemas.yaml#/JsonRpc
-                  method:
-                    $ref: ../components/schemas.yaml#/Method
-                    default: eth_getCompilers
-        responses:
-          '200':
-            description: Response is always empty.
-            content:
-              application/json:
-                schema:
-                  type: object
-                  required:
-                    - id
-                    - jsonrpc
-                    - result
-                  properties:
-                    id:
-                      $ref: ../components/schemas.yaml#/Id
-                    jsonrpc:
-                      $ref: ../components/schemas.yaml#/JsonRpc
-                    result:
-                      type: array
-                      items:
-                        type: string
-                      example: []
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
+                  result:
+                    type: array
+                    items:
+                      type: string
+                    example: []
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

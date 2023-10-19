@@ -19,7 +19,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: debug_traceTransaction
       description: Attempts to run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
       operationId: debug-tracetransaction

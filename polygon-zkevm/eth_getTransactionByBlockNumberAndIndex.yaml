@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getTransactionByBlockNumberAndIndex - Polygon zkEVM
       description: Returns information about a transaction by block number and transaction index position.
       operationId: eth-getTransactionByBlockNumberAndIndex-polygon-zkevm

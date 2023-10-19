@@ -16,7 +16,6 @@ paths:
     post:
       summary: eth_getBlockReceipts - Ethereum
       description: Get all transaction receipts for a given block on Ethereum.
-      tags: []
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getMinimumBalanceForRentExemption
       description: Returns minimum balance required to make account rent exempt.
       operationId: getMinimumBalanceForRentExemption

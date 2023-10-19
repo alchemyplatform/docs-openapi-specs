@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: bor_getRootHash - Polygon PoS
       description: 'Polygon API - Returns the root hash given a block range.'
       operationId: bor-getRootHash-polygon

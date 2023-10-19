@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getHealth
       description: Returns the current health of the node.
       operationId: getHealth

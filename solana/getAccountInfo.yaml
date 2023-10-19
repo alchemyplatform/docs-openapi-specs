@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getAccountInfo
       description: Returns all information associated with the account of provided Pubkey.
       operationId: getAccountInfo

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getTransactionReceipt - Arbitrum
       description: Returns the receipt of a transaction by transaction hash.
       operationId: eth-getTransactionReceipt-arbitrum

@@ -21,7 +21,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: alchemy_getTokenMetadata
       description: 'Returns metadata (name, symbol, decimals, logo) for a given token contract address.'
       operationId: alchemy-getTokenMetadata

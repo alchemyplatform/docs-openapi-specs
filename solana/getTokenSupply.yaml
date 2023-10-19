@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getTokenSupply
       description: Returns the total supply of an SPL Token type.
       operationId: getTokenSupply

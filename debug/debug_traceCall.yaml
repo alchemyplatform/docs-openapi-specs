@@ -19,7 +19,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: debug_traceCall
       description: Runs an eth_call within the context of the given block execution using the final state of parent block as the base.
       operationId: debug-tracecall

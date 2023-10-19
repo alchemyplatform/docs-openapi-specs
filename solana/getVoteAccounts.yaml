@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getVoteAccounts
       description: Returns the account info and associated stake for all the voting accounts in the current bank.
       operationId: getVoteAccounts

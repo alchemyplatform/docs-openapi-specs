@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getStorageAt - Polygon zkEVM
       description: "Returns the value from a storage position at a given address on the Polygon zkEVM network, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods."
       operationId: eth-getStorageAt-polygon-zkevm

@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_getTransactionReceipt - Polygon zkEVM
       description: Returns the receipt of a transaction by transaction hash on Polygon zkEVM.
       operationId: eth-getTransactionReceipt-zkevm

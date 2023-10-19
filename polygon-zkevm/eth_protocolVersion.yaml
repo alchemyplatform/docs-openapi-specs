@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: eth_protocolVersion - Polygon zkEVM
       description: Returns the current network protocol version as a string. Response for this method is always 0 on Polygon zkEVM.
       operationId: eth-protocolVersion-polygon-zkevm

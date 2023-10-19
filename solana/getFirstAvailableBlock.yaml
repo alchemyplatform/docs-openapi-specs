@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getFirstAvailableBlock
       description: Get the fee the network will charge for a particular message.
       operationId: getFirstAvailableBlock

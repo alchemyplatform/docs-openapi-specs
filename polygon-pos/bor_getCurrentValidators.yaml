@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: bor_getCurrentValidators - Polygon PoS
       description: 'Returns current validators for Polygon.'
       operationId: bor-getCurrentValidators-polygon

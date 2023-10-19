@@ -13,7 +13,6 @@ servers:
 paths:
   /{apiKey}:
     post:
-      tags: []
       summary: getTokenAccountsByOwner
       description: Returns all SPL Token accounts by token owner.
       operationId: getTokenAccountsByOwner
