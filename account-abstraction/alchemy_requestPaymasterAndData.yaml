@@ -21,32 +21,28 @@ servers:
         default: eth-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: alchemy_requestPaymasterAndData
-        description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          required: true
+    post:
+      tags: []
+      summary: alchemy_requestPaymasterAndData
+      description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
+      operationId: alchemy-requestPaymasterAndData
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/alchemy_requestPaymasterAndData
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/alchemy_requestPaymasterAndData
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/alchemy_requestPaymasterAndData
-        operationId: alchemy-requestPaymasterAndData
+                $ref: ../evm_responses.yaml#/alchemy_requestPaymasterAndData
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

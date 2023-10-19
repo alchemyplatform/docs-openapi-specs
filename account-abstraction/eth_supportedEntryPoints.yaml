@@ -21,32 +21,28 @@ servers:
         default: eth-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_supportedEntryPoints
-        description: Returns an array of the `entryPoint` addresses supported by the client.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          required: true
+    post:
+      tags: []
+      summary: eth_supportedEntryPoints
+      description: Returns an array of the `entryPoint` addresses supported by the client.
+      operationId: eth-supportedEntryPoints
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_supportedEntryPoints
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_supportedEntryPoints
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_supportedEntryPoints
-        operationId: eth-supportedEntryPoints
+                $ref: ../evm_responses.yaml#/eth_supportedEntryPoints
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

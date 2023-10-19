@@ -21,32 +21,28 @@ servers:
         default: eth-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_estimateUserOperationGas
-        description: Estimates the gas values for a `UserOperation`.
-        tags: []
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          required: true
+    post:
+      tags: []
+      summary: eth_estimateUserOperationGas
+      description: Estimates the gas values for a `UserOperation`.
+      operationId: eth-estimateUserOperationGas
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_estimateUserOperationGas
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_estimateUserOperationGas
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_estimateUserOperationGas
-        operationId: eth-estimateUserOperationGas
+                $ref: ../evm_responses.yaml#/eth_estimateUserOperationGas
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

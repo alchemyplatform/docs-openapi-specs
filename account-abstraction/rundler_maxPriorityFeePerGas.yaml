@@ -22,9 +22,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: rundler_maxPriorityFeePerGas
       description: 'Returns a fee per gas that is an estimate of how much users should set as a priority fee in UOs for Rundler endpoints.'
-      tags: []
+      operationId: rundler-maxPriorityFeePerGas
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -39,4 +40,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/string_result_response
-      operationId: rundler-maxPriorityFeePerGas
