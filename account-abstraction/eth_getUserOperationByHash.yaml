@@ -70,3 +70,6 @@ components:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_getUserOperationByHash
         operationId: eth-getUserOperationByHash
+        x-sandbox:
+          category: Bundler
+

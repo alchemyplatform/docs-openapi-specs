@@ -70,3 +70,5 @@ components:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_getUserOperationReceipt
         operationId: eth-getUserOperationReceipt
+        x-sandbox:
+          category: Bundler

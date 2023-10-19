@@ -70,3 +70,5 @@ components:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_supportedEntryPoints
         operationId: eth-supportedEntryPoints
+        x-sandbox:
+          category: Bundler
