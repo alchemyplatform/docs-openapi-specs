@@ -143,7 +143,8 @@ async function main() {
   const groupedEntries: {
     [chain: string]: {
       [network: string]: {
-        [method: string]: Entry[];
+        [method: string]: Entry;
+        // [method: string]: Entry[];
       };
     };
   } = {};
@@ -156,10 +157,16 @@ async function main() {
     if (!groupedEntries[chain][network]) {
       groupedEntries[chain][network] = {};
     }
-    if (!groupedEntries[chain][network][method.name]) {
-      groupedEntries[chain][network][method.name] = [];
+    // if (!groupedEntries[chain][network][method.name]) {
+    //   groupedEntries[chain][network][method.name] = [];
+    // }
+    // groupedEntries[chain][network][method.name].push(entry);
+    if (groupedEntries[chain][network][method.name]) {
+      throw new Error(
+        `Duplicate entry found for ${chain} ${network} ${method.name}`,
+      );
     }
-    groupedEntries[chain][network][method.name].push(entry);
+    groupedEntries[chain][network][method.name] = entry;
   }
 
   console.log(groupedEntries);
