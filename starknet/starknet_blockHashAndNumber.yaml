@@ -13,54 +13,50 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-blockHashAndNumber
-        summary: starknet_blockHashAndNumber
-        description: Get the most recent accepted block hash and number
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Request Body
+    post:
+      summary: starknet_blockHashAndNumber
+      description: Get the most recent accepted block hash and number
+      operationId: starknet-blockHashAndNumber
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_blockHashAndNumber
+                    params:
+                      type: array
+                      title: No parameters required
+                      description: This method does not require any parameters
+      responses:
+        '200':
+          description: The latest block hash and number
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_blockHashAndNumber
-                      params:
-                        type: array
-                        title: No parameters required
-                        description: This method does not require any parameters
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The latest block hash and number
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BlockHash'
-                              title: Block hash
-                              description: The hash of the most recent accepted block
-                            - $ref: '../components/starknet/schemas.yaml#/BlockNumber'
-                              title: Block number
-                              description: The number of the most recent accepted block
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_blockHashAndNumber'
+                      result:
+                        oneOf:
+                          - $ref: '../components/starknet/schemas.yaml#/BlockHash'
+                            title: Block hash
+                            description: The hash of the most recent accepted block
+                          - $ref: '../components/starknet/schemas.yaml#/BlockNumber'
+                            title: Block number
+                            description: The number of the most recent accepted block
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_blockHashAndNumber'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

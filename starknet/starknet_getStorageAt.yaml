@@ -13,60 +13,56 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-getStorageAt
-        summary: starknet_getStorageAt
-        description: Get the value of the storage at the given address and key
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Request Body
+    post:
+      summary: starknet_getStorageAt
+      description: Get the value of the storage at the given address and key
+      operationId: starknet-getStorageAt
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: ../components/schemas.yaml#/Method
+                      default: starknet_getStorageAt
+                    params:
+                      type: array
+                      title: Params
+                      items:
+                        - $ref: '../components/starknet/schemas.yaml#/Address'
+                        - $ref: '../components/starknet/schemas.yaml#/StorageKey'
+                        - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                      description: The contract address, key, and block_id
+                      minItems: 3
+                      maxItems: 3
+                      default:
+                        [
+                          '0x044e5b3f0471a26bc749ffa1d8dd8e43640e05f1b33cf05cef6adee6f5b1b4cf',
+                          '0x0000000000000000000000000000000000000000000000000000000000000001',
+                          'latest',
+                        ]
+      responses:
+        '200':
+          description: The value at the given key for the given contract. 0 if no value is found
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: ../components/schemas.yaml#/Method
-                        default: starknet_getStorageAt
-                      params:
-                        type: array
-                        title: Params
-                        items:
-                          - $ref: '../components/starknet/schemas.yaml#/Address'
-                          - $ref: '../components/starknet/schemas.yaml#/StorageKey'
-                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                        description: The contract address, key, and block_id
-                        minItems: 3
-                        maxItems: 3
-                        default:
-                          [
-                            '0x044e5b3f0471a26bc749ffa1d8dd8e43640e05f1b33cf05cef6adee6f5b1b4cf',
-                            '0x0000000000000000000000000000000000000000000000000000000000000001',
-                            'latest',
-                          ]
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The value at the given key for the given contract. 0 if no value is found
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          $ref: '../components/starknet/schemas.yaml#/Felt'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getStorageAt'
+                      result:
+                        $ref: '../components/starknet/schemas.yaml#/Felt'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_getStorageAt'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

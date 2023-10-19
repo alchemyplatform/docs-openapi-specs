@@ -13,56 +13,52 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-getTransactionReceipt
-        summary: starknet_getTransactionReceipt
-        description: Get the transaction receipt by the transaction hash
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Request Body
+    post:
+      summary: starknet_getTransactionReceipt
+      description: Get the transaction receipt by the transaction hash
+      operationId: starknet-getTransactionReceipt
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: ../components/schemas.yaml#/Method
+                      default: starknet_getTransactionReceipt
+                    params:
+                      type: array
+                      default:
+                        [
+                          '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
+                        ]
+                      title: Params
+                      items:
+                        - $ref: '../components/starknet/schemas.yaml#/TxnHash'
+                      description: The transaction hash of the requested transaction
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The transaction receipt by the transaction hash
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: ../components/schemas.yaml#/Method
-                        default: starknet_getTransactionReceipt
-                      params:
-                        type: array
-                        default:
-                          [
-                            '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
-                          ]
-                        title: Params
-                        items:
-                          - $ref: '../components/starknet/schemas.yaml#/TxnHash'
-                        description: The transaction hash of the requested transaction
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The transaction receipt by the transaction hash
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          $ref: '../components/starknet/schemas.yaml#/TxnReceipt'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getTransactionReceipt'
+                      result:
+                        $ref: '../components/starknet/schemas.yaml#/TxnReceipt'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_getTransactionReceipt'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

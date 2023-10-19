@@ -13,50 +13,46 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-chainId
-        summary: starknet_chainId
-        description: Return the currently configured StarkNet chain id
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Request Body
+    post:
+      summary: starknet_chainId
+      description: Return the currently configured StarkNet chain id
+      operationId: starknet-chainId
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_chainId
+                    params:
+                      type: array
+                      title: No parameters required
+                      description: This method does not require any parameters
+      responses:
+        '200':
+          description: The chain id this node is connected to
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_chainId
-                      params:
-                        type: array
-                        title: No parameters required
-                        description: This method does not require any parameters
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The chain id this node is connected to
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          $ref: '../components/starknet/schemas.yaml#/ChainId'
-                          title: Chain id
-                          description: The chain id this node is connected to
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_chainId'
+                      result:
+                        $ref: '../components/starknet/schemas.yaml#/ChainId'
+                        title: Chain id
+                        description: The chain id this node is connected to
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_chainId'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

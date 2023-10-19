@@ -13,58 +13,54 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-estimateFee
-        summary: starknet_estimateFee
-        description: Estimates the resources required by transactions when applied on a given state.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          description: Request Body
+    post:
+      summary: starknet_estimateFee
+      description: Estimates the resources required by transactions when applied on a given state.
+      operationId: starknet-estimateFee
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_estimateFee
+                    params:
+                      type: array
+                      title: Params
+                      items:
+                        oneOf:
+                          - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
+                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                      description: The transaction to estimate and the block_id for the block referencing the state or call the transaction on.
+                      maxItems: 1
+                      minItems: 1
+      responses:
+        '200':
+          description: The fee estimations
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_estimateFee
-                      params:
+                      result:
                         type: array
-                        title: Params
+                        description: A sequence of fee estimates where the i'th estimate corresponds to the i'th transaction.
                         items:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
-                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                        description: The transaction to estimate and the block_id for the block referencing the state or call the transaction on.
-                        maxItems: 1
-                        minItems: 1
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The fee estimations
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          type: array
-                          description: A sequence of fee estimates where the i'th estimate corresponds to the i'th transaction.
-                          items:
-                            $ref: '../components/starknet/schemas.yaml#/FeeEstimate'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_estimateFee'
+                          $ref: '../components/starknet/schemas.yaml#/FeeEstimate'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_estimateFee'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
