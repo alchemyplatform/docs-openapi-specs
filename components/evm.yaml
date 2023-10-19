@@ -27,7 +27,7 @@ EthAccount:
 
 EthBlockNumber:
   summary: "TODO: override this"
-  description: ''
+  description: Returns the number of the most recent block.
   operationId: "TODO: override this"
   parameters:
     - $ref: ./parameters.yaml#/ApiKey
@@ -43,14 +43,14 @@ EthBlockNumber:
               $ref: ./schemas.yaml#/JsonRpc
             method:
               $ref: ./schemas.yaml#/Method
-              default: ''
+              default: eth_blockNumber
   responses:
     '200':
-      description: ''
+      description: Returns integer of the current block number the client is on.
       content:
         application/json:
           schema:
-            $ref: ../evm_responses.yaml#/string_result_response
+            $ref: ../evm_responses.yaml#/eth_blockNumber
 
 EthCall:
   summary: "TODO: override this"

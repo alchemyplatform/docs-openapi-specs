@@ -1,12 +1,4 @@
 # ========= EVM Methods ==============
-eth_blockNumber:
-  allOf:
-    - $ref: '#/common_request_fields'
-    - type: object
-      properties:
-        method:
-          $ref: ./components/schemas.yaml#/Method
-          default: eth_blockNumber
 eth_getBlockByHash:
   allOf:
     - $ref: '#/common_request_fields'

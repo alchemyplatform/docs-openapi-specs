@@ -13,8 +13,8 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthBlockNumber
       summary: eth_blockNumber - Optimism
-      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       operationId: eth-blocknumber-optimism
       x-readme:
         explorer-enabled: false

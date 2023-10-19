@@ -13,9 +13,9 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthBlockNumber
       summary: eth_blockNumber - Arbitrum
       operationId: eth-blocknumber-arbitrum
-      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       x-readme:
         samples-languages:
           - curl
