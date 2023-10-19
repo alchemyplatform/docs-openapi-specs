@@ -19,9 +19,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: debug_traceTransaction
       description: Attempts to run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
-      tags: []
+      operationId: debug-tracetransaction
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -29,6 +30,13 @@ paths:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/debug_traceTransaction
+      responses:
+        '200':
+          description: 'Returns - transaction trace'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/debug_traceTransaction
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -75,11 +83,3 @@ paths:
               -H "Content-Type: application/json" \
               --data '{"method":"debug_traceTransaction","params":["0x9e63085271890a141297039b3b711913699f1ee4db1acb667ad7ce304772036b", {"tracer": "callTracer"}], "id":1,"jsonrpc":"2.0"}'
             name: cURL
-      responses:
-        '200':
-          description: 'Returns - transaction trace'
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/debug_traceTransaction
-      operationId: debug-tracetransaction
