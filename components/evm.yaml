@@ -24,3 +24,300 @@ EthAccount:
         application/json:
           schema:
             $ref: ../evm_responses.yaml#/string_result_response
+
+EthBlockNumber:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthCall:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthChainId:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthCreateAccessList:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthEstimateGas:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthFeeHistory:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthGasPrice:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthGetBalance:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthGetBlockByHash:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthGetBlockByNumber:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
+
+EthGetBlockReceipts:
+  summary: "TODO: override this"
+  description: ''
+  operationId: "TODO: override this"
+  parameters:
+    - $ref: ./parameters.yaml#/ApiKey
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              $ref: ./schemas.yaml#/Id
+            jsonrpc:
+              $ref: ./schemas.yaml#/JsonRpc
+            method:
+              $ref: ./schemas.yaml#/Method
+              default: ''
+  responses:
+    '200':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../evm_responses.yaml#/string_result_response
