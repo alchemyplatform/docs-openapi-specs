@@ -54,6 +54,7 @@ async function main() {
     network: string;
     url: string;
     path: string;
+    category: string;
     method: {
       name: string;
       verb: string;
@@ -82,7 +83,7 @@ async function main() {
 
       // @ts-ignore
       const servers = api.servers as OpenAPIV3_1.ServerObject[];
-      const { baseUrl, chainsToNetworks } = extractChainAndNetworks(servers[0]);
+      const { baseUrl, chainsToNetworks, category } = extractChainAndNetworksAndCategory(servers[0]);
 
       const paths = api.paths;
       if (!paths) throw new Error('Paths not found in spec');
@@ -106,6 +107,11 @@ async function main() {
               if (!operation.operationId) {
                 throw new Error('Operation ID not found');
               }
+              
+              let methodCategory = "PLACEHOLDER";
+              if (category) {
+                methodCategory = category;
+              }
 
               const methodName = operation.operationId;
               const methodVerb = method.toUpperCase();
@@ -122,6 +128,7 @@ async function main() {
                   name: methodName,
                   verb: methodVerb,
                   docsUrl: readmeUrl,
+                  category: category
                 },
                 params: operation.parameters as OpenAPIV3_1.ParameterObject[],
                 requestBody:
@@ -180,9 +187,10 @@ async function main() {
 
 main();
 
-function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
+function extractChainAndNetworksAndCategory(servers: OpenAPIV3_1.ServerObject): {
   baseUrl: string;
   chainsToNetworks: Map<string, Set<string>>;
+  category: string
 } {
   const { url, variables } = servers;
 
@@ -248,3 +256,10 @@ function extractSubdomain(url: string): string | null {
 
 // TODO: do we want to add variables for all files?
 // TODO: move Debug and Trace bodies out of shared files
+
+ 
+/*
+1. extract x-readme
+2. add it to the entry outside method
+3. add it as a grouping for the json
+*/
