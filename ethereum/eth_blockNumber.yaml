@@ -15,6 +15,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthBlockNumber
       summary: eth_blockNumber - Ethereum
       operationId: eth-blocknumber
       x-readme:
