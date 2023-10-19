@@ -17,7 +17,7 @@ servers:
           - opt-mainnet
           - opt-goerli
           - base-mainnet
-          - base-testnet
+          - base-goerli
         default: eth-mainnet
 paths:
   ##
