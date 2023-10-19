@@ -52,3 +52,5 @@ paths:
               schema:
                 $ref: ../evm_responses.yaml#/string_result_response
       operationId: rundler-maxPriorityFeePerGas
+      x-sandbox:
+          category: Bundler

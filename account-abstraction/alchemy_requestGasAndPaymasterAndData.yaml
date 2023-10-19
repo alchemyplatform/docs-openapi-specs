@@ -62,3 +62,5 @@ components:
                 schema:
                   $ref: ../evm_responses.yaml#/alchemy_requestGasAndPaymasterAndData
         operationId: alchemy-requestGasAndPaymasterAndData
+        x-sandbox:
+          category: Gas Manager

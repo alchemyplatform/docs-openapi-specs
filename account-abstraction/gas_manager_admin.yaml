@@ -4,6 +4,8 @@ info:
   version: '1.0'
 servers:
   - url: https://manage.g.alchemy.com/
+x-sandbox:
+  category: Gas Manager
 paths:
   '/api/gasManager/policy':
     post:
