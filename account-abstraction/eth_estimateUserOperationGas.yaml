@@ -62,3 +62,5 @@ components:
                 schema:
                   $ref: ../evm_responses.yaml#/eth_estimateUserOperationGas
         operationId: eth-estimateUserOperationGas
+        x-sandbox:
+          category: Bundler
