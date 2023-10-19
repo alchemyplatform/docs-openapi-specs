@@ -13,9 +13,9 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: eth_getSignersAtHash - Polygon PoS
       description: 'Polygon API - Returns all signs given a blockhash.'
-      tags: []
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:

@@ -13,9 +13,9 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: eth_getRootHash - Polygon PoS
       description: 'Returns the root hash given a block range on Polygon.'
-      tags: []
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:

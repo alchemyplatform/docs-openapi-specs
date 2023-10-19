@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: bor_getCurrentValidators - Polygon PoS
       description: 'Returns current validators for Polygon.'
-      tags: []
+      operationId: bor-getCurrentValidators-polygon
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -30,4 +31,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/bor_getCurrentValidators
-      operationId: bor-getCurrentValidators-polygon

@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: bor_getAuthor - Polygon PoS
       description: 'Returns address of Author on Polygon.'
-      tags: []
+      operationId: bor-getauthor-polygon
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
@@ -31,4 +32,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/bor_getAuthor
-      operationId: bor-getauthor-polygon

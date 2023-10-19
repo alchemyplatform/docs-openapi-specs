@@ -15,6 +15,7 @@ paths:
     post:
       summary: eth_blockNumber - Polygon PoS
       description: Returns the number of the most recent block on Polygon.
+      operationId: eth-blocknumber-polygon
       $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       x-readme:
         samples-languages:
@@ -38,4 +39,3 @@ paths:
 
               // Get the latest block number
               alchemy.core.getBlockNumber().then(console.log);
-      operationId: eth-blocknumber-polygon

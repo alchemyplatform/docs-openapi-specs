@@ -13,9 +13,9 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: eth_getTransactionReceiptsByBlock - Polygon PoS
       description: 'Polygon API - Returns all transaction receipts for the given block number or hash.'
-      tags: []
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
