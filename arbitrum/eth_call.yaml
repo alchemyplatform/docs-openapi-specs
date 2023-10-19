@@ -7,8 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthCall
       summary: eth_call - Arbitrum
-      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       operationId: eth-call-arbitrum
       x-readme:
         explorer-enabled: false

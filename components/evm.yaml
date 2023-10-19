@@ -86,11 +86,11 @@ EthCall:
                   title: Block number or block tag or block hash
   responses:
     '200':
-      description: ''
+      description: The result of the call.
       content:
         application/json:
           schema:
-            $ref: ../evm_responses.yaml#/string_result_response
+            $ref: ../evm_responses.yaml#/eth_call
 
 EthChainId:
   summary: "TODO: override this"

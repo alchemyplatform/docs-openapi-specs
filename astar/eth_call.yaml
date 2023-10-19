@@ -7,8 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthCall
       summary: eth_call - Astar
-      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
       operationId: eth-call-astar
       x-readme:
         explorer-enabled: false

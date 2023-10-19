@@ -13,10 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthCall
       summary: eth_call - Polygon PoS
-      operationId: eth-call-polygon
       description: Executes a new message call immediately without creating a transaction on the block chain on Polygon.
-      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
+      operationId: eth-call-polygon
       x-readme:
         explorer-enabled: false
         samples-languages:
