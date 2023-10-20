@@ -244,10 +244,10 @@ function extractSubdomain(url: string): string | null {
 
 function extractCategory(api: AlchemyDocument) {
   const category = api['x-sandbox'].category;
-  if (!category) {
+  if (!category || !category.value) {
     throw new Error('Should have a sandbox category');
   }
-  return category;
+  return category.value;
 }
 
 function extractParams(params: OpenAPIV3_1.ParameterObject[] | undefined): {
