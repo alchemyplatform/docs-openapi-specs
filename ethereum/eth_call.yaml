@@ -12,6 +12,11 @@ servers:
         - eth-sepolia
         - eth-goerli
         default: eth-mainnet
+x-readme:
+  samples-languages:
+    - curl
+    - javascript
+    - python
 paths:
   /{apiKey}:
     post:
@@ -20,10 +25,6 @@ paths:
       operationId: eth-call
       x-readme:
         explorer-enabled: false
-        samples-languages:
-          - curl
-          - javascript
-          - python
         code-samples:
           - language: javascript
             name: Alchemy SDK

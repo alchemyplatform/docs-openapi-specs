@@ -12,6 +12,11 @@ servers:
         - eth-sepolia
         - eth-goerli
         default: eth-mainnet
+x-readme:
+  samples-languages:
+    - curl
+    - javascript
+    - python
 paths:
   /{apiKey}:
     post:
@@ -19,10 +24,6 @@ paths:
       summary: eth_blockNumber - Ethereum
       operationId: eth-blocknumber
       x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
         code-samples:
           - language: javascript
             name: Alchemy SDK
