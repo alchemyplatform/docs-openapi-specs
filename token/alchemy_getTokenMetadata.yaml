@@ -18,6 +18,11 @@ servers:
           - base-mainnet
           - base-testnet
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: token
 paths:
   /{apiKey}:
     post:

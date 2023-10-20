@@ -10,6 +10,11 @@ servers:
           - arb-mainnet
           - arb-goerli
         default: arb-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

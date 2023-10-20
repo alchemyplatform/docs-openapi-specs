@@ -15,6 +15,11 @@ x-readme:
     - curl
     - javascript
     - python
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: private-transactions
 paths:
   /{apiKey}:
     post:

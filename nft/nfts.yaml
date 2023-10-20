@@ -19,6 +19,11 @@ servers: # servers are also specified at the method level, if there ins't a spec
           - base-mainnet
           - base-goerli
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: nft
 paths:
   ##
   ## Below are all the v2 methods

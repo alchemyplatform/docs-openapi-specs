@@ -7,9 +7,14 @@ servers:
     variables:
       network:
         enum:
-        - polygon-mainnet
-        - polygon-mumbai
+          - polygon-mainnet
+          - polygon-mumbai
         default: polygon-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     post:
