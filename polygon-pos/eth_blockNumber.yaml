@@ -13,9 +13,10 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthBlockNumber
       summary: eth_blockNumber - Polygon PoS
       description: Returns the number of the most recent block on Polygon.
-      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
+      operationId: eth-blocknumber-polygon
       x-readme:
         samples-languages:
           - curl
@@ -38,4 +39,3 @@ paths:
 
               // Get the latest block number
               alchemy.core.getBlockNumber().then(console.log);
-      operationId: eth-blocknumber-polygon

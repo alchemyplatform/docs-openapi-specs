@@ -12,55 +12,38 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getUncleCountByBlockNumber - Polygon zkEVM
-        description: Returns the number of uncles in a block specified by block number. Response for this method is always 0 on Polygon zkEVM.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: eth_getUncleCountByBlockNumber - Polygon zkEVM
+      description: Returns the number of uncles in a block specified by block number. Response for this method is always 0 on Polygon zkEVM.
+      operationId: eth-getUncleCountByBlockNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/eth_getUncleCountByBlockNumber
+      responses:
+        '200':
+          description: Response is always 0.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUncleCountByBlockNumber
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Response is always 0.
-            content:
-              application/json:
-                schema:
-                  type: object
-                  required:
-                    - id
-                    - jsonrpc
-                    - result
-                  properties:
-                    id:
-                      $ref: ../components/schemas.yaml#/Id
-                    jsonrpc:
-                      $ref: ../components/schemas.yaml#/JsonRpc
-                    result:
-                      type: integer
-                      example: 0
-        operationId: eth-getUncleCountByBlockNumber-polygon-zkevm
+                type: object
+                required:
+                  - id
+                  - jsonrpc
+                  - result
+                properties:
+                  id:
+                    $ref: ../components/schemas.yaml#/Id
+                  jsonrpc:
+                    $ref: ../components/schemas.yaml#/JsonRpc
+                  result:
+                    type: integer
+                    example: 0
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

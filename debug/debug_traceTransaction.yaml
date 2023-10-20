@@ -21,26 +21,53 @@ paths:
     post:
       summary: debug_traceTransaction
       description: Attempts to run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
-      tags: []
+      operationId: debug-tracetransaction
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceTransaction
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: debug_traceTransaction
+                params:
+                  type: array
+                  minItems: 1
+                  maxItems: 1
+                  description: |
+                    1. String - Transaction hash
+                    2. Object - options for call, can be any of the following options:
+                      - `tracer`: Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
+                      - `timeout`: String - A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
+                  items:
+                    anyOf:
+                      - $ref: '#/transactionHash_param'
+                      - type: object
+                        description: options for call
+                        title: Options
+                        properties:
+                          tracer:
+                            $ref: './components.yaml#/Tracer'
+                          tracerConfig:
+                            $ref: './components.yaml#/TracerConfig'
+                          timeout:
+                            type: string
+                            description: A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
+                            default: 5s
+      responses:
+        '200':
+          description: 'Returns - transaction trace'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/debug_traceTransaction
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -87,11 +114,3 @@ paths:
               -H "Content-Type: application/json" \
               --data '{"method":"debug_traceTransaction","params":["0x9e63085271890a141297039b3b711913699f1ee4db1acb667ad7ce304772036b", {"tracer": "callTracer"}], "id":1,"jsonrpc":"2.0"}'
             name: cURL
-      responses:
-        '200':
-          description: 'Returns - transaction trace'
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/debug_traceTransaction
-      operationId: debug-tracetransaction

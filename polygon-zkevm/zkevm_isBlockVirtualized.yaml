@@ -13,43 +13,45 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-isBlockVirtualized-polygon-zkevm
-        summary: zkevm_isBlockVirtualized - Polygon zkEVM
+    post:
+      summary: zkevm_isBlockVirtualized - Polygon zkEVM
+      description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
+      operationId: zkevm-isBlockVirtualized-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
         description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
-        parameters:
-          - name: apiKey
-            in: path
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_isBlockVirtualized
+                params:
+                  type: array
+                  description: |
+                    1. String - The block number (in hex)
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: string
+                    pattern: '^0x[0-9a-fA-F]+$'
+                  default: ['0x0']
+      responses:
+        '200':
           description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/zkevm_isBlockVirtualized
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns true if the provided block number is already connected to a batch that was already virtualized, otherwise false.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/zkevm_isBlockVirtualized
+                $ref: ../evm_responses.yaml#/zkevm_isBlockVirtualized
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

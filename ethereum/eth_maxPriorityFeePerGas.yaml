@@ -16,26 +16,19 @@ paths:
     post:
       summary: eth_maxPriorityFeePerGas - Ethereum
       description: "Returns a fee per gas that is an estimate of how much you can pay as a priority fee, or 'tip', to get a transaction included in the current block."
-      tags: []
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/eth_maxPriorityFeePerGas
+              id:
+                $ref: ./schemas.yaml#/Id
+              jsonrpc:
+                $ref: ./schemas.yaml#/JsonRpc
+              method:
+                $ref: ./schemas.yaml#/Method
+                default: eth_maxPriorityFeePerGas
       responses:
         '200':
           description: Returns the estimated priority fee per gas.

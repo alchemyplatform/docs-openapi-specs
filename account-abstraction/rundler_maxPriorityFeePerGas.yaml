@@ -24,21 +24,9 @@ paths:
     post:
       summary: rundler_maxPriorityFeePerGas
       description: 'Returns a fee per gas that is an estimate of how much users should set as a priority fee in UOs for Rundler endpoints.'
-      tags: []
+      operationId: rundler-maxPriorityFeePerGas
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -51,4 +39,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/string_result_response
-      operationId: rundler-maxPriorityFeePerGas

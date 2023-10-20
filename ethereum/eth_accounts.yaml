@@ -13,38 +13,7 @@ servers:
         default: eth-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_accounts - Ethereum
-        description: Returns a list of addresses owned by client. Since Alchemy does not store keys, this will always return empty.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_body.yaml#/eth_accounts
-        responses:
-          '200':
-            description: Returns 20 Bytes - addresses owned by the client.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-accounts
+    post:
+      $ref: ../components/evm.yaml#/EthAccount
+      summary: eth_accounts - Ethereum
+      operationId: eth-accounts

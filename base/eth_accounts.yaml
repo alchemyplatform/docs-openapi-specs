@@ -14,5 +14,5 @@ paths:
   /{apiKey}:
     post:
       summary: eth_accounts - Base
-      $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
       operationId: eth-accounts-base
+      $ref: ../components/evm.yaml#/EthAccount

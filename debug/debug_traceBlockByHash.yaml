@@ -21,26 +21,49 @@ paths:
     post:
       summary: debug_traceBlockByHash
       description: Replays the block that is already present in the database.
-      tags: []
+      operationId: debug-traceblockbyhash
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/debug_traceBlockByHash
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: debug_traceBlockByHash
+                params:
+                  type: array
+                  description: |
+                    1. `string` - Block hash for the block to be traced
+                    2. `tracer` Object - Currently supports `callTracer` and `prestateTracer` (see above for definitions).
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    anyOf:
+                      - type: string
+                        title: Block hash
+                        description: block hash
+                        default: '0x7bd8357213af34d3fe7f725d9b21187a5a58127e39aac5776fd0594e3391ea6e'
+                      - type: object
+                        title: Tracer
+                        properties:
+                          tracer:
+                            $ref: './components.yaml#/Tracer'
+                          tracerConfig:
+                            $ref: './components.yaml#/TracerConfig'
+      responses:
+        '200':
+          description: 'Returns - array of block traces'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/debug_traceBlockByHash
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -86,11 +109,3 @@ paths:
               -H "Content-Type: application/json" \
               --data '{"method":"debug_traceBlockByHash","params":["0x97b49e43632ac70c46b4003434058b18db0ad809617bd29f3448d46ca9085576", {"tracer": "callTracer"}],"id":1,"jsonrpc":"2.0"}'
             name: cURL
-      responses:
-        '200':
-          description: 'Returns - array of block traces'
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/debug_traceBlockByHash
-      operationId: debug-traceblockbyhash

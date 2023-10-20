@@ -12,59 +12,42 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getStorageAt - Polygon zkEVM
-        description: "Returns the value from a storage position at a given address on the Polygon zkEVM network, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods."
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: eth_getStorageAt - Polygon zkEVM
+      description: "Returns the value from a storage position at a given address on the Polygon zkEVM network, or in other words, returns the state of the contract's storage, which may not be exposed via the contract's methods."
+      operationId: eth-getStorageAt-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/eth_getStorageAt_polygon_zkevm
+      responses:
+        '200':
+          description: Returns the value at this storage position.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getStorageAt_polygon_zkevm
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                const { Alchemy, Network } = require("alchemy-sdk");
+                $ref: ../evm_responses.yaml#/string_result_response
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              const { Alchemy, Network } = require("alchemy-sdk");
 
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.POLYGONZKEVM_TESTNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.POLYGONZKEVM_TESTNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                alchemy.core.getStorageAt("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", 0).then(console.log);
-        responses:
-          '200':
-            description: Returns the value at this storage position.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-getStorageAt-polygon-zkevm
+              alchemy.core.getStorageAt("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", 0).then(console.log);

@@ -6,67 +6,50 @@ servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2 '
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_feeHistory - Optimism
-        description: Returns a collection of historical gas information.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: eth_feeHistory - Optimism
+      description: Returns a collection of historical gas information.
+      operationId: eth-feeHistory
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/eth_feeHistory
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_feeHistory
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_feeHistory
-        operationId: eth-feeHistory
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - curl
-            - javascript
-            - python
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
+                $ref: ../evm_responses.yaml#/eth_feeHistory
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
 
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                // Using send method from alchemy-sdk with specific transaction details
-                const res = await alchemy.core.send('eth_feeHistory', [
-                  '0x5',
-                  'latest',
-                  []
-                ]);
+              // Using send method from alchemy-sdk with specific transaction details
+              const res = await alchemy.core.send('eth_feeHistory', [
+                '0x5',
+                'latest',
+                []
+              ]);
 
-                console.log(res);
+              console.log(res);

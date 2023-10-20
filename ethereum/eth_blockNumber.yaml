@@ -12,62 +12,32 @@ servers:
         - eth-sepolia
         - eth-goerli
         default: eth-mainnet
+x-readme:
+  samples-languages:
+    - curl
+    - javascript
+    - python
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_blockNumber - Ethereum
-        operationId: eth-blocknumber
-        description: Returns the number of the most recent block.
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Accepts nothing.
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_body.yaml#/eth_blockNumber
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
+    post:
+      $ref: ../components/evm.yaml#/EthBlockNumber
+      summary: eth_blockNumber - Ethereum
+      operationId: eth-blocknumber
+      x-readme:
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
 
-                // Optional Config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ETH_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                // Get the latest block number
-                alchemy.core.getBlockNumber().then(console.log);
-        responses:
-          '200':
-            description: Returns integer of the current block number the client is on.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_blockNumber
+              // Get the latest block number
+              alchemy.core.getBlockNumber().then(console.log);

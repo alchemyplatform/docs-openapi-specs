@@ -13,7 +13,7 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthAccount
       summary: eth_accounts - Polygon PoS
       description: Returns a list of addresses owned by client on Polygon. Since Alchemy does not store keys, this will always return empty.
-      $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
       operationId: eth-accounts-polygon

@@ -12,68 +12,51 @@ servers:
         default: arb-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getTransactionReceipt - Arbitrum
-        description: Returns the receipt of a transaction by transaction hash.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: eth_getTransactionReceipt - Arbitrum
+      description: Returns the receipt of a transaction by transaction hash.
+      operationId: eth-getTransactionReceipt-arbitrum
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/eth_getTransactionReceipt
+              default:
+                params:
+                  [
+                    '0x0f332c74582e9277344c33ad989b1a1854a6cd78710b262e1165b52c26afec74',
+                  ]
+      responses:
+        '200':
+          description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getTransactionReceipt
-                default:
-                  params:
-                    [
-                      '0x0f332c74582e9277344c33ad989b1a1854a6cd78710b262e1165b52c26afec74',
-                    ]
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Setup: npm install alchemy-sdk
-                // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-                import { Network, Alchemy } from "alchemy-sdk";
+                $ref: ../evm_responses.yaml#/eth_getTransactionReceipt_arb
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
 
-                // Optional config object, but defaults to demo api-key and eth-mainnet.
-                const settings = {
-                  apiKey: "demo", // Replace with your Alchemy API Key.
-                  network: Network.ARB_MAINNET, // Replace with your network.
-                };
-                const alchemy = new Alchemy(settings);
+              // Optional config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ARB_MAINNET, // Replace with your network.
+              };
+              const alchemy = new Alchemy(settings);
 
-                alchemy.core
-                  .getTransactionReceipt(
-                    "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
-                  )
-                  .then(console.log);
-        responses:
-          '200':
-            description: ''
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_getTransactionReceipt_arb
-        operationId: eth-getTransactionReceipt-arbitrum
+              alchemy.core
+                .getTransactionReceipt(
+                  "0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b"
+                )
+                .then(console.log);

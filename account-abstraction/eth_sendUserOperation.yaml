@@ -21,44 +21,27 @@ servers:
         default: eth-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_sendUserOperation
-        description: Sends a user operation to the given EVM network.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: eth_sendUserOperation
+      description: Sends a user operation to the given EVM network.
+      operationId: eth-sendUserOperation
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          required: true
+              $ref: ../evm_body.yaml#/eth_sendUserOperation
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_sendUserOperation
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_sendUserOperation
-        operationId: eth-sendUserOperation
+                $ref: ../evm_responses.yaml#/eth_sendUserOperation
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

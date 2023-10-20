@@ -7,8 +7,8 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthBlockNumber
       summary: eth_blockNumber - Astar
-      $ref: ../ethereum/eth_blockNumber.yaml#/components/pathItems/path/post
       operationId: eth-blocknumber-astar
       x-readme:
         explorer-enabled: false

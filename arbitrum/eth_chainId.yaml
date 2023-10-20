@@ -14,5 +14,5 @@ paths:
   /{apiKey}:
     post:
       summary: eth_chainId - Arbitrum
-      operationId: eth-chainid-arbitrum
       $ref: ../ethereum/eth_chainId.yaml#/components/pathItems/path/post
+      operationId: eth-chainid-arbitrum

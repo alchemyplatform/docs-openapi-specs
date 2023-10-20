@@ -13,71 +13,55 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-addDeclareTransaction
-        summary: starknet_addDeclareTransaction
-        description: Submit a new class declaration transaction
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_addDeclareTransaction
+      description: Submit a new class declaration transaction
+      operationId: starknet-addDeclareTransaction
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: 'evm_body.yaml#/common_request_fields' # path only works with gh actions for command line add ../ in the beginning
+                - type: object
+                  properties:
+                    method:
+                      $ref: components/schemas.yaml#/Method # path only works with gh actions for command line add ../ in the beginning
+                      default: starknet_addDeclareTransaction
+                    params:
+                      type: array
+                      title: declare_transaction
+                      items:
+                        $ref: 'components/starknet/schemas.yaml#/BroadcastedDeclareTxn' # path only works with gh actions for command line add ../ in the beginning
+                      description: The declaration transaction to be submitted
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The result of the transaction submission
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: 'evm_body.yaml#/common_request_fields' # path only works with gh actions for command line add ../ in the beginning
+                  - $ref: 'evm_responses.yaml#/common_response_fields' # path only works with gh actions for command line add ../ in the beginning
                   - type: object
                     properties:
-                      method:
-                        $ref: components/schemas.yaml#/Method # path only works with gh actions for command line add ../ in the beginning
-                        default: starknet_addDeclareTransaction
-                      params:
-                        type: array
-                        title: declare_transaction
-                        items:
-                          $ref: 'components/starknet/schemas.yaml#/BroadcastedDeclareTxn' # path only works with gh actions for command line add ../ in the beginning
-                        description: The declaration transaction to be submitted
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The result of the transaction submission
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: 'evm_responses.yaml#/common_response_fields' # path only works with gh actions for command line add ../ in the beginning
-                    - type: object
-                      properties:
-                        result:
-                          type: object
-                          properties:
-                            transactionHash:
-                              title: The hash of the declare transaction
-                              $ref: 'components/starknet/schemas.yaml#/TxnHash' # path only works with gh actions for command line add ../ in the beginning
-                            classHash:
-                              title: The hash of the declared class
-                              $ref: 'components/starknet/schemas.yaml#/Felt' # path only works with gh actions for command line add ../ in the beginning
-                      example:
-                        $ref: 'components/starknet/examples.yaml#/starknet_addDeclareTransaction' # path only works with gh actions for command line add ../ in the beginning
+                      result:
+                        type: object
+                        properties:
+                          transactionHash:
+                            title: The hash of the declare transaction
+                            $ref: 'components/starknet/schemas.yaml#/TxnHash' # path only works with gh actions for command line add ../ in the beginning
+                          classHash:
+                            title: The hash of the declared class
+                            $ref: 'components/starknet/schemas.yaml#/Felt' # path only works with gh actions for command line add ../ in the beginning
+                    example:
+                      $ref: 'components/starknet/examples.yaml#/starknet_addDeclareTransaction' # path only works with gh actions for command line add ../ in the beginning
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

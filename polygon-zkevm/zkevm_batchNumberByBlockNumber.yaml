@@ -13,42 +13,44 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-batchNumberByBlockNumber-polygon-zkevm
-        summary: zkevm_batchNumberByBlockNumber - Polygon zkEVM
-        description: Returns the batch number of the batch connected to the block.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: zkevm_batchNumberByBlockNumber - Polygon zkEVM
+      description: Returns the batch number of the batch connected to the block.
+      operationId: zkevm-batchNumberByBlockNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_batchNumberByBlockNumber
+                params:
+                  type: array
+                  description: |
+                    1. String - The block number (in hex)
+                  minItems: 1
+                  maxItems: 1
+                  items:
+                    type: string
+                    pattern: '^0x[0-9a-fA-F]+$'
+                  default: ['0x0']
+      responses:
+        '200':
+          description: Returns the batch number of the batch connected to the block.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_batchNumberByBlockNumber'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns the batch number of the batch connected to the block.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/zkevm_batchNumberByBlockNumber
+                $ref: ../evm_responses.yaml#/zkevm_batchNumberByBlockNumber
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

@@ -21,21 +21,8 @@ components:
         summary: eth_newFilter - Ethereum
         operationId: eth-newfilter
         description: 'Creates a filter object, based on filter options, to notify when the state changes (logs).'
-        tags: []
         parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
+          - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
           content:
             application/json:

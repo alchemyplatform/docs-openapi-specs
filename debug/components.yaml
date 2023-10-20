@@ -1,0 +1,12 @@
+Tracer:
+  type: string
+  default: callTracer
+  enum:
+    - callTracer
+    - prestateTracer
+    
+TracerConfig:
+  type: object
+  properties:
+    onlyTopCall:
+      type: boolean

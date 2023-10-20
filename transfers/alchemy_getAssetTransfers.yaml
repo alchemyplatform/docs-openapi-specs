@@ -21,28 +21,95 @@ servers:
 paths:
   /{apiKey}:
     post:
+      tags: ['Transfers API Endpoints']
       summary: alchemy_getAssetTransfers
       description: 'The Transfers API allows you to easily fetch historical transactions for any address across Ethereum and supported L2s including Polygon, Arbitrum, and Optimism.'
-      tags: ['Transfers API Endpoints']
+      operationId: alchemy-getAssetTransfers 
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
-              $ref: evm_body.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_body.yaml#/alchemy_getAssetTransfers
+              id:
+                $ref: ./schemas.yaml#/Id
+              jsonrpc:
+                $ref: ./schemas.yaml#/JsonRpc
+              method:
+                $ref: ./schemas.yaml#/Method
+                default: alchemy_getAssetTransfers
+              params:
+                type: array
+                minItems: 1
+                maxItems: 1
+                items:
+                  type: object
+                  required:
+                    - category
+                  properties:
+                    fromBlock:
+                      type: string
+                      description: 'String - Inclusive from block (hex string, int, `latest`, or `indexed`). Defaults to `0x0`'
+                      default: '0x0'
+                    toBlock:
+                      type: string
+                      description: 'String - Inclusive to block (hex string, int, `latest`, or `indexed`). Defaults to `latest`. Read more about block tags <span class="custom-style"><a href="https://docs.alchemy.com/reference/transfers-api-quickstart#what-are-the-different-types-of-block-tags" target="_blank">here</a></span>'
+                      default: latest
+                    fromAddress:
+                      type: '../components/schemas.yaml#/Address'
+                      description: String - From address (hex string). Default wildcard - any address
+                    toAddress:
+                      type: '../components/schemas.yaml#/Address'
+                      description: String - To address (hex string). Default wildcard - any address
+                      default: '0x5c43B1eD97e52d009611D89b74fA829FE4ac56b1'
+                    contractAddresses:
+                      type: array
+                      description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+                      items:
+                        type: '../components/schemas.yaml#/Address'
+                    category:
+                      type: array
+                      description: |
+                        'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
+                      items:
+                        type: string
+                        enum:
+                          - external
+                          - internal
+                          - erc20
+                          - erc721
+                          - erc1155
+                          - specialnft
+                      default: ['external']
+                    order:
+                      type: string
+                      description: |
+                        String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, descending order is from newest to oldest. Defaults to `asc`.
+                      enum:
+                        - asc
+                        - desc
+                    withMetadata:
+                      type: boolean
+                      description: Boolean - Whether or not to include additional metadata about each transfer event. Defaults to `false`.
+                      default: false
+                    excludeZeroValue:
+                      type: boolean
+                      description: Boolean - A boolean to exclude transfers with zero value - zero value is not the same as null value. Defaults to `true`.
+                      default: true
+                    maxCount:
+                      type: string
+                      description: Max hex string number of results to return per call. Defaults to `0x3e8` (1000).
+                      default: '0x3e8'
+                    pageKey:
+                      type: string
+                      description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: evm_responses.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_responses.yaml#/alchemy_getAssetTransfers
       x-readme:
         samples-languages:
           - curl
@@ -73,11 +140,3 @@ paths:
               });
 
               console.log(res);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: evm_responses.yaml#/alchemy_getAssetTransfers # path for using github actions to update, to update from CLI using rdme change to ../evm_responses.yaml#/alchemy_getAssetTransfers
-      operationId: alchemy-getAssetTransfers

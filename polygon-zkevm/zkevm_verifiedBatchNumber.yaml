@@ -13,42 +13,34 @@ servers:
         default: polygonzkevm-testnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-verifiedBatchNumber-polygon-zkevm
-        summary: zkevm_verifiedBatchNumber - Polygon zkEVM
-        description: Returns the latest verified batch number.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: zkevm_verifiedBatchNumber - Polygon zkEVM
+      description: Returns the latest verified batch number.
+      operationId: zkevm-verifiedBatchNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              type: object
+              properties:
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: zkevm_verifiedBatchNumber
+      responses:
+        '200':
+          description: Returns the latest verified batch number.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_verifiedBatchNumber'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns the latest verified batch number.
-            content:
-              application/json:
-                schema:
-                  $ref: '../evm_responses.yaml#/zkevm_verifiedBatchNumber'
+                $ref: '../evm_responses.yaml#/zkevm_verifiedBatchNumber'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

@@ -7,6 +7,6 @@ servers:
 paths:
   /{apiKey}:
     post:
+      $ref: ../components/evm.yaml#/EthAccount
       summary: eth_accounts - Astar
-      $ref: ../ethereum/eth_accounts.yaml#/components/pathItems/path/post
       operationId: eth-accounts-astar

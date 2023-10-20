@@ -13,66 +13,50 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-syncing
-        summary: starknet_syncing
-        description: Returns an object about the sync status, or false if the node is not synching
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_syncing
+      description: Returns an object about the sync status, or false if the node is not synching
+      operationId: starknet-syncing
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_syncing
+                    params:
+                      type: array
+                      title: No parameters required
+                      description: This method does not require any parameters
+      responses:
+        '200':
+          description: The state of the synchronization, or false if the node is not synchronizing
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_syncing
-                      params:
-                        type: array
-                        title: No parameters required
-                        description: This method does not require any parameters
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The state of the synchronization, or false if the node is not synchronizing
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          oneOf:
-                            - type: boolean
-                              title: Not synchronizing
-                              description: only legal value is FALSE here
-                            - $ref: '../components/starknet/schemas.yaml#/SyncStatus'
-                              title: Sync status
-                              description: The status of the node, if it is currently synchronizing state
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_syncing'
+                      result:
+                        oneOf:
+                          - type: boolean
+                            title: Not synchronizing
+                            description: only legal value is FALSE here
+                          - $ref: '../components/starknet/schemas.yaml#/SyncStatus'
+                            title: Sync status
+                            description: The status of the node, if it is currently synchronizing state
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_syncing'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

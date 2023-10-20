@@ -13,68 +13,52 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-getTransactionByHash
-        summary: starknet_getTransactionByHash
-        description: Get the details and status of a submitted transaction
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_getTransactionByHash
+      description: Get the details and status of a submitted transaction
+      operationId: starknet-getTransactionByHash
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: ../components/schemas.yaml#/Method
+                      default: starknet_getTransactionByHash
+                    params:
+                      type: array
+                      title: Params
+                      default:
+                        [
+                          '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
+                        ]
+                      items:
+                        - $ref: '../components/starknet/schemas.yaml#/TxnHash'
+                      description: The transaction hash of the requested transaction
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The details and status of a submitted transaction
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: ../components/schemas.yaml#/Method
-                        default: starknet_getTransactionByHash
-                      params:
-                        type: array
-                        title: Params
-                        default:
-                          [
-                            '0x019041241b3e0924636b94fd780eca8ed82149299a5fd2f9c90aaeabe5da8728',
-                          ]
-                        items:
-                          - $ref: '../components/starknet/schemas.yaml#/TxnHash'
-                        description: The transaction hash of the requested transaction
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The details and status of a submitted transaction
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          $ref: '../components/starknet/schemas.yaml#/Txn'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getTransactionByHash'
+                      result:
+                        $ref: '../components/starknet/schemas.yaml#/Txn'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_getTransactionByHash'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

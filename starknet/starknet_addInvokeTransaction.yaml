@@ -13,70 +13,54 @@ servers:
         default: starknet-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-addInvokeTransaction
-        summary: starknet_addInvokeTransaction
-        description: Submit a new transaction to be added to the chain
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_addInvokeTransaction
+      description: Submit a new transaction to be added to the chain
+      operationId: starknet-addInvokeTransaction
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_addInvokeTransaction
+                    params:
+                      type: array
+                      title: Parameters
+                      items:
+                        $ref: '../components/starknet/schemas.yaml#/BroadcastedInvokeTxn'
+                        title: invoke_transaction
+                        description: The information needed to invoke the function (or account, for version 1 transactions)
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The result of the transaction submission
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_addInvokeTransaction
-                      params:
-                        type: array
-                        title: Parameters
-                        items:
-                          $ref: '../components/starknet/schemas.yaml#/BroadcastedInvokeTxn'
-                          title: invoke_transaction
-                          description: The information needed to invoke the function (or account, for version 1 transactions)
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The result of the transaction submission
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          type: object
-                          properties:
-                            transaction_hash:
-                              $ref: '../components/starknet/schemas.yaml#/TxnHash'
-                              title: The hash of the invoke transaction
-                              description: The hash of the invoke transaction
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_addInvokeTransaction'
+                      result:
+                        type: object
+                        properties:
+                          transaction_hash:
+                            $ref: '../components/starknet/schemas.yaml#/TxnHash'
+                            title: The hash of the invoke transaction
+                            description: The hash of the invoke transaction
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_addInvokeTransaction'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

@@ -20,26 +20,20 @@ components:
       post:
         summary: eth_chainId - Ethereum
         description: 'Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155.'
-        tags: []
+        operationId: eth-chainId
         parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
+          - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_chainId
+                id:
+                  $ref: ./schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ./schemas.yaml#/JsonRpc
+                method:
+                  $ref: ./schemas.yaml#/Method
+                  default: eth_chainId
         responses:
           '200':
             description: Returns integer of the current chain ID.
@@ -47,4 +41,3 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-chainId

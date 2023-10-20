@@ -12,43 +12,27 @@ servers:
         default: base-mainnet
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getProof - Base
-        description: Returns the account and storage values of the specified account including the Merkle-proof on Base. This call can be used to verify that the data you are pulling from is not tampered with.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: eth_getProof - Base
+      description: Returns the account and storage values of the specified account including the Merkle-proof on Base. This call can be used to verify that the data you are pulling from is not tampered with.
+      operationId: eth-getProof-base
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/eth_getProof
+      responses:
+        '200':
+          description: 'Returns the account and storage values of the specified account.'
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getProof
-        responses:
-          '200':
-            description: 'Returns the account and storage values of the specified account.'
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_getProof
-        operationId: eth-getProof-base
-        x-readme:
-          explorer-enabled: false
-          samples-languages:
-            - curl
-            - javascript
-            - python
+                $ref: ../evm_responses.yaml#/eth_getProof
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
