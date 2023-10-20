@@ -1,0 +1,16 @@
+Category:
+  name: category
+  type: string
+  enum:
+    - core
+    - bundler
+    - nft
+    - token
+    - transfers
+    - transaction-receipts
+    - gas-manager
+    - trace
+    - debug
+    - gas-optimized-transactions
+    - private-transactions
+    - notify
