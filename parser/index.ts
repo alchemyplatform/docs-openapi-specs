@@ -155,7 +155,7 @@ async function main() {
         pathParams: flatEntry.pathParams.map(convertParam),
         queryParams: flatEntry.queryParams.map(convertParam),
       };
-      params: groupedEntries[chain][method.name] = newEntry;
+      groupedEntries[chain][method.name] = newEntry;
     } else {
       const updatedEntry = {
         ...entry,
