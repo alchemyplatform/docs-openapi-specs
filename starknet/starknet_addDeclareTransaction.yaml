@@ -28,7 +28,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category' 
+      $ref: '../components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -60,17 +60,17 @@ components:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields' 
+                  - $ref: '../evm_body.yaml#/common_request_fields'
                   - type: object
                     properties:
                       method:
-                        $ref: ../components/schemas.yaml#/Method 
+                        $ref: ../components/schemas.yaml#/Method
                         default: starknet_addDeclareTransaction
                       params:
                         type: array
                         title: declare_transaction
                         items:
-                          $ref: '../components/starknet/schemas.yaml#/BroadcastedDeclareTxn' 
+                          $ref: '../components/starknet/schemas.yaml#/BroadcastedDeclareTxn'
                         description: The declaration transaction to be submitted
                         minItems: 1
                         maxItems: 1
@@ -86,7 +86,7 @@ components:
               application/json:
                 schema:
                   allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields' 
+                    - $ref: '../evm_responses.yaml#/common_response_fields'
                     - type: object
                       properties:
                         result:
@@ -94,9 +94,9 @@ components:
                           properties:
                             transactionHash:
                               title: The hash of the declare transaction
-                              $ref: '../components/starknet/schemas.yaml#/TxnHash' 
+                              $ref: '../components/starknet/schemas.yaml#/TxnHash'
                             classHash:
                               title: The hash of the declared class
-                              $ref: '../components/starknet/schemas.yaml#/Felt' 
+                              $ref: '../components/starknet/schemas.yaml#/Felt'
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_addDeclareTransaction' 
+                        $ref: '../components/starknet/examples.yaml#/starknet_addDeclareTransaction'

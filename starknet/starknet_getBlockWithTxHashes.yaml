@@ -12,6 +12,7 @@ servers:
           - starknet-goerli
           - starknet-sepolia
         default: starknet-mainnet
+<<<<<<< HEAD
   - url: 'https://{network}.g.alchemy.com/starknet/version/rpc/{version}/'
     variables:
       network:
@@ -25,6 +26,8 @@ servers:
           - v0.5
           - v0.4
         default: v0.5
+=======
+>>>>>>> 4ca38e80 (Squashed commit of the following:)
 x-sandbox:
   category:
     type:

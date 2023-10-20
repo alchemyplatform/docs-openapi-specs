@@ -97,4 +97,3 @@ components:
                           $ref: '../components/starknet/schemas.yaml#/Txn'
                       example:
                         $ref: '../components/starknet/examples.yaml#/starknet_getTransactionByHash'
-
