@@ -94,6 +94,14 @@ async function main() {
               const readmeUrl =
                 BASE_DOCS_URL +
                 operation.operationId.toLowerCase().replace(/_/g, '-');
+
+              // Note: currently ignores params in headers and cookies
+              // assumption is we will not need this to build request in Sandbox
+              const { pathParams, queryParams } = extractParams(
+                operation.parameters as
+                  | OpenAPIV3_1.ParameterObject[]
+                  | undefined,
+              );
               const entry = {
                 filename: fileName,
                 chain,
@@ -106,7 +114,8 @@ async function main() {
                   verb: methodVerb,
                   docsUrl: readmeUrl,
                 },
-                params: operation.parameters as OpenAPIV3_1.ParameterObject[],
+                pathParams,
+                queryParams,
                 requestBody:
                   operation.requestBody as OpenAPIV3_1.RequestBodyObject,
               };
@@ -143,9 +152,10 @@ async function main() {
         url: flatEntry.url + flatEntry.path,
         method: method.verb,
         docsUrl: method.docsUrl,
-        params: flatEntry.params,
+        pathParams: flatEntry.pathParams,
+        queryParams: flatEntry.queryParams,
       };
-      groupedEntries[chain][method.name] = newEntry;
+      params: groupedEntries[chain][method.name] = newEntry;
     } else {
       const updatedEntry = {
         ...entry,
@@ -230,5 +240,12 @@ function extractSubdomain(url: string): string | null {
   }
 }
 
-// TODO: do we want to add variables for all files?
-// TODO: move Debug and Trace bodies out of shared files
+function extractParams(params: OpenAPIV3_1.ParameterObject[] | undefined): {
+  pathParams: OpenAPIV3_1.ParameterObject[];
+  queryParams: OpenAPIV3_1.ParameterObject[];
+} {
+  if (!params) return { pathParams: [], queryParams: [] };
+  const pathParams = params.filter((param) => param.in === 'path');
+  const queryParams = params.filter((param) => param.in === 'query');
+  return { pathParams, queryParams };
+}
