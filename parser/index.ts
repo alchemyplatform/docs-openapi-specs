@@ -88,7 +88,7 @@ async function main() {
                 throw new Error('Operation ID not found');
               }
 
-              const category = api['x-sandbox'].category;
+              const category = api['x-sandbox']?.category ?? 'none provided';
               const methodName = operation.operationId;
               const methodVerb = method.toUpperCase();
               const readmeUrl =

@@ -2,7 +2,7 @@ import { OpenAPIV3_1 } from '../node_modules/openapi-types/dist/index.d.js';
 
 export type AlchemyDocument = OpenAPIV3_1.Document & {
   'x-sandbox': {
-    category: string;
+    category?: string;
   };
 };
 
