@@ -4,6 +4,11 @@ info:
   version: '1.0'
 servers:
   - url: https://manage.g.alchemy.com/
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: gas-manager
 paths:
   '/api/gasManager/policy':
     post:

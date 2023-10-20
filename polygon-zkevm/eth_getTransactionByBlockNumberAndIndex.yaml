@@ -10,6 +10,11 @@ servers:
           - polygonzkevm-mainnet
           - polygonzkevm-testnet
         default: polygonzkevm-testnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

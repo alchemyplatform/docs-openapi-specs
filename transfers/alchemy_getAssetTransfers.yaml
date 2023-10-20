@@ -18,6 +18,11 @@ servers:
           - base-mainnet
           - base-goerli
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: transfers
 paths:
   /{apiKey}:
     post:

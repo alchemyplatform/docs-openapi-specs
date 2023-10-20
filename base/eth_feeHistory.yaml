@@ -10,6 +10,11 @@ servers:
           - base-mainnet
           - base-goerli
         default: base-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

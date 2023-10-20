@@ -11,6 +11,11 @@ servers:
           - starknet-mainnet
           - starknet-goerli
         default: starknet-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     post:
