@@ -119,7 +119,7 @@ async function main() {
                 requestBody:
                   operation.requestBody as OpenAPIV3_1.RequestBodyObject,
               };
-              console.debug(entry);
+              // console.debug(entry);
               flatEntries.push(entry);
             }
           }
@@ -154,6 +154,7 @@ async function main() {
         docsUrl: method.docsUrl,
         pathParams: flatEntry.pathParams.map(convertParam),
         queryParams: flatEntry.queryParams.map(convertParam),
+        requestBody: flatEntry.requestBody,
       };
       groupedEntries[chain][method.name] = newEntry;
     } else {
@@ -264,4 +265,20 @@ function convertParam(param: OpenAPIV3_1.ParameterObject): Param {
     description: description?.substring(0, 50),
     default: defaultVal,
   };
+}
+
+function convertRequestBody(
+  reqBody: OpenAPIV3_1.RequestBodyObject | undefined,
+) {
+  if (!reqBody) return;
+  const { description, content } = reqBody;
+  // https://spec.openapis.org/oas/v3.1.0#request-body-object
+  for (const [mediaType, mediaTypeObject] of Object.entries(content)) {
+    const schema = mediaTypeObject.schema as OpenAPIV3_1.SchemaObject;
+
+    for (const [key, value] of Object.entries(schema)) {
+      console.log(key, value);
+    }
+  }
+  return { description };
 }
