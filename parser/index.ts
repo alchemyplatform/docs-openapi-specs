@@ -48,7 +48,7 @@ async function main() {
 
   // 1. Loop through directories / walk through files
 
-  type Entry = {
+  type FlatEntry = {
     filename: string;
     chain: string;
     network: string;
@@ -62,7 +62,7 @@ async function main() {
     params: OpenAPIV3_1.ParameterObject[];
     requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
   };
-  const entries: Entry[] = [];
+  const flatEntries: FlatEntry[] = [];
 
   for await (const filePath of walk(rootPath)) {
     console.log('\n\n');
@@ -128,7 +128,7 @@ async function main() {
                   operation.requestBody as OpenAPIV3_1.RequestBodyObject,
               };
               console.debug(entry);
-              entries.push(entry);
+              flatEntries.push(entry);
             }
           }
         }
@@ -137,39 +137,61 @@ async function main() {
       console.error(err);
     }
   }
-  console.log(`Generated ${entries.length} entries.`);
+  console.log(`Generated ${flatEntries.length} entries.`);
+
+  type Entry = {
+    category: string;
+    networks: string[];
+    docsUrl: string;
+    url: string;
+    method: string;
+  };
 
   // Group entries by chain, network, and method
   const groupedEntries: {
     [chain: string]: {
-      [network: string]: {
-        [method: string]: Entry;
-        // [method: string]: Entry[];
-      };
+      [method: string]: Entry;
     };
   } = {};
 
-  for (const entry of entries) {
-    const { chain, network, method } = entry;
+  // "ethereum": {
+  // 	"eth_blockNumber": {
+  // 		"category": "core",
+  // 		"networks": ["mainnet", "goerli", "sepolia"],
+  //     "docsUrl": "https://docs.alchemy.com/reference/eth_blockNumber",
+  //     "url": "https://{chainnetwork}.g.alchemy.com/v2/{apiKey}/getNfts"
+  //    	"method": "POST",
+  //     "params": []
+  // 	},
+  // 	"getNfts": {
+  // 		"category": "enhanced",
+  // 		"networks": ["mainnet", "goerli", "sepolia"],
+  //     "docsUrl": "https://docs.alchemy.com/reference/eth_blockNumber",
+  //    	"method": "POST",
+  // 	}
+  // }
+
+  for (const flatEntry of flatEntries) {
+    const { chain, network, method } = flatEntry;
     if (!groupedEntries[chain]) {
       groupedEntries[chain] = {};
     }
-    if (!groupedEntries[chain][network]) {
-      groupedEntries[chain][network] = {};
-    }
-    // if (!groupedEntries[chain][network][method.name]) {
-    //   groupedEntries[chain][network][method.name] = [];
-    // }
-    // groupedEntries[chain][network][method.name].push(entry);
-    if (groupedEntries[chain][network][method.name]) {
-      throw new Error(
-        `Duplicate entry found for ${chain} ${network} ${method.name}`,
-      );
-    }
-    groupedEntries[chain][network][method.name] = entry;
-  }
 
-  console.log(groupedEntries);
+    const entry = groupedEntries[chain][method.name];
+    if (!entry) {
+      const newEntry = {
+        category: 'core',
+        networks: [network],
+        docsUrl: method.docsUrl,
+        url: flatEntry.url + flatEntry.path,
+        method: method.verb,
+      };
+      groupedEntries[chain][method.name] = newEntry;
+    } else {
+      const updatedEntry = { ...entry, networks: [...entry.networks, network] };
+      groupedEntries[chain][method.name] = updatedEntry;
+    }
+  }
 
   const outputFilePath = path.join(__dirname, 'output.json');
   await fs.promises.writeFile(
