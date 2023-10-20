@@ -261,7 +261,7 @@ function convertParam(param: OpenAPIV3_1.ParameterObject): Param {
     name,
     type: type as string,
     required: required ?? false,
-    description,
+    description: description?.substring(0, 50),
     default: defaultVal,
   };
 }
