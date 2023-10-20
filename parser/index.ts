@@ -116,7 +116,7 @@ async function main() {
                 filename: fileName,
                 chain,
                 network,
-                url: parsedUrl,
+                url: baseUrl,
                 path,
                 method: {
                   name: methodName,
