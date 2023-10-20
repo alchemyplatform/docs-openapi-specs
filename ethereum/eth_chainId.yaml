@@ -20,6 +20,7 @@ components:
       post:
         summary: eth_chainId - Ethereum
         description: 'Returns the currently configured chain ID, a value used in replay-protected transaction signing as introduced by EIP-155.'
+        operationId: eth-chainId
         parameters:
           - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
@@ -40,4 +41,3 @@ components:
               application/json:
                 schema:
                   $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-chainId
