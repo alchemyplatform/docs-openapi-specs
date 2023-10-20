@@ -23,12 +23,20 @@ export type FlatEntry = {
   requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
 };
 
+export type Param = {
+  name: string;
+  type: string;
+  required: boolean;
+  description?: string;
+  default?: string;
+};
+
 export type Entry = {
   category: string;
   networks: string[];
   url: string;
   method: string;
   docsUrl: string;
-  pathParams: OpenAPIV3_1.ParameterObject[];
-  queryParams: OpenAPIV3_1.ParameterObject[];
+  pathParams: Param[];
+  queryParams: Param[];
 };
