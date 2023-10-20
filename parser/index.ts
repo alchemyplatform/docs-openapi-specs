@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'yaml';
 import SwaggerParser from '@apidevtools/swagger-parser';
-import { AlchemyDocument, Entry, FlatEntry } from './types';
+import { AlchemyDocument, Entry, FlatEntry, Param } from './types';
 import { OpenAPIV3_1 } from '../node_modules/openapi-types/dist/index.d.js';
 
 const ignoreList = [
@@ -152,8 +152,8 @@ async function main() {
         url: flatEntry.url + flatEntry.path,
         method: method.verb,
         docsUrl: method.docsUrl,
-        pathParams: flatEntry.pathParams,
-        queryParams: flatEntry.queryParams,
+        pathParams: flatEntry.pathParams.map(convertParam),
+        queryParams: flatEntry.queryParams.map(convertParam),
       };
       params: groupedEntries[chain][method.name] = newEntry;
     } else {
@@ -248,4 +248,20 @@ function extractParams(params: OpenAPIV3_1.ParameterObject[] | undefined): {
   const pathParams = params.filter((param) => param.in === 'path');
   const queryParams = params.filter((param) => param.in === 'query');
   return { pathParams, queryParams };
+}
+
+function convertParam(param: OpenAPIV3_1.ParameterObject): Param {
+  const { name, required, description } = param;
+  const schema = param.schema as OpenAPIV3_1.SchemaObject;
+  const { type, default: defaultVal } = schema;
+  if (!type) {
+    throw new Error('Schema type not found');
+  }
+  return {
+    name,
+    type: type as string,
+    required: required ?? false,
+    description,
+    default: defaultVal,
+  };
 }
