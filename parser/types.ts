@@ -18,7 +18,8 @@ export type FlatEntry = {
     verb: string;
     docsUrl: string;
   };
-  params: OpenAPIV3_1.ParameterObject[];
+  pathParams: OpenAPIV3_1.ParameterObject[];
+  queryParams: OpenAPIV3_1.ParameterObject[];
   requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
 };
 
@@ -28,5 +29,6 @@ export type Entry = {
   url: string;
   method: string;
   docsUrl: string;
-  params: OpenAPIV3_1.ParameterObject[];
+  pathParams: OpenAPIV3_1.ParameterObject[];
+  queryParams: OpenAPIV3_1.ParameterObject[];
 };
