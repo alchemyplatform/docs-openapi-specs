@@ -39,4 +39,5 @@ export type Entry = {
   docsUrl: string;
   pathParams: Param[];
   queryParams: Param[];
+  requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
 };
