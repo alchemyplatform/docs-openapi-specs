@@ -7,9 +7,14 @@ servers:
     variables:
       network:
         enum:
-        - solana-mainnet
-        - solana-devnet
+          - solana-mainnet
+          - solana-devnet
         default: solana-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     post:

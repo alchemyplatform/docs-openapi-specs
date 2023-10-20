@@ -4,6 +4,11 @@ info:
   version: '1.0'
 servers:
   - url: 'https://dashboard.alchemy.com/api'
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: notify
 paths:
   /graphql/variables/{variable}:
     get:

@@ -14,6 +14,11 @@ servers:
           - arb-mainnet
           - arb-goerli
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: transaction-receipts
 paths:
   /{apiKey}:
     post:

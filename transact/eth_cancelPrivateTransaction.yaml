@@ -11,6 +11,11 @@ servers:
         default: eth-mainnet
 x-readme:
   id: 62d189bd28710500453ac689
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: private-transactions
 paths:
   '/{apiKey}':
     post:

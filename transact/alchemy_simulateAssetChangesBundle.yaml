@@ -22,6 +22,11 @@ x-readme:
     - javascript
     - python
   id: 63dc3dd7c80b5f001335b9b1
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: transaction-simulation
 paths:
   '/{apiKey}':
     post:

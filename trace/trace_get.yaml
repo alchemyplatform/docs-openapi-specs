@@ -10,6 +10,11 @@ servers:
           - eth-mainnet
           - eth-goerli
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: trace
 paths:
   /{apiKey}:
     post:

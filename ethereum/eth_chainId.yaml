@@ -7,10 +7,15 @@ servers:
     variables:
       network:
         enum:
-        - eth-mainnet
-        - eth-sepolia
-        - eth-goerli
+          - eth-mainnet
+          - eth-sepolia
+          - eth-goerli
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

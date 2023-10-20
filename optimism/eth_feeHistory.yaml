@@ -4,6 +4,11 @@ info:
   version: '1.0'
 servers:
   - url: 'https://opt-mainnet.g.alchemy.com/v2 '
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
 paths:
   /{apiKey}:
     $ref: '#/components/pathItems/path'

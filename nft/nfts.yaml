@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: 🎨 NFT API
   version: '1.0'
-servers:
+servers: # servers are also specified at the method level, if there ins't a specification then the server is supported on all the networks below
   - url: https://{network}.g.alchemy.com/nft
     variables:
       network:
@@ -17,8 +17,13 @@ servers:
           - opt-mainnet
           - opt-goerli
           - base-mainnet
-          - base-testnet
+          - base-goerli
         default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: nft
 paths:
   ##
   ## Below are all the v2 methods
@@ -461,6 +466,14 @@ paths:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
       tags: ['Spam Detection']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
@@ -506,6 +519,14 @@ paths:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
       tags: ['Spam Detection']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -604,6 +625,13 @@ paths:
       summary: reingestContract
       description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
       tags: ['NFT Metadata Access']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -665,6 +693,13 @@ paths:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
       tags: ['Sales & Marketplace Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -729,6 +764,14 @@ paths:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
       tags: ['Rarity Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -770,6 +813,13 @@ paths:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
       tags: ['NFT Metadata Access']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/query'
@@ -799,6 +849,14 @@ paths:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
       tags: ['Rarity Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -858,6 +916,15 @@ paths:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
       tags: ['Sales & Marketplace Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+                - opt-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/fromBlock'
@@ -1376,8 +1443,24 @@ paths:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
       tags: ['NFT API V3 Methods (BETA)']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       x-readme:
         samples-languages:
           - javascript
@@ -1404,6 +1487,14 @@ paths:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
       tags: ['NFT API V3 Methods (BETA)']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1462,6 +1553,13 @@ paths:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
       tags: ['NFT API V3 Methods (BETA)']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1507,6 +1605,14 @@ paths:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
       tags: ['NFT API V3 Methods (BETA)']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1574,6 +1680,14 @@ paths:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
       tags: ['NFT API V3 Methods (BETA)']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1638,6 +1752,15 @@ paths:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
       tags: ['NFT API V3 Methods (BETA)']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+                - opt-mainnet
+              default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/fromBlock'
