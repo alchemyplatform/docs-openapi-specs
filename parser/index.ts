@@ -142,9 +142,9 @@ async function main() {
   type Entry = {
     category: string;
     networks: string[];
-    docsUrl: string;
     url: string;
     method: string;
+    docsUrl: string;
   };
 
   // Group entries by chain, network, and method
@@ -182,13 +182,16 @@ async function main() {
       const newEntry = {
         category: 'core',
         networks: [network],
-        docsUrl: method.docsUrl,
         url: flatEntry.url + flatEntry.path,
         method: method.verb,
+        docsUrl: method.docsUrl,
       };
       groupedEntries[chain][method.name] = newEntry;
     } else {
-      const updatedEntry = { ...entry, networks: [...entry.networks, network] };
+      const updatedEntry = {
+        ...entry,
+        networks: [...entry.networks, network],
+      };
       groupedEntries[chain][method.name] = updatedEntry;
     }
   }
