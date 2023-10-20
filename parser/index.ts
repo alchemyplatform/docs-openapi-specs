@@ -49,6 +49,7 @@ async function main() {
 
   for await (const filePath of walk(rootPath)) {
     console.log('\n\n');
+    console.log('==> File path', filePath);
 
     // 2. Get OpenAPI spec
     const contents = fs.readFileSync(filePath, 'utf-8');
