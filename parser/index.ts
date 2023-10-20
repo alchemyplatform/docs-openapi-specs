@@ -88,7 +88,7 @@ async function main() {
                 throw new Error('Operation ID not found');
               }
 
-              const category = api['x-sandbox']?.category ?? 'none provided';
+              const category = extractCategory(api);
               const methodName = operation.operationId;
               const methodVerb = method.toUpperCase();
               const readmeUrl =
@@ -239,6 +239,14 @@ function extractSubdomain(url: string): string | null {
     console.error('Invalid URL:', error);
     return null;
   }
+}
+
+function extractCategory(api: AlchemyDocument) {
+  const category = api['x-sandbox'].category;
+  if (!category) {
+    throw new Error('Should have a sandbox category');
+  }
+  return category;
 }
 
 function extractParams(params: OpenAPIV3_1.ParameterObject[] | undefined): {
