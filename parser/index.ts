@@ -148,7 +148,7 @@ async function main() {
     const entry = groupedEntries[chain][method.name];
     if (!entry) {
       const newEntry = {
-        category: 'core',
+        category: flatEntry.category,
         networks: [network],
         url: flatEntry.url + flatEntry.path,
         method: method.verb,
