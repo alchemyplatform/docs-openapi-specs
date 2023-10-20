@@ -66,13 +66,11 @@ async function main() {
 
   for await (const filePath of walk(rootPath)) {
     console.log('\n\n');
-    // console.log(filePath);
 
-    // Convert YAML to JSON
     // 2. Get OpenAPI spec
     const contents = fs.readFileSync(filePath, 'utf-8');
+    // Convert YAML to JSON
     const json = parse(contents);
-    // console.log(json);
 
     // 3. Parse / dereference OpenAPI specs
     try {
@@ -86,7 +84,6 @@ async function main() {
 
       const paths = api.paths;
       if (!paths) throw new Error('Paths not found in spec');
-      // const { methods } = extractMethods({ chains, networks, paths });
 
       for (const [path, pathItem] of Object.entries(paths)) {
         // TODO: fix types
@@ -145,6 +142,7 @@ async function main() {
     url: string;
     method: string;
     docsUrl: string;
+    params: OpenAPIV3_1.ParameterObject[];
   };
 
   // Group entries by chain, network, and method
@@ -153,23 +151,6 @@ async function main() {
       [method: string]: Entry;
     };
   } = {};
-
-  // "ethereum": {
-  // 	"eth_blockNumber": {
-  // 		"category": "core",
-  // 		"networks": ["mainnet", "goerli", "sepolia"],
-  //     "docsUrl": "https://docs.alchemy.com/reference/eth_blockNumber",
-  //     "url": "https://{chainnetwork}.g.alchemy.com/v2/{apiKey}/getNfts"
-  //    	"method": "POST",
-  //     "params": []
-  // 	},
-  // 	"getNfts": {
-  // 		"category": "enhanced",
-  // 		"networks": ["mainnet", "goerli", "sepolia"],
-  //     "docsUrl": "https://docs.alchemy.com/reference/eth_blockNumber",
-  //    	"method": "POST",
-  // 	}
-  // }
 
   for (const flatEntry of flatEntries) {
     const { chain, network, method } = flatEntry;
@@ -185,6 +166,7 @@ async function main() {
         url: flatEntry.url + flatEntry.path,
         method: method.verb,
         docsUrl: method.docsUrl,
+        params: flatEntry.params,
       };
       groupedEntries[chain][method.name] = newEntry;
     } else {
