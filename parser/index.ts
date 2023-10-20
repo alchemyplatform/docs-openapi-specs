@@ -2,11 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'yaml';
 import SwaggerParser from '@apidevtools/swagger-parser';
-import type {
-  OpenAPIV2,
-  OpenAPIV3,
-  OpenAPIV3_1,
-} from '../node_modules/openapi-types/dist/index.d.ts';
+import { AlchemyDocument, Entry, FlatEntry } from './types';
+import { OpenAPIV3_1 } from '../node_modules/openapi-types/dist/index.d.js';
 
 const ignoreList = [
   '.env',
@@ -48,20 +45,6 @@ async function main() {
 
   // 1. Loop through directories / walk through files
 
-  type FlatEntry = {
-    filename: string;
-    chain: string;
-    network: string;
-    url: string;
-    path: string;
-    method: {
-      name: string;
-      verb: string;
-      docsUrl: string;
-    };
-    params: OpenAPIV3_1.ParameterObject[];
-    requestBody: OpenAPIV3_1.RequestBodyObject | undefined;
-  };
   const flatEntries: FlatEntry[] = [];
 
   for await (const filePath of walk(rootPath)) {
@@ -74,7 +57,7 @@ async function main() {
 
     // 3. Parse / dereference OpenAPI specs
     try {
-      const api = await SwaggerParser.validate(json);
+      const api = (await SwaggerParser.validate(json)) as AlchemyDocument;
       const fileName = filePath.split('/').at(-1);
       if (!fileName) throw new Error('File name not found');
 
@@ -88,6 +71,7 @@ async function main() {
       for (const [path, pathItem] of Object.entries(paths)) {
         // TODO: fix types
         // TODO: method could actually be summary, description
+        // @ts-ignore
         for (const [method, op] of Object.entries(pathItem)) {
           // console.log(method, operation);
 
@@ -104,6 +88,7 @@ async function main() {
                 throw new Error('Operation ID not found');
               }
 
+              const category = api['x-sandbox'].category;
               const methodName = operation.operationId;
               const methodVerb = method.toUpperCase();
               const readmeUrl =
@@ -113,6 +98,7 @@ async function main() {
                 filename: fileName,
                 chain,
                 network,
+                category,
                 url: baseUrl,
                 path,
                 method: {
@@ -135,15 +121,6 @@ async function main() {
     }
   }
   console.log(`Generated ${flatEntries.length} entries.`);
-
-  type Entry = {
-    category: string;
-    networks: string[];
-    url: string;
-    method: string;
-    docsUrl: string;
-    params: OpenAPIV3_1.ParameterObject[];
-  };
 
   // Group entries by chain, network, and method
   const groupedEntries: {
