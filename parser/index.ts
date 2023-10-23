@@ -90,7 +90,7 @@ async function main() {
               }
 
               const category = extractCategory(api);
-              const methodName = operation.operationId;
+              const methodName = operation.operationId.replace(/-/g, '_');
               const methodVerb = method.toUpperCase();
               const readmeUrl =
                 BASE_DOCS_URL +
