@@ -18,34 +18,17 @@ x-sandbox:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: requestAirdrop
       description: Requests an airdrop of lamports to a Pubkey
-      tags: []
+      operationId: requestAirdrop
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
               $ref: solana_body.yaml#/requestAirdrop
-      x-readme:
-        explorer-enabled: false
-        samples-languages:
-          - curl
-          - javascript
-          - python
         code-samples:
           - language: shell
             name: cURL
@@ -66,4 +49,9 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/requestAirdrop
-      operationId: requestAirdrop
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python

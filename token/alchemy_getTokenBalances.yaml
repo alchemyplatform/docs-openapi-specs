@@ -26,28 +26,24 @@ x-sandbox:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: alchemy_getTokenBalances
       description: 'Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.'
-      tags: []
+      operationId: alchemy-getTokenBalances
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/alchemy_getTokenBalances
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/alchemy_getTokenBalances
       x-readme:
         samples-languages:
           - curl
@@ -73,11 +69,3 @@ paths:
 
               // Print token balances of USDC in Vitalik's address
               alchemy.core.getTokenBalances(vitalikAddress, [usdcContract]).then(console.log);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/alchemy_getTokenBalances
-      operationId: alchemy-getTokenBalances

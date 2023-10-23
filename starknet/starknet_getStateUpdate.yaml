@@ -18,66 +18,50 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-getStateUpdate
-        summary: starknet_getStateUpdate
-        description: Get the information about the result of executing the requested block
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_getStateUpdate
+      description: Get the information about the result of executing the requested block
+      operationId: starknet-getStateUpdate
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: ../components/schemas.yaml#/Method
+                      default: starknet_getStateUpdate
+                    params:
+                      type: array
+                      title: block_id
+                      items:
+                        $ref: '../components/starknet/schemas.yaml#/BlockId'
+                      description: The hash of the requested block, or number (height) of the requested block, or a block tag
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The information about the state update of the requested block
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: ../components/schemas.yaml#/Method
-                        default: starknet_getStateUpdate
-                      params:
-                        type: array
-                        title: block_id
-                        items:
-                          $ref: '../components/starknet/schemas.yaml#/BlockId'
-                        description: The hash of the requested block, or number (height) of the requested block, or a block tag
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The information about the state update of the requested block
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/StateUpdate'
-                            - $ref: '../components/starknet/schemas.yaml#/PendingStateUpdate'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getStateUpdate'
+                      result:
+                        oneOf:
+                          - $ref: '../components/starknet/schemas.yaml#/StateUpdate'
+                          - $ref: '../components/starknet/schemas.yaml#/PendingStateUpdate'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_getStateUpdate'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

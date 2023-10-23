@@ -17,93 +17,77 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_sendRawTransaction - Polygon zkEVM
-        description: Creates a new message call transaction or a contract creation for signed transactions on the Polygon zkEVM network.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: []
+      summary: eth_sendRawTransaction - Polygon zkEVM
+      description: Creates a new message call transaction or a contract creation for signed transactions on the Polygon zkEVM network.
+      operationId: eth-sendRawTransaction-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/eth_sendRawTransaction
+      responses:
+        '200':
+          description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_sendRawTransaction
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-          code-samples:
-            - language: javascript
-              name: Alchemy SDK
-              code: |
-                // Import the Alchemy SDK
-                const { Network, Alchemy, Wallet, Utils } = require("alchemy-sdk");
+                $ref: ../evm_responses.yaml#/string_result_response
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Import the Alchemy SDK
+              const { Network, Alchemy, Wallet, Utils } = require("alchemy-sdk");
 
-                const API_KEY = "demo" // Replace with your Alchemy API key
+              const API_KEY = "demo" // Replace with your Alchemy API key
 
-                // Replace with your Private Key
-                const PRIVATE_KEY = "ae43266e69d4bcc923fe66083fe8f027be148af839a70b2f11cad554a6f0798b"
+              // Replace with your Private Key
+              const PRIVATE_KEY = "ae43266e69d4bcc923fe66083fe8f027be148af839a70b2f11cad554a6f0798b"
 
-                // NOTE: A demo private key is given in this case but never use it for real transactions as it's now public.
+              // NOTE: A demo private key is given in this case but never use it for real transactions as it's now public.
 
-                // Configuring the Alchemy SDK
-                const settings = {
-                  apiKey: API_KEY,
-                  network: Network.POLYGONZKEVM_TESTNET, // Replace with your network.
+              // Configuring the Alchemy SDK
+              const settings = {
+                apiKey: API_KEY,
+                network: Network.POLYGONZKEVM_TESTNET, // Replace with your network.
+              };
+
+              // Creating a new alchemy instance
+              const alchemy = new Alchemy(settings);
+
+              async function main() {
+                // Creating a new wallet instance
+                const wallet = new Wallet(PRIVATE_KEY);
+
+                // creating the transaction object
+                const transaction = {
+                  to: "0xbed9dA8f130aCC29F2580df183F3995eff78fb4D",
+                  value: Utils.parseEther("0.001"),
+                  gasLimit: "21000",
+                  maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
+                  maxFeePerGas: Utils.parseUnits("20", "gwei"),
+                  nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
+                  type: 2,
+                  chainId: 1442, 
                 };
 
-                // Creating a new alchemy instance
-                const alchemy = new Alchemy(settings);
+                // signing the transaction
+                const rawTransaction = await wallet.signTransaction(transaction);
 
-                async function main() {
-                  // Creating a new wallet instance
-                  const wallet = new Wallet(PRIVATE_KEY);
+                // sending the transaction
+                let sentTx = await alchemy.transact.sendTransaction(rawTransaction);
 
-                  // creating the transaction object
-                  const transaction = {
-                    to: "0xbed9dA8f130aCC29F2580df183F3995eff78fb4D",
-                    value: Utils.parseEther("0.001"),
-                    gasLimit: "21000",
-                    maxPriorityFeePerGas: Utils.parseUnits("5", "gwei"),
-                    maxFeePerGas: Utils.parseUnits("20", "gwei"),
-                    nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
-                    type: 2,
-                    chainId: 1442, 
-                  };
+                // Logging the sent tx object
+                console.log(sentTx);
+              }
 
-                  // signing the transaction
-                  const rawTransaction = await wallet.signTransaction(transaction);
-
-                  // sending the transaction
-                  let sentTx = await alchemy.transact.sendTransaction(rawTransaction);
-
-                  // Logging the sent tx object
-                  console.log(sentTx);
-                }
-
-                main();
-        responses:
-          '200':
-            description: 'Returns 32 Bytes - the transaction hash, or the zero hash if the transaction is not yet available.'
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-sendRawTransaction-polygon-zkevm
+              main();

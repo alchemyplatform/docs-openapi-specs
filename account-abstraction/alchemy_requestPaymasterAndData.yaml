@@ -26,44 +26,28 @@ x-sandbox:
     value: gas-manager
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: alchemy_requestPaymasterAndData
-        description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: []
+      summary: alchemy_requestPaymasterAndData
+      description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
+      operationId: alchemy-requestPaymasterAndData
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          required: true
+              $ref: ../evm_body.yaml#/alchemy_requestPaymasterAndData
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/alchemy_requestPaymasterAndData
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/alchemy_requestPaymasterAndData
-        operationId: alchemy-requestPaymasterAndData
+                $ref: ../evm_responses.yaml#/alchemy_requestPaymasterAndData
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

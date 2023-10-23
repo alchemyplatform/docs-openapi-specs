@@ -22,28 +22,24 @@ components:
   pathItems:
     path:
       post:
+        tags: []
         summary: eth_getBalance - Polygon zkEVM
         description: Returns the balance of the account of a given address on Polygon zkEVM.
-        tags: []
+        operationId: eth-getBalance-polygon-zkevm
         parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
+          - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
           content:
             application/json:
               schema:
                 $ref: ../evm_body.yaml#/eth_getBalance_polygon_zkevm
+        responses:
+          '200':
+            description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/string_result_response
         x-readme:
           samples-languages:
             - curl
@@ -65,11 +61,3 @@ components:
                 const alchemy = new Alchemy(settings);
 
                 alchemy.core.getBalance("0xbed9dA8f130aCC29F2580df183F3995eff78fb4D", "latest").then(console.log);
-        responses:
-          '200':
-            description: 'Returns hex value of the current ETH balance for the given address, measured in wei.'
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/string_result_response
-        operationId: eth-getBalance-polygon-zkevm

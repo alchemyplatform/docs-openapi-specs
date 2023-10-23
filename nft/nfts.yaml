@@ -30,9 +30,10 @@ paths:
   ##
   '/v2/{apiKey}/getNFTs':
     get:
+      tags: ['Ownership & Token Gating']
       summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: ['Ownership & Token Gating']
+      operationId: getNFTs
       parameters:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/contractAddresses'
@@ -45,30 +46,6 @@ paths:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Setup: npm install alchemy-sdk
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: demo, // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print all NFTs returned in the response:
-              alchemy.nft.getNftsForOwner("vitalik.eth").then(console.log);
       responses:
         '200':
           description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
@@ -97,12 +74,36 @@ paths:
                   $ref: '#/components/schemas/withContractFiltering_response'
                 withPagination:
                   $ref: '#/components/schemas/withPagination_response'
-      operationId: getNFTs
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: demo, // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print all NFTs returned in the response:
+              alchemy.nft.getNftsForOwner("vitalik.eth").then(console.log);
   '/v2/{apiKey}/getNFTMetadata':
     get:
+      tags: ['NFT Metadata Access']
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT Metadata Access']
+      operationId: getNFTMetadata
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -112,6 +113,13 @@ paths:
         - $ref: '#/components/schemas/tokenType'
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
         - $ref: '#/components/schemas/refreshCache'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ownedNFT'
       x-readme:
         samples-languages:
           - curl
@@ -138,19 +146,12 @@ paths:
                 "0x5180db8F5c931aaE63c74266b211F580155ecac8",
                 "1590"
               ).then(console.log);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ownedNFT'
-      operationId: getNFTMetadata
   '/v2/{apiKey}/getNFTMetadataBatch':
     post:
+      tags: ['NFT Metadata Access']
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT Metadata Access']
+      operationId: getNFTMetadataBatch
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -178,6 +179,15 @@ paths:
                   $ref: '#/components/schemas/refreshCache'
                   type: boolean
                   default: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ownedNFT'
       x-readme:
         samples-languages:
           - curl
@@ -204,25 +214,29 @@ paths:
                 "0x5180db8F5c931aaE63c74266b211F580155ecac8",
                 "1590"
               ).then(console.log);
+  '/v2/{apiKey}/getContractMetadata':
+    get:
+      tags: ['NFT Metadata Access']
+      summary: getContractMetadata
+      description: Queries NFT high-level collection/contract level information.
+      operationId: getContractMetadata
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ownedNFT'
-      operationId: getNFTMetadataBatch
-  '/v2/{apiKey}/getContractMetadata':
-    get:
-      summary: getContractMetadata
-      description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
+                type: object
+                properties:
+                  address:
+                    type: string
+                    description: 'String - Contract address for the queried NFT collection'
+                  contractMetadata:
+                    $ref: '#/components/schemas/contractMetadata'
       x-readme:
         samples-languages:
           - curl
@@ -247,20 +261,7 @@ paths:
               alchemy.nft
                 .getContractMetadata("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
                 .then(console.log);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  address:
-                    type: string
-                    description: 'String - Contract address for the queried NFT collection'
-                  contractMetadata:
-                    $ref: '#/components/schemas/contractMetadata'
-      operationId: getContractMetadata
+
   '/v2/{apiKey}/getContractMetadataBatch':
     post:
       summary: getContractMetadataBatch

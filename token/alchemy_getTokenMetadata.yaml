@@ -26,28 +26,24 @@ x-sandbox:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: alchemy_getTokenMetadata
       description: 'Returns metadata (name, symbol, decimals, logo) for a given token contract address.'
-      tags: []
+      operationId: alchemy-getTokenMetadata
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/alchemy_getTokenMetadata
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/alchemy_getTokenMetadata
       x-readme:
         samples-languages:
           - curl
@@ -71,11 +67,3 @@ paths:
               // Print token metadata of USDC
               const usdcContract = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
               alchemy.core.getTokenMetadata(usdcContract).then(console.log);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/alchemy_getTokenMetadata
-      operationId: alchemy-getTokenMetadata

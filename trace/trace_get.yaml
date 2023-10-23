@@ -18,28 +18,24 @@ x-sandbox:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: trace_get
       description: Returns trace at given position.
-      tags: []
+      operationId: trace-get
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
             schema:
               $ref: ../evm_body.yaml#/trace_get
+      responses:
+        '200':
+          description: 'Returns - Trace object.'
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/trace_get
       x-readme:
         explorer-enabled: false
         samples-languages:
@@ -54,11 +50,3 @@ paths:
               -X POST \
               -H "Content-Type: application/json" \
               -d '{"method":"trace_get","params":["0x17104ac9d3312d8c136b7f44d4b8b47852618065ebfa534bd2d3b5ef218ca1f3",["0x0"]],"id":1,"jsonrpc":"2.0"}'
-      responses:
-        '200':
-          description: 'Returns - Trace object.'
-          content:
-            application/json:
-              schema:
-                $ref: ../evm_responses.yaml#/trace_get
-      operationId: trace-get

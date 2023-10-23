@@ -18,23 +18,12 @@ x-sandbox:
 paths:
   /{apiKey}:
     post:
+      tags: []
       summary: getRecentPerformanceSamples
       description: Returns a list of recent performance samples, in reverse slot order. Performance samples are taken every 60 seconds and include the number of transactions and slots that occur in a given time window.
-      tags: []
+      operationId: getRecentPerformanceSamples
       parameters:
-        - name: apiKey
-          in: path
-          schema:
-            type: string
-            default: docs-demo
-            description: |
-              <style>
-                .custom-style {
-                  color: #048FF4;
-                }
-              </style>
-              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -47,4 +36,3 @@ paths:
             application/json:
               schema:
                 $ref: solana_responses.yaml#/getRecentPerformanceSamples
-      operationId: getRecentPerformanceSamples

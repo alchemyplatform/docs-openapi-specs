@@ -26,44 +26,28 @@ x-sandbox:
     value: bundler
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getUserOperationByHash
-        description: Return a `UserOperation` based on a hash (`userOpHash`).
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: []
+      summary: eth_getUserOperationByHash
+      description: Return a `UserOperation` based on a hash (`userOpHash`).
+      operationId: eth-getUserOperationByHash
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          required: true
+              $ref: ../evm_body.yaml#/eth_getUserOperationByHash
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUserOperationByHash
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_getUserOperationByHash
-        operationId: eth-getUserOperationByHash
+                $ref: ../evm_responses.yaml#/eth_getUserOperationByHash
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

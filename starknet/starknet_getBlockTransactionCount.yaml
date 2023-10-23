@@ -18,66 +18,51 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-getBlockTransactionCount
-        summary: starknet_getBlockTransactionCount
-        description: Returns the number of transactions in the designated block.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_getBlockTransactionCount
+      description: Returns the number of transactions in the designated block.
+      operationId: starknet-getBlockTransactionCount
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_getBlockTransactionCount
+                    params:
+                      type: array
+                      default: ['latest']
+                      title: Params
+                      items:
+                        - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                      description: The hash of the requested block, or number (height) of the requested block, or a block tag
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The number of transactions in the designated block
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_getBlockTransactionCount
-                      params:
-                        type: array
-                        default: ['latest']
-                        title: Params
-                        items:
-                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                        description: The hash of the requested block, or number (height) of the requested block, or a block tag
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The number of transactions in the designated block
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          type: integer
-                          minimum: 0
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getBlockTransactionCount'
+                      result:
+                        type: integer
+                        minimum: 0
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_getBlockTransactionCount'
+    x-readme:
+      explorer-enabled: false
+      samples-languages:
+        - curl
+        - javascript
+        - python

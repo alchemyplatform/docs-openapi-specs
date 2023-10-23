@@ -18,68 +18,52 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-getTransactionByBlockIdAndIndex
-        summary: starknet_getTransactionByBlockIdAndIndex
-        description: Get the details of the transaction given by the identified block and index in that block. If no transaction is found, null is returned.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_getTransactionByBlockIdAndIndex
+      description: Get the details of the transaction given by the identified block and index in that block. If no transaction is found, null is returned.
+      operationId: starknet-getTransactionByBlockIdAndIndex
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: ../components/schemas.yaml#/Method
+                      default: starknet_getTransactionByBlockIdAndIndex
+                    params:
+                      type: array
+                      title: Params
+                      items:
+                        oneOf:
+                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                          - type: integer
+                            minimum: 0
+                            default: 1
+                      description: The block_id and index of the requested transaction
+                      minItems: 2
+                      maxItems: 2
+      responses:
+        '200':
+          description: The details of the transaction given by the identified block and index in that block
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: ../components/schemas.yaml#/Method
-                        default: starknet_getTransactionByBlockIdAndIndex
-                      params:
-                        type: array
-                        title: Params
-                        items:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                            - type: integer
-                              minimum: 0
-                              default: 1
-                        description: The block_id and index of the requested transaction
-                        minItems: 2
-                        maxItems: 2
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The details of the transaction given by the identified block and index in that block
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        transactionResult:
-                          $ref: '../components/starknet/schemas.yaml#/Txn'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getTransactionByBlockIdAndIndex'
+                      transactionResult:
+                        $ref: '../components/starknet/schemas.yaml#/Txn'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_getTransactionByBlockIdAndIndex'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

@@ -22,23 +22,12 @@ components:
   pathItems:
     path:
       post:
+        tags: []
         summary: eth_getCompilers - Polygon zkEVM
         description: Returns a list of installed compilers (Deprecated). Response is always empty in Polygon zkEVM.
-        tags: []
+        operationId: eth-getCompilers-polygon-zkevm
         parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
+          - $ref: ../components/parameters.yaml#/ApiKey
         requestBody:
           description: Accepts nothing.
           content:
@@ -53,11 +42,6 @@ components:
                   method:
                     $ref: ../components/schemas.yaml#/Method
                     default: eth_getCompilers
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
         responses:
           '200':
             description: Response is always empty.
@@ -79,4 +63,8 @@ components:
                       items:
                         type: string
                       example: []
-        operationId: eth-getCompilers-polygon-zkevm
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python

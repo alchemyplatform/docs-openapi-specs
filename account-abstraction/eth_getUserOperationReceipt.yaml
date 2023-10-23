@@ -26,44 +26,28 @@ x-sandbox:
     value: bundler
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_getUserOperationReceipt
-        description: Get the `UserOperationReceipt` based on the `userOpHash` value.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      tags: []
+      summary: eth_getUserOperationReceipt
+      description: Get the `UserOperationReceipt` based on the `userOpHash` value.
+      operationId: eth-getUserOperationReceipt
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          required: true
+              $ref: ../evm_body.yaml#/eth_getUserOperationReceipt
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getUserOperationReceipt
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_getUserOperationReceipt
-        operationId: eth-getUserOperationReceipt
+                $ref: ../evm_responses.yaml#/eth_getUserOperationReceipt
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

@@ -18,63 +18,47 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-pendingTransactions
-        summary: starknet_pendingTransactions
-        description: Returns the transactions in the transaction pool, recognized by this sequencer
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_pendingTransactions
+      description: Returns the transactions in the transaction pool, recognized by this sequencer
+      operationId: starknet-pendingTransactions
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: '../components/schemas.yaml#/Method'
+                      default: starknet_pendingTransactions
+                    params:
+                      type: array
+                      title: No parameters required
+                      description: This method does not require any parameters
+      responses:
+        '200':
+          description: The transactions in the transaction pool, recognized by this sequencer
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: '../components/schemas.yaml#/Method'
-                        default: starknet_pendingTransactions
-                      params:
+                      result:
                         type: array
-                        title: No parameters required
-                        description: This method does not require any parameters
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The transactions in the transaction pool, recognized by this sequencer
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          type: array
-                          title: Pending Transactions
-                          items:
-                            $ref: '../components/starknet/schemas.yaml#/Txn'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_pendingTransactions'
+                        title: Pending Transactions
+                        items:
+                          $ref: '../components/starknet/schemas.yaml#/Txn'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_pendingTransactions'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

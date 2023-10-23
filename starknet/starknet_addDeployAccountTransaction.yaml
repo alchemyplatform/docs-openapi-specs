@@ -18,71 +18,55 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: starknet-addDeployAccountTransaction
-        summary: starknet_addDeployAccountTransaction
-        description: Submit a new deploy account transaction
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: starknet_addDeployAccountTransaction
+      description: Submit a new deploy account transaction
+      operationId: starknet-addDeployAccountTransaction
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        description: Request Body
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
-          description: Request Body
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      $ref: ../components/schemas.yaml#/Method
+                      default: starknet_addDeployAccountTransaction
+                    params:
+                      type: array
+                      title: deploy_account_transaction
+                      items:
+                        $ref: '../components/starknet/schemas.yaml#/BroadcastedDeployAccountTxn'
+                      description: The deploy account transaction
+                      minItems: 1
+                      maxItems: 1
+      responses:
+        '200':
+          description: The result of the transaction submission
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: '../evm_responses.yaml#/common_response_fields'
                   - type: object
                     properties:
-                      method:
-                        $ref: ../components/schemas.yaml#/Method
-                        default: starknet_addDeployAccountTransaction
-                      params:
-                        type: array
-                        title: deploy_account_transaction
-                        items:
-                          $ref: '../components/starknet/schemas.yaml#/BroadcastedDeployAccountTxn'
-                        description: The deploy account transaction
-                        minItems: 1
-                        maxItems: 1
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: The result of the transaction submission
-            content:
-              application/json:
-                schema:
-                  allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
-                    - type: object
-                      properties:
-                        result:
-                          type: object
-                          properties:
-                            transactionHash:
-                              title: The hash of the deploy transaction
-                              $ref: '../components/starknet/schemas.yaml#/TxnHash'
-                            contractAddress:
-                              title: The address of the new contract
-                              $ref: '../components/starknet/schemas.yaml#/Felt'
-                      example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_addDeployAccountTransaction'
+                      result:
+                        type: object
+                        properties:
+                          transactionHash:
+                            title: The hash of the deploy transaction
+                            $ref: '../components/starknet/schemas.yaml#/TxnHash'
+                          contractAddress:
+                            title: The address of the new contract
+                            $ref: '../components/starknet/schemas.yaml#/Felt'
+                    example:
+                      $ref: '../components/starknet/examples.yaml#/starknet_addDeployAccountTransaction'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

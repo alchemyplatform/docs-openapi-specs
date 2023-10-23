@@ -18,43 +18,27 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-isBlockConsolidated-polygon-zkevm
-        summary: zkevm_isBlockConsolidated - Polygon zkEVM
+    post:
+      summary: zkevm_isBlockConsolidated - Polygon zkEVM
+      description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
+      operationId: zkevm-isBlockConsolidated-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
         description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
-        parameters:
-          - name: apiKey
-            in: path
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: ../evm_body.yaml#/zkevm_isBlockConsolidated
+      responses:
+        '200':
           description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/zkevm_isBlockConsolidated
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns true if the provided block number is already connected to a batch that was already verified, otherwise false.
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/zkevm_isBlockConsolidated
+                $ref: ../evm_responses.yaml#/zkevm_isBlockConsolidated
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python

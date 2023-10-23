@@ -18,42 +18,26 @@ x-sandbox:
     value: core
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        operationId: zkevm-batchNumber-polygon-zkevm
-        summary: zkevm_batchNumber - Polygon zkEVM
-        description: Returns the latest batch number.
-        parameters:
-          - name: apiKey
-            in: path
+    post:
+      summary: zkevm_batchNumber - Polygon zkEVM
+      description: Returns the latest batch number.
+      operationId: zkevm-batchNumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
             schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+              $ref: '../evm_body.yaml#/zkevm_batchNumber'
+      responses:
+        '200':
+          description: Returns the latest batch number.
           content:
             application/json:
               schema:
-                $ref: '../evm_body.yaml#/zkevm_batchNumber'
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Returns the latest batch number.
-            content:
-              application/json:
-                schema:
-                  $ref: '../evm_responses.yaml#/zkevm_batchNumber'
+                $ref: '../evm_responses.yaml#/zkevm_batchNumber'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
