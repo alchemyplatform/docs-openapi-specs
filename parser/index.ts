@@ -276,8 +276,9 @@ function convertParam(param: OpenAPIV3_1.ParameterObject): Param {
     name,
     type: type as string,
     required: required ?? false,
-    description: description?.substring(0, 50),
+    description: description ?? '',
     default: defaultVal,
+    items: schema.type === 'array' ? schema.items : undefined,
   };
 }
 
