@@ -147,10 +147,15 @@ async function main() {
 
     const entry = groupedEntries[chain][method.name];
     if (!entry) {
+      // strip / prefix from url if exists
+      // TODO: we should be enforced in spec to have no trailing slash for servers url
+      const url = flatEntry.url.endsWith('/')
+        ? flatEntry.url.slice(0, -1)
+        : flatEntry.url;
       const newEntry = {
         category: flatEntry.category,
         networks: [network],
-        url: flatEntry.url + flatEntry.path,
+        url: url + flatEntry.path,
         method: method.verb,
         docsUrl: method.docsUrl,
         pathParams: flatEntry.pathParams.map(convertParam),
