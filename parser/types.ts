@@ -36,6 +36,7 @@ export type Param = {
   required: boolean;
   description?: string;
   default?: string;
+  items?: any;
 };
 
 export type Entry = {
