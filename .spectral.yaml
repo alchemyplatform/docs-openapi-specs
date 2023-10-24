@@ -47,10 +47,15 @@ rules:
           values:
             - eth-mainnet
             - eth-goerli
+            - eth-sepolia
             - polygon-mainnet
             - polygon-mumbai
             - arb-mainnet
             - arb-goerli
+            - opt-mainnet
+            - opt-goerli
+            - base-mainnet
+            - base-goerli
 
   alchemy-servers-network-casing:
     severity: error
