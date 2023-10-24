@@ -3,7 +3,7 @@ info:
   title: 🪄 Gas Manager Admin API
   version: '1.0'
 servers:
-  - url: https://manage.g.alchemy.com/
+  - url: https://manage.g.alchemy.com
 x-sandbox:
   category:
     type:
