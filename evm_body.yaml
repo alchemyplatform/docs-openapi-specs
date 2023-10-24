@@ -1439,7 +1439,7 @@ transaction_object:
       type: string
       description: Hash of the method signature and encoded parameters
       pattern: '^0[xX][0-9a-fA-F]+$'
-      default: '0x'
+      default: '0x0'
   required:
     - to
 gas_550:
