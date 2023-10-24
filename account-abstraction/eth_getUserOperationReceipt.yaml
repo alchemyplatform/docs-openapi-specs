@@ -19,6 +19,11 @@ servers:
           - base-mainnet
           - base-goerli
         default: eth-mainnet
+x-readme:
+  samples-languages:
+    - curl
+    - javascript
+    - python
 x-sandbox:
   category:
     type:
@@ -41,11 +46,6 @@ components:
             application/json:
               schema:
                 $ref: ../evm_body.yaml#/eth_getUserOperationReceipt
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
         responses:
           '200':
             description: Successful response
