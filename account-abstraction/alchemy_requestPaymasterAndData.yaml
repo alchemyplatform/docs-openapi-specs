@@ -33,7 +33,6 @@ components:
       post:
         summary: alchemy_requestPaymasterAndData
         description: Requests coverage for a `UserOperation`. Returns `paymasterAndData` if approved, errors if not.
-        tags: []
         parameters:
           - name: apiKey
             in: path

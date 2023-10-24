@@ -33,7 +33,6 @@ components:
       post:
         summary: eth_supportedEntryPoints
         description: Returns an array of the `entryPoint` addresses supported by the client.
-        tags: []
         parameters:
           - name: apiKey
             in: path

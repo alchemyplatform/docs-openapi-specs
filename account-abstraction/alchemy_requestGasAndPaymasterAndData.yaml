@@ -26,44 +26,39 @@ x-sandbox:
     value: gas-manager
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: alchemy_requestGasAndPaymasterAndData
-        description: Requests gas and coverage for a `UserOperation`. Returns `paymasterAndData` and gas parameters if approved, errors if not. Optionally accepts fee parameter overrides to be used in the `UserOperation`.
-        tags: []
-        parameters:
-          - name: apiKey
-            in: path
-            schema:
-              type: string
-              default: docs-demo
-              description: |
-                <style>
-                  .custom-style {
-                    color: #048FF4;
-                  }
-                </style>
-                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-            required: true
-        requestBody:
+    post:
+      summary: alchemy_requestGasAndPaymasterAndData
+      description: Requests gas and coverage for a `UserOperation`. Returns `paymasterAndData` and gas parameters if approved, errors if not. Optionally accepts fee parameter overrides to be used in the `UserOperation`.
+      parameters:
+        - name: apiKey
+          in: path
+          schema:
+            type: string
+            default: docs-demo
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
           required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/alchemy_requestGasAndPaymasterAndData
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/alchemy_requestGasAndPaymasterAndData
-        x-readme:
-          samples-languages:
-            - curl
-            - javascript
-            - python
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/alchemy_requestGasAndPaymasterAndData
-        operationId: alchemy-requestGasAndPaymasterAndData
+                $ref: ../evm_responses.yaml#/alchemy_requestGasAndPaymasterAndData
+      operationId: alchemy-requestGasAndPaymasterAndData

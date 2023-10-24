@@ -33,7 +33,6 @@ components:
       post:
         summary: eth_sendUserOperation
         description: Sends a user operation to the given EVM network.
-        tags: []
         parameters:
           - name: apiKey
             in: path

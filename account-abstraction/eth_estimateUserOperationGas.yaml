@@ -33,7 +33,6 @@ components:
       post:
         summary: eth_estimateUserOperationGas
         description: Estimates the gas values for a `UserOperation`.
-        tags: []
         parameters:
           - name: apiKey
             in: path

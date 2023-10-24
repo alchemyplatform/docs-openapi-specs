@@ -33,7 +33,6 @@ components:
       post:
         summary: eth_getUserOperationByHash
         description: Return a `UserOperation` based on a hash (`userOpHash`).
-        tags: []
         parameters:
           - name: apiKey
             in: path

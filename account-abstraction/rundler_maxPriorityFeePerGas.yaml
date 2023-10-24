@@ -29,7 +29,6 @@ paths:
     post:
       summary: rundler_maxPriorityFeePerGas
       description: 'Returns a fee per gas that is an estimate of how much users should set as a priority fee in UOs for Rundler endpoints.'
-      tags: []
       parameters:
         - name: apiKey
           in: path
