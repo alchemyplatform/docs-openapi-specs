@@ -31,26 +31,22 @@ x-sandbox:
     value: bundler
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_sendUserOperation
-        description: Sends a user operation to the given EVM network.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          required: true
+    post:
+      summary: eth_sendUserOperation
+      description: Sends a user operation to the given EVM network.
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_sendUserOperation
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_sendUserOperation
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_sendUserOperation
-        operationId: eth-sendUserOperation
+                $ref: ../evm_responses.yaml#/eth_sendUserOperation
+      operationId: eth-sendUserOperation

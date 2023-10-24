@@ -31,26 +31,22 @@ x-sandbox:
     value: bundler
 paths:
   /{apiKey}:
-    $ref: '#/components/pathItems/path'
-components:
-  pathItems:
-    path:
-      post:
-        summary: eth_estimateUserOperationGas
-        description: Estimates the gas values for a `UserOperation`.
-        parameters:
-          - $ref: ../components/parameters.yaml#/ApiKey
-        requestBody:
-          required: true
+    post:
+      summary: eth_estimateUserOperationGas
+      description: Estimates the gas values for a `UserOperation`.
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_estimateUserOperationGas
+      responses:
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_estimateUserOperationGas
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: ../evm_responses.yaml#/eth_estimateUserOperationGas
-        operationId: eth-estimateUserOperationGas
+                $ref: ../evm_responses.yaml#/eth_estimateUserOperationGas
+      operationId: eth-estimateUserOperationGas
