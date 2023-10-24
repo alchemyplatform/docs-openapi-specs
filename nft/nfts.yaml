@@ -2131,7 +2131,7 @@ components:
           enum:
             - SPAM
             - AIRDROPS
-          default: [SPAM]
+          default: SPAM
       in: query
     address:
       name: address
@@ -2155,7 +2155,7 @@ components:
           enum:
             - SPAM
             - AIRDROPS
-          default: [SPAM]
+          default: SPAM
       in: query
     spamConfidenceLevel:
       name: spamConfidenceLevel
