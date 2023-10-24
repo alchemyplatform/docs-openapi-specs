@@ -1453,14 +1453,6 @@ paths:
               default: eth-mainnet
       parameters:
         - $ref: '#/components/schemas/apiKey'
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-                - polygon-mainnet
-              default: eth-mainnet
       x-readme:
         samples-languages:
           - javascript
@@ -2131,7 +2123,7 @@ components:
           enum:
             - SPAM
             - AIRDROPS
-          default: [SPAM]
+          default: SPAM
       in: query
     address:
       name: address
@@ -2155,7 +2147,7 @@ components:
           enum:
             - SPAM
             - AIRDROPS
-          default: [SPAM]
+          default: SPAM
       in: query
     spamConfidenceLevel:
       name: spamConfidenceLevel
