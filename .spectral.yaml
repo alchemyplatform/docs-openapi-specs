@@ -190,13 +190,13 @@ rules:
 
   # ENUMS
   # TODO: this clashes with network enum above - fix this
-  alchemy-enums-casing:
-    severity: warn
-    message: 'Enums must be macro case (uppercase and separated by _).'
-    given: $..enum.*
-    then:
-      function: casing
-      functionOptions:
-        type: macro
+  # alchemy-enums-casing:
+  #   severity: warn
+  #   message: 'Enums must be macro case (uppercase and separated by _).'
+  #   given: $..enum.*
+  #   then:
+  #     function: casing
+  #     functionOptions:
+  #       type: macro
 
   # TODO: add rule to check response fields are camelCased
