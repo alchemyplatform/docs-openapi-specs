@@ -504,13 +504,10 @@ components:
           items:
             $ref: '#/components/schemas/Log'
         error:
-          type: [object, 'null']
-          properties:
-            message:
-              type: string
-            revertReason:
-              $ref: '#/components/schemas/revertMsg'
-
+          type: string
+        revertReason:
+          $ref: '#/components/schemas/revertMsg'
+            
     Call:
       type: object
       required:
