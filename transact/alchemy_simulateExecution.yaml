@@ -653,7 +653,7 @@ components:
     revertMsg:
       type: [string, 'null']
       description: >
-        The reason why a transaction would revert. This provides developers
+        The reason why a transaction would revert. This provides you
         with the ability to understand the cause behind a transaction's
         potential failure before actually executing it. For example, a revert
         reason could be "ERC20: transfer amount exceeds allowance".
