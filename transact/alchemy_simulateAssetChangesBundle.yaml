@@ -107,9 +107,14 @@ components:
           items:
             $ref: '#/components/schemas/AssetChange'
         error:
-          type:
-            - string
-            - 'null'
+          type: [object, 'null']
+          properties:
+            message:
+              type: string
+            revertReason:
+              $ref: '#/components/schemas/revertMsg'
+              
+
     AssetChange:
       type: object
       required:
@@ -169,3 +174,11 @@ components:
           type:
             - number
             - 'null'
+    
+    revertMsg:
+      type: [string, 'null']
+      description: >
+        The reason why a transaction would revert. This provides developers
+        with the ability to understand the cause behind a transaction's
+        potential failure before actually executing it. For example, a revert
+        reason could be "ERC20: transfer amount exceeds allowance".
