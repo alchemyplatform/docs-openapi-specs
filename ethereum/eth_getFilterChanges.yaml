@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_getFilterChanges - Ethereum
@@ -14,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -45,11 +46,11 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getFilterChanges
+                $ref: evm_body.yaml#/eth_getFilterChanges
         responses:
           '200':
             description: ''
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/eth_getLogs
+                  $ref: evm_responses.yaml#/eth_getLogs
