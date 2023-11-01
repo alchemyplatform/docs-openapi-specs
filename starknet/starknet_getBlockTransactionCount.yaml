@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: starknet_getBlockTransactionCount
@@ -14,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -46,18 +47,18 @@ components:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: 'evm_body.yaml#/common_request_fields'
                   - type: object
                     properties:
                       method:
-                        $ref: '../components/schemas.yaml#/Method'
+                        $ref: 'components/schemas.yaml#/Method'
                         default: starknet_getBlockTransactionCount
                       params:
                         type: array
                         default: ['latest']
                         title: Params
                         items:
-                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                          - $ref: 'components/starknet/schemas.yaml#/BlockId'
                         description: The hash of the requested block, or number (height) of the requested block, or a block tag
                         minItems: 1
                         maxItems: 1
@@ -73,11 +74,11 @@ components:
               application/json:
                 schema:
                   allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
+                    - $ref: 'evm_responses.yaml#/common_response_fields'
                     - type: object
                       properties:
                         result:
                           type: integer
                           minimum: 0
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getBlockTransactionCount'
+                        $ref: 'components/starknet/examples.yaml#/starknet_getBlockTransactionCount'

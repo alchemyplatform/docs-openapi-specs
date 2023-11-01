@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: starknet_getClass
@@ -14,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -46,19 +47,19 @@ components:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: 'evm_body.yaml#/common_request_fields'
                   - type: object
                     properties:
                       method:
-                        $ref: ../components/schemas.yaml#/Method
+                        $ref: 'components/schemas.yaml#/Method'
                         default: starknet_getClass
                       params:
                         type: array
                         title: Params
                         items:
                           oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                            - $ref: '../components/starknet/schemas.yaml#/Felt'
+                            - $ref: 'components/starknet/schemas.yaml#/BlockId'
+                            - $ref: 'components/starknet/schemas.yaml#/Felt'
                               default: '0x601407cf04ab1fbab155f913db64891dc749f4343bc9e535bd012234a46dc61'
                         description: The block id of the requested block and the hash of the requested contract class
                         minItems: 2
@@ -75,12 +76,12 @@ components:
               application/json:
                 schema:
                   allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
+                    - $ref: 'evm_responses.yaml#/common_response_fields'
                     - type: object
                       properties:
                         result:
                           oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/DeprecatedContractClass'
-                            - $ref: '../components/starknet/schemas.yaml#/ContractClass'
+                            - $ref: 'components/starknet/schemas.yaml#/DeprecatedContractClass'
+                            - $ref: 'components/starknet/schemas.yaml#/ContractClass'
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getClass'
+                        $ref: 'components/starknet/examples.yaml#/starknet_getClass'

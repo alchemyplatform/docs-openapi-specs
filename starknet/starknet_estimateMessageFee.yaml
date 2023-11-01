@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: starknet_estimateMessageFee
@@ -14,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -54,12 +55,12 @@ paths:
                   maxItems: 2
                   items:
                     oneOf:
-                      - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
-                      - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                      - $ref: 'components/starknet/schemas.yaml#/MSG_FROM_L1'
+                      - $ref: 'components/starknet/schemas.yaml#/BlockId'
       responses:
         '200':
           description: the fee estimation
           content:
             application/json:
               schema:
-                $ref: '../components/starknet/schemas.yaml#/FeeEstimate'
+                $ref: 'components/starknet/schemas.yaml#/FeeEstimate'
