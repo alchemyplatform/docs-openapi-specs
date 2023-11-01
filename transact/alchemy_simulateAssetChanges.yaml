@@ -120,7 +120,7 @@ components:
             message:
               type: string
             revertReason:
-              $ref: '#/components/schemas/revertMsg'
+              $ref: '#/components/schemas/RevertMsg'
 
     AssetChange:
       type: object
@@ -177,7 +177,7 @@ components:
         tokenId:
           type: [number, 'null']
 
-    revertMsg:
+    RevertMsg:
       type: [string, 'null']
       description: >
         The reason why a transaction would revert. This provides you
