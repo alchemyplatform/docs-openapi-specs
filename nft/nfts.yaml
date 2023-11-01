@@ -22,7 +22,7 @@ servers: # servers are also specified at the method level, if there ins't a spec
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
     value: nft
 paths:
   ##

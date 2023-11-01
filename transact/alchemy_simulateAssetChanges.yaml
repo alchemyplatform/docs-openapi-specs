@@ -95,6 +95,7 @@ paths:
                               'amount': '1',
                             },
                           ],
+                        'gasUsed': '0x5208',
                         'error': null,
                       },
                   }
@@ -111,8 +112,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AssetChange'
-        error:
+        gasUsed:
           type: [string, 'null']
+        error:
+          type: [object, 'null']
+          properties:
+            message:
+              type: string
+            revertReason:
+              $ref: '#/components/schemas/RevertMessage'
 
     AssetChange:
       type: object
@@ -168,3 +176,12 @@ components:
           type: [string, 'null']
         tokenId:
           type: [number, 'null']
+
+    RevertMessage:
+      type: string
+      nullable: true
+      description: >
+        The reason why a transaction would revert. This provides you
+        with the ability to understand the cause behind a transaction's
+        potential failure before actually executing it. For example, a revert
+        reason could be "ERC20: transfer amount exceeds allowance".
