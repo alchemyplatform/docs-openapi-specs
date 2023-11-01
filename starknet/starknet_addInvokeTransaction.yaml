@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: starknet_addInvokeTransaction
@@ -14,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category' 
     value: core
 paths:
   /{apiKey}:
@@ -46,17 +47,17 @@ components:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: 'evm_body.yaml#/common_request_fields'
                   - type: object
                     properties:
                       method:
-                        $ref: '../components/schemas.yaml#/Method'
+                        $ref: 'components/schemas.yaml#/Method'
                         default: starknet_addInvokeTransaction
                       params:
                         type: array
                         title: Parameters
                         items:
-                          $ref: '../components/starknet/schemas.yaml#/BroadcastedInvokeTxn'
+                          $ref: 'components/starknet/schemas.yaml#/BroadcastedInvokeTxn'
                           title: invoke_transaction
                           description: The information needed to invoke the function (or account, for version 1 transactions)
                         minItems: 1
@@ -73,15 +74,15 @@ components:
               application/json:
                 schema:
                   allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
+                    - $ref: 'evm_responses.yaml#/common_response_fields'
                     - type: object
                       properties:
                         result:
                           type: object
                           properties:
                             transaction_hash:
-                              $ref: '../components/starknet/schemas.yaml#/TxnHash'
+                              $ref: 'components/starknet/schemas.yaml#/TxnHash'
                               title: The hash of the invoke transaction
                               description: The hash of the invoke transaction
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_addInvokeTransaction'
+                        $ref: 'components/starknet/examples.yaml#/starknet_addInvokeTransaction'
