@@ -1157,7 +1157,7 @@ alchemy_getAssetTransfers:
                     - erc721
                     - erc1155
                     - specialnft
-                default: ['external']
+                  default: external
               order:
                 type: string
                 description: |
