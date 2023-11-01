@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: starknet_getEvents
@@ -14,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -46,11 +47,11 @@ components:
             application/json:
               schema:
                 allOf:
-                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - $ref: 'evm_body.yaml#/common_request_fields'
                   - type: object
                     properties:
                       method:
-                        $ref: '../components/schemas.yaml#/Method'
+                        $ref: 'components/schemas.yaml#/Method'
                         default: starknet_getEvents
                       params:
                         type: array
@@ -66,8 +67,8 @@ components:
                         title: filter
                         items:
                           oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/EventFilter'
-                            - $ref: '../components/starknet/schemas.yaml#/ResultPageRequest'
+                            - $ref: 'components/starknet/schemas.yaml#/EventFilter'
+                            - $ref: 'components/starknet/schemas.yaml#/ResultPageRequest'
                         description: The conditions used to filter the returned events
                         minItems: 1
                         maxItems: 1
@@ -83,12 +84,12 @@ components:
               application/json:
                 schema:
                   allOf:
-                    - $ref: '../evm_responses.yaml#/common_response_fields'
+                    - $ref: 'evm_responses.yaml#/common_response_fields'
                     - type: object
                       properties:
                         result:
-                          $ref: '../components/starknet/schemas.yaml#/EventsChunk'
+                          $ref: 'components/starknet/schemas.yaml#/EventsChunk'
                           title: events
                           description: All the event objects matching the filter
                       example:
-                        $ref: '../components/starknet/examples.yaml#/starknet_getEvents'
+                        $ref: 'components/starknet/examples.yaml#/starknet_getEvents'
