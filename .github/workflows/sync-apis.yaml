@@ -48,7 +48,7 @@ jobs:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.GAS_MANAGER_ADMIN_API_ID }}
 
 
-      # =================================================== Update Starknet APIs in Docs ===================================================
+      # =============================================================== Update Starknet APIs in Docs ===============================================================
 
       - name: Github action to update Starknet API - Add Declare Transaction
         uses: readmeio/rdme@8.6.4
@@ -166,4 +166,204 @@ jobs:
           rdme: openapi starknet/starknet_getClass.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.STARKNET_GETCLASS_ID }}
 
 
-      # ====================================================================================================================================
+      # =============================================================== Update Ethereum APIs in Docs ===============================================================
+
+      - name: Github action to update Ethereum API - eth_createAccessList
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_createAccessList.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_CREATEACCESSLIST_ID }
+
+      - name: Github action to update Ethereum API - eth_blockNumber
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_blockNumber.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_BLOCKNUMBER_ID }
+
+      - name: Github action to update Ethereum API - eth_call
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_call.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_CALL_ID }
+
+      - name: Github action to update Ethereum API - eth_accounts
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_accounts.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_ACCOUNTS_ID }
+
+      - name: Github action to update Ethereum API - eth_newFilter
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_newFilter.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_NEWFILTER_ID }
+
+      - name: Github action to update Ethereum API - eth_feeHistory
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_feeHistory.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_FEEHISTORY_ID }
+
+      - name: Github action to update Ethereum API - eth_chainId
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_chainId.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_CHAINID_ID }
+
+      - name: Github action to update Ethereum API - eth_estimateGas
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_estimateGas.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_ESTIMATEGAS_ID }
+
+      - name: Github action to update Ethereum API - eth_gasPrice
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_gasPrice.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GASPRICE_ID }
+
+      - name: Github action to update Ethereum API - eth_getBlockByHash
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getBlockByHash.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETBLOCKBYHASH_ID }
+
+      - name: Github action to update Ethereum API - eth_getBlockTransactionCountByHash
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getBlockTransactionCountByHash.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETBLOCKTRANSACTIONCOUNTBYHASH_ID }
+
+      - name: Github action to update Ethereum API - eth_getBalance
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getBalance.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETBALANCE_ID }
+
+      - name: Github action to update Ethereum API - eth_getBlockByNumber
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getBlockByNumber.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETBLOCKBYNUMBER_ID }
+
+      - name: Github action to update Ethereum API - eth_getBlockReceipts
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getBlockReceipts.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETBLOCKRECEIPTS_ID }
+
+      - name: Github action to update Ethereum API - eth_getBlockTransactionCountByNumber
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getBlockTransactionCountByNumber.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETBLOCKTRANSACTIONCOUNTBYNUMBER_ID }
+
+      - name: Github action to update Ethereum API - eth_getCode
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getCode.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETCODE_ID }
+
+      - name: Github action to update Ethereum API - eth_getFilterChanges
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getFilterChanges.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETFILTERCHANGES_ID }
+
+      - name: Github action to update Ethereum API - eth_getFilterLogs
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getFilterLogs.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETFILTERLOGS_ID }
+
+      - name: Github action to update Ethereum API - eth_getLogs
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getLogs.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETLOGS_ID }
+
+      - name: Github action to update Ethereum API - eth_getProof
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getProof.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETPROOF_ID }
+
+      - name: Github action to update Ethereum API - eth_getStorageAt
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getStorageAt.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETSTORAGEAT_ID }
+
+      - name: Github action to update Ethereum API - eth_getTransactionByBlockHashAndIndex
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getTransactionByBlockHashAndIndex.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETTRANSACTIONBYBLOCKHASHANDINDEX_ID }
+
+      - name: Github action to update Ethereum API - eth_getTransactionByHash
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getTransactionByHash.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETTRANSACTIONBYHASH_ID }
+
+      - name: Github action to update Ethereum API - eth_getTransactionCount
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getTransactionCount.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETTRANSACTIONCOUNT_ID }
+
+      - name: Github action to update Ethereum API - eth_getTransactionReceipt
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getTransactionReceipt.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETTRANSACTIONRECEIPT_ID }
+
+      - name: Github action to update Ethereum API - eth_getUncleByBlockHashAndIndex
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getUncleByBlockHashAndIndex.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETUNCLEBYBLOCKHASHANDINDEX_ID }
+
+      - name: Github action to update Ethereum API - eth_getUncleByBlockNumberAndIndex
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getUncleByBlockNumberAndIndex.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETUNCLEBYBLOCKNUMBERANDINDEX_ID }
+
+      - name: Github action to update Ethereum API - eth_getUncleCountByBlockHash
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getUncleCountByBlockHash.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETUNCLECOUNTBYBLOCKHASH_ID }
+
+      - name: Github action to update Ethereum API - eth_getUncleCountByBlockNumber
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getUncleCountByBlockNumber.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETUNCLECOUNTBYBLOCKNUMBER_ID }
+
+      - name: Github action to update Ethereum API - eth_maxPriorityFeePerGas
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_maxPriorityFeePerGas.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_MAXPRIORITYFEEPERGAS_ID }
+
+      - name: Github action to update Ethereum API - eth_newBlockFilter
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_newBlockFilter.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_NEWBLOCKFILTER_ID }
+
+      - name: Github action to update Ethereum API - eth_newPendingTransactionFilter
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_newPendingTransactionFilter.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_NEWPENDINGTRANSACTIONFILTER_ID }
+
+      - name: Github action to update Ethereum API - eth_protocolVersion
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_protocolVersion.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_PROTOCOLVERSION_ID }
+
+      - name: Github action to update Ethereum API - eth_sendRawTransaction
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_sendRawTransaction.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_SENDRAWTRANSACTION_ID }
+
+      - name: Github action to update Ethereum API - eth_uninstallFilter
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_uninstallFilter.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_UNINSTALLFILTER_ID }
+
+      - name: Github action to update Ethereum API - net_listening
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/net_listening.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_NET_LISTENING_ID }
+
+      - name: Github action to update Ethereum API - net_version
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/net_version.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_NET_VERSION_ID }
+
+      - name: Github action to update Ethereum API - web3_clientVersion
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/web3_clientVersion.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_WEB3_CLIENTVERSION_ID }
+
+      - name: Github action to update Ethereum API - web3_sha3
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/web3_sha3.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_WEB3_SHA3_ID }
+
+      - name: Github action to update Ethereum API - eth_getTransactionByBlockNumberAndIndex
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi ethereum/eth_getTransactionByBlockNumberAndIndex.yaml --key=${ secrets.README_API_KEY } --id=${ secrets.ETHEREUM_ETH_GETTRANSACTIONBYBLOCKNUMBERANDINDEX_ID }
