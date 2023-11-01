@@ -506,7 +506,7 @@ components:
         error:
           type: string
         revertReason:
-          $ref: '#/components/schemas/RevertMsg'
+          $ref: '#/components/schemas/RevertMessage'
             
     Call:
       type: object
@@ -650,8 +650,9 @@ components:
         indexed:
           type: boolean
 
-    RevertMsg:
-      type: [string, 'null']
+    RevertMessage:
+      type: string
+      nullable: true
       description: >
         The reason why a transaction would revert. This provides you
         with the ability to understand the cause behind a transaction's
