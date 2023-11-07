@@ -43,7 +43,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: evm_body.yaml#/eth_getProof
+                $ref: ../evm_body.yaml#/eth_getProof
         responses:
           '200':
             description: 'Returns the account and storage values of the specified account.'
