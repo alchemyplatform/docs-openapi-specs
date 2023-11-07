@@ -1,4 +1,3 @@
-# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_accounts - Ethereum
@@ -45,12 +44,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: evm_body.yaml#/eth_accounts
+                $ref: ../evm_body.yaml#/eth_accounts
         responses:
           '200':
             description: Returns 20 Bytes - addresses owned by the client.
             content:
               application/json:
                 schema:
-                  $ref: evm_responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response
         operationId: eth-accounts
