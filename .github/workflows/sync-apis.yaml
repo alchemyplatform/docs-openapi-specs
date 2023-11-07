@@ -27,25 +27,25 @@ jobs:
       - name: GitHub action to update NFT API
         uses: readmeio/rdme@8.6.4
         with:
-          rdme: openapi nft/nfts.yaml --key=${{ secrets.README_API_KEY }} --id="62bb5f1af2192000e16f5c93"
+          rdme: openapi nft/nfts.yaml --key=${{ secrets.README_API_KEY }} --id=62bb5f1af2192000e16f5c93
       
       # Update Notify API in docs
       - name: GitHub action to update Notify API
         uses: readmeio/rdme@8.6.4
         with:
-          rdme: openapi notify/notify.yaml --key=${{ secrets.README_API_KEY }} --id="62c003629460ee00a2bad6cc"
+          rdme: openapi notify/notify.yaml --key=${{ secrets.README_API_KEY }} --id=62c003629460ee00a2bad6cc
           
       # Update Transfers API in docs
       - name: GitHub action to update Transfers API
         uses: readmeio/rdme@8.6.4
         with:
-          rdme: openapi transfers/alchemy_getAssetTransfers.yaml --key=${{ secrets.README_API_KEY }} --id="62d75e355edcd00083b39fa2"
+          rdme: openapi transfers/alchemy_getAssetTransfers.yaml --key=${{ secrets.README_API_KEY }} --id=62d75e355edcd00083b39fa2
 
       # Update Gas Manager Admin API in docs
       - name: GitHub action to update Gas Manager Admin API
         uses: readmeio/rdme@8.6.4
         with:
-          rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id="648a94b656f41511b55a453b"
+          rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=648a94b656f41511b55a453b
 
 
     # =============================================================== Update Starknet APIs in Docs ===============================================================
