@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_maxPriorityFeePerGas - Arbitrum
@@ -9,11 +10,12 @@ servers:
         enum:
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
         default: arb-mainnet
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -39,12 +41,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/eth_maxPriorityFeePerGas
+              $ref: evm_body.yaml#/eth_maxPriorityFeePerGas
       responses:
         '200':
           description: Returns the estimated priority fee per gas.
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/string_result_response
+                $ref: evm_responses.yaml#/string_result_response
       operationId: eth-maxpriorityfeepergas-arbitrum

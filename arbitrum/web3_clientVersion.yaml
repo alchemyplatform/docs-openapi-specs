@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: web3_clientVersion - Arbitrum
@@ -9,15 +10,16 @@ servers:
         enum:
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
         default: arb-mainnet
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
     post:
       summary: web3_clientVersion - Arbitrum
       operationId: web3-clientversion-arbitrum
-      $ref: ../ethereum/web3_clientVersion.yaml#/components/pathItems/path/post
+      $ref: ethereum/web3_clientVersion.yaml#/components/pathItems/path/post
