@@ -492,7 +492,7 @@ jobs:
       - name: Github action to update Arbitrum API - eth_getUncleByBlockHashAndIndex
         uses: readmeio/rdme@8.6.4
         with:
-          rdme: openapi arbitrum/eth_getUncleByBlockHashAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e5c3bf6279007db52ca8
+          rdme: openapi arbitrum/eth_getUncleByBlockHashAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=6549ec1d353781003ef523e7
 
 
     # =============================================================== Update Starknet APIs in Docs ===============================================================
