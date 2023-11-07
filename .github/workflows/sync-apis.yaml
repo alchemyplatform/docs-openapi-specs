@@ -125,6 +125,11 @@ jobs:
         with:
           rdme: openapi starknet/starknet_estimateFee.yaml --key=${{ secrets.README_API_KEY }} --id=64407047f394f20035ef654d
 
+      - name: Github action to update Starknet API - starknet_estimateMessageFee
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_estimateMessageFee.yaml --key=${{ secrets.README_API_KEY }} --id=64f9010bfa510100197068b2
+
       - name: Github action to update Starknet API - starknet_getTransactionByHash
         uses: readmeio/rdme@8.6.4
         with:
@@ -283,7 +288,7 @@ jobs:
         with:
           rdme: openapi ethereum/eth_getTransactionByHash.yaml --key=${{ secrets.README_API_KEY }} --id=62d832236307ee002d9b9b0a
 
-      - name: Github action to update Ethereum API - eth getTransactionCount
+      - name: Github action to update Ethereum API - eth_getTransactionCount
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi ethereum/eth_getTransactionCount.yaml --key=${{ secrets.README_API_KEY }} --id=62d8326743c6c00037dd6155
