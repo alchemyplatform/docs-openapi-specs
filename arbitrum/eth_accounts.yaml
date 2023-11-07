@@ -15,7 +15,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: 'components/sandbox.yaml#/Category'
+      $ref: '../components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:

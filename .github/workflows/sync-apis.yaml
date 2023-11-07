@@ -22,6 +22,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+
+      - name: Github action to update Arbitrum API - eth_accounts
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi arbitrum/eth_accounts.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d22190dfbd0013767822
           
       # Update NFT API in docs
       - name: GitHub action to update NFT API
