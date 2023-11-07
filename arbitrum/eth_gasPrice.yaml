@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_gasPrice - Arbitrum
@@ -9,18 +10,19 @@ servers:
         enum:
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
         default: arb-mainnet
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
     post:
       summary: eth_gasPrice - Arbitrum
       operationId: eth-gasprice-arbitrum
-      $ref: ../ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
+      $ref: ethereum/eth_gasPrice.yaml#/components/pathItems/path/post
       x-readme:
         explorer-enabled: false
         samples-languages:

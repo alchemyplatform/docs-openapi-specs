@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_getUncleCountByBlockNumber - Arbitrum
@@ -9,15 +10,16 @@ servers:
         enum:
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
         default: arb-mainnet
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
     post:
       summary: eth_getUncleCountByBlockNumber - Arbitrum
       operationId: eth-getunclecountbyblocknumber-arbitrum
-      $ref: ../ethereum/eth_getUncleCountByBlockNumber.yaml#/components/pathItems/path/post
+      $ref: ethereum/eth_getUncleCountByBlockNumber.yaml#/components/pathItems/path/post

@@ -1,19 +1,27 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_call - Arbitrum
   version: '1.0'
 servers:
-  - url: 'https://polygon-mainnet.g.alchemy.com/v2'
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - arb-mainnet
+          - arb-goerli
+          - arb-sepolia
+        default: arb-mainnet
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
     post:
       summary: eth_call - Arbitrum
-      $ref: ../ethereum/eth_call.yaml#/components/pathItems/path/post
+      $ref: ethereum/eth_call.yaml#/components/pathItems/path/post
       operationId: eth-call-arbitrum
       x-readme:
         explorer-enabled: false

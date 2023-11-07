@@ -1,3 +1,4 @@
+# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_getBlockByNumber - Arbitrum
@@ -10,11 +11,12 @@ servers:
         enum:
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
         default: arb-mainnet
 x-sandbox:
   category:
     type:
-      $ref: '../components/sandbox.yaml#/Category'
+      $ref: 'components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -44,7 +46,7 @@ components:
           content:
             application/json:
               schema:
-                $ref: ../evm_body.yaml#/eth_getBlockByNumber
+                $ref: evm_body.yaml#/eth_getBlockByNumber
         x-readme:
           explorer-enabled: false
           samples-languages:
@@ -73,4 +75,4 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/arb_block
+                  $ref: evm_responses.yaml#/arb_block
