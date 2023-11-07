@@ -407,7 +407,7 @@ jobs:
       - name: Github action to update Arbitrum API - eth_getTransactionReceipt
         uses: readmeio/rdme@8.6.4
         with:
-          rdme: openapi arbitrum/eth_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e51f07a31e009a2e3b09
+          rdme: openapi arbitrum/eth_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=6549e6db1c854b000c6e8e19
 
       - name: Github action to update Arbitrum API - eth_getUncleByBlockNumberAndIndex
         uses: readmeio/rdme@8.6.4
