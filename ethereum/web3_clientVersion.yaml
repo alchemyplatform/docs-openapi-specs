@@ -1,4 +1,3 @@
-# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: web3_clientVersion - Ethereum
@@ -15,7 +14,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: 'components/sandbox.yaml#/Category'
+      $ref: '../components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -45,12 +44,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: evm_body.yaml#/web3_clientVersion
+                $ref: ../evm_body.yaml#/web3_clientVersion
         responses:
           '200':
             description: Returns the current client version.
             content:
               application/json:
                 schema:
-                  $ref: evm_responses.yaml#/string_result_response
+                  $ref: ../evm_responses.yaml#/string_result_response
         operationId: web3-clientVersion
