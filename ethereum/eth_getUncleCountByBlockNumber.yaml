@@ -1,4 +1,3 @@
-# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_getUncleCountByBlockNumber - Ethereum
@@ -15,7 +14,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: 'components/sandbox.yaml#/Category'
+      $ref: '../components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -45,12 +44,12 @@ components:
           content:
             application/json:
               schema:
-                $ref: evm_body.yaml#/eth_getUncleCountByBlockNumber
+                $ref: ../evm_body.yaml#/eth_getUncleCountByBlockNumber
         responses:
           '200':
             description: Returns integer of the number of uncles in this block.
             content:
               application/json:
                 schema:
-                  $ref: evm_responses.yaml#/eth_getUncleCountByBlockNumber
+                  $ref: ../evm_responses.yaml#/eth_getUncleCountByBlockNumber
         operationId: eth-getUncleCountByBlockNumber
