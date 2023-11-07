@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job called "sync"
   sync:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -22,6 +22,42 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+
+      # Debug step to list files in the workspace
+      - name: List files in the root
+        run: |
+          echo "Listing files in the root directory:"
+          ls -lah
+
+      # Debug step to list files in the components directory
+      - name: List files in components directory
+        run: |
+          echo "Listing files in the components directory:"
+          ls -lah components/
+
+      # Debug step to list files in the ethereum directory
+      - name: List files in ethereum directory
+        run: |
+          echo "Listing files in the ethereum directory:"
+          ls -lah ethereum/
+
+      # Debug step to list files in the arbitrum directory
+      - name: List files in arbitrum directory
+        run: |
+          echo "Listing files in the arbitrum directory:"
+          ls -lah arbitrum/
+
+      # Debug step to print the contents of sandbox.yaml
+      - name: Print contents of sandbox.yaml
+        run: |
+          echo "Contents of sandbox.yaml:"
+          cat components/sandbox.yaml
+
+      # Debug step to print the contents of eth_accounts.yaml in the ethereum directory
+      - name: Print contents of ethereum/eth_accounts.yaml
+        run: |
+          echo "Contents of ethereum/eth_accounts.yaml:"
+          cat ethereum/eth_accounts.yaml
 
       - name: Github action to update Arbitrum API - eth_accounts
         uses: readmeio/rdme@8.6.4
