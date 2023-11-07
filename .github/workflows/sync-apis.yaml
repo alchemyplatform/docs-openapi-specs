@@ -48,6 +48,124 @@ jobs:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id="648a94b656f41511b55a453b"
 
 
+    # =============================================================== Update Starknet APIs in Docs ===============================================================
+
+      - name: Github action to update Starknet API - starknet_addDeclareTransaction
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_addDeclareTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406faac2d7740059213a4f
+
+      - name: Github action to update Starknet API - starknet_getClassAt
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getClassAt.yaml --key=${{ secrets.README_API_KEY }} --id=64406fb9107cc6000bba05e6
+
+      - name: Github action to update Starknet API - starknet_addDeployAccountTransaction
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_addDeployAccountTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406fc2948a1600fd2a71e9
+
+      - name: Github action to update Starknet API - starknet_getClassHashAt
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getClassHashAt.yaml --key=${{ secrets.README_API_KEY }} --id=64406fcc5aba2300513dc4a3
+
+      - name: Github action to update Starknet API - starknet_addInvokeTransaction
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_addInvokeTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406fd5d93442007209822b
+
+      - name: Github action to update Starknet API - starknet_getEvents
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getEvents.yaml --key=${{ secrets.README_API_KEY }} --id=64406fdea42c4e0388007281
+
+      - name: Github action to update Starknet API - starknet_blockHashAndNumber
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_blockHashAndNumber.yaml --key=${{ secrets.README_API_KEY }} --id=64406fe62f2152000ab80899
+
+      - name: Github action to update Starknet API - starknet_getNonce
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getNonce.yaml --key=${{ secrets.README_API_KEY }} --id=64406ff24c37de005759e380
+
+      - name: Github action to update Starknet API - starknet_blockNumber
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_blockNumber.yaml --key=${{ secrets.README_API_KEY }} --id=64406ffbb5b2f3001896e55c
+
+      - name: Github action to update Starknet API - starknet_getStateUpdate
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getStateUpdate.yaml --key=${{ secrets.README_API_KEY }} --id=6440700945a039000b1c7b77
+
+      - name: Github action to update Starknet API - starknet_call
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_call.yaml --key=${{ secrets.README_API_KEY }} --id=6440701f1a55e800650d3154
+
+      - name: Github action to update Starknet API - starknet_getStorageAt
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getStorageAt.yaml --key=${{ secrets.README_API_KEY }} --id=64407029b5b2f3001896e573
+
+      - name: Github action to update Starknet API - starknet_chainId
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_chainId.yaml --key=${{ secrets.README_API_KEY }} --id=64407032cf71a9000b56596b
+
+      - name: Github action to update Starknet API - starknet_getTransactionByBlockIdAndIndex
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getTransactionByBlockIdAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=6440703ce36444000acefc9f
+
+      - name: Github action to update Starknet API - starknet_estimateFee
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_estimateFee.yaml --key=${{ secrets.README_API_KEY }} --id=64407047f394f20035ef654d
+
+      - name: Github action to update Starknet API - starknet_getTransactionByHash
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getTransactionByHash.yaml --key=${{ secrets.README_API_KEY }} --id=6440705395b4ba007aca6b29
+
+      - name: Github action to update Starknet API - starknet_getBlockTransactionCount
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getBlockTransactionCount.yaml --key=${{ secrets.README_API_KEY }} --id=6440705d117953029dee9221
+
+      - name: Github action to update Starknet API - starknet_getTransactionReceipt
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=64407067099500000abb72f9
+
+      - name: Github action to update Starknet API - starknet_getBlockWithTxHashes
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getBlockWithTxHashes.yaml --key=${{ secrets.README_API_KEY }} --id=6440708c84b7390079c421cb
+
+      - name: Github action to update Starknet API - starknet_pendingTransactions
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_pendingTransactions.yaml --key=${{ secrets.README_API_KEY }} --id=644070ad5599f402959e3788
+
+      - name: Github action to update Starknet API - starknet_getBlockWithTxs
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getBlockWithTxs.yaml --key=${{ secrets.README_API_KEY }} --id=644070ef42d96f003cd74192
+
+      - name: Github action to update Starknet API - starknet_syncing
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_syncing.yaml --key=${{ secrets.README_API_KEY }} --id=644070fdb5b2f3001896f2d9
+
+      - name: Github action to update Starknet API - starknet_getClass
+        uses: readmeio/rdme@8.6.4
+        with:
+          rdme: openapi starknet/starknet_getClass.yaml --key=${{ secrets.README_API_KEY }} --id=6440711368d835000b7711a0
+
+
       # =============================================================== Update Ethereum APIs in Docs ===============================================================
 
       - name: Github action to update Ethereum API - eth_createAccessList
@@ -249,121 +367,3 @@ jobs:
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi ethereum/eth_getTransactionByBlockNumberAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=62d85761c50d8b00730dc6ce
-
-
-      # =============================================================== Update Starknet APIs in Docs ===============================================================
-
-      - name: Github action to update Starknet API - starknet_addDeclareTransaction
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_addDeclareTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406faac2d7740059213a4f
-
-      - name: Github action to update Starknet API - starknet_getClassAt
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getClassAt.yaml --key=${{ secrets.README_API_KEY }} --id=64406fb9107cc6000bba05e6
-
-      - name: Github action to update Starknet API - starknet_addDeployAccountTransaction
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_addDeployAccountTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406fc2948a1600fd2a71e9
-
-      - name: Github action to update Starknet API - starknet_getClassHashAt
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getClassHashAt.yaml --key=${{ secrets.README_API_KEY }} --id=64406fcc5aba2300513dc4a3
-
-      - name: Github action to update Starknet API - starknet_addInvokeTransaction
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_addInvokeTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406fd5d93442007209822b
-
-      - name: Github action to update Starknet API - starknet_getEvents
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getEvents.yaml --key=${{ secrets.README_API_KEY }} --id=64406fdea42c4e0388007281
-
-      - name: Github action to update Starknet API - starknet_blockHashAndNumber
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_blockHashAndNumber.yaml --key=${{ secrets.README_API_KEY }} --id=64406fe62f2152000ab80899
-
-      - name: Github action to update Starknet API - starknet_getNonce
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getNonce.yaml --key=${{ secrets.README_API_KEY }} --id=64406ff24c37de005759e380
-
-      - name: Github action to update Starknet API - starknet_blockNumber
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_blockNumber.yaml --key=${{ secrets.README_API_KEY }} --id=64406ffbb5b2f3001896e55c
-
-      - name: Github action to update Starknet API - starknet_getStateUpdate
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getStateUpdate.yaml --key=${{ secrets.README_API_KEY }} --id=6440700945a039000b1c7b77
-
-      - name: Github action to update Starknet API - starknet_call
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_call.yaml --key=${{ secrets.README_API_KEY }} --id=6440701f1a55e800650d3154
-
-      - name: Github action to update Starknet API - starknet_getStorageAt
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getStorageAt.yaml --key=${{ secrets.README_API_KEY }} --id=64407029b5b2f3001896e573
-
-      - name: Github action to update Starknet API - starknet_chainId
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_chainId.yaml --key=${{ secrets.README_API_KEY }} --id=64407032cf71a9000b56596b
-
-      - name: Github action to update Starknet API - starknet_getTransactionByBlockIdAndIndex
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getTransactionByBlockIdAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=6440703ce36444000acefc9f
-
-      - name: Github action to update Starknet API - starknet_estimateFee
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_estimateFee.yaml --key=${{ secrets.README_API_KEY }} --id=64407047f394f20035ef654d
-
-      - name: Github action to update Starknet API - starknet_getTransactionByHash
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getTransactionByHash.yaml --key=${{ secrets.README_API_KEY }} --id=6440705395b4ba007aca6b29
-
-      - name: Github action to update Starknet API - starknet_getBlockTransactionCount
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getBlockTransactionCount.yaml --key=${{ secrets.README_API_KEY }} --id=6440705d117953029dee9221
-
-      - name: Github action to update Starknet API - starknet_getTransactionReceipt
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=64407067099500000abb72f9
-
-      - name: Github action to update Starknet API - starknet_getBlockWithTxHashes
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getBlockWithTxHashes.yaml --key=${{ secrets.README_API_KEY }} --id=6440708c84b7390079c421cb
-
-      - name: Github action to update Starknet API - starknet_pendingTransactions
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_pendingTransactions.yaml --key=${{ secrets.README_API_KEY }} --id=644070ad5599f402959e3788
-
-      - name: Github action to update Starknet API - starknet_getBlockWithTxs
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getBlockWithTxs.yaml --key=${{ secrets.README_API_KEY }} --id=644070ef42d96f003cd74192
-
-      - name: Github action to update Starknet API - starknet_syncing
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_syncing.yaml --key=${{ secrets.README_API_KEY }} --id=644070fdb5b2f3001896f2d9
-
-      - name: Github action to update Starknet API - starknet_getClass
-        uses: readmeio/rdme@8.6.4
-        with:
-          rdme: openapi starknet/starknet_getClass.yaml --key=${{ secrets.README_API_KEY }} --id=6440711368d835000b7711a0
