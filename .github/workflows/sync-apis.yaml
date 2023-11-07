@@ -23,42 +23,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Debug step to list files in the workspace
-      - name: List files in the root
-        run: |
-          echo "Listing files in the root directory:"
-          ls -lah
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' 
 
-      # Debug step to list files in the components directory
-      - name: List files in components directory
-        run: |
-          echo "Listing files in the components directory:"
-          ls -lah components/
+      # Install rdme globally
+      - name: Install rdme
+        run: npm install -g rdme@8.6.4
 
-      # Debug step to list files in the ethereum directory
-      - name: List files in ethereum directory
-        run: |
-          echo "Listing files in the ethereum directory:"
-          ls -lah ethereum/
+      # Update Ethereum API
+      - name: Update Ethereum API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d54b64fcf55a002eba8d8b
 
-      # Debug step to list files in the arbitrum directory
-      - name: List files in arbitrum directory
-        run: |
-          echo "Listing files in the arbitrum directory:"
-          ls -lah arbitrum/
-
-      # Debug step to print the contents of sandbox.yaml
-      - name: Print contents of sandbox.yaml
-        run: |
-          echo "Contents of sandbox.yaml:"
-          cat components/sandbox.yaml
-
-      # Debug step to print the contents of eth_accounts.yaml in the ethereum directory
-      - name: Print contents of ethereum/eth_accounts.yaml
-        run: |
-          echo "Contents of ethereum/eth_accounts.yaml:"
-          cat ethereum/eth_accounts.yaml
-
+      # Update Arbitrum API
       - name: Github action to update Arbitrum API - eth_accounts
         uses: readmeio/rdme@8.6.4
         with:
