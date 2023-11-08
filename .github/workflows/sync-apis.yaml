@@ -74,7 +74,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./account-abstraction
-        run: rdme openapi eth_estimateUserOperationGas.yaml --key=$README_API_KEY --id=6464f034132765003e89350b
+        run: rdme openapi eth_estimateUserOperationGas.yaml --key=$README_API_KEY --id=654aecab00550900443f7259
 
       - name: Update AA API - eth_getUserOperationByHash
         env:
