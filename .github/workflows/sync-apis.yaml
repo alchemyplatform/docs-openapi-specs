@@ -213,7 +213,7 @@ jobs:
 
       # Update Transact APIs
       - name: Update Transact API - alchemy_getGasOptimizedTransactionStatus
-      env:
+        env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./transact
         run: rdme openapi alchemy_getGasOptimizedTransactionStatus.yaml --key=$README_API_KEY --id=634f71298eef9100ad7d99f9
