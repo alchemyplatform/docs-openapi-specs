@@ -19,11 +19,6 @@ x-sandbox:
     type:
       $ref: '../components/sandbox.yaml#/Category'
     value: gas-optimized-transactions
-x-sandbox:
-  category:
-    type:
-      $ref: '../components/sandbox.yaml#/Category'
-    value: gas-optimized-transactions
 paths:
   /{apiKey}:
     post:
