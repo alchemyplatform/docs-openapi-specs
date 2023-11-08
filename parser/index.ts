@@ -144,8 +144,10 @@ async function main() {
     if (!groupedEntries[chain]) {
       groupedEntries[chain] = {};
     }
-
-    const entry = groupedEntries[chain][method.name];
+    const requestBody = convertRequestBody(flatEntry.requestBody);
+    const methodName =
+      (requestBody && extractJSONRPCMethod(requestBody)) || method.name;
+    const entry = groupedEntries[chain][methodName];
     if (!entry) {
       // strip / prefix from url if exists
       // TODO: we should be enforced in spec to have no trailing slash for servers url
@@ -164,15 +166,15 @@ async function main() {
         queryParams: flatEntry.queryParams
           .map(convertParam)
           .filter((param): param is Param => param != null),
-        requestBody: convertRequestBody(flatEntry.requestBody),
+        requestBody,
       };
-      groupedEntries[chain][method.name] = newEntry;
+      groupedEntries[chain][methodName] = newEntry;
     } else {
       const updatedEntry = {
         ...entry,
         networks: [...entry.networks, network],
       };
-      groupedEntries[chain][method.name] = updatedEntry;
+      groupedEntries[chain][methodName] = updatedEntry;
     }
   }
 
@@ -267,6 +269,13 @@ function extractParams(params: OpenAPIV3_1.ParameterObject[] | undefined): {
   const pathParams = params.filter((param) => param.in === 'path');
   const queryParams = params.filter((param) => param.in === 'query');
   return { pathParams, queryParams };
+}
+
+function extractJSONRPCMethod(param: Param): string | undefined {
+  if (param.type !== 'object') return;
+  if (param.properties['jsonrpc']?.default !== '2.0') return;
+
+  return String(param.properties['method'].default);
 }
 
 function convertParam(param: OpenAPIV3_1.ParameterObject): Param | undefined {
