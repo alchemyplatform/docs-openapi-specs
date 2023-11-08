@@ -57,6 +57,13 @@ jobs:
         with:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=648a94b656f41511b55a453b
 
+      # Update Transaction Receipts API
+      - name: Update Transaction Receipts API - alchemy_getTransactionReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transaction-receipts
+        run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
+
 
       # Update AA APIs
       - name: Update AA API - alchemy_requestGasAndPaymasterAndData
@@ -106,6 +113,152 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./account-abstraction
         run: rdme openapi rundler_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64df886f8b288c002455bba1
+
+      
+      # Update Debug APIs
+      - name: Update Debug API - debug_traceBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_traceBlockByHash.yaml --key=$README_API_KEY --id=6328e66279553d00b0462306
+
+      - name: Update Debug API - debug_traceBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_traceBlockByNumber.yaml --key=$README_API_KEY --id=6328e64b0f36e300395b02bd
+
+      - name: Update Debug API - debug_traceCall
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_traceCall.yaml --key=$README_API_KEY --id=6328e601462d7c00963c89f5
+
+      - name: Update Debug API - debug_traceTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_traceTransaction.yaml --key=$README_API_KEY --id=6328e63ebd678a000f80aa64
+
+
+      # Update Token APIs
+      - name: Update Token API - alchemy_getTokenAllowance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./token
+        run: rdme openapi alchemy_getTokenAllowance.yaml --key=$README_API_KEY --id=62d557bb6c138d007e01972e
+
+      - name: Update Token API - alchemy_getTokenBalances
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./token
+        run: rdme openapi alchemy_getTokenBalances.yaml --key=$README_API_KEY --id=62d551cf2cef3a00205a5924
+
+      - name: Update Token API - alchemy_getTokenMetadata
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./token
+        run: rdme openapi alchemy_getTokenMetadata.yaml --key=$README_API_KEY --id=62d5581637732c00307aec6e
+
+
+      # Update Trace APIs
+      - name: Update Trace API - trace_block
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_block.yaml --key=$README_API_KEY --id=62d75aa0ae0b8c00ac4bd10b
+
+      - name: Update Trace API - trace_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_call.yaml --key=$README_API_KEY --id=62e0cbf0a759110013247d5a
+
+      - name: Update Trace API - trace_filter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_filter.yaml --key=$README_API_KEY --id=62e0cdf776a3c0006fb0e8d4
+
+      - name: Update Trace API - trace_get
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_get.yaml --key=$README_API_KEY --id=62e0cd4cc45b7f004714b274
+
+      - name: Update Trace API - trace_rawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_rawTransaction.yaml --key=$README_API_KEY --id=62e0cd733bec4800a2cab44b
+
+      - name: Update Trace API - trace_replayBlockTransactions
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_replayBlockTransactions.yaml --key=$README_API_KEY --id=62e0cd901c32f9001a935f5a
+
+      - name: Update Trace API - trace_replayTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_replayTransaction.yaml --key=$README_API_KEY --id=62e0cdb03e93d900a4b75c8c
+
+      - name: Update Trace API - trace_transaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_transaction.yaml --key=$README_API_KEY --id=62e0cdd38dfdce003924d062
+
+
+      # Update Transact APIs
+      - name: Update Transact API - alchemy_getGasOptimizedTransactionStatus
+      env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_getGasOptimizedTransactionStatus.yaml --key=$README_API_KEY --id=634f71298eef9100ad7d99f9
+
+      - name: Update Transact API - alchemy_sendGasOptimizedTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_sendGasOptimizedTransaction.yaml --key=$README_API_KEY --id=634f72885e2a9200e4ebf268
+
+      - name: Update Transact API - alchemy_simulateAssetChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateAssetChanges.yaml --key=$README_API_KEY --id=64b8502ac5b267003a3c9bcb
+
+      - name: Update Transact API - alchemy_simulateAssetChangesBundle
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateAssetChangesBundle.yaml --key=$README_API_KEY --id=64b850f6980cad006c5a78fd
+
+      - name: Update Transact API - alchemy_simulateExecution
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateExecution.yaml --key=$README_API_KEY --id=64b8519b7c8a69000c6966b5
+
+      - name: Update Transact API - alchemy_simulateExecutionBundle
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateExecutionBundle.yaml --key=$README_API_KEY --id=64b8521694c9f5001f316d20
+
+      - name: Update Transact API - eth_cancelPrivateTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi eth_cancelPrivateTransaction.yaml --key=$README_API_KEY --id=6425b62a93d5e707f01f7e6a
+
+      - name: Update Transact API - eth_sendPrivateTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi eth_sendPrivateTransaction.yaml --key=$README_API_KEY --id=62d6beb6c58877026441688c
 
 
       # Update Ethereum APIs
