@@ -34,28 +34,29 @@ jobs:
         run: npm install -g rdme@8.6.4
           
       # Update NFT API
-      - name: GitHub action to update NFT API
+      - name: Update NFT API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi nft/nfts.yaml --key=${{ secrets.README_API_KEY }} --id=62bb5f1af2192000e16f5c93
       
       # Update Notify API
-      - name: GitHub action to update Notify API
+      - name: Update Notify API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi notify/notify.yaml --key=${{ secrets.README_API_KEY }} --id=62d74663f3ed8d0071190eb2
           
       # Update Transfers API
-      - name: GitHub action to update Transfers API
+      - name: Update Transfers API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi transfers/alchemy_getAssetTransfers.yaml --key=${{ secrets.README_API_KEY }} --id=62d75e355edcd00083b39fa2
 
       # Update Gas Manager Admin API
-      - name: GitHub action to update Gas Manager Admin API
+      - name: Update Gas Manager Admin API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=648a94b656f41511b55a453b
+
 
       # Update AA APIs
       - name: Update AA API - alchemy_requestGasAndPaymasterAndData
@@ -106,7 +107,8 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi rundler_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64df886f8b288c002455bba1
 
-      # =============================================================== Update Ethereum APIs ===============================================================
+
+      # Update Ethereum APIs
 
       - name: Update Ethereum API - eth_createAccessList
         env:
@@ -349,318 +351,318 @@ jobs:
         run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d85761c50d8b00730dc6ce
 
 
-    # =============================================================== Update Arbitrum APIs ===============================================================
+    # Update Arbitrum APIs
 
-      - name: Github action to update Arbitrum API - eth_accounts
+      - name: Update Arbitrum API - eth_accounts
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_accounts.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d22190dfbd0013767822
 
-      - name: Github action to update Arbitrum API - eth_blockNumber
+      - name: Update Arbitrum API - eth_blockNumber
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_blockNumber.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d23ca7d4940070fb5bec
 
-      - name: Github action to update Arbitrum API - eth_call
+      - name: Update Arbitrum API - eth_call
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_call.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d7ec0e06b30029f9c72a
 
-      - name: Github action to update Arbitrum API - eth_chainId
+      - name: Update Arbitrum API - eth_chainId
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_chainId.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d805f01e4d002f2eaca0
 
-      - name: Github action to update Arbitrum API - eth_estimateGas
+      - name: Update Arbitrum API - eth_estimateGas
         uses: readmeio/rdme@8.6.4
         with:
           rdme:
             openapi arbitrum/eth_estimateGas.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d817f0253e00a6461eb0
 
-      - name: Github action to update Arbitrum API - eth_gasPrice
+      - name: Update Arbitrum API - eth_gasPrice
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_gasPrice.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d8328cd9e7006a42064c
 
-      - name: Github action to update Arbitrum API - eth_getBalance
+      - name: Update Arbitrum API - eth_getBalance
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getBalance.yaml --key=${{ secrets.README_API_KEY }} --id=62d8d87c14db26001416ac63
 
-      - name: Github action to update Arbitrum API - eth_getBlockByHash
+      - name: Update Arbitrum API - eth_getBlockByHash
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getBlockByHash.yaml --key=${{ secrets.README_API_KEY }} --id=62d8dd027c1ba40036a5a1a1
 
-      - name: Github action to update Arbitrum API - eth_getBlockByNumber
+      - name: Update Arbitrum API - eth_getBlockByNumber
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getBlockByNumber.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e0c7f7b6f50072597080
 
-      - name: Github action to update Arbitrum API - eth_getBlockTransactionCountByHash
+      - name: Update Arbitrum API - eth_getBlockTransactionCountByHash
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getBlockTransactionCountByHash.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e112259d7e001474c645
 
-      - name: Github action to update Arbitrum API - eth_getBlockTransactionCountByNumber
+      - name: Update Arbitrum API - eth_getBlockTransactionCountByNumber
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getBlockTransactionCountByNumber.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e133efa205012a37a43a
 
-      - name: Github action to update Arbitrum API - eth_getCode
+      - name: Update Arbitrum API - eth_getCode
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getCode.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e15486056c003cc75375
 
-      - name: Github action to update Arbitrum API - eth_getFilterChanges
+      - name: Update Arbitrum API - eth_getFilterChanges
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getFilterChanges.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e17070fd50003ffbf060
 
-      - name: Github action to update Arbitrum API - eth_getFilterLogs
+      - name: Update Arbitrum API - eth_getFilterLogs
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getFilterLogs.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e189487ded0096d0097a
 
-      - name: Github action to update Arbitrum API - eth_getLogs
+      - name: Update Arbitrum API - eth_getLogs
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getLogs.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e2164959b30088f11e57
 
-      - name: Github action to update Arbitrum API - eth_getStorageAt
+      - name: Update Arbitrum API - eth_getStorageAt
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getStorageAt.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e22dbb9859001e90e111
 
-      - name: Github action to update Arbitrum API - eth_getTransactionByBlockHashAndIndex
+      - name: Update Arbitrum API - eth_getTransactionByBlockHashAndIndex
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getTransactionByBlockHashAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e2bdd94be9009bef4eb5
 
-      - name: Github action to update Arbitrum API - eth_getTransactionByBlockNumberAndIndex
+      - name: Update Arbitrum API - eth_getTransactionByBlockNumberAndIndex
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getTransactionByBlockNumberAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e371cec32f0013dd7cd8
 
-      - name: Github action to update Arbitrum API - eth_getTransactionByHash
+      - name: Update Arbitrum API - eth_getTransactionByHash
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getTransactionByHash.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e39187f70200a07262ff
 
-      - name: Github action to update Arbitrum API - eth_getTransactionCount
+      - name: Update Arbitrum API - eth_getTransactionCount
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getTransactionCount.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e3c9f2ee85023f8958f8
 
-      - name: Github action to update Arbitrum API - eth_getTransactionReceipt
+      - name: Update Arbitrum API - eth_getTransactionReceipt
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=6549e6db1c854b000c6e8e19
 
-      - name: Github action to update Arbitrum API - eth_getUncleByBlockNumberAndIndex
+      - name: Update Arbitrum API - eth_getUncleByBlockNumberAndIndex
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getUncleByBlockNumberAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e5eb487ded0096d0477e
 
-      - name: Github action to update Arbitrum API - eth_getUncleCountByBlockHash
+      - name: Update Arbitrum API - eth_getUncleCountByBlockHash
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getUncleCountByBlockHash.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e60143af490013464da6
 
-      - name: Github action to update Arbitrum API - eth_getUncleCountByBlockNumber
+      - name: Update Arbitrum API - eth_getUncleCountByBlockNumber
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getUncleCountByBlockNumber.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e61470fd9d0065c98eb7
 
-      - name: Github action to update Arbitrum API - eth_newBlockFilter
+      - name: Update Arbitrum API - eth_newBlockFilter
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_newBlockFilter.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e63472584e002713e951
 
-      - name: Github action to update Arbitrum API - eth_newFilter
+      - name: Update Arbitrum API - eth_newFilter
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_newFilter.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e648425369004cbbde61
 
-      - name: Github action to update Arbitrum API - eth_newPendingTransactionFilter
+      - name: Update Arbitrum API - eth_newPendingTransactionFilter
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_newPendingTransactionFilter.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e659137da40014f246df
 
-      - name: Github action to update Arbitrum API - eth_sendRawTransaction
+      - name: Update Arbitrum API - eth_sendRawTransaction
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_sendRawTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e66eaefd120077ed7e44
 
-      - name: Github action to update Arbitrum API - eth_uninstallFilter
+      - name: Update Arbitrum API - eth_uninstallFilter
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_uninstallFilter.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e6f1496fdb0056aecb93
 
-      - name: Github action to update Arbitrum API - net_listening
+      - name: Update Arbitrum API - net_listening
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/net_listening.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e7123b4331007eb60617
 
-      - name: Github action to update Arbitrum API - net_version
+      - name: Update Arbitrum API - net_version
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/net_version.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e72ad1ef6d002f8071c0
 
-      - name: Github action to update Arbitrum API - web3_clientVersion
+      - name: Update Arbitrum API - web3_clientVersion
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/web3_clientVersion.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e7427400e900a6471d28
 
-      - name: Github action to update Arbitrum API - web3_sha3
+      - name: Update Arbitrum API - web3_sha3
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/web3_sha3.yaml --key=${{ secrets.README_API_KEY }} --id=62d8e759ebeda4004a1f51db
 
-      - name: Github action to update Arbitrum API - eth_createAccessList
+      - name: Update Arbitrum API - eth_createAccessList
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_createAccessList.yaml --key=${{ secrets.README_API_KEY }} --id=63349fdd600a95005062096d
 
-      - name: Github action to update Arbitrum API - eth_getProof
+      - name: Update Arbitrum API - eth_getProof
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getProof.yaml --key=${{ secrets.README_API_KEY }} --id=6334c995307ef5008a7c88b0
 
-      - name: Github action to update Arbitrum API - eth_maxPriorityFeePerGas
+      - name: Update Arbitrum API - eth_maxPriorityFeePerGas
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_maxPriorityFeePerGas.yaml --key=${{ secrets.README_API_KEY }} --id=6334c9a19d1cf000641fef37
 
-      - name: Github action to update Arbitrum API - eth_feeHistory
+      - name: Update Arbitrum API - eth_feeHistory
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_feeHistory.yaml --key=${{ secrets.README_API_KEY }} --id=6334ca7a220b16000f3e22a5
 
-      - name: Github action to update Arbitrum API - eth_getUncleByBlockHashAndIndex
+      - name: Update Arbitrum API - eth_getUncleByBlockHashAndIndex
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi arbitrum/eth_getUncleByBlockHashAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=6549ec1d353781003ef523e7
 
 
-    # =============================================================== Update Starknet APIs ===============================================================
+    # Update Starknet APIs
 
-      - name: Github action to update Starknet API - starknet_addDeclareTransaction
+      - name: Update Starknet API - starknet_addDeclareTransaction
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_addDeclareTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406faac2d7740059213a4f
 
-      - name: Github action to update Starknet API - starknet_getClassAt
+      - name: Update Starknet API - starknet_getClassAt
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getClassAt.yaml --key=${{ secrets.README_API_KEY }} --id=64406fb9107cc6000bba05e6
 
-      - name: Github action to update Starknet API - starknet_addDeployAccountTransaction
+      - name: Update Starknet API - starknet_addDeployAccountTransaction
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_addDeployAccountTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406fc2948a1600fd2a71e9
 
-      - name: Github action to update Starknet API - starknet_getClassHashAt
+      - name: Update Starknet API - starknet_getClassHashAt
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getClassHashAt.yaml --key=${{ secrets.README_API_KEY }} --id=64406fcc5aba2300513dc4a3
 
-      - name: Github action to update Starknet API - starknet_addInvokeTransaction
+      - name: Update Starknet API - starknet_addInvokeTransaction
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_addInvokeTransaction.yaml --key=${{ secrets.README_API_KEY }} --id=64406fd5d93442007209822b
 
-      - name: Github action to update Starknet API - starknet_getEvents
+      - name: Update Starknet API - starknet_getEvents
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getEvents.yaml --key=${{ secrets.README_API_KEY }} --id=64406fdea42c4e0388007281
 
-      - name: Github action to update Starknet API - starknet_blockHashAndNumber
+      - name: Update Starknet API - starknet_blockHashAndNumber
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_blockHashAndNumber.yaml --key=${{ secrets.README_API_KEY }} --id=64406fe62f2152000ab80899
 
-      - name: Github action to update Starknet API - starknet_getNonce
+      - name: Update Starknet API - starknet_getNonce
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getNonce.yaml --key=${{ secrets.README_API_KEY }} --id=64406ff24c37de005759e380
 
-      - name: Github action to update Starknet API - starknet_blockNumber
+      - name: Update Starknet API - starknet_blockNumber
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_blockNumber.yaml --key=${{ secrets.README_API_KEY }} --id=64406ffbb5b2f3001896e55c
 
-      - name: Github action to update Starknet API - starknet_getStateUpdate
+      - name: Update Starknet API - starknet_getStateUpdate
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getStateUpdate.yaml --key=${{ secrets.README_API_KEY }} --id=6440700945a039000b1c7b77
 
-      - name: Github action to update Starknet API - starknet_call
+      - name: Update Starknet API - starknet_call
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_call.yaml --key=${{ secrets.README_API_KEY }} --id=6440701f1a55e800650d3154
 
-      - name: Github action to update Starknet API - starknet_getStorageAt
+      - name: Update Starknet API - starknet_getStorageAt
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getStorageAt.yaml --key=${{ secrets.README_API_KEY }} --id=64407029b5b2f3001896e573
 
-      - name: Github action to update Starknet API - starknet_chainId
+      - name: Update Starknet API - starknet_chainId
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_chainId.yaml --key=${{ secrets.README_API_KEY }} --id=64407032cf71a9000b56596b
 
-      - name: Github action to update Starknet API - starknet_getTransactionByBlockIdAndIndex
+      - name: Update Starknet API - starknet_getTransactionByBlockIdAndIndex
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getTransactionByBlockIdAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=6440703ce36444000acefc9f
 
-      - name: Github action to update Starknet API - starknet_estimateFee
+      - name: Update Starknet API - starknet_estimateFee
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_estimateFee.yaml --key=${{ secrets.README_API_KEY }} --id=64407047f394f20035ef654d
 
-      - name: Github action to update Starknet API - starknet_estimateMessageFee
+      - name: Update Starknet API - starknet_estimateMessageFee
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_estimateMessageFee.yaml --key=${{ secrets.README_API_KEY }} --id=64f9010bfa510100197068b2
 
-      - name: Github action to update Starknet API - starknet_getTransactionByHash
+      - name: Update Starknet API - starknet_getTransactionByHash
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getTransactionByHash.yaml --key=${{ secrets.README_API_KEY }} --id=6440705395b4ba007aca6b29
 
-      - name: Github action to update Starknet API - starknet_getBlockTransactionCount
+      - name: Update Starknet API - starknet_getBlockTransactionCount
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getBlockTransactionCount.yaml --key=${{ secrets.README_API_KEY }} --id=6440705d117953029dee9221
 
-      - name: Github action to update Starknet API - starknet_getTransactionReceipt
+      - name: Update Starknet API - starknet_getTransactionReceipt
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getTransactionReceipt.yaml --key=${{ secrets.README_API_KEY }} --id=64407067099500000abb72f9
 
-      - name: Github action to update Starknet API - starknet_getBlockWithTxHashes
+      - name: Update Starknet API - starknet_getBlockWithTxHashes
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getBlockWithTxHashes.yaml --key=${{ secrets.README_API_KEY }} --id=6440708c84b7390079c421cb
 
-      - name: Github action to update Starknet API - starknet_pendingTransactions
+      - name: Update Starknet API - starknet_pendingTransactions
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_pendingTransactions.yaml --key=${{ secrets.README_API_KEY }} --id=644070ad5599f402959e3788
 
-      - name: Github action to update Starknet API - starknet_getBlockWithTxs
+      - name: Update Starknet API - starknet_getBlockWithTxs
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getBlockWithTxs.yaml --key=${{ secrets.README_API_KEY }} --id=644070ef42d96f003cd74192
 
-      - name: Github action to update Starknet API - starknet_syncing
+      - name: Update Starknet API - starknet_syncing
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_syncing.yaml --key=${{ secrets.README_API_KEY }} --id=644070fdb5b2f3001896f2d9
 
-      - name: Github action to update Starknet API - starknet_getClass
+      - name: Update Starknet API - starknet_getClass
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi starknet/starknet_getClass.yaml --key=${{ secrets.README_API_KEY }} --id=6440711368d835000b7711a0
