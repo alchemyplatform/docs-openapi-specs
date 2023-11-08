@@ -12,6 +12,7 @@ servers:
           - eth-goerli
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
           - opt-mainnet
           - opt-goerli
           - polygon-mainnet

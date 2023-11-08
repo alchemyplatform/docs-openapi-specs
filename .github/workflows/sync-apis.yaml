@@ -33,32 +33,80 @@ jobs:
       - name: Install rdme
         run: npm install -g rdme@8.6.4
           
-      # Update NFT API in docs
+      # Update NFT API
       - name: GitHub action to update NFT API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi nft/nfts.yaml --key=${{ secrets.README_API_KEY }} --id=62bb5f1af2192000e16f5c93
       
-      # Update Notify API in docs
+      # Update Notify API
       - name: GitHub action to update Notify API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi notify/notify.yaml --key=${{ secrets.README_API_KEY }} --id=62d74663f3ed8d0071190eb2
           
-      # Update Transfers API in docs
+      # Update Transfers API
       - name: GitHub action to update Transfers API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi transfers/alchemy_getAssetTransfers.yaml --key=${{ secrets.README_API_KEY }} --id=62d75e355edcd00083b39fa2
 
-      # Update Gas Manager Admin API in docs
+      # Update Gas Manager Admin API
       - name: GitHub action to update Gas Manager Admin API
         uses: readmeio/rdme@8.6.4
         with:
           rdme: openapi account-abstraction/gas_manager_admin.yaml --key=${{ secrets.README_API_KEY }} --id=648a94b656f41511b55a453b
 
+      # Update AA APIs
+      - name: Update AA API - alchemy_requestGasAndPaymasterAndData
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_requestGasAndPaymasterAndData.yaml --key=$README_API_KEY --id=6477e048c2b29800373e6baa
 
-      # =============================================================== Update Ethereum APIs in Docs ===============================================================
+      - name: Update AA API - alchemy_requestPaymasterAndData
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_requestPaymasterAndData.yaml --key=$README_API_KEY --id=64272da5ebf42012145aef2a
+
+      - name: Update AA API - eth_estimateUserOperationGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_estimateUserOperationGas.yaml --key=$README_API_KEY --id=6464f034132765003e89350b
+
+      - name: Update AA API - eth_getUserOperationByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_getUserOperationByHash.yaml --key=$README_API_KEY --id=64272df579e7d70026458324
+
+      - name: Update AA API - eth_getUserOperationReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_getUserOperationReceipt.yaml --key=$README_API_KEY --id=64272dc1a771520c3d5df25f
+
+      - name: Update AA API - eth_sendUserOperation
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_sendUserOperation.yaml --key=$README_API_KEY --id=6464ef740982971d10c0b132
+
+      - name: Update AA API - eth_supportedEntryPoints
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_supportedEntryPoints.yaml --key=$README_API_KEY --id=64272dd780ee510d6e68d4d6
+
+      - name: Update AA API - rundler_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi rundler_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64df886f8b288c002455bba1
+
+      # =============================================================== Update Ethereum APIs ===============================================================
 
       - name: Update Ethereum API - eth_createAccessList
         env:
@@ -301,7 +349,7 @@ jobs:
         run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d85761c50d8b00730dc6ce
 
 
-    # =============================================================== Update Arbitrum APIs in Docs ===============================================================
+    # =============================================================== Update Arbitrum APIs ===============================================================
 
       - name: Github action to update Arbitrum API - eth_accounts
         uses: readmeio/rdme@8.6.4
@@ -495,7 +543,7 @@ jobs:
           rdme: openapi arbitrum/eth_getUncleByBlockHashAndIndex.yaml --key=${{ secrets.README_API_KEY }} --id=6549ec1d353781003ef523e7
 
 
-    # =============================================================== Update Starknet APIs in Docs ===============================================================
+    # =============================================================== Update Starknet APIs ===============================================================
 
       - name: Github action to update Starknet API - starknet_addDeclareTransaction
         uses: readmeio/rdme@8.6.4
