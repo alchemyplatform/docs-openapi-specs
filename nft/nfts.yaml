@@ -45,7 +45,7 @@ paths:
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/spamConfidenceLevel'
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
       x-readme:
@@ -107,7 +107,7 @@ paths:
       description: Gets the metadata associated with a given NFT.
       tags: ['NFT Metadata Access']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -155,7 +155,7 @@ paths:
       description: Gets the metadata associated with up to 100 given NFT contracts.
       tags: ['NFT Metadata Access']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -223,7 +223,7 @@ paths:
       description: Queries NFT high-level collection/contract level information.
       tags: ['NFT Metadata Access']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -270,7 +270,7 @@ paths:
       description: Gets the metadata associated with the given list of contract addresses
       tags: ['NFT Metadata Access']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -308,7 +308,7 @@ paths:
       description: Gets all NFTs for a given NFT contract.
       tags: ['Collections']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
         - $ref: '#/components/schemas/collectionSlug'
         - $ref: '#/components/schemas/withMetadata'
@@ -375,7 +375,7 @@ paths:
       description: Get the owner(s) for a token.
       tags: ['Ownership & Token Gating']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -424,7 +424,7 @@ paths:
       description: Gets all owners for a given NFT contract.
       tags: ['Ownership & Token Gating']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withTokenBalances'
@@ -478,7 +478,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       x-readme:
         samples-languages:
           - curl
@@ -531,7 +531,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -574,7 +574,7 @@ paths:
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
       tags: ['Spam Detection']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -599,7 +599,7 @@ paths:
       description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
       tags: ['NFT Metadata Access']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -636,7 +636,7 @@ paths:
                 - eth-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -704,7 +704,7 @@ paths:
                 - eth-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -776,7 +776,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -824,7 +824,7 @@ paths:
                 - eth-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/query'
       x-readme:
         samples-languages:
@@ -861,7 +861,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -892,7 +892,7 @@ paths:
       description: Checks whether a wallet holds a NFT in a given collection
       tags: ['Ownership & Token Gating']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/wallet'
         - $ref: '#/components/schemas/contractAddress'
           required: true
@@ -929,7 +929,7 @@ paths:
                 - opt-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/fromBlock'
         - $ref: '#/components/schemas/toBlock'
         - $ref: '#/components/schemas/order'
@@ -1051,7 +1051,7 @@ paths:
       description: Gets all NFT contracts held by an owner address.
       tags: ['Ownership & Token Gating']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
@@ -1093,7 +1093,7 @@ paths:
       description: Report a particular address to our APIs if you think it is spam
       tags: ['Spam Detection']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/address'
           required: true
       x-readme:
@@ -1127,7 +1127,7 @@ paths:
         - $ref: '#/components/schemas/includeFilters'
         - $ref: '#/components/schemas/spamConfidenceLevel'
         - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
       x-readme:
@@ -1171,7 +1171,7 @@ paths:
       description: Gets the metadata associated with a given NFT.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -1199,7 +1199,7 @@ paths:
       description: Gets the metadata associated with up to 100 given NFT contracts.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -1261,7 +1261,7 @@ paths:
       description: Queries NFT high-level collection/contract level information.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -1284,7 +1284,7 @@ paths:
       description: Queries NFT high-level collection/contract level information.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/collectionSlug'
           required: true
       x-readme:
@@ -1307,7 +1307,7 @@ paths:
       description: Gets the metadata associated with the given list of contract addresses
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       requestBody:
         content:
           application/json:
@@ -1340,7 +1340,7 @@ paths:
       description: Gets all NFTs for a given NFT contract.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withMetadata'
@@ -1376,7 +1376,7 @@ paths:
       description: Get the owner(s) for a token.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -1409,7 +1409,7 @@ paths:
       description: Gets all owners for a given NFT contract.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withTokenBalances'
@@ -1455,7 +1455,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       x-readme:
         samples-languages:
           - javascript
@@ -1491,7 +1491,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -1519,7 +1519,7 @@ paths:
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -1556,7 +1556,7 @@ paths:
                 - eth-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
         - $ref: '#/components/schemas/collectionSlug'
       x-readme:
@@ -1609,7 +1609,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/tokenId'
@@ -1651,7 +1651,7 @@ paths:
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/query'
       x-readme:
         samples-languages:
@@ -1684,7 +1684,7 @@ paths:
                 - polygon-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/contractAddress'
           required: true
       x-readme:
@@ -1719,7 +1719,7 @@ paths:
       description: Checks whether a wallet holds a NFT from a given contract
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/wallet'
         - $ref: '#/components/schemas/contractAddress'
           required: true
@@ -1757,7 +1757,7 @@ paths:
                 - opt-mainnet
               default: eth-mainnet
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/fromBlock'
         - $ref: '#/components/schemas/toBlock'
         - $ref: '#/components/schemas/order'
@@ -1894,7 +1894,7 @@ paths:
       description: Gets all NFT contracts held by an owner address.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
@@ -1937,7 +1937,7 @@ paths:
       description: Gets all NFT collections held by an owner address.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/pageKey'
         - $ref: '#/components/schemas/pageSize'
@@ -1979,7 +1979,7 @@ paths:
       description: Report a particular address to our APIs if you think it is spam
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
         - $ref: '#/components/schemas/address'
           required: true
       x-readme:
@@ -2003,7 +2003,7 @@ paths:
       description: Submit a request that Alchemy refresh the cached NFT metadata for a particular token.
       tags: ['NFT API V3 Methods (BETA)']
       parameters:
-        - $ref: '#/components/schemas/apiKey'
+        - $ref: ../components/parameters.yaml#/ApiKey
       x-readme:
         samples-languages:
           - javascript
@@ -2048,20 +2048,6 @@ paths:
 
 components:
   schemas:
-    apiKey:
-      name: apiKey
-      in: path
-      schema:
-        type: string
-        default: docs-demo
-        description: |
-          <style>
-            .custom-style {
-              color: #048FF4;
-            }
-          </style>
-          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-      required: true
     owner:
       name: owner
       description: String - Address for NFT owner (can be in ENS format for Eth Mainnet).
