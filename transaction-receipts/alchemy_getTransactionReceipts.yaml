@@ -13,6 +13,7 @@ servers:
           - polygon-mumbai
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
         default: eth-mainnet
 x-sandbox:
   category:

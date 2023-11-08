@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Token Metadata
+  title: alchemy_getTokenMetadata
   version: '1.0'
 servers:
   - url: https://{network}.g.alchemy.com/v2
@@ -13,6 +13,7 @@ servers:
           - polygon-mumbai
           - arb-mainnet
           - arb-goerli
+          - arb-sepolia
           - opt-mainnet
           - opt-goerli
           - base-mainnet
