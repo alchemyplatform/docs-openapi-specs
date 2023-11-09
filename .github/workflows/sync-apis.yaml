@@ -141,7 +141,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./polygon-zkevm
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=6420c76a445d8e0070843e01
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=654d13eb5653ce00382cda04
 
       - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByNumber
         env:
