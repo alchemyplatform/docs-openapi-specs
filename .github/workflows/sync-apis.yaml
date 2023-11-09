@@ -165,7 +165,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_batchNumberByBlockNumber.yaml --key=$README_API_KEY --id=6420c7868a79580051fc7231
+        run: rdme openapi zkevm_batchNumberByBlockNumber.yaml --key=$README_API_KEY --id=654d14a8b618e4000d880edb
 
       - name: Update Polygon zkEVM API - eth_getFilterChanges
         env:
@@ -177,7 +177,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_consolidatedBlockNumber.yaml --key=$README_API_KEY  --id=6420c7950ff530004947d8b7
+        run: rdme openapi zkevm_consolidatedBlockNumber.yaml --key=$README_API_KEY  --id=654d15317599f909a29a9efa
 
       - name: Update Polygon zkEVM API - eth_getFilterLogs
         env:
@@ -521,7 +521,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./polygon-pos
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d82d8d83fc58004e33187d
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=654d13eb5653ce00382cda04
 
       - name: Update Polygon PoS API - eth_getBlockByHash
         env:
