@@ -34,6 +34,260 @@ jobs:
         run: npm install -g rdme@8.6.4
 
 
+      # Update Polygon zkEVM APIs
+      - name: Update Polygon zkEVM API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=6420c23db7fd4700451dd125
+
+      - name: Update Polygon zkEVM API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=6420c6b2cef8ff000a772940
+
+      - name: Update Polygon zkEVM API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=6420c6cd719861006cbabe36
+
+      - name: Update Polygon zkEVM API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=6420c6f26bf5fd002678f599
+
+      - name: Update Polygon zkEVM API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=6420c6facf7d71005e2c8060
+
+      - name: Update Polygon zkEVM API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=6420c702f721780026e80789
+
+      - name: Update Polygon zkEVM API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=6420c70d8bc1cb002f0f3d2c
+
+      - name: Update Polygon zkEVM API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=6420c7142e0f7c007434017a
+
+      - name: Update Polygon zkEVM API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=6420c71c6d83d70050530931
+
+      - name: Update Polygon zkEVM API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=6420c724bad79d003dc302c7
+
+      - name: Update Polygon zkEVM API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=6420c72df721780026e807c5
+
+      - name: Update Polygon zkEVM API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=6420c734caef32003a42de26
+
+      - name: Update Polygon zkEVM API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=6420c73c7637ea0074ca0c62
+
+      - name: Update Polygon zkEVM API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=6420c744caef32003a42de34
+
+      - name: Update Polygon zkEVM API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=6420c74ef4cf27000a8e4935
+
+      - name: Update Polygon zkEVM API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=6420c75c4fe821005e913608
+
+      - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=6420c76388a2bd0029c6eaf7
+
+      - name: Update Polygon zkEVM API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=6420c76a445d8e0070843e01
+
+      - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=6420c77188cf75000ab37254
+
+      - name: Update Polygon zkEVM API - zkevm_batchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_batchNumber.yaml --key=$README_API_KEY --id=6420c7780c6de100738e842a
+
+      - name: Update Polygon zkEVM API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY  --id=6420c7806238060035c87af4
+
+      - name: Update Polygon zkEVM API - zkevm_batchNumberByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_batchNumberByBlockNumber.yaml --key=$README_API_KEY --id=6420c7868a79580051fc7231
+
+      - name: Update Polygon zkEVM API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=6420c78d5258c30045c65878
+
+      - name: Update Polygon zkEVM API - zkevm_consolidatedBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_consolidatedBlockNumber.yaml --key=$README_API_KEY  --id=6420c7950ff530004947d8b7
+
+      - name: Update Polygon zkEVM API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=6420c79cba0e1d00790a67be
+
+      - name: Update Polygon zkEVM API - zkevm_getBatchByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_getBatchByNumber.yaml --key=$README_API_KEY --id=6420c7a3a93c91006a9ef0bd
+
+      - name: Update Polygon zkEVM API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=6420c7adf1b410000b629315
+
+      - name: Update Polygon zkEVM API - zkevm_getBroadcastURI
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_getBroadcastURI.yaml --key=$README_API_KEY --id=6420c7c7a9d2ae0026acd1fb
+
+      - name: Update Polygon zkEVM API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=6420c7cf84b3ba001f66382d
+
+      - name: Update Polygon zkEVM API - zkevm_isBlockConsolidated
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_isBlockConsolidated.yaml --key=$README_API_KEY --id=6420c7fcb81acd001f9a4db1
+
+      - name: Update Polygon zkEVM API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY  --id=6420c805f94e39006585d38b
+
+      - name: Update Polygon zkEVM API - zkevm_isBlockVirtualized
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_isBlockVirtualized.yaml --key=$README_API_KEY  --id=6420c80eac10df0018e50089
+
+      - name: Update Polygon zkEVM API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6420c85356f3140073143691
+
+      - name: Update Polygon zkEVM API - zkevm_verifiedBatchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_verifiedBatchNumber.yaml --key=$README_API_KEY --id=6420c893ae7f9d00417b1659
+
+      - name: Update Polygon zkEVM API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=6420c89c79b7370011256c54
+
+      - name: Update Polygon zkEVM API - zkevm_virtualBatchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_virtualBatchNumber.yaml --key=$README_API_KEY --id=6420c8a47ef46000118575ac
+
+      - name: Update Polygon zkEVM API - eth_getCompilers
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getCompilers.yaml --key=$README_API_KEY --id=6421e0f1823528005ec58005
+
+      - name: Update Polygon zkEVM API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6421e11415dfe600739a40ef
+
+      - name: Update Polygon zkEVM API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6421e11d5d9682006b8d1fd5
+
+      - name: Update Polygon zkEVM API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=6421e1260d3c2409513eec65
+
+      - name: Update Polygon zkEVM API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=6421e130a4fdca0058d7e544
+
+      - name: Update Polygon zkEVM API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=6421e143fe648e088d9b4f23
+
+
       # Update Polygon PoS APIs
       - name: Update Polygon PoS API - eth_createAccessList
         env:
