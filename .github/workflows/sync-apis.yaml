@@ -33,7 +33,231 @@ jobs:
       - name: Install rdme
         run: npm install -g rdme@8.6.4
 
-      
+
+      # Update Optimism APIs
+      - name: Update Optimism API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d953617b813f0027df394f
+
+      - name: Update Optimism API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62d979b1207ad7007e6df52f
+
+      - name: Update Optimism API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d953db766263008a8661a1
+
+      - name: Update Optimism API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d954000b41d000a6ec2344
+
+      - name: Update Optimism API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d9543faec8c8003f63b029
+
+      - name: Update Optimism API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d954f26ccd5600456a0763
+
+      - name: Update Optimism API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d95503a7d49400700297ea
+
+      - name: Update Optimism API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d95512aec8c8003f63c2ad
+
+      - name: Update Optimism API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d955227a0884003e288bca
+
+      - name: Update Optimism API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d9553433565c01d2d5d376
+
+      - name: Update Optimism API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d95543d1ef6d002f862cc1
+
+      - name: Update Optimism API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d955690b41d000a6ec345a
+
+      - name: Update Optimism API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d955787c1ba40036ac4052
+
+      - name: Update Optimism API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d9558b37827c001a477b62
+
+      - name: Update Optimism API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d9559a2f091a0013e9af08
+
+      - name: Update Optimism API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d955abe21c4905d7b129a0
+
+      - name: Update Optimism API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d955be70f208005866869c
+
+      - name: Update Optimism API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d955cf259d7e00147b0ce8
+
+      - name: Update Optimism API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d955e072584e00271ac10c
+
+      - name: Update Optimism API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d955f3ff2a2d0061dbeb1b
+
+      - name: Update Optimism API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d95604ab01d00082f21646
+
+      - name: Update Optimism API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d956100b41d000a6ec47c9
+
+      - name: Update Optimism API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d9561b766263008a8680cd
+
+      - name: Update Optimism API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d9562996a4a60049733692
+
+      - name: Update Optimism API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=62d9563f82f07f005619b822
+
+      - name: Update Optimism API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d9564f37827c001a478ee6
+
+      - name: Update Optimism API - eth_syncing
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_syncing.yaml --key=$README_API_KEY --id=62d9567837827c001a47909f
+
+      - name: Update Optimism API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d956923b4331007ebc7504
+
+      - name: Update Optimism API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d956b1089b2a00309e60e4
+
+      - name: Update Optimism API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d956cc03036a002da5d8e6
+
+      - name: Update Optimism API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d956dd7b813f0027df6c3e
+
+      - name: Update Optimism API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d956ed33565c01d2d60260
+
+      - name: Update Optimism API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d95557c7488f0014210297
+
+      - name: Update Optimism API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d954cce232c70091e95b1f
+
+      - name: Update Optimism API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d954de70fd50003f027d87
+
+      - name: Update Optimism API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d953f0089b2a00309e3f8f
+
+      - name: Update Optimism API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d953c76ccd56004569e216
+
+
       # Update Astar APIs
       - name: Update Astar API - eth_accounts
         env:
