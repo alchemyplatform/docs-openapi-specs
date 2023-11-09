@@ -32,7 +32,196 @@ jobs:
       # Install rdme globally
       - name: Install rdme
         run: npm install -g rdme@8.6.4
-          
+
+      
+      # Update Astar APIs
+      - name: Update Astar API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=6306840eab47c500b41709fa
+
+      - name: Update Astar API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=630685216c9aad005eeb4482
+
+      - name: Update Astar API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=6306853fc94db0005aa018c2
+
+      - name: Update Astar API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=6306854f941641003e6ddeb9
+
+      - name: Update Astar API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=63068561b526df034b29410f
+
+      - name: Update Astar API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=630685732011ad0027bde3b8
+
+      - name: Update Astar API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=6306858899c4d500b015d001
+
+      - name: Update Astar API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=630685aa95b74c0014250f60
+
+      - name: Update Astar API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=630685bf8f8a1c026b4c8573
+
+      - name: Update Astar API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=630685dedcbf0b00389a9070
+
+      - name: Update Astar API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=630685eeaa28790021b9a64a
+
+      - name: Update Astar API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=63068647504be60020dd1cd7
+
+      - name: Update Astar API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=630686686c9aad005eeb73b8
+
+      - name: Update Astar API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=630686867f0d8d003e891020
+
+      - name: Update Astar API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6306869d79a50c0045dc7b1c
+
+      - name: Update Astar API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=630686bd596643001a5f86a3
+
+      - name: Update Astar API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=630686d0ef9c6200884b3736
+
+      - name: Update Astar API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=630686dcd180b9002e3cb579
+
+      - name: Update Astar API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=630686ef8268a500a83ab3b6
+
+      - name: Update Astar API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=630687037b6352003e0a8c5a
+
+      - name: Update Astar API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=63068749a75a77002390daf0
+
+      - name: Update Astar API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=63068761046c22008357b000
+
+      - name: Update Astar API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=63068778b999830036a69dae
+
+      - name: Update Astar API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=630687986f18270014b9202b
+
+      - name: Update Astar API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=64260c7691de4900738ce7ec
+
+      - name: Update Astar API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=643eca24b8182508a0a30805
+
+      - name: Update Astar API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=643eca3969a1280fcd9e2b9a
+
+      - name: Update Astar API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=643eca52865ddf187411c354
+
+      - name: Update Astar API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=643eca68d148b9000b80b8ea
+
+      - name: Update Astar API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=643eca7ebee410066e58c745
+
+      - name: Update Astar API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=643eca95b0ef80002e25fc91
+
+
       # Update NFT API
       - name: Update NFT API
         uses: readmeio/rdme@8.6.4
