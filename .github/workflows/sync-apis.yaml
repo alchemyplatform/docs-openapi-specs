@@ -33,6 +33,236 @@ jobs:
       - name: Install rdme
         run: npm install -g rdme@8.6.4
 
+      
+      # Update Base APIs
+      - name: Update Base API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=64da538a3a4a310013f0fa08
+
+      - name: Update Base API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=64da557aae950900612432fd
+
+      - name: Update Base API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=64da5583b7d4d50ebb44ae9b
+
+      - name: Update Base API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=64da558c0005760eb9f079e4
+
+      - name: Update Base API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=64da55952588c1002458a6d4
+
+      - name: Update Base API - eth_feeHistory
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_feeHistory.yaml --key=$README_API_KEY --id=64da559f199f620ebfbbfdc8
+
+      - name: Update Base API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=64da55a9bfccf711c2dc134a
+
+      - name: Update Base API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=64da55b4936f300c082ba3fe
+
+      - name: Update Base API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=64da55be7f0a0f07fc9169d6
+
+      - name: Update Base API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=64da55ccb7d4d50ebb44b20a
+
+      - name: Update Base API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=64da55d87a7eb80f05a9d151
+
+      - name: Update Base API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=64da55e3935867002bd1b1ad
+
+      - name: Update Base API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=64da55ed3afb8b00261ab002
+
+      - name: Update Base API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=64da55fe36974e003b1c80f6
+
+      - name: Update Base API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=64da561e638a920f8530c37b
+
+      - name: Update Base API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=64da562a79236210540ff9be
+
+      - name: Update Base API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=64da563660e41c0ebdbd5a44
+
+      - name: Update Base API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=64da56432588c1002458af6f
+
+      - name: Update Base API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=64da565048dea211ce697205
+
+      - name: Update Base API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=64da565dede0f600133f100e
+
+      - name: Update Base API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=64da566adc0b1a083f1b94cd
+
+      - name: Update Base API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=64da56768446dc04ad4c5886
+
+      - name: Update Base API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=64da5697b08dc9004ee9398b
+
+      - name: Update Base API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=64da56aee40dd6118a805faf
+
+      - name: Update Base API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=64da56bff3ee96000ba3989a
+
+      - name: Update Base API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=64db9b384c2e4d002b62cdbd
+
+      - name: Update Base API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=64db9b69453cc7003d50987b
+
+      - name: Update Base API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64db9b7834634e0013e1f6a2
+
+      - name: Update Base API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=64db9b86135216006fa02838
+
+      - name: Update Base API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=64db9b954aab0b000b50f10e
+
+      - name: Update Base API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=64db9ba2df76b30033aa7436
+
+      - name: Update Base API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=64db9bae3eb99d003f5d05d9
+
+      - name: Update Base API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=64db9bb82db98e005ee5b0a0
+
+      - name: Update Base API - eth_syncing
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_syncing.yaml --key=$README_API_KEY --id=64db9bc4f37e61005c0013cd
+
+      - name: Update Base API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=64db9bd717e012005eb7186a
+
+      - name: Update Base API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=64db9bdf4216de005fc9dadc
+
+      - name: Update Base API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=64db9be92db98e005ee5b89c
+
+      - name: Update Base API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=64db9bf4b9b936004d709d89
+
 
       # Update Solana APIs
       - name: Update Solana API - simulateTransaction
