@@ -34,6 +34,272 @@ jobs:
         run: npm install -g rdme@8.6.4
 
 
+      # Update Polygon PoS APIs
+      - name: Update Polygon PoS API - eth_createAccessList
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=635bfabd4f91e200405cddfa
+
+      - name: Update Polygon PoS API - bor_getAuthor
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getAuthor.yaml --key=$README_API_KEY --id=62d82945841e5600b8364320
+
+      - name: Update Polygon PoS API - bor_getCurrentProposer
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getCurrentProposer.yaml --key=$README_API_KEY --id=62d82965cb07ef006561e5af
+
+      - name: Update Polygon PoS API - bor_getCurrentValidators
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getCurrentValidators.yaml --key=$README_API_KEY --id=62d829733071e2001ac8ece4
+
+      - name: Update Polygon PoS API - bor_getRootHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getRootHash.yaml --key=$README_API_KEY --id=62d8298795ca1c004cd48382
+
+      - name: Update Polygon PoS API - bor_getSignersAtHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getSignersAtHash.yaml --key=$README_API_KEY --id=641505b4efbb8e0967737ce4
+
+      - name: Update Polygon PoS API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d829a1fd9bd5008ad53eb1
+
+      - name: Update Polygon PoS API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62e1917dcdd98c009a2c2a85
+
+      - name: Update Polygon PoS API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d829d2eb13fc00281fe7bd
+
+      - name: Update Polygon PoS API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d82a4d2880f9013de98d82
+
+      - name: Update Polygon PoS API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d82a6280429500289da818
+
+      - name: Update Polygon PoS API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d82b0247066b0027c130b8
+
+      - name: Update Polygon PoS API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d82b191a6cbc0079615968
+
+      - name: Update Polygon PoS API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d82b320634e6003dbf8a9a
+
+      - name: Update Polygon PoS API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d82b42c6645600bb050cc3
+
+      - name: Update Polygon PoS API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d82b5326236f002a451bd3
+
+      - name: Update Polygon PoS API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d82b66df005c0027cc9602
+
+      - name: Update Polygon PoS API - eth_getRootHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getRootHash.yaml --key=$README_API_KEY --id=62d82b87a307230086583acb
+
+      - name: Update Polygon PoS API - eth_getSignersAtHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getSignersAtHash.yaml --key=$README_API_KEY --id=62d82b9da8b7440038ce9274
+
+      - name: Update Polygon PoS API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d82bb04fd782002e6db7f2
+
+      - name: Update Polygon PoS API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d82bc3c4b3800064493595
+
+      - name: Update Polygon PoS API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d82bd6e856170013d62f58
+
+      - name: Update Polygon PoS API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d82c1ff43efe001c3b7c89
+
+      - name: Update Polygon PoS API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d82c318c633400a90f20aa
+
+      - name: Update Polygon PoS API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d82c448448ac0041147773
+
+      - name: Update Polygon PoS API - eth_getTransactionReceiptsByBlock
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionReceiptsByBlock.yaml --key=$README_API_KEY --id=62d82c5335ad200020fd58d3
+
+      - name: Update Polygon PoS API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d82c65cc0535008473fef3
+
+      - name: Update Polygon PoS API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d82c821cf0bf0094764635
+
+      - name: Update Polygon PoS API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d82c925a22fd0099471487
+
+      - name: Update Polygon PoS API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d82ca16307ee002d9b2bd1
+
+      - name: Update Polygon PoS API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d82cb06307ee002d9b2be0
+
+      - name: Update Polygon PoS API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d82cc1a63ffe0014d22442
+
+      - name: Update Polygon PoS API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d82ccff98016006db64147
+
+      - name: Update Polygon PoS API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d82ce46ba6120089a4acd3
+
+      - name: Update Polygon PoS API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d82d14a8cddc001dc2ce2c
+
+      - name: Update Polygon PoS API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d82d36ce9292019c74313c
+
+      - name: Update Polygon PoS API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d82d48be94a1007dea3014
+
+      - name: Update Polygon PoS API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d82d5805ea78004bfb8dd7
+
+      - name: Update Polygon PoS API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d82d8d83fc58004e33187d
+
+      - name: Update Polygon PoS API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d82a7bcafd010020d61d7d
+
+      - name: Update Polygon PoS API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d82a998c633400a90f064e
+
+      - name: Update Polygon PoS API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d829c2941aa0001a0ed91c
+
+      - name: Update Polygon PoS API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d82b76cafd010020d64513
+
+      - name: Update Polygon PoS API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d829e641abed0013809424
+
+
       # Update Optimism APIs
       - name: Update Optimism API - eth_accounts
         env:
