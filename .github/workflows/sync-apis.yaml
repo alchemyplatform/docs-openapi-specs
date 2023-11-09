@@ -34,6 +34,278 @@ jobs:
         run: npm install -g rdme@8.6.4
 
 
+      # Update Solana APIs
+      - name: Update Solana API - simulateTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi simulateTransaction.yaml  --key=$README_API_KEY --id=62c6efc9fa25a90077896797
+
+      - name: Update Solana API - getBlockCommitment
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlockCommitment.yaml --key=$README_API_KEY --id=62d97f5714db260014219ae5
+
+      - name: Update Solana API - getBlockHeight
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlockHeight.yaml --key=$README_API_KEY --id=62d97f97c53ae5009910be97
+
+      - name: Update Solana API - getBlockProduction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlockProduction.yaml --key=$README_API_KEY --id=62d97fb22dc143006b456c41
+
+      - name: Update Solana API - getBlockTime
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlockTime.yaml --key=$README_API_KEY --id=62d98014b1994a002d227c2a
+
+      - name: Update Solana API - getClusterNodes
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getClusterNodes.yaml --key=$README_API_KEY --id=62d98035ef764c004bc2481e
+
+      - name: Update Solana API - getEpochInfo
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getEpochInfo.yaml --key=$README_API_KEY --id=62d9804df23a6a00359b2a4e
+
+      - name: Update Solana API - getEpochSchedule
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getEpochSchedule.yaml --key=$README_API_KEY --id=62d98065be6fce009f8d9caa
+
+      - name: Update Solana API - getFirstAvailableBlock
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getFirstAvailableBlock.yaml --key=$README_API_KEY --id=62d9808aab01d00082f590d7
+
+      - name: Update Solana API - getGenesisHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getGenesisHash.yaml --key=$README_API_KEY --id=62d9809a366de70043b2237f
+
+      - name: Update Solana API - getHealth
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getHealth.yaml --key=$README_API_KEY --id=62d980aecec32f0013e6babe
+
+      - name: Update Solana API - getHighestSnapshotSlot
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getHighestSnapshotSlot.yaml --key=$README_API_KEY --id=62d9811d48751e0042955502
+
+      - name: Update Solana API - getIdentity
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getIdentity.yaml --key=$README_API_KEY --id=62d9812f07add60035ed1487
+
+      - name: Update Solana API - getInflationGovernor
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getInflationGovernor.yaml --key=$README_API_KEY --id=62d9813d72584e00271e2985
+
+      - name: Update Solana API - getInflationRate
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getInflationRate.yaml --key=$README_API_KEY --id=62d9814eff2a2d0061def14b
+
+      - name: Update Solana API - getLargestAccounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getLargestAccounts.yaml --key=$README_API_KEY --id=62d9816f8a52690af76c597c
+
+      - name: Update Solana API - getMaxRetransmitSlot
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getMaxRetransmitSlot.yaml --key=$README_API_KEY --id=62d981a5425369004cc57821
+
+      - name: Update Solana API - getMaxShredInsertSlot
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getMaxShredInsertSlot.yaml --key=$README_API_KEY --id=62d981b0b9c43f005f31cbb5
+
+      - name: Update Solana API - getRecentPerformanceSamples
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getRecentPerformanceSamples.yaml --key=$README_API_KEY --id=62d981fd28044300529c8024
+
+      - name: Update Solana API - getSlot
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getSlot.yaml --key=$README_API_KEY --id=62d98258fb40fb00a08cf5a2
+
+      - name: Update Solana API - getSlotLeader
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getSlotLeader.yaml --key=$README_API_KEY --id=62d9826448751e0042956e8e
+
+      - name: Update Solana API - getSlotLeaders
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getSlotLeaders.yaml --key=$README_API_KEY --id=62d98271f01e4d002f395c39
+
+      - name: Update Solana API - getSupply
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getSupply.yaml --key=$README_API_KEY --id=62d9827d80f257002f4bb308
+
+      - name: Update Solana API - getVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getVersion.yaml --key=$README_API_KEY --id=62d982ef70fd50003f0639c0
+
+      - name: Update Solana API - getVoteAccounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getVoteAccounts.yaml --key=$README_API_KEY --id=62d982fa8cd9e7006a4c7108
+
+      - name: Update Solana API - minimumLedgerSlot
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi minimumLedgerSlot.yaml --key=$README_API_KEY --id=62d9831df57266001a2415bf
+
+      - name: Update Solana API - requestAirdrop
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi requestAirdrop.yaml --key=$README_API_KEY --id=63f6ea17f08f2b047cdd9095
+
+      - name: Update Solana API - getAccountInfo
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getAccountInfo.yaml  --key=$README_API_KEY --id=62c6ef02ec7e0e00977b4950
+
+      - name: Update Solana API - getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBalance.yaml --key=$README_API_KEY --id=62d97f3dd6f1280040035364
+
+      - name: Update Solana API - getBlock
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlock.yaml --key=$README_API_KEY --id=62d97f4877cd5f004182af1a
+
+      - name: Update Solana API - getBlocks
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlocks.yaml --key=$README_API_KEY --id=62d97fd9e7f4f400720b1a7e
+
+      - name: Update Solana API - getBlocksWithLimit
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getBlocksWithLimit.yaml --key=$README_API_KEY --id=62d97ffdd9fef30054e3688a
+
+      - name: Update Solana API - getFeeForMessage
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getFeeForMessage.yaml --key=$README_API_KEY --id=62d9807670f20800586a3dbf
+
+      - name: Update Solana API - getInflationReward
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getInflationReward.yaml --key=$README_API_KEY --id=62d98160d04eff08f64f6787
+
+      - name: Update Solana API - getMinimumBalanceForRentExemption
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getMinimumBalanceForRentExemption.yaml --key=$README_API_KEY --id=62d981c8caa2920027764382
+
+      - name: Update Solana API - getMultipleAccounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getMultipleAccounts.yaml --key=$README_API_KEY --id=62d981db4959b30088fbe560
+
+      - name: Update Solana API - getProgramAccounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getProgramAccounts.yaml --key=$README_API_KEY --id=62d981eecaa29200277649ff
+
+      - name: Update Solana API - getSignaturesForAddress
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getSignaturesForAddress.yaml --key=$README_API_KEY --id=62d9823b6199a8003b4a47b3
+
+      - name: Update Solana API - getSignatureStatuses
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getSignatureStatuses.yaml --key=$README_API_KEY --id=62d9824a5848b10037812fe2
+
+      - name: Update Solana API - getTokenAccountBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getTokenAccountBalance.yaml --key=$README_API_KEY --id=62d982b0826b4e0078ee3afb
+
+      - name: Update Solana API - getTokenAccountsByOwner
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getTokenAccountsByOwner.yaml --key=$README_API_KEY --id=62d982c8ebeda4004a291b68
+
+      - name: Update Solana API - getTokenSupply
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getTokenSupply.yaml --key=$README_API_KEY --id=62d982d63b4331007ec01843
+
+      - name: Update Solana API - getTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getTransaction.yaml --key=$README_API_KEY --id=62d982e499d11500b3890f09
+
+      - name: Update Solana API - isBlockhashValid
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi isBlockhashValid.yaml --key=$README_API_KEY --id=62d9830ae173250013ce6eda
+
+      - name: Update Solana API - sendTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi sendTransaction.yaml --key=$README_API_KEY --id=62d9832db4d7bf001a180ea3
+
+
       # Update Polygon zkEVM APIs
       - name: Update Polygon zkEVM API - eth_blockNumber
         env:
