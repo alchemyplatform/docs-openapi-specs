@@ -60,6 +60,11 @@ components:
                             - $ref: '../components/starknet/schemas.yaml#/BlockId'
                             - $ref: '../components/starknet/schemas.yaml#/Felt'
                               default: '0x601407cf04ab1fbab155f913db64891dc749f4343bc9e535bd012234a46dc61'
+                        prefixItems:
+                          oneOf:
+                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                            - $ref: '../components/starknet/schemas.yaml#/Felt'
+                              default: '0x601407cf04ab1fbab155f913db64891dc749f4343bc9e535bd012234a46dc61'
                         description: The block id of the requested block and the hash of the requested contract class
                         minItems: 2
                         maxItems: 2
