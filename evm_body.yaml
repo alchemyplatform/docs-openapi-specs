@@ -467,6 +467,12 @@ eth_estimateGas_550:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
+          prefixItems:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
 
 eth_estimateGas_polygon_zkEVM:
   allOf:
@@ -481,6 +487,12 @@ eth_estimateGas_polygon_zkEVM:
           minItems: 2
           maxItems: 2
           items:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                  - $ref: '#/gas_550'
+              - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
+          prefixItems:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
@@ -899,6 +911,11 @@ trace_replayBlockTransactions:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
                 title: block number or block tag
               - $ref: '#/trace_type_array'
+          prefixItems:
+            oneOf:
+              - $ref: '#/blockNumber_or_blocktag_param_eth'
+                title: block number or block tag
+              - $ref: '#/trace_type_array'
 trace_replayTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -915,6 +932,13 @@ trace_replayTransaction:
             1. `string` - transaction hash
             2. `array` - Type of trace, one or more of "trace" or "stateDiff"
           items:
+            oneOf:
+              - type: string
+                title: Transaction hash
+                default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+                pattern: '^0[xX][0-9a-fA-F]+$'
+              - $ref: '#/trace_type_array'
+          prefixItems:
             oneOf:
               - type: string
                 title: Transaction hash
@@ -1519,6 +1543,15 @@ eth_call_550_gas:
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash'
                 title: Block number or block tag or block hash
+          prefixItems:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                    title: Transaction Object
+                  - $ref: '#/gas_550'
+              - $ref: '#/BlockNumberOrTagOrHash'
+                title: Block number or block tag or block hash
+
 
 eth_call_polygon_zkevm:
   allOf:
@@ -1540,6 +1573,15 @@ eth_call_polygon_zkevm:
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
                 title: Block number or block tag or block hash
+          prefixItems:
+            oneOf:
+              - allOf:
+                  - $ref: '#/transaction_object'
+                    title: Transaction Object
+                  - $ref: '#/gas_550'
+              - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
+                title: Block number or block tag or block hash
+
 
 transaction_object:
   type: object
@@ -2172,6 +2214,10 @@ eth_sendUserOperation:
             oneOf:
               - $ref: ./components/schemas.yaml#/UserOperation
               - $ref: ./components/schemas.yaml#/EntryPoint
+          prefixItems:
+            oneOf:
+              - $ref: ./components/schemas.yaml#/UserOperation
+              - $ref: ./components/schemas.yaml#/EntryPoint
 
 eth_estimateUserOperationGas:
   allOf:
@@ -2191,6 +2237,10 @@ eth_estimateUserOperationGas:
           minItems: 2
           maxItems: 2
           items:
+            oneOf:
+              - $ref: ./components/schemas.yaml#/UserOperation
+              - $ref: ./components/schemas.yaml#/EntryPoint
+          prefixItems:
             oneOf:
               - $ref: ./components/schemas.yaml#/UserOperation
               - $ref: ./components/schemas.yaml#/EntryPoint

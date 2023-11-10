@@ -73,6 +73,10 @@ components:
                           oneOf:
                             - $ref: '../components/starknet/schemas.yaml#/BlockId'
                             - $ref: '../components/starknet/schemas.yaml#/Address'
+                        prefixItems:
+                          oneOf:
+                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                            - $ref: '../components/starknet/schemas.yaml#/Address'
                         description: The hash of the requested block and the address of the contract whose class hash will be returned
                         minItems: 2
                         maxItems: 2
