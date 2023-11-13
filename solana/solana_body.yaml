@@ -53,6 +53,34 @@ getBlock:
                   maxSupportedTransactionVersion:
                     type: integer
                     description: Sets the maximum transaction version.
+          prefixItems:
+            oneOf:
+              - type: integer
+                description: A slot integer denoting the target block number.
+              - type: object
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  transactionDetails:
+                    type: string
+                    description: |
+                      Level of transaction detail to return.
+                      Accepts one of the following strings:
+                      ["full" (Default), "signatures", or "none"]
+                    enum:
+                      - full
+                      - signatures
+                      - none
+                    default: full
+                  rewards:
+                    type: boolean
+                    description: Whether to populate the rewards array.  true (Default)
+                    default: true
+                  commitment:
+                    $ref: '#/commitment'
+                  maxSupportedTransactionVersion:
+                    type: integer
+                    description: Sets the maximum transaction version.
 getBlocks:
   allOf:
     - $ref: '#/common_request_fields'
@@ -165,6 +193,11 @@ isBlockhashValid:
               - type: string
                 description: Base-58 Encoded String - The blockhash of this block.
               - $ref: '#/configObject'
+          prefixItems:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - The blockhash of this block.
+              - $ref: '#/configObject'
 getAccountInfo:
   allOf:
     - $ref: '#/common_request_fields'
@@ -187,6 +220,16 @@ getAccountInfo:
                   encoding:
                     $ref: '#/encoding'
                   dataSlice:
+          prefixItems:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - Pubkey of account to query.
+              - type: object
+                description: Config object.
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
                     $ref: '#/dataSlice'
 getBalance:
   allOf:
@@ -199,6 +242,11 @@ getBalance:
         params:
           type: array
           items:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - Pubkey of account to query.
+              - $ref: '#/configObject'
+          prefixItems:
             oneOf:
               - type: string
                 description: Base-58 Encoded String - Pubkey of account to query.
@@ -230,6 +278,21 @@ getMultipleAccounts:
                     $ref: '#/dataSlice'
                   minContextSlot:
                     $ref: '#/minContextSlot'
+          prefixItems:
+            oneOf:
+              - type: array
+                items:
+                  type: string
+                description: Array of Base-58 Encoded Strings - An array of Pubkeys to query (up to a maximum of 100).
+              - type: object
+                description: Config object.
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 getProgramAccounts:
   allOf:
     - $ref: '#/common_request_fields'
@@ -241,6 +304,23 @@ getProgramAccounts:
         params:
           type: array
           items:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded sStrings - Pubkey of program.
+              - type: object
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
+                  filters:
+                    $ref: '#/filters'
+                  withContext:
+                    type: boolean
+                    description: Wrap the result in an RpcResponse JSON object.
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
+          prefixItems:
             oneOf:
               - type: string
                 description: Base-58 Encoded sStrings - Pubkey of program.
@@ -399,6 +479,13 @@ getMinimumBalanceForRentExemption:
               - type: object
                 properties:
                   commitment:
+          prefixItems:
+            oneOf:
+              - type: integer
+                description: usize - Account data length.
+              - type: object
+                properties:
+                  commitment:
                     $ref: '#/commitment'
 getRecentPerformanceSamples:
   allOf:
@@ -465,6 +552,22 @@ getInflationReward:
         params:
           type: array
           items:
+            oneOf:
+              - type: array
+                description: Array of Base-58 Encoded Strings - An array of addresses to query.
+                items:
+                  type: string
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
+                  epoch:
+                    type: integer
+                    format: int64
+                    description: 'u64 - An epoch for which the reward occurs. If omitted, the previous epoch will be used.'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
+          prefixItems:
             oneOf:
               - type: array
                 description: Array of Base-58 Encoded Strings - An array of addresses to query.
@@ -569,6 +672,14 @@ getTokenAccountBalance:
                 properties:
                   commitment:
                     $ref: '#/commitment'
+          prefixItems:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - Pubkey of queried token account.
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
 getTokenAccountsByOwner:
   allOf:
     - $ref: '#/common_request_fields'
@@ -580,6 +691,30 @@ getTokenAccountsByOwner:
         params:
           type: array
           items:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - Pubkey of queried SPL token account owner.
+              - oneOf:
+                  - type: object
+                    properties:
+                      mint:
+                        type: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
+                  - type: object
+                    properties:
+                      programId:
+                        type: string
+                        description: Base-58 Encoded String - Pubkey of the Token program that owns the accounts.
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
+                  encoding:
+                    $ref: '#/encoding'
+                  dataSlice:
+                    $ref: '#/dataSlice'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
+          prefixItems:
             oneOf:
               - type: string
                 description: Base-58 Encoded String - Pubkey of queried SPL token account owner.
@@ -621,6 +756,14 @@ getTokenSupply:
                 properties:
                   commitment:
                     $ref: '#/commitment'
+          prefixItems:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - Pubkey of token Mint to query.
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
 getSignaturesForAddress:
   allOf:
     - $ref: '#/common_request_fields'
@@ -632,6 +775,26 @@ getSignaturesForAddress:
         params:
           type: array
           items:
+            oneOf:
+              - type: string
+                description: Base-58 Encoded String - Account address.
+              - type: object
+                properties:
+                  limit:
+                    type: number
+                    default: 1000
+                    description: 'Maximum transaction signatures to return (between 1 and 1,000, default - 1,000).'
+                  before:
+                    type: string
+                    description: Start searching backwards from this transaction signature. If not provided the search starts from the top of the highest max confirmed block.
+                  until:
+                    type: string
+                    description: 'Search until this transaction signature, if found before limit reached.'
+                  commitment:
+                    $ref: '#/commitment'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
+          prefixItems:
             oneOf:
               - type: string
                 description: Base-58 Encoded String - Account address.
@@ -672,6 +835,15 @@ getSignatureStatuses:
                   searchTransactionHistory:
                     type: boolean
                     description: 'If true, a Solana node will search its ledger cache for any signatures not found in the recent status cache.'
+          prefixItems:
+            oneOf:
+              - type: string
+                description: Array of Base-58 Encoded String -  An array of transaction signatures to confirm.
+              - type: object
+                properties:
+                  searchTransactionHistory:
+                    type: boolean
+                    description: 'If true, a Solana node will search its ledger cache for any signatures not found in the recent status cache.'
 sendTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -685,6 +857,26 @@ sendTransaction:
           minItems: 2
           maxItems: 2
           items:
+            oneOf:
+              - type: string
+                description: Encoded String - Fully-signed Transaction.
+              - type: object
+                properties:
+                  skipPreflight:
+                    type: boolean
+                    description: 'If true, skip the preflight transaction checks (default - false).'
+                  preflightCommitment:
+                    type: string
+                    default: finalized
+                    description: Commitment level to use for preflight (default - "finalized").
+                  encoding:
+                    $ref: '#/encoding'
+                  maxRetries:
+                    type: number
+                    description: 'Maximum number of times for the RPC node to retry sending the transaction to the leader. If this parameter not provided, the RPC node will retry the transaction until it is finalized or until the blockhash expires.'
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
+          prefixItems:
             oneOf:
               - type: string
                 description: Encoded String - Fully-signed Transaction.
@@ -755,6 +947,45 @@ simulateTransaction:
                           type: string
                   minContextSlot:
                     $ref: '#/minContextSlot'
+          prefixItems:
+            oneOf:
+              - type: string
+                description: 'Transaction, as an encoded string. The transaction must have a valid blockhash, but is not required to be signed.'
+              - type: object
+                properties:
+                  sigVerify:
+                    type: boolean
+                    default: false
+                    description: 'if true the transaction signatures will be verified (default - false, conflicts with replaceRecentBlockhash).'
+                  commitment:
+                    $ref: '#/commitment'
+                  encoding:
+                    type: string
+                    default: base58
+                    description: 'Encoding used for the transaction data. Either "base58" (slow, DEPRECATED), or "base64". (default - "base58").'
+                  replaceRecentBlockhash:
+                    type: boolean
+                    default: false
+                    description: 'If true, the transaction recent blockhash will be replaced with the most recent blockhash. (default - false, conflicts with sigVerify).'
+                  accounts:
+                    type: object
+                    description: Accounts configuration object.
+                    properties:
+                      encoding:
+                        type: string
+                        default: base64
+                        description: |
+                          Data encoding for each returned transaction
+                          Accepts one of the following strings:
+                          ["base64" (default), "base64+zstd" or "jsonParsed"] 
+                          "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
+                      addresses:
+                        type: array
+                        description: Array of Base-58 Encoded Strings - An array of accounts to return.
+                        items:
+                          type: string
+                  minContextSlot:
+                    $ref: '#/minContextSlot'
 getTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -780,7 +1011,19 @@ getTransaction:
                   maxSupportedTransactionVersion:
                     type: number
                     description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
-
+          prefixItems:
+            oneOf:
+              - type: string
+                description: Returns transaction details for a confirmed transaction.
+              - type: object
+                properties:
+                  encoding:
+                    $ref: '#/encoding'
+                  commitment:
+                    $ref: '#/commitment'
+                  maxSupportedTransactionVersion:
+                    type: number
+                    description: 'Set the max transaction version to return in responses. If the requested transaction is a higher version, an error will be returned.'
 requestAirdrop:
   allOf:
     - $ref: '#/common_request_fields'
@@ -794,6 +1037,18 @@ requestAirdrop:
           minItems: 1
           maxItems: 1
           items:
+            oneOf:
+              - type: string
+                description: Pubkey of account to receive lamports, as a base-58 encoded string
+                default: '83astBRguLMdt2h5U1Tpdq5tjFoJ6noeGwaY3mDLVcri'
+              - type: number
+                description: Lamports to airdrop, as a "u64"
+                default: 1000000000
+              - type: object
+                properties:
+                  commitment:
+                    $ref: '#/commitment'
+          prefixItems:
             oneOf:
               - type: string
                 description: Pubkey of account to receive lamports, as a base-58 encoded string

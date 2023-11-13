@@ -262,6 +262,10 @@ accountValue:
         'oneOf:data':
           - type: string
           - type: object
+      prefixItems:
+        'oneOf:data':
+          - type: string
+          - type: object
     executable:
       type: boolean
       description: Indicates if the account contains a program (and is strictly read-only).
@@ -913,6 +917,10 @@ simulateTransaction:
                         [string, encoding]|object - Data associated with the account, either as encoded binary data or JSON format {<program>: <state>}, depending on encoding parameter.
                       type: array
                       items:
+                        'oneOf:data':
+                          - type: string
+                          - type: object
+                      prefixItems:
                         'oneOf:data':
                           - type: string
                           - type: object
