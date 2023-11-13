@@ -344,8 +344,8 @@ eth_getStorageAt_polygon_zkevm:
             3. String - Either the hex value of a **block number** OR a **block hash** OR One of the following **block tags**:
                 * `pending` - This is the same as `latest` for Polygon zkEVM.
                 * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-                * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. 
-                * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. 
+                * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged.
+                * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged.
                 * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
           minItems: 3
           maxItems: 3
@@ -623,7 +623,7 @@ eth_getUncleCountByBlockNumber:
           minItems: 1
           maxItems: 1
           items:
-            -$ref: '#/BlockNumber'
+            $ref: '#/BlockNumber'
 eth_getFilterChanges:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1658,11 +1658,11 @@ blockHash_and_index_param:
       items:
         type: string
         pattern: '^0[xX][0-9a-fA-F]+$'
-    default:
-      [
-        '0xbf06c77f6ed9a65441795eb8c2ccd694b3fc9b4d1be6066bf7ed52c73c5ec97c',
-        '0x64',
-      ]
+      default:
+        [
+          '0xbf06c77f6ed9a65441795eb8c2ccd694b3fc9b4d1be6066bf7ed52c73c5ec97c',
+          '0x64',
+        ]
 signed_transaction_param:
   type: object
   properties:
@@ -1787,8 +1787,8 @@ blockNumber_or_blocktag_param_polygon_zkevm:
       2. **block tag** (one of the following):
           * `pending` - This is the same as `latest` for Polygon zkEVM.
           * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
-          * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged. 
-          * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged. 
+          * `safe` - The most recent crypto-economically secure block, cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is “unlikely” to be re-orged.
+          * `finalized` - The most recent crypto-economically secure block, that has been accepted by >2/3 of validators. Cannot be re-orged outside of manual intervention driven by community coordination. Intuitively, this block is very unlikely to be re-orged.
           * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
   default: finalized
 
@@ -2171,7 +2171,7 @@ zkevm_getBatchByNumber:
             1. String - The batch number (in hex) or batch tag
 
               The optional batch height descriptions are:
-              * `latest` - The most recent batch in the canonical chain observed by the client, this batch may be re-orged out of the canonical chain even under healthy/normal conditions. 
+              * `latest` - The most recent batch in the canonical chain observed by the client, this batch may be re-orged out of the canonical chain even under healthy/normal conditions.
               * `earliest` - The lowest numbered batch the client has available. Intuitively, you can think of this as the first batch created.
           minItems: 1
           maxItems: 1

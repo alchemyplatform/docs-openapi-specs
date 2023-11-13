@@ -96,9 +96,9 @@ async function main() {
                 BASE_DOCS_URL +
                 operation.operationId.toLowerCase().replace(/_/g, '-');
 
-              // Note: currently ignores params in headers and cookies
+              // Note: currently ignores params in path, headers and cookies
               // assumption is we will not need this to build request in Sandbox
-              const { pathParams, queryParams } = extractParams(
+              const { /* pathParams, */ queryParams } = extractParams(
                 operation.parameters as
                   | OpenAPIV3_1.ParameterObject[]
                   | undefined,
@@ -115,7 +115,7 @@ async function main() {
                   verb: methodVerb,
                   docsUrl: readmeUrl,
                 },
-                pathParams,
+                // pathParams,
                 queryParams,
                 requestBody:
                   operation.requestBody as OpenAPIV3_1.RequestBodyObject,
@@ -144,8 +144,10 @@ async function main() {
     if (!groupedEntries[chain]) {
       groupedEntries[chain] = {};
     }
-
-    const entry = groupedEntries[chain][method.name];
+    const requestBody = convertRequestBody(flatEntry.requestBody);
+    const methodName =
+      (requestBody && extractJSONRPCMethod(requestBody)) || method.name;
+    const entry = groupedEntries[chain][methodName];
     if (!entry) {
       // strip / prefix from url if exists
       // TODO: we should be enforced in spec to have no trailing slash for servers url
@@ -158,17 +160,21 @@ async function main() {
         url: url + flatEntry.path,
         method: method.verb,
         docsUrl: method.docsUrl,
-        pathParams: flatEntry.pathParams.map(convertParam),
-        queryParams: flatEntry.queryParams.map(convertParam),
-        requestBody: flatEntry.requestBody,
+        // pathParams: flatEntry.pathParams
+        //   .map(convertParam)
+        //   .filter((param): param is Param => param != null),
+        queryParams: flatEntry.queryParams
+          .map(convertParam)
+          .filter((param): param is Param => param != null),
+        requestBody,
       };
-      groupedEntries[chain][method.name] = newEntry;
+      groupedEntries[chain][methodName] = newEntry;
     } else {
       const updatedEntry = {
         ...entry,
         networks: [...entry.networks, network],
       };
-      groupedEntries[chain][method.name] = updatedEntry;
+      groupedEntries[chain][methodName] = updatedEntry;
     }
   }
 
@@ -265,35 +271,142 @@ function extractParams(params: OpenAPIV3_1.ParameterObject[] | undefined): {
   return { pathParams, queryParams };
 }
 
-function convertParam(param: OpenAPIV3_1.ParameterObject): Param {
+function extractJSONRPCMethod(param: Param): string | undefined {
+  if (param.type !== 'object') return;
+  if (param.properties['jsonrpc']?.default !== '2.0') return;
+
+  return String(param.properties['method'].default);
+}
+
+function convertParam(param: OpenAPIV3_1.ParameterObject): Param | undefined {
   const { name, required, description } = param;
-  const schema = param.schema as OpenAPIV3_1.SchemaObject;
-  const { type, default: defaultVal } = schema;
-  if (!type) {
-    throw new Error('Schema type not found');
-  }
+  const schema = convertSchema(param.schema as OpenAPIV3_1.SchemaObject);
+
+  if (!schema) return;
+
   return {
-    name,
-    type: type as string,
-    required: required ?? false,
-    description: description ?? '',
-    default: defaultVal,
-    items: schema.type === 'array' ? schema.items : undefined,
+    ...schema,
+    name: name ?? schema.name,
+    required: (required ?? schema.required) || undefined,
+    description: description ?? schema.description,
   };
+}
+
+function convertSchema(schema: OpenAPIV3_1.SchemaObject): Param | undefined {
+  if (schema == null || Object.keys(schema).length === 0) return;
+
+  if (Array.isArray(schema)) {
+    return convertParam(schema[0]);
+  }
+
+  if ('schema' in schema) {
+    return convertParam(schema as OpenAPIV3_1.ParameterObject);
+  }
+
+  if (schema.allOf) {
+    const allOf = schema.allOf as OpenAPIV3_1.SchemaObject[];
+
+    return convertSchema({
+      type: 'object',
+      title: schema.title || allOf.find((param) => param.title)?.title,
+      properties: allOf.reduce(
+        (acc, param) => ({ ...acc, ...param.properties }),
+        {},
+      ) as Record<string, OpenAPIV3_1.SchemaObject>,
+      required: allOf.flatMap((param) => param.required || [], []) || undefined,
+    });
+  }
+
+  if (schema.oneOf) {
+    const items = schema.oneOf
+      .map(convertSchema)
+      .filter((param): param is Param => param != null);
+
+    if (items.length === 0) return;
+
+    return { type: 'oneOf', name: schema.title, items };
+  }
+
+  if (schema.anyOf) {
+    const items = schema.anyOf
+      .map(convertSchema)
+      .filter((param): param is Param => param != null);
+
+    if (items.length === 0) return;
+
+    return { type: 'anyOf', name: schema.title, items };
+  }
+
+  switch (schema.type) {
+    case 'string':
+      return {
+        type: 'string',
+        default: schema.default,
+        description: schema.description,
+        pattern: schema.pattern,
+        enum: schema.enum,
+        name: schema.title,
+      };
+    case 'number':
+    case 'integer':
+      return {
+        type: schema.type,
+        default: schema.default,
+        description: schema.description,
+        name: schema.title,
+      };
+    case 'boolean':
+      return {
+        type: 'boolean',
+        default: schema.default,
+        description: schema.description,
+        name: schema.title,
+      };
+    case 'array':
+      const items = convertSchema(schema.items);
+
+      if (!items) return;
+
+      return {
+        type: 'array',
+        default: schema.default,
+        description: schema.description,
+        max: schema.maxItems,
+        min: schema.minItems,
+        name: schema.title,
+        items,
+      };
+    case 'object':
+      const propertyEntries = Object.entries(schema.properties || {}).map(
+        ([key, prop]) => {
+          return [
+            key,
+            {
+              ...convertSchema(prop),
+              name: key,
+              required: schema.required?.includes(key) || undefined,
+            },
+          ];
+        },
+      );
+
+      if (propertyEntries.length === 0) return;
+
+      return {
+        type: 'object',
+        description: schema.description,
+        properties: Object.fromEntries(propertyEntries),
+        name: schema.title,
+      };
+    default:
+      throw new Error(`Schema type not supported: ${schema.type}`);
+  }
 }
 
 function convertRequestBody(
   reqBody: OpenAPIV3_1.RequestBodyObject | undefined,
-) {
+): Param | undefined {
   if (!reqBody) return;
-  const { description, content } = reqBody;
-  // https://spec.openapis.org/oas/v3.1.0#request-body-object
-  for (const [mediaType, mediaTypeObject] of Object.entries(content)) {
-    const schema = mediaTypeObject.schema as OpenAPIV3_1.SchemaObject;
-
-    for (const [key, value] of Object.entries(schema)) {
-      console.log(key, value);
-    }
-  }
-  return { description };
+  const bodyParam = Object.values(reqBody.content)[0];
+  return convertSchema(bodyParam as OpenAPIV3_1.SchemaObject);
 }
