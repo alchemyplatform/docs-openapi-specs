@@ -533,9 +533,9 @@ eth_feeHistory:
                 default: [25, 75]
           prefixItems:
             - type: integer
-                title: Block count
-                description: Number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query (may return less than requested range if not all blocks are available).
-                default: 4
+              title: Block count
+              description: Number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query (may return less than requested range if not all blocks are available).
+              default: 4
             - $ref: '#/blockNumber_or_blocktag_param_eth'
               title: Newest block
               description: highest number block in the requested range
@@ -1037,9 +1037,9 @@ trace_get:
                 default: ['0x0']
           prefixItems:
             - type: string
-                title: Transaction hash
-                default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
-                pattern: '^0[xX][0-9a-fA-F]+$'
+              title: Transaction hash
+              default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+              pattern: '^0[xX][0-9a-fA-F]+$'
             - type: array
               title: index position of trace
               description: Array - Index positions of the traces, in hex
@@ -1481,7 +1481,6 @@ debug_traceTransaction:
                   description: A duration string of decimal numbers that overrides the default timeout of 5 seconds for JavaScript-based tracing calls. Max timeout is "10s". Valid time units are "ns", "us", "ms", "s" each with optional fraction, such as "300ms" or "2s45ms".
                   default: 5s
 
-
 # ============ EVM Models ==============
 common_request_fields:
   type: object
@@ -1552,7 +1551,6 @@ eth_call_550_gas:
               - $ref: '#/BlockNumberOrTagOrHash'
                 title: Block number or block tag or block hash
 
-
 eth_call_polygon_zkevm:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1581,7 +1579,6 @@ eth_call_polygon_zkevm:
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
                 title: Block number or block tag or block hash
-
 
 transaction_object:
   type: object
