@@ -68,6 +68,10 @@ components:
                           oneOf:
                             - $ref: '../components/starknet/schemas.yaml#/EventFilter'
                             - $ref: '../components/starknet/schemas.yaml#/ResultPageRequest'
+                        prefixItems:
+                          oneOf:
+                            - $ref: '../components/starknet/schemas.yaml#/EventFilter'
+                            - $ref: '../components/starknet/schemas.yaml#/ResultPageRequest'
                         description: The conditions used to filter the returned events
                         minItems: 1
                         maxItems: 1

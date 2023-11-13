@@ -63,6 +63,14 @@ components:
                             - $ref: '../components/starknet/schemas.yaml#/Address'
                               title: contract_address
                               description: The address of the contract whose nonce we're seeking
+                        prefixItems:
+                          oneOf:
+                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                              title: block_id
+                              description: The hash of the requested block, or number (height) of the requested block, or a block tag
+                            - $ref: '../components/starknet/schemas.yaml#/Address'
+                              title: contract_address
+                              description: The address of the contract whose nonce we're seeking
                         minItems: 2
                         maxItems: 2
         x-readme:

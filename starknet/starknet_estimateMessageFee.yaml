@@ -52,6 +52,10 @@ paths:
                   description: The message's parameters and the block_id for the block referencing the state or call the transaction on.
                   minItems: 2
                   maxItems: 2
+                  prefixItems:
+                    oneOf:
+                      - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
+                      - $ref: '../components/starknet/schemas.yaml#/BlockId'
                   items:
                     oneOf:
                       - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
