@@ -35,7 +35,7 @@ paths:
     get:
       summary: getNFTs
       description: Gets all NFTs currently owned by a given address.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/contractAddresses'
@@ -105,7 +105,7 @@ paths:
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -153,7 +153,7 @@ paths:
     post:
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -221,7 +221,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -268,7 +268,7 @@ paths:
     post:
       summary: getContractMetadataBatch
       description: Gets the metadata associated with the given list of contract addresses
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -306,7 +306,7 @@ paths:
     get:
       summary: getNFTsForCollection
       description: Gets all NFTs for a given NFT contract.
-      tags: ['Collections']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -373,7 +373,7 @@ paths:
     get:
       summary: getOwnersForToken
       description: Get the owner(s) for a token.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -422,7 +422,7 @@ paths:
     get:
       summary: getOwnersForCollection
       description: Gets all owners for a given NFT contract.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -468,7 +468,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -521,7 +521,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -572,7 +572,7 @@ paths:
     get:
       summary: isAirdrop
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -597,7 +597,7 @@ paths:
     get:
       summary: invalidateContract
       description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -623,79 +623,11 @@ paths:
                     type: number
                     description: The number of tokens that were invalidated as a result of running this query.
       operationId: invalidateContract
-  '/v2/{apiKey}/reingestContract':
-    get:
-      summary: reingestContract
-      description: Triggers metadata refresh for an entire NFT collection and refreshes stale metadata after a collection reveal/collection changes.
-      tags: ['NFT Metadata Access']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import {
-                Network,
-              } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT count returned in the response:
-              alchemy.nft.refreshContract(
-                "0x5180db8F5c931aaE63c74266b211F580155ecac8",
-                "1590"
-              ).then(console.log);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  contractAddresses:
-                    $ref: '#/components/schemas/contractAddresses'
-                  reingestionState:
-                    type: string
-                    enum:
-                      - does_not_exist
-                      - already_queried
-                      - in_progress
-                      - finished
-                      - queued
-                      - queue_failed
-                    description: "<br/> String - The current state of the reingestion request. <br/>'does_not_exist' - The contract requested is not an NFT and does not contain proper metadata <br/>'already_queried' - Contract already queried <br/>'in_progress' - Ingestion in progress <br/>'finished' - Ingestion complete <br/>'queued' - Ingestion request placed into queue and awaiting execution. <br/>'queue_failed' - Queue job incomplete"
-                  progress:
-                    type: string
-                    description: 'String - Percentage of tokens successfully refreshed.'
-      operationId: reingestContract
   '/v2/{apiKey}/getFloorPrice':
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['Sales & Marketplace Data']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -766,7 +698,7 @@ paths:
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['Rarity Data']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -815,7 +747,7 @@ paths:
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT Metadata Access']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -851,7 +783,7 @@ paths:
     get:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['Rarity Data']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -890,7 +822,7 @@ paths:
     get:
       summary: isHolderOfCollection
       description: Checks whether a wallet holds a NFT in a given collection
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
@@ -918,7 +850,7 @@ paths:
     get:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['Sales & Marketplace Data']
+      tags: ['NFT API V2 Methods (Older Version)']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1049,7 +981,7 @@ paths:
     get:
       summary: getContractsForOwner
       description: Gets all NFT contracts held by an owner address.
-      tags: ['Ownership & Token Gating']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -1091,7 +1023,7 @@ paths:
     get:
       summary: reportSpam
       description: Report a particular address to our APIs if you think it is spam
-      tags: ['Spam Detection']
+      tags: ['NFT API V2 Methods (Older Version)']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/address'
@@ -1117,7 +1049,7 @@ paths:
     get:
       summary: getNFTsForOwner
       description: Gets all NFTs currently owned by a given address.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/owner'
         - $ref: '#/components/schemas/contractAddresses'
@@ -1169,7 +1101,7 @@ paths:
     get:
       summary: getNFTMetadata
       description: Gets the metadata associated with a given NFT.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1197,7 +1129,7 @@ paths:
     post:
       summary: getNFTMetadataBatch
       description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -1259,7 +1191,7 @@ paths:
     get:
       summary: getContractMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1282,7 +1214,7 @@ paths:
     get:
       summary: getCollectionMetadata
       description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/collectionSlug'
@@ -1301,11 +1233,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/collectionMetadatav3'
       operationId: getCollectionMetadata-v3
+  '/v3/{apiKey}/invalidateContract':
+    get:
+      summary: invalidateContract
+      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+                properties:
+                  success:
+                    type: string
+                    description: <br /> True if the contract was invalidated. <br/> False - if it wasn't.
+                  numTokensInvalidated:
+                    type: number
+                    description: The number of tokens that were invalidated as a result of running this query.
+      operationId: invalidateContract-v3
   '/v3/{apiKey}/getContractMetadataBatch':
     post:
       summary: getContractMetadataBatch
       description: Gets the metadata associated with the given list of contract addresses
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       requestBody:
@@ -1338,7 +1300,7 @@ paths:
     get:
       summary: getNFTsForContract
       description: Gets all NFTs for a given NFT contract.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1370,11 +1332,78 @@ paths:
                     type: string
                     description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
       operationId: getNFTsForContract-v3
+  '/v3/{apiKey}/getNFTsForCollection':
+    get:
+      summary: getNFTsForCollection
+      description: Gets all NFTs for a given NFT contract.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/collectionSlug'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/startToken'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT collection returned in the response:
+              alchemy.nft
+                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nfts:
+                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/components/schemas/id'
+                        tokenUri:
+                          $ref: '#/components/schemas/tokenUri'
+                        metadata:
+                          $ref: '#/components/schemas/metadata'
+                        timeLastUpdated:
+                          type: string
+                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+                        contractMetadata:
+                          $ref: '#/components/schemas/contractMetadata'
+                  nextToken:
+                    type: string
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
+      operationId: getNFTsForCollection-v3
   '/v3/{apiKey}/getOwnersForNFT':
     get:
       summary: getOwnersForNFT
       description: Get the owner(s) for a token.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1407,7 +1436,7 @@ paths:
     get:
       summary: getOwnersForContract
       description: Gets all owners for a given NFT contract.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1445,7 +1474,7 @@ paths:
     get:
       summary: getSpamContracts
       description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Spam Detection']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1481,7 +1510,7 @@ paths:
     get:
       summary: isSpamContract
       description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Spam Detection']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1517,7 +1546,7 @@ paths:
     get:
       summary: isAirdropNFT
       description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Spam Detection']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/contractAddress'
@@ -1547,7 +1576,7 @@ paths:
     get:
       summary: getFloorPrice
       description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Sales & Marketplace Data']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1599,7 +1628,7 @@ paths:
     get:
       summary: computeRarity
       description: Computes the rarity of each attribute of an NFT.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Rarity Data']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1649,7 +1678,7 @@ paths:
     get:
       summary: searchContractMetadata
       description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/query'
@@ -1674,7 +1703,7 @@ paths:
     get:
       summary: summarizeNFTAttributes
       description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Rarity Data']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1717,7 +1746,7 @@ paths:
     get:
       summary: isHolderOfContract
       description: Checks whether a wallet holds a NFT from a given contract
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Ownership & Token Gating']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/wallet'
@@ -1746,7 +1775,7 @@ paths:
     get:
       summary: getNFTSales
       description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Sales & Marketplace Data']
       servers:
         - url: https://{network}.g.alchemy.com/nft
           variables:
@@ -1892,7 +1921,7 @@ paths:
     get:
       summary: getContractsForOwner
       description: Gets all NFT contracts held by an owner address.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -1935,7 +1964,7 @@ paths:
     get:
       summary: getCollectionsForOwner
       description: Gets all NFT collections held by an owner address.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/owner'
@@ -1977,7 +2006,7 @@ paths:
     get:
       summary: reportSpam
       description: Report a particular address to our APIs if you think it is spam
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['Spam Detection']
       parameters:
         - $ref: '#/components/schemas/apiKey'
         - $ref: '#/components/schemas/address'
@@ -2001,7 +2030,7 @@ paths:
     post:
       summary: refreshNftMetadata
       description: Submit a request that Alchemy refresh the cached NFT metadata for a particular token.
-      tags: ['NFT API V3 Methods (BETA)']
+      tags: ['NFT Metadata Access']
       parameters:
         - $ref: '#/components/schemas/apiKey'
       x-readme:
