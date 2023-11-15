@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: alchemy_simulateUserOperationAssetChanges
+  version: '1.0'
+servers:
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - eth-sepolia
+          - eth-goerli
+          - arb-mainnet
+          - arb-goerli
+          - arb-sepolia
+          - opt-mainnet
+          - opt-goerli
+          - polygon-mainnet
+          - polygon-mumbai
+          - base-mainnet
+          - base-goerli
+        default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: bundler
+x-readme:
+  samples-languages:
+    - curl
+    - javascript
+    - python
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: alchemy_simulateUserOperationAssetChanges
+        operationId: alchemy-simulateuseroperationassetchanges
+        description: Simulates user operations and returns a list of asset changes.
+        parameters:
+          - $ref: ../components/parameters.yaml#/ApiKey
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  method:
+                    type: string
+                    default: alchemy_simulateUserOperationAssetChanges
+                  params:
+                    type: array
+                    items:
+                      oneOf:
+                        - $ref: '../components/schemas.yaml#/UserOperation'
+                          description: User operation to simulate. Please note that the `signature` does not need to be a valid signature, only a dummy value is required similar to the one that's used for estimating gas.
+                        - $ref: '../components/schemas.yaml#/EntryPoint'
+                          description: EntryPoint to use for the simulation. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
+                    minItems: 2
+                    maxItems: 2
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                    - changes
+                  properties:
+                    changes:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/AssetChange'
+  schemas:
+    AssetChange:
+      type: object
+      required:
+        - assetType
+        - changeType
+        - from
+        - to
+        - rawAmount
+        - amount
+        - symbol
+        - decimals
+        - contractAddress
+        - name
+        - logo
+        - tokenId
+      properties:
+        assetType:
+          type: string
+          enum:
+            - NATIVE
+            - ERC20
+            - ERC721
+            - ERC1155
+            - SPECIAL_NFT
+        changeType:
+          type: string
+          enum:
+            - APPROVE
+            - TRANSFER
+        from:
+          $ref: '../components/schemas.yaml#/FromAddress'
+        to:
+          $ref: '../components/schemas.yaml#/ToAddress'
+        rawAmount:
+          type: string
+        amount:
+          type: string
+        symbol:
+          type: string
+        decimals:
+          type: [number, 'null']
+        contractAddress:
+          type: [string, 'null']
+        name:
+          type: [string, 'null']
+        logo:
+          type: [string, 'null']
+        tokenId:
+          type: [number, 'null']
