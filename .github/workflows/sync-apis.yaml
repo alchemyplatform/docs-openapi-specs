@@ -1549,7 +1549,13 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi rundler_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64df886f8b288c002455bba1
 
-      
+      - name: Update AA API - alchemy_simulateUserOperationAssetChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_simulateUserOperationAssetChanges.yaml --key=$README_API_KEY --id=6554e8dc1914ac000f50da38
+
+
       # Update Debug APIs
       - name: Update Debug API - debug_traceBlockByHash
         env:
