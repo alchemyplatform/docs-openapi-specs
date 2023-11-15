@@ -56,7 +56,7 @@ components:
                     items:
                       oneOf:
                         - $ref: '../components/schemas.yaml#/UserOperation'
-                          description: User operation to simulate. Please note that the `signature` does not need to be a valid signature, only a dummy value is required.
+                          description: User operation to simulate. Please note that the `signature` does not need to be a valid signature, only a dummy value is required similar to the one that's used for estimating gas.
                         - $ref: '../components/schemas.yaml#/EntryPoint'
                           description: EntryPoint to use for the simulation. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
                     minItems: 2
