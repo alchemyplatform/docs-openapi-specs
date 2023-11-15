@@ -53,11 +53,14 @@ components:
                     default: alchemy_simulateUserOperationAssetChanges
                   params:
                     type: array
-                    minItems: 2
                     items:
                       oneOf:
                         - $ref: '../components/schemas.yaml#/UserOperation'
-                        - $ref: '#/components/schemas/EntrypointOrBlockNumber'
+                          description: User operation to simulate. Please note that the `signature` does not need to be a valid signature, only a dummy value is required.
+                        - $ref: '../components/schemas.yaml#/EntryPoint'
+                          description: EntryPoint to use for the simulation. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
+                    minItems: 2
+                    maxItems: 2
         responses:
           '200':
             description: OK
@@ -122,11 +125,3 @@ components:
           type: [string, 'null']
         tokenId:
           type: [number, 'null']
-    EntrypointOrBlockNumber:
-      title: Entry Point or Block Number
-      oneOf:
-        - $ref: '../components/schemas.yaml#/EntryPoint'
-        - type: string
-          title: Block Number
-          description: 'Optional block number override'
-          default: '0x113CF6E'
