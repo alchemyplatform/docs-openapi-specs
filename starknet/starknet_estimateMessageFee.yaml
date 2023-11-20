@@ -12,6 +12,18 @@ servers:
           - starknet-mainnet
           - starknet-goerli
         default: starknet-mainnet
+  - url: 'https://{network}.g.alchemy.com/starknet/version/rpc/{version}/demo'
+    variables:
+      network:
+        enum:
+          - starknet-mainnet
+          - starknet-goerli
+        default: starknet-mainnet
+      version:
+        enum:
+          - v0.5
+          - v0.4
+        default: v0.5
 x-sandbox:
   category:
     type:
