@@ -255,7 +255,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./base
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=64db9be92db98e005ee5b89c
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=655bcec451dd430068787717
 
       - name: Update Base API - web3_sha3
         env:
