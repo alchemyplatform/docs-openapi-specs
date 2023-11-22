@@ -2160,19 +2160,75 @@ alchemy_requestGasAndPaymasterAndData:
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartial
                 description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
-              feeOverride:
+              overrides:
                 type: object
-                description: Optional fields to override default fee behavior
+                description: Optional fields to override default gas and fee behavior - this will apply either percentage overrides relative to our default estimates or absolute overrides
                 properties:
                   maxFeePerGas:
-                    type: string
-                    description: Maximum fee per gas
+                    type:
+                      oneOf:
+                        - type: string
+                          description: "Hex string"
+                        - type: object
+                          properties:
+                            percentage:
+                              type: number
+                          required:
+                            - percentage
+                          description: "Percentage value"
+                    description: Maximum fee per gas buffer
                   maxPriorityFeePerGas:
-                    type: string
-                    description: Maximum priority fee per gas
-                required:
-                  - maxFeePerGas
-                  - maxPriorityFeePerGas
+                    type:
+                      oneOf:
+                        - type: string
+                          description: "Hex string"
+                        - type: object
+                          properties:
+                            percentage:
+                              type: number
+                          required:
+                            - percentage
+                          description: "Percentage value"
+                    description: Maximum priority fee per gas buffer
+                  callGasLimit:
+                    type:
+                      oneOf:
+                        - type: string
+                          description: "Hex string"
+                        - type: object
+                          properties:
+                            percentage:
+                              type: number
+                          required:
+                            - percentage
+                          description: "Percentage value"
+                    description: Call gas limit buffer
+                  verificationGasLimit:
+                    type:
+                      oneOf:
+                        - type: string
+                          description: "Hex string"
+                        - type: object
+                          properties:
+                            percentage:
+                              type: number
+                          required:
+                            - percentage
+                          description: "Percentage value"
+                    description: Verification gas limit buffer
+                  preVerificationGas:
+                    type:
+                      oneOf:
+                        - type: string
+                          description: "Hex string"
+                        - type: object
+                          properties:
+                            percentage:
+                              type: number
+                          required:
+                            - percentage
+                          description: "Percentage value"
+                    description: Pre-verification gas buffer
 
 rundler_maxPriorityFeePerGas:
   allOf:
