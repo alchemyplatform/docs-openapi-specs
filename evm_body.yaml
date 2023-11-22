@@ -2162,7 +2162,7 @@ alchemy_requestGasAndPaymasterAndData:
                 description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
               overrides:
                 type: object
-                description: Optional fields to override default gas and fee behavior - this will apply absolute or percentages on top of our default estimates
+                description: Optional fields to override default gas and fee behavior - this will apply either percentage overrides relative to our default estimates or absolute overrides
                 properties:
                   maxFeePerGas:
                     type:
