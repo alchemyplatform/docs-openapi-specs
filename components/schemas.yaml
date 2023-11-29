@@ -103,11 +103,11 @@ UserOperationPartial:
     sender:
       $ref: '#/Hex'
       description: The account making the operation
-      default: '0x0be71941D041a32fe7DF4A61Eb2fCff3b03502C0'
+      default: '0xceb161d3e0B6d01bc0e87ECC27fF9f2E2eCDCD81'
     nonce:
       $ref: '#/Hex'
       description: Anti-replay parameter; also used as the salt for first-time account creation
-      default: '0x2a'
+      default: '0x3'
     initCode:
       $ref: '#/Hex'
       description: The initCode of the account (needed if and only if the account is not yet on-chain and needs to be created)
@@ -116,7 +116,7 @@ UserOperationPartial:
       $ref: '#/Hex'
       description: |
         Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
-      default: '0xb61d27f60000000000000000000000000be71941d041a32fe7df4a61eb2fcff3b03502c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000004d087d28800000000000000000000000000000000000000000000000000000000'
+      default: '0xb61d27f600000000000000000000000043f6bfbe9dad44cf0a60570c30c307d949be4cd40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000645c833bfd000000000000000000000000613c64104b98b048b93289ed20aefd80912b3cde0000000000000000000000000000000000000000000000000de123e8a84f9901000000000000000000000000c9371ea30dea5ac745b71e191ba8cde2c4e66df500000000000000000000000000000000000000000000000000000000'
 
 UserOperationPartialWithGasFields:
   title: User Operation ( missing signature and paymasterData )
@@ -128,18 +128,23 @@ UserOperationPartialWithGasFields:
         callGasLimit:
           $ref: '#/Hex'
           description: The amount of gas to allocate the main execution call
+          default: '0x7A1200'
         verificationGasLimit:
           $ref: '#/Hex'
           description: The amount of gas to allocate for the verification step
+          default: '0x927C0'
         preVerificationGas:
           $ref: '#/Hex'
           description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
+          default: '0x15F90'
         maxFeePerGas:
           $ref: '#/Hex'
           description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
+          default: '0x656703D00'
         maxPriorityFeePerGas:
           $ref: '#/Hex'
           description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
+          default: '0x13AB6680'
 
 UserOperation:
   title: User Operation
@@ -155,7 +160,7 @@ UserOperation:
         paymasterAndData:
           $ref: '#/Hex'
           description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
-          default: '0xc03aac639bb21233e0139381970328db8bceeb67fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
+          default: '0x9db7f05b0eb93eb242b5913596dcfaada756af5c'
 
 UserOperationReceipt:
   type: object
@@ -206,3 +211,8 @@ EntryPoint:
   title: Entrypoint Address
   description: The entrypoint address the request should be sent through. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
   default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+
+BlockOverride:
+  $ref: '#/Hex'
+  title: Block Override
+  default: '0x113CF6E'
