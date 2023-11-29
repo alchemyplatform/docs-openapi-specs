@@ -10,6 +10,7 @@ servers:
           - eth-mainnet
           - eth-sepolia
           - eth-goerli
+          - eth-kovan
           - arb-mainnet
           - arb-goerli
           - arb-sepolia
