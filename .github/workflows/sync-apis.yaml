@@ -34,150 +34,1208 @@ jobs:
         run: npm install -g rdme@8.6.4
 
 
-      # Update Starknet APIs
-      - name: Update Starknet API - starknet_addDeclareTransaction
+      # Update NFT API
+      - name: Update NFT API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_addDeclareTransaction.yaml --key=$README_API_KEY --id=64406faac2d7740059213a4f
+        working-directory: ./nft
+        run: rdme openapi nfts.yaml --key=$README_API_KEY --id=62bb5f1af2192000e16f5c93
+      
 
-      - name: Update Starknet API - starknet_getClassAt
+      # Update Notify API
+      - name: Update Notify API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getClassAt.yaml --key=$README_API_KEY --id=64406fb9107cc6000bba05e6
+        working-directory: ./notify
+        run: rdme openapi notify.yaml --key=$README_API_KEY --id=62d74663f3ed8d0071190eb2
+          
 
-      - name: Update Starknet API - starknet_addDeployAccountTransaction
+      # Update Transfers API
+      - name: Update Transfers API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_addDeployAccountTransaction.yaml --key=$README_API_KEY --id=64406fc2948a1600fd2a71e9
+        working-directory: ./transfers
+        run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=62d75e355edcd00083b39fa2
 
-      - name: Update Starknet API - starknet_getClassHashAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getClassHashAt.yaml --key=$README_API_KEY --id=64406fcc5aba2300513dc4a3
 
-      - name: Update Starknet API - starknet_addInvokeTransaction
+      # Update Gas Manager Admin API
+      - name: Update Gas Manager Admin API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_addInvokeTransaction.yaml --key=$README_API_KEY --id=64406fd5d93442007209822b
+        working-directory: ./account-abstraction
+        run: rdme openapi gas_manager_admin.yaml --key=$README_API_KEY --id=648a94b656f41511b55a453b
 
-      - name: Update Starknet API - starknet_getEvents
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getEvents.yaml --key=$README_API_KEY --id=64406fdea42c4e0388007281
 
-      - name: Update Starknet API - starknet_blockHashAndNumber
+      # Update Transaction Receipts API
+      - name: Update Transaction Receipts API - alchemy_getTransactionReceipts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_blockHashAndNumber.yaml --key=$README_API_KEY --id=64406fe62f2152000ab80899
+        working-directory: ./transaction-receipts
+        run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
 
-      - name: Update Starknet API - starknet_getNonce
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getNonce.yaml --key=$README_API_KEY --id=64406ff24c37de005759e380
 
-      - name: Update Starknet API - starknet_blockNumber
+      # Update AA APIs
+      - name: Update AA API - alchemy_requestGasAndPaymasterAndData
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_blockNumber.yaml --key=$README_API_KEY --id=64406ffbb5b2f3001896e55c
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_requestGasAndPaymasterAndData.yaml --key=$README_API_KEY --id=6477e048c2b29800373e6baa
 
-      - name: Update Starknet API - starknet_getStateUpdate
+      - name: Update AA API - alchemy_requestPaymasterAndData
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getStateUpdate.yaml --key=$README_API_KEY --id=6440700945a039000b1c7b77
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_requestPaymasterAndData.yaml --key=$README_API_KEY --id=64272da5ebf42012145aef2a
 
-      - name: Update Starknet API - starknet_call
+      - name: Update AA API - eth_estimateUserOperationGas
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_call.yaml --key=$README_API_KEY --id=6440701f1a55e800650d3154
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_estimateUserOperationGas.yaml --key=$README_API_KEY --id=654aecab00550900443f7259
 
-      - name: Update Starknet API - starknet_getStorageAt
+      - name: Update AA API - eth_getUserOperationByHash
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getStorageAt.yaml --key=$README_API_KEY --id=64407029b5b2f3001896e573
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_getUserOperationByHash.yaml --key=$README_API_KEY --id=64272df579e7d70026458324
 
-      - name: Update Starknet API - starknet_chainId
+      - name: Update AA API - eth_getUserOperationReceipt
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_chainId.yaml --key=$README_API_KEY --id=64407032cf71a9000b56596b
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_getUserOperationReceipt.yaml --key=$README_API_KEY --id=64272dc1a771520c3d5df25f
 
-      - name: Update Starknet API - starknet_getTransactionByBlockIdAndIndex
+      - name: Update AA API - eth_sendUserOperation
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getTransactionByBlockIdAndIndex.yaml --key=$README_API_KEY --id=6440703ce36444000acefc9f
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_sendUserOperation.yaml --key=$README_API_KEY --id=6464ef740982971d10c0b132
 
-      - name: Update Starknet API - starknet_estimateFee
+      - name: Update AA API - eth_supportedEntryPoints
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_estimateFee.yaml --key=$README_API_KEY --id=64407047f394f20035ef654d
+        working-directory: ./account-abstraction
+        run: rdme openapi eth_supportedEntryPoints.yaml --key=$README_API_KEY --id=64272dd780ee510d6e68d4d6
 
-      - name: Update Starknet API - starknet_estimateMessageFee
+      - name: Update AA API - rundler_maxPriorityFeePerGas
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_estimateMessageFee.yaml --key=$README_API_KEY --id=64f9010bfa510100197068b2
+        working-directory: ./account-abstraction
+        run: rdme openapi rundler_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64df886f8b288c002455bba1
 
-      - name: Update Starknet API - starknet_getTransactionByHash
+      - name: Update AA API - alchemy_simulateUserOperationAssetChanges
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getTransactionByHash.yaml --key=$README_API_KEY --id=6440705395b4ba007aca6b29
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_simulateUserOperationAssetChanges.yaml --key=$README_API_KEY --id=6554e8dc1914ac000f50da38
 
-      - name: Update Starknet API - starknet_getBlockTransactionCount
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getBlockTransactionCount.yaml --key=$README_API_KEY --id=6440705d117953029dee9221
 
-      - name: Update Starknet API - starknet_getTransactionReceipt
+      # Update Debug APIs
+      - name: Update Debug API - debug_traceBlockByHash
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getTransactionReceipt.yaml --key=$README_API_KEY --id=64407067099500000abb72f9
+        working-directory: ./debug
+        run: rdme openapi debug_traceBlockByHash.yaml --key=$README_API_KEY --id=6328e66279553d00b0462306
 
-      - name: Update Starknet API - starknet_getBlockWithTxHashes
+      - name: Update Debug API - debug_traceBlockByNumber
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getBlockWithTxHashes.yaml --key=$README_API_KEY --id=6440708c84b7390079c421cb
+        working-directory: ./debug
+        run: rdme openapi debug_traceBlockByNumber.yaml --key=$README_API_KEY --id=6328e64b0f36e300395b02bd
 
-      - name: Update Starknet API - starknet_pendingTransactions
+      - name: Update Debug API - debug_traceCall
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_pendingTransactions.yaml --key=$README_API_KEY --id=644070ad5599f402959e3788
+        working-directory: ./debug
+        run: rdme openapi debug_traceCall.yaml --key=$README_API_KEY --id=6328e601462d7c00963c89f5
 
-      - name: Update Starknet API - starknet_getBlockWithTxs
+      - name: Update Debug API - debug_traceTransaction
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getBlockWithTxs.yaml --key=$README_API_KEY --id=644070ef42d96f003cd74192
+        working-directory: ./debug
+        run: rdme openapi debug_traceTransaction.yaml --key=$README_API_KEY --id=6328e63ebd678a000f80aa64
 
-      - name: Update Starknet API - starknet_syncing
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_syncing.yaml --key=$README_API_KEY --id=644070fdb5b2f3001896f2d9
 
-      - name: Update Starknet API - starknet_getClass
+      # Update Token APIs
+      - name: Update Token API - alchemy_getTokenAllowance
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./starknet
-        run: rdme openapi starknet_getClass.yaml --key=$README_API_KEY --id=6440711368d835000b7711a0
+        working-directory: ./token
+        run: rdme openapi alchemy_getTokenAllowance.yaml --key=$README_API_KEY --id=62d557bb6c138d007e01972e
+
+      - name: Update Token API - alchemy_getTokenBalances
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./token
+        run: rdme openapi alchemy_getTokenBalances.yaml --key=$README_API_KEY --id=62d551cf2cef3a00205a5924
+
+      - name: Update Token API - alchemy_getTokenMetadata
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./token
+        run: rdme openapi alchemy_getTokenMetadata.yaml --key=$README_API_KEY --id=62d5581637732c00307aec6e
+
+
+      # Update Trace APIs
+      - name: Update Trace API - trace_block
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_block.yaml --key=$README_API_KEY --id=62d75aa0ae0b8c00ac4bd10b
+
+      - name: Update Trace API - trace_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_call.yaml --key=$README_API_KEY --id=62e0cbf0a759110013247d5a
+
+      - name: Update Trace API - trace_filter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_filter.yaml --key=$README_API_KEY --id=62e0cdf776a3c0006fb0e8d4
+
+      - name: Update Trace API - trace_get
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_get.yaml --key=$README_API_KEY --id=62e0cd4cc45b7f004714b274
+
+      - name: Update Trace API - trace_rawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_rawTransaction.yaml --key=$README_API_KEY --id=62e0cd733bec4800a2cab44b
+
+      - name: Update Trace API - trace_replayBlockTransactions
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_replayBlockTransactions.yaml --key=$README_API_KEY --id=62e0cd901c32f9001a935f5a
+
+      - name: Update Trace API - trace_replayTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_replayTransaction.yaml --key=$README_API_KEY --id=62e0cdb03e93d900a4b75c8c
+
+      - name: Update Trace API - trace_transaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./trace
+        run: rdme openapi trace_transaction.yaml --key=$README_API_KEY --id=62e0cdd38dfdce003924d062
+
+
+      # Update Transact APIs
+      - name: Update Transact API - alchemy_getGasOptimizedTransactionStatus
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_getGasOptimizedTransactionStatus.yaml --key=$README_API_KEY --id=634f71298eef9100ad7d99f9
+
+      - name: Update Transact API - alchemy_sendGasOptimizedTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_sendGasOptimizedTransaction.yaml --key=$README_API_KEY --id=634f72885e2a9200e4ebf268
+
+      - name: Update Transact API - alchemy_simulateAssetChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateAssetChanges.yaml --key=$README_API_KEY --id=64b8502ac5b267003a3c9bcb
+
+      - name: Update Transact API - alchemy_simulateAssetChangesBundle
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateAssetChangesBundle.yaml --key=$README_API_KEY --id=64b850f6980cad006c5a78fd
+
+      - name: Update Transact API - alchemy_simulateExecution
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateExecution.yaml --key=$README_API_KEY --id=64b8519b7c8a69000c6966b5
+
+      - name: Update Transact API - alchemy_simulateExecutionBundle
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi alchemy_simulateExecutionBundle.yaml --key=$README_API_KEY --id=64b8521694c9f5001f316d20
+
+      - name: Update Transact API - eth_cancelPrivateTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi eth_cancelPrivateTransaction.yaml --key=$README_API_KEY --id=6425b62a93d5e707f01f7e6a
+
+      - name: Update Transact API - eth_sendPrivateTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./transact
+        run: rdme openapi eth_sendPrivateTransaction.yaml --key=$README_API_KEY --id=62d6beb6c58877026441688c
+
+
+      # Update Ethereum APIs
+      - name: Update Ethereum API - eth_createAccessList
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=635bf940de31790f648c2218
+
+      - name: Update Ethereum API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62c8076fe3a26b039d30eab9
+
+      - name: Update Ethereum API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62cd3571d1a583001a47bb1c
+
+      - name: Update Ethereum API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d54b64fcf55a002eba8d8b
+
+      - name: Update Ethereum API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d5cc6ceb57150082e0f840
+
+      - name: Update Ethereum API - eth_feeHistory
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_feeHistory.yaml --key=$README_API_KEY --id=62d5d1235ece66005997b8b1
+
+      - name: Update Ethereum API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d78929f180b60043228bf9
+
+      - name: Update Ethereum API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d79a2f75cd93006588aaa5
+
+      - name: Update Ethereum API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d79ad44c8825004019d4b6
+
+      - name: Update Ethereum API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d815accbd947021ac71943
+
+      - name: Update Ethereum API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d818045b0ac000278af0e1
+
+      - name: Update Ethereum API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d81b4a604ef3008ea7167e
+
+      - name: Update Ethereum API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d81ba3a8cddc001dc19c10
+
+      - name: Update Ethereum API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=62d81bc8c50dc600524d2089
+
+      - name: Update Ethereum API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d81c425b0ac000278b6784
+
+      - name: Update Ethereum API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d81c65cbd947021ac7a941
+
+      - name: Update Ethereum API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d81c82c3d662001491b5a4
+
+      - name: Update Ethereum API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d81cb1c4b3800064481d2d
+
+      - name: Update Ethereum API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d831294c882500402412d6
+
+      - name: Update Ethereum API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d8316ba8cddc001dc32815
+
+      - name: Update Ethereum API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d83189978c0800136bc5aa
+
+      - name: Update Ethereum API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d831a48e6920009eb8f635
+
+      - name: Update Ethereum API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d832236307ee002d9b9b0a
+
+      - name: Update Ethereum API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d8326743c6c00037dd6155
+
+      - name: Update Ethereum API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d8327be856170013d6b283
+
+      - name: Update Ethereum API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d832c5158058012d40ea4c
+
+      - name: Update Ethereum API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d832dc15065e002ee0d85a
+
+      - name: Update Ethereum API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d832f9dcb3860058b4d99b
+
+      - name: Update Ethereum API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d833246307ee002d9ba6ff
+
+      - name: Update Ethereum API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=62d8334b368457002f086082
+
+      - name: Update Ethereum API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d833f8d2cfb500282244c5
+
+      - name: Update Ethereum API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d83490c7cb6d00876164db
+
+      - name: Update Ethereum API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=62d834cfbe94a1007dea9007
+
+      - name: Update Ethereum API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d835028c633400a90fd223
+
+      - name: Update Ethereum API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d835bcf25f770152c68641
+
+      - name: Update Ethereum API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d836535a22fd00994784a4
+
+      - name: Update Ethereum API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d8366a895f5d0014681008
+
+      - name: Update Ethereum API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d8367fa2d9d4001c18d733
+
+      - name: Update Ethereum API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d83693bf0ca1002035a814
+
+      - name: Update Ethereum API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d85761c50d8b00730dc6ce
+
+
+      # Update Polygon PoS APIs
+      - name: Update Polygon PoS API - eth_createAccessList
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=635bfabd4f91e200405cddfa
+
+      - name: Update Polygon PoS API - bor_getAuthor
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getAuthor.yaml --key=$README_API_KEY --id=62d82945841e5600b8364320
+
+      - name: Update Polygon PoS API - bor_getCurrentProposer
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getCurrentProposer.yaml --key=$README_API_KEY --id=62d82965cb07ef006561e5af
+
+      - name: Update Polygon PoS API - bor_getCurrentValidators
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getCurrentValidators.yaml --key=$README_API_KEY --id=62d829733071e2001ac8ece4
+
+      - name: Update Polygon PoS API - bor_getRootHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getRootHash.yaml --key=$README_API_KEY --id=62d8298795ca1c004cd48382
+
+      - name: Update Polygon PoS API - bor_getSignersAtHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi bor_getSignersAtHash.yaml --key=$README_API_KEY --id=641505b4efbb8e0967737ce4
+
+      - name: Update Polygon PoS API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d829a1fd9bd5008ad53eb1
+
+      - name: Update Polygon PoS API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62e1917dcdd98c009a2c2a85
+
+      - name: Update Polygon PoS API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d829d2eb13fc00281fe7bd
+
+      - name: Update Polygon PoS API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d82a4d2880f9013de98d82
+
+      - name: Update Polygon PoS API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d82a6280429500289da818
+
+      - name: Update Polygon PoS API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d82b0247066b0027c130b8
+
+      - name: Update Polygon PoS API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d82b191a6cbc0079615968
+
+      - name: Update Polygon PoS API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d82b320634e6003dbf8a9a
+
+      - name: Update Polygon PoS API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d82b42c6645600bb050cc3
+
+      - name: Update Polygon PoS API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d82b5326236f002a451bd3
+
+      - name: Update Polygon PoS API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d82b66df005c0027cc9602
+
+      - name: Update Polygon PoS API - eth_getRootHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getRootHash.yaml --key=$README_API_KEY --id=62d82b87a307230086583acb
+
+      - name: Update Polygon PoS API - eth_getSignersAtHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getSignersAtHash.yaml --key=$README_API_KEY --id=62d82b9da8b7440038ce9274
+
+      - name: Update Polygon PoS API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d82bb04fd782002e6db7f2
+
+      - name: Update Polygon PoS API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d82bc3c4b3800064493595
+
+      - name: Update Polygon PoS API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d82bd6e856170013d62f58
+
+      - name: Update Polygon PoS API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d82c1ff43efe001c3b7c89
+
+      - name: Update Polygon PoS API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d82c318c633400a90f20aa
+
+      - name: Update Polygon PoS API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d82c448448ac0041147773
+
+      - name: Update Polygon PoS API - eth_getTransactionReceiptsByBlock
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getTransactionReceiptsByBlock.yaml --key=$README_API_KEY --id=62d82c5335ad200020fd58d3
+
+      - name: Update Polygon PoS API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d82c65cc0535008473fef3
+
+      - name: Update Polygon PoS API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d82c821cf0bf0094764635
+
+      - name: Update Polygon PoS API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d82c925a22fd0099471487
+
+      - name: Update Polygon PoS API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d82ca16307ee002d9b2bd1
+
+      - name: Update Polygon PoS API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d82cb06307ee002d9b2be0
+
+      - name: Update Polygon PoS API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d82cc1a63ffe0014d22442
+
+      - name: Update Polygon PoS API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d82ccff98016006db64147
+
+      - name: Update Polygon PoS API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d82ce46ba6120089a4acd3
+
+      - name: Update Polygon PoS API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d82d14a8cddc001dc2ce2c
+
+      - name: Update Polygon PoS API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d82d36ce9292019c74313c
+
+      - name: Update Polygon PoS API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d82d48be94a1007dea3014
+
+      - name: Update Polygon PoS API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d82d5805ea78004bfb8dd7
+
+      - name: Update Polygon PoS API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=654d13eb5653ce00382cda04
+
+      - name: Update Polygon PoS API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d82a7bcafd010020d61d7d
+
+      - name: Update Polygon PoS API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d82a998c633400a90f064e
+
+      - name: Update Polygon PoS API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d829c2941aa0001a0ed91c
+
+      - name: Update Polygon PoS API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d82b76cafd010020d64513
+
+      - name: Update Polygon PoS API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d829e641abed0013809424
+
+
+    # Update Arbitrum APIs
+      - name: Update Arbitrum API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d8d22190dfbd0013767822
+
+      - name: Update Arbitrum API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62d8d23ca7d4940070fb5bec
+
+      - name: Update Arbitrum API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d8d7ec0e06b30029f9c72a
+
+      - name: Update Arbitrum API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d8d805f01e4d002f2eaca0
+
+      - name: Update Arbitrum API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d8d817f0253e00a6461eb0
+
+      - name: Update Arbitrum API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d8d8328cd9e7006a42064c
+
+      - name: Update Arbitrum API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d8d87c14db26001416ac63
+
+      - name: Update Arbitrum API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d8dd027c1ba40036a5a1a1
+
+      - name: Update Arbitrum API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d8e0c7f7b6f50072597080
+
+      - name: Update Arbitrum API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d8e112259d7e001474c645
+
+      - name: Update Arbitrum API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d8e133efa205012a37a43a
+
+      - name: Update Arbitrum API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d8e15486056c003cc75375
+
+      - name: Update Arbitrum API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d8e17070fd50003ffbf060
+
+      - name: Update Arbitrum API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d8e189487ded0096d0097a
+
+      - name: Update Arbitrum API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d8e2164959b30088f11e57
+
+      - name: Update Arbitrum API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d8e22dbb9859001e90e111
+
+      - name: Update Arbitrum API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d8e2bdd94be9009bef4eb5
+
+      - name: Update Arbitrum API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d8e371cec32f0013dd7cd8
+
+      - name: Update Arbitrum API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d8e39187f70200a07262ff
+
+      - name: Update Arbitrum API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d8e3c9f2ee85023f8958f8
+
+      - name: Update Arbitrum API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=6549e6db1c854b000c6e8e19
+
+      - name: Update Arbitrum API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d8e5eb487ded0096d0477e
+
+      - name: Update Arbitrum API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d8e60143af490013464da6
+
+      - name: Update Arbitrum API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d8e61470fd9d0065c98eb7
+
+      - name: Update Arbitrum API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d8e63472584e002713e951
+
+      - name: Update Arbitrum API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d8e648425369004cbbde61
+
+      - name: Update Arbitrum API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d8e659137da40014f246df
+
+      - name: Update Arbitrum API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d8e66eaefd120077ed7e44
+
+      - name: Update Arbitrum API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d8e6f1496fdb0056aecb93
+
+      - name: Update Arbitrum API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d8e7123b4331007eb60617
+
+      - name: Update Arbitrum API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d8e72ad1ef6d002f8071c0
+
+      - name: Update Arbitrum API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d8e7427400e900a6471d28
+
+      - name: Update Arbitrum API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d8e759ebeda4004a1f51db
+
+      - name: Update Arbitrum API - eth_createAccessList
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=63349fdd600a95005062096d
+
+      - name: Update Arbitrum API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=6334c995307ef5008a7c88b0
+
+      - name: Update Arbitrum API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=6334c9a19d1cf000641fef37
+
+      - name: Update Arbitrum API - eth_feeHistory
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_feeHistory.yaml --key=$README_API_KEY --id=6334ca7a220b16000f3e22a5
+
+      - name: Update Arbitrum API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6549ec1d353781003ef523e7
+
+
+      # Update Optimism APIs
+      - name: Update Optimism API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d953617b813f0027df394f
+
+      - name: Update Optimism API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62d979b1207ad7007e6df52f
+
+      - name: Update Optimism API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d953db766263008a8661a1
+
+      - name: Update Optimism API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d954000b41d000a6ec2344
+
+      - name: Update Optimism API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d9543faec8c8003f63b029
+
+      - name: Update Optimism API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d954f26ccd5600456a0763
+
+      - name: Update Optimism API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d95503a7d49400700297ea
+
+      - name: Update Optimism API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d95512aec8c8003f63c2ad
+
+      - name: Update Optimism API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d955227a0884003e288bca
+
+      - name: Update Optimism API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d9553433565c01d2d5d376
+
+      - name: Update Optimism API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d95543d1ef6d002f862cc1
+
+      - name: Update Optimism API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d955690b41d000a6ec345a
+
+      - name: Update Optimism API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d955787c1ba40036ac4052
+
+      - name: Update Optimism API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d9558b37827c001a477b62
+
+      - name: Update Optimism API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d9559a2f091a0013e9af08
+
+      - name: Update Optimism API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d955abe21c4905d7b129a0
+
+      - name: Update Optimism API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d955be70f208005866869c
+
+      - name: Update Optimism API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d955cf259d7e00147b0ce8
+
+      - name: Update Optimism API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d955e072584e00271ac10c
+
+      - name: Update Optimism API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d955f3ff2a2d0061dbeb1b
+
+      - name: Update Optimism API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d95604ab01d00082f21646
+
+      - name: Update Optimism API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d956100b41d000a6ec47c9
+
+      - name: Update Optimism API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d9561b766263008a8680cd
+
+      - name: Update Optimism API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d9562996a4a60049733692
+
+      - name: Update Optimism API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=62d9563f82f07f005619b822
+
+      - name: Update Optimism API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d9564f37827c001a478ee6
+
+      - name: Update Optimism API - eth_syncing
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_syncing.yaml --key=$README_API_KEY --id=62d9567837827c001a47909f
+
+      - name: Update Optimism API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d956923b4331007ebc7504
+
+      - name: Update Optimism API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d956b1089b2a00309e60e4
+
+      - name: Update Optimism API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d956cc03036a002da5d8e6
+
+      - name: Update Optimism API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d956dd7b813f0027df6c3e
+
+      - name: Update Optimism API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d956ed33565c01d2d60260
+
+      - name: Update Optimism API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d95557c7488f0014210297
+
+      - name: Update Optimism API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d954cce232c70091e95b1f
+
+      - name: Update Optimism API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d954de70fd50003f027d87
+
+      - name: Update Optimism API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d953f0089b2a00309e3f8f
+
+      - name: Update Optimism API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d953c76ccd56004569e216
 
       
       # Update Base APIs
@@ -408,6 +1466,449 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./base
         run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=64db9bf4b9b936004d709d89
+
+
+      # Update Polygon zkEVM APIs
+      - name: Update Polygon zkEVM API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=6420c23db7fd4700451dd125
+
+      - name: Update Polygon zkEVM API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=6420c6b2cef8ff000a772940
+
+      - name: Update Polygon zkEVM API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=6420c6cd719861006cbabe36
+
+      - name: Update Polygon zkEVM API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=6420c6f26bf5fd002678f599
+
+      - name: Update Polygon zkEVM API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=6420c6facf7d71005e2c8060
+
+      - name: Update Polygon zkEVM API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=6420c702f721780026e80789
+
+      - name: Update Polygon zkEVM API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=6420c70d8bc1cb002f0f3d2c
+
+      - name: Update Polygon zkEVM API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=6420c7142e0f7c007434017a
+
+      - name: Update Polygon zkEVM API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=6420c71c6d83d70050530931
+
+      - name: Update Polygon zkEVM API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=6420c724bad79d003dc302c7
+
+      - name: Update Polygon zkEVM API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=6420c72df721780026e807c5
+
+      - name: Update Polygon zkEVM API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=6420c734caef32003a42de26
+
+      - name: Update Polygon zkEVM API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=6420c73c7637ea0074ca0c62
+
+      - name: Update Polygon zkEVM API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=6420c744caef32003a42de34
+
+      - name: Update Polygon zkEVM API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=6420c74ef4cf27000a8e4935
+
+      - name: Update Polygon zkEVM API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=6420c75c4fe821005e913608
+
+      - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=6420c76388a2bd0029c6eaf7
+
+      - name: Update Polygon zkEVM API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=654d13eb5653ce00382cda04
+
+      - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=6420c77188cf75000ab37254
+
+      - name: Update Polygon zkEVM API - zkevm_batchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_batchNumber.yaml --key=$README_API_KEY --id=6420c7780c6de100738e842a
+
+      - name: Update Polygon zkEVM API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY  --id=6420c7806238060035c87af4
+
+      - name: Update Polygon zkEVM API - zkevm_batchNumberByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_batchNumberByBlockNumber.yaml --key=$README_API_KEY --id=654d14a8b618e4000d880edb
+
+      - name: Update Polygon zkEVM API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=6420c78d5258c30045c65878
+
+      - name: Update Polygon zkEVM API - zkevm_consolidatedBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_consolidatedBlockNumber.yaml --key=$README_API_KEY  --id=654d15317599f909a29a9efa
+
+      - name: Update Polygon zkEVM API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=6420c79cba0e1d00790a67be
+
+      - name: Update Polygon zkEVM API - zkevm_getBatchByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_getBatchByNumber.yaml --key=$README_API_KEY --id=6420c7a3a93c91006a9ef0bd
+
+      - name: Update Polygon zkEVM API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=6420c7adf1b410000b629315
+
+      - name: Update Polygon zkEVM API - zkevm_getBroadcastURI
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_getBroadcastURI.yaml --key=$README_API_KEY --id=6420c7c7a9d2ae0026acd1fb
+
+      - name: Update Polygon zkEVM API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=6420c7cf84b3ba001f66382d
+
+      - name: Update Polygon zkEVM API - zkevm_isBlockConsolidated
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_isBlockConsolidated.yaml --key=$README_API_KEY --id=6420c7fcb81acd001f9a4db1
+
+      - name: Update Polygon zkEVM API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY  --id=6420c805f94e39006585d38b
+
+      - name: Update Polygon zkEVM API - zkevm_isBlockVirtualized
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_isBlockVirtualized.yaml --key=$README_API_KEY  --id=6420c80eac10df0018e50089
+
+      - name: Update Polygon zkEVM API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6420c85356f3140073143691
+
+      - name: Update Polygon zkEVM API - zkevm_verifiedBatchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_verifiedBatchNumber.yaml --key=$README_API_KEY --id=6420c893ae7f9d00417b1659
+
+      - name: Update Polygon zkEVM API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=6420c89c79b7370011256c54
+
+      - name: Update Polygon zkEVM API - zkevm_virtualBatchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_virtualBatchNumber.yaml --key=$README_API_KEY --id=6420c8a47ef46000118575ac
+
+      - name: Update Polygon zkEVM API - eth_getCompilers
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getCompilers.yaml --key=$README_API_KEY --id=6421e0f1823528005ec58005
+
+      - name: Update Polygon zkEVM API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6421e11415dfe600739a40ef
+
+      - name: Update Polygon zkEVM API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6421e11d5d9682006b8d1fd5
+
+      - name: Update Polygon zkEVM API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=6421e1260d3c2409513eec65
+
+      - name: Update Polygon zkEVM API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=6421e130a4fdca0058d7e544
+
+      - name: Update Polygon zkEVM API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=6421e143fe648e088d9b4f23
+
+
+      # Update Astar APIs
+      - name: Update Astar API - eth_accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=6306840eab47c500b41709fa
+
+      - name: Update Astar API - eth_blockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=630685216c9aad005eeb4482
+
+      - name: Update Astar API - eth_call
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=6306853fc94db0005aa018c2
+
+      - name: Update Astar API - eth_chainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=6306854f941641003e6ddeb9
+
+      - name: Update Astar API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=63068561b526df034b29410f
+
+      - name: Update Astar API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=630685732011ad0027bde3b8
+
+      - name: Update Astar API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=6306858899c4d500b015d001
+
+      - name: Update Astar API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=630685aa95b74c0014250f60
+
+      - name: Update Astar API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=630685bf8f8a1c026b4c8573
+
+      - name: Update Astar API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=630685dedcbf0b00389a9070
+
+      - name: Update Astar API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=630685eeaa28790021b9a64a
+
+      - name: Update Astar API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=63068647504be60020dd1cd7
+
+      - name: Update Astar API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=630686686c9aad005eeb73b8
+
+      - name: Update Astar API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=630686867f0d8d003e891020
+
+      - name: Update Astar API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6306869d79a50c0045dc7b1c
+
+      - name: Update Astar API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=630686bd596643001a5f86a3
+
+      - name: Update Astar API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=630686d0ef9c6200884b3736
+
+      - name: Update Astar API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=630686dcd180b9002e3cb579
+
+      - name: Update Astar API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=630686ef8268a500a83ab3b6
+
+      - name: Update Astar API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=630687037b6352003e0a8c5a
+
+      - name: Update Astar API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=63068749a75a77002390daf0
+
+      - name: Update Astar API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=63068761046c22008357b000
+
+      - name: Update Astar API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=63068778b999830036a69dae
+
+      - name: Update Astar API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=630687986f18270014b9202b
+
+      - name: Update Astar API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=64260c7691de4900738ce7ec
+
+      - name: Update Astar API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=643eca24b8182508a0a30805
+
+      - name: Update Astar API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=643eca3969a1280fcd9e2b9a
+
+      - name: Update Astar API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=643eca52865ddf187411c354
+
+      - name: Update Astar API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=643eca68d148b9000b80b8ea
+
+      - name: Update Astar API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=643eca7ebee410066e58c745
+
+      - name: Update Astar API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=643eca95b0ef80002e25fc91
+
 
 
       # Update Solana APIs
@@ -682,1649 +2183,147 @@ jobs:
         run: rdme openapi sendTransaction.yaml --key=$README_API_KEY --id=62d9832db4d7bf001a180ea3
 
 
-      # Update Polygon zkEVM APIs
-      - name: Update Polygon zkEVM API - eth_blockNumber
+      # Update Starknet APIs
+      - name: Update Starknet API - starknet_addDeclareTransaction
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=6420c23db7fd4700451dd125
+        working-directory: ./starknet
+        run: rdme openapi starknet_addDeclareTransaction.yaml --key=$README_API_KEY --id=64406faac2d7740059213a4f
 
-      - name: Update Polygon zkEVM API - eth_getTransactionCount
+      - name: Update Starknet API - starknet_getClassAt
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=6420c6b2cef8ff000a772940
+        working-directory: ./starknet
+        run: rdme openapi starknet_getClassAt.yaml --key=$README_API_KEY --id=64406fb9107cc6000bba05e6
 
-      - name: Update Polygon zkEVM API - eth_call
+      - name: Update Starknet API - starknet_addDeployAccountTransaction
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=6420c6cd719861006cbabe36
+        working-directory: ./starknet
+        run: rdme openapi starknet_addDeployAccountTransaction.yaml --key=$README_API_KEY --id=64406fc2948a1600fd2a71e9
 
-      - name: Update Polygon zkEVM API - eth_getTransactionReceipt
+      - name: Update Starknet API - starknet_getClassHashAt
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=6420c6f26bf5fd002678f599
+        working-directory: ./starknet
+        run: rdme openapi starknet_getClassHashAt.yaml --key=$README_API_KEY --id=64406fcc5aba2300513dc4a3
 
-      - name: Update Polygon zkEVM API - eth_chainId
+      - name: Update Starknet API - starknet_addInvokeTransaction
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=6420c6facf7d71005e2c8060
+        working-directory: ./starknet
+        run: rdme openapi starknet_addInvokeTransaction.yaml --key=$README_API_KEY --id=64406fd5d93442007209822b
 
-      - name: Update Polygon zkEVM API - eth_newBlockFilter
+      - name: Update Starknet API - starknet_getEvents
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=6420c702f721780026e80789
+        working-directory: ./starknet
+        run: rdme openapi starknet_getEvents.yaml --key=$README_API_KEY --id=64406fdea42c4e0388007281
 
-      - name: Update Polygon zkEVM API - eth_estimateGas
+      - name: Update Starknet API - starknet_blockHashAndNumber
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=6420c70d8bc1cb002f0f3d2c
+        working-directory: ./starknet
+        run: rdme openapi starknet_blockHashAndNumber.yaml --key=$README_API_KEY --id=64406fe62f2152000ab80899
 
-      - name: Update Polygon zkEVM API - eth_newFilter
+      - name: Update Starknet API - starknet_getNonce
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=6420c7142e0f7c007434017a
+        working-directory: ./starknet
+        run: rdme openapi starknet_getNonce.yaml --key=$README_API_KEY --id=64406ff24c37de005759e380
 
-      - name: Update Polygon zkEVM API - eth_gasPrice
+      - name: Update Starknet API - starknet_blockNumber
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=6420c71c6d83d70050530931
+        working-directory: ./starknet
+        run: rdme openapi starknet_blockNumber.yaml --key=$README_API_KEY --id=64406ffbb5b2f3001896e55c
 
-      - name: Update Polygon zkEVM API - eth_sendRawTransaction
+      - name: Update Starknet API - starknet_getStateUpdate
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=6420c724bad79d003dc302c7
+        working-directory: ./starknet
+        run: rdme openapi starknet_getStateUpdate.yaml --key=$README_API_KEY --id=6440700945a039000b1c7b77
 
-      - name: Update Polygon zkEVM API - eth_getBalance
+      - name: Update Starknet API - starknet_call
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=6420c72df721780026e807c5
+        working-directory: ./starknet
+        run: rdme openapi starknet_call.yaml --key=$README_API_KEY --id=6440701f1a55e800650d3154
 
-      - name: Update Polygon zkEVM API - eth_uninstallFilter
+      - name: Update Starknet API - starknet_getStorageAt
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=6420c734caef32003a42de26
+        working-directory: ./starknet
+        run: rdme openapi starknet_getStorageAt.yaml --key=$README_API_KEY --id=64407029b5b2f3001896e573
 
-      - name: Update Polygon zkEVM API - eth_getBlockByHash
+      - name: Update Starknet API - starknet_chainId
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=6420c73c7637ea0074ca0c62
+        working-directory: ./starknet
+        run: rdme openapi starknet_chainId.yaml --key=$README_API_KEY --id=64407032cf71a9000b56596b
 
-      - name: Update Polygon zkEVM API - net_version
+      - name: Update Starknet API - starknet_getTransactionByBlockIdAndIndex
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=6420c744caef32003a42de34
+        working-directory: ./starknet
+        run: rdme openapi starknet_getTransactionByBlockIdAndIndex.yaml --key=$README_API_KEY --id=6440703ce36444000acefc9f
 
-      - name: Update Polygon zkEVM API - eth_getBlockByNumber
+      - name: Update Starknet API - starknet_estimateFee
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=6420c74ef4cf27000a8e4935
+        working-directory: ./starknet
+        run: rdme openapi starknet_estimateFee.yaml --key=$README_API_KEY --id=64407047f394f20035ef654d
 
-      - name: Update Polygon zkEVM API - web3_clientVersion
+      - name: Update Starknet API - starknet_estimateMessageFee
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=6420c75c4fe821005e913608
+        working-directory: ./starknet
+        run: rdme openapi starknet_estimateMessageFee.yaml --key=$README_API_KEY --id=64f9010bfa510100197068b2
 
-      - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByHash
+      - name: Update Starknet API - starknet_getTransactionByHash
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=6420c76388a2bd0029c6eaf7
+        working-directory: ./starknet
+        run: rdme openapi starknet_getTransactionByHash.yaml --key=$README_API_KEY --id=6440705395b4ba007aca6b29
 
-      - name: Update Polygon zkEVM API - web3_sha3
+      - name: Update Starknet API - starknet_getBlockTransactionCount
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=654d13eb5653ce00382cda04
+        working-directory: ./starknet
+        run: rdme openapi starknet_getBlockTransactionCount.yaml --key=$README_API_KEY --id=6440705d117953029dee9221
 
-      - name: Update Polygon zkEVM API - eth_getBlockTransactionCountByNumber
+      - name: Update Starknet API - starknet_getTransactionReceipt
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=6420c77188cf75000ab37254
+        working-directory: ./starknet
+        run: rdme openapi starknet_getTransactionReceipt.yaml --key=$README_API_KEY --id=64407067099500000abb72f9
 
-      - name: Update Polygon zkEVM API - zkevm_batchNumber
+      - name: Update Starknet API - starknet_getBlockWithTxHashes
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_batchNumber.yaml --key=$README_API_KEY --id=6420c7780c6de100738e842a
+        working-directory: ./starknet
+        run: rdme openapi starknet_getBlockWithTxHashes.yaml --key=$README_API_KEY --id=6440708c84b7390079c421cb
 
-      - name: Update Polygon zkEVM API - eth_getCode
+      - name: Update Starknet API - starknet_pendingTransactions
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY  --id=6420c7806238060035c87af4
+        working-directory: ./starknet
+        run: rdme openapi starknet_pendingTransactions.yaml --key=$README_API_KEY --id=644070ad5599f402959e3788
 
-      - name: Update Polygon zkEVM API - zkevm_batchNumberByBlockNumber
+      - name: Update Starknet API - starknet_getBlockWithTxs
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_batchNumberByBlockNumber.yaml --key=$README_API_KEY --id=654d14a8b618e4000d880edb
+        working-directory: ./starknet
+        run: rdme openapi starknet_getBlockWithTxs.yaml --key=$README_API_KEY --id=644070ef42d96f003cd74192
 
-      - name: Update Polygon zkEVM API - eth_getFilterChanges
+      - name: Update Starknet API - starknet_syncing
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=6420c78d5258c30045c65878
+        working-directory: ./starknet
+        run: rdme openapi starknet_syncing.yaml --key=$README_API_KEY --id=644070fdb5b2f3001896f2d9
 
-      - name: Update Polygon zkEVM API - zkevm_consolidatedBlockNumber
+      - name: Update Starknet API - starknet_getClass
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_consolidatedBlockNumber.yaml --key=$README_API_KEY  --id=654d15317599f909a29a9efa
-
-      - name: Update Polygon zkEVM API - eth_getFilterLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=6420c79cba0e1d00790a67be
-
-      - name: Update Polygon zkEVM API - zkevm_getBatchByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_getBatchByNumber.yaml --key=$README_API_KEY --id=6420c7a3a93c91006a9ef0bd
-
-      - name: Update Polygon zkEVM API - eth_getLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=6420c7adf1b410000b629315
-
-      - name: Update Polygon zkEVM API - zkevm_getBroadcastURI
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_getBroadcastURI.yaml --key=$README_API_KEY --id=6420c7c7a9d2ae0026acd1fb
-
-      - name: Update Polygon zkEVM API - eth_getStorageAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=6420c7cf84b3ba001f66382d
-
-      - name: Update Polygon zkEVM API - zkevm_isBlockConsolidated
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_isBlockConsolidated.yaml --key=$README_API_KEY --id=6420c7fcb81acd001f9a4db1
-
-      - name: Update Polygon zkEVM API - eth_getTransactionByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY  --id=6420c805f94e39006585d38b
-
-      - name: Update Polygon zkEVM API - zkevm_isBlockVirtualized
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_isBlockVirtualized.yaml --key=$README_API_KEY  --id=6420c80eac10df0018e50089
-
-      - name: Update Polygon zkEVM API - eth_getTransactionByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6420c85356f3140073143691
-
-      - name: Update Polygon zkEVM API - zkevm_verifiedBatchNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_verifiedBatchNumber.yaml --key=$README_API_KEY --id=6420c893ae7f9d00417b1659
-
-      - name: Update Polygon zkEVM API - eth_getTransactionByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=6420c89c79b7370011256c54
-
-      - name: Update Polygon zkEVM API - zkevm_virtualBatchNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi zkevm_virtualBatchNumber.yaml --key=$README_API_KEY --id=6420c8a47ef46000118575ac
-
-      - name: Update Polygon zkEVM API - eth_getCompilers
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getCompilers.yaml --key=$README_API_KEY --id=6421e0f1823528005ec58005
-
-      - name: Update Polygon zkEVM API - eth_getUncleByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6421e11415dfe600739a40ef
-
-      - name: Update Polygon zkEVM API - eth_getUncleByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6421e11d5d9682006b8d1fd5
-
-      - name: Update Polygon zkEVM API - eth_getUncleCountByBlockHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=6421e1260d3c2409513eec65
-
-      - name: Update Polygon zkEVM API - eth_getUncleCountByBlockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=6421e130a4fdca0058d7e544
-
-      - name: Update Polygon zkEVM API - eth_protocolVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-zkevm
-        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=6421e143fe648e088d9b4f23
-
-
-      # Update Polygon PoS APIs
-      - name: Update Polygon PoS API - eth_createAccessList
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=635bfabd4f91e200405cddfa
-
-      - name: Update Polygon PoS API - bor_getAuthor
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi bor_getAuthor.yaml --key=$README_API_KEY --id=62d82945841e5600b8364320
-
-      - name: Update Polygon PoS API - bor_getCurrentProposer
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi bor_getCurrentProposer.yaml --key=$README_API_KEY --id=62d82965cb07ef006561e5af
-
-      - name: Update Polygon PoS API - bor_getCurrentValidators
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi bor_getCurrentValidators.yaml --key=$README_API_KEY --id=62d829733071e2001ac8ece4
-
-      - name: Update Polygon PoS API - bor_getRootHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi bor_getRootHash.yaml --key=$README_API_KEY --id=62d8298795ca1c004cd48382
-
-      - name: Update Polygon PoS API - bor_getSignersAtHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi bor_getSignersAtHash.yaml --key=$README_API_KEY --id=641505b4efbb8e0967737ce4
-
-      - name: Update Polygon PoS API - eth_accounts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d829a1fd9bd5008ad53eb1
-
-      - name: Update Polygon PoS API - eth_blockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62e1917dcdd98c009a2c2a85
-
-      - name: Update Polygon PoS API - eth_chainId
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d829d2eb13fc00281fe7bd
-
-      - name: Update Polygon PoS API - eth_gasPrice
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d82a4d2880f9013de98d82
-
-      - name: Update Polygon PoS API - eth_getBalance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d82a6280429500289da818
-
-      - name: Update Polygon PoS API - eth_getBlockTransactionCountByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d82b0247066b0027c130b8
-
-      - name: Update Polygon PoS API - eth_getBlockTransactionCountByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d82b191a6cbc0079615968
-
-      - name: Update Polygon PoS API - eth_getCode
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d82b320634e6003dbf8a9a
-
-      - name: Update Polygon PoS API - eth_getFilterChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d82b42c6645600bb050cc3
-
-      - name: Update Polygon PoS API - eth_getFilterLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d82b5326236f002a451bd3
-
-      - name: Update Polygon PoS API - eth_getLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d82b66df005c0027cc9602
-
-      - name: Update Polygon PoS API - eth_getRootHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getRootHash.yaml --key=$README_API_KEY --id=62d82b87a307230086583acb
-
-      - name: Update Polygon PoS API - eth_getSignersAtHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getSignersAtHash.yaml --key=$README_API_KEY --id=62d82b9da8b7440038ce9274
-
-      - name: Update Polygon PoS API - eth_getStorageAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d82bb04fd782002e6db7f2
-
-      - name: Update Polygon PoS API - eth_getTransactionByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d82bc3c4b3800064493595
-
-      - name: Update Polygon PoS API - eth_getTransactionByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d82bd6e856170013d62f58
-
-      - name: Update Polygon PoS API - eth_getTransactionByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d82c1ff43efe001c3b7c89
-
-      - name: Update Polygon PoS API - eth_getTransactionCount
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d82c318c633400a90f20aa
-
-      - name: Update Polygon PoS API - eth_getTransactionReceipt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d82c448448ac0041147773
-
-      - name: Update Polygon PoS API - eth_getTransactionReceiptsByBlock
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getTransactionReceiptsByBlock.yaml --key=$README_API_KEY --id=62d82c5335ad200020fd58d3
-
-      - name: Update Polygon PoS API - eth_getUncleByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d82c65cc0535008473fef3
-
-      - name: Update Polygon PoS API - eth_getUncleByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d82c821cf0bf0094764635
-
-      - name: Update Polygon PoS API - eth_getUncleCountByBlockHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d82c925a22fd0099471487
-
-      - name: Update Polygon PoS API - eth_getUncleCountByBlockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d82ca16307ee002d9b2bd1
-
-      - name: Update Polygon PoS API - eth_newBlockFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d82cb06307ee002d9b2be0
-
-      - name: Update Polygon PoS API - eth_newFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d82cc1a63ffe0014d22442
-
-      - name: Update Polygon PoS API - eth_newPendingTransactionFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d82ccff98016006db64147
-
-      - name: Update Polygon PoS API - eth_sendRawTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d82ce46ba6120089a4acd3
-
-      - name: Update Polygon PoS API - eth_uninstallFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d82d14a8cddc001dc2ce2c
-
-      - name: Update Polygon PoS API - net_listening
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d82d36ce9292019c74313c
-
-      - name: Update Polygon PoS API - net_version
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d82d48be94a1007dea3014
-
-      - name: Update Polygon PoS API - web3_clientVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d82d5805ea78004bfb8dd7
-
-      - name: Update Polygon PoS API - web3_sha3
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=654d13eb5653ce00382cda04
-
-      - name: Update Polygon PoS API - eth_getBlockByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d82a7bcafd010020d61d7d
-
-      - name: Update Polygon PoS API - eth_getBlockByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d82a998c633400a90f064e
-
-      - name: Update Polygon PoS API - eth_call
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d829c2941aa0001a0ed91c
-
-      - name: Update Polygon PoS API - eth_getProof
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d82b76cafd010020d64513
-
-      - name: Update Polygon PoS API - eth_estimateGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./polygon-pos
-        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d829e641abed0013809424
-
-
-      # Update Optimism APIs
-      - name: Update Optimism API - eth_accounts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d953617b813f0027df394f
-
-      - name: Update Optimism API - eth_blockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62d979b1207ad7007e6df52f
-
-      - name: Update Optimism API - eth_chainId
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d953db766263008a8661a1
-
-      - name: Update Optimism API - eth_gasPrice
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d954000b41d000a6ec2344
-
-      - name: Update Optimism API - eth_getBalance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d9543faec8c8003f63b029
-
-      - name: Update Optimism API - eth_getBlockTransactionCountByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d954f26ccd5600456a0763
-
-      - name: Update Optimism API - eth_getBlockTransactionCountByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d95503a7d49400700297ea
-
-      - name: Update Optimism API - eth_getCode
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d95512aec8c8003f63c2ad
-
-      - name: Update Optimism API - eth_getFilterChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d955227a0884003e288bca
-
-      - name: Update Optimism API - eth_getFilterLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d9553433565c01d2d5d376
-
-      - name: Update Optimism API - eth_getLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d95543d1ef6d002f862cc1
-
-      - name: Update Optimism API - eth_getStorageAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d955690b41d000a6ec345a
-
-      - name: Update Optimism API - eth_getTransactionByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d955787c1ba40036ac4052
-
-      - name: Update Optimism API - eth_getTransactionByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d9558b37827c001a477b62
-
-      - name: Update Optimism API - eth_getTransactionByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d9559a2f091a0013e9af08
-
-      - name: Update Optimism API - eth_getTransactionCount
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d955abe21c4905d7b129a0
-
-      - name: Update Optimism API - eth_getTransactionReceipt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d955be70f208005866869c
-
-      - name: Update Optimism API - eth_getUncleByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d955cf259d7e00147b0ce8
-
-      - name: Update Optimism API - eth_getUncleByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d955e072584e00271ac10c
-
-      - name: Update Optimism API - eth_getUncleCountByBlockHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d955f3ff2a2d0061dbeb1b
-
-      - name: Update Optimism API - eth_getUncleCountByBlockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d95604ab01d00082f21646
-
-      - name: Update Optimism API - eth_newBlockFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d956100b41d000a6ec47c9
-
-      - name: Update Optimism API - eth_newFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d9561b766263008a8680cd
-
-      - name: Update Optimism API - eth_newPendingTransactionFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d9562996a4a60049733692
-
-      - name: Update Optimism API - eth_protocolVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=62d9563f82f07f005619b822
-
-      - name: Update Optimism API - eth_sendRawTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d9564f37827c001a478ee6
-
-      - name: Update Optimism API - eth_syncing
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_syncing.yaml --key=$README_API_KEY --id=62d9567837827c001a47909f
-
-      - name: Update Optimism API - eth_uninstallFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d956923b4331007ebc7504
-
-      - name: Update Optimism API - net_listening
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d956b1089b2a00309e60e4
-
-      - name: Update Optimism API - net_version
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d956cc03036a002da5d8e6
-
-      - name: Update Optimism API - web3_clientVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d956dd7b813f0027df6c3e
-
-      - name: Update Optimism API - web3_sha3
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d956ed33565c01d2d60260
-
-      - name: Update Optimism API - eth_getProof
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d95557c7488f0014210297
-
-      - name: Update Optimism API - eth_getBlockByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d954cce232c70091e95b1f
-
-      - name: Update Optimism API - eth_getBlockByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d954de70fd50003f027d87
-
-      - name: Update Optimism API - eth_estimateGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d953f0089b2a00309e3f8f
-
-      - name: Update Optimism API - eth_call
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./optimism
-        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d953c76ccd56004569e216
-
-
-      # Update Astar APIs
-      - name: Update Astar API - eth_accounts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=6306840eab47c500b41709fa
-
-      - name: Update Astar API - eth_blockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=630685216c9aad005eeb4482
-
-      - name: Update Astar API - eth_call
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=6306853fc94db0005aa018c2
-
-      - name: Update Astar API - eth_chainId
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=6306854f941641003e6ddeb9
-
-      - name: Update Astar API - eth_estimateGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=63068561b526df034b29410f
-
-      - name: Update Astar API - eth_gasPrice
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=630685732011ad0027bde3b8
-
-      - name: Update Astar API - eth_getBalance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=6306858899c4d500b015d001
-
-      - name: Update Astar API - eth_getBlockByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=630685aa95b74c0014250f60
-
-      - name: Update Astar API - eth_getBlockByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=630685bf8f8a1c026b4c8573
-
-      - name: Update Astar API - eth_getBlockTransactionCountByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=630685dedcbf0b00389a9070
-
-      - name: Update Astar API - eth_getBlockTransactionCountByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=630685eeaa28790021b9a64a
-
-      - name: Update Astar API - eth_getCode
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=63068647504be60020dd1cd7
-
-      - name: Update Astar API - eth_getStorageAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=630686686c9aad005eeb73b8
-
-      - name: Update Astar API - eth_getTransactionByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=630686867f0d8d003e891020
-
-      - name: Update Astar API - eth_getTransactionByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=6306869d79a50c0045dc7b1c
-
-      - name: Update Astar API - eth_getTransactionByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=630686bd596643001a5f86a3
-
-      - name: Update Astar API - eth_getTransactionCount
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=630686d0ef9c6200884b3736
-
-      - name: Update Astar API - eth_getTransactionReceipt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=630686dcd180b9002e3cb579
-
-      - name: Update Astar API - eth_getUncleByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=630686ef8268a500a83ab3b6
-
-      - name: Update Astar API - eth_maxPriorityFeePerGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=630687037b6352003e0a8c5a
-
-      - name: Update Astar API - eth_sendRawTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=63068749a75a77002390daf0
-
-      - name: Update Astar API - net_version
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=63068761046c22008357b000
-
-      - name: Update Astar API - web3_clientVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=63068778b999830036a69dae
-
-      - name: Update Astar API - web3_sha3
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=630687986f18270014b9202b
-
-      - name: Update Astar API - eth_getLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=64260c7691de4900738ce7ec
-
-      - name: Update Astar API - eth_getFilterChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=643eca24b8182508a0a30805
-
-      - name: Update Astar API - eth_getFilterLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=643eca3969a1280fcd9e2b9a
-
-      - name: Update Astar API - eth_newBlockFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=643eca52865ddf187411c354
-
-      - name: Update Astar API - eth_newFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=643eca68d148b9000b80b8ea
-
-      - name: Update Astar API - eth_newPendingTransactionFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=643eca7ebee410066e58c745
-
-      - name: Update Astar API - eth_uninstallFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./astar
-        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=643eca95b0ef80002e25fc91
-
-
-      # Update NFT API
-      - name: Update NFT API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./nft
-        run: rdme openapi nfts.yaml --key=$README_API_KEY --id=62bb5f1af2192000e16f5c93
-      
-
-      # Update Notify API
-      - name: Update Notify API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./notify
-        run: rdme openapi notify.yaml --key=$README_API_KEY --id=62d74663f3ed8d0071190eb2
-          
-
-      # Update Transfers API
-      - name: Update Transfers API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transfers
-        run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=62d75e355edcd00083b39fa2
-
-
-      # Update Gas Manager Admin API
-      - name: Update Gas Manager Admin API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi gas_manager_admin.yaml --key=$README_API_KEY --id=648a94b656f41511b55a453b
-
-
-      # Update Transaction Receipts API
-      - name: Update Transaction Receipts API - alchemy_getTransactionReceipts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transaction-receipts
-        run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
-
-
-      # Update AA APIs
-      - name: Update AA API - alchemy_requestGasAndPaymasterAndData
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi alchemy_requestGasAndPaymasterAndData.yaml --key=$README_API_KEY --id=6477e048c2b29800373e6baa
-
-      - name: Update AA API - alchemy_requestPaymasterAndData
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi alchemy_requestPaymasterAndData.yaml --key=$README_API_KEY --id=64272da5ebf42012145aef2a
-
-      - name: Update AA API - eth_estimateUserOperationGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi eth_estimateUserOperationGas.yaml --key=$README_API_KEY --id=654aecab00550900443f7259
-
-      - name: Update AA API - eth_getUserOperationByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi eth_getUserOperationByHash.yaml --key=$README_API_KEY --id=64272df579e7d70026458324
-
-      - name: Update AA API - eth_getUserOperationReceipt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi eth_getUserOperationReceipt.yaml --key=$README_API_KEY --id=64272dc1a771520c3d5df25f
-
-      - name: Update AA API - eth_sendUserOperation
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi eth_sendUserOperation.yaml --key=$README_API_KEY --id=6464ef740982971d10c0b132
-
-      - name: Update AA API - eth_supportedEntryPoints
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi eth_supportedEntryPoints.yaml --key=$README_API_KEY --id=64272dd780ee510d6e68d4d6
-
-      - name: Update AA API - rundler_maxPriorityFeePerGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi rundler_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=64df886f8b288c002455bba1
-
-      - name: Update AA API - alchemy_simulateUserOperationAssetChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./account-abstraction
-        run: rdme openapi alchemy_simulateUserOperationAssetChanges.yaml --key=$README_API_KEY --id=6554e8dc1914ac000f50da38
-
-
-      # Update Debug APIs
-      - name: Update Debug API - debug_traceBlockByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./debug
-        run: rdme openapi debug_traceBlockByHash.yaml --key=$README_API_KEY --id=6328e66279553d00b0462306
-
-      - name: Update Debug API - debug_traceBlockByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./debug
-        run: rdme openapi debug_traceBlockByNumber.yaml --key=$README_API_KEY --id=6328e64b0f36e300395b02bd
-
-      - name: Update Debug API - debug_traceCall
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./debug
-        run: rdme openapi debug_traceCall.yaml --key=$README_API_KEY --id=6328e601462d7c00963c89f5
-
-      - name: Update Debug API - debug_traceTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./debug
-        run: rdme openapi debug_traceTransaction.yaml --key=$README_API_KEY --id=6328e63ebd678a000f80aa64
-
-
-      # Update Token APIs
-      - name: Update Token API - alchemy_getTokenAllowance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./token
-        run: rdme openapi alchemy_getTokenAllowance.yaml --key=$README_API_KEY --id=62d557bb6c138d007e01972e
-
-      - name: Update Token API - alchemy_getTokenBalances
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./token
-        run: rdme openapi alchemy_getTokenBalances.yaml --key=$README_API_KEY --id=62d551cf2cef3a00205a5924
-
-      - name: Update Token API - alchemy_getTokenMetadata
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./token
-        run: rdme openapi alchemy_getTokenMetadata.yaml --key=$README_API_KEY --id=62d5581637732c00307aec6e
-
-
-      # Update Trace APIs
-      - name: Update Trace API - trace_block
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_block.yaml --key=$README_API_KEY --id=62d75aa0ae0b8c00ac4bd10b
-
-      - name: Update Trace API - trace_call
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_call.yaml --key=$README_API_KEY --id=62e0cbf0a759110013247d5a
-
-      - name: Update Trace API - trace_filter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_filter.yaml --key=$README_API_KEY --id=62e0cdf776a3c0006fb0e8d4
-
-      - name: Update Trace API - trace_get
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_get.yaml --key=$README_API_KEY --id=62e0cd4cc45b7f004714b274
-
-      - name: Update Trace API - trace_rawTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_rawTransaction.yaml --key=$README_API_KEY --id=62e0cd733bec4800a2cab44b
-
-      - name: Update Trace API - trace_replayBlockTransactions
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_replayBlockTransactions.yaml --key=$README_API_KEY --id=62e0cd901c32f9001a935f5a
-
-      - name: Update Trace API - trace_replayTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_replayTransaction.yaml --key=$README_API_KEY --id=62e0cdb03e93d900a4b75c8c
-
-      - name: Update Trace API - trace_transaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./trace
-        run: rdme openapi trace_transaction.yaml --key=$README_API_KEY --id=62e0cdd38dfdce003924d062
-
-
-      # Update Transact APIs
-      - name: Update Transact API - alchemy_getGasOptimizedTransactionStatus
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi alchemy_getGasOptimizedTransactionStatus.yaml --key=$README_API_KEY --id=634f71298eef9100ad7d99f9
-
-      - name: Update Transact API - alchemy_sendGasOptimizedTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi alchemy_sendGasOptimizedTransaction.yaml --key=$README_API_KEY --id=634f72885e2a9200e4ebf268
-
-      - name: Update Transact API - alchemy_simulateAssetChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi alchemy_simulateAssetChanges.yaml --key=$README_API_KEY --id=64b8502ac5b267003a3c9bcb
-
-      - name: Update Transact API - alchemy_simulateAssetChangesBundle
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi alchemy_simulateAssetChangesBundle.yaml --key=$README_API_KEY --id=64b850f6980cad006c5a78fd
-
-      - name: Update Transact API - alchemy_simulateExecution
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi alchemy_simulateExecution.yaml --key=$README_API_KEY --id=64b8519b7c8a69000c6966b5
-
-      - name: Update Transact API - alchemy_simulateExecutionBundle
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi alchemy_simulateExecutionBundle.yaml --key=$README_API_KEY --id=64b8521694c9f5001f316d20
-
-      - name: Update Transact API - eth_cancelPrivateTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi eth_cancelPrivateTransaction.yaml --key=$README_API_KEY --id=6425b62a93d5e707f01f7e6a
-
-      - name: Update Transact API - eth_sendPrivateTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transact
-        run: rdme openapi eth_sendPrivateTransaction.yaml --key=$README_API_KEY --id=62d6beb6c58877026441688c
-
-
-      # Update Ethereum APIs
-
-      - name: Update Ethereum API - eth_createAccessList
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=635bf940de31790f648c2218
-
-      - name: Update Ethereum API - eth_blockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62c8076fe3a26b039d30eab9
-
-      - name: Update Ethereum API - eth_call
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62cd3571d1a583001a47bb1c
-
-      - name: Update Ethereum API - eth_accounts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d54b64fcf55a002eba8d8b
-
-      - name: Update Ethereum API - eth_newFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d5cc6ceb57150082e0f840
-
-      - name: Update Ethereum API - eth_feeHistory
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_feeHistory.yaml --key=$README_API_KEY --id=62d5d1235ece66005997b8b1
-
-      - name: Update Ethereum API - eth_chainId
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d78929f180b60043228bf9
-
-      - name: Update Ethereum API - eth_estimateGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d79a2f75cd93006588aaa5
-
-      - name: Update Ethereum API - eth_gasPrice
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d79ad44c8825004019d4b6
-
-      - name: Update Ethereum API - eth_getBlockByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d815accbd947021ac71943
-
-      - name: Update Ethereum API - eth_getBlockTransactionCountByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d818045b0ac000278af0e1
-
-      - name: Update Ethereum API - eth_getBalance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d81b4a604ef3008ea7167e
-
-      - name: Update Ethereum API - eth_getBlockByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d81ba3a8cddc001dc19c10
-
-      - name: Update Ethereum API - eth_getBlockReceipts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=62d81bc8c50dc600524d2089
-
-      - name: Update Ethereum API - eth_getBlockTransactionCountByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d81c425b0ac000278b6784
-
-      - name: Update Ethereum API - eth_getCode
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d81c65cbd947021ac7a941
-
-      - name: Update Ethereum API - eth_getFilterChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d81c82c3d662001491b5a4
-
-      - name: Update Ethereum API - eth_getFilterLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d81cb1c4b3800064481d2d
-
-      - name: Update Ethereum API - eth_getLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d831294c882500402412d6
-
-      - name: Update Ethereum API - eth_getProof
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=62d8316ba8cddc001dc32815
-
-      - name: Update Ethereum API - eth_getStorageAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d83189978c0800136bc5aa
-
-      - name: Update Ethereum API - eth_getTransactionByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d831a48e6920009eb8f635
-
-      - name: Update Ethereum API - eth_getTransactionByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d832236307ee002d9b9b0a
-
-      - name: Update Ethereum API - eth_getTransactionCount
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d8326743c6c00037dd6155
-
-      - name: Update Ethereum API - eth_getTransactionReceipt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=62d8327be856170013d6b283
-
-      - name: Update Ethereum API - eth_getUncleByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d832c5158058012d40ea4c
-
-      - name: Update Ethereum API - eth_getUncleByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d832dc15065e002ee0d85a
-
-      - name: Update Ethereum API - eth_getUncleCountByBlockHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d832f9dcb3860058b4d99b
-
-      - name: Update Ethereum API - eth_getUncleCountByBlockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d833246307ee002d9ba6ff
-
-      - name: Update Ethereum API - eth_maxPriorityFeePerGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=62d8334b368457002f086082
-
-      - name: Update Ethereum API - eth_newBlockFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d833f8d2cfb500282244c5
-
-      - name: Update Ethereum API - eth_newPendingTransactionFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d83490c7cb6d00876164db
-
-      - name: Update Ethereum API - eth_protocolVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=62d834cfbe94a1007dea9007
-
-      - name: Update Ethereum API - eth_sendRawTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d835028c633400a90fd223
-
-      - name: Update Ethereum API - eth_uninstallFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d835bcf25f770152c68641
-
-      - name: Update Ethereum API - net_listening
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d836535a22fd00994784a4
-
-      - name: Update Ethereum API - net_version
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d8366a895f5d0014681008
-
-      - name: Update Ethereum API - web3_clientVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d8367fa2d9d4001c18d733
-
-      - name: Update Ethereum API - web3_sha3
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d83693bf0ca1002035a814
-
-      - name: Update Ethereum API - eth_getTransactionByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./ethereum
-        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d85761c50d8b00730dc6ce
-
-
-    # Update Arbitrum APIs
-
-      - name: Update Arbitrum API - eth_accounts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_accounts.yaml --key=$README_API_KEY --id=62d8d22190dfbd0013767822
-
-      - name: Update Arbitrum API - eth_blockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_blockNumber.yaml --key=$README_API_KEY --id=62d8d23ca7d4940070fb5bec
-
-      - name: Update Arbitrum API - eth_call
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d8d7ec0e06b30029f9c72a
-
-      - name: Update Arbitrum API - eth_chainId
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_chainId.yaml --key=$README_API_KEY --id=62d8d805f01e4d002f2eaca0
-
-      - name: Update Arbitrum API - eth_estimateGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d8d817f0253e00a6461eb0
-
-      - name: Update Arbitrum API - eth_gasPrice
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=62d8d8328cd9e7006a42064c
-
-      - name: Update Arbitrum API - eth_getBalance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=62d8d87c14db26001416ac63
-
-      - name: Update Arbitrum API - eth_getBlockByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=62d8dd027c1ba40036a5a1a1
-
-      - name: Update Arbitrum API - eth_getBlockByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=62d8e0c7f7b6f50072597080
-
-      - name: Update Arbitrum API - eth_getBlockTransactionCountByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=62d8e112259d7e001474c645
-
-      - name: Update Arbitrum API - eth_getBlockTransactionCountByNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=62d8e133efa205012a37a43a
-
-      - name: Update Arbitrum API - eth_getCode
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=62d8e15486056c003cc75375
-
-      - name: Update Arbitrum API - eth_getFilterChanges
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=62d8e17070fd50003ffbf060
-
-      - name: Update Arbitrum API - eth_getFilterLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=62d8e189487ded0096d0097a
-
-      - name: Update Arbitrum API - eth_getLogs
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=62d8e2164959b30088f11e57
-
-      - name: Update Arbitrum API - eth_getStorageAt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=62d8e22dbb9859001e90e111
-
-      - name: Update Arbitrum API - eth_getTransactionByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=62d8e2bdd94be9009bef4eb5
-
-      - name: Update Arbitrum API - eth_getTransactionByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d8e371cec32f0013dd7cd8
-
-      - name: Update Arbitrum API - eth_getTransactionByHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=62d8e39187f70200a07262ff
-
-      - name: Update Arbitrum API - eth_getTransactionCount
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=62d8e3c9f2ee85023f8958f8
-
-      - name: Update Arbitrum API - eth_getTransactionReceipt
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=6549e6db1c854b000c6e8e19
-
-      - name: Update Arbitrum API - eth_getUncleByBlockNumberAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d8e5eb487ded0096d0477e
-
-      - name: Update Arbitrum API - eth_getUncleCountByBlockHash
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=62d8e60143af490013464da6
-
-      - name: Update Arbitrum API - eth_getUncleCountByBlockNumber
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=62d8e61470fd9d0065c98eb7
-
-      - name: Update Arbitrum API - eth_newBlockFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=62d8e63472584e002713e951
-
-      - name: Update Arbitrum API - eth_newFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=62d8e648425369004cbbde61
-
-      - name: Update Arbitrum API - eth_newPendingTransactionFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=62d8e659137da40014f246df
-
-      - name: Update Arbitrum API - eth_sendRawTransaction
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=62d8e66eaefd120077ed7e44
-
-      - name: Update Arbitrum API - eth_uninstallFilter
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=62d8e6f1496fdb0056aecb93
-
-      - name: Update Arbitrum API - net_listening
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=62d8e7123b4331007eb60617
-
-      - name: Update Arbitrum API - net_version
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=62d8e72ad1ef6d002f8071c0
-
-      - name: Update Arbitrum API - web3_clientVersion
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=62d8e7427400e900a6471d28
-
-      - name: Update Arbitrum API - web3_sha3
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=62d8e759ebeda4004a1f51db
-
-      - name: Update Arbitrum API - eth_createAccessList
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=63349fdd600a95005062096d
-
-      - name: Update Arbitrum API - eth_getProof
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=6334c995307ef5008a7c88b0
-
-      - name: Update Arbitrum API - eth_maxPriorityFeePerGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=6334c9a19d1cf000641fef37
-
-      - name: Update Arbitrum API - eth_feeHistory
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_feeHistory.yaml --key=$README_API_KEY --id=6334ca7a220b16000f3e22a5
-
-      - name: Update Arbitrum API - eth_getUncleByBlockHashAndIndex
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./arbitrum
-        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6549ec1d353781003ef523e7
+        working-directory: ./starknet
+        run: rdme openapi starknet_getClass.yaml --key=$README_API_KEY --id=6440711368d835000b7711a0
