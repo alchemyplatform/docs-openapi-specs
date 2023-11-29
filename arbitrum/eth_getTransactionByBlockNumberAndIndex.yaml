@@ -1,4 +1,3 @@
-# paths in this file only work with GH actions, for command line add '../' in the beginning
 openapi: 3.1.0
 info:
   title: eth_getTransactionByBlockNumberAndIndex - Arbitrum
@@ -15,7 +14,7 @@ servers:
 x-sandbox:
   category:
     type:
-      $ref: 'components/sandbox.yaml#/Category'
+      $ref: '../components/sandbox.yaml#/Category'
     value: core
 paths:
   /{apiKey}:
@@ -41,7 +40,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'evm_body.yaml#/eth_getTransactionByBlockNumberAndIndex'
+              $ref: '../evm_body.yaml#/eth_getTransactionByBlockNumberAndIndex'
               default:
                 params: ['latest', '0x1']
       responses:
@@ -50,5 +49,5 @@ paths:
           content:
             application/json:
               schema:
-                $ref: evm_responses.yaml#/eth_getTransactionByHash_arb
+                $ref: ../evm_responses.yaml#/eth_getTransactionByHash_arb
       operationId: eth-getTransactionByBlockNumberAndIndex-arbitrum
