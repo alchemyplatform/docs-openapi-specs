@@ -1910,7 +1910,6 @@ jobs:
         run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=643eca95b0ef80002e25fc91
 
 
-
       # Update Solana APIs
       - name: Update Solana API - simulateTransaction
         env:
