@@ -59,8 +59,10 @@ components:
                           description: User operation to simulate. Please note that the `signature` does not need to be a valid signature, only a dummy value is required similar to the one that's used for estimating gas.
                         - $ref: '../components/schemas.yaml#/EntryPoint'
                           description: EntryPoint to use for the simulation. This MUST be one of the entry points returned by the `supportedEntryPoints` RPC call.
-                    minItems: 2
-                    maxItems: 2
+                        - $ref: '../components/schemas.yaml#/BlockOverride'
+                          description: Optional block number in context of which the simulation should be executed. If not specified, the current block number is used.
+                    minItems: 3
+                    maxItems: 3
         responses:
           '200':
             description: OK
