@@ -64,6 +64,11 @@ interface ArrayParam<Item> extends BaseParam<PrimitiveParam[]> {
   max?: number;
 }
 
+interface TupleParam<Item> extends BaseParam<PrimitiveParam[]> {
+  type: 'tuple';
+  items: Item[];
+}
+
 interface ObjectParam<Item> extends BaseParam<Record<string, PrimitiveParam>> {
   type: 'object';
   properties: Record<string, Item>;
@@ -82,6 +87,7 @@ interface AnyOfParam<Item> extends BaseParam<PrimitiveParam> {
 export type Param =
   | PrimitiveParam
   | ArrayParam<Param>
+  | TupleParam<Param>
   | ObjectParam<Param>
   | OneOfParam<Param>
   | AnyOfParam<Param>;

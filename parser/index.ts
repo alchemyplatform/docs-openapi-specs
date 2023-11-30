@@ -364,6 +364,22 @@ function convertSchema(schema: OpenAPIV3_1.SchemaObject): Param | undefined {
       };
     case 'array':
       const items = convertSchema(schema.items);
+      const prefixItems =
+        'prefixItems' in schema && Array.isArray(schema.prefixItems)
+          ? schema.prefixItems
+              .map(convertSchema)
+              .filter((param): param is Param => param != null)
+          : [];
+
+      if (prefixItems.length > 0) {
+        return {
+          type: 'tuple',
+          default: schema.default,
+          description: schema.description,
+          name: schema.title,
+          items: prefixItems,
+        };
+      }
 
       if (!items) return;
 
