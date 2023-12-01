@@ -9,6 +9,7 @@ servers:
         enum:
           - base-mainnet
           - base-goerli
+          - base-sepolia
         default: base-mainnet
 x-sandbox:
   category:

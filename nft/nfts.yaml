@@ -17,8 +17,10 @@ servers: # servers are also specified at the method level, if there ins't a spec
           - arb-sepolia
           - opt-mainnet
           - opt-goerli
+          - opt-sepolia
           - base-mainnet
           - base-goerli
+          - base-sepolia
           - starknet-mainnet
           - starknet-goerli
         default: eth-mainnet
