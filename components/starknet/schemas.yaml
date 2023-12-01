@@ -105,8 +105,14 @@ BlockId:
   default: latest
   oneOf:
     - $ref: '#/BlockTag'
-    - $ref: '#/BlockHash'
-    - $ref: '#/BlockNumber'
+    - type: object
+      properties:
+        block_hash:
+          $ref: '#/BlockHash'
+    - type: object
+      properties:
+        block_number:
+          $ref: '#/BlockNumber'
 
 BlockTag:
   type: string
