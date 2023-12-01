@@ -16,8 +16,10 @@ servers:
           - arb-sepolia
           - opt-mainnet
           - opt-goerli
+          - opt-sepolia
           - base-mainnet
-          - base-testnet
+          - base-goerli
+          - base-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
