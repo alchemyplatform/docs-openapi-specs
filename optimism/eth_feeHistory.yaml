@@ -3,7 +3,14 @@ info:
   title: eth_feeHistory - Optimism
   version: '1.0'
 servers:
-  - url: 'https://opt-mainnet.g.alchemy.com/v2 '
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - opt-mainnet
+          - opt-goerli
+          - opt-sepolia
+        default: opt-mainnet
 x-sandbox:
   category:
     type:
