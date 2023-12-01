@@ -104,19 +104,9 @@ BlockId:
   title: Block hash, number or tag
   default: latest
   oneOf:
-    - type: object
-      properties:
-        block_hash:
-          $ref: '#/BlockHash'
-      required:
-        - block_hash
-    - type: object
-      properties:
-        block_number:
-          $ref: '#/BlockNumber'
-      required:
-        - block_number
     - $ref: '#/BlockTag'
+    - $ref: '#/BlockHash'
+    - $ref: '#/BlockNumber'
 
 BlockTag:
   type: string
