@@ -1019,7 +1019,7 @@ components:
         - OPT_MAINNET
         - OPT_KOVAN
         - BASE_MAINNET
-        - BASE_TESTNET
+        - BASE_GOERLI
 
       default: ETH_MAINNET
     webhook_type:
