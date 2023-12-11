@@ -11,7 +11,6 @@ servers:
           - starknet-mainnet
           - starknet-goerli
           - starknet-sepolia
-          - starknet-sepolia
         default: starknet-mainnet
   - url: 'https://{network}.g.alchemy.com/starknet/version/rpc/{version}/'
     variables:
