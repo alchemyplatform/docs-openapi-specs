@@ -105,21 +105,31 @@ eth_getLogs:
 eth_getTransactionByHash:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/transactionHash_param'
     - type: object
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionByHash
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transactionHash_param'
 eth_getTransactionReceipt:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/transactionHash_param'
     - type: object
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: eth_getTransactionReceipt
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transactionHash_param'
 eth_getBlockTransactionCountByHash:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1051,12 +1061,17 @@ trace_get:
 trace_transaction:
   allOf:
     - $ref: '#/common_request_fields'
-    - $ref: '#/transactionHash_param'
     - type: object
       properties:
         method:
           $ref: ./components/schemas.yaml#/Method
           default: trace_transaction
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transactionHash_param'
 
 # ============= Polygon API Methods ===============
 bor_getAuthor:
@@ -1628,17 +1643,10 @@ gas_550:
         Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
         </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
 transactionHash_param:
-  type: object
-  properties:
-    params:
-      type: array
-      description: String - 32 Bytes - Hash of a transaction
-      minItems: 1
-      maxItems: 1
-      items:
-        type: string
-        pattern: '^0[xX][0-9a-fA-F]+$'
-        default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+  type: string
+  description: String - 32 Bytes - Hash of a transaction
+  pattern: '^0[xX][0-9a-fA-F]+$'
+  default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
 blockHash_param:
   type: string
   description: String - 32 Bytes - Hash of a block
@@ -2348,69 +2356,64 @@ alchemy_requestGasAndPaymasterAndData:
                 description: Optional fields to override default gas and fee behavior - this will apply either percentage overrides relative to our default estimates or absolute overrides
                 properties:
                   maxFeePerGas:
-                    type:
-                      oneOf:
-                        - type: string
-                          description: "Hex string"
-                        - type: object
-                          properties:
-                            percentage:
-                              type: number
-                          required:
-                            - percentage
-                          description: "Percentage value"
+                    oneOf:
+                      - type: string
+                        description: 'Hex string'
+                      - type: object
+                        properties:
+                          percentage:
+                            type: number
+                        required:
+                          - percentage
+                        description: 'Percentage value'
                     description: Maximum fee per gas buffer
                   maxPriorityFeePerGas:
-                    type:
-                      oneOf:
-                        - type: string
-                          description: "Hex string"
-                        - type: object
-                          properties:
-                            percentage:
-                              type: number
-                          required:
-                            - percentage
-                          description: "Percentage value"
+                    oneOf:
+                      - type: string
+                        description: 'Hex string'
+                      - type: object
+                        properties:
+                          percentage:
+                            type: number
+                        required:
+                          - percentage
+                        description: 'Percentage value'
                     description: Maximum priority fee per gas buffer
                   callGasLimit:
-                    type:
-                      oneOf:
-                        - type: string
-                          description: "Hex string"
-                        - type: object
-                          properties:
-                            percentage:
-                              type: number
-                          required:
-                            - percentage
-                          description: "Percentage value"
+                    oneOf:
+                      - type: string
+                        description: 'Hex string'
+                      - type: object
+                        properties:
+                          percentage:
+                            type: number
+                        required:
+                          - percentage
+                        description: 'Percentage value'
                     description: Call gas limit buffer
                   verificationGasLimit:
-                    type:
-                      oneOf:
-                        - type: string
-                          description: "Hex string"
-                        - type: object
-                          properties:
-                            percentage:
-                              type: number
-                          required:
-                            - percentage
-                          description: "Percentage value"
+                    oneOf:
+                      - type: string
+                        description: 'Hex string'
+                      - type: object
+                        properties:
+                          percentage:
+                            type: number
+                        required:
+                          - percentage
+                        description: 'Percentage value'
                     description: Verification gas limit buffer
                   preVerificationGas:
-                    type:
-                      oneOf:
-                        - type: string
-                          description: "Hex string"
-                        - type: object
-                          properties:
-                            percentage:
-                              type: number
-                          required:
-                            - percentage
-                          description: "Percentage value"
+                    oneOf:
+                      - type: string
+                        description: 'Hex string'
+                      - type: object
+                        properties:
+                          percentage:
+                            type: number
+                        required:
+                          - percentage
+                        description: 'Percentage value'
                     description: Pre-verification gas buffer
 
 rundler_maxPriorityFeePerGas:
