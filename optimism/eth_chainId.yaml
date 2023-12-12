@@ -9,10 +9,7 @@ servers:
         enum:
           - opt-mainnet
           - opt-goerli
-<<<<<<< HEAD
           - opt-sepolia
-=======
->>>>>>> 4ca38e80 (Squashed commit of the following:)
         default: opt-mainnet
 x-sandbox:
   category:
