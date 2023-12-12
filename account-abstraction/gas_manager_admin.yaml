@@ -5,7 +5,7 @@ info:
 servers:
   - url: https://manage.g.alchemy.com/
 x-sandbox:
-  category: Gas Manager
+  category:
     type:
       $ref: '../components/sandbox.yaml#/Category'
     value: gas-manager
