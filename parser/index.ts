@@ -393,18 +393,22 @@ function convertSchema(schema: OpenAPIV3_1.SchemaObject): Param | undefined {
         items,
       };
     case 'object':
-      const propertyEntries = Object.entries(schema.properties || {}).map(
-        ([key, prop]) => {
+      const propertyEntries = Object.entries(schema.properties || {})
+        .map(([key, prop]) => {
+          const convertedSchema = convertSchema(prop);
+
+          if (!convertedSchema) return [key, null];
+
           return [
             key,
             {
-              ...convertSchema(prop),
+              ...convertedSchema,
               name: key,
               required: schema.required?.includes(key) || undefined,
             },
           ];
-        },
-      );
+        })
+        .filter((entry) => entry[1] != null);
 
       if (propertyEntries.length === 0) return;
 
