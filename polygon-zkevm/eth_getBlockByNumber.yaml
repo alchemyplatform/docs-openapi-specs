@@ -20,8 +20,14 @@ paths:
     post:
       summary: eth_getBlockByNumber - Polygon zkEVM
       description: Returns information about a block on Polygon zkEVM by block number.
-      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblockbynumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockByNumber_l2
       x-readme:
         samples-languages:
           - curl

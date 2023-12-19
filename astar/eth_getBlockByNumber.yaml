@@ -13,8 +13,15 @@ paths:
   /{apiKey}:
     post:
       summary: eth_getBlockByNumber - Astar
-      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblockbynumber-astar
+      description: Returns information about a block by block number.
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockByNumber_l2
       x-readme:
         explorer-enabled: false
         samples-languages:

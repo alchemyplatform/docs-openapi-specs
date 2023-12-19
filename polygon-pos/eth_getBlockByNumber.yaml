@@ -20,7 +20,13 @@ paths:
     post:
       summary: eth_getBlockByNumber - Polygon PoS
       description: Returns information about a block on Polygon by block number.
-      $ref: ../ethereum/eth_getBlockByNumber.yaml#/components/pathItems/path/post
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockByNumber_l2
       operationId: eth-getblockbynumber-polygon
       x-readme:
         explorer-enabled: false
