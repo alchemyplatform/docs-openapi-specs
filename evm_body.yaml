@@ -480,13 +480,12 @@ eth_estimateGas_550:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
                 title: Block Number or Block Tag
           prefixItems:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                    title: Transaction Object
-                  - $ref: '#/gas_550'
-              - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Block Number or Block Tag
+            - allOf:
+                - $ref: '#/transaction_object'
+                - $ref: '#/gas_550'
+              title: Transaction Object
+            - $ref: '#/blockNumber_or_blocktag_param_eth'
+              title: Block Number or Block Tag
 
 eth_estimateGas_polygon_zkEVM:
   allOf:
@@ -509,13 +508,12 @@ eth_estimateGas_polygon_zkEVM:
               - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
                 title: Block Number or Block Tag
           prefixItems:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                    title: Transaction Object
-                  - $ref: '#/gas_550'
-              - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
-                title: Block Number or Block Tag
+            - allOf:
+                - $ref: '#/transaction_object'
+                - $ref: '#/gas_550'
+              title: Transaction Object
+            - $ref: '#/blockNumber_or_blocktag_param_eth'
+              title: Block Number or Block Tag
 
 eth_feeHistory:
   allOf:
@@ -1568,15 +1566,14 @@ eth_call_550_gas:
               - $ref: '#/state_override_set'
                 title: State Override Set
           prefixItems:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                    title: Transaction Object
-                  - $ref: '#/gas_550'
-              - $ref: '#/BlockNumberOrTagOrHash'
-                title: Block Number or Block Tag or Block Hash
-              - $ref: '#/state_override_set'
-                title: State Override Set
+            - allOf:
+                - $ref: '#/transaction_object'
+                - $ref: '#/gas_550'
+              title: Transaction Object
+            - $ref: '#/BlockNumberOrTagOrHash'
+              title: Block Number or Block Tag or Block Hash
+            - $ref: '#/state_override_set'
+              title: State Override Set
 
 eth_call_polygon_zkevm:
   allOf:
@@ -1601,15 +1598,14 @@ eth_call_polygon_zkevm:
               - $ref: '#/state_override_set'
                 title: State Override Set
           prefixItems:
-            oneOf:
-              - allOf:
-                  - $ref: '#/transaction_object'
-                    title: Transaction Object
-                  - $ref: '#/gas_550'
-              - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
-                title: Block Number or Block Tag or Block Hash
-              - $ref: '#/state_override_set'
-                title: State Override Set
+            - allOf:
+                - $ref: '#/transaction_object'
+                - $ref: '#/gas_550'
+              title: Transaction Object
+            - $ref: '#/BlockNumberOrTagOrHash'
+              title: Block Number or Block Tag or Block Hash
+            - $ref: '#/state_override_set'
+              title: State Override Set
 
 transaction_object:
   type: object
