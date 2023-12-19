@@ -37,6 +37,9 @@ paths:
                   $ref: ../components/schemas.yaml#/Id
                 jsonrpc:
                   $ref: ../components/schemas.yaml#/JsonRpc
+                method:
+                  $ref: ../components/schemas.yaml#/Method
+                  default: alchemy_sendGasOptimizedTransaction
                 params:
                   $ref: ../evm_body.yaml#/bundled_signed_transaction_param
       responses:
