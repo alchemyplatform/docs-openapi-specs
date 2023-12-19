@@ -31,7 +31,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/bundled_signed_transaction_param
+              type: object
+              properties:
+                id:
+                  $ref: ../components/schemas.yaml#/Id
+                jsonrpc:
+                  $ref: ../components/schemas.yaml#/JsonRpc
+                method:
+                  $ref: ../components/schemas.yaml#/Method
+                  default: alchemy_sendGasOptimizedTransaction
+                params:
+                  $ref: ../evm_body.yaml#/bundled_signed_transaction_param
       responses:
         '200':
           description: ''
@@ -39,3 +49,7 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/sendTxn_result_response
+requestBody:
+  content:
+    application/json:
+      schema:
