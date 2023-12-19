@@ -296,7 +296,7 @@ function convertSchema(schema: OpenAPIV3_1.SchemaObject): Param | undefined {
   if (schema == null || Object.keys(schema).length === 0) return;
 
   if (Array.isArray(schema)) {
-    return convertParam(schema[0]);
+    return convertSchema(schema[0]);
   }
 
   if ('schema' in schema) {
