@@ -434,7 +434,7 @@ getFeeForMessage:
           description: |
             - message: <Base-64  string> - encoded Message
             - commitment: <object> - (optional) Configures the commitment level of the blocks queried
-              Accepts one of the following strings: ["finalized", "confirmed", "processed"] 
+              Accepts one of the following strings: ["finalized", "confirmed", "processed"]
               For more info, refer to this doc.
           items:
             type: string
@@ -698,7 +698,8 @@ getTokenAccountsByOwner:
                   - type: object
                     properties:
                       mint:
-                        type: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
+                        type: string
+                        description: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
                   - type: object
                     properties:
                       programId:
@@ -722,7 +723,8 @@ getTokenAccountsByOwner:
                   - type: object
                     properties:
                       mint:
-                        type: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
+                        type: string
+                        description: Base-58 Encoded String - Pubkey of the specific token Mint to limit accounts to.
                   - type: object
                     properties:
                       programId:
@@ -938,7 +940,7 @@ simulateTransaction:
                         description: |
                           Data encoding for each returned transaction
                           Accepts one of the following strings:
-                          ["base64" (default), "base64+zstd" or "jsonParsed"] 
+                          ["base64" (default), "base64+zstd" or "jsonParsed"]
                           "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
                       addresses:
                         type: array
@@ -977,7 +979,7 @@ simulateTransaction:
                         description: |
                           Data encoding for each returned transaction
                           Accepts one of the following strings:
-                          ["base64" (default), "base64+zstd" or "jsonParsed"] 
+                          ["base64" (default), "base64+zstd" or "jsonParsed"]
                           "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
                       addresses:
                         type: array
@@ -1074,7 +1076,7 @@ encoding:
   description: |
     Data encoding for each returned transaction.
     Accepts one of the following strings:
-    ["json" (Default), "jsonParsed", "base58" (slow), "base64"] 
+    ["json" (Default), "jsonParsed", "base58" (slow), "base64"]
     "jsonParsed" encoding attempts to use program-specific parsers to make the transaction.message.instructions list more human-readable; if a parser cannot be found, the instruction falls back to default JSON.
   default: json
   enum:
