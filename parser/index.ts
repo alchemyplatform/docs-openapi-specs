@@ -13,10 +13,17 @@ const ignoreList = [
   '.gitignore',
   '.prettierrc',
   '.spectral.yaml',
+  '.DS_Store',
   'README.md',
   'evm_body.yaml',
   'evm_examples.yaml',
   'evm_responses.yaml',
+  'solana_body.yaml',
+  'solana_responses.yaml',
+  'notify.yaml',
+  'gas_manager_admin.yaml',
+  'schemas.yaml',
+  'example.yaml',
   'components',
   'functions',
   'node_modules',
@@ -48,8 +55,7 @@ async function main() {
   const flatEntries: FlatEntry[] = [];
 
   for await (const filePath of walk(rootPath)) {
-    console.log('\n\n');
-    console.log('==> File path', filePath);
+    console.log('\n==> File path', filePath);
 
     // 2. Get OpenAPI spec
     const contents = fs.readFileSync(filePath, 'utf-8');
@@ -57,77 +63,74 @@ async function main() {
     const json = parse(contents);
 
     // 3. Parse / dereference OpenAPI specs
-    try {
-      const api = (await SwaggerParser.validate(json)) as AlchemyDocument;
-      const fileName = filePath.split('/').at(-1);
-      if (!fileName) throw new Error('File name not found');
+    const dirName = path.dirname(filePath);
+    const fileName = path.basename(filePath);
+    // Change current directory so that the relative imports work correctly
+    process.chdir(dirName);
+    const api = (await SwaggerParser.validate(json)) as AlchemyDocument;
+    if (!fileName) throw new Error('File name not found');
 
+    // @ts-ignore
+    const servers = api.servers as OpenAPIV3_1.ServerObject[];
+    const { baseUrl, chainsToNetworks } = extractChainAndNetworks(servers[0]);
+
+    const paths = api.paths;
+    if (!paths) throw new Error('Paths not found in spec');
+
+    for (const [path, pathItem] of Object.entries(paths)) {
+      // TODO: fix types
+      // TODO: method could actually be summary, description
       // @ts-ignore
-      const servers = api.servers as OpenAPIV3_1.ServerObject[];
-      const { baseUrl, chainsToNetworks } = extractChainAndNetworks(servers[0]);
+      for (const [method, op] of Object.entries(pathItem)) {
+        // console.log(method, operation);
 
-      const paths = api.paths;
-      if (!paths) throw new Error('Paths not found in spec');
+        const operation = op as OpenAPIV3_1.OperationObject;
 
-      for (const [path, pathItem] of Object.entries(paths)) {
-        // TODO: fix types
-        // TODO: method could actually be summary, description
-        // @ts-ignore
-        for (const [method, op] of Object.entries(pathItem)) {
-          // console.log(method, operation);
+        for (const [chain, networks] of chainsToNetworks) {
+          for (const network of networks) {
+            // TODO: hacky logic (should replace)
+            const parsedUrl = baseUrl.includes('{network}')
+              ? baseUrl.replace('{network}', [chain, network].join('-'))
+              : baseUrl;
 
-          const operation = op as OpenAPIV3_1.OperationObject;
-
-          for (const [chain, networks] of chainsToNetworks) {
-            for (const network of networks) {
-              // TODO: hacky logic (should replace)
-              const parsedUrl = baseUrl.includes('{network}')
-                ? baseUrl.replace('{network}', [chain, network].join('-'))
-                : baseUrl;
-
-              if (!operation.operationId) {
-                throw new Error('Operation ID not found');
-              }
-
-              const category = extractCategory(api);
-              const methodName = operation.operationId.replace(/-/g, '_');
-              const methodVerb = method.toUpperCase();
-              const readmeUrl =
-                BASE_DOCS_URL +
-                operation.operationId.toLowerCase().replace(/_/g, '-');
-
-              // Note: currently ignores params in path, headers and cookies
-              // assumption is we will not need this to build request in Sandbox
-              const { /* pathParams, */ queryParams } = extractParams(
-                operation.parameters as
-                  | OpenAPIV3_1.ParameterObject[]
-                  | undefined,
-              );
-              const entry = {
-                filename: fileName,
-                chain,
-                network,
-                category,
-                url: baseUrl,
-                path,
-                method: {
-                  name: methodName,
-                  verb: methodVerb,
-                  docsUrl: readmeUrl,
-                },
-                // pathParams,
-                queryParams,
-                requestBody:
-                  operation.requestBody as OpenAPIV3_1.RequestBodyObject,
-              };
-              // console.debug(entry);
-              flatEntries.push(entry);
+            if (!operation.operationId) {
+              throw new Error('Operation ID not found');
             }
+
+            const category = extractCategory(api);
+            const methodName = operation.operationId.replace(/-/g, '_');
+            const methodVerb = method.toUpperCase();
+            const readmeUrl =
+              BASE_DOCS_URL +
+              operation.operationId.toLowerCase().replace(/_/g, '-');
+
+            // Note: currently ignores params in path, headers and cookies
+            // assumption is we will not need this to build request in Sandbox
+            const { /* pathParams, */ queryParams } = extractParams(
+              operation.parameters as OpenAPIV3_1.ParameterObject[] | undefined,
+            );
+            const entry = {
+              filename: fileName,
+              chain,
+              network,
+              category,
+              url: baseUrl,
+              path,
+              method: {
+                name: methodName,
+                verb: methodVerb,
+                docsUrl: readmeUrl,
+              },
+              // pathParams,
+              queryParams,
+              requestBody:
+                operation.requestBody as OpenAPIV3_1.RequestBodyObject,
+            };
+            // console.debug(entry);
+            flatEntries.push(entry);
           }
         }
       }
-    } catch (err) {
-      console.error(err);
     }
   }
   console.log(`Generated ${flatEntries.length} entries.`);
