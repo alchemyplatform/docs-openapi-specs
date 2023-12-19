@@ -46,7 +46,3 @@ paths:
             application/json:
               schema:
                 $ref: ../evm_responses.yaml#/sendTxn_result_response
-requestBody:
-  content:
-    application/json:
-      schema:
