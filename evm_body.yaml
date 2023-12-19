@@ -25,12 +25,12 @@ eth_getBlockByHash:
           items:
             anyOf:
               - $ref: '#/blockHash_param'
-              - title: Full transaction objects
+              - title: Full Transaction Objects
                 type: boolean
                 default: false
           prefixItems:
             - $ref: '#/blockHash_param'
-            - title: Full transaction objects
+            - title: Full Transaction Objects
               type: boolean
               default: false
 
@@ -57,14 +57,12 @@ eth_getBlockByNumber:
           items:
             anyOf:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: block number or block tag
-              - title: Full transaction objects
+              - title: Full Transaction Objects
                 type: boolean
                 default: false
           prefixItems:
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: block number or block tag
-            - title: Full transaction objects
+            - title: Full Transaction Objects
               type: boolean
               default: false
 eth_getBlockByNumber_l2:
@@ -169,11 +167,11 @@ eth_getBlockTransactionCountByNumber:
           items:
             anyOf:
               - type: string
-                title: block number or block tag
+                title: Block Number or Block Tag
                 default: finalized
           prefixItems:
             - type: string
-              title: block number or block tag
+              title: Block Number or Block Tag
               default: finalized
 
 eth_getTransactionCount:
@@ -417,7 +415,7 @@ eth_getProof:
             anyOf:
               - $ref: '#/AddressParam'
               - type: array
-                title: Array of storage keys
+                title: Array of Storage Keys
                 description: array of storage-keys which should be proofed and included
                 items:
                   type: string
@@ -427,11 +425,10 @@ eth_getProof:
                     '0x742d35Cc6634C0532925a3b844Bc454e4438f44f',
                   ]
               - $ref: '#/BlockNumberOrTagOrHash'
-                title: Block Number or Block Hash or Block Tag
           prefixItems:
             - $ref: '#/AddressParam'
             - type: array
-              title: Array of storage keys
+              title: Array of Storage Keys
               description: array of storage-keys which should be proofed and included
               items:
                 type: string
@@ -441,8 +438,6 @@ eth_getProof:
                   '0x742d35Cc6634C0532925a3b844Bc454e4438f44f',
                 ]
             - $ref: '#/BlockNumberOrTagOrHash'
-              title: Block Number or Block Hash or Block Tag
-
 eth_protocolVersion:
   allOf:
     - $ref: '#/common_request_fields'
@@ -475,17 +470,13 @@ eth_estimateGas_550:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
-                    title: Transaction Object
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Block Number or Block Tag
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
-              title: Transaction Object
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: Block Number or Block Tag
 
 eth_estimateGas_polygon_zkEVM:
   allOf:
@@ -503,17 +494,13 @@ eth_estimateGas_polygon_zkEVM:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
-                    title: Transaction Object
                   - $ref: '#/gas_550'
               - $ref: '#/blockNumber_or_blocktag_param_polygon_zkevm'
-                title: Block Number or Block Tag
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
-              title: Transaction Object
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: Block Number or Block Tag
 
 eth_feeHistory:
   allOf:
@@ -534,32 +521,32 @@ eth_feeHistory:
           items:
             anyOf:
               - type: integer
-                title: Block count
+                title: Block Count
                 description: Number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query (may return less than requested range if not all blocks are available).
                 default: 4
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Newest block
+                title: Newest Block
                 description: highest number block in the requested range
                 default: latest
               - type: array
                 items:
                   type: number
-                title: reward percentiles
+                title: Reward Percentiles
                 description: (optional) A monotonically increasing list of percentile values to sample from each block's effective priority fees per gas in ascending order, weighted by gas used.
                 default: [25, 75]
           prefixItems:
             - type: integer
-              title: Block count
+              title: Block Count
               description: Number of blocks in the requested range. Between 1 and 1024 blocks can be requested in a single query (may return less than requested range if not all blocks are available).
               default: 4
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: Newest block
+              title: Newest Block
               description: highest number block in the requested range
               default: latest
             - type: array
               items:
                 type: number
-              title: reward percentiles
+              title: Reward Percentiles
               description: (optional) A monotonically increasing list of percentile values to sample from each block's effective priority fees per gas in ascending order, weighted by gas used.
               default: [25, 75]
 eth_maxPriorityFeePerGas:
@@ -867,18 +854,14 @@ trace_call:
           items:
             anyOf:
               - $ref: '#/transaction_object'
-                title: Transaction Object
                 description: transaction object.
               - $ref: '#/trace_type_array'
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Block number or block tag
           prefixItems:
             - $ref: '#/transaction_object'
-              title: Transaction Object
               description: transaction object.
             - $ref: '#/trace_type_array'
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: Block number or block tag
 trace_rawTransaction:
   allOf:
     - $ref: '#/common_request_fields'
@@ -897,13 +880,13 @@ trace_rawTransaction:
           items:
             anyOf:
               - type: string
-                title: raw transaction
+                title: Raw Transaction
                 description: Raw transaction data.
                 default: '0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675'
               - $ref: '#/trace_type_array'
           prefixItems:
             - type: string
-              title: raw transaction
+              title: Raw Transaction
               description: Raw transaction data.
               default: '0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675'
             - $ref: '#/trace_type_array'
@@ -925,11 +908,9 @@ trace_replayBlockTransactions:
           items:
             oneOf:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: block number or block tag
               - $ref: '#/trace_type_array'
           prefixItems:
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: block number or block tag
             - $ref: '#/trace_type_array'
 trace_replayTransaction:
   allOf:
@@ -949,13 +930,13 @@ trace_replayTransaction:
           items:
             oneOf:
               - type: string
-                title: Transaction hash
+                title: Transaction Hash
                 default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
                 pattern: '^0[xX][0-9a-fA-F]+$'
               - $ref: '#/trace_type_array'
           prefixItems:
             - type: string
-              title: Transaction hash
+              title: Transaction Hash
               default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
               pattern: '^0[xX][0-9a-fA-F]+$'
             - $ref: '#/trace_type_array'
@@ -1039,11 +1020,11 @@ trace_get:
           items:
             anyOf:
               - type: string
-                title: Transaction hash
+                title: Transaction Hash
                 default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
                 pattern: '^0[xX][0-9a-fA-F]+$'
               - type: array
-                title: index position of trace
+                title: Index Position of Trace
                 description: Array - Index positions of the traces, in hex
                 items:
                   type: string
@@ -1051,11 +1032,11 @@ trace_get:
                 default: ['0x0']
           prefixItems:
             - type: string
-              title: Transaction hash
+              title: Transaction Hash
               default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
               pattern: '^0[xX][0-9a-fA-F]+$'
             - type: array
-              title: index position of trace
+              title: Index Position of Trace
               description: Array - Index positions of the traces, in hex
               items:
                 type: string
@@ -1211,15 +1192,11 @@ eth_createAccessList:
           items:
             anyOf:
               - $ref: '#/transaction_object'
-                title: Transaction object
               - $ref: '#/blockNumber_or_blocktag_param_l2'
-                title: Block number or block tag
                 default: pending
           prefixItems:
             - $ref: '#/transaction_object'
-              title: Transaction object
             - $ref: '#/blockNumber_or_blocktag_param_l2'
-              title: Block number or block tag
               default: pending
 
 # ============= Transfers API Methods ===============
@@ -1332,9 +1309,8 @@ debug_traceCall:
           items:
             anyOf:
               - $ref: '#/transaction_object'
-                title: Transaction object
               - type: string
-                title: Block identifier
+                title: Block Identifier
                 description: |
                   String - One of the following options:
                     1. **block hash**
@@ -1355,7 +1331,6 @@ debug_traceCall:
                     $ref: '#/tracerConfig'
           prefixItems:
             - $ref: '#/transaction_object'
-              title: Transaction object
             - type: string
               title: Block identifier
               description: |
@@ -1435,7 +1410,6 @@ debug_traceBlockByNumber:
           items:
             anyOf:
               - $ref: '#/blockNumber_or_blocktag_param_eth'
-                title: Block Number or Block Tag
               - type: object
                 title: tracer
                 properties:
@@ -1445,7 +1419,6 @@ debug_traceBlockByNumber:
                     $ref: '#/tracerConfig'
           prefixItems:
             - $ref: '#/blockNumber_or_blocktag_param_eth'
-              title: Block Number or Block Tag
             - type: object
               title: tracer
               properties:
@@ -1557,19 +1530,15 @@ eth_call_550_gas:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
-                    title: Transaction Object
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash'
-                title: Block Number or Block Tag or Block Hash
               - $ref: '#/state_override_set'
                 title: State Override Set
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
-              title: Transaction Object
             - $ref: '#/BlockNumberOrTagOrHash'
-              title: Block Number or Block Tag or Block Hash
             - $ref: '#/state_override_set'
               title: State Override Set
 
@@ -1589,25 +1558,22 @@ eth_call_polygon_zkevm:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
-                    title: Transaction Object
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
-                title: Block Number or Block Tag or Block Hash
               - $ref: '#/state_override_set'
                 title: State Override Set
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
-              title: Transaction Object
             - $ref: '#/BlockNumberOrTagOrHash'
-              title: Block Number or Block Tag or Block Hash
             - $ref: '#/state_override_set'
               title: State Override Set
 
 transaction_object:
   type: object
   description: The transaction call object
+  title: Transaction Object
   properties:
     from:
       type: string
@@ -1680,14 +1646,16 @@ transactionHash_param:
   description: String - 32 Bytes - Hash of a transaction
   pattern: '^0[xX][0-9a-fA-F]+$'
   default: '0x8fc90a6c3ee3001cdcbbb685b4fbe67b1fa2bec575b15b0395fea5540d0901ae'
+  title: Transaction Hash
 blockHash_param:
   type: string
   description: String - 32 Bytes - Hash of a block
-  title: block hash
+  title: Block Hash
   pattern: '^0[xX][0-9a-fA-F]+$'
   default: '0x63392b0dbab8cecbf16a8174f6ee7c2fd58a01d1f9bd5599aa422d0c782908d5'
 blockHash_and_index_param:
   type: object
+  title: Block Hash and Index
   properties:
     params:
       type: array
@@ -1809,6 +1777,7 @@ trace_type_array:
 
 blockNumber_or_blocktag_param_eth:
   type: string
+  title: Block Number or Tag
   description: |
     String - Either the hex value of a **block number** OR **block tags**:
       1. **block number** (in hex) OR
@@ -1822,6 +1791,7 @@ blockNumber_or_blocktag_param_eth:
 
 blockNumber_or_blocktag_param_polygon_zkevm:
   type: string
+  title: Block Number or Tag
   description: |
     String - Either the hex value of a **block number** OR **block tags**:
       1. **block number** (in hex) OR
@@ -1829,10 +1799,11 @@ blockNumber_or_blocktag_param_polygon_zkevm:
           * `pending` - This is the same as `latest` for Polygon zkEVM.
           * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
           * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
-  default: finalized
+  default: latest
 
 blockNumber_or_blocktag_param_l2:
   type: string
+  title: Block Number or Tag
   description: |
     String - Either the hex value of a **block number** OR One of the following **block tags**:
       * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
@@ -1841,6 +1812,7 @@ blockNumber_or_blocktag_param_l2:
   default: latest
 address_and_blockNumber_param_eth:
   type: object
+  title: Address and Block Number
   properties:
     params:
       type: array
@@ -1860,6 +1832,7 @@ address_and_blockNumber_param_eth:
 
 address_and_blockNumberOrTagOrHash_param_EIP1898:
   type: object
+  title: Address and Block Number, Tag, or Hash
   properties:
     params:
       type: array
@@ -1877,6 +1850,7 @@ address_and_blockNumberOrTagOrHash_param_EIP1898:
 
 address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm:
   type: object
+  title: Address and Block Number, Tag, or Hash
   properties:
     params:
       type: array
@@ -1893,7 +1867,7 @@ address_and_blockNumberOrTagOrHash_param_EIP1898_polygon_zkevm:
       default: ['0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8', 'latest']
 
 BlockNumberOrTagOrHash:
-  title: Block number or tag, or block hash
+  title: Block Number, Tag, or Hash
   oneOf:
     - title: Block Number
       $ref: '#/BlockNumber'
@@ -1903,7 +1877,7 @@ BlockNumberOrTagOrHash:
       $ref: '#/BlockHashEIP1898'
 
 BlockNumberOrTagOrHash_polygon_zkevm:
-  title: Block number or tag, or block hash
+  title: Block Number, Tag, or Hash
   oneOf:
     - title: Block Number
       $ref: '#/BlockNumber'
@@ -1920,7 +1894,7 @@ AddressParam:
   default: '0xe5cB067E90D5Cd1F8052B83562Ae670bA4A211a8'
 
 BlockTag:
-  title: Block tag
+  title: Block Tag
   type: string
   description: |
     One of the following **block tags**:
@@ -1934,7 +1908,7 @@ BlockTag:
   default: latest
 
 BlockTag_polygon_zkevm:
-  title: Block tag
+  title: Block Tag
   type: string
   description: |
     One of the following **block tags**:
@@ -1946,13 +1920,13 @@ BlockTag_polygon_zkevm:
   default: latest
 
 BlockNumber:
-  title: Block number
+  title: Block Number
   type: string
   description: The hex value of a **block number**.
   default: '0x61A80'
 
 BlockHashEIP1898:
-  title: Block hash
+  title: Block Hash
   type: object
   required:
     - blockHash
@@ -1960,12 +1934,13 @@ BlockHashEIP1898:
     blockHash:
       $ref: '#/blockHash_param'
     requireCanonical:
-      title: Require canonical
+      title: Require Canonical
       type: boolean
       default: false
 
 address_and_blockNumber_param_l2:
   type: object
+  title: Address and Block Number
   properties:
     params:
       type: array
@@ -1981,6 +1956,7 @@ address_and_blockNumber_param_l2:
         type: string
 blockNumber_and_index_param_eth:
   type: object
+  title: Block Number and Index
   properties:
     params:
       type: array
@@ -1999,6 +1975,7 @@ blockNumber_and_index_param_eth:
 
 blockNumber_and_index_param_polygon_zkevm:
   type: object
+  title: Block Number and Index
   properties:
     params:
       type: array
@@ -2017,6 +1994,7 @@ blockNumber_and_index_param_polygon_zkevm:
 
 blockNumber_and_index_param_eth_l2:
   type: object
+  title: Block Number and Index
   properties:
     params:
       type: array
@@ -2032,6 +2010,7 @@ blockNumber_and_index_param_eth_l2:
         type: string
 blockNumber_or_blockHash_param_eth:
   type: string
+  title: Block Number or Hash
   description: |
     String - One of the following options:
       1. **block hash**
@@ -2049,6 +2028,7 @@ blockNumber_or_blockHash_param_eth:
   default: 'latest'
 blockNumber_or_blockHash_param_l2:
   type: object
+  title: Block Number or Hash
   properties:
     params:
       type: array
@@ -2068,6 +2048,7 @@ blockNumber_or_blockHash_param_l2:
 
 blockNumber_uncleIndex_param_eth:
   type: object
+  title: Block Number and Uncle Index
   properties:
     params:
       type: array
@@ -2086,6 +2067,7 @@ blockNumber_uncleIndex_param_eth:
       default: ['latest', '0x0']
 blockNumber_uncleIndex_param_l2:
   type: object
+  title: Block Number and Uncle Index
   properties:
     params:
       type: array
