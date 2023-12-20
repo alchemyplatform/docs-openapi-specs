@@ -20,5 +20,11 @@ paths:
     post:
       summary: eth_getBlockTransactionCountByNumber - Polygon PoS
       description: Returns the number of transactions in a block matching the given block number on Polygon.
-      $ref: ../ethereum/eth_getBlockTransactionCountByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblocktransactioncountbynumber-polygon
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockTransactionCountByNumber_l2

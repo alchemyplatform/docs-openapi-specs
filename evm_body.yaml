@@ -84,8 +84,16 @@ eth_getBlockByNumber_l2:
           minItems: 2
           maxItems: 2
           items:
-            type: string
-          default: ['latest', false]
+            anyOf:
+              - $ref: '#/blockNumber_or_blocktag_param_l2'
+              - title: Full Transaction Objects
+                type: boolean
+                default: false
+          prefixItems:
+            - $ref: '#/blockNumber_or_blocktag_param_l2'
+            - title: Full Transaction Objects
+              type: boolean
+              default: false
 eth_getLogs:
   allOf:
     - $ref: '#/common_request_fields'
@@ -165,14 +173,30 @@ eth_getBlockTransactionCountByNumber:
           minItems: 1
           maxItems: 1
           items:
-            anyOf:
-              - type: string
-                title: Block Number or Block Tag
-                default: finalized
-          prefixItems:
-            - type: string
-              title: Block Number or Block Tag
-              default: finalized
+            - $ref: '#/blockNumber_or_blocktag_param_eth'
+
+eth_getBlockTransactionCountByNumber_l2:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: eth_getBlockTransactionCountByNumber
+        params:
+          type: array
+          description: |
+            String - Either the hex value of a **block number** OR **block tags**:
+              1. **block number** (in hex) OR
+              2. **block tag** (one of the following):
+                * `pending` - A sample next block built by the client on top of latest and containing the set of transactions usually taken from local mempool. Intuitively, you can think of these as blocks that have not been mined yet.
+                * `latest` - The most recent block in the canonical chain observed by the client, this block may be re-orged out of the canonical chain even under healthy/normal conditions.
+                * `earliest` - The lowest numbered block the client has available. Intuitively, you can think of this as the first block created.
+          default: latest
+          minItems: 1
+          maxItems: 1
+          items:
+            - $ref: '#/blockNumber_or_blocktag_param_l2'
 
 eth_getTransactionCount:
   allOf:

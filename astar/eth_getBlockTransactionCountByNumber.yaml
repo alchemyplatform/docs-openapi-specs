@@ -13,5 +13,11 @@ paths:
   /{apiKey}:
     post:
       summary: eth_getBlockTransactionCountByNumber - Astar
-      $ref: ../ethereum/eth_getBlockTransactionCountByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblocktransactioncountbynumber-astar
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockTransactionCountByNumber_l2
