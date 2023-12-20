@@ -76,11 +76,10 @@ components:
                               minimum: 0
                               default: 1
                         prefixItems:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                            - type: integer
-                              minimum: 0
-                              default: 1
+                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                          - type: integer
+                            minimum: 0
+                            default: 1
                         description: The block_id and index of the requested transaction
                         minItems: 2
                         maxItems: 2

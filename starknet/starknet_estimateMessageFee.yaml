@@ -55,25 +55,26 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                method:
-                  type: string
-                  default: starknet_estimateMessageFee
-                params:
-                  type: array
-                  title: Params
-                  description: The message's parameters and the block_id for the block referencing the state or call the transaction on.
-                  minItems: 2
-                  maxItems: 2
-                  prefixItems:
-                    oneOf:
-                      - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
-                      - $ref: '../components/starknet/schemas.yaml#/BlockId'
-                  items:
-                    oneOf:
-                      - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
-                      - $ref: '../components/starknet/schemas.yaml#/BlockId'
+              allOf:
+                - $ref: '../evm_body.yaml#/common_request_fields'
+                - type: object
+                  properties:
+                    method:
+                      type: string
+                      default: starknet_estimateMessageFee
+                    params:
+                      type: array
+                      title: Params
+                      description: The message's parameters and the block_id for the block referencing the state or call the transaction on.
+                      minItems: 2
+                      maxItems: 2
+                      prefixItems:
+                        - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
+                        - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                      items:
+                        oneOf:
+                          - $ref: '../components/starknet/schemas.yaml#/MSG_FROM_L1'
+                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
       responses:
         '200':
           description: the fee estimation

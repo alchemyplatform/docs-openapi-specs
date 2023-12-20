@@ -84,9 +84,8 @@ components:
                             - $ref: '../components/starknet/schemas.yaml#/FunctionCall'
                             - $ref: '../components/starknet/schemas.yaml#/BlockId'
                         prefixItems:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/FunctionCall'
-                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                          - $ref: '../components/starknet/schemas.yaml#/FunctionCall'
+                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
                         description: The details of the function call and the block_id for the block referencing the state or call the transaction on.
                         minItems: 2
                         maxItems: 2
