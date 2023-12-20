@@ -84,8 +84,16 @@ eth_getBlockByNumber_l2:
           minItems: 2
           maxItems: 2
           items:
-            type: string
-          default: ['latest', false]
+            anyOf:
+              - $ref: '#/blockNumber_or_blocktag_param_l2'
+              - title: Full Transaction Objects
+                type: boolean
+                default: false
+          prefixItems:
+            - $ref: '#/blockNumber_or_blocktag_param_l2'
+            - title: Full Transaction Objects
+              type: boolean
+              default: false
 eth_getLogs:
   allOf:
     - $ref: '#/common_request_fields'
