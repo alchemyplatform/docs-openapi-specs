@@ -74,12 +74,11 @@ components:
                             - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
                             - $ref: '../components/starknet/schemas.yaml#/BlockId'
                         prefixItems:
-                          oneOf:
-                            - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
-                            - $ref: '../components/starknet/schemas.yaml#/BlockId'
+                          - $ref: '../components/starknet/schemas.yaml#/BroadcastedTxn'
+                          - $ref: '../components/starknet/schemas.yaml#/BlockId'
                         description: The transaction to estimate and the block_id for the block referencing the state or call the transaction on.
-                        maxItems: 1
-                        minItems: 1
+                        maxItems: 2
+                        minItems: 2
         x-readme:
           explorer-enabled: false
           samples-languages:

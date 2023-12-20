@@ -532,7 +532,7 @@ BroadcastedDeclareTxn:
     - $ref: '#/BroadcastedDeclareTxnV2'
 
 BroadcastedDeclareTxnV1:
-  title: mempool representation of a declare transaction
+  title: mempool representation of a declare transaction v1
   allOf:
     - $ref: '#/BroadcastedTxnCommonProperties'
     - type: object
@@ -545,7 +545,7 @@ BroadcastedDeclareTxnV1:
           $ref: '#/Address'
 
 BroadcastedDeclareTxnV2:
-  title: mempool representation of a declare transaction
+  title: mempool representation of a declare transaction v2
   allOf:
     - $ref: '#/BroadcastedTxnCommonProperties'
     - type: object

@@ -39,7 +39,7 @@ components:
       post:
         operationId: starknet-chainId
         summary: starknet_chainId
-        description: Return the currently configured StarkNet chain id
+        description: Return the currently configured Starknet chain id
         parameters:
           - name: apiKey
             in: path
