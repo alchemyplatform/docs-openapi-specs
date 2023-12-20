@@ -20,8 +20,15 @@ paths:
     post:
       summary: eth_getBlockTransactionCountByNumber - Polygon zkEVM
       description: Returns the number of transactions in a block matching the given block number on Polygon zkEVM.
-      $ref: ../ethereum/eth_getBlockTransactionCountByNumber.yaml#/components/pathItems/path/post
       operationId: eth-getblocktransactioncountbynumber-polygon-zkevm
+      parameters:
+        - $ref: ../components/parameters.yaml#/ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../evm_body.yaml#/eth_getBlockTransactionCountByNumber_l2
+
       x-readme:
         samples-languages:
           - curl
