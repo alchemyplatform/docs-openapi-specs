@@ -11,6 +11,10 @@ components:
           type: string
           description: Maximum amount of USD that can be spent by a single sender
           default: '100.00'
+        maxSpendPerUoUsd:
+          type: string
+          description: Maximum amount of USD that can be spent by a single user operation
+          default: '20.00'
         maxCount:
           type: string
           description: Maximum number of operations that can be sponsored through the policy
@@ -42,10 +46,6 @@ components:
           type: string
           description: Unix timestamp of when the policy ends
           default: '1679340742'
-        maxSpendPerUoUsd:
-          type: string
-          description: Maximum amount of USD that can be spent by a single user operation
-          default: '20.00'
         sponsorshipExpiryMs:
           type: string
           description: Milliseconds from signing that the sponsorship expires
