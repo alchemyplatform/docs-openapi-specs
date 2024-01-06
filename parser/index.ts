@@ -295,6 +295,27 @@ function convertParam(param: OpenAPIV3_1.ParameterObject): Param | undefined {
   };
 }
 
+function mergeAllOfSchema(
+  schema: OpenAPIV3_1.SchemaObject,
+): OpenAPIV3_1.SchemaObject | null {
+  if (!schema.allOf) return null;
+
+  const allOf = schema.allOf as OpenAPIV3_1.SchemaObject[];
+
+  return {
+    type: 'object',
+    title: schema.title || allOf.find((param) => param.title)?.title,
+    properties: allOf.reduce(
+      (acc, param) => ({
+        ...acc,
+        ...(mergeAllOfSchema(param)?.properties || param.properties),
+      }),
+      {},
+    ) as Record<string, OpenAPIV3_1.SchemaObject>,
+    required: allOf.flatMap((param) => param.required || [], []) || undefined,
+  };
+}
+
 function convertSchema(schema: OpenAPIV3_1.SchemaObject): Param | undefined {
   if (schema == null || Object.keys(schema).length === 0) return;
 
@@ -307,17 +328,11 @@ function convertSchema(schema: OpenAPIV3_1.SchemaObject): Param | undefined {
   }
 
   if (schema.allOf) {
-    const allOf = schema.allOf as OpenAPIV3_1.SchemaObject[];
+    const mergedAllOfSchema = mergeAllOfSchema(schema);
 
-    return convertSchema({
-      type: 'object',
-      title: schema.title || allOf.find((param) => param.title)?.title,
-      properties: allOf.reduce(
-        (acc, param) => ({ ...acc, ...param.properties }),
-        {},
-      ) as Record<string, OpenAPIV3_1.SchemaObject>,
-      required: allOf.flatMap((param) => param.required || [], []) || undefined,
-    });
+    if (!mergedAllOfSchema) return;
+
+    return convertSchema(mergedAllOfSchema);
   }
 
   if (schema.oneOf) {
