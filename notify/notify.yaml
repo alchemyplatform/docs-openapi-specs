@@ -766,7 +766,8 @@ components:
                   description: 'Boolean parameter to skip sending webhooks for empty messages.'
         app_id:
           type: string
-          description: 'Required for mined and dropped webhooks, optional for address activity or custom webhooks.'
+          description: |
+            Required for mined and dropped webhooks, optional for address activity or custom webhooks. Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
         addresses:
           type: array
           description: 'List of addresses you want to track. Required for address activity webhooks only.'

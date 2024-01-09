@@ -34,7 +34,8 @@ paths:
                   default: 'SPONSORSHIP'
                 appId:
                   type: string
-                  description: ID for the app associated with the new policy
+                  description: |
+                    ID for the app associated with the new policy. Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
                   default: '6d834x9k1yh4dx6z'
                 rules:
                   description: Rules for the policy
@@ -169,7 +170,8 @@ paths:
       parameters:
         - name: appId
           in: query
-          description: An optional app id to filter results by policies associated with that app.
+          description: |
+            An optional app id to filter results by policies associated with that app. Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
           schema:
             type: string
             default: '6d834x9k1yh4dx6z'
