@@ -2196,6 +2196,8 @@ components:
 
         The confidence level set means that any spam that is at that confidence level or higher will be filtered out. For example, if the confidence level is HIGH, contracts that we have HIGH or VERY_HIGH confidence in being spam will be filtered out from the response. 
         Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for Matic Mainnet.
+
+        **Please note that this filter is only available to growth and enterprise tier customers. Upgrade your account [here](https://dashboard.alchemyapi.io/settings/billing/).**
       schema:
         type: string
         enum:
