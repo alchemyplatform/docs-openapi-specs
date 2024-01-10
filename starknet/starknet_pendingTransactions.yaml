@@ -12,7 +12,7 @@ servers:
           - starknet-goerli
           - starknet-sepolia
         default: starknet-mainnet
-  - url: 'https://{network}.g.alchemy.com/starknet/version/rpc/{version}/'
+  - url: 'https://{network}.g.alchemy.com/starknet/version/rpc/v0.4'
     variables:
       network:
         enum:
@@ -20,11 +20,6 @@ servers:
           - starknet-goerli
           - starknet-sepolia
         default: starknet-mainnet
-      version:
-        enum:
-          - v0.5
-          - v0.4
-        default: v0.5
 x-sandbox:
   category:
     type:
