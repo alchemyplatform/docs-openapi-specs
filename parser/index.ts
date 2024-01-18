@@ -182,10 +182,7 @@ async function main() {
   }
 
   const outputFilePath = path.join(__dirname, 'output.json');
-  await fs.promises.writeFile(
-    outputFilePath,
-    JSON.stringify(groupedEntries, null, 2),
-  );
+  await fs.promises.writeFile(outputFilePath, JSON.stringify(groupedEntries));
 }
 
 main();
