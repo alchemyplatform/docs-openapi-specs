@@ -31,6 +31,1037 @@ x-sandbox:
     value: nft
 paths:
   ##
+  ## Below are all the v3 methods
+  '/v3/{apiKey}/getNFTsForOwner':
+    get:
+      summary: getNFTsForOwner
+      description: Gets all NFTs currently owned by a given address.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/contractAddresses'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/orderBy'
+        - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/spamConfidenceLevel'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ownedNfts:
+                    type: array
+                    description: 'Array of the NFT objects corresponding to the NFTs owned by the owner'
+                    items:
+                      $ref: '#/components/schemas/ownedNFTv3'
+                  totalCount:
+                    $ref: '#/components/schemas/totalNFTCount'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+                  validAt:
+                    $ref: '#/components/schemas/validAt'
+              examples:
+                byDefault:
+                  $ref: '#/components/schemas/v3byDefault_response'
+                withoutMetadata:
+                  $ref: '#/components/schemas/v3withoutMetadata_response'
+                withContractFiltering:
+                  $ref: '#/components/schemas/v3withContractFiltering_response'
+                withPagination:
+                  $ref: '#/components/schemas/v3withPagination_response'
+      operationId: getNFTsForOwner-v3
+  '/v3/{apiKey}/getNFTMetadata':
+    get:
+      summary: getNFTMetadata
+      description: Gets the metadata associated with a given NFT.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+        - $ref: '#/components/schemas/tokenType'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+        - $ref: '#/components/schemas/refreshCache'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ownedNFTv3'
+      operationId: getNFTMetadata-v3
+  '/v3/{apiKey}/getNFTMetadataBatch':
+    post:
+      summary: getNFTMetadataBatch
+      description: Gets the metadata associated with up to 100 given NFT contracts.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokens:
+                  type: array
+                  description: List of token objects to batch request NFT metadata for. Maximum 100.
+                  default:
+                    [
+                      {
+                        contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+                        tokenId: '44',
+                        tokenType: 'ERC721',
+                      },
+                      {
+                        contractAddress: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+                        tokenId: '888',
+                        tokenType: 'ERC721',
+                      },
+                    ]
+                  items:
+                    type: object
+                    properties:
+                      contractAddress:
+                        $ref: '#/components/schemas/contractAddress'
+                      tokenId:
+                        $ref: '#/components/schemas/tokenId'
+                      tokenType:
+                        $ref: '#/components/schemas/tokenType'
+                tokenUriTimeoutInMs:
+                  $ref: '#/components/schemas/tokenUriTimeoutInMs'
+                  type: number
+                refreshCache:
+                  $ref: '#/components/schemas/refreshCache'
+                  type: boolean
+                  default: false
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 'Array of NFT objects corresponding to the query'
+                items:
+                  $ref: '#/components/schemas/ownedNFTv3'
+      operationId: getNFTMetadataBatch-v3
+  '/v3/{apiKey}/getContractMetadata':
+    get:
+      summary: getContractMetadata
+      description: Queries NFT high-level collection/contract level information.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/contractMetadatav3'
+      operationId: getContractMetadata-v3
+  '/v3/{apiKey}/getCollectionMetadata':
+    get:
+      summary: getCollectionMetadata
+      description: Queries NFT high-level collection/contract level information.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/collectionSlug'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/collectionMetadatav3'
+      operationId: getCollectionMetadata-v3
+  '/v3/{apiKey}/invalidateContract':
+    get:
+      summary: invalidateContract
+      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+                properties:
+                  success:
+                    type: string
+                    description: <br /> True if the contract was invalidated. <br/> False - if it wasn't.
+                  numTokensInvalidated:
+                    type: number
+                    description: The number of tokens that were invalidated as a result of running this query.
+      operationId: invalidateContract-v3
+  '/v3/{apiKey}/getContractMetadataBatch':
+    post:
+      summary: getContractMetadataBatch
+      description: Gets the metadata associated with the given list of contract addresses
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contractAddresses:
+                  type: array
+                  description: list of contract addresses to batch metadata requests for
+                  default:
+                    [
+                      '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+                      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
+                    ]
+                  items:
+                    $ref: '#/components/schemas/contractAddress'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/contractMetadatav3'
+      operationId: getContractMetadataBatch-v3
+  '/v3/{apiKey}/getNFTsForContract':
+    get:
+      summary: getNFTsForContract
+      description: Gets all NFTs for a given NFT contract.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/startToken'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nfts:
+                    description: 'List of objects that represent NFTs stored under the queried contract address.'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedNFTv3'
+                  pageKey:
+                    type: string
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
+      operationId: getNFTsForContract-v3
+  '/v3/{apiKey}/getNFTsForCollection':
+    get:
+      summary: getNFTsForCollection
+      description: Gets all NFTs for a given NFT contract.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/collectionSlug'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/startToken'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT collection returned in the response:
+              alchemy.nft
+                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+                .then(console.log);
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nfts:
+                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/components/schemas/id'
+                        tokenUri:
+                          $ref: '#/components/schemas/tokenUri'
+                        metadata:
+                          $ref: '#/components/schemas/metadata'
+                        timeLastUpdated:
+                          type: string
+                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+                        contractMetadata:
+                          $ref: '#/components/schemas/contractMetadata'
+                  nextToken:
+                    type: string
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
+      operationId: getNFTsForCollection-v3
+  '/v3/{apiKey}/getOwnersForNFT':
+    get:
+      summary: getOwnersForNFT
+      description: Get the owner(s) for a token.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  owners:
+                    $ref: '#/components/schemas/owners'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+              examples:
+                getOwnersForNFT_response:
+                  $ref: '#/components/schemas/getOwnersForNFT_response'
+      operationId: getOwnersForNFT-v3
+  '/v3/{apiKey}/getOwnersForContract':
+    get:
+      summary: getOwnersForContract
+      description: Gets all owners for a given NFT contract.
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/withTokenBalances'
+        - $ref: '#/components/schemas/block'
+        - $ref: '#/components/schemas/pageKey'
+          description: String - used for contracts with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  owners:
+                    description: 'List of all addresses that own one of the NFTs from the queried contract address. The below format is applicable when `withTokenBalances=true`'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ownerAddress:
+                          $ref: '#/components/schemas/address'
+                        tokenBalances:
+                          $ref: '#/components/schemas/tokenBalances'
+      operationId: getOwnersForContract-v3
+  '/v3/{apiKey}/getSpamContracts':
+    get:
+      summary: getSpamContracts
+      description: Returns a list of all spam contracts marked by Alchemy.
+      tags: ['Spam Detection']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Object that has list of contract addresses
+                properties:
+                  contractAddresses:
+                    type: array
+                    items:
+                      type: string
+                    description: A list of contract addresses earmarked as spam by Alchemy.
+      operationId: getSpamContracts-v3
+  '/v3/{apiKey}/isSpamContract':
+    get:
+      summary: isSpamContract
+      description: Returns whether a contract is marked as spam or not by Alchemy.
+      tags: ['Spam Detection']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'This object has the boolean value inside it'
+                properties:
+                  isSpamContract:
+                    type: boolean
+                    description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
+      operationId: isSpamContract-v3
+  '/v3/{apiKey}/isAirdropNFT':
+    get:
+      summary: isAirdropNFT
+      description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'This object has the boolean value inside it'
+                properties:
+                  isAirdrop:
+                    type: boolean
+                    description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
+      operationId: isAirdropNFT-v3
+  '/v3/{apiKey}/summarizeNFTAttributes':
+    get:
+      summary: summarizeNFTAttributes
+      description: Generate a summary of attribute prevalence for an NFT collection.
+      tags: ['Rarity Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: 'Prevalence counts for each attribute within a collection.'
+                properties:
+                  totalSupply:
+                    $ref: '#/components/schemas/totalSupply'
+                  summary:
+                    type: object
+                    description: 'Object mapping trait types to the prevalence of each trait within that type.'
+                  contractAddress:
+                    $ref: '#/components/schemas/contractAddress'
+              examples:
+                summarizeNFTAttributes_response:
+                  $ref: '#/components/schemas/summarizeNFTAttributes_response'
+      operationId: summarizeNFTAttributes-v3
+  '/v3/{apiKey}/getFloorPrice':
+    get:
+      summary: getFloorPrice
+      description: Returns the floor prices of a NFT collection by marketplace.
+      tags: ['Sales & Marketplace Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+              default: eth-mainnet
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/collectionSlug'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nftMarketplaceName:
+                    type: object
+                    description: 'Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported - `openSea`, `looksRare`. So instead of the word `nftMarketplaceName` you will see marketplace names like `openSea` here.'
+                    properties:
+                      floorPrice:
+                        type: number
+                        description: 'Number - The floor price of the collection on the given marketplace.'
+                      priceCurrency:
+                        type: string
+                        description: 'String - The currency in which the floor price is denominated. Typically, denominated in ETH'
+                        enum:
+                          - ETH
+                      collectionUrl:
+                        type: string
+                        description: 'String - Link to the collection on the given marketplace.'
+                      retrievedAt:
+                        type: string
+                        description: 'String - UTC timestamp of when the floor price was retrieved from the marketplace.'
+                      error:
+                        type: string
+                        description: 'String - Returns the error `unable to fetch floor price` if there was an error fetching floor prices from the given marketplace.'
+      operationId: getFloorPrice-v3
+  '/v3/{apiKey}/searchContractMetadata':
+    get:
+      summary: searchContractMetadata
+      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/query'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns the list of NFT contracts where the metadata has one or more keywords from the search string.'
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 'List of contracts where the metadata contains one or more keywords from the search string.'
+                items:
+                  $ref: '#/components/schemas/contractMetadatav3'
+      operationId: searchContractMetadata-v3
+  '/v3/{apiKey}/isHolderOfContract':
+    get:
+      summary: isHolderOfContract
+      description: Checks whether a wallet holds a NFT from a given contract
+      tags: ['Ownership & Token Gating']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/wallet'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "Data related to a wallet's ownership of any token in an NFT contract."
+                properties:
+                  isHolderOfContract:
+                    type: boolean
+                    description: 'Whether the given wallet owns any token in the given NFT contract.'
+      operationId: isHolderOfContract-v3
+  '/v3/{apiKey}/computeRarity':
+    get:
+      summary: computeRarity
+      description: Computes the rarity of each attribute of an NFT.
+      tags: ['Rarity Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+              default: eth-mainnet
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/tokenId'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Object containing the rarity info of the collection
+                properties:
+                  rarities:
+                    type: array
+                    description: 'NFT attributes and their associated prevalence.'
+                    items:
+                      type: object
+                      properties:
+                        trait_type:
+                          type: string
+                          description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
+                        value:
+                          type: string
+                          description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
+                        prevalence:
+                          type: number
+                          description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
+      operationId: computeRarity-v3
+  '/v3/{apiKey}/getNFTSales':
+    get:
+      summary: getNFTSales
+      description: Gets NFT sales that have happened through on-chain marketplaces
+      tags: ['Sales & Marketplace Data']
+      servers:
+        - url: https://{network}.g.alchemy.com/nft
+          variables:
+            network:
+              enum:
+                - eth-mainnet
+                - polygon-mainnet
+                - opt-mainnet
+              default: eth-mainnet
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/fromBlock'
+        - $ref: '#/components/schemas/toBlock'
+        - $ref: '#/components/schemas/order'
+        - $ref: '#/components/schemas/marketplace'
+        - $ref: '#/components/schemas/contractAddress'
+          description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
+        - $ref: '#/components/schemas/tokenIdForNFTSales'
+          description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
+        - $ref: '#/components/schemas/buyerAddress'
+        - $ref: '#/components/schemas/sellerAddress'
+        - $ref: '#/components/schemas/taker'
+        - $ref: '#/components/schemas/limit'
+          description: Integer - The maximum number of NFT sales to return. Maximum and default values are 1000.
+        - $ref: '#/components/schemas/pageKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nftSales:
+                    description: 'List of NFT sales that match the query'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        marketplace:
+                          type: string
+                          description: String - The marketplace the sale took place on.
+                        marketplaceAddress:
+                          type: string
+                          description: String - The address of the marketplace contract.
+                        contractAddress:
+                          type: string
+                          description: String - The contract address of the collection the NFT belongs to.
+                        tokenId:
+                          type: string
+                          description: String - The decimal token ID of the NFT being sold.
+                        quantity:
+                          type: string
+                          description: Integer - The number of tokens sold in the sale as a decimal integer string.
+                        buyerAddress:
+                          type: string
+                          description: String - The address of the buyer in the NFT sale.
+                        sellerAddress:
+                          type: string
+                          description: String - The address of the seller in the NFT sale.
+                        taker:
+                          type: string
+                          description: String - Whether the price taker in the trade was the buyer or the seller.
+                          enum:
+                            - BUYER
+                            - SELLER
+                        sellerFee:
+                          type: object
+                          description: The payment from buyer to the seller
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment from the buyer to seller as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimals:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        protocolFee:
+                          type: object
+                          description: The payment from buyer to the NFT marketplace protocol
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the marketplace as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimals:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        royaltyFee:
+                          type: object
+                          description: The payment from buyer to the royalty address of the NFT collection
+                          properties:
+                            amount:
+                              type: string
+                              description: String - The amount of the payment to the royalty collector as a decimal integer string.
+                            tokenAddress:
+                              type: string
+                              description: String - The smart contract address of the token used for the payment.
+                            symbol:
+                              type: string
+                              description: String - The symbol of the token used for the payment.
+                            decimals:
+                              type: integer
+                              description: Integer - The number of decimals of the token used for the payment.
+                        blockNumber:
+                          type: integer
+                          description: Integer - The block number the NFT sale took place in.
+                        logIndex:
+                          type: integer
+                          description: Integer - The log number of the sale event emitted within the block.
+                        bundleIndex:
+                          type: integer
+                          description: Integer - The index of the token within the bundle of NFTs sold in the sale.
+                        transactionHash:
+                          type: string
+                          description: String - The transaction hash of the transaction containing the sale.
+                  pageKey:
+                    type: string
+                    description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
+                  validAt:
+                    $ref: '#/components/schemas/validAt'
+              examples:
+                nftSales_response:
+                  $ref: '#/components/schemas/nftSales_response'
+      operationId: getNFTSales-v3
+  '/v3/{apiKey}/getContractsForOwner':
+    get:
+      summary: getContractsForOwner
+      description: Gets all NFT contracts held by an owner address.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/excludeFilters'
+        - $ref: '#/components/schemas/orderBy'
+        - $ref: '#/components/schemas/spamConfidenceLevel'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contracts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedContractv3'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+                  totalCount:
+                    $ref: '#/components/schemas/totalContractCount'
+              examples:
+                withoutMetadata:
+                  $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
+                withMetadata:
+                  $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
+      operationId: getContractsForOwner-v3
+  '/v3/{apiKey}/getCollectionsForOwner':
+    get:
+      summary: getCollectionsForOwner
+      description: Gets all NFT collections held by an owner address.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/owner'
+        - $ref: '#/components/schemas/pageKey'
+        - $ref: '#/components/schemas/pageSize'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/includeFilters'
+        - $ref: '#/components/schemas/excludeFilters'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedCollectionv3'
+                  pageKey:
+                    $ref: '#/components/schemas/pageKey'
+                  totalCount:
+                    type: string
+                    description: 'String - Total number of NFT collections held by the given address.'
+              examples:
+                withoutMetadata:
+                  $ref: '#/components/schemas/withoutMetadataGetCollectionsForOwner_response'
+                withMetadata:
+                  $ref: '#/components/schemas/withMetadataGetCollectionsForOwner_response'
+      operationId: getCollectionsForOwner-v3
+  '/v3/{apiKey}/reportSpam':
+    get:
+      summary: reportSpam
+      description: Report a particular address to our APIs if you think it is spam
+      tags: ['Spam Detection']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/address'
+          required: true
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
+      operationId: reportSpam-v3
+  '/v3/{apiKey}/refreshNftMetadata':
+    post:
+      summary: refreshNftMetadata
+      description: Submit a request that Alchemy refresh the cached NFT metadata for a particular token.
+      tags: ['NFT Metadata Access']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contractAddress:
+                  type: string
+                  description: Contract address of the token you want to refresh.
+                  $ref: '#/components/schemas/contractAddress'
+                  default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
+                tokenId:
+                  type: string
+                  description: Token ID of the token you want to refresh. Must belong to the contract address.
+                  $ref: '#/components/schemas/tokenId'
+                  default: '44'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: 'If the token is successfully queued for ingestion the value will be "Queued"'
+                  estimatedMsToRefresh:
+                    type: string
+                    description: 'Estimated time until we are done refreshing metadata for this token'
+              examples:
+                byDefault:
+                  $ref: '#/components/schemas/refreshNftMetadata_response'
+      operationId: refreshNftMetadata-v3
+  ## End of v3 methods
+  ##
   ## Below are all the v2 methods
   ##
   '/v2/{apiKey}/getNFTs':
@@ -1045,1037 +2076,6 @@ paths:
                 description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
       operationId: reportSpam
   ## End of v2 methods
-  ##
-  ## Below are all the v3 methods
-  '/v3/{apiKey}/getNFTsForOwner':
-    get:
-      summary: getNFTsForOwner
-      description: Gets all NFTs currently owned by a given address.
-      tags: ['Ownership & Token Gating']
-      parameters:
-        - $ref: '#/components/schemas/owner'
-        - $ref: '#/components/schemas/contractAddresses'
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/orderBy'
-        - $ref: '#/components/schemas/excludeFilters'
-        - $ref: '#/components/schemas/includeFilters'
-        - $ref: '#/components/schemas/spamConfidenceLevel'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/pageKey'
-        - $ref: '#/components/schemas/pageSize'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: 'Returns the list of all NFTs owned by the given address and satisfying the given input parameters.'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  ownedNfts:
-                    type: array
-                    description: 'Array of the NFT objects corresponding to the NFTs owned by the owner'
-                    items:
-                      $ref: '#/components/schemas/ownedNFTv3'
-                  totalCount:
-                    $ref: '#/components/schemas/totalNFTCount'
-                  pageKey:
-                    $ref: '#/components/schemas/pageKey'
-                  validAt:
-                    $ref: '#/components/schemas/validAt'
-              examples:
-                byDefault:
-                  $ref: '#/components/schemas/v3byDefault_response'
-                withoutMetadata:
-                  $ref: '#/components/schemas/v3withoutMetadata_response'
-                withContractFiltering:
-                  $ref: '#/components/schemas/v3withContractFiltering_response'
-                withPagination:
-                  $ref: '#/components/schemas/v3withPagination_response'
-      operationId: getNFTsForOwner-v3
-  '/v3/{apiKey}/getNFTMetadata':
-    get:
-      summary: getNFTMetadata
-      description: Gets the metadata associated with a given NFT.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/tokenId'
-          required: true
-        - $ref: '#/components/schemas/tokenType'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-        - $ref: '#/components/schemas/refreshCache'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ownedNFTv3'
-      operationId: getNFTMetadata-v3
-  '/v3/{apiKey}/getNFTMetadataBatch':
-    post:
-      summary: getNFTMetadataBatch
-      description: Gets the metadata associated with up to 100 given NFT contracts.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                tokens:
-                  type: array
-                  description: List of token objects to batch request NFT metadata for. Maximum 100.
-                  default:
-                    [
-                      {
-                        contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
-                        tokenId: '44',
-                        tokenType: 'ERC721',
-                      },
-                      {
-                        contractAddress: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
-                        tokenId: '888',
-                        tokenType: 'ERC721',
-                      },
-                    ]
-                  items:
-                    type: object
-                    properties:
-                      contractAddress:
-                        $ref: '#/components/schemas/contractAddress'
-                      tokenId:
-                        $ref: '#/components/schemas/tokenId'
-                      tokenType:
-                        $ref: '#/components/schemas/tokenType'
-                tokenUriTimeoutInMs:
-                  $ref: '#/components/schemas/tokenUriTimeoutInMs'
-                  type: number
-                refreshCache:
-                  $ref: '#/components/schemas/refreshCache'
-                  type: boolean
-                  default: false
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: array
-                description: 'Array of NFT objects corresponding to the query'
-                items:
-                  $ref: '#/components/schemas/ownedNFTv3'
-      operationId: getNFTMetadataBatch-v3
-  '/v3/{apiKey}/getContractMetadata':
-    get:
-      summary: getContractMetadata
-      description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/contractMetadatav3'
-      operationId: getContractMetadata-v3
-  '/v3/{apiKey}/getCollectionMetadata':
-    get:
-      summary: getCollectionMetadata
-      description: Queries NFT high-level collection/contract level information.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/collectionSlug'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/collectionMetadatav3'
-      operationId: getCollectionMetadata-v3
-  '/v3/{apiKey}/invalidateContract':
-    get:
-      summary: invalidateContract
-      description: Marks all cached tokens for the particular contract as stale. So the next time the endpoint is queried it fetches live data instead of fetching from cache.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
-                properties:
-                  success:
-                    type: string
-                    description: <br /> True if the contract was invalidated. <br/> False - if it wasn't.
-                  numTokensInvalidated:
-                    type: number
-                    description: The number of tokens that were invalidated as a result of running this query.
-      operationId: invalidateContract-v3
-  '/v3/{apiKey}/getContractMetadataBatch':
-    post:
-      summary: getContractMetadataBatch
-      description: Gets the metadata associated with the given list of contract addresses
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                contractAddresses:
-                  type: array
-                  description: list of contract addresses to batch metadata requests for
-                  default:
-                    [
-                      '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
-                      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
-                    ]
-                  items:
-                    $ref: '#/components/schemas/contractAddress'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/contractMetadatav3'
-      operationId: getContractMetadataBatch-v3
-  '/v3/{apiKey}/getNFTsForContract':
-    get:
-      summary: getNFTsForContract
-      description: Gets all NFTs for a given NFT contract.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/startToken'
-        - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nfts:
-                    description: 'List of objects that represent NFTs stored under the queried contract address.'
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ownedNFTv3'
-                  pageKey:
-                    type: string
-                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForContract-v3
-  '/v3/{apiKey}/getNFTsForCollection':
-    get:
-      summary: getNFTsForCollection
-      description: Gets all NFTs for a given NFT contract.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-        - $ref: '#/components/schemas/collectionSlug'
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/startToken'
-        - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT collection returned in the response:
-              alchemy.nft
-                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
-                .then(console.log);
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nfts:
-                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          $ref: '#/components/schemas/id'
-                        tokenUri:
-                          $ref: '#/components/schemas/tokenUri'
-                        metadata:
-                          $ref: '#/components/schemas/metadata'
-                        timeLastUpdated:
-                          type: string
-                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
-                        contractMetadata:
-                          $ref: '#/components/schemas/contractMetadata'
-                  nextToken:
-                    type: string
-                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForCollection-v3
-  '/v3/{apiKey}/getOwnersForNFT':
-    get:
-      summary: getOwnersForNFT
-      description: Get the owner(s) for a token.
-      tags: ['Ownership & Token Gating']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/tokenId'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  owners:
-                    $ref: '#/components/schemas/owners'
-                  pageKey:
-                    $ref: '#/components/schemas/pageKey'
-              examples:
-                getOwnersForNFT_response:
-                  $ref: '#/components/schemas/getOwnersForNFT_response'
-      operationId: getOwnersForNFT-v3
-  '/v3/{apiKey}/getOwnersForContract':
-    get:
-      summary: getOwnersForContract
-      description: Gets all owners for a given NFT contract.
-      tags: ['Ownership & Token Gating']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/withTokenBalances'
-        - $ref: '#/components/schemas/block'
-        - $ref: '#/components/schemas/pageKey'
-          description: String - used for contracts with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  owners:
-                    description: 'List of all addresses that own one of the NFTs from the queried contract address. The below format is applicable when `withTokenBalances=true`'
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        ownerAddress:
-                          $ref: '#/components/schemas/address'
-                        tokenBalances:
-                          $ref: '#/components/schemas/tokenBalances'
-      operationId: getOwnersForContract-v3
-  '/v3/{apiKey}/getSpamContracts':
-    get:
-      summary: getSpamContracts
-      description: Returns a list of all spam contracts marked by Alchemy.
-      tags: ['Spam Detection']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-                - polygon-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: Object that has list of contract addresses
-                properties:
-                  contractAddresses:
-                    type: array
-                    items:
-                      type: string
-                    description: A list of contract addresses earmarked as spam by Alchemy.
-      operationId: getSpamContracts-v3
-  '/v3/{apiKey}/isSpamContract':
-    get:
-      summary: isSpamContract
-      description: Returns whether a contract is marked as spam or not by Alchemy.
-      tags: ['Spam Detection']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-                - polygon-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: 'This object has the boolean value inside it'
-                properties:
-                  isSpamContract:
-                    type: boolean
-                    description: <br/> True - if the queried contract is marked as spam. <br/> False - if the queried contract is considered valid.
-      operationId: isSpamContract-v3
-  '/v3/{apiKey}/isAirdropNFT':
-    get:
-      summary: isAirdropNFT
-      description: Returns whether a token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
-      tags: ['Spam Detection']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/tokenId'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: 'This object has the boolean value inside it'
-                properties:
-                  isAirdrop:
-                    type: boolean
-                    description: <br/> True - if the queried token is marked as an airdrop. <br/> False - if the queried token is not marked as an airdrop.
-      operationId: isAirdropNFT-v3
-  '/v3/{apiKey}/getFloorPrice':
-    get:
-      summary: getFloorPrice
-      description: Returns the floor prices of a NFT collection by marketplace.
-      tags: ['Sales & Marketplace Data']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-        - $ref: '#/components/schemas/collectionSlug'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nftMarketplaceName:
-                    type: object
-                    description: 'Name of the NFT marketplace where the collection is listed (in camel case). Current marketplaces supported - `openSea`, `looksRare`. So instead of the word `nftMarketplaceName` you will see marketplace names like `openSea` here.'
-                    properties:
-                      floorPrice:
-                        type: number
-                        description: 'Number - The floor price of the collection on the given marketplace.'
-                      priceCurrency:
-                        type: string
-                        description: 'String - The currency in which the floor price is denominated. Typically, denominated in ETH'
-                        enum:
-                          - ETH
-                      collectionUrl:
-                        type: string
-                        description: 'String - Link to the collection on the given marketplace.'
-                      retrievedAt:
-                        type: string
-                        description: 'String - UTC timestamp of when the floor price was retrieved from the marketplace.'
-                      error:
-                        type: string
-                        description: 'String - Returns the error `unable to fetch floor price` if there was an error fetching floor prices from the given marketplace.'
-      operationId: getFloorPrice-v3
-  '/v3/{apiKey}/computeRarity':
-    get:
-      summary: computeRarity
-      description: Computes the rarity of each attribute of an NFT.
-      tags: ['Rarity Data']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-                - polygon-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/tokenId'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: Object containing the rarity info of the collection
-                properties:
-                  rarities:
-                    type: array
-                    description: 'NFT attributes and their associated prevalence.'
-                    items:
-                      type: object
-                      properties:
-                        trait_type:
-                          type: string
-                          description: 'Name of the trait category, i.e. Hat, Color, Face, etc.'
-                        value:
-                          type: string
-                          description: 'Value for the trait, i.e. White Cap, Blue, Angry, etc.'
-                        prevalence:
-                          type: number
-                          description: 'Floating point value from 0 to 1 representing the prevalence of this value for this trait type.'
-      operationId: computeRarity-v3
-  '/v3/{apiKey}/searchContractMetadata':
-    get:
-      summary: searchContractMetadata
-      description: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/query'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: 'Returns the list of NFT contracts where the metadata has one or more keywords from the search string.'
-          content:
-            application/json:
-              schema:
-                type: array
-                description: 'List of contracts where the metadata contains one or more keywords from the search string.'
-                items:
-                  $ref: '#/components/schemas/contractMetadatav3'
-      operationId: searchContractMetadata-v3
-  '/v3/{apiKey}/summarizeNFTAttributes':
-    get:
-      summary: summarizeNFTAttributes
-      description: Generate a summary of attribute prevalence for an NFT collection.
-      tags: ['Rarity Data']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-                - polygon-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: 'Prevalence counts for each attribute within a collection.'
-                properties:
-                  totalSupply:
-                    $ref: '#/components/schemas/totalSupply'
-                  summary:
-                    type: object
-                    description: 'Object mapping trait types to the prevalence of each trait within that type.'
-                  contractAddress:
-                    $ref: '#/components/schemas/contractAddress'
-              examples:
-                summarizeNFTAttributes_response:
-                  $ref: '#/components/schemas/summarizeNFTAttributes_response'
-      operationId: summarizeNFTAttributes-v3
-  '/v3/{apiKey}/isHolderOfContract':
-    get:
-      summary: isHolderOfContract
-      description: Checks whether a wallet holds a NFT from a given contract
-      tags: ['Ownership & Token Gating']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/wallet'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                description: "Data related to a wallet's ownership of any token in an NFT contract."
-                properties:
-                  isHolderOfContract:
-                    type: boolean
-                    description: 'Whether the given wallet owns any token in the given NFT contract.'
-      operationId: isHolderOfContract-v3
-  '/v3/{apiKey}/getNFTSales':
-    get:
-      summary: getNFTSales
-      description: Gets NFT sales that have happened through on-chain marketplaces
-      tags: ['Sales & Marketplace Data']
-      servers:
-        - url: https://{network}.g.alchemy.com/nft
-          variables:
-            network:
-              enum:
-                - eth-mainnet
-                - polygon-mainnet
-                - opt-mainnet
-              default: eth-mainnet
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/fromBlock'
-        - $ref: '#/components/schemas/toBlock'
-        - $ref: '#/components/schemas/order'
-        - $ref: '#/components/schemas/marketplace'
-        - $ref: '#/components/schemas/contractAddress'
-          description: String - The contract address of a NFT collection to filter sales by. Defaults to returning all NFT contracts.
-        - $ref: '#/components/schemas/tokenIdForNFTSales'
-          description: String - The token ID of an NFT within the collection specified by contractAddress to filter sales by. Defaults to returning all token IDs.
-        - $ref: '#/components/schemas/buyerAddress'
-        - $ref: '#/components/schemas/sellerAddress'
-        - $ref: '#/components/schemas/taker'
-        - $ref: '#/components/schemas/limit'
-          description: Integer - The maximum number of NFT sales to return. Maximum and default values are 1000.
-        - $ref: '#/components/schemas/pageKey'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nftSales:
-                    description: 'List of NFT sales that match the query'
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        marketplace:
-                          type: string
-                          description: String - The marketplace the sale took place on.
-                        marketplaceAddress:
-                          type: string
-                          description: String - The address of the marketplace contract.
-                        contractAddress:
-                          type: string
-                          description: String - The contract address of the collection the NFT belongs to.
-                        tokenId:
-                          type: string
-                          description: String - The decimal token ID of the NFT being sold.
-                        quantity:
-                          type: string
-                          description: Integer - The number of tokens sold in the sale as a decimal integer string.
-                        buyerAddress:
-                          type: string
-                          description: String - The address of the buyer in the NFT sale.
-                        sellerAddress:
-                          type: string
-                          description: String - The address of the seller in the NFT sale.
-                        taker:
-                          type: string
-                          description: String - Whether the price taker in the trade was the buyer or the seller.
-                          enum:
-                            - BUYER
-                            - SELLER
-                        sellerFee:
-                          type: object
-                          description: The payment from buyer to the seller
-                          properties:
-                            amount:
-                              type: string
-                              description: String - The amount of the payment from the buyer to seller as a decimal integer string.
-                            tokenAddress:
-                              type: string
-                              description: String - The smart contract address of the token used for the payment.
-                            symbol:
-                              type: string
-                              description: String - The symbol of the token used for the payment.
-                            decimals:
-                              type: integer
-                              description: Integer - The number of decimals of the token used for the payment.
-                        protocolFee:
-                          type: object
-                          description: The payment from buyer to the NFT marketplace protocol
-                          properties:
-                            amount:
-                              type: string
-                              description: String - The amount of the payment to the marketplace as a decimal integer string.
-                            tokenAddress:
-                              type: string
-                              description: String - The smart contract address of the token used for the payment.
-                            symbol:
-                              type: string
-                              description: String - The symbol of the token used for the payment.
-                            decimals:
-                              type: integer
-                              description: Integer - The number of decimals of the token used for the payment.
-                        royaltyFee:
-                          type: object
-                          description: The payment from buyer to the royalty address of the NFT collection
-                          properties:
-                            amount:
-                              type: string
-                              description: String - The amount of the payment to the royalty collector as a decimal integer string.
-                            tokenAddress:
-                              type: string
-                              description: String - The smart contract address of the token used for the payment.
-                            symbol:
-                              type: string
-                              description: String - The symbol of the token used for the payment.
-                            decimals:
-                              type: integer
-                              description: Integer - The number of decimals of the token used for the payment.
-                        blockNumber:
-                          type: integer
-                          description: Integer - The block number the NFT sale took place in.
-                        logIndex:
-                          type: integer
-                          description: Integer - The log number of the sale event emitted within the block.
-                        bundleIndex:
-                          type: integer
-                          description: Integer - The index of the token within the bundle of NFTs sold in the sale.
-                        transactionHash:
-                          type: string
-                          description: String - The transaction hash of the transaction containing the sale.
-                  pageKey:
-                    type: string
-                    description: String - The page key to use to fetch the next page of results. Returns null if there are no more results.
-                  validAt:
-                    $ref: '#/components/schemas/validAt'
-              examples:
-                nftSales_response:
-                  $ref: '#/components/schemas/nftSales_response'
-      operationId: getNFTSales-v3
-  '/v3/{apiKey}/getContractsForOwner':
-    get:
-      summary: getContractsForOwner
-      description: Gets all NFT contracts held by an owner address.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/owner'
-        - $ref: '#/components/schemas/pageKey'
-        - $ref: '#/components/schemas/pageSize'
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/includeFilters'
-        - $ref: '#/components/schemas/excludeFilters'
-        - $ref: '#/components/schemas/orderBy'
-        - $ref: '#/components/schemas/spamConfidenceLevel'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  contracts:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ownedContractv3'
-                  pageKey:
-                    $ref: '#/components/schemas/pageKey'
-                  totalCount:
-                    $ref: '#/components/schemas/totalContractCount'
-              examples:
-                withoutMetadata:
-                  $ref: '#/components/schemas/withoutMetadataGetContractsForOwner_response'
-                withMetadata:
-                  $ref: '#/components/schemas/withMetadataGetContractsForOwner_response'
-      operationId: getContractsForOwner-v3
-  '/v3/{apiKey}/getCollectionsForOwner':
-    get:
-      summary: getCollectionsForOwner
-      description: Gets all NFT collections held by an owner address.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/owner'
-        - $ref: '#/components/schemas/pageKey'
-        - $ref: '#/components/schemas/pageSize'
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/includeFilters'
-        - $ref: '#/components/schemas/excludeFilters'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  collections:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ownedCollectionv3'
-                  pageKey:
-                    $ref: '#/components/schemas/pageKey'
-                  totalCount:
-                    type: string
-                    description: 'String - Total number of NFT collections held by the given address.'
-              examples:
-                withoutMetadata:
-                  $ref: '#/components/schemas/withoutMetadataGetCollectionsForOwner_response'
-                withMetadata:
-                  $ref: '#/components/schemas/withMetadataGetCollectionsForOwner_response'
-      operationId: getCollectionsForOwner-v3
-  '/v3/{apiKey}/reportSpam':
-    get:
-      summary: reportSpam
-      description: Report a particular address to our APIs if you think it is spam
-      tags: ['Spam Detection']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/address'
-          required: true
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: string
-                description: 'String - "Address was successfully reported as spam" if calling the API was successful. '
-      operationId: reportSpam-v3
-  '/v3/{apiKey}/refreshNftMetadata':
-    post:
-      summary: refreshNftMetadata
-      description: Submit a request that Alchemy refresh the cached NFT metadata for a particular token.
-      tags: ['NFT Metadata Access']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                contractAddress:
-                  type: string
-                  description: Contract address of the token you want to refresh.
-                  $ref: '#/components/schemas/contractAddress'
-                  default: '0xe785E82358879F061BC3dcAC6f0444462D4b5330'
-                tokenId:
-                  type: string
-                  description: Token ID of the token you want to refresh. Must belong to the contract address.
-                  $ref: '#/components/schemas/tokenId'
-                  default: '44'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    description: 'If the token is successfully queued for ingestion the value will be "Queued"'
-                  estimatedMsToRefresh:
-                    type: string
-                    description: 'Estimated time until we are done refreshing metadata for this token'
-              examples:
-                byDefault:
-                  $ref: '#/components/schemas/refreshNftMetadata_response'
-      operationId: refreshNftMetadata-v3
-## End of v3 methods
 
 components:
   schemas:
@@ -2147,7 +2147,7 @@ components:
       name: excludeFilters[]
       description: |-
         Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. May not be used in conjunction with includeFilters[]. Filter Options:
-          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. NOTE: this filter is currently supported on Ethereum Mainnet and Matic Mainnet only.
+          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. Please note that this filter is currently supported only on Ethereum Mainnet and Matic Mainnet, and is **available exclusively on paid tiers**.
           - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
           - To learn more about spam, you can refer to this: <span class="custom-style"><a href="https://www.alchemy.com/overviews/spam-nfts" target="_blank">Spam NFTs and how to fix them</a></span>
       schema:
@@ -2171,7 +2171,7 @@ components:
       name: includeFilters[]
       description: |-
         Array of filters (as ENUMS) that will be applied to the query. Only NFTs that match one or more of these filters will be included in the response. May not be used in conjunction with excludeFilters[]. Filter Options:
-          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. NOTE: this filter is currently supported on Ethereum Mainnet and Matic Mainnet only.
+          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. Please note that this filter is currently supported only on Ethereum Mainnet and Matic Mainnet, and is **available exclusively on paid tiers**.
           - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
           - To learn more about spam, you can refer to this: <span class="custom-style"><a href="https://www.alchemy.com/overviews/spam-nfts" target="_blank">Spam NFTs and how to fix them</a></span>
       schema:
@@ -2197,7 +2197,7 @@ components:
         The confidence level set means that any spam that is at that confidence level or higher will be filtered out. For example, if the confidence level is HIGH, contracts that we have HIGH or VERY_HIGH confidence in being spam will be filtered out from the response. 
         Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for Matic Mainnet.
 
-        **Please note that this filter is only available to growth and enterprise tier customers. Upgrade your account [here](https://dashboard.alchemyapi.io/settings/billing/).**
+        **Please note that this filter is only available on paid tiers. Upgrade your account [here](https://dashboard.alchemyapi.io/settings/billing/).**
       schema:
         type: string
         enum:
@@ -2620,7 +2620,7 @@ components:
           description: 'Number of distinct token IDs held by the owner. For non-fungible tokens this will be equal to the `totalBalance`, but it may be lower if the user holds some fungible ERC1155 tokens.'
         isSpam:
           type: string
-          description: '"true" if contract is spam, else "false"'
+          description: '"true" if contract is spam, else "false". **Only available on paid tiers.**'
         displayNft:
           $ref: '#/components/schemas/displaynftv3'
         image:
@@ -2914,9 +2914,9 @@ components:
           $ref: '#/components/schemas/opensea'
         isSpam:
           type: string
-          description: '"true" if contract is spam, else "false"'
-        classifications:
-          description: 'List of reasons why a contract was classified as spam.'
+          description: '"true" if contract is spam, else "false". **Only available on paid tiers.**'
+        spamClassifications:
+          description: 'List of reasons why a contract was classified as spam. **Only available on paid tiers.**'
           type: array
           items:
             type: string
@@ -2926,9 +2926,9 @@ components:
         description: 'Information about whether and why a contract was marked as spam.'
         isSpam:
           type: string
-          description: '"true" if contract is spam, else "false"'
-        classifications:
-          description: 'List of reasons why a contract was classified as spam.'
+          description: '"true" if contract is spam, else "false". **Only available on paid tiers.**'
+        spamClassifications:
+          description: 'List of reasons why a contract was classified as spam. **Only available on paid tiers.**'
           type: array
           items:
             type: string
