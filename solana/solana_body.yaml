@@ -1131,6 +1131,30 @@ filters:
         format: int64
         description: Compares the program account data length with the provided data size.
 
+getRecentBlockhash:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: '../components/schemas.yaml#/Method'
+          default: getRecentBlockhash
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              commitment:
+                type: string
+                default: finalized
+                description: |
+                  The level of commitment desired for the query. Options include:
+                  - **finalized**: The node will request the latest block that has been confirmed by the majority of the cluster as having achieved full lockout, indicating that the cluster has acknowledged this block as finalized.
+                  - **confirmed**: The node will request the latest block which has received votes from the vast majority of the cluster.
+                  - **processed**: The node will request information on its latest block, keeping in mind that this block might not be fully complete.
+
 # ======= Definitions for blockNumber ==========
 # blockNumber or slotnumber is used in many API endpoints so creating a separate component for it
 block_number:

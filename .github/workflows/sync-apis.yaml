@@ -2181,6 +2181,12 @@ jobs:
         working-directory: ./solana
         run: rdme openapi sendTransaction.yaml --key=$README_API_KEY --id=62d9832db4d7bf001a180ea3
 
+      - name: Update Solana API - getRecentBlockhash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./solana
+        run: rdme openapi getRecentBlockhash.yaml --key=$README_API_KEY --id=65b40be89801a0001c5f3b19
+
 
       # Update Starknet APIs
       - name: Update Starknet API - starknet_addDeclareTransaction
