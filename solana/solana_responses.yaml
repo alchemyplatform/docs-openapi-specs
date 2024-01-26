@@ -977,3 +977,29 @@ requestAirdrop:
           type: string
           description: Transaction Signature of the airdrop, as a base-58 encoded string
           example: 5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYjCJjBRnbJLgp8uirBgmQpjKhoR4tjF3ZpRzrFmBV6UjKdiSZkQUW
+
+getRecentBlockhash:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      nullable: true
+      properties:
+        result:
+          type: object
+          description: A JSON object.
+          properties:
+            context:
+              type: object
+              properties:
+                slot:
+                  type: integer
+                  description: The current slot in the Solana cluster.
+            value:
+              type: object
+              properties:
+                blockhash:
+                  type: string
+                  description: The blockhash for the specified transaction.
+                feeCalculator:
+                  type: object
+                  description: A JSON object that represents the fee calculator for the specified transaction.
