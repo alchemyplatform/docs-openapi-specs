@@ -13,11 +13,15 @@ paths:
   /graphql/variables/{variable}:
     get:
       summary: Read Variable Elements
-      description: This endpoint allows you to read the values within a Custom Webhook variable
+      description: |
+        This endpoint allows you to read the values within a Custom Webhook variable. 
+        It supports pagination with `limit` and `after` query parameters.
       tags: ['Custom Webhook API Methods']
       parameters:
         - $ref: '#/components/schemas/X-Alchemy-Token'
         - $ref: '#/components/schemas/variable'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/after'
       x-readme:
         samples-languages:
           - curl
@@ -48,7 +52,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/custom_webhook_object_response'
+                  $ref: '#/components/schemas/webhook_addresses_response'
         '404':
           description: Not found- The requested resource could not be found
         '500':
@@ -699,11 +703,12 @@ components:
       required: true
     limit:
       name: limit
+      in: query
+      required: false
       schema:
         type: integer
         default: 100
-      description: 'Number of items per page.'
-      in: query
+        description: The maximum number of items to return per page.
     pageKey:
       name: pageKey
       schema:
@@ -713,10 +718,11 @@ components:
       in: query
     after:
       name: after
+      required: false
       schema:
         type: string
         default: '5'
-      description: 'Page cursor for the next page.'
+      description: 'The cursor that points to the end of the current set of results.'
       in: query
     nft_filter_object:
       type: object
