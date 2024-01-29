@@ -10,7 +10,6 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
-          - eth-goerli
         default: eth-mainnet
 x-sandbox:
   category:
