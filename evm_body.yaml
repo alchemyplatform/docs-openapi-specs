@@ -1628,7 +1628,7 @@ transaction_object:
     data:
       type: string
       description: Hash of the method signature and encoded parameters
-      pattern: '^0[xX][0-9a-fA-F]+$'
+      pattern: '^0[xX][0-9a-fA-F]*$'
       default: '0x'
   required:
     - to
