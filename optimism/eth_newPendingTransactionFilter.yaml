@@ -8,7 +8,6 @@ servers:
       network:
         enum:
           - opt-mainnet
-          - opt-goerli
           - opt-sepolia
         default: opt-mainnet
 x-sandbox:

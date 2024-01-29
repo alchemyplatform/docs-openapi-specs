@@ -8,7 +8,6 @@ servers:
       network:
         enum:
           - arb-mainnet
-          - arb-goerli
           - arb-sepolia
         default: arb-mainnet
 x-sandbox:
