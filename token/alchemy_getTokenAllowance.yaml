@@ -8,17 +8,13 @@ servers:
       network:
         enum:
           - eth-mainnet
-          - eth-goerli
           - polygon-mainnet
           - polygon-mumbai
           - arb-mainnet
-          - arb-goerli
           - arb-sepolia
           - opt-mainnet
-          - opt-goerli
           - opt-sepolia
           - base-mainnet
-          - base-goerli
           - base-sepolia
         default: eth-mainnet
 x-sandbox:
