@@ -4,14 +4,6 @@ info:
   description: Returns an object about the sync status, or false if the node is not synching
   version: '1.0'
 servers:
-  - url: 'https://{network}.g.alchemy.com/v2/'
-    variables:
-      network:
-        enum:
-          - starknet-mainnet
-          - starknet-goerli
-          - starknet-sepolia
-        default: starknet-mainnet
   - url: 'https://{network}.g.alchemy.com/starknet/version/rpc/{version}/'
     variables:
       network:
