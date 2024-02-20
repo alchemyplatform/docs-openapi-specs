@@ -1611,19 +1611,19 @@ transaction_object:
     gas:
       type: string
       description: Integer of the gas provided for the transaction execution.
-      pattern: '^0[xX]([1-9a-fA-F]+[0-9a-fA-F]*|0)$'
-      default: '0x00'
+      pattern: '^0[xX]([1-9a-fA-F][0-9a-fA-F]*|0)$'
+      default: '0x0'
     gasPrice:
       type: string
       description: |
         Integer of the gasPrice used for each paid gas.
         <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
-      pattern: '^0[xX]([1-9a-fA-F]+[0-9a-fA-F]*|0)$'
+      pattern: '^0[xX]([1-9a-fA-F][0-9a-fA-F]*|0)$'
       default: '0x9184e72a000'
     value:
       type: string
       description: Integer of the value sent with this transaction
-      pattern: '^0[xX]([1-9a-fA-F]+[0-9a-fA-F]*|0)$'
+      pattern: '^0[xX]([1-9a-fA-F][0-9a-fA-F]*|0)$'
       default: '0x0'
     data:
       type: string
