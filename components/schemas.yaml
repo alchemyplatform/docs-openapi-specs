@@ -1,6 +1,6 @@
 Hex:
   type: string
-  pattern: '^0[xX][0-9a-fA-F]+$'
+  pattern: '^0[xX][0-9a-fA-F]*$'
 
 # TODO: this does not currently allow for ENS addresses (e.g. vitalik.eth)
 Address:
