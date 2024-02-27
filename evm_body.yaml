@@ -2388,7 +2388,7 @@ alchemy_requestGasAndPaymasterAndData:
                 description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
               overrides:
                 type: object
-                description: Optional fields to override default gas and fee behavior - this will apply either percentage overrides relative to our default estimates or absolute overrides
+                description: Optional fields to override default gas and fee behavior - this will apply either multiplier overrides relative to our default estimates or absolute overrides
                 properties:
                   maxFeePerGas:
                     oneOf:
@@ -2396,60 +2396,63 @@ alchemy_requestGasAndPaymasterAndData:
                         description: 'Hex string'
                       - type: object
                         properties:
-                          percentage:
+                          multiplier:
                             type: number
                         required:
-                          - percentage
-                        description: 'Percentage value'
-                    description: Maximum fee per gas buffer
+                          - multiplier
+                        description: 'Multiplier value'
+                    description: Maximum fee per gas override
                   maxPriorityFeePerGas:
                     oneOf:
                       - type: string
                         description: 'Hex string'
                       - type: object
                         properties:
-                          percentage:
+                          multiplier:
                             type: number
                         required:
-                          - percentage
-                        description: 'Percentage value'
-                    description: Maximum priority fee per gas buffer
+                          - multiplier
+                        description: 'Multiplier value'
+                    description: Maximum priority fee per gas override
                   callGasLimit:
                     oneOf:
                       - type: string
                         description: 'Hex string'
                       - type: object
                         properties:
-                          percentage:
+                          multiplier:
                             type: number
                         required:
-                          - percentage
-                        description: 'Percentage value'
-                    description: Call gas limit buffer
+                          - multiplier
+                        description: 'Multiplier value'
+                    description: Call gas limit override
                   verificationGasLimit:
                     oneOf:
                       - type: string
                         description: 'Hex string'
                       - type: object
                         properties:
-                          percentage:
+                          multiplier:
                             type: number
                         required:
-                          - percentage
-                        description: 'Percentage value'
-                    description: Verification gas limit buffer
+                          - multiplier
+                        description: 'Multiplier value'
+                    description: Verification gas limit override
                   preVerificationGas:
                     oneOf:
                       - type: string
                         description: 'Hex string'
                       - type: object
                         properties:
-                          percentage:
+                          multiplier:
                             type: number
                         required:
-                          - percentage
-                        description: 'Percentage value'
-                    description: Pre-verification gas buffer
+                          - multiplier
+                        description: 'Multiplier value'
+                    description: Pre-verification gas override
+                  paymasterAndData:
+                    type: string
+                    description: PaymasterAndData override
 
 rundler_maxPriorityFeePerGas:
   allOf:
