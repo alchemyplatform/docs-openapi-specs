@@ -2450,9 +2450,6 @@ alchemy_requestGasAndPaymasterAndData:
                           - multiplier
                         description: 'Multiplier value'
                     description: Pre-verification gas override
-                  paymasterAndData:
-                    type: string
-                    description: PaymasterAndData override
 
 rundler_maxPriorityFeePerGas:
   allOf:
