@@ -32,10 +32,12 @@ paths:
               type: object
               properties:
                 email:
-                  $ref: "#/components/schemas/email"
+                  type: string
+                  description: Required if not using a passkey. The email of the user that is signing in
+                  required: false
                 passkey:
                   type: object
-                  description: Optional parameter for passkey authentication
+                  description: Required if not using email. Parameter for passkey authentication
                   required: false
                   properties:
                     challenge:
