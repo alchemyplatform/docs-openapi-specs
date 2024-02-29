@@ -4,11 +4,11 @@ info:
   version: "1.0"
 servers: # servers are also specified at the method level, if there ins't a specification then the server is supported on all the networks below
   - url: https://api.g.alchemy.com/signer/v1
-x-sandbox:
-  category:
-    type:
-      $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
-    value: accounts
+# x-sandbox:
+#   category:
+#     type:
+#       $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
+#     value: accounts
 security:
   - apiKey: []
 paths:
