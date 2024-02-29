@@ -16,7 +16,7 @@ paths:
     post:
       summary: Create Account
       description: Allows users to sign up for the service. Responds with an organization ID associated with the user and your application.
-      tags: ["Accounts API"]
+      tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Apply the apiKey security scheme
       x-readme:
@@ -80,7 +80,7 @@ paths:
     post:
       summary: Send Auth Email
       description: Send a user their Auth email.
-      tags: ["Accounts API"]
+      tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Apply the apiKey security scheme
       x-readme:
@@ -121,7 +121,7 @@ paths:
     post:
       summary: Authenticate User
       description: Authenticate User
-      tags: ["Accounts API"]
+      tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Apply the apiKey security scheme
       x-readme:
@@ -162,7 +162,7 @@ paths:
     post:
       summary: Get User
       description: Get User
-      tags: ["Accounts API"]
+      tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Apply the apiKey security scheme
       x-readme:
@@ -199,7 +199,7 @@ paths:
     post:
       summary: Sign Message
       description: Sign message
-      tags: ["Accounts API"]
+      tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Apply the apiKey security scheme
       x-readme:
@@ -232,7 +232,7 @@ paths:
     post:
       summary: Register new authenticator
       description: Register new authenticator
-      tags: ["Accounts API"]
+      tags: ["Accounts API Endpoints"]
       security:
         - apiKey: []
       x-readme:
