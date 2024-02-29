@@ -8,7 +8,7 @@ x-sandbox:
   category:
     type:
       $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
-    value: signer
+    value: accounts
 security:
   - apiKey: []
 paths:
