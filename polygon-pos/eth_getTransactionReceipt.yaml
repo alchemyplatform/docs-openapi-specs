@@ -10,7 +10,6 @@ servers:
           - polygon-mainnet
           - polygon-mumbai
           - polygon-amoy
-          - polygon-amoy
         default: polygon-mainnet
 x-sandbox:
   category:
