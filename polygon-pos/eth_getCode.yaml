@@ -9,6 +9,7 @@ servers:
         enum:
           - polygon-mainnet
           - polygon-mumbai
+          - polygon-amoy
         default: polygon-mainnet
 x-sandbox:
   category:

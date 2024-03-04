@@ -15,6 +15,7 @@ servers:
           - opt-sepolia
           - polygon-mainnet
           - polygon-mumbai
+          - polygon-amoy
           - base-mainnet
           - base-sepolia
         default: eth-mainnet
