@@ -31,6 +31,7 @@ const ignoreList = [
   'package-lock.json',
   'parser',
   'scripts',
+  'accounts',
 ];
 
 async function* walk(dir: string): AsyncGenerator<string> {
