@@ -1011,14 +1011,17 @@ trace_filter:
                 default: '0xc26f54'
                 pattern: '^0[xX][0-9a-fA-F]+$'
               fromAddress:
-                type: string
+                type: array
                 description: Sent from these addresses.
-                pattern: '^0[xX][0-9a-fA-F]+$'
+                items:
+                  type: string
+                  pattern: '^0[xX][0-9a-fA-F]+$'
               toAddress:
-                type: string
+                type: array
                 description: Sent to these addresses.
-                pattern: '^0[xX][0-9a-fA-F]+$'
-                default: '0x95222290DD7278Aa3Ddd389Cc1E1d165CC4BAfe5'
+                items:
+                  type: string
+                  pattern: '^0[xX][0-9a-fA-F]+$'
               after:
                 type: string
                 description: The offset trace number.
@@ -1610,19 +1613,19 @@ transaction_object:
       pattern: '^0[xX][0-9a-fA-F]{40}$'
     gas:
       type: string
-      description: Integer of the gas provided for the transaction execution.
+      description: Hex string of the integer of gas provided for the transaction execution.
       pattern: '^0[xX]([1-9a-fA-F][0-9a-fA-F]*|0)$'
       default: '0x0'
     gasPrice:
       type: string
       description: |
-        Integer of the gasPrice used for each paid gas.
+        Hex string of the integer of gasPrice used for each paid gas.
         <br/><strong>NOTE:</strong> most of our users <b>(95%+)</b> never set the gasPrice on eth_call.
       pattern: '^0[xX]([1-9a-fA-F][0-9a-fA-F]*|0)$'
       default: '0x9184e72a000'
     value:
       type: string
-      description: Integer of the value sent with this transaction
+      description: Hex string of the integer of value sent with this transaction
       pattern: '^0[xX]([1-9a-fA-F][0-9a-fA-F]*|0)$'
       default: '0x0'
     data:
@@ -1640,7 +1643,7 @@ gas_550:
       pattern: '^0[xX][0-9a-fA-F]+$'
       default: '0x1C9C380'
       description: |
-        Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+        Hex string of the integer of gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
         </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
 state_override_set:
   type: object
