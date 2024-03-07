@@ -11,6 +11,7 @@ servers: # servers are also specified at the method level, if there ins't a spec
           - eth-sepolia
           - polygon-mainnet
           - polygon-mumbai
+          - polygon-amoy
           - arb-mainnet
           - arb-sepolia
           - opt-mainnet

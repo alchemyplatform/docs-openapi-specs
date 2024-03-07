@@ -49,6 +49,7 @@ rules:
             - eth-goerli
             - polygon-mainnet
             - polygon-mumbai
+            - polygon-amoy
             - arb-mainnet
             - arb-goerli
 
