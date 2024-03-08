@@ -834,12 +834,57 @@ alchemy_getTokenBalances:
             3. Options (optional) - An object that contains the following settings **[omitted below]**:
                 1. `pageKey`: Applies only to the `erc20` request type. A string address used for pagination. If more results are available, a `pageKey` will be returned in the response.
                 2. `maxCount`: Applies only to the `erc20` request type. Specifies the maximum count of token balances to return per call. This value defaults to 100 and is currently capped at 100.
-          minItems: 1
-          maxItems: 2
+          minItems: 2
+          maxItems: 3
           items:
-            type: string
-          default: ['0x95222290DD7278Aa3Ddd389Cc1E1d165CC4BAfe5', 'erc20']
-
+            oneOf:
+              - type: string
+                title: Address
+                default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+              - oneOf:
+                  - type: string
+                    title: Token Specification
+                    enum:
+                      - erc20
+                      - DEFAULT_TOKENS
+                    default: erc20
+                  - type: array
+                    title: Array of Contract Addresses
+                    items:
+                      type: string
+                      pattern: '^0[xX][0-9a-fA-F]+$'
+              - type: object
+                title: Options
+                properties:
+                  pageKey:
+                    type: string
+                  maxCount:
+                    type: integer
+                    default: 100
+          prefixItems:
+            - type: string
+              title: Address
+              default: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+            - oneOf:
+                - type: string
+                  title: Token Specification
+                  enum:
+                    - erc20
+                    - DEFAULT_TOKENS
+                  default: erc20
+                - type: array
+                  title: Array of Contract Addresses
+                  items:
+                    type: string
+                    pattern: '^0[xX][0-9a-fA-F]+$'
+            - type: object
+              title: Options
+              properties:
+                pageKey:
+                  type: string
+                maxCount:
+                  type: integer
+                  default: 100
 alchemy_getTokenMetadata:
   allOf:
     - $ref: '#/common_request_fields'
