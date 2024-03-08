@@ -1647,27 +1647,32 @@ gas_550:
         </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
 state_override_set:
   type: object
-  properties:
-    balance:
-      type: string
-      description: Fake balance to set for the account before executing the call
-      default: '0x00'
-    nonce:
-      type: string
-      description: Fake nonce to set for the account before executing the call
-      default: '0x00'
-    code:
-      type: string
-      description: Fake EVM bytecode to inject into the account before executing the call
-      default: '0x'
-    state:
-      type: string
-      description: Fake key-value mapping to override all slots in the account storage before executing the call
-      default: '0x'
-    stateDiff:
-      type: string
-      description: Fake key-value mapping to override individual slots in the account storage before executing the call
-      default: '0x'
+  patternProperties:
+    "^0x[a-fA-F0-9]{40}$":
+      type: object
+      properties:
+        balance:
+          type: string
+          description: Fake balance to set for the account before executing the call
+          default: '0x00'
+        nonce:
+          type: string
+          description: Fake nonce to set for the account before executing the call
+          default: '0x00'
+        code:
+          type: string
+          description: Fake EVM bytecode to inject into the account before executing the call
+          default: '0x'
+        state:
+          type: object
+          description: Fake key-value mapping to override all slots in the account storage before executing the call
+          additionalProperties:
+            type: string
+        stateDiff:
+          type: object
+          description: Fake key-value mapping to override individual slots in the account storage before executing the call
+          additionalProperties:
+            type: string
 transactionHash_param:
   type: string
   description: String - 32 Bytes - Hash of a transaction
