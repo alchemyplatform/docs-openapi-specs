@@ -129,6 +129,12 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi alchemy_simulateUserOperationAssetChanges.yaml --key=$README_API_KEY --id=6554e8dc1914ac000f50da38
 
+      # Update Embedded Accounts API
+      - name: Update Embedded Accounts API - accounts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./accounts
+        run: rdme openapi accounts.yaml --key=$README_API_KEY --id=65e02c093719c50070e3b97a 
 
       # Update Debug APIs
       - name: Update Debug API - debug_traceBlockByHash

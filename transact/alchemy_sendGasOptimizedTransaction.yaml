@@ -10,6 +10,7 @@ servers:
           - eth-mainnet
           - polygon-mainnet
           - polygon-mumbai
+          - polygon-amoy
         default: eth-mainnet
 x-readme:
   id: 634f72885e2a9200e4ebf268

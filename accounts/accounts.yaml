@@ -1,0 +1,337 @@
+openapi: 3.1.0
+info:
+  title: 👤 Embedded Accounts
+  version: "1.0"
+servers: # servers are also specified at the method level, if there ins't a specification then the server is supported on all the networks below
+  - url: https://api.g.alchemy.com/signer/v1
+# x-sandbox:
+#   category:
+#     type:
+#       $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
+#     value: accounts
+security:
+  - apiKey: []
+paths:
+  "/signup":
+    post:
+      summary: Create Account
+      description: Allows users to sign up for the service. Responds with an organization ID associated with the user and your application.
+      tags: ["Accounts API Endpoints"]
+      security:
+        - apiKey: [] # Apply the apiKey security scheme
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Required if not using a passkey. The email of the user that is signing in
+                  required: false
+                passkey:
+                  type: object
+                  description: Required if not using email. Parameter for passkey authentication
+                  required: false
+                  properties:
+                    challenge:
+                      type: string
+                      description: A challenge string for passkey authentication
+                    attestation:
+                      type: object
+                      description: Information related to attestation
+                      properties:
+                        credentialId:
+                          type: string
+                          description: The credential ID used for attestation
+                        clientDataJson:
+                          type: string
+                          description: JSON data from the client for attestation
+                        attestationObject:
+                          type: string
+                          description: The attestation object received during the attestation process
+                        transports:
+                          type: array
+                          description: Array of transport protocols used during attestation
+                          items:
+                            type: string
+                targetPublicKey:
+                  $ref: "#/components/schemas/targetPublicKey"
+                expirationSeconds:
+                  $ref: "#/components/schemas/expirationSeconds"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orgId:
+                    $ref: "#/components/schemas/orgId"
+      operationId: createAccount
+  "/auth":
+    post:
+      summary: Send Auth Email
+      description: Send a user their Auth email.
+      tags: ["Accounts API Endpoints"]
+      security:
+        - apiKey: [] # Apply the apiKey security scheme
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: The email of the user requesting access
+                  $ref: "#/components/schemas/email"
+                targetPublicKey:
+                  description: The public key of the target resource being accessed
+                  type: string
+                  required: true
+                expirationSeconds:
+                  description: Optional parameter specifying the expiration time in seconds for the access request
+                  $ref: "#/components/schemas/expirationSeconds"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orgId:
+                    description: The organization ID associated with the user and the requested resource
+                    $ref: "#/components/schemas/orgId"
+      operationId: sendEmailAuth
+  "/whoami":
+    post:
+      summary: Authenticate User
+      description: Authenticate User
+      tags: ["Accounts API Endpoints"]
+      security:
+        - apiKey: [] # Apply the apiKey security scheme
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stampedRequest:
+                  $ref: "#/components/schemas/SignedTurnkeyRequest"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    description: The email address associated with the user
+                    $ref: "#/components/schemas/email"
+                  userId:
+                    type: string
+                    description: The unique identifier for the user
+                  orgId:
+                    $ref: "#/components/schemas/orgId"
+                  address:
+                    type: string
+                    description: The address of the user
+      operationId: authUser
+  "/lookup":
+    post:
+      summary: Get User
+      description: Get User
+      tags: ["Accounts API Endpoints"]
+      security:
+        - apiKey: [] # Apply the apiKey security scheme
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: The email address of the user to look up
+                  $ref: "#/components/schemas/email"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orgId:
+                    description: The organization ID associated with the user, or null if the user is not found
+                    oneOf:
+                      - type: string
+                      - type: null
+                    $ref: "#/components/schemas/orgId"
+      operationId: getUser
+  "/sign-payload":
+    post:
+      summary: Sign Message
+      description: Sign message
+      tags: ["Accounts API Endpoints"]
+      security:
+        - apiKey: [] # Apply the apiKey security scheme
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stampedRequest:
+                  $ref: "#/components/schemas/SignedTurnkeyRequest"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signature:
+                    type: string
+                    description: The signature generated for the payload
+      operationId: signMessage
+  "/account/authenticator":
+    post:
+      summary: Register new authenticator
+      description: Register new authenticator
+      tags: ["Accounts API Endpoints"]
+      security:
+        - apiKey: []
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stampedAddAuthenticatorRequest:
+                  $ref: "#/components/schemas/SignedTurnkeyRequest"
+      responses:
+        "200":
+          description: "OK response"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: ok
+                    description: Confirmation message
+      operationId: registerNewAuthenticator
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: An API key that will be supplied in a named header.
+      x-default: Bearer API_KEY
+  schemas:
+    apiKey:
+      name: apiKey
+      in: path
+      schema:
+        type: string
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      required: true
+    email:
+      name: email
+      description: The email of the user that is signing in
+      in: query
+      schema:
+        type: string
+      required: true
+    expirationSeconds:
+      name: expirationSeconds
+      description: Optional parameter specifying the expiration time in seconds
+      schema:
+        type: string
+      required: false
+    targetPublicKey:
+      name: targetPublicKey
+      description: Optional parameter representing the target public key
+      schema:
+        type: string
+      required: false
+    orgId:
+      name: orgId
+      description: The organization ID associated with the user
+      schema:
+        type: string
+    SignedTurnkeyRequest:
+      type: object
+      description: The signed request object containing session information
+      required: true
+      properties:
+        url:
+          type: string
+          description: Generated by the turnkey client, but will be ignored on our end
+          required: true
+        body:
+          type: string
+          description: JSON stringified request body
+          required: true
+        stamp:
+          type: object
+          required: true
+          properties:
+            stampHeaderName:
+              type: string
+              description: A header name of the approved authentication request
+              required: true
+            stampHeaderValue:
+              type: string
+              description: A header value of the approved authentication request
+              required: true
