@@ -2369,3 +2369,213 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./zksync
         run: rdme openapi eth_createAccessList.yaml --key=$README_API_KEY --id=65e8aaf44f28e6000fd52bfa
+
+      - name: Update zkSync API - eth_estimateGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=65ecbe6be0597d002a9acd36
+
+      - name: Update zkSync API - eth_feeHistory
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_feeHistory.yaml --key=$README_API_KEY --id=65ecbec25a7568003cd77889
+
+      - name: Update zkSync API - eth_gasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_gasPrice.yaml --key=$README_API_KEY --id=65ecbef6ece32d000faee907
+
+      - name: Update zkSync API - eth_getBalance
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getBalance.yaml --key=$README_API_KEY --id=65ecbf295a2acf0024b79bf8
+
+      - name: Update zkSync API - eth_getBlockByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getBlockByHash.yaml --key=$README_API_KEY --id=65ecbf5190891f00189fe1fd
+
+      - name: Update zkSync API - eth_getBlockByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getBlockByNumber.yaml --key=$README_API_KEY --id=65ecc2dbb1012a002b5ef919
+
+      - name: Update zkSync API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=65ecc3049467aa0070ff6218
+
+      - name: Update zkSync API - eth_getBlockTransactionCountByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getBlockTransactionCountByHash.yaml --key=$README_API_KEY --id=65ecc438e846970073400ae9
+        
+      - name: Update zkSync API - eth_getBlockTransactionCountByNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getBlockTransactionCountByNumber.yaml --key=$README_API_KEY --id=65ecc46fe1b64b0012303ad0
+
+      - name: Update zkSync API - eth_getCode
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getCode.yaml --key=$README_API_KEY --id=65ecc9195a2acf0024b79d5d
+
+      - name: Update zkSync API - eth_getFilterChanges
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getFilterChanges.yaml --key=$README_API_KEY --id=65ecc9365a7568003cd77bb6
+
+      - name: Update zkSync API - eth_getFilterLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getFilterLogs.yaml --key=$README_API_KEY --id=65ecc9606da8fe0068ac83a2
+
+      - name: Update zkSync API - eth_getLogs
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getLogs.yaml --key=$README_API_KEY --id=65ecc9a090891f00189fe3a7
+
+      - name: Update zkSync API - eth_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getProof.yaml --key=$README_API_KEY --id=65ecc9ccf511520010caad81
+
+      - name: Update zkSync API - eth_getStorageAt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getStorageAt.yaml --key=$README_API_KEY --id=65ecc9f1e3477a00250bd740
+
+      - name: Update zkSync API - eth_getTransactionByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getTransactionByBlockHashAndIndex.yaml --key=$README_API_KEY --id=65eccdda12232700554ec267
+
+      - name: Update zkSync API - eth_getTransactionByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=65eccdfef5e2b5002606a7b3
+
+      - name: Update zkSync API - eth_getTransactionByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getTransactionByHash.yaml --key=$README_API_KEY --id=65ecce4f9bb27e007fc3a465
+
+      - name: Update zkSync API - eth_getTransactionCount
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getTransactionCount.yaml --key=$README_API_KEY --id=65ecce7dea4d3100452d544b
+
+      - name: Update zkSync API - eth_getTransactionReceipt
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getTransactionReceipt.yaml --key=$README_API_KEY --id=65eccee3fd31c30036a0f366
+
+      - name: Update zkSync API - eth_getUncleByBlockHashAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=65eccf0ae0597d002a9ad4ce
+
+      - name: Update zkSync API - eth_getUncleByBlockNumberAndIndex
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getUncleByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=65eccf42e846970073400b85
+
+      - name: Update zkSync API - eth_getUncleCountByBlockHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getUncleCountByBlockHash.yaml --key=$README_API_KEY --id=65eccf80aff86d0072a58d1b
+
+      - name: Update zkSync API - eth_getUncleCountByBlockNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=65eccfaf5c99780063a5faa8
+
+      - name: Update zkSync API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=65eccfd424d69a000ff0423b
+
+      - name: Update zkSync API - eth_newBlockFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_newBlockFilter.yaml --key=$README_API_KEY --id=65ecd001331544000f11db8e
+
+      - name: Update zkSync API - eth_newFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_newFilter.yaml --key=$README_API_KEY --id=65ecd03324d69a000ff0424a
+
+      - name: Update zkSync API - eth_newPendingTransactionFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_newPendingTransactionFilter.yaml --key=$README_API_KEY --id=65ecd053449156003fa1bb1f
+
+      - name: Update zkSync API - eth_protocolVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=65ecd08003500c001843de7d
+
+      - name: Update zkSync API - eth_sendRawTransaction
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_sendRawTransaction.yaml --key=$README_API_KEY --id=65ecd0a54705310061e6dcd8
+
+      - name: Update zkSync API - eth_uninstallFilter
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=65ecd0d0ae59010010cb8227
+
+      - name: Update zkSync API - net_listening
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi net_listening.yaml --key=$README_API_KEY --id=65ecd0f4e0597d002a9ad571
+
+      - name: Update zkSync API - net_version
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi net_version.yaml --key=$README_API_KEY --id=65ecd118b1012a002b5efe2a
+
+      - name: Update zkSync API - web3_clientVersion
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi web3_clientVersion.yaml --key=$README_API_KEY --id=65ecd133331544000f11dd92
+
+      - name: Update zkSync API - web3_sha3
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=65ecd15946ddce002f204dcd
