@@ -1,0 +1,71 @@
+openapi: 3.1.0
+info:
+  title: zks_getProof - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: zks_getProof - zkSync
+        description: Returns Merkle proofs for one or more storage values at the specified account along with a Merkle proof of their authenticity.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - type: object
+                    properties:
+                      method:
+                        $ref: '../components/schemas.yaml#/Method'
+                        default: zks_getProof
+                      params:
+                        type: array
+                        items:
+                          anyOf:
+                            - $ref: '../components/schemas.yaml#/Address'
+                            - type: array
+                              items:
+                                $ref: '../components/schemas.yaml#/Hex'
+                            - type: integer
+                              description: Number of the L1 batch specifying the point in time.
+        responses:
+          '200':
+            description: Merkle proofs for the storage values and their authenticity.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '../components/zksync/schemas.yaml#/StorageProofResponse'
+        operationId: zks-getProof-zksync

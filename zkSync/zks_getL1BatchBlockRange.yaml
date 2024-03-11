@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: zks_getL1BatchBlockRange - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: zks_getL1BatchBlockRange - zkSync
+        description: Returns the range of blocks contained within a batch given by batch number.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - type: object
+                    properties:
+                      method:
+                        $ref: '../components/schemas.yaml#/Method'
+                        default: zks_getL1BatchBlockRange
+                      params:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          type: integer
+                          description: The layer 1 batch number.
+        responses:
+          '200':
+            description: The range of blocks contained within the specified L1 batch.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '../components/zksync/schemas.yaml#/L1BatchBlockRangeResponse'
+        operationId: zks-getL1BatchBlockRange-zksync
