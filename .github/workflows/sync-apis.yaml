@@ -2339,7 +2339,7 @@ jobs:
         working-directory: ./starknet
         run: rdme openapi starknet_getClass.yaml --key=$README_API_KEY --id=6440711368d835000b7711a0
 
-      # Update zkSync APIs
+    # Update zkSync APIs
       - name: Update zkSync API - eth_accounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -2579,3 +2579,105 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./zksync
         run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=65ecd15946ddce002f204dcd
+
+      - name: Update zkSync API - zks_estimateFee
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_estimateFee.yaml --key=$README_API_KEY --id=65ef6aaf0763e000134cd5ea
+
+      - name: Update zkSync API - zks_estimateGasL1ToL2
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_estimateGasL1ToL2.yaml --key=$README_API_KEY --id=65ef6b2385ed3d006cf820ab
+
+      - name: Update zkSync API - zks_getAllAccountBalances
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getAllAccountBalances.yaml --key=$README_API_KEY --id=65ef6b6586815a0011a90089
+
+      - name: Update zkSync API - zks_getBlockDetails
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getBlockDetails.yaml --key=$README_API_KEY --id=65ef6b9ac1f291006ca0f075
+
+      - name: Update zkSync API - zks_getBridgeContracts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getBridgeContracts.yaml --key=$README_API_KEY --id=65ef6bcd9d729a006bd47e6b
+
+      - name: Update zkSync API - zks_getBytecodeByHash
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getBytecodeByHash.yaml --key=$README_API_KEY --id=65ef6c0e86815a0011a901f7
+
+      - name: Update zkSync API - zks_getL1BatchBlockRange
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getL1BatchBlockRange.yaml --key=$README_API_KEY --id=65ef6c2d0c87720039221df7
+
+      - name: Update zkSync API - zks_getL1BatchDetails
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getL1BatchDetails.yaml --key=$README_API_KEY --id=65ef6c574eacd0003e6c707e
+
+      - name: Update zkSync API - zks_getL2ToL1LogProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getL2ToL1LogProof.yaml --key=$README_API_KEY --id=65ef6c8a8c96f6000efdca40
+
+      - name: Update zkSync API - zks_getL2ToL1MsgProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getL2ToL1MsgProof.yaml --key=$README_API_KEY --id=65ef6cb1ae07030057e2ad6a
+
+      - name: Update zkSync API - zks_getMainContract
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getMainContract.yaml --key=$README_API_KEY --id=65ef6cd5d48e0c001793315b
+
+      - name: Update zkSync API - zks_getProof
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getProof.yaml --key=$README_API_KEY --id=65ef6cf4050a39002c28f8cc
+
+      - name: Update zkSync API - zks_getRawBlockTransactions
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getRawBlockTransactions.yaml --key=$README_API_KEY --id=65ef6d1aee21a7000f5f6685
+
+      - name: Update zkSync API - zks_getTestnetPaymaster
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getTestnetPaymaster.yaml --key=$README_API_KEY --id=65ef6d36ae07030057e2ad9b
+
+      - name: Update zkSync API - zks_getTransactionDetails
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_getTransactionDetails.yaml --key=$README_API_KEY --id=65ef6d5b83c5de0051b7157d
+
+      - name: Update zkSync API - zks_L1BatchNumber
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_L1BatchNumber.yaml --key=$README_API_KEY --id=65ef6d96913f290053f9e376
+
+      - name: Update zkSync API - zks_L1ChainId
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./zksync
+        run: rdme openapi zks_L1ChainId.yaml --key=$README_API_KEY --id=65ef6dba72dd030072ccb501
