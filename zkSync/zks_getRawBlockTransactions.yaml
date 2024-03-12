@@ -57,7 +57,7 @@ components:
                         items:
                           type: integer
                           format: uint32
-                          description: Block number.
+                        description: Block number.
         responses:
           '200':
             description: Data of transactions in the specified block.
