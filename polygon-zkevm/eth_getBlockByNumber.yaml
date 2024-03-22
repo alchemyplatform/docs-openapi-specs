@@ -9,7 +9,8 @@ servers:
         enum:
           - polygonzkevm-mainnet
           - polygonzkevm-testnet
-        default: polygonzkevm-testnet
+          - polygonzkevm-cardona
+        default: polygonzkevm-cardona
 x-sandbox:
   category:
     type:
