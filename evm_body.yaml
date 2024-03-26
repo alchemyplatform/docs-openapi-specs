@@ -1604,15 +1604,11 @@ eth_call_550_gas:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash'
-              - $ref: '#/state_override_set'
-                title: State Override Set
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
             - $ref: '#/BlockNumberOrTagOrHash'
-            - $ref: '#/state_override_set'
-              title: State Override Set
 
 eth_call_polygon_zkevm:
   allOf:
@@ -1632,15 +1628,11 @@ eth_call_polygon_zkevm:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
-              - $ref: '#/state_override_set'
-                title: State Override Set
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
             - $ref: '#/BlockNumberOrTagOrHash'
-            - $ref: '#/state_override_set'
-              title: State Override Set
 
 transaction_object:
   type: object
@@ -1690,29 +1682,6 @@ gas_550:
       description: |
         Hex string of the integer of gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
         </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-state_override_set:
-  type: object
-  properties:
-    balance:
-      type: string
-      description: Fake balance to set for the account before executing the call
-      default: '0x00'
-    nonce:
-      type: string
-      description: Fake nonce to set for the account before executing the call
-      default: '0x00'
-    code:
-      type: string
-      description: Fake EVM bytecode to inject into the account before executing the call
-      default: '0x'
-    state:
-      type: string
-      description: Fake key-value mapping to override all slots in the account storage before executing the call
-      default: '0x'
-    stateDiff:
-      type: string
-      description: Fake key-value mapping to override individual slots in the account storage before executing the call
-      default: '0x'
 transactionHash_param:
   type: string
   description: String - 32 Bytes - Hash of a transaction
