@@ -1596,8 +1596,8 @@ eth_call_550_gas:
           default: eth_call
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 2
+          maxItems: 2
           items:
             oneOf:
               - allOf:
@@ -1620,8 +1620,8 @@ eth_call_polygon_zkevm:
           default: eth_call
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 2
+          maxItems: 2
           items:
             oneOf:
               - allOf:
