@@ -73,7 +73,8 @@ async function main() {
 
     // @ts-ignore
     const servers = api.servers as OpenAPIV3_1.ServerObject[];
-    const { baseUrl, chainsToNetworks } = extractChainAndNetworks(servers[0]);
+    const chainsToNetworks = extractChainAndNetworks(servers[0]);
+    const baseUrl = getServerBaseUrl(servers[0]);
 
     const paths = api.paths;
     if (!paths) throw new Error('Paths not found in spec');
@@ -89,11 +90,6 @@ async function main() {
 
         for (const [chain, networks] of chainsToNetworks) {
           for (const network of networks) {
-            // TODO: hacky logic (should replace)
-            const parsedUrl = baseUrl.includes('{network}')
-              ? baseUrl.replace('{network}', [chain, network].join('-'))
-              : baseUrl;
-
             if (!operation.operationId) {
               throw new Error('Operation ID not found');
             }
@@ -188,10 +184,9 @@ async function main() {
 
 main();
 
-function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
-  baseUrl: string;
-  chainsToNetworks: Map<string, Set<string>>;
-} {
+function extractChainAndNetworks(
+  servers: OpenAPIV3_1.ServerObject,
+): Map<string, Set<string>> {
   const { url, variables } = servers;
 
   // if variables key exists in spec - lets get the networks
@@ -235,7 +230,23 @@ function extractChainAndNetworks(servers: OpenAPIV3_1.ServerObject): {
       chainsToNetworks.set(chain, new Set([network]));
     }
   }
-  return { baseUrl: url, chainsToNetworks };
+  return chainsToNetworks;
+}
+
+function getServerBaseUrl(servers: OpenAPIV3_1.ServerObject) {
+  let url = servers.url;
+
+  if (!servers.variables) return url;
+
+  // Populate variables with default values
+  for (const [varName, varValue] of Object.entries(servers.variables)) {
+    // Let Sandbox handle {network} variable
+    if (varName === 'network') continue;
+
+    url = url.replace(`{${varName}}`, varValue.default);
+  }
+
+  return url;
 }
 
 function extractSubdomain(url: string): string | null {
