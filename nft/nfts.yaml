@@ -426,7 +426,7 @@ paths:
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withTokenBalances'
-        - $ref: '#/components/schemas/block'
+        # - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
           description: String - used for contracts with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
       x-readme:
@@ -1458,7 +1458,7 @@ paths:
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withTokenBalances'
-        - $ref: '#/components/schemas/block'
+        # - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
           description: String - used for collections with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
       x-readme:
