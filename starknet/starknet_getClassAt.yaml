@@ -9,7 +9,6 @@ servers:
       network:
         enum:
           - starknet-mainnet
-          - starknet-goerli
           - starknet-sepolia
         default: starknet-mainnet
       version:
