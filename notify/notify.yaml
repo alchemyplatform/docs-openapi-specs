@@ -1021,6 +1021,7 @@ components:
         - ETH_KOVAN
         - MATIC_MAINNET
         - MATIC_MUMBAI
+        - MATIC_AMOY
         - ARB_MAINNET
         - ARB_RINKEBY
         - OPT_MAINNET
