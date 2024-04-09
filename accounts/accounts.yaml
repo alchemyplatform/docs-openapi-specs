@@ -2,23 +2,19 @@ openapi: 3.1.0
 info:
   title: 👤 Embedded Accounts
   version: "1.0"
-servers: # servers are also specified at the method level, if there ins't a specification then the server is supported on all the networks below
+servers:
   - url: https://api.g.alchemy.com/signer/v1
-# x-sandbox:
-#   category:
-#     type:
-#       $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
-#     value: accounts
 security:
   - apiKey: []
 paths:
   "/signup":
     post:
       summary: Create Account
-      description: Allows users to sign up for the service. Responds with an organization ID associated with the user and your application.
+      description: >
+        Enables the creation of an Embedded Account using Alchemy Signer. It allows applications to authenticate users and facilitate signature operations on their behalf. An Embedded Account is either an on-chain Modular Account with Alchemy Signer as the owner, or a standalone EOA signer managed through Alchemy Signer.
       tags: ["Accounts API Endpoints"]
       security:
-        - apiKey: [] # Apply the apiKey security scheme
+        - apiKey: [] # Maps the request to a specific project using the Alchemy API key.
       x-readme:
         samples-languages:
           - javascript
@@ -33,32 +29,32 @@ paths:
               properties:
                 email:
                   type: string
-                  description: Required if not using a passkey. The email of the user that is signing in
+                  description: Optional. Used for user authentication when passkey is not provided. Specifies the user's email address.
                   required: false
                 passkey:
                   type: object
-                  description: Required if not using email. Parameter for passkey authentication
+                  description: Optional. Used for authentication when email is not provided. Enables passkey-based authentication.
                   required: false
                   properties:
                     challenge:
                       type: string
-                      description: A challenge string for passkey authentication
+                      description: A challenge string for passkey authentication.
                     attestation:
                       type: object
-                      description: Information related to attestation
+                      description: Provides attestation details required for passkey authentication.
                       properties:
                         credentialId:
                           type: string
-                          description: The credential ID used for attestation
+                          description: The credential ID used for attestation.
                         clientDataJson:
                           type: string
-                          description: JSON data from the client for attestation
+                          description: JSON data from the client used for attestation.
                         attestationObject:
                           type: string
-                          description: The attestation object received during the attestation process
+                          description: The attestation object received during the authentication process.
                         transports:
                           type: array
-                          description: Array of transport protocols used during attestation
+                          description: Transport protocols used during attestation.
                           items:
                             type: string
                 targetPublicKey:
@@ -67,7 +63,7 @@ paths:
                   $ref: "#/components/schemas/expirationSeconds"
       responses:
         "200":
-          description: ""
+          description: Account creation response.
           content:
             application/json:
               schema:
@@ -79,10 +75,11 @@ paths:
   "/auth":
     post:
       summary: Send Auth Email
-      description: Send a user their Auth email.
+      description: >
+        Sends a user an email containing a magic link for authentication, allowing them to complete the login process and access their Embedded Account through a secure, simple email verification method. Developers can customize the appearance and content of the authentication email through Alchemy dashboard to align with their application's branding and user experience requirements.
       tags: ["Accounts API Endpoints"]
       security:
-        - apiKey: [] # Apply the apiKey security scheme
+        - apiKey: [] # Ensures the request is authenticated and mapped to a specific project using the Alchemy API key.
       x-readme:
         samples-languages:
           - javascript
@@ -96,34 +93,33 @@ paths:
               type: object
               properties:
                 email:
-                  description: The email of the user requesting access
                   $ref: "#/components/schemas/email"
+                  description: The email address of the user requesting access. This is where the authentication email, containing the magic link, will be sent.
                 targetPublicKey:
-                  description: The public key of the target resource being accessed
-                  type: string
-                  required: true
+                  $ref: "#/components/schemas/targetPublicKey"
                 expirationSeconds:
-                  description: Optional parameter specifying the expiration time in seconds for the access request
                   $ref: "#/components/schemas/expirationSeconds"
+                  description: Optional. Specifies the duration in seconds for which the access request or authentication link remains valid. After this period, the request expires, necessitating a new authentication attempt.
       responses:
         "200":
-          description: ""
+          description: Authentication email sent successfully.
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   orgId:
-                    description: The organization ID associated with the user and the requested resource
                     $ref: "#/components/schemas/orgId"
+                    description: The organization ID associated with the user and the application, facilitating the authentication process within the context of the user's application.
       operationId: sendEmailAuth
   "/whoami":
     post:
       summary: Authenticate User
-      description: Authenticate User
+      description: >
+        Authenticates a user and returns their identity and account information, enabling the application to grant the user access to their Embedded Account functionalities. This endpoint is used to confirm user authentication via email or passkey, thereby authorizing them to perform actions as the owner of a smart account or to conduct transactions as an EOA signer. It ensures that only authenticated users can access and manage their accounts.
       tags: ["Accounts API Endpoints"]
       security:
-        - apiKey: [] # Apply the apiKey security scheme
+        - apiKey: [] # Ensures authentication and project-specific request mapping.
       x-readme:
         samples-languages:
           - javascript
@@ -140,31 +136,33 @@ paths:
                   $ref: "#/components/schemas/SignedTurnkeyRequest"
       responses:
         "200":
-          description: ""
+          description: User authentication successful.
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   email:
-                    description: The email address associated with the user
                     $ref: "#/components/schemas/email"
+                    description: The authenticated user's email address.
                   userId:
                     type: string
-                    description: The unique identifier for the user
+                    description: A unique identifier for the authenticated user.
                   orgId:
                     $ref: "#/components/schemas/orgId"
+                    description: The organization ID associated with the authenticated user's account.
                   address:
                     type: string
-                    description: The address of the user
+                    description: The blockchain address of the user's signer. Essential for executing transactions and managing the account.
       operationId: authUser
   "/lookup":
     post:
       summary: Get User
-      description: Get User
+      description: >
+        Enables applications to query the existence of a user account based on an email address.
       tags: ["Accounts API Endpoints"]
       security:
-        - apiKey: [] # Apply the apiKey security scheme
+        - apiKey: [] # Ensures that the request is authenticated and mapped to a specific project.
       x-readme:
         samples-languages:
           - javascript
@@ -178,30 +176,29 @@ paths:
               type: object
               properties:
                 email:
-                  description: The email address of the user to look up
                   $ref: "#/components/schemas/email"
+                  description: The email address of the user to look up. This is used to verify if an associated account exists within the system.
       responses:
         "200":
-          description: ""
+          description: Query successful. Returns organization ID if an account exists for the provided email address.
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   orgId:
-                    description: The organization ID associated with the user, or null if the user is not found
-                    oneOf:
-                      - type: string
-                      - type: null
                     $ref: "#/components/schemas/orgId"
+                    description: >
+                      The organization ID associated with the user. This ID is returned if an account exists for the given email address. If no account is found, this value will be null. The response is intentionally limited to this information to protect user privacy and security.
       operationId: getUser
   "/sign-payload":
     post:
       summary: Sign Message
-      description: Sign message
+      description: >
+        Allows for the signing of arbitrary payloads using the authenticated user's signer. The payload to be signed should be included within the body of a stamped request, ensuring the integrity and authenticity of the message to be signed. This operation is important for executing transactions and interactions on the blockchain that require verified signatures from the user's account.
       tags: ["Accounts API Endpoints"]
       security:
-        - apiKey: [] # Apply the apiKey security scheme
+        - apiKey: [] # Secures the request and ensures it is mapped to a specific project.
       x-readme:
         samples-languages:
           - javascript
@@ -216,9 +213,11 @@ paths:
               properties:
                 stampedRequest:
                   $ref: "#/components/schemas/SignedTurnkeyRequest"
+                  description: >
+                    A stamped request that includes the payload to be signed. The payload is part of the stamped request's body, which should conform to the structure outlined in the Turnkey API documentation for signing raw payloads.
       responses:
         "200":
-          description: ""
+          description: Message signing successful.
           content:
             application/json:
               schema:
@@ -226,15 +225,16 @@ paths:
                 properties:
                   signature:
                     type: string
-                    description: The signature generated for the payload
+                    description: The signature generated for the specified payload.
       operationId: signMessage
   "/account/authenticator":
     post:
-      summary: Register new authenticator
-      description: Register new authenticator
+      summary: Register New Authenticator
+      description: >
+        Enables users to register a new authenticator with their account, supporting enhanced security and multi-device accessibility. Currently, this functionality supports adding a new passkey as an authenticator, facilitating secure login across different devices.
       tags: ["Accounts API Endpoints"]
       security:
-        - apiKey: []
+        - apiKey: [] # Secures the request and ensures it is mapped to a specific project.
       x-readme:
         samples-languages:
           - javascript
@@ -249,9 +249,11 @@ paths:
               properties:
                 stampedAddAuthenticatorRequest:
                   $ref: "#/components/schemas/SignedTurnkeyRequest"
+                  description: >
+                    A stamped request that specifies the details of the new authenticator to be registered. This ensures the integrity of the request and confirms the user's intent to add a new authentication method to their account.
       responses:
         "200":
-          description: "OK response"
+          description: Authenticator registration successful.
           content:
             application/json:
               schema:
@@ -259,8 +261,8 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: ok
-                    description: Confirmation message
+                    example: "ok"
+                    description: A confirmation message indicating the successful registration of the new authenticator.
       operationId: registerNewAuthenticator
 
 components:
@@ -295,19 +297,19 @@ components:
       required: true
     expirationSeconds:
       name: expirationSeconds
-      description: Optional parameter specifying the expiration time in seconds
+      description: Optional. Specifies the duration of the login session in seconds. After this period, the user has to re-login to refresh their session. The default value is 900 seconds (15 minutes).
       schema:
         type: string
       required: false
     targetPublicKey:
       name: targetPublicKey
-      description: Optional parameter representing the target public key
+      description: The public key corresponding to the account, returned by the turnkey iframe integration. Allows the application to specify the public key mapping to the address of the created account.
       schema:
         type: string
       required: false
     orgId:
       name: orgId
-      description: The organization ID associated with the user
+      description: The organizational ID associated with the user and application, enabling the management of Embedded Accounts.
       schema:
         type: string
     SignedTurnkeyRequest:
