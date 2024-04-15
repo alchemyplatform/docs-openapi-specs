@@ -9,7 +9,6 @@ servers:
         enum:
           - eth-mainnet
           - polygon-mainnet
-          - polygon-mumbai
           - polygon-amoy
         default: eth-mainnet
 x-readme:
