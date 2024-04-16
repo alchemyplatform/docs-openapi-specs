@@ -208,10 +208,10 @@ paths:
                           $ref: './schemas.yaml#/components/schemas/Policy'
                       before:
                         type: string
-                        description: String - used for pagination. If there are previous results, `before` field is returned in the response and can be passed in the request to fetch the previous page.
+                        description: String - used for pagination. If there are previous results, `before` field is returned in the response and can be passed in the request to fetch the previous page. Can be null if there are no previous results.
                       after:
                         type: string
-                        description: String - used for pagination. If more results are available `after` field is returned in the response and can be passed in the request to fetch the next page.
+                        description: String - used for pagination. If more results are available `after` field is returned in the response and can be passed in the request to fetch the next page. Can be null if there are no more results.
                   error:
                     type: object
                     properties:
@@ -306,6 +306,55 @@ paths:
                       usdMined:
                         type: string
                         default: '260.32'
+                  error:
+                    type: object
+                    properties:
+                      msg:
+                        type: string
+
+  '/api/gasManager/policy/{id}/sponsorships':
+    get:
+      tags: ['Gas Manager Admin API Endpoints']
+      summary: Get Sponsorships
+      description: Returns a list of sponsorships associated with the specified policy ID. The results are paginated.
+      operationId: get-sponsorships
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the policy for which sponsorships are being queried.
+          schema:
+            type: string
+            default: 'a844e221-3c13-40c6-95db-d2db390e14b5'
+        - name: limit
+          in: query
+          description: Limits the number of sponsorships returned.
+          schema:
+            type: integer
+            default: 5
+      responses:
+        '200':
+          description: Sponsorships fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      before:
+                        type: string
+                        description: String - used for pagination. If there are previous results, `before` field is returned in the response and can be passed in the request to fetch the previous page. Can be null if there are no previous results.
+                      after:
+                        type: string
+                        description: String - used for pagination. If more results are available `after` field is returned in the response and can be passed in the request to fetch the next page. Can be null if there are no more results.
+                      sponsorships:
+                        type: array
+                        items:
+                          $ref: './schemas.yaml#/components/schemas/Sponsorship'
                   error:
                     type: object
                     properties:
