@@ -1474,7 +1474,7 @@ jobs:
         run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=64db9bf4b9b936004d709d89
 
 
-      # Update Polygon zkEVM APIs
+    # Update Polygon zkEVM APIs
       - name: Update Polygon zkEVM API - eth_blockNumber
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -1726,9 +1726,21 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./polygon-zkevm
         run: rdme openapi eth_protocolVersion.yaml --key=$README_API_KEY --id=6421e143fe648e088d9b4f23
+      
+      - name: Update Polygon zkEVM API - zkevm_estimateFee
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_estimateFee.yaml --key=$README_API_KEY --id=661e89c30ac4d50025024325
+
+      - name: Update Polygon zkEVM API - zkevm_estimateGasPrice
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-zkevm
+        run: rdme openapi zkevm_estimateGasPrice.yaml --key=$README_API_KEY --id=661e8a3744fc0500449f8f59
 
 
-      # Update Astar APIs
+    # Update Astar APIs
       - name: Update Astar API - eth_accounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
