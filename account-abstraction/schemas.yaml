@@ -76,3 +76,37 @@ components:
         - appId
         - status
         - rules
+
+    Sponsorship:
+      type: object
+      properties:
+        sender:
+          type: string
+          description: Address of the sender
+        grantedAt:
+          type: string
+          description: Unix timestamp of when the sponsorship was granted
+        confirmedTotalUsd:
+          type: string
+          description: Total amount of USD that was spent. Can be null if the transaction has not been mined
+        status:
+          type: string
+          description: Status of the sponsorship. Can be PENDING, MINED or EXPIRED
+        uoHash:
+          type: string
+          description: Hash of the user operation
+        uoExplorerUrl:
+          type: string
+          description: URL to the user operation explorer for the associated user operation
+        txnHash:
+          type: string
+          description: Hash of the transaction associated with the sponsorship. Can be null if the transaction has not been mined
+        txnExplorerUrl:
+          type: string
+          description: URL to the transaction explorer for the associated transaction. Can be null if the transaction has not been mined
+      required:
+        - sender
+        - grantedAt
+        - status
+        - uoHash
+        - uoExplorerUrl
