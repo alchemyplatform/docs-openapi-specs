@@ -2250,6 +2250,36 @@ zkevm_getBroadcastURI:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_getBroadcastURI
 
+zkevm_estimateFee:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_estimateFee
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transaction_object'
+
+zkevm_estimateGasPrice:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_estimateGasPrice
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transaction_object'
+
 # ===================== Account Abstraction Methods =====================
 
 eth_sendUserOperation:
