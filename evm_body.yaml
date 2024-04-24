@@ -2293,8 +2293,8 @@ eth_sendUserOperation:
         params:
           type: array
           description: |
-            1. Object - The `UserOperation` object
-            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
+            1. Object - The `UserOperation` object. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address of the second parameter.
+            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the first parameter.
 
             **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
@@ -2318,8 +2318,8 @@ eth_estimateUserOperationGas:
         params:
           type: array
           description: |
-            1. Object - The `UserOperation` object (gas limits and prices are optional)
-            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
+            1. Object - The `UserOperation` object (gas limits and prices are optional). This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address of the second parameter.
+            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the first parameter.
 
             **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
@@ -2399,9 +2399,11 @@ alchemy_requestPaymasterAndData:
                 default: '0x1234567890123456789012345678901234567890123456789012345678901234'
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
+                description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
+                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
-                description: Partial UserOperation object, missing paymasterAndData and signature fields
+                description: Partial UserOperation object, missing paymasterAndData and signature fields. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address in the `entryPoint` field.
 
 alchemy_requestGasAndPaymasterAndData:
   allOf:
@@ -2425,6 +2427,7 @@ alchemy_requestGasAndPaymasterAndData:
                 default: '69d524a7-e932-4214-8673-dcdcba31bb42'
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
+                description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
                 default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
               dummySignature:
                 type: string
@@ -2432,7 +2435,7 @@ alchemy_requestGasAndPaymasterAndData:
                 default: '0xe8fe34b166b64d118dccf44c7198648127bf8a76a48a042862321af6058026d276ca6abb4ed4b60ea265d1e57e33840d7466de75e13f072bbd3b7e64387eebfe1b'
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartial
-                description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
+                description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address in the `entryPoint` field.
               overrides:
                 type: object
                 description: Optional fields to override default gas and fee behavior - this will apply either multiplier overrides relative to our default estimates or absolute overrides

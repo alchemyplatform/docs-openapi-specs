@@ -1487,6 +1487,9 @@ eth_estimateUserOperationGas:
             callGasLimit:
               type: integer
               description: Value used by inner account execution
+            paymasterVerificationGasLimit:
+              type: integer
+              description: Value used by the paymaster during verification. Only present if the request used a v0.7 user operation that contained a paymaster.
       example:
         $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
 
