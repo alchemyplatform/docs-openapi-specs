@@ -227,7 +227,7 @@ UserOperation:
     - $ref: '#/UserOperationV0_7'
 
 UserOperationV0_6:
-  title: User Operation v0.7
+  title: User Operation v0.6
   type: object
   allOf:
     - $ref: '#/UserOperationPartialWithGasFieldsV0_6'
