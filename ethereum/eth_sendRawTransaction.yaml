@@ -45,6 +45,7 @@ components:
               schema:
                 $ref: ../evm_body.yaml#/eth_sendRawTransaction
         x-readme:
+          explorer-enabled: false
           samples-languages:
             - curl
             - javascript
