@@ -1,34 +1,25 @@
 openapi: 3.1.0
 info:
-  title: alchemy_getTokenAllowance
+  title: eth_getBlockReceipts - zkSync
   version: '1.0'
 servers:
-  - url: https://{network}.g.alchemy.com/v2
+  - url: 'https://{network}.g.alchemy.com/v2/'
     variables:
       network:
         enum:
-          - eth-mainnet
-          - polygon-mainnet
-          - polygon-amoy
-          - arb-mainnet
-          - arb-sepolia
-          - opt-mainnet
-          - opt-sepolia
-          - base-mainnet
-          - base-sepolia
           - zksync-mainnet
           - zksync-sepolia
-        default: eth-mainnet
+        default: zksync-mainnet
 x-sandbox:
   category:
     type:
       $ref: '../components/sandbox.yaml#/Category'
-    value: token
+    value: core
 paths:
   /{apiKey}:
     post:
-      summary: alchemy_getTokenAllowance
-      description: 'Returns the amount which the spender is allowed to withdraw from the owner.'
+      summary: eth_getBlockReceipts - zkSync
+      description: Get all transaction receipts for a given block on Ethereum.
       tags: []
       parameters:
         - name: apiKey
@@ -48,12 +39,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../evm_body.yaml#/alchemy_getTokenAllowance
+              $ref: ../evm_body.yaml#/eth_getBlockReceipts
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: ../evm_responses.yaml#/alchemy_getTokenAllowance
-      operationId: alchemy-getTokenAllowance
+                $ref: ../evm_responses.yaml#/eth_getBlockReceipts
+      operationId: eth-getBlockReceipts-zksync

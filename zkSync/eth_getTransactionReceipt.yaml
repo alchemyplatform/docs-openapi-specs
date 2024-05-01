@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: eth_getTransactionReceipt - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getTransactionReceipt - zkSync
+        description: Returns the receipt of a transaction by transaction hash.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getTransactionReceipt
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getTransactionReceipt
+        operationId: eth-getTransactionReceipt-zksync

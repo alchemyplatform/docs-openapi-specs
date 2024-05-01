@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: zks_getBlockDetails - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: zks_getBlockDetails - zkSync
+        description: Returns additional zkSync-specific information about the L2 block.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - type: object
+                    properties:
+                      method:
+                        $ref: '../components/schemas.yaml#/Method'
+                        default: zks_getBlockDetails
+                      params:
+                        type: array
+                        minItems: 1
+                        maxItems: 1
+                        items:
+                          type: integer
+                          format: uint32
+                          description: The number of the block.
+        responses:
+          '200':
+            description: Detailed information about the specified L2 block.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '../components/zksync/schemas.yaml#/BlockDetailsResponse'
+        operationId: zks-getBlockDetails-zksync

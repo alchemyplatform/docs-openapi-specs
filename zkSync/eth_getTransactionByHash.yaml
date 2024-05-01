@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: eth_getTransactionByHash - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getTransactionByHash - zkSync
+        description: 'Returns the information about a transaction requested by transaction hash. In the response object, `blockHash`, `blockNumber`, and `transactionIndex` are `null` when the transaction is pending.'
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getTransactionByHash
+                default:
+                  params:
+                    [
+                      '0x88df016429689c079f3b2f6ad39fa052532c56795b733da78a91ebe6a713944b',
+                    ]
+        x-readme:
+          samples-languages:
+            - curl
+            - javascript
+            - python
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getTransactionByHash
+        operationId: eth-getTransactionByHash-zksync

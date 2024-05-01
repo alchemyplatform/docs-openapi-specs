@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: eth_getProof - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: eth_getProof - zkSync
+        description: Returns the account and storage values of the specified account including the Merkle-proof. This call can be used to verify that the data you are pulling from is not tampered with.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getProof
+        responses:
+          '200':
+            description: 'Returns the account and storage values of the specified account.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_getProof
+        operationId: eth-getProof-zksync
+        x-readme:
+          explorer-enabled: false
+          samples-languages:
+            - curl
+            - javascript
+            - python

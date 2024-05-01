@@ -1,0 +1,424 @@
+CallRequest:
+  type: object
+  description: The zkSync transaction request for which the fee is estimated.
+  properties:
+    from:
+      $ref: '../schemas.yaml#/FromAddress'
+      default: '0x1111111111111111111111111111111111111111'
+    to:
+      $ref: '../schemas.yaml#/ToAddress'
+      default: '0x2222222222222222222222222222222222222222'
+    data:
+      $ref: '../schemas.yaml#/Data'
+      default: '0xffffffff'
+  required:
+    - from
+    - to
+    - data
+
+FeeEstimateResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            gas_limit:
+              $ref: '../schemas.yaml#/GasLimit'
+            gas_per_pubdata_limit:
+              $ref: '../schemas.yaml#/Hex'
+            max_fee_per_gas:
+              $ref: '../schemas.yaml#/MaxFeePerGas'
+            max_priority_fee_per_gas:
+              $ref: '../schemas.yaml#/MaxPriorityFeePerGas'
+      example:
+        $ref: './examples.yaml#/zks_estimateFee'
+
+GasEstimateResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: string
+          description: The estimated gas required for the transaction, in hexadecimal format.
+      example:
+        $ref: './examples.yaml#/zks_estimateGasL1ToL2'
+
+AccountBalancesResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          additionalProperties:
+            $ref: '../schemas.yaml#/Value'
+          description: A mapping of token addresses to their respective balances for the account.
+      example:
+        $ref: './examples.yaml#/zks_getAllAccountBalances'
+
+BlockDetailsResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            baseSystemContractsHashes:
+              type: object
+              properties:
+                bootloader:
+                  $ref: '../schemas.yaml#/Hex'
+                default_aa:
+                  $ref: '../schemas.yaml#/Hex'
+            commitTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            committedAt:
+              type: string
+              format: date-time
+            executeTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            executedAt:
+              type: string
+              format: date-time
+            l1BatchNumber:
+              type: integer
+            l1GasPrice:
+              type: integer
+            l1TxCount:
+              type: integer
+            l2FairGasPrice:
+              type: integer
+            l2TxCount:
+              type: integer
+            number:
+              type: integer
+            operatorAddress:
+              $ref: '../schemas.yaml#/Address'
+            proveTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            provenAt:
+              type: string
+              format: date-time
+            rootHash:
+              $ref: '../schemas.yaml#/Hex'
+            status:
+              type: string
+              enum: [verified, pending, rejected]
+            timestamp:
+              type: integer
+          required:
+            - baseSystemContractsHashes
+            - commitTxHash
+            - committedAt
+            - executeTxHash
+            - executedAt
+            - l1BatchNumber
+            - l1GasPrice
+            - l1TxCount
+            - l2FairGasPrice
+            - l2TxCount
+            - number
+            - operatorAddress
+            - proveTxHash
+            - provenAt
+            - rootHash
+            - status
+            - timestamp
+      example:
+        $ref: './examples.yaml#/zks_getBlockDetails'
+
+BridgeContractsResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            l1Erc20DefaultBridge:
+              $ref: '../schemas.yaml#/Address'
+            l2Erc20DefaultBridge:
+              $ref: '../schemas.yaml#/Address'
+          required:
+            - l1Erc20DefaultBridge
+            - l2Erc20DefaultBridge
+      example:
+        $ref: './examples.yaml#/zks_getBridgeContracts'
+
+BytecodeResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: integer
+            format: byte
+          description: The bytecode of the transaction represented as an array of bytes.
+      example:
+        $ref: './examples.yaml#/zks_getBytecodeByHash'
+
+L1BatchBlockRangeResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: string
+            pattern: '^0x[0-9a-fA-F]+$'
+          minItems: 2
+          maxItems: 2
+          description: The beginning and end block numbers of the L1 batch, in hexadecimal format.
+      example:
+        $ref: './examples.yaml#/zks_getL1BatchBlockRange'
+
+L1BatchDetailsResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            baseSystemContractsHashes:
+              type: object
+              properties:
+                bootloader:
+                  $ref: '../schemas.yaml#/Hex'
+                default_aa:
+                  $ref: '../schemas.yaml#/Hex'
+            commitTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            committedAt:
+              type: string
+              format: date-time
+            executeTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            executedAt:
+              type: string
+              format: date-time
+            l1GasPrice:
+              type: integer
+            l1TxCount:
+              type: integer
+            l2FairGasPrice:
+              type: integer
+            l2TxCount:
+              type: integer
+            number:
+              type: integer
+            proveTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            provenAt:
+              type: string
+              format: date-time
+            rootHash:
+              $ref: '../schemas.yaml#/Hex'
+            status:
+              type: string
+              enum: [verified, pending, rejected]
+            timestamp:
+              type: integer
+          required:
+            - baseSystemContractsHashes
+            - commitTxHash
+            - committedAt
+            - executeTxHash
+            - executedAt
+            - l1GasPrice
+            - l1TxCount
+            - l2FairGasPrice
+            - l2TxCount
+            - number
+            - proveTxHash
+            - provenAt
+            - rootHash
+            - status
+            - timestamp
+      example:
+        $ref: './examples.yaml#/zks_getL1BatchDetails'
+
+L2ToL1LogProofResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Position of the leaf in the Merkle tree of L2->L1 messages for the block.
+            proof:
+              type: array
+              items:
+                $ref: '../schemas.yaml#/Hex'
+              description: The Merkle proof for the message.
+            root:
+              $ref: '../schemas.yaml#/Hex'
+              description: The root of the Merkle tree of L2->L1 messages.
+          required:
+            - id
+            - proof
+            - root
+      example:
+        $ref: './examples.yaml#/zks_getL2ToL1LogProof'
+
+MainContractResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: '../schemas.yaml#/Address'
+          description: The address of the zkSync Era contract.
+      example:
+        $ref: './examples.yaml#/zks_getMainContract'
+
+StorageProofResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            address:
+              $ref: '../schemas.yaml#/Address'
+            storageProof:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    $ref: '../schemas.yaml#/Hex'
+                  value:
+                    $ref: '../schemas.yaml#/Hex'
+                  index:
+                    type: integer
+                    format: uint64
+                    description: 1-based integer enumeration index of the tree entry.
+                  proof:
+                    type: array
+                    items:
+                      $ref: '../schemas.yaml#/Hex'
+                    description: Sequence of hashes forming a Merkle path for the key.
+          required:
+            - address
+            - storageProof
+      example:
+        $ref: './examples.yaml#/zks_getProof'
+
+BlockTransactionsResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              common_data:
+                type: object
+                properties:
+                  L1:
+                    type: object
+                    additionalProperties: true
+              execute:
+                type: object
+                properties:
+                  calldata:
+                    $ref: '../schemas.yaml#/Hex'
+                  contractAddress:
+                    $ref: '../schemas.yaml#/Address'
+                  factoryDeps:
+                    type: array
+                  value:
+                    $ref: '../schemas.yaml#/Hex'
+              received_timestamp_ms:
+                type: integer
+                format: int64
+      example:
+        $ref: './examples.yaml#/zks_getRawBlockTransactions'
+
+TestnetPaymasterResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: '../schemas.yaml#/Address'
+          description: The address of the testnet paymaster.
+      example:
+        $ref: './examples.yaml#/zks_getTestnetPaymaster'
+
+TransactionDetailsResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            ethCommitTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            ethExecuteTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            ethProveTxHash:
+              $ref: '../schemas.yaml#/Hex'
+            fee:
+              $ref: '../schemas.yaml#/Hex'
+            gasPerPubdata:
+              $ref: '../schemas.yaml#/Hex'
+            initiatorAddress:
+              $ref: '../schemas.yaml#/Address'
+            isL1Originated:
+              type: boolean
+            receivedAt:
+              type: string
+              format: date-time
+            status:
+              type: string
+              enum: [pending, verified, failed]
+          required:
+            - ethCommitTxHash
+            - ethExecuteTxHash
+            - ethProveTxHash
+            - fee
+            - gasPerPubdata
+            - initiatorAddress
+            - isL1Originated
+            - receivedAt
+            - status
+      example:
+        $ref: './examples.yaml#/zks_getTransactionDetails'
+
+L1BatchNumberResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: '../schemas.yaml#/Hex'
+          description: The latest L1 batch number in hexadecimal format.
+      example:
+        $ref: './examples.yaml#/zks_L1BatchNumber'
+
+L1ChainIdResponse:
+  allOf:
+    - $ref: '../../evm_responses.yaml#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          $ref: '../schemas.yaml#/Hex'
+          description: The chain ID of the underlying L1, in hexadecimal format.
+      example:
+        $ref: './examples.yaml#/zks_L1ChainId'

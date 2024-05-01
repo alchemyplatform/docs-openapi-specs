@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: zks_getL2ToL1LogProof - zkSync
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        summary: zks_getL2ToL1LogProof - zkSync
+        description: Given a transaction hash, and an index of the L2 to L1 log produced within the transaction, it returns the proof for the corresponding L2 to L1 log.
+        tags: []
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../evm_body.yaml#/common_request_fields'
+                  - type: object
+                    properties:
+                      method:
+                        $ref: '../components/schemas.yaml#/Method'
+                        default: zks_getL2ToL1LogProof
+                      params:
+                        type: array
+                        items:
+                          - $ref: '../components/schemas.yaml#/Hex'
+                          - type: integer
+                            format: int32
+                            description: The index of the L2 to L1 log in the transaction (optional).
+        responses:
+          '200':
+            description: Proof for the corresponding L2 to L1 log.
+            content:
+              application/json:
+                schema:
+                  allOf:
+                    - $ref: '../components/zksync/schemas.yaml#/L2ToL1LogProofResponse'
+        operationId: zks-getL2ToL1LogProof-zksync

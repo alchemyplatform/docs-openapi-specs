@@ -1024,6 +1024,8 @@ components:
         - OPT_SEPOLIA
         - BASE_MAINNET
         - BASE_SEPOLIA
+        - ZKSYNC_MAINNET
+        - ZKSYNC_SEPOLIA
       default: ETH_MAINNET
     webhook_type:
       type: string

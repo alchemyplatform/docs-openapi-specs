@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: eth_getBlockByHash - zkSync
+  description: Retrieves information from a particular block in the blockchain.
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - zksync-mainnet
+          - zksync-sepolia
+        default: zksync-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        operationId: eth-getBlockByHash-zksync
+        summary: eth_getBlockByHash - zkSync
+        description: Returns information about a block by block hash.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_getBlockByHash
+        x-readme:
+          explorer-enabled: false
+          samples-languages:
+            - curl
+            - javascript
+            - python
+        responses:
+          '200':
+            description: 'Returns a block object with the following fields, or null when no block was found.'
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_block
