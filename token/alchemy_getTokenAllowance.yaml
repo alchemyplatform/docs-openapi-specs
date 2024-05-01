@@ -16,8 +16,6 @@ servers:
           - opt-sepolia
           - base-mainnet
           - base-sepolia
-          - zksync-mainnet
-          - zksync-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
