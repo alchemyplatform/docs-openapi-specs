@@ -1062,6 +1062,22 @@ requestAirdrop:
                 properties:
                   commitment:
                     $ref: '#/commitment'
+getRecentPrioritizationFees:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ../components/schemas.yaml#/Method
+          default: getRecentPrioritizationFees
+        params:
+          type: array
+          maxItems: 1
+          description: Array of Account addresses (up to a maximum of 128 addresses), as base-58 encoded strings.
+          items:
+            type: array
+            items:
+              type: string
 
 # ============= Solana API Models ===============
 common_request_fields:

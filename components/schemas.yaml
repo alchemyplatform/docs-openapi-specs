@@ -97,7 +97,13 @@ Method:
 # ================= Account Abstraction =================
 
 UserOperationPartial:
-  title: User Operation ( missing signature, paymasterData, and gas fields )
+  title: User Operation, either v0.6 or v0.7 ( missing signature, paymasterData, and gas fields )
+  oneOf:
+    - $ref: '#/UserOperationPartialV0_6'
+    - $ref: '#/UserOperationPartialV0_7'
+
+UserOperationPartialV0_6:
+  title: User Operation v0.6 ( missing signature, paymasterData, and gas fields )
   type: object
   properties:
     sender:
@@ -118,11 +124,43 @@ UserOperationPartial:
         Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
       default: '0xb61d27f600000000000000000000000043f6bfbe9dad44cf0a60570c30c307d949be4cd40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000645c833bfd000000000000000000000000613c64104b98b048b93289ed20aefd80912b3cde0000000000000000000000000000000000000000000000000de123e8a84f9901000000000000000000000000c9371ea30dea5ac745b71e191ba8cde2c4e66df500000000000000000000000000000000000000000000000000000000'
 
+UserOperationPartialV0_7:
+  title: User Operation v0.7 ( missing signature, paymasterData, and gas fields )
+  type: object
+  properties:
+    sender:
+      $ref: '#/Hex'
+      description: The account making the operation
+      default: '0xceb161d3e0B6d01bc0e87ECC27fF9f2E2eCDCD81'
+    nonce:
+      $ref: '#/Hex'
+      description: Anti-replay parameter; also used as the salt for first-time account creation
+      default: '0x3'
+    factory:
+      $ref: '#/Hex'
+      description: The account factory address (needed if and only if the account is not yet on-chain and needs to be created)
+      default: '0x5061010c6114f7565b5061010c6114d6565B5061'
+    factoryData:
+      $ref: '#/Hex'
+      description: Data for the account factory (only if the account factory exists)
+      default: '0x'
+    callData:
+      $ref: '#/Hex'
+      description: |
+        Encoded data for executing the primary function call or operation within the user's transaction, such as calling a smart contract function or transferring tokens. This data is passed to the sender's address during the execution of the user operation.
+      default: '0xb61d27f600000000000000000000000043f6bfbe9dad44cf0a60570c30c307d949be4cd40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000645c833bfd000000000000000000000000613c64104b98b048b93289ed20aefd80912b3cde0000000000000000000000000000000000000000000000000de123e8a84f9901000000000000000000000000c9371ea30dea5ac745b71e191ba8cde2c4e66df500000000000000000000000000000000000000000000000000000000'
+
 UserOperationPartialWithGasFields:
-  title: User Operation ( missing signature and paymasterData )
+  title: User Operation, either v0.6 or v0.7 ( missing signature and paymasterData )
+  oneOf:
+    - $ref: '#/UserOperationPartialWithGasFieldsV0_6'
+    - $ref: '#/UserOperationPartialWithGasFieldsV0_7'
+
+UserOperationPartialWithGasFieldsV0_6:
+  title: User Operation v0.6 ( missing signature and paymasterData )
   type: object
   allOf:
-    - $ref: '#/UserOperationPartial'
+    - $ref: '#/UserOperationPartialV0_6'
     - type: object
       properties:
         callGasLimit:
@@ -146,17 +184,83 @@ UserOperationPartialWithGasFields:
           description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
           default: '0x13AB6680'
 
-UserOperation:
-  title: User Operation
+UserOperationPartialWithGasFieldsV0_7:
+  title: User Operation v0.7 ( missing signature and paymasterData )
   type: object
   allOf:
-    - $ref: '#/UserOperationPartialWithGasFields'
+    - $ref: '#/UserOperationPartialV0_7'
+    - type: object
+      properties:
+        callGasLimit:
+          $ref: '#/Hex'
+          description: The amount of gas to allocate the main execution call
+          default: '0x7A1200'
+        verificationGasLimit:
+          $ref: '#/Hex'
+          description: The amount of gas to allocate for the verification step
+          default: '0x927C0'
+        preVerificationGas:
+          $ref: '#/Hex'
+          description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
+          default: '0x15F90'
+        maxFeePerGas:
+          $ref: '#/Hex'
+          description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
+          default: '0x656703D00'
+        maxPriorityFeePerGas:
+          $ref: '#/Hex'
+          description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
+          default: '0x13AB6680'
+        paymasterVerificationGasLimit:
+          $ref: '#/Hex'
+          description: The amount of gas to allocate for the paymaster validation code (only if a paymaster exists)
+          default: '0x927C0'
+        paymasterPostOpGasLimit:
+          $ref: '#/Hex'
+          description: The amount of gas to allocate for the paymaster post-op code (only if a paymaster exists)
+          default: '0x927C0'
+
+UserOperation:
+  title: User Operation, either v0.6 or v0.7
+  oneOf:
+    - $ref: '#/UserOperationV0_6'
+    - $ref: '#/UserOperationV0_7'
+
+UserOperationV0_6:
+  title: User Operation v0.6
+  type: object
+  allOf:
+    - $ref: '#/UserOperationPartialWithGasFieldsV0_6'
     - type: object
       properties:
         signature:
           $ref: '#/Hex'
           description: Data passed into the account along with the nonce during the verification step
           default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
+        paymasterAndData:
+          $ref: '#/Hex'
+          description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
+          default: '0x9db7f05b0eb93eb242b5913596dcfaada756af5c'
+
+UserOperationV0_7:
+  title: User Operation v0.7
+  type: object
+  allOf:
+    - $ref: '#/UserOperationPartialWithGasFieldsV0_7'
+    - type: object
+      properties:
+        signature:
+          $ref: '#/Hex'
+          description: Data passed into the account along with the nonce during the verification step
+          default: '0xfffffffffffffffffffffffffffffff0000000000000000000000000000000007aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1c'
+        paymaster:
+          $ref: '#/Hex'
+          description: Address of the paymaster contract (or empty, if the account pays for itself)
+          default: '0x9db7f05b0eb93eb242b5913596dcfaada756af5c'
+        paymasterData:
+          $ref: '#/Hex'
+          description: Data for the paymaster (only if the paymaster exists)
+          default: '0x'
         paymasterAndData:
           $ref: '#/Hex'
           description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)

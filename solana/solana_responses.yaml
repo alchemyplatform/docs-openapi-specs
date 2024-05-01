@@ -1003,3 +1003,23 @@ getRecentBlockhash:
                 feeCalculator:
                   type: object
                   description: A JSON object that represents the fee calculator for the specified transaction.
+
+getRecentPrioritizationFees:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: array
+          description: Array of RpcPrioritizationFee objects.
+          items:
+            type: object
+            properties:
+              slot:
+                type: integer
+                format: int64
+                description: u64 - Slot in which the fee was observed.
+              prioritizationFee:
+                type: integer
+                format: int64
+                description: u64 - The per-compute-unit fee paid by at least one successfully landed transaction, specified in increments of micro-lamports (0.000001 lamports).

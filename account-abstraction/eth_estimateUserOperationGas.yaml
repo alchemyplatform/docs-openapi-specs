@@ -14,10 +14,13 @@ servers:
           - opt-mainnet
           - opt-sepolia
           - polygon-mainnet
-          - polygon-mumbai
           - polygon-amoy
           - base-mainnet
           - base-sepolia
+          - frax-mainnet
+          - frax-sepolia
+          - zora-mainnet
+          - zora-sepolia
         default: eth-mainnet
 x-sandbox:
   category:

@@ -1596,23 +1596,19 @@ eth_call_550_gas:
           default: eth_call
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 2
+          maxItems: 2
           items:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash'
-              - $ref: '#/state_override_set'
-                title: State Override Set
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
             - $ref: '#/BlockNumberOrTagOrHash'
-            - $ref: '#/state_override_set'
-              title: State Override Set
 
 eth_call_polygon_zkevm:
   allOf:
@@ -1624,23 +1620,19 @@ eth_call_polygon_zkevm:
           default: eth_call
         params:
           type: array
-          minItems: 3
-          maxItems: 3
+          minItems: 2
+          maxItems: 2
           items:
             oneOf:
               - allOf:
                   - $ref: '#/transaction_object'
                   - $ref: '#/gas_550'
               - $ref: '#/BlockNumberOrTagOrHash_polygon_zkevm'
-              - $ref: '#/state_override_set'
-                title: State Override Set
           prefixItems:
             - allOf:
                 - $ref: '#/transaction_object'
                 - $ref: '#/gas_550'
             - $ref: '#/BlockNumberOrTagOrHash'
-            - $ref: '#/state_override_set'
-              title: State Override Set
 
 transaction_object:
   type: object
@@ -1690,29 +1682,6 @@ gas_550:
       description: |
         Hex string of the integer of gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
         </br><strong> NOTE: </strong>this parameter has a cap of <b>550</b> Million gas per request. Reach out to us at support@alchemy.com if you want to increase this limit!
-state_override_set:
-  type: object
-  properties:
-    balance:
-      type: string
-      description: Fake balance to set for the account before executing the call
-      default: '0x00'
-    nonce:
-      type: string
-      description: Fake nonce to set for the account before executing the call
-      default: '0x00'
-    code:
-      type: string
-      description: Fake EVM bytecode to inject into the account before executing the call
-      default: '0x'
-    state:
-      type: string
-      description: Fake key-value mapping to override all slots in the account storage before executing the call
-      default: '0x'
-    stateDiff:
-      type: string
-      description: Fake key-value mapping to override individual slots in the account storage before executing the call
-      default: '0x'
 transactionHash_param:
   type: string
   description: String - 32 Bytes - Hash of a transaction
@@ -2281,6 +2250,36 @@ zkevm_getBroadcastURI:
           $ref: ./components/schemas.yaml#/Method
           default: zkevm_getBroadcastURI
 
+zkevm_estimateFee:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_estimateFee
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transaction_object'
+
+zkevm_estimateGasPrice:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: zkevm_estimateGasPrice
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/transaction_object'
+
 # ===================== Account Abstraction Methods =====================
 
 eth_sendUserOperation:
@@ -2294,8 +2293,8 @@ eth_sendUserOperation:
         params:
           type: array
           description: |
-            1. Object - The `UserOperation` object
-            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
+            1. Object - The `UserOperation` object. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address of the second parameter.
+            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the first parameter.
 
             **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
@@ -2319,8 +2318,8 @@ eth_estimateUserOperationGas:
         params:
           type: array
           description: |
-            1. Object - The `UserOperation` object (gas limits and prices are optional)
-            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call.
+            1. Object - The `UserOperation` object (gas limits and prices are optional). This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address of the second parameter.
+            2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the first parameter.
 
             **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
@@ -2400,9 +2399,11 @@ alchemy_requestPaymasterAndData:
                 default: '0x1234567890123456789012345678901234567890123456789012345678901234'
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
+                description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
+                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
-                description: Partial UserOperation object, missing paymasterAndData and signature fields
+                description: Partial UserOperation object, missing paymasterAndData and signature fields. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address in the `entryPoint` field.
 
 alchemy_requestGasAndPaymasterAndData:
   allOf:
@@ -2426,6 +2427,7 @@ alchemy_requestGasAndPaymasterAndData:
                 default: '69d524a7-e932-4214-8673-dcdcba31bb42'
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
+                description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
                 default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
               dummySignature:
                 type: string
@@ -2433,7 +2435,7 @@ alchemy_requestGasAndPaymasterAndData:
                 default: '0xe8fe34b166b64d118dccf44c7198648127bf8a76a48a042862321af6058026d276ca6abb4ed4b60ea265d1e57e33840d7466de75e13f072bbd3b7e64387eebfe1b'
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartial
-                description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields.
+                description: Partial UserOperation object, missing gas parameters, paymasterAndData and signature fields. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address in the `entryPoint` field.
               overrides:
                 type: object
                 description: Optional fields to override default gas and fee behavior - this will apply either multiplier overrides relative to our default estimates or absolute overrides

@@ -10,7 +10,6 @@ servers: # servers are also specified at the method level, if there ins't a spec
           - eth-mainnet
           - eth-sepolia
           - polygon-mainnet
-          - polygon-mumbai
           - polygon-amoy
           - arb-mainnet
           - arb-sepolia
@@ -369,7 +368,7 @@ paths:
                       type: object
                       properties:
                         id:
-                          $ref: '#/components/schemas/id'
+                          $ref: '#/components/schemas/idV3'
                         tokenUri:
                           $ref: '#/components/schemas/tokenUri'
                         metadata:
@@ -426,7 +425,7 @@ paths:
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withTokenBalances'
-        - $ref: '#/components/schemas/block'
+        # - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
           description: String - used for contracts with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
       x-readme:
@@ -1458,7 +1457,7 @@ paths:
         - $ref: '#/components/schemas/contractAddress'
           required: true
         - $ref: '#/components/schemas/withTokenBalances'
-        - $ref: '#/components/schemas/block'
+        # - $ref: '#/components/schemas/block'
         - $ref: '#/components/schemas/pageKey'
           description: String - used for collections with >50,000 owners. `pageKey` field can be passed back as request parameter to get the next page of results.
       x-readme:
@@ -2228,6 +2227,14 @@ components:
         type: string
         default: '44'
       required: true
+    tokenIdV3:
+      name: tokenId
+      description: String - The ID of the token in decimal format.
+      in: query
+      schema:
+        type: string
+        default: '44'
+      required: true
     tokenIdForNFTSales:
       name: tokenId
       description: String - The ID of the token. Can be in hex or decimal format.
@@ -2440,6 +2447,16 @@ components:
       properties:
         tokenId:
           $ref: '#/components/schemas/tokenId'
+        tokenMetadata:
+          type: object
+          properties:
+            tokenType:
+              $ref: '#/components/schemas/tokenType_response'
+    idV3:
+      type: object
+      properties:
+        tokenId:
+          $ref: '#/components/schemas/tokenIdV3'
         tokenMetadata:
           type: object
           properties:
@@ -2745,7 +2762,7 @@ components:
         contract:
           $ref: '#/components/schemas/contractv3'
         tokenId:
-          $ref: '#/components/schemas/tokenId'
+          $ref: '#/components/schemas/tokenIdV3'
         tokenType:
           $ref: '#/components/schemas/tokenType'
         name:

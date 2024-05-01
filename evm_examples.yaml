@@ -2808,6 +2808,10 @@ eth_getTransactionReceipt_zkevm:
       },
   }
 
+zkevm_estimateFee: {'jsonrpc': '2.0', 'id': 1, 'result': '0x1ff3e2c2fec0'}
+
+zkevm_estimateGasPrice: {'jsonrpc': '2.0', 'id': 1, 'result': '0x64848414'}
+
 # ========== Account Abstraction Method Examples ==========
 
 eth_sendUserOperation: { 'jsonrpc': '2.0', 'id': 1, 'result': '0x1234...5678' }

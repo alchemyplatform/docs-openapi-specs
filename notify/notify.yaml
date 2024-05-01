@@ -1015,19 +1015,15 @@ components:
       description: 'Network of webhook'
       enum:
         - ETH_MAINNET
-        - ETH_GOERLI
-        - ETH_ROPSTEN
-        - ETH_RINKEBY
-        - ETH_KOVAN
+        - ETH_SEPOLIA
         - MATIC_MAINNET
-        - MATIC_MUMBAI
+        - MATIC_AMOY
         - ARB_MAINNET
-        - ARB_RINKEBY
+        - ARB_SEPOLIA
         - OPT_MAINNET
-        - OPT_KOVAN
+        - OPT_SEPOLIA
         - BASE_MAINNET
-        - BASE_GOERLI
-
+        - BASE_SEPOLIA
       default: ETH_MAINNET
     webhook_type:
       type: string

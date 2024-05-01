@@ -1433,6 +1433,30 @@ zkevm_getBroadcastURI:
       example:
         $ref: ./evm_examples.yaml#/zkevm_getBroadcastURI
 
+zkevm_estimateFee:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns the estimated fee for the transaction.
+      properties:
+        result:
+          type: string
+          description: The estimated fee for the transaction.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_estimateFee
+
+zkevm_estimateGasPrice:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      description: Returns the estimated gas price.
+      properties:
+        result:
+          type: string
+          description: The estimated gas price.
+      example:
+        $ref: ./evm_examples.yaml#/zkevm_estimateGasPrice
+
 # ============= Account Abstraction ===============
 
 eth_sendUserOperation:
@@ -1463,6 +1487,9 @@ eth_estimateUserOperationGas:
             callGasLimit:
               type: integer
               description: Value used by inner account execution
+            paymasterVerificationGasLimit:
+              type: integer
+              description: Value used by the paymaster during verification. Only present if the request used a v0.7 user operation that contained a paymaster.
       example:
         $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
 
