@@ -52,10 +52,28 @@ paths:
                   default: alchemy_simulateExecution
                 params:
                   type: array
-                  minItems: 1
-                  maxItems: 1
+                  minItems: 3
+                  maxItems: 3
                   items:
-                    $ref: ../components/schemas.yaml#/TxObject
+                    oneOf:
+                      - type: object
+                        title: format
+                        properties:
+                          format:
+                            type: string
+                            enum:
+                              - NESTED
+                              - FLAT
+                      - $ref: ../components/schemas.yaml#/TxObject
+                        title: txObject
+                      - type: string
+                        title: blockTag
+                        enum:
+                          - latest
+                          - safe
+                          - finalized
+                          - earliest
+
       responses:
         '200':
           description: Flat Response
