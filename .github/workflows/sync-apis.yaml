@@ -789,6 +789,12 @@ jobs:
         working-directory: ./polygon-pos
         run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d829e641abed0013809424
 
+      - name: Update Polygon PoS API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478bb129ff720025c9a648
+
       - name: Update Polygon PoS API - eth_maxPriorityFeePerGas
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -1024,6 +1030,11 @@ jobs:
         working-directory: ./arbitrum
         run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6549ec1d353781003ef523e7
 
+      - name: Update Arbitrum API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478bf4f226da0052ab0376
 
     # Update Optimism APIs
       - name: Update Optimism API - eth_accounts
@@ -1248,6 +1259,11 @@ jobs:
         working-directory: ./optimism
         run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d953c76ccd56004569e216
 
+      - name: Update Optimism API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478d4cf5fb9e006b384bdc
       
     # Update Base APIs
       - name: Update Base API - eth_accounts
@@ -1478,6 +1494,11 @@ jobs:
         working-directory: ./base
         run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=64db9bf4b9b936004d709d89
 
+      - name: Update Base API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478d8a5ae4f200302a5134
 
     # Update Polygon zkEVM APIs
       - name: Update Polygon zkEVM API - eth_blockNumber
@@ -1932,6 +1953,11 @@ jobs:
         working-directory: ./astar
         run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=643eca95b0ef80002e25fc91
 
+      - name: Update Astar API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478dbfb3284d001bbc2275
 
     # Update Solana APIs
       - name: Update Solana API - simulateTransaction
