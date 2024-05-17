@@ -282,7 +282,7 @@ jobs:
         run: rdme openapi eth_sendPrivateTransaction.yaml --key=$README_API_KEY --id=62d6beb6c58877026441688c
 
 
-      # Update Ethereum APIs
+    # Update Ethereum APIs
       - name: Update Ethereum API - eth_createAccessList
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -524,7 +524,7 @@ jobs:
         run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d85761c50d8b00730dc6ce
 
 
-      # Update Polygon PoS APIs
+    # Update Polygon PoS APIs
       - name: Update Polygon PoS API - eth_createAccessList
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -789,6 +789,11 @@ jobs:
         working-directory: ./polygon-pos
         run: rdme openapi eth_estimateGas.yaml --key=$README_API_KEY --id=62d829e641abed0013809424
 
+      - name: Update Polygon PoS API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478bb129ff720025c9a648
 
     # Update Arbitrum APIs
       - name: Update Arbitrum API - eth_accounts
@@ -1019,8 +1024,13 @@ jobs:
         working-directory: ./arbitrum
         run: rdme openapi eth_getUncleByBlockHashAndIndex.yaml --key=$README_API_KEY --id=6549ec1d353781003ef523e7
 
+      - name: Update Arbitrum API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./arbitrum
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478bf4f226da0052ab0376
 
-      # Update Optimism APIs
+    # Update Optimism APIs
       - name: Update Optimism API - eth_accounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -1243,8 +1253,13 @@ jobs:
         working-directory: ./optimism
         run: rdme openapi eth_call.yaml --key=$README_API_KEY --id=62d953c76ccd56004569e216
 
+      - name: Update Optimism API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./optimism
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478d4cf5fb9e006b384bdc
       
-      # Update Base APIs
+    # Update Base APIs
       - name: Update Base API - eth_accounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -1473,6 +1488,11 @@ jobs:
         working-directory: ./base
         run: rdme openapi web3_sha3.yaml --key=$README_API_KEY --id=64db9bf4b9b936004d709d89
 
+      - name: Update Base API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./base
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478d8a5ae4f200302a5134
 
     # Update Polygon zkEVM APIs
       - name: Update Polygon zkEVM API - eth_blockNumber
@@ -1927,8 +1947,13 @@ jobs:
         working-directory: ./astar
         run: rdme openapi eth_uninstallFilter.yaml --key=$README_API_KEY --id=643eca95b0ef80002e25fc91
 
+      - name: Update Astar API - eth_getBlockReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./astar
+        run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478dbfb3284d001bbc2275
 
-      # Update Solana APIs
+    # Update Solana APIs
       - name: Update Solana API - simulateTransaction
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -2211,7 +2236,7 @@ jobs:
         working-directory: ./solana
         run: rdme openapi getRecentPrioritizationFees.yaml --key=$README_API_KEY --id=6626a026ea0e350010d6a42e
 
-      # Update Starknet APIs
+    # Update Starknet APIs
       - name: Update Starknet API - starknet_addDeclareTransaction
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
