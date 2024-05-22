@@ -34,7 +34,7 @@ jobs:
         run: npm install -g rdme@8.6.4
 
 
-      # Update NFT API
+    # Update NFT API
       - name: Update NFT API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -42,7 +42,7 @@ jobs:
         run: rdme openapi nfts.yaml --key=$README_API_KEY --id=62bb5f1af2192000e16f5c93
       
 
-      # Update Notify API
+    # Update Notify API
       - name: Update Notify API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -50,7 +50,7 @@ jobs:
         run: rdme openapi notify.yaml --key=$README_API_KEY --id=62d74663f3ed8d0071190eb2
           
 
-      # Update Transfers API
+    # Update Transfers API
       - name: Update Transfers API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -58,7 +58,7 @@ jobs:
         run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=62d75e355edcd00083b39fa2
 
 
-      # Update Gas Manager Admin API
+    # Update Gas Manager Admin API
       - name: Update Gas Manager Admin API
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -66,7 +66,7 @@ jobs:
         run: rdme openapi gas_manager_admin.yaml --key=$README_API_KEY --id=648a94b656f41511b55a453b
 
 
-      # Update Transaction Receipts API
+    # Update Transaction Receipts API
       - name: Update Transaction Receipts API - alchemy_getTransactionReceipts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -74,7 +74,7 @@ jobs:
         run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
 
 
-      # Update AA APIs
+    # Update AA APIs
       - name: Update AA API - alchemy_requestGasAndPaymasterAndData
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -129,14 +129,14 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi alchemy_simulateUserOperationAssetChanges.yaml --key=$README_API_KEY --id=6554e8dc1914ac000f50da38
 
-      # Update Embedded Accounts API
+    # Update Embedded Accounts API
       - name: Update Embedded Accounts API - accounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./accounts
         run: rdme openapi accounts.yaml --key=$README_API_KEY --id=65e02c093719c50070e3b97a 
 
-      # Update Debug APIs
+    # Update Debug APIs
       - name: Update Debug API - debug_traceBlockByHash
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -162,7 +162,7 @@ jobs:
         run: rdme openapi debug_traceTransaction.yaml --key=$README_API_KEY --id=6328e63ebd678a000f80aa64
 
 
-      # Update Token APIs
+    # Update Token APIs
       - name: Update Token API - alchemy_getTokenAllowance
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -182,7 +182,7 @@ jobs:
         run: rdme openapi alchemy_getTokenMetadata.yaml --key=$README_API_KEY --id=62d5581637732c00307aec6e
 
 
-      # Update Trace APIs
+    # Update Trace APIs
       - name: Update Trace API - trace_block
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -232,7 +232,7 @@ jobs:
         run: rdme openapi trace_transaction.yaml --key=$README_API_KEY --id=62e0cdd38dfdce003924d062
 
 
-      # Update Transact APIs
+    # Update Transact APIs
       - name: Update Transact API - alchemy_getGasOptimizedTransactionStatus
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
@@ -794,6 +794,12 @@ jobs:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./polygon-pos
         run: rdme openapi eth_getBlockReceipts.yaml --key=$README_API_KEY --id=66478bb129ff720025c9a648
+
+      - name: Update Polygon PoS API - eth_maxPriorityFeePerGas
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./polygon-pos
+        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=66450f53f4b6e9002412113d
 
     # Update Arbitrum APIs
       - name: Update Arbitrum API - eth_accounts
