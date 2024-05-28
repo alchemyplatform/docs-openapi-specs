@@ -759,37 +759,32 @@ sendTxn_result_response:
 
 eth_feeHistory:
   {
-    'jsonrpc': '2.0',
-    'id': 0,
-    'result':
-      {
-        'oldestBlock': '0xfd6a75',
-        'reward':
-          [
-            ['0x3b9aca00', '0x3b9aca00', '0x59682f00'],
-            ['0x3b9aca00', '0x3b9aca00', '0x77359400'],
-            ['0x3b9aca00', '0x3b9aca00', '0x3b9aca00'],
-            ['0x2e7ddb00', '0x3b9aca00', '0x77359400'],
-            ['0x3b9aca00', '0x3b9aca00', '0x59682f00'],
-          ],
-        'baseFeePerGas':
-          [
-            '0x4c9d974c3',
-            '0x4c38a847a',
-            '0x49206d475',
-            '0x47ac58b63',
-            '0x471e805d8',
-            '0x46f5f64a6',
-          ],
-        'gasUsedRatio':
-          [
-            0.4794155666666667,
-            0.3375966,
-            0.42049746666666665,
-            0.4690773,
-            0.49109343333333333,
-          ],
-      },
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "oldestBlock": "0x130b1e6",
+      "reward": [
+        ["0x5041e1e", "0xdd221b80"],
+        ["0x5041e1e", "0xb8346df0"],
+        ["0x55d4a80", "0xb2d05e00"],
+        ["0x4dd9818", "0x3b9aca00"]
+      ],
+      "baseFeePerGas": [
+        "0x52d80a82c",
+        "0x50f43f659",
+        "0x50012de8d",
+        "0x4e30357d6",
+        "0x57efff9e7"
+      ],
+      "gasUsedRatio": [
+        0.40875283333333334,
+        0.45308523333333334,
+        0.4091907,
+        0.9987537
+      ],
+      "baseFeePerBlobGas": ["0x1", "0x1", "0x1", "0x1", "0x1"],
+      "blobGasUsedRatio": [0.5, 1, 0.6666666666666666, 1]
+    }
   }
 
 net_version: { 'jsonrpc': '2.0', 'id': 0, 'result': '1' }
