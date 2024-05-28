@@ -261,10 +261,6 @@ UserOperationV0_7:
           $ref: '#/Hex'
           description: Data for the paymaster (only if the paymaster exists)
           default: '0x'
-        paymasterAndData:
-          $ref: '#/Hex'
-          description: Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self-sponsored transaction)
-          default: '0x9db7f05b0eb93eb242b5913596dcfaada756af5c'
 
 UserOperationReceipt:
   type: object
