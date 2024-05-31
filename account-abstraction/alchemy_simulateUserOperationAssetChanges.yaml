@@ -82,13 +82,36 @@ components:
                 schema:
                   type: object
                   required:
-                    - changes
+                    - id
+                    - jsonrpc
+                    - result
                   properties:
-                    changes:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/AssetChange'
+                    id:
+                      $ref: ../components/schemas.yaml#/Id
+                    jsonrpc:
+                      $ref: ../components/schemas.yaml#/JsonRpc
+                    result:
+                      $ref: '#/components/schemas/Result'
+
   schemas:
+    Result:
+      type: object
+      required:
+        - changes
+        - error
+      properties:
+        changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetChange'
+        error:
+          type: [object, 'null']
+          properties:
+            message:
+              type: string
+            revertReason:
+              $ref: '#/components/schemas/RevertMessage'
+
     AssetChange:
       type: object
       required:
@@ -138,3 +161,12 @@ components:
           type: [string, 'null']
         tokenId:
           type: [number, 'null']
+
+    RevertMessage:
+      type: string
+      nullable: true
+      description: >
+        The reason why a transaction would revert. This provides you
+        with the ability to understand the cause behind a transaction's
+        potential failure before actually executing it. For example, a revert
+        reason could be "ERC20: transfer amount exceeds allowance".
