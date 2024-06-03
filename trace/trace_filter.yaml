@@ -8,6 +8,7 @@ servers:
       network:
         enum:
           - eth-mainnet
+          - eth-sepolia
           - polygon-mainnet
           - polygon-amoy
           - arb-mainnet
