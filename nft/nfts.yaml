@@ -2802,6 +2802,7 @@ components:
           description: 'Block number of the block where the NFT was most recently acquired.'
     opensea:
       type: object
+      description: Note that the OpenSea metadata object is currently only available on ETH and Polygon Mainnet. Please reach out to us at support@alchemy.com if you would like to access this data on other networks.
       properties:
         floorPrice:
           type: number
