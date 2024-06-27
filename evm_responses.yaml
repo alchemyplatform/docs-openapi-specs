@@ -1567,19 +1567,6 @@ alchemy_requestPaymasterAndData:
               description: |
                 The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
                 Contains gas manager address, sigTimeRange, and secp256k1 signature.
-            error:
-              type: object
-              description: Error object if the sponsorship request is not approved
-              properties:
-                code:
-                  type: integer
-                  description: Error code
-                message:
-                  type: string
-                  description: Error message
-                data:
-                  type: object
-                  description: Additional error data
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestPaymasterAndData
 
@@ -1611,18 +1598,5 @@ alchemy_requestGasAndPaymasterAndData:
             maxPriorityFeePerGas:
               type: string
               description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
-            error:
-              type: object
-              description: Error object if the gas and sponsorship request is not approved
-              properties:
-                code:
-                  type: integer
-                  description: Error code
-                message:
-                  type: string
-                  description: Error message
-                data:
-                  type: object
-                  description: Additional error data
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestGasAndPaymasterAndData
