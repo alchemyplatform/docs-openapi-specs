@@ -1023,3 +1023,28 @@ getRecentPrioritizationFees:
                 type: integer
                 format: int64
                 description: u64 - The per-compute-unit fee paid by at least one successfully landed transaction, specified in increments of micro-lamports (0.000001 lamports).
+
+getLatestBlockhash:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            context:
+              type: object
+              properties:
+                apiVersion:
+                  type: string
+                slot:
+                  type: number
+            value:
+              type: object
+              properties:
+                blockhash:
+                  type: string
+                  description: A Hash as base-58 encoded string
+                lastValidBlockHeight:
+                  type: number
+                  description: Last block height at which the blockhash will be valid

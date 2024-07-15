@@ -1079,6 +1079,46 @@ getRecentPrioritizationFees:
             items:
               type: string
 
+getLatestBlockhash:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ../components/schemas.yaml#/Method
+          default: getLatestBlockhash
+        params:
+          type: array
+          items:
+            oneOf:
+              - type: object
+                properties:
+                  commitment:
+                    type: string
+                    enum:
+                      - processed
+                      - confirmed
+                      - finalized
+                    description: The commitment level to use for the query.
+                  minContextSlot:
+                    type: number
+                    description: The minimum slot that the request can be evaluated at.
+          prefixItems:
+            oneOf:
+              - type: object
+                properties:
+                  commitment:
+                    type: string
+                    enum:
+                      - processed
+                      - confirmed
+                      - finalized
+                    description: The commitment level to use for the query.
+                  minContextSlot:
+                    type: number
+                    description: The minimum slot that the request can be evaluated at.
+
+
 # ============= Solana API Models ===============
 common_request_fields:
   type: object
