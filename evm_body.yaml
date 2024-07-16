@@ -2295,8 +2295,6 @@ eth_sendUserOperation:
           description: |
             1. Object - The `UserOperation` object. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address of the second parameter.
             2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the first parameter.
-
-            **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
           maxItems: 2
           items:
@@ -2320,8 +2318,6 @@ eth_estimateUserOperationGas:
           description: |
             1. Object - The `UserOperation` object (gas limits and prices are optional). This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address of the second parameter.
             2. String - The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the first parameter.
-
-            **NOTE:** You'll see two of each parameters below, this has to do with OpenAPI formatting. To test the request, please fill in the **User Operation** field in the first box and the **Entrypoint Address** in the second box.
           minItems: 2
           maxItems: 2
           items:
