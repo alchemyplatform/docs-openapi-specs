@@ -1592,24 +1592,20 @@ alchemy_requestPaymasterAndData:
               type: object
               title: Entrypoint v0.7 Response
               properties:
-                paymasterAndData:
+                paymaster:
                   type: string
                   description: |
-                    The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
-                    Contains gas manager address, sigTimeRange, secp256k1 signature.
-                version:
+                    The paymaster address used in the operation.
+                paymasterData:
                   type: string
-                  description: "The version of the entry point."
-                metadata:
-                  type: object
-                  description: "Additional metadata related to the paymaster and data."
-                  properties:
-                    paymasterVerificationGasLimit:
-                      type: string
-                      description: "The gas limit for paymaster verification"
-                    paymasterPostOpGasLimit:
-                      type: string
-                      description: "The gas limit for paymaster post-operation"
+                  description: |
+                    The data for the paymaster in the operation.
+                paymasterVerificationGasLimit:
+                  type: string
+                  description: "The gas limit for paymaster verification."
+                paymasterPostOpGasLimit:
+                  type: string
+                  description: "The gas limit for paymaster post-operation."
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestPaymasterAndData
 
@@ -1649,11 +1645,14 @@ alchemy_requestGasAndPaymasterAndData:
               type: object
               title: Entrypoint v0.7 Response
               properties:
-                paymasterAndData:
+                paymaster:
                   type: string
                   description: |
-                    The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
-                    Contains gas manager address, sigTimeRange, secp256k1 signature, and additional parameters for v0.7.
+                    The paymaster address used in the operation.
+                paymasterData:
+                  type: string
+                  description: |
+                    The data for the paymaster in the operation.
                 callGasLimit:
                   type: string
                   description: "The amount of gas to allocate for the main execution call."
@@ -1671,9 +1670,9 @@ alchemy_requestGasAndPaymasterAndData:
                   description: "Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)."
                 paymasterVerificationGasLimit:
                   type: string
-                  description: "The gas limit for paymaster verification"
+                  description: "The gas limit for paymaster verification."
                 paymasterPostOpGasLimit:
                   type: string
-                  description: "The gas limit for paymaster post-operation"
+                  description: "The gas limit for paymaster post-operation."
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestGasAndPaymasterAndData
