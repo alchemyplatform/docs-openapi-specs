@@ -1490,18 +1490,35 @@ eth_estimateUserOperationGas:
         result:
           type: object
           properties:
-            preVerificationGas:
-              type: integer
-              description: Gas overhead of this UserOperation
-            verificationGasLimit:
-              type: integer
-              description: Actual gas used by the validation of this UserOperation
-            callGasLimit:
-              type: integer
-              description: Value used by inner account execution
-            paymasterVerificationGasLimit:
-              type: integer
-              description: Value used by the paymaster during verification. Only present if the request used a v0.7 user operation that contained a paymaster.
+            entrypointV06Response:
+              type: object
+              title: Entrypoint v0.6 Response
+              properties:
+                preVerificationGas:
+                  type: integer
+                  description: "Gas overhead of this UserOperation."
+                verificationGasLimit:
+                  type: integer
+                  description: "Actual gas used by the validation of this UserOperation."
+                callGasLimit:
+                  type: integer
+                  description: "Value used by inner account execution."
+            entrypointV07Response:
+              type: object
+              title: Entrypoint v0.7 Response
+              properties:
+                preVerificationGas:
+                  type: integer
+                  description: "Gas overhead of this UserOperation."
+                verificationGasLimit:
+                  type: integer
+                  description: "Actual gas used by the validation of this UserOperation."
+                callGasLimit:
+                  type: integer
+                  description: "Value used by inner account execution."
+                paymasterVerificationGasLimit:
+                  type: integer
+                  description: "Value used by the paymaster during verification."
       example:
         $ref: ./evm_examples.yaml#/eth_estimateUserOperationGas
 
@@ -1562,11 +1579,33 @@ alchemy_requestPaymasterAndData:
         result:
           type: object
           properties:
-            paymasterAndData:
-              type: string
-              description: |
-                The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
-                Contains gas manager address, sigTimeRange, and secp256k1 signature.
+            entrypointV06Response:
+              type: object
+              title: Entrypoint v0.6 Response
+              properties:
+                paymasterAndData:
+                  type: string
+                  description: |
+                    The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
+                    Contains gas manager address, sigTimeRange, and secp256k1 signature.
+            entrypointV07Response:
+              type: object
+              title: Entrypoint v0.7 Response
+              properties:
+                paymaster:
+                  type: string
+                  description: |
+                    The paymaster address used in the operation.
+                paymasterData:
+                  type: string
+                  description: |
+                    The data for the paymaster in the operation.
+                paymasterVerificationGasLimit:
+                  type: string
+                  description: "The gas limit for paymaster verification."
+                paymasterPostOpGasLimit:
+                  type: string
+                  description: "The gas limit for paymaster post-operation."
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestPaymasterAndData
 
@@ -1578,25 +1617,62 @@ alchemy_requestGasAndPaymasterAndData:
         result:
           type: object
           properties:
-            paymasterAndData:
-              type: string
-              description: |
-                The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
-                Contains gas manager address, sigTimeRange, and secp256k1 signature.
-            callGasLimit:
-              type: string
-              description: The amount of gas to allocate the main execution call
-            verificationGasLimit:
-              type: string
-              description: The amount of gas to allocate for the verification step
-            preVerificationGas:
-              type: string
-              description: The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata
-            maxFeePerGas:
-              type: string
-              description: The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)
-            maxPriorityFeePerGas:
-              type: string
-              description: Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)
+            entrypointV06Response:
+              title: Entrypoint v0.6 Response
+              type: object
+              properties:
+                paymasterAndData:
+                  type: string
+                  description: |
+                    The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field.
+                    Contains gas manager address, sigTimeRange, and secp256k1 signature.
+                callGasLimit:
+                  type: string
+                  description: "The amount of gas to allocate for the main execution call."
+                verificationGasLimit:
+                  type: string
+                  description: "The amount of gas to allocate for the verification step."
+                preVerificationGas:
+                  type: string
+                  description: "The amount of gas to compensate the bundler for pre-verification execution and calldata."
+                maxFeePerGas:
+                  type: string
+                  description: "The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)."
+                maxPriorityFeePerGas:
+                  type: string
+                  description: "Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)."
+            entrypointV07Response:
+              type: object
+              title: Entrypoint v0.7 Response
+              properties:
+                paymaster:
+                  type: string
+                  description: |
+                    The paymaster address used in the operation.
+                paymasterData:
+                  type: string
+                  description: |
+                    The data for the paymaster in the operation.
+                callGasLimit:
+                  type: string
+                  description: "The amount of gas to allocate for the main execution call."
+                verificationGasLimit:
+                  type: string
+                  description: "The amount of gas to allocate for the verification step."
+                preVerificationGas:
+                  type: string
+                  description: "The amount of gas to compensate the bundler for pre-verification execution and calldata."
+                maxFeePerGas:
+                  type: string
+                  description: "The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas)."
+                maxPriorityFeePerGas:
+                  type: string
+                  description: "Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas)."
+                paymasterVerificationGasLimit:
+                  type: string
+                  description: "The gas limit for paymaster verification."
+                paymasterPostOpGasLimit:
+                  type: string
+                  description: "The gas limit for paymaster post-operation."
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestGasAndPaymasterAndData
