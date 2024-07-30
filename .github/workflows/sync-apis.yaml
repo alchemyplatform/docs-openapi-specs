@@ -2562,12 +2562,6 @@ jobs:
         working-directory: ./zkSync
         run: rdme openapi eth_getUncleCountByBlockNumber.yaml --key=$README_API_KEY --id=65eccfaf5c99780063a5faa8
 
-      - name: Update zkSync API - eth_maxPriorityFeePerGas
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./zkSync
-        run: rdme openapi eth_maxPriorityFeePerGas.yaml --key=$README_API_KEY --id=65eccfd424d69a000ff0423b
-
       - name: Update zkSync API - eth_newBlockFilter
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
