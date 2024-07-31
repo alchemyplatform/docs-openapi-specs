@@ -201,7 +201,7 @@ function extractChainAndNetworks(
       if (parts.length !== 2) {
         throw new Error('Should have 2 parts');
       }
-      const chain = parts[0];
+      const chain = parts[0] === 'polygon' ? 'matic' : parts[0];
       const network = parts[1];
 
       const networks = chainsToNetworks.get(chain);
