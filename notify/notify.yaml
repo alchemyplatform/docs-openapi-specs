@@ -1026,6 +1026,13 @@ components:
         - BASE_SEPOLIA
         - ZKSYNC_MAINNET
         - ZKSYNC_SEPOLIA
+        - ARBNOVA_MAINNET
+        - BNB_MAINNET
+        - BNB_TESTNET
+        - AVAX_MAINNET
+        - AVAX_FUJI
+        - BLAST_MAINNET
+        - BLAST_SEPOLIA
       default: ETH_MAINNET
     webhook_type:
       type: string
