@@ -21,6 +21,7 @@ servers:
           - frax-sepolia
           - zora-mainnet
           - zora-sepolia
+          - arbnova-mainnet
         default: eth-mainnet
 x-sandbox:
   category:

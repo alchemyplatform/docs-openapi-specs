@@ -18,6 +18,7 @@ servers:
           - base-sepolia
           - zksync-mainnet
           - zksync-sepolia
+          - arbnova-mainnet
         default: eth-mainnet
 x-sandbox:
   category:
