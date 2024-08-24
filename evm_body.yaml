@@ -2510,3 +2510,71 @@ rundler_maxPriorityFeePerGas:
           type: array
           items: {}
           description: Accepts no parameters
+
+pm_getPaymasterStubData:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: pm_getPaymasterStubData
+        params:
+          type: array
+          description: Parameters for requesting paymaster stub data
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              userOperation:
+                $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
+                description: An object containing optional gas parameters. It can be either a v0.6 or v0.7 user operation but must match the version of the entry point at the specified entryPoint.
+              entryPoint:
+                $ref: ./components/schemas.yaml#/EntryPoint
+                description: The entry point address the user operation will be send through.
+              chainId:
+                $ref: ./components/schemas.yaml#/ChainId
+                description: The chain id of the chain the user operation will be submitted on. 
+              context:
+                type: object
+                description: An object contains context. Must have PolicyId. 
+                properties:
+                  policyId:
+                    type: string
+                    format: uuid
+                    description: The gas policy ID
+
+pm_getPaymasterData:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: pm_getPaymasterData
+        params:
+          type: array
+          description: Parameters for requesting paymaster data
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              userOperation:
+                $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
+                description: An object containing optional gas parameters. It can be either a v0.6 or v0.7 user operation but must match the version of the entry point at the specified entryPoint.
+              entryPoint:
+                $ref: ./components/schemas.yaml#/EntryPoint
+                description: The entry point address the user operation will be sent through.
+              chainId:
+                $ref: ./components/schemas.yaml#/ChainId
+                description: The chain id of the chain the user operation will be submitted on.
+              context:
+                type: object
+                description: An object contains context. Must have PolicyId.
+                properties:
+                  policyId:
+                    type: string
+                    format: uuid
+                    description: The gas policy ID

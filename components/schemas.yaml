@@ -316,3 +316,9 @@ BlockOverride:
   $ref: '#/Hex'
   title: Block Override
   default: '0x113CF6E'
+
+ChainId:
+  type: string
+  description: The chain ID of the network the operation will be submitted on.
+  pattern: '^0[xX][0-9a-fA-F]+$'
+  default: '0x1'

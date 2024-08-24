@@ -1676,3 +1676,75 @@ alchemy_requestGasAndPaymasterAndData:
                   description: "The gas limit for paymaster post-operation."
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestGasAndPaymasterAndData
+
+pm_getPaymasterStubData:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            entrypointV06Response:
+              title: Entrypoint v0.6 Response
+              type: object
+              properties:
+                paymasterAndData:
+                  type: string
+                  description: |
+                    Stub or "dummy" paymasterAndData field for a wallet to use during user operation gas estimation.
+                sponsor:
+                  type: object
+                  description: Information about who is sponsoring the user's transaction. Wallets may choose to display this information to users.
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the entity sponsoring the operation.
+            entrypointV07Response:
+              type: object
+              title: Entrypoint v0.7 Response
+              properties:
+                paymaster:
+                  type: string
+                  description: |
+                    The address of the paymaster to be used in the operation.
+                paymasterData:
+                  type: string
+                  description: |
+                    Stub or "dummy" value for the paymaster to be used by wallets during user operation gas estimation.
+                sponsor:
+                  type: object
+                  description: Information about who is sponsoring the user's transaction. Wallets may choose to display this information to users.
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the entity sponsoring the operation.
+
+pm_getPaymasterData:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            entrypointV06Response:
+              title: EntryPoint v0.6 Response
+              type: object
+              properties:
+                paymasterAndData:
+                  type: string
+                  description: |
+                    The 0x-prefixed hex string for the user to put into the UO's paymasterAndData field. Contains gas manager address, sigTimeRange, and secp256k1 signature.
+            entrypointV07Response:
+              type: object
+              title: EntryPoint v0.7 Response
+              properties:
+                paymaster:
+                  type: string
+                  description: |
+                    The paymaster address used in the operation.
+                paymasterData:
+                  type: string
+                  description: |
+                    The data for the paymaster in the operation.
