@@ -129,6 +129,18 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi alchemy_simulateUserOperationAssetChanges.yaml --key=$README_API_KEY --id=6554e8dc1914ac000f50da38
 
+      - name: Update AA API - pm_getPaymasterData
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi pm_getPaymasterData.yaml --key=$README_API_KEY --id=66c926ef18cfbd0012803b8b
+
+      - name: Update AA API - pm_getPaymasterStubData
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi pm_getPaymasterStubData.yaml --key=$README_API_KEY --id=66c9270918cfbd0012803bb9
+
     # Update Embedded Accounts API
       - name: Update Embedded Accounts API - accounts
         env:
