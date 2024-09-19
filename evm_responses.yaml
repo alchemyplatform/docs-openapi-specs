@@ -14,11 +14,11 @@ eth_blockNumber:
   allOf:
     - $ref: '#/common_response_fields'
     - type: object
-      description: Integer of the current block number the client is on.
+      description: The current block number the client is on (in hex).
       properties:
         result:
           type: string
-          description: Integer of the current block number the client is on.
+          description: The current block number the client is on (in hex).
       example:
         $ref: ./evm_examples.yaml#/eth_blockNumber
 eth_block:
