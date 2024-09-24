@@ -22,7 +22,7 @@ servers:
           - zora-mainnet
           - zora-sepolia
           - arbnova-mainnet
-          - berachain-barito
+          - berachain-bartio
         default: eth-mainnet
 x-sandbox:
   category:
