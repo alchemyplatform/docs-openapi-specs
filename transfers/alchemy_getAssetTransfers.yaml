@@ -20,6 +20,16 @@ servers:
           - zksync-mainnet
           - zksync-sepolia
           - arbnova-mainnet
+          - bnb-mainnet
+          - bnb-testnet
+          - blast-mainnet
+          - blast-sepolia
+          - avax-mainnet
+          - avax-fuji
+          - scroll-mainnet
+          - scroll-sepolia
+          - fantom-mainnet
+          - fantom-testnet
         default: eth-mainnet
 x-sandbox:
   category:
