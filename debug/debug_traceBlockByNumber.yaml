@@ -10,14 +10,21 @@ servers:
           - eth-mainnet
           - eth-sepolia
           - eth-holesky
+          - opt-mainnet
           - polygon-mainnet
           - polygon-amoy
           - arb-mainnet
           - arb-sepolia
-          - opt-mainnet
-          - opt-sepolia
+          - arbnova-mainnet
           - base-mainnet
           - base-sepolia
+          - bob-mainnet
+          - spotlight-mainnet
+          - spotlight-sepolia
+          - xmtp-testnet
+          - chiliz-mainnet
+          - chiliz-spicy
+          - abstract-testnet
         default: eth-mainnet
 x-sandbox:
   category:

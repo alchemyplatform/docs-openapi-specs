@@ -9,14 +9,12 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
+          - eth-holesky
+          - opt-mainnet
           - polygon-mainnet
           - polygon-amoy
           - arb-mainnet
           - arb-sepolia
-          - opt-mainnet
-          - opt-sepolia
-          - base-mainnet
-          - base-sepolia
         default: eth-mainnet
 x-readme:
   samples-languages:

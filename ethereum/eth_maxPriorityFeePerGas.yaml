@@ -9,6 +9,7 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
+          - eth-holesky
         default: eth-mainnet
 x-sandbox:
   category:

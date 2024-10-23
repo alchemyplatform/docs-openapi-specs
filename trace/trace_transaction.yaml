@@ -8,14 +8,8 @@ servers:
       network:
         enum:
           - eth-mainnet
-          - polygon-mainnet
-          - polygon-amoy
-          - arb-mainnet
-          - arb-sepolia
-          - opt-mainnet
-          - opt-sepolia
-          - base-mainnet
-          - base-sepolia
+          - eth-sepolia
+          - eth-holesky
         default: eth-mainnet
 x-sandbox:
   category:

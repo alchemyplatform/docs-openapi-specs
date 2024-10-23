@@ -11,6 +11,7 @@ servers:
           - eth-mainnet
           - eth-sepolia
           - eth-holesky
+          - eth-holesky
         default: eth-mainnet
 x-sandbox:
   category:

@@ -9,20 +9,14 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
-          - arb-mainnet
-          - arb-sepolia
+          - eth-holesky
           - opt-mainnet
-          - opt-sepolia
           - polygon-mainnet
           - polygon-amoy
+          - arb-mainnet
+          - arb-sepolia
           - base-mainnet
           - base-sepolia
-          - frax-mainnet
-          - frax-sepolia
-          - zora-mainnet
-          - zora-sepolia
-          - arbnova-mainnet
-          - berachain-bartio
         default: eth-mainnet
 x-sandbox:
   category:

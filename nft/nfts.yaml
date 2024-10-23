@@ -9,18 +9,27 @@ servers: # servers are also specified at the method level, if there ins't a spec
         enum:
           - eth-mainnet
           - eth-sepolia
+          - eth-holesky
+          - bnb-mainnet
+          - bnb-testnet
+          - avax-mainnet
+          - avax-fuji
+          - zksync-mainnet
+          - opt-mainnet
           - polygon-mainnet
           - polygon-amoy
           - arb-mainnet
           - arb-sepolia
-          - opt-mainnet
-          - opt-sepolia
+          - fantom-mainnet
+          - fantom-testnet
+          - blast-mainnet
+          - blast-sepolia
           - base-mainnet
           - base-sepolia
-          - zksync-mainnet
-          - zksync-sepolia
-          - starknet-mainnet
-          - starknet-goerli
+          - soneium-minato
+          - scroll-mainnet
+          - scroll-sepolia
+          - shape-mainnet
         default: eth-mainnet
 x-sandbox:
   category:

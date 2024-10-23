@@ -8,8 +8,13 @@ servers:
       network:
         enum:
           - eth-mainnet
+          - eth-sepolia
+          - eth-holesky
+          - opt-mainnet
           - polygon-mainnet
           - polygon-amoy
+          - arb-mainnet
+          - arb-sepolia
         default: eth-mainnet
 x-readme:
   id: 634f72885e2a9200e4ebf268
