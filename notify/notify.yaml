@@ -1046,6 +1046,8 @@ components:
         - BNB_TESTNET
         - AVAX_MAINNET
         - AVAX_FUJI
+        - SONEIUM_MINATO
+        - GEIST_POLTER
       default: ETH_MAINNET
     webhook_type:
       type: string
