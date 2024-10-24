@@ -10,8 +10,6 @@ servers: # servers are also specified at the method level, if there ins't a spec
           - eth-mainnet
           - eth-sepolia
           - eth-holesky
-          - bnb-mainnet
-          - bnb-testnet
           - avax-mainnet
           - avax-fuji
           - zksync-mainnet
