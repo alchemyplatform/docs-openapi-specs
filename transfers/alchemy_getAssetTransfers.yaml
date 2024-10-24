@@ -9,27 +9,32 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
+          - eth-holesky
+          - zksync-mainnet
+          - opt-mainnet
           - polygon-mainnet
           - polygon-amoy
           - arb-mainnet
           - arb-sepolia
-          - opt-mainnet
-          - opt-sepolia
-          - base-mainnet
-          - base-sepolia
-          - zksync-mainnet
-          - zksync-sepolia
           - arbnova-mainnet
-          - bnb-mainnet
-          - bnb-testnet
-          - blast-mainnet
-          - blast-sepolia
-          - avax-mainnet
-          - avax-fuji
-          - scroll-mainnet
-          - scroll-sepolia
           - fantom-mainnet
           - fantom-testnet
+          - blast-mainnet
+          - blast-sepolia
+          - base-mainnet
+          - base-sepolia
+          - scroll-mainnet
+          - scroll-sepolia
+          - bnb-mainnet
+          - bnb-testnet
+          - avax-mainnet
+          - avax-fuji
+          - soneium-minato
+          - geist-mainnet
+          - gnosis-mainnet
+          - gnosis-chiado
+          - shape-mainnet
+          - worldchain-mainnet
         default: eth-mainnet
 x-sandbox:
   category:

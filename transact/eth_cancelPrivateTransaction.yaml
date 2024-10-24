@@ -8,6 +8,8 @@ servers:
       network:
         enum:
           - eth-mainnet
+          - eth-sepolia
+          - eth-holesky
         default: eth-mainnet
 x-readme:
   id: 62d189bd28710500453ac689
