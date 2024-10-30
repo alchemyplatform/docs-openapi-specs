@@ -1048,6 +1048,7 @@ components:
         - AVAX_FUJI
         - SONEIUM_MINATO
         - GEIST_POLTER
+        - GEIST_MAINNET
       default: ETH_MAINNET
     webhook_type:
       type: string
