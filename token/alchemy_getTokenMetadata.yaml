@@ -30,11 +30,12 @@ servers:
           - avax-mainnet
           - avax-fuji
           - soneium-minato
-          - geist-mainnet
+          - geist-polter
           - gnosis-mainnet
           - gnosis-chiado
           - shape-mainnet
           - worldchain-mainnet
+          - lens-sepolia
         default: eth-mainnet
 x-sandbox:
   category:

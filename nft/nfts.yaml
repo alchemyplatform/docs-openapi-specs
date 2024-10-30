@@ -28,6 +28,7 @@ servers: # servers are also specified at the method level, if there ins't a spec
           - scroll-mainnet
           - scroll-sepolia
           - shape-mainnet
+          - lens-sepolia
           - starknet-mainnet
           - starknet-sepolia
         default: eth-mainnet
