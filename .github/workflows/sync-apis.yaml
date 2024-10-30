@@ -62,7 +62,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./prices
-        run: rdme openapi prices.yaml --key=$README_API_KEY --id=6722ae445af8380010d0122d
+        run: rdme openapi prices.yaml --key=$README_API_KEY --id=6722b04865e1af005abf91bc
 
     # Update Gas Manager Admin API
       - name: Update Gas Manager Admin API

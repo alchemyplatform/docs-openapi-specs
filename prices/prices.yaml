@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: 📈 Token Prices API
+  title: 📈 Prices API
   version: "1.0"
 servers:
   - url: https://api.g.alchemy.com/prices/v1
@@ -15,7 +15,7 @@ paths:
       summary: Token Prices By Symbol
       description: >
         Fetches current prices for multiple tokens using their symbols. Returns a list of token prices, each containing the symbol, prices, and an optional error field.
-      tags: ["Token Prices API Endpoints"]
+      tags: ["Prices API Endpoints"]
       x-readme:
         samples-languages:
           - javascript
@@ -63,7 +63,7 @@ paths:
       summary: Token Prices By Address
       description: >
         Fetches current prices for multiple tokens using network and address pairs. Returns a list of token prices, each containing the network, address, prices, and an optional error field.
-      tags: ["Token Prices API Endpoints"]
+      tags: ["Prices API Endpoints"]
       x-readme:
         samples-languages:
           - javascript
