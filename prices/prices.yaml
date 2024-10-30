@@ -36,7 +36,7 @@ paths:
               type: string
               default: ETH
           style: form
-          explode: false
+          explode: true
       responses:
         "200":
           description: Successful response, even if some tokens are missing.
