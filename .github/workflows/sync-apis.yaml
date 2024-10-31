@@ -57,6 +57,12 @@ jobs:
         working-directory: ./transfers
         run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=62d75e355edcd00083b39fa2
 
+    # Update Prices API
+      - name: Update Prices API
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./prices
+        run: rdme openapi prices.yaml --key=$README_API_KEY --id=6722b04865e1af005abf91bc
 
     # Update Gas Manager Admin API
       - name: Update Gas Manager Admin API

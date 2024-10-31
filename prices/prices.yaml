@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: 📈 Prices API
+  version: "1.0"
+servers:
+  - url: https://api.g.alchemy.com/prices/v1
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: token
+paths:
+  "/{apiKey}/tokens/by-symbol":
+    get:
+      summary: Token Prices By Symbol
+      description: >
+        Fetches current prices for multiple tokens using their symbols. Returns a list of token prices, each containing the symbol, prices, and an optional error field.
+      tags: ["Prices API Endpoints"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - in: query
+          name: symbols
+          required: true
+          description: >
+            Array of token symbols (limit 25). Example: symbols=[ETH,BTC]
+          schema:
+            type: array
+            minItems: 1
+            items:
+              type: string
+              default: ETH
+          style: form
+          explode: true
+      responses:
+        "200":
+          description: Successful response, even if some tokens are missing.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenPricesResponse"
+        "400":
+          description: 'Bad Request: Malformed request or missing parameters.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-token-prices-by-symbol
+
+  "/{apiKey}/tokens/by-address":
+    post:
+      summary: Token Prices By Address
+      description: >
+        Fetches current prices for multiple tokens using network and address pairs. Returns a list of token prices, each containing the network, address, prices, and an optional error field.
+      tags: ["Prices API Endpoints"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response, even if some prices are missing.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddressPricesResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-token-prices-by-address
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: An API key that will be supplied in a named header.
+      x-default: Bearer API_KEY
+  schemas:
+    apiKey:
+      name: apiKey
+      in: path
+      schema:
+        type: string
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      required: true
+    TokenPricesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of token price data.
+          items:
+            $ref: "#/components/schemas/TokenPriceResponseItem"
+      required:
+        - data
+
+    TokenPriceResponseItem:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Token symbol.
+        prices:
+          type: array
+          description: List of price information.
+          items:
+            $ref: "#/components/schemas/Price"
+        error:
+          type: string
+          nullable: true
+          description: Error message if applicable.
+      required:
+        - symbol
+        - prices
+        - error
+
+    Price:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code (e.g., USD).
+        value:
+          type: string
+          description: Price value as a string.
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          description: Time when the price was last updated.
+      required:
+        - currency
+        - value
+        - lastUpdatedAt
+
+    ByAddressRequest:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          description: >
+            Array of token network and address pairs (limit 25 addresses, max 3 networks). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+          maxItems: 25
+      required:
+        - addresses
+
+    AddressItem:
+      type: object
+      properties:
+        network:
+          type: string
+          example: eth-mainnet
+          default: eth-mainnet
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+        address:
+          type: string
+          description: Token contract address.
+          example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      required:
+        - network
+        - address
+
+    AddressPricesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of token prices by address.
+          items:
+            $ref: "#/components/schemas/AddressPriceResponseItem"
+      required:
+        - data
+
+    AddressPriceResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Token contract address.
+        prices:
+          type: array
+          description: List of price information.
+          items:
+            $ref: "#/components/schemas/Price"
+        error:
+          type: string
+          nullable: true
+          description: Error message if applicable.
+      required:
+        - network
+        - address
+        - prices
+        - error
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message.
+      required:
+        - error
