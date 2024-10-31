@@ -1049,6 +1049,9 @@ components:
         - SONEIUM_MINATO
         - GEIST_POLTER
         - GEIST_MAINNET
+        - STARKNET_MAINNET
+        - STARKNET_SEPOLIA
+        - STARKNET_GOERLI
       default: ETH_MAINNET
     webhook_type:
       type: string
