@@ -2616,19 +2616,22 @@ pm_getPaymasterData:
         params:
           type: array
           description: Parameters for requesting paymaster data
-          minItems: 4
-          maxItems: 4
-          prefixItems:
-            - $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
-              description: An object containing optional gas parameters. It can be either a v0.6 or v0.7 user operation but must match the version of the entry point at the specified entryPoint.
-            - $ref: ./components/schemas.yaml#/EntryPoint
-              description: The entry point address the user operation will be sent through.
-            - $ref: ./components/schemas.yaml#/ChainId
-              description: The chain id of the chain the user operation will be submitted on.
-            - type: object
-              description: An object containing context. Must have `policyId`.
-              properties:
-                policyId:
-                  type: string
-                  format: uuid
-                  description: The gas policy ID
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            properties:
+              - $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
+                description: An object containing optional gas parameters. It can be either a v0.6 or v0.7 user operation but must match the version of the entry point at the specified entryPoint.
+              - $ref: ./components/schemas.yaml#/EntryPoint
+                description: The entry point address the user operation will be sent through.
+              - $ref: ./components/schemas.yaml#/ChainId
+                description: The chain id of the chain the user operation will be submitted on.
+              - context:
+                  type: object
+                  description: An object contains context. Must have PolicyId.
+                  properties:
+                    policyId:
+                      type: string
+                      format: uuid
+                      description: The gas policy ID
