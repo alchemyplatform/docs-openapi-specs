@@ -1430,6 +1430,57 @@ debug_traceCall:
                 tracerConfig:
                   $ref: '#/tracerConfig'
 
+debug_getRawHeader:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: './components/schemas.yaml#/Method'
+          default: debug_getRawHeader
+        params:
+          type: array
+          description: |
+            1. `BlockNumberOrTag` - The block number or tag (e.g., `"latest"`, `"earliest"`, or a specific block number like `"0x32026E"`).
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/BlockNumberOrTag'
+
+debug_getRawReceipts:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: './components/schemas.yaml#/Method'
+          default: debug_getRawReceipts
+        params:
+          type: array
+          description: |
+            1. `BlockNumberOrTag` - The block number or tag (e.g., `"latest"`, `"earliest"`, or a specific block number like `"0x32026E"`).
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/BlockNumberOrTag'
+
+debug_getRawBlock:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: './components/schemas.yaml#/Method'
+          default: debug_getRawBlock
+        params:
+          type: array
+          description: |
+            1. `BlockNumberOrTag` - The block number or tag (e.g., `"latest"`, `"earliest"`, or a specific block number like `"0x32026E"`).
+          minItems: 1
+          maxItems: 1
+          items:
+            $ref: '#/BlockNumberOrTag'
+
 debug_traceBlockByHash:
   allOf:
     - $ref: '#/common_request_fields'
@@ -1922,6 +1973,14 @@ BlockNumberOrTagOrHash:
       $ref: '#/BlockTag'
     - title: Block Hash
       $ref: '#/BlockHashEIP1898'
+
+BlockNumberOrTag:
+  title: Block Number or Tag
+  oneOf:
+    - title: Block Number
+      $ref: '#/BlockNumber'
+    - title: Block Tag
+      $ref: '#/BlockTag'
 
 BlockNumberOrTagOrHash_polygon_zkevm:
   title: Block Number, Tag, or Hash

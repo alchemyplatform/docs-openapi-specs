@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: debug_getRawBlock
+  version: '1.0'
+servers:
+  - url: https://{network}.g.alchemy.com/v2
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - eth-sepolia
+        default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: debug
+paths:
+  /{apiKey}:
+    post:
+      summary: debug_getRawBlock
+      description: Returns an RLP-encoded block.
+      tags: []
+      parameters:
+        - name: apiKey
+          in: path
+          required: true
+          schema:
+            type: string
+            default: docs-demo
+            description: |
+              <style>
+                .custom-style {
+                  color: #048FF4;
+                }
+              </style>
+              For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../evm_body.yaml#/debug_getRawBlock'
+      x-readme:
+        explorer-enabled: true
+        samples-languages:
+          - curl
+          - javascript
+          - python
+      responses:
+        '200':
+          description: 'Returns an RLP-encoded block.'
+          content:
+            application/json:
+              schema:
+                $ref: '../evm_responses.yaml#/debug_getRawBlock'
+      operationId: debug-getrawblock

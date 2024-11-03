@@ -179,6 +179,23 @@ jobs:
         working-directory: ./debug
         run: rdme openapi debug_traceTransaction.yaml --key=$README_API_KEY --id=6328e63ebd678a000f80aa64
 
+      - name: Update Debug API - debug_getRawBlock
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_getRawBlock.yaml --key=$README_API_KEY --id=6727c45d0b681000312040a9
+
+      - name: Update Debug API - debug_getRawHeader
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_getRawHeader.yaml --key=$README_API_KEY --id=6727c47509bfa0005102ae37
+
+      - name: Update Debug API - debug_getRawReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./debug
+        run: rdme openapi debug_getRawReceipts.yaml --key=$README_API_KEY --id=6727c488a71b2c0071a805d5
 
     # Update Token APIs
       - name: Update Token API - alchemy_getTokenAllowance
