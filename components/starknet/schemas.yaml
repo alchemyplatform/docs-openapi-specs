@@ -312,6 +312,22 @@ BlockBodyWithTxs:
   required:
     - transactions
 
+BlockBodyWithReceipts:
+  type: object
+  description: Block body with transactions and receipts
+  properties:
+    transactions:
+      type: array
+      items:
+        $ref: '#/Txn'
+    receipts:
+      type: array
+      items:
+        $ref: '#/TxnReceipt'
+  required:
+    - transactions
+    - receipts
+
 BlockHeader:
   type: object
   properties:
@@ -365,6 +381,18 @@ BlockWithTxs:
     - $ref: '#/BlockHeader'
     - $ref: '#/BlockBodyWithTxs'
 
+BlockWithReceipts:
+  title: The block object
+  allOf:
+    - type: object
+      properties:
+        status:
+          $ref: '#/BlockStatus'
+      required:
+        - status
+    - $ref: '#/BlockHeader'
+    - $ref: '#/BlockBodyWithReceipts'
+
 PendingBlockWithTxHashes:
   title: Pending block object with tx hashes
   description: The dynamic block being constructed by the sequencer. Note that this object will be deprecated upon decentralization.
@@ -387,6 +415,23 @@ PendingBlockWithTxs:
   description: The dynamic block being constructed by the sequencer. Note that this object will be deprecated upon decentralization.
   allOf:
     - $ref: '#/BlockBodyWithTxs'
+    - type: object
+      properties:
+        timestamp:
+          description: The time in which the block was created, encoded in Unix time
+          type: integer
+          minimum: 0
+        sequencer_address:
+          description: The StarkNet identity of the sequencer submitting this block
+          $ref: '#/Felt'
+        parent_hash:
+          description: The hash of this block's parent
+          $ref: '#/BlockHash'
+
+PendingBlockWithReceipts:
+  description: The dynamic block being constructed by the sequencer. Note that this object will be deprecated upon decentralization.
+  allOf:
+    - $ref: '#/BlockBodyWithReceipts'
     - type: object
       properties:
         timestamp:

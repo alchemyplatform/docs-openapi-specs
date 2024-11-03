@@ -2284,6 +2284,12 @@ jobs:
         working-directory: ./starknet
         run: rdme openapi starknet_addDeclareTransaction.yaml --key=$README_API_KEY --id=64406faac2d7740059213a4f
 
+      - name: Update Starknet API - starknet_getBlockWithReceipts
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./starknet
+        run: rdme openapi starknet_getBlockWithReceipts.yaml --key=$README_API_KEY --id=6727ed186d9aab001314179d
+
       - name: Update Starknet API - starknet_getClassAt
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
