@@ -92,6 +92,109 @@ paths:
                 withPagination:
                   $ref: '#/components/schemas/v3withPagination_response'
       operationId: getNFTsForOwner-v3
+  '/v3/{apiKey}/getNFTsForContract':
+    get:
+      summary: NFTs By Contract
+      description: getNFTsForContract - Retrieves all NFTs associated with a specific NFT contract.
+      tags: ['NFT Metadata Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+          required: true
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/startToken'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      responses:
+        '200':
+          description: 'Returns a list of NFTs associated with the specified contract address.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nfts:
+                    description: 'List of objects that represent NFTs stored under the queried contract address.'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ownedNFTv3'
+                  pageKey:
+                    type: string
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
+      operationId: getNFTsForContract-v3
+  '/v3/{apiKey}/getNFTsForCollection':
+    get:
+      summary: NFTs By Collection
+      description: getNFTsForCollection - Retrieves all NFTs associated with a specific NFT collection.
+      tags: ['NFT Metadata Endpoints']
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/contractAddress'
+        - $ref: '#/components/schemas/collectionSlug'
+        - $ref: '#/components/schemas/withMetadata'
+        - $ref: '#/components/schemas/startToken'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              // Setup: npm install alchemy-sdk
+              import { Network, Alchemy } from "alchemy-sdk";
+
+              // Optional Config object, but defaults to demo api-key and eth-mainnet.
+              const settings = {
+                apiKey: "demo", // Replace with your Alchemy API Key.
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Print total NFT collection returned in the response:
+              alchemy.nft
+                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
+                .then(console.log);
+      responses:
+        '200':
+          description: 'Returns a list of NFTs associated with the specified collection.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nfts:
+                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          $ref: '#/components/schemas/idV3'
+                        tokenUri:
+                          $ref: '#/components/schemas/tokenUri'
+                        metadata:
+                          $ref: '#/components/schemas/metadata'
+                        timeLastUpdated:
+                          type: string
+                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+                        contractMetadata:
+                          $ref: '#/components/schemas/contractMetadata'
+                  nextToken:
+                    type: string
+                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
+      operationId: getNFTsForCollection-v3
   '/v3/{apiKey}/getNFTMetadata':
     get:
       summary: NFT Metadata By Token ID
@@ -298,109 +401,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/contractMetadatav3'
       operationId: getContractMetadataBatch-v3
-  '/v3/{apiKey}/getNFTsForContract':
-    get:
-      summary: NFTs By Contract
-      description: getNFTsForContract - Retrieves all NFTs associated with a specific NFT contract.
-      tags: ['NFT Metadata Endpoints']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-          required: true
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/startToken'
-        - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      responses:
-        '200':
-          description: 'Returns a list of NFTs associated with the specified contract address.'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nfts:
-                    description: 'List of objects that represent NFTs stored under the queried contract address.'
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ownedNFTv3'
-                  pageKey:
-                    type: string
-                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForContract-v3
-  '/v3/{apiKey}/getNFTsForCollection':
-    get:
-      summary: NFTs By Collection
-      description: getNFTsForCollection - Retrieves all NFTs associated with a specific NFT collection.
-      tags: ['NFT Metadata Endpoints']
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - $ref: '#/components/schemas/contractAddress'
-        - $ref: '#/components/schemas/collectionSlug'
-        - $ref: '#/components/schemas/withMetadata'
-        - $ref: '#/components/schemas/startToken'
-        - $ref: '#/components/schemas/limit'
-        - $ref: '#/components/schemas/tokenUriTimeoutInMs'
-      x-readme:
-        samples-languages:
-          - curl
-          - javascript
-          - python
-        code-samples:
-          - language: javascript
-            name: Alchemy SDK
-            code: |
-              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
-              // Setup: npm install alchemy-sdk
-              import { Network, Alchemy } from "alchemy-sdk";
-
-              // Optional Config object, but defaults to demo api-key and eth-mainnet.
-              const settings = {
-                apiKey: "demo", // Replace with your Alchemy API Key.
-                network: Network.ETH_MAINNET, // Replace with your network.
-              };
-
-              const alchemy = new Alchemy(settings);
-
-              // Print total NFT collection returned in the response:
-              alchemy.nft
-                .getNftsForContract("0x61fce80d72363b731425c3a2a46a1a5fed9814b2")
-                .then(console.log);
-      responses:
-        '200':
-          description: 'Returns a list of NFTs associated with the specified collection.'
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  nfts:
-                    description: 'List of objects that represent NFTs stored under the queried contract address or collection slug.'
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          $ref: '#/components/schemas/idV3'
-                        tokenUri:
-                          $ref: '#/components/schemas/tokenUri'
-                        metadata:
-                          $ref: '#/components/schemas/metadata'
-                        timeLastUpdated:
-                          type: string
-                          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
-                        contractMetadata:
-                          $ref: '#/components/schemas/contractMetadata'
-                  nextToken:
-                    type: string
-                    description: 'String - An offset used for pagination. Can be passed back as the "startToken" of a subsequent request to get the next page of results. Absent if there are no more results.'
-      operationId: getNFTsForCollection-v3
   '/v3/{apiKey}/getOwnersForNFT':
     get:
       summary: Owners By NFT
