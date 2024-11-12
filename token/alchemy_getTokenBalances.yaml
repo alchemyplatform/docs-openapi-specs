@@ -45,8 +45,8 @@ x-sandbox:
 paths:
   /{apiKey}:
     post:
-      summary: alchemy_getTokenBalances
-      description: 'Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.'
+      summary: Token Balances By Wallet
+      description: 'alchemy_getTokenBalances - Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.'
       tags: []
       parameters:
         - name: apiKey
