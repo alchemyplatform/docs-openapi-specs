@@ -317,13 +317,16 @@ components:
               type: string
               description: Token symbol (e.g., ETH, BTC).
               example: "ETH"
+              default: "ETH"
             startTime:
               oneOf:
                 - type: string
                   format: date-time
                   description: Start of the time range in ISO 8601 format.
+                  default: "2024-01-01T00:00:00Z"
                 - type: number
                   description: Start of the time range as a timestamp in seconds since epoch.
+                  default: 1704067200  # Equivalent to "2024-01-01T00:00:00Z"
               description: Start of the time range.
               example: "2024-01-01T00:00:00Z"
             endTime:
@@ -331,8 +334,10 @@ components:
                 - type: string
                   format: date-time
                   description: End of the time range in ISO 8601 format.
+                  default: "2024-01-31T23:59:59Z"
                 - type: number
-                  description: Start of the time range as a timestamp in seconds since epoch.
+                  description: End of the time range as a timestamp in seconds since epoch.
+                  default: 1706745599  # Equivalent to "2024-01-31T23:59:59Z"
               description: End of the time range.
               example: "2024-01-31T23:59:59Z"
             interval:
@@ -347,17 +352,21 @@ components:
               type: string
               description: Network identifier (e.g., eth-mainnet).
               example: "eth-mainnet"
+              default: "eth-mainnet"
             address:
               type: string
               description: Token contract address.
               example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+              default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
             startTime:
               oneOf:
                 - type: string
                   format: date-time
                   description: Start of the time range in ISO 8601 format.
+                  default: "2024-01-01T00:00:00Z"
                 - type: number
                   description: Start of the time range as a timestamp since epoch.
+                  default: 1704067200  # Equivalent to "2024-01-01T00:00:00Z"
               description: Start of the time range.
               example: "2024-01-01T00:00:00Z"
             endTime:
@@ -365,8 +374,10 @@ components:
                 - type: string
                   format: date-time
                   description: End of the time range in ISO 8601 format.
+                  default: "2024-01-31T23:59:59Z"
                 - type: number
                   description: End of the time range as a timestamp since epoch.
+                  default: 1706745599  # Equivalent to "2024-01-31T23:59:59Z"
               description: End of the time range.
               example: "2024-01-31T23:59:59Z"
             interval:
@@ -395,6 +406,7 @@ components:
           type: string
           description: Token symbol.
           example: "ETH"
+          default: "ETH"
         prices:
           type: array
           description: List of historical price data points.
@@ -411,10 +423,12 @@ components:
           type: string
           description: Network identifier.
           example: "eth-mainnet"
+          default: "eth-mainnet"
         address:
           type: string
           description: Token contract address.
           example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
         prices:
           type: array
           description: List of historical price data points.
