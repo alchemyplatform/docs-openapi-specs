@@ -99,6 +99,53 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-token-prices-by-address
 
+  "/{apiKey}/tokens/historical":
+    post:
+      summary: Historical Token Prices
+      description: >
+        Provides historical price data for a single token over a time range. You can identify the token by symbol or by network and contract address.
+      tags: ["Prices API Endpoints"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HistoricalPricesRequest"
+      responses:
+        "200":
+          description: Successful response with historical price data.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HistoricalPricesResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed request, missing parameters).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: 'Not Found: Token not found.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-historical-token-prices
+
 components:
   securitySchemes:
     apiKey:
@@ -122,6 +169,7 @@ components:
           </style>
           For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
       required: true
+
     TokenPricesResponse:
       type: object
       properties:
@@ -247,7 +295,162 @@ components:
       type: object
       properties:
         error:
-          type: string
-          description: Error message.
+          type: object
+          properties:
+            message:
+              type: string
+              description: Detailed error message.
+          required:
+            - message
+          description: Error details.
       required:
         - error
+
+    HistoricalPricesRequest:
+      type: object
+      description: >
+        Request body for fetching historical token prices. Provide either the token `symbol` or both `network` and `address`, along with the required time range parameters.
+      oneOf:
+        - required: ["symbol", "startTime", "endTime"]
+          properties:
+            symbol:
+              type: string
+              description: Token symbol (e.g., ETH, BTC).
+              example: "ETH"
+              default: "ETH"
+            startTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: Start of the time range in ISO 8601 format.
+                  default: "2024-01-01T00:00:00Z"
+                - type: number
+                  description: Start of the time range as a timestamp in seconds since epoch.
+                  default: 1704067200  # Equivalent to "2024-01-01T00:00:00Z"
+              description: Start of the time range.
+              example: "2024-01-01T00:00:00Z"
+            endTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: End of the time range in ISO 8601 format.
+                  default: "2024-01-31T23:59:59Z"
+                - type: number
+                  description: End of the time range as a timestamp in seconds since epoch.
+                  default: 1706745599  # Equivalent to "2024-01-31T23:59:59Z"
+              description: End of the time range.
+              example: "2024-01-31T23:59:59Z"
+            interval:
+              type: string
+              description: Time interval for data points.
+              enum: [ "5m", "hourly", "daily" ]
+              default: "daily"
+              example: "daily"
+        - required: ["network", "address", "startTime", "endTime"]
+          properties:
+            network:
+              type: string
+              description: Network identifier (e.g., eth-mainnet).
+              example: "eth-mainnet"
+              default: "eth-mainnet"
+            address:
+              type: string
+              description: Token contract address.
+              example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+              default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+            startTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: Start of the time range in ISO 8601 format.
+                  default: "2024-01-01T00:00:00Z"
+                - type: number
+                  description: Start of the time range as a timestamp since epoch.
+                  default: 1704067200  # Equivalent to "2024-01-01T00:00:00Z"
+              description: Start of the time range.
+              example: "2024-01-01T00:00:00Z"
+            endTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: End of the time range in ISO 8601 format.
+                  default: "2024-01-31T23:59:59Z"
+                - type: number
+                  description: End of the time range as a timestamp since epoch.
+                  default: 1706745599  # Equivalent to "2024-01-31T23:59:59Z"
+              description: End of the time range.
+              example: "2024-01-31T23:59:59Z"
+            interval:
+              type: string
+              description: Time interval for data points.
+              enum: [ "5m", "hourly", "daily" ]
+              default: "daily"
+              example: "daily"
+
+    HistoricalPricesResponse:
+      type: object
+      description: >
+        Response containing historical price data. It will either include `symbol` or both `network` and `address` based on the request.
+      properties:
+        data:
+          oneOf:
+            - $ref: "#/components/schemas/HistoricalPricesBySymbol"
+            - $ref: "#/components/schemas/HistoricalPricesByAddress"
+      required:
+        - data
+
+    HistoricalPricesBySymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Token symbol.
+          example: "ETH"
+          default: "ETH"
+        prices:
+          type: array
+          description: List of historical price data points.
+          items:
+            $ref: "#/components/schemas/HistoricalPriceItem"
+      required:
+        - symbol
+        - prices
+
+    HistoricalPricesByAddress:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+          example: "eth-mainnet"
+          default: "eth-mainnet"
+        address:
+          type: string
+          description: Token contract address.
+          example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        prices:
+          type: array
+          description: List of historical price data points.
+          items:
+            $ref: "#/components/schemas/HistoricalPriceItem"
+      required:
+        - network
+        - address
+        - prices
+
+    HistoricalPriceItem:
+      type: object
+      properties:
+        value:
+          type: string
+          description: Price value as a string.
+          example: "1900.00"
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the price data point.
+          example: "2024-01-01T00:00:00Z"
+      required:
+        - value
+        - timestamp
