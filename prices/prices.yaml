@@ -342,10 +342,11 @@ components:
               example: "2024-01-31T23:59:59Z"
             interval:
               type: string
-              description: Time interval for data points.
-              enum: [ "5m", "hourly", "daily" ]
-              default: "daily"
-              example: "daily"
+              description: >
+                Time interval for data points. Max ranges: (5m, 7d), (1h, 30d), (1d, 1yr)
+              enum: [ "5m", "1h", "1d" ]
+              default: "1d"
+              example: "1d"
         - required: ["network", "address", "startTime", "endTime"]
           properties:
             network:
@@ -382,10 +383,11 @@ components:
               example: "2024-01-31T23:59:59Z"
             interval:
               type: string
-              description: Time interval for data points.
-              enum: [ "5m", "hourly", "daily" ]
-              default: "daily"
-              example: "daily"
+              description: >
+                Time interval for data points. Max ranges: (5m, 7d), (1h, 30d), (1d, 1yr)
+              enum: [ "5m", "1h", "1d" ]
+              default: "1d"
+              example: "1d"
 
     HistoricalPricesResponse:
       type: object
