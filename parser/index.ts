@@ -32,6 +32,7 @@ const ignoreList = [
   'parser',
   'scripts',
   'accounts',
+  'prices.yaml',
 ];
 
 async function* walk(dir: string): AsyncGenerator<string> {
