@@ -36,6 +36,8 @@ servers:
           - shape-mainnet
           - worldchain-mainnet
           - lens-sepolia
+          - ink-mainnet
+          - ink-sepolia
         default: eth-mainnet
 x-sandbox:
   category:

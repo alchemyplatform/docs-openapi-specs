@@ -1052,6 +1052,8 @@ components:
         - STARKNET_MAINNET
         - STARKNET_SEPOLIA
         - STARKNET_GOERLI
+        - INK_MAINNET
+        - INK_SEPOLIA
       default: ETH_MAINNET
     webhook_type:
       type: string

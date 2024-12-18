@@ -29,6 +29,8 @@ servers:
           - race-mainnet
           - shape-mainnet
           - worldchain-mainnet
+          - ink-mainnet
+          - ink-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
