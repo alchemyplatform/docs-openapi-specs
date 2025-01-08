@@ -24,13 +24,19 @@ servers: # servers are also specified at the method level, if there isn't a spec
           - blast-sepolia
           - base-mainnet
           - base-sepolia
+          - soneium-mainnet
           - soneium-minato
           - scroll-mainnet
           - scroll-sepolia
           - shape-mainnet
+          - shape-sepolia
           - lens-sepolia
           - starknet-mainnet
           - starknet-sepolia
+          - rootstock-mainnet
+          - rootstock-testnet
+          - linea-mainnet
+          - linea-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
