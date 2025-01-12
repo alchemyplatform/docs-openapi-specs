@@ -150,6 +150,13 @@ paths:
                   default: 'My Policy'
                 rules:
                   $ref: './schemas.yaml#/components/schemas/Rules'
+                networks:
+                  description: Networks for the policy
+                  type: array
+                  items:
+                    type: string
+                  default:
+                    - ETH_MAINNET
       responses:
         '200':
           description: Policy rules replaced successfully
@@ -301,21 +308,56 @@ paths:
                   data:
                     type: object
                     properties:
-                      signaturesMined:
-                        type: integer
-                        default: 10
-                      signaturesExpired:
-                        type: integer
-                        default: 1
-                      signaturesPending:
-                        type: integer
-                        default: 1
-                      usdPending:
-                        type: string
-                        default: '25.03'
-                      usdMined:
-                        type: string
-                        default: '260.32'
+                      policyStats:
+                        type: object
+                        properties:
+                          signaturesMined:
+                            type: integer
+                            default: 0
+                          signaturesExpired:
+                            type: integer
+                            default: 0
+                          signaturesPending:
+                            type: integer
+                            default: 0
+                          usdPending:
+                            type: string
+                            default: '0.0'
+                          usdMined:
+                            type: string
+                            default: '0.0'
+                      policyNetworkStats:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            network:
+                              type: string
+                              default: 'MATIC_MAINNET'
+                            signaturesMined:
+                              type: integer
+                              default: 0
+                            signaturesExpired:
+                              type: integer
+                              default: 0
+                            signaturesPending:
+                              type: integer
+                              default: 0
+                            usdPending:
+                              type: string
+                              default: '0.0'
+                            usdMined:
+                              type: string
+                              default: '0.0'
+                            pendingNativeToken:
+                              type: number
+                              default: 0
+                            minedNativeToken:
+                              type: number
+                              default: 0
+                            currency:
+                              type: string
+                              default: 'ETH'
                   error:
                     type: object
                     properties:

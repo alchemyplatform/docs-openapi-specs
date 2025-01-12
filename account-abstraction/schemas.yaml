@@ -57,16 +57,16 @@ components:
           default: '600000'
         webhookRules:
           type: object
-          description: Configuration for policy-related webhooks.
+          description: Make a request to your server to verify sponsorship eligibility.
           properties:
             webhookUrl:
               type: string
               format: uri
-              description: The webhook URL to notify when relevant policy events occur.
+              description: The URL to call to verify sponsorship eligibility.
               example: "https://dashboard.alchemy.com/gas-manager/policy/create"
             approveOnFailure:
               type: boolean
-              description: If true, requests are approved even if the webhook call fails.
+              description: If true, the userOp will be sponsored in the event the request fails or times out.
               default: false
           required:
             - webhookUrl
