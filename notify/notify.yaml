@@ -1037,6 +1037,7 @@ components:
         - METIS_MAINNET
         - BLAST_MAINNET
         - BLAST_SEPOLIA
+        - SHAPE_MAINNET
         - SHAPE_SEPOLIA
         - ZETACHAIN_MAINNET
         - ZETACHAIN_TESTNET
@@ -1046,6 +1047,7 @@ components:
         - BNB_TESTNET
         - AVAX_MAINNET
         - AVAX_FUJI
+        - SONEIUM_MAINNET
         - SONEIUM_MINATO
         - GEIST_POLTER
         - GEIST_MAINNET
@@ -1054,6 +1056,12 @@ components:
         - STARKNET_GOERLI
         - INK_MAINNET
         - INK_SEPOLIA
+        - ROOTSTOCK_MAINNET
+        - ROOTSTOCK_TESTNET
+        - SCROLL_MAINNET
+        - SCROLL_SEPOLIA
+        - LINEA_MAINNET
+        - LINEA_SEPOLIA
       default: ETH_MAINNET
     webhook_type:
       type: string

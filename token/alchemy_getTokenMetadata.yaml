@@ -29,15 +29,21 @@ servers:
           - bnb-testnet
           - avax-mainnet
           - avax-fuji
+          - soneium-mainnet
           - soneium-minato
           - geist-polter
           - gnosis-mainnet
           - gnosis-chiado
           - shape-mainnet
+          - shape-sepolia
           - worldchain-mainnet
           - lens-sepolia
           - ink-mainnet
           - ink-sepolia
+          - rootstock-mainnet
+          - rootstock-testnet
+          - linea-mainnet
+          - linea-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
