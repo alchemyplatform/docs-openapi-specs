@@ -2450,6 +2450,9 @@ alchemy_requestPaymasterAndData:
           items:
             type: object
             properties:
+              webhookData:
+                type: string
+                description: Additional data you wish to include in the request, such as proof of humanity.
               policyId:
                 type: string
                 description: The policy ID
@@ -2478,6 +2481,9 @@ alchemy_requestGasAndPaymasterAndData:
           items:
             type: object
             properties:
+              webhookData:
+                type: string
+                description: Additional data you wish to include in the request, such as proof of humanity.
               policyId:
                 type: string
                 description: The policy ID
@@ -2629,7 +2635,7 @@ pm_getPaymasterData:
 
             3. **chainId** (string): The chain ID.
 
-            4. **context** (object, optional): Contains `policyId`.
+            4. **context** (object, optional): Contains `policyId` & `webhookData`.
           items:
             anyOf:
               - $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
@@ -2644,3 +2650,6 @@ pm_getPaymasterData:
                     type: string
                     format: uuid
                     description: The gas policy ID
+                  webhookData:
+                    type: string
+                    description: Additional data you wish to include in the request, such as proof of humanity.

@@ -7,37 +7,41 @@ components:
           type: string
           description: Maximum amount of USD that can be spent by the Gas Manager
           default: '5000.00'
+          nullable: true
         maxSpendPerSenderUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single sender
           default: '100.00'
+          nullable: true
         maxSpendPerUoUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single user operation
           default: '20.00'
+          nullable: true
         maxCount:
           type: string
           description: Maximum number of operations that can be sponsored through the policy
           default: '100'
+          nullable: true
         maxCountPerSender:
           type: string
           description: Maximum number of operations that can be sponsored for a single sender through the policy
           default: '2'
+          nullable: true
         senderAllowlist:
           type: array
           items:
             type: string
           description: List of addresses that are allowed to send operations
           default:
-            [
-              '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
-              '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
-            ]
+            - '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266'
+            - '0x70997970c51812dc3a010c7d01b50e0d17dc79c8'
         senderBlocklist:
           type: array
           items:
             type: string
           description: List of addresses that are not allowed to send operations
+          nullable: true
         startTimeUnix:
           type: string
           description: Unix timestamp of when the policy starts
@@ -46,10 +50,27 @@ components:
           type: string
           description: Unix timestamp of when the policy ends
           default: '1679340742'
+          nullable: true
         sponsorshipExpiryMs:
           type: string
           description: Milliseconds from signing that the sponsorship expires
           default: '600000'
+        webhookRules:
+          type: object
+          description: Make a request to your server to verify sponsorship eligibility.
+          properties:
+            webhookUrl:
+              type: string
+              format: uri
+              description: The URL to call to verify sponsorship eligibility.
+              example: "https://dashboard.alchemy.com/gas-manager/policy/create"
+            approveOnFailure:
+              type: boolean
+              description: If true, the userOp will be sponsored in the event the request fails or times out.
+              default: false
+          required:
+            - webhookUrl
+            - approveOnFailure
       required:
         - startTimeUnix
         - sponsorshipExpiryMs
@@ -71,6 +92,33 @@ components:
           default: active
         rules:
           $ref: '#/components/schemas/Rules'
+        policyName:
+          type: string
+          description: Name of the policy
+          default: 'Gas Manager Policy'
+        lastUpdatedUnix:
+          type: string
+          description: Unix timestamp of when the policy was last updated
+          default: '1674228753'
+        policyVersion: 
+          type: number
+          description: Version of the policy
+          default: 0
+        policyType:
+          type: string
+          description: Type of the policy
+          default: 'sponsorship'
+        policyState:
+          type: string
+          description: State of the policy
+          default: 'ongoing'
+        networks:
+          type: array
+          items:
+            type: string
+          description: List of networks the policy is active on
+          default:
+            - 'ETH_MAINNET'
       required:
         - policyId
         - appId
@@ -89,6 +137,7 @@ components:
         confirmedTotalUsd:
           type: string
           description: Total amount of USD that was spent. Can be null if the transaction has not been mined
+          nullable: true
         status:
           type: string
           description: Status of the sponsorship. Can be PENDING, MINED or EXPIRED
@@ -100,10 +149,12 @@ components:
           description: URL to the user operation explorer for the associated user operation
         txnHash:
           type: string
-          description: Hash of the transaction associated with the sponsorship. Can be null if the transaction has not been mined
+          description: Hash of the transaction associated with the sponsorship. Can be null if not mined
+          nullable: true
         txnExplorerUrl:
           type: string
-          description: URL to the transaction explorer for the associated transaction. Can be null if the transaction has not been mined
+          description: URL to the transaction explorer for the associated transaction. Can be null if not mined
+          nullable: true
       required:
         - sender
         - grantedAt

@@ -14,7 +14,9 @@ paths:
     post:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Create Policy
-      description: Creates a new gas manager policy with the specified rules. Returns the policy id of a successfully created policy. The newly created policy will be in the “inactive” status.
+      description: |
+        Creates a new gas manager policy with the specified rules. Returns the policy id of 
+        a successfully created policy. The newly created policy will be in the “inactive” status.
       operationId: create-policy
       security:
         - BearerAuth: []
@@ -30,21 +32,24 @@ paths:
                   default: 'My Policy'
                 policyType:
                   type: string
-                  description: Type of the policy
-                  default: 'SPONSORSHIP'
+                  description: Type of the policy (e.g. "sponsorship")
+                  default: 'sponsorship'
                 appId:
                   type: string
                   description: |
-                    ID for the app associated with the new policy. Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
+                    ID for the app associated with the new policy.
+                    Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
                   default: '6d834x9k1yh4dx6z'
                 rules:
                   description: Rules for the policy
                   $ref: './schemas.yaml#/components/schemas/Rules'
-                network:
-                  description: Network for the policy
-                  type: string
-                  default: ETH_MAINNET
-
+                networks:
+                  description: Networks for the policy
+                  type: array
+                  items:
+                    type: string
+                  default:
+                    - ETH_MAINNET
       responses:
         '200':
           description: Policy created successfully
@@ -145,6 +150,13 @@ paths:
                   default: 'My Policy'
                 rules:
                   $ref: './schemas.yaml#/components/schemas/Rules'
+                networks:
+                  description: Networks for the policy
+                  type: array
+                  items:
+                    type: string
+                  default:
+                    - ETH_MAINNET
       responses:
         '200':
           description: Policy rules replaced successfully
@@ -269,7 +281,7 @@ paths:
                       msg:
                         type: string
 
-  '/api/gasManager/policy/{id}/stats':
+  '/api/gasManager/policy/{id}/stats/details':
     get:
       tags: ['Gas Manager Admin API Endpoints']
       summary: Get Policy Stats
@@ -296,21 +308,56 @@ paths:
                   data:
                     type: object
                     properties:
-                      signaturesMined:
-                        type: integer
-                        default: 10
-                      signaturesExpired:
-                        type: integer
-                        default: 1
-                      signaturesPending:
-                        type: integer
-                        default: 1
-                      usdPending:
-                        type: string
-                        default: '25.03'
-                      usdMined:
-                        type: string
-                        default: '260.32'
+                      policyStats:
+                        type: object
+                        properties:
+                          signaturesMined:
+                            type: integer
+                            default: 0
+                          signaturesExpired:
+                            type: integer
+                            default: 0
+                          signaturesPending:
+                            type: integer
+                            default: 0
+                          usdPending:
+                            type: string
+                            default: '0.0'
+                          usdMined:
+                            type: string
+                            default: '0.0'
+                      policyNetworkStats:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            network:
+                              type: string
+                              default: 'MATIC_MAINNET'
+                            signaturesMined:
+                              type: integer
+                              default: 0
+                            signaturesExpired:
+                              type: integer
+                              default: 0
+                            signaturesPending:
+                              type: integer
+                              default: 0
+                            usdPending:
+                              type: string
+                              default: '0.0'
+                            usdMined:
+                              type: string
+                              default: '0.0'
+                            pendingNativeToken:
+                              type: number
+                              default: 0
+                            minedNativeToken:
+                              type: number
+                              default: 0
+                            currency:
+                              type: string
+                              default: 'ETH'
                   error:
                     type: object
                     properties:
