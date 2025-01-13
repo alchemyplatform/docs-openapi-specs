@@ -155,9 +155,13 @@ components:
           type: string
           description: URL to the transaction explorer for the associated transaction. Can be null if not mined
           nullable: true
+        network:
+          type: string
+          description: Network of the user operation
       required:
         - sender
         - grantedAt
         - status
         - uoHash
         - uoExplorerUrl
+        - network
