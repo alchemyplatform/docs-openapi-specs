@@ -76,7 +76,7 @@ paths:
     post:
       summary: Send Auth Email
       description: >
-        Sends a user an email containing a magic link for authentication, allowing them to complete the login process and access their Embedded Account through a secure, simple email verification method. Developers can customize the appearance and content of the authentication email through Alchemy dashboard to align with their application's branding and user experience requirements.
+        Sends a user an email containing a magic link or OTP for authentication, allowing them to complete the login process and access their Embedded Account through a secure, simple email verification method. Developers can customize the appearance and content of the authentication email through Alchemy dashboard to align with their application's branding and user experience requirements.
       tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Ensures the request is authenticated and mapped to a specific project using the Alchemy API key.
@@ -94,7 +94,10 @@ paths:
               properties:
                 email:
                   $ref: "#/components/schemas/email"
-                  description: The email address of the user requesting access. This is where the authentication email, containing the magic link, will be sent.
+                  description: The email address of the user requesting access. This is where the authentication email, containing the magic link or OTP, will be sent.
+                emailMode:
+                  $ref: "#/components/schemas/emailMode"
+                  description: Choice to send a magic link or an OTP to authenticate.
                 targetPublicKey:
                   $ref: "#/components/schemas/targetPublicKey"
                 expirationSeconds:
@@ -295,6 +298,12 @@ components:
       schema:
         type: string
       required: true
+    emailMode:
+      name: emailMode
+      description: Choose between magicLink and otp for authentication flow
+      schema:
+        type: string
+      required: false
     expirationSeconds:
       name: expirationSeconds
       description: Optional. Specifies the duration of the login session in seconds. After this period, the user has to re-login to refresh their session. The default value is 900 seconds (15 minutes).
