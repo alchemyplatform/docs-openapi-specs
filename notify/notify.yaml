@@ -721,7 +721,6 @@ components:
       required: false
       schema:
         type: string
-        default: '5'
       description: 'The cursor that points to the end of the current set of results.'
       in: query
     nft_filter_object:
