@@ -9,6 +9,8 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
+          - shape-mainnet
+          - shape-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
