@@ -25,6 +25,8 @@ servers:
           - chiliz-mainnet
           - chiliz-spicy
           - abstract-testnet
+          - shape-mainnet
+          - shape-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
