@@ -26,7 +26,7 @@ paths:
   /{apiKey}:
     post:
       summary: eth_sendPrivateTransaction
-      description: Send a single private transaction through Flashbots. Private transactions are sent directly to miners and not included in the public mempool.
+      description: Send a single private transaction through Flashbots. Private transactions are sent directly to validators and not included in the public mempool.
       operationId: eth-sendprivatetransaction
       parameters:
         - $ref: ../components/parameters.yaml#/ApiKey
