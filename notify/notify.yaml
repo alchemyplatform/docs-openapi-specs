@@ -1061,6 +1061,13 @@ components:
         - SCROLL_SEPOLIA
         - LINEA_MAINNET
         - LINEA_SEPOLIA
+        - MONAD_TESTNET
+        - SONIC_MAINNET
+        - SONIC_TESTNET
+        - SONIC_BLAZE
+        - SETTLUS_SEPTESTNET
+        - APECHAIN_MAINNET
+        - APECHAIN_CURTIS
       default: ETH_MAINNET
     webhook_type:
       type: string
