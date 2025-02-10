@@ -1064,7 +1064,6 @@ components:
         - MONAD_TESTNET
         - SONIC_MAINNET
         - SONIC_TESTNET
-        - SONIC_BLAZE
         - SETTLUS_SEPTESTNET
         - APECHAIN_MAINNET
         - APECHAIN_CURTIS
