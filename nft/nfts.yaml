@@ -37,6 +37,10 @@ servers: # servers are also specified at the method level, if there isn't a spec
           - rootstock-testnet
           - linea-mainnet
           - linea-sepolia
+          - settlus-septestnet
+          - abstract-mainnet
+          - abstract-testnet
+          - apechain-mainnet
         default: eth-mainnet
 x-sandbox:
   category:
