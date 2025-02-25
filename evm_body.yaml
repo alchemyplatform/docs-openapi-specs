@@ -1355,6 +1355,86 @@ alchemy_getAssetTransfers:
                 type: string
                 description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
 
+# ============= Txn History API Methods ===============
+by-address:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: by-address
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: object
+            required:
+              - category
+            properties:
+              fromBlock:
+                type: string
+                description: 'String - Inclusive from block (hex string, int, `latest`, or `indexed`). Defaults to `0x0`'
+                default: '0x0'
+              toBlock:
+                type: string
+                description: 'String - Inclusive to block (hex string, int, `latest`, or `indexed`). Defaults to `latest`. Read more about block tags <span class="custom-style"><a href="https://docs.alchemy.com/reference/transfers-api-quickstart#what-are-the-different-types-of-block-tags" target="_blank">here</a></span>'
+                default: latest
+              fromAddress:
+                type: string
+                description: String - From address (hex string). Default wildcard - any address
+                pattern: '^0[xX][0-9a-fA-F]+$'
+              toAddress:
+                type: string
+                description: String - To address (hex string). Default wildcard - any address
+                pattern: '^0[xX][0-9a-fA-F]+$'
+                default: '0x5c43B1eD97e52d009611D89b74fA829FE4ac56b1'
+              contractAddresses:
+                type: array
+                description: 'String - List of contract addresses (hex strings) to filter for - only applies to "erc20", "erc721", "erc1155" transfers. Default wildcard - any address'
+                items:
+                  type: string
+                  pattern: '^0[xX][0-9a-fA-F]+$'
+              category:
+                type: array
+                minItems: 1
+                description: |
+                  'Array of categories, can be any of the following: "external", "internal", "erc20", "erc721", "erc1155", or "specialnft". See the table above for supported categories on each network.'
+                items:
+                  type: string
+                  enum:
+                    - external
+                    - internal
+                    - erc20
+                    - erc721
+                    - erc1155
+                    - specialnft
+                  default: external
+              order:
+                type: string
+                description: |
+                  String - Whether to return results in ascending (`asc`) or descending (`desc`) order. Ascending order is from oldest to newest transactions, descending order is from newest to oldest. Defaults to `asc`.
+                enum:
+                  - asc
+                  - desc
+              withMetadata:
+                type: boolean
+                description: Boolean - Whether or not to include additional metadata about each transfer event. Defaults to `false`.
+                default: false
+              excludeZeroValue:
+                type: boolean
+                description: Boolean - A boolean to exclude transfers with zero value - zero value is not the same as null value. Defaults to `true`.
+                default: true
+              maxCount:
+                type: string
+                description: Max hex string number of results to return per call. Defaults to `0x3e8` (1000).
+                default: '0x3e8'
+              pageKey:
+                type: string
+                description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
+
+
 # ============= Debug API Methods ===============
 tracer:
   type: string

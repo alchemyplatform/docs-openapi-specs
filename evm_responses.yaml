@@ -158,6 +158,27 @@ log_object:
       type: string
       description: Hash of the transactions this log was created from. null when its pending log.
 
+txn_history_log_object:
+  type: object
+  properties:
+    contractAddress:
+      type: string
+      description: 20 Bytes - contract address from which this log originated.
+    logIndex:
+      type: string
+      description: Integer of the log index position in the block. null when its pending log.
+    data:
+      type: string
+      description: Contains one or more 32 Bytes non-indexed arguments of the log.
+    removed:
+      type: boolean
+      description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
+    topics:
+      type: array
+      items:
+        type: string
+      description: 'Array of zero to four 32 Bytes DATA of indexed log arguments'
+
 block_object:
   allOf:
     - $ref: '#/nonce_hash_block'
@@ -879,6 +900,39 @@ action_object:
       type: string
     value:
       type: string
+txn_history_trace_object:
+  type: object
+  properties:
+    type:
+      type: string
+      description: CALL or CREATE
+    fromAddress:
+      type: string
+      description: 20 Bytes - address of the sender
+    toAddress:
+      type: string
+      description: 20 Bytes - address of the receiver. null when its a contract creation transaction
+    value:
+      type: string
+      description: amount of value for transfer (in hex)
+    gas:
+      type: string
+      description: amount of gas provided for the call (in hex)
+    gasUsed:
+      type: string
+      description: amount of gas used during the call (in hex)
+    input:
+      type: string
+      description: call data
+    output:
+      type: string
+      description: return data
+    error:
+      type: string
+      description: error, if any
+    revertReason:
+      type: string
+      description: solidity revert reason, if any
 trace_filter:
   allOf:
     - $ref: '#/common_response_fields'
@@ -1256,6 +1310,88 @@ eth_createAccessList:
               description: estimated gas consumed when the access list is added. Note, adding an `accessList` to your transaction does not necessary result in lower gas usage compared to a transaction without an `accessList`.
           example:
             $ref: ./evm_examples.yaml#/eth_createAccessList
+
+# ============= Txn History API Methods ===============
+by-address:
+  allOf:
+    - type: object
+      properties:
+        result:
+          type: object
+          description: 'An object with the following fields.'
+          properties:
+            before:
+              type: string
+              description: 'The cursor that points to the previous set of results.'
+            after:
+              type: string
+              description: 'The cursor that points to the end of the current set of results.'
+            totalCount:
+              type: integer
+              description: 'Total count of the response items.'
+            transfers:
+              type: array
+              description: 'Array of objects - sorted in ascending order by time'
+              items:
+                $ref: '#/transaction_history_top_object'
+transaction_history_top_object:
+  type: object
+  properties:
+    network:
+      type: string
+      description: "Network associated with an individual transaction"
+    hash:
+      type: string
+      description: 'Transaction hash'
+    timeStamp:
+      type: string
+      description: '(ISO 8601)  Timestamp of transaction mining / confirmation'
+    blockNumber:
+      type: integer
+      description: 'Block number of transaction mining / confirmation'
+    blockHash:
+      type: string
+      description: 'Block hash of transaction mining / confirmation'
+    status:
+      type: string
+      description: '[”confirmed”, “failed”, “removed”]'
+    nonce:
+      type: integer
+      description: 'Transaction nonce'
+    transactionIndex:
+      type: integer
+      description: 'Position of transaction within a block'
+    fromAddress:
+      type: string
+      description: 'From address of transaction (hex string).'
+    toAddress:
+      type: string
+      description: 'To address of transaction (hex string). null if contract creation.'
+    contractAddress:
+      type: string
+      description: '20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null'
+    value:
+      type: string
+      description: "(uint8) Value of native token value moved within the external transaction"
+    cumulativeGasUsed:
+      type: string
+      description: The total amount of gas used when this transaction was executed in the block.
+    effectiveGasPrice:
+      type: string
+      description: Gas price parameter
+    gasUsed:
+      type: string
+      description: The amount of gas used by this specific transaction alone
+    logs:
+      type: array
+      description: 'Array of log objects, which this transaction generated'
+      items:
+        $ref: '#/txn_history_log_object'
+    internalTxns:
+      type: array
+      description: 'Array of internal transaction objects, which this transaction generated'
+      items:
+        $ref: '#/txn_history_trace_object'
 
 # ============= Transfers API Methods ===============
 alchemy_getAssetTransfers:

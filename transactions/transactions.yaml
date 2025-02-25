@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: 📝 Transaction History
+  version: "1.0"
+servers:
+  - url: https://api.g.alchemy.com/data
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: transactions
+paths:
+
+  "/v1/{apiKey}/assets/transactions/by-address":
+    post:
+      summary: Transactions by Address
+      description: The Transaction History API endpoint allows you to query historical transactions for any address, across all chains
+      tags: ["Txn History API Endpoints"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionsByAddressRequest"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_responses.yaml#/by-address
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: by-address
+
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: An API key that will be supplied in a named header.
+      x-default: Bearer API_KEY
+  schemas:
+    apiKey:
+      name: apiKey
+      in: path
+      schema:
+        type: string
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      required: true
+
+    TransactionsByAddressRequest:
+      type: object
+      properties:
+        after:
+          required: false
+          schema:
+            type: string
+          description: 'The cursor that points to the end of the current set of results.'
+        before:
+          required: false
+          schema:
+            type: string
+          description: 'The cursor that points to the previous set of results.'
+        address:
+          description: Owner wallet address (that can map to a 'from' or 'to' address)
+          example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          # Vitalik's ETH address
+        network:
+          type: array
+          minItems: 1
+          description:
+            Array of token networks; limited network support while in BETA
+          items:
+            $ref: "#/components/schemas/networkItem"
+          maxItems: 1
+      required:
+        - addresses
+
+    networkItem:
+        type: string
+        example: ETH_MAINNET
+        default: ETH_MAINNET
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+        required: true
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Detailed error message.
+          required:
+            - message
+          description: Error details.
+      required:
+        - error

@@ -14,7 +14,7 @@ paths:
     get:
       summary: Read Variable Elements
       description: |
-        This endpoint allows you to read the values within a Custom Webhook variable. 
+        This endpoint allows you to read the values within a Custom Webhook variable.
         It supports pagination with `limit` and `after` query parameters.
       tags: ['Custom Webhook API Methods']
       parameters:
