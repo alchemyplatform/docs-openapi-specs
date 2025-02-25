@@ -11,7 +11,7 @@ paths:
     post:
       summary: Create Account
       description: >
-        Enables the creation of an Embedded Account using Alchemy Signer. It allows applications to authenticate users and facilitate signature operations on their behalf. An Embedded Account is either an on-chain Modular Account with Alchemy Signer as the owner, or a standalone EOA signer managed through Alchemy Signer.
+        Enables the creation of an Embedded Account using Alchemy Signer. It allows applications to authenticate users and facilitate signature operations on their behalf. An Embedded Account is either an on-chain Modular Account with Alchemy Signer as the owner, a standalone EOA signer managed through Alchemy Signer, or a standalone Solana Wallet managed through the Alchemy Signer.
       tags: ["Accounts API Endpoints"]
       security:
         - apiKey: [] # Maps the request to a specific project using the Alchemy API key.
@@ -99,7 +99,6 @@ paths:
                   $ref: "#/components/schemas/targetPublicKey"
                 expirationSeconds:
                   $ref: "#/components/schemas/expirationSeconds"
-                  description: Optional. Specifies the duration in seconds for which the access request or authentication link remains valid. After this period, the request expires, necessitating a new authentication attempt.
       responses:
         "200":
           description: Authentication email sent successfully.
@@ -134,6 +133,8 @@ paths:
               properties:
                 stampedRequest:
                   $ref: "#/components/schemas/SignedTurnkeyRequest"
+                  description: >
+                    A stamped [Turnkey Whoami Request](https://docs.turnkey.com/api#tag/Sessions/operation/GetWhoami).
       responses:
         "200":
           description: User authentication successful.
@@ -153,7 +154,10 @@ paths:
                     description: The organization ID associated with the authenticated user's account.
                   address:
                     type: string
-                    description: The blockchain address of the user's signer. Essential for executing transactions and managing the account.
+                    description: The Ethereum address of the user's signer. Essential for executing transactions and managing the account.
+                  solanaAddress:
+                    type: string
+                    description: The Solana address of the user's signer. Required for Solana transactions and account management.
       operationId: authUser
   "/lookup":
     post:
@@ -213,8 +217,41 @@ paths:
               properties:
                 stampedRequest:
                   $ref: "#/components/schemas/SignedTurnkeyRequest"
-                  description: >
+                  description: |
                     A stamped request that includes the payload to be signed. The payload is part of the stamped request's body, which should conform to the structure outlined in the Turnkey API documentation for signing raw payloads.
+                    Because users are given accounts for both Ethereum and Solana, it's possible to request signatures for both chains. The following is an example of the payload structure for signing bytes on Ethereum and Solana:
+
+                    Signing bytes for Ethereum:
+                    ```
+                    {
+                      organizationId: this.user.orgId, # the user's orgID (returned from whoami)
+                      type: "ACTIVITY_TYPE_SIGN_RAW_PAYLOAD_V2",
+                      timestampMs: Date.now().toString(),
+                      parameters: {
+                        encoding: "PAYLOAD_ENCODING_HEXADECIMAL",
+                        hashFunction: "HASH_FUNCTION_NO_OP", # this assumes you've hashed the bytes alread on the client
+                        payload: msg,
+                        signWith: this.user.address, # the user's Ethereum address (returned from whoami)
+                      },
+                    }
+                    ```
+
+                    Signing bytes for Solana:
+                    ```
+                    {
+                      organizationId: this.user.orgId,
+                      type: "ACTIVITY_TYPE_SIGN_RAW_PAYLOAD_V2",
+                      timestampMs: Date.now().toString(),
+                      parameters: {
+                        encoding: "PAYLOAD_ENCODING_HEXADECIMAL",
+                        hashFunction: "HASH_FUNCTION_NOT_APPLICABLE",
+                        payload: msg,
+                        signWith: this.user.solanaAddress, # the user's Solana address (returned from whoami)
+                      },
+                    }
+                    ```
+                    
+                    For more details on the parameters of the request body, see [Turnkey's API Reference](https://docs.turnkey.com/api#tag/Signing/operation/SignRawPayload).
       responses:
         "200":
           description: Message signing successful.
@@ -250,7 +287,7 @@ paths:
                 stampedAddAuthenticatorRequest:
                   $ref: "#/components/schemas/SignedTurnkeyRequest"
                   description: >
-                    A stamped request that specifies the details of the new authenticator to be registered. This ensures the integrity of the request and confirms the user's intent to add a new authentication method to their account.
+                    A stamped request that specifies the details of the new authenticator to be registered. This ensures the integrity of the request and confirms the user's intent to add a new authentication method to their account. The body of this request must match [Turnkey's Create Authenticators Request Body](https://docs.turnkey.com/api#tag/Authenticators/operation/CreateAuthenticators).
       responses:
         "200":
           description: Authenticator registration successful.
@@ -303,13 +340,16 @@ components:
       required: false
     targetPublicKey:
       name: targetPublicKey
-      description: The public key corresponding to the account, returned by the turnkey iframe integration. Allows the application to specify the public key mapping to the address of the created account.
+      description: |
+        Authentication of a client is done via an HPKE flow that allows the client and TEE to exchange an encrypted bundle without revealing it to a middleman (you, us, or Turnkey). The targetPublicKey is the public key that the client uses to decrypt a the shared secret.
+        
+        See more in the [Turnkey Docs](https://docs.turnkey.com/embedded-wallets/sub-organization-auth).
       schema:
         type: string
       required: false
     orgId:
       name: orgId
-      description: The organizational ID associated with the user and application, enabling the management of Embedded Accounts.
+      description: The organization ID associated with the user and application, enabling the management of Embedded Accounts.
       schema:
         type: string
     SignedTurnkeyRequest:
@@ -334,9 +374,11 @@ components:
           properties:
             stampHeaderName:
               type: string
-              description: Header name of the approved authentication request.
+              description: |
+                For WebAuthN based stamps, this should be `X-Stamp-Webauthn`. For all other stamps, this should be `X-Stamp`.
               required: true
             stampHeaderValue:
               type: string
-              description: Header value of the approved authentication request.
+              description: > 
+                The stamp over the request body. See the [Turnkey Stamps Documentation](https://docs.turnkey.com/api-design/stamps) for information on the format of this value.
               required: true
