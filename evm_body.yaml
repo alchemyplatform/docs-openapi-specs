@@ -838,7 +838,7 @@ alchemy_getTokenBalances:
             3. Options (optional) - An object that contains the following settings **[omitted below]**:
                 1. `pageKey`: Applies only to the `erc20` request type. A string address used for pagination. If more results are available, a `pageKey` will be returned in the response.
                 2. `maxCount`: Applies only to the `erc20` request type. Specifies the maximum count of token balances to return per call. This value defaults to 100 and is currently capped at 100.
-          minItems: 2
+          minItems: 1
           maxItems: 3
           items:
             oneOf:
