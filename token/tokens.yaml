@@ -11,8 +11,8 @@ x-sandbox:
     value: token
 paths:
   "/{apiKey}/tokens/balances/by-address":
-    get:
-      summary: Token Balances By Address
+    post:
+      summary: Token Balances By Wallet (Multi-Chain, ⚠️ Beta)
       description: >
         Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and addres.
       tags: ["Token API Endpoints"]
@@ -100,6 +100,9 @@ components:
         networks:
           type: array
           minItems: 1
+          default:
+            - eth-mainnet
+            - base-mainnet
           items:
             type: string
             default: eth-mainnet
