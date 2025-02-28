@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: 🏅 Multi-Chain Token APIs (Beta)
+  version: "1.0"
+servers:
+  - url: https://api.g.alchemy.com/data/v1
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: token
+paths:
+  "/{apiKey}/tokens/balances/by-address":
+    post:
+      summary: Token Balances By Wallet (Multi-Chain, 🆕 Beta)
+      description: >
+        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address.
+      tags: ["Token API Endpoints"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenBalancesResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-token-balances-by-address
+
+components:
+  schemas:
+    apiKey:
+      name: apiKey
+      in: path
+      schema:
+        type: string
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      required: true
+
+    ByAddressRequest:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+      required:
+        - addresses
+
+    AddressItem:
+      type: array
+      properties:
+        address:
+          type: string
+          description: Wallet address.
+          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+        networks:
+          type: array
+          minItems: 1
+          maxItems: 5
+          default:
+            - eth-mainnet
+            - base-mainnet
+            - matic-mainnet
+          items:
+            type: string
+            default: eth-mainnet
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      required:
+        - address
+        - networks
+
+    TokenBalancesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of token balances by address.
+          items:
+            $ref: "#/components/schemas/TokenBalancesResponseItem"
+      required:
+        - data
+
+    TokenBalancesResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Wallet address.
+        tokenAddress:
+          type: string
+          description: Token address.
+        tokenBalance:
+          type: string
+          description: Balance of that particular token.
+      required:
+        - network
+        - address
+        - tokenAddress
+        - tokenBalance
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Detailed error message.
+          required:
+            - message
+          description: Error details.
+      required:
+        - error
