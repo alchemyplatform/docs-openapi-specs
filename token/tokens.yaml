@@ -12,9 +12,9 @@ x-sandbox:
 paths:
   "/{apiKey}/tokens/balances/by-address":
     post:
-      summary: Token Balances By Wallet (Multi-Chain, ⚠️ Beta)
+      summary: Token Balances By Wallet (Multi-Chain, 🆕 Beta)
       description: >
-        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and addres.
+        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address.
       tags: ["Token API Endpoints"]
       x-readme:
         samples-languages:
@@ -52,13 +52,6 @@ paths:
       operationId: get-token-balances-by-address
 
 components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      name: Authorization
-      in: header
-      description: An API key that will be supplied in a named header.
-      x-default: Bearer API_KEY
   schemas:
     apiKey:
       name: apiKey
@@ -81,11 +74,11 @@ components:
         addresses:
           type: array
           minItems: 1
+          maxItems: 2
           description: >
-            Array of address and networks pairs (limit 2 addresses, max 5 networks each). Networks should match network enums.
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
           items:
             $ref: "#/components/schemas/AddressItem"
-          maxItems: 2
       required:
         - addresses
 
@@ -100,9 +93,11 @@ components:
         networks:
           type: array
           minItems: 1
+          maxItems: 5
           default:
             - eth-mainnet
             - base-mainnet
+            - matic-mainnet
           items:
             type: string
             default: eth-mainnet
