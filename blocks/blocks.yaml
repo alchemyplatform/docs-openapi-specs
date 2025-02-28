@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: ⛓️ Block Timestamp API
+  version: "1.0"
+servers:
+  - url: https://api.g.alchemy.com/data/v1
+# x-sandbox:
+#   category:
+#     type:
+#       $ref: '../components/sandbox.yaml#/Category'
+#     value: blocks
+paths:
+  "/{apiKey}/utility/blocks/by-timestamp":
+    get:
+      summary: Blocks by Timestamp
+      description: Fetches the first block before or after a given timestamp. Returns the block's number and on-chain timestamp.
+      tags: ["Blocks API Endpoints"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+        - $ref: '#/components/schemas/networks'
+        - $ref: '#/components/schemas/timestamp'
+        - $ref: '#/components/schemas/direction'
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlockTimestampResponse"
+        "400":
+          description: 'Bad Request: Malformed request or missing parameters.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: blocks-by-timestamp
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: An API key that will be supplied in a named header.
+      x-default: Bearer API_KEY
+  schemas:
+    apiKey:
+      name: apiKey
+      in: path
+      schema:
+        type: string
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      required: true
+    networks:
+      name: networks
+      description: |
+        <style>
+          .custom-style {
+            color: #048FF4;
+          }
+        </style>
+        Array of networks to query on. The response will be an array with one block per network. Find network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      schema:
+        type: array
+        minItems: 1
+        maxItems: 3
+        items:
+          type: string
+          default: eth-mainnet
+      in: query
+      required: true
+    timestamp:
+      name: timestamp
+      description: Unix or ISO timestamp
+      schema:
+        type: string
+        default: 2025-02-28T19:38:57Z
+      required: true
+      in: query
+    direction:
+      name: direction
+      required: true
+      description: Return the first block "BEFORE" or "AFTER" the provided timestamp
+      schema:
+        type: string
+        enum:
+          - BEFORE
+          - AFTER
+        default: AFTER
+      in: query
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Detailed error message.
+          required:
+            - message
+          description: Error details.
+      required:
+        - error
+    # BlockTimestampResponse:
+    #   type: object
+    #   properties:
+    #     data:
+    #       type: array
+    #       description: List of blocks
+    #       items:
+    #         network:
+    #           type: string
+    #           description: Network the block corresponds to
+    #           required: true
+    #         blockData:
+    #           type: object
+    #           properties:
+    #             number:
+    #               type: int
+    #               description: Block number
+    #             timestamp:
+    #               type: string
+    #               description: ISO timestamp of the block
+    #           required:
+    #             - number
+    #             - timestamp
+    #   required:
+    #     - data
+
+    BlockTimestampResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of blocks
+          items:
+            $ref: "#/components/schemas/BlockTimestampResponseItem"
+      required:
+        - data
+    
+    BlockTimestampResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier
+        block:
+          type: object
+          properties:
+            number:
+              type: integer
+              description: Block number
+            timestamp:
+              type: string
+              description: ISO timestamp of the block
+          required:
+            - number
+            - timestamp
+      required:
+        - network
+        - block
