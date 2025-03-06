@@ -55,7 +55,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./transfers
-        run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=67ca319340250800249a14b6
+        run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=67ca34df40250800249a1615
 
     # Update Prices API
       - name: Update Prices API
