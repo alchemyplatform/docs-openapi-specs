@@ -1,0 +1,1080 @@
+openapi: 3.1.0
+info:
+  title: 🔔 Webhooks
+  version: '1.0'
+servers:
+  - url: 'https://dashboard.alchemy.com/api'
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
+    value: notify
+paths:
+  /graphql/variables/{variable}:
+    get:
+      summary: Read Variable Elements
+      description: |
+        This endpoint allows you to read the values within a Custom Webhook variable.
+        It supports pagination with `limit` and `after` query parameters.
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/after'
+      x-readme:
+        samples-languages:
+          - curl
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
+      responses:
+        '200':
+          description: OK- Successful query of Custom Webhook variable
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_addresses_response'
+        '404':
+          description: Not found- The requested resource could not be found
+        '500':
+          description: Internal Server Error- Try again
+      operationId: read-custom-webhook-variable
+    post:
+      summary: Create a Variable
+      description: This endpoint allows you to create a variable that can be inserted into a Custom Webhook GraphQL statement
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_custom_webhook'
+      x-readme:
+        samples-languages:
+          - curl
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
+      responses:
+        '201':
+          description: OK- Successful PUT creation of a Custom Webhook variable
+        '400':
+          description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
+        '500':
+          description: Internal Server Error- Try again
+      operationId: create-custom-webhook-variable
+    delete:
+      summary: Delete a Variable
+      description: This endpoint allows you to delete a Custom Webhook variable
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
+      x-readme:
+        samples-languages:
+          - curl
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
+      responses:
+        '201':
+          description: OK- Successful deletion of a Custom Webhook variable
+        '404':
+          description: Not found- The requested resource could not be found
+        '500':
+          description: Internal Server Error- Try again
+      operationId: delete-custom-webhook-variable
+    patch:
+      summary: Update a Variable
+      description: 'Add and remove elements within a Custom Webhook variable'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/variable'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_custom_webhook_variable'
+      x-readme:
+        samples-languages:
+          - curl
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating NFT Filter Webhook: add/remove filters
+              await alchemy.notify.updateWebhook("wh_zyhqo5im08n6ougk", {
+                addFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "101",
+                  },
+                ],
+                removeFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "24",
+                  },
+                ],
+              });
+      responses:
+        '200':
+          description: OK- Successful update to Custom Webhook variable
+        '400':
+          description: Bad Request- The server cannot understand the request sent by the client, due to a malformed syntax or missing information
+        '401':
+          description: Unauthorized- missing or invalid authentication credentials
+        '500':
+          description: Internal Server Error- Try again
+      operationId: update-custom-webhook-variable
+  /team-webhooks:
+    get:
+      summary: Get all webhooks
+      description: This endpoint allows you to get all webhooks on your team.
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              alchemy.notify.getAllWebhooks().then(console.log);
+      responses:
+        '200':
+          description: Returns list of webhook objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_object_response'
+      operationId: team-webhooks
+  /webhook-addresses:
+    get:
+      summary: Get all addresses for an Address Activity webhook
+      description: Paginated endpoint to list all of the addresses a given Address Activity webhook is subscribed to.
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/webhook_id'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/after'
+      x-readme:
+        explorer-enabled: false
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const hooks = await alchemy.notify.getAllWebhooks();
+
+              const addressesById = await alchemy.notify.getAddresses("wh_qv16bt12wbj9kax4", {
+                limit: 3,
+              });
+              const addressesByWebhook = await alchemy.notify.getAddresses(
+                hooks.webhooks[3],
+                { limit: 3, pageKey: 1 }
+              );
+      responses:
+        '200':
+          description: 'List of addresses and pagination info.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_addresses_response'
+      operationId: webhook-addresses
+  /create-webhook:
+    post:
+      summary: Create webhook
+      description: 'This endpoint allows you to create a webhook.'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_webhook'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network, WebhookType } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              const minedTxWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.MINED_TRANSACTION,
+                { appId: "wq9fgv022aff81pg" }
+              );
+
+              const droppedTxWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.DROPPED_TRANSACTION,
+                { appId: "wq9fgv022aff81pg" }
+              );
+
+              const addressActivityWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.ADDRESS_ACTIVITY,
+                {
+                  addresses: ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96010"],
+                  network: Network.ETH_MAINNET,
+                }
+              );
+
+              const nftActivityWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.NFT_ACTIVITY,
+                {
+                  filters: [
+                    {
+                      contractAddress: "0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656",
+                      tokenId: "234",
+                    },
+                  ],
+                  network: Network.ETH_MAINNET,
+                }
+              );
+      responses:
+        '200':
+          description: 'Returns webhook creation data.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_webhook_response'
+      operationId: create-webhook
+  /update-webhook-addresses:
+    patch:
+      summary: Add and remove webhook addresses
+      description: |
+        Add or remove addresses from a specific webhook.
+        *This webhook endpoint is idempotent, meaning that identical requests can be made once or several times in a row with the same effect*
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_addresses'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating Address Activity Webhook: add/remove addresses
+              await alchemy.notify.updateWebhook("wh_qv16bt12wbj9kax4", {
+                addAddresses: [
+                  "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96010",
+                  "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96011",
+                ],
+                removeAddresses: ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96043"],
+              });
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-webhook-addresses
+    put:
+      summary: Replace webhook addresses
+      description: 'Replace entire list of addresses tracked in a given webhook.'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/replace_webhook_addresses'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating Address Activity Webhook: replace all addresses
+              await alchemy.notify.updateWebhook("wh_qv16bt12wbj9kax4", {
+                newAddresses: ["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96010"],
+              });
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: replace-webhook-addresses
+  /update-webhook:
+    put:
+      summary: Update webhook status
+      description: 'Allows you to set status of webhooks to active or inactive.'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              await alchemy.notify.updateWebhook("wh_qv16bt12wbj9kax4", { isActive: false });
+      responses:
+        '200':
+          description: 'Returns updated webhook status.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/update_webhook_response'
+      operationId: update-webhook
+  /update-webhook-nft-filters:
+    patch:
+      summary: Update webhook NFT filters
+      description: 'Add and remove webhook NFT filters'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_nft_filters'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              // Updating NFT Filter Webhook: add/remove filters
+              await alchemy.notify.updateWebhook("wh_zyhqo5im08n6ougk", {
+                addFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "101",
+                  },
+                ],
+                removeFilters: [
+                  {
+                    contractAddress: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
+                    tokenId: "24",
+                  },
+                ],
+              });
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-webhook-nft-filters
+  /update-webhook-nft-metadata-filters:
+    patch:
+      summary: Update NFT metadata webhook filters
+      description: 'Add and remove NFT metadata webhook filters'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook_nft_metadata_filters'
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: update-webhook-nft-metadata-filters
+
+  /webhook-nft-filters:
+    get:
+      summary: Get all webhook NFT filters
+      description: Paginated endpoint to list all of the NFT filter objects a given webhook is subscribed to.
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/webhook_id'
+        - $ref: '#/components/schemas/limit'
+        - $ref: '#/components/schemas/after'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+              const hooks = await alchemy.notify.getAllWebhooks();
+
+              const nftsById = await alchemy.notify.getNftFilters("wh_zyhqo5im08n6ouuu", {
+                limit: 3,
+                pageKey: 1,
+              });
+
+              const nftsByWebhook = await alchemy.notify.getNftFilters(hooks.webhooks[1]);
+      responses:
+        '200':
+          description: Returns a list of nft filter objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/webhook_nft_filters_response'
+      operationId: webhook-nft-filters
+
+  /delete-webhook:
+    delete:
+      summary: Delete webhook
+      description: 'Allows you to delete a webhook.'
+      tags: ['Data']
+      parameters:
+        - $ref: '#/components/schemas/X-Alchemy-Token'
+        - $ref: '#/components/schemas/webhook_id'
+      x-readme:
+        samples-languages:
+          - curl
+          - javascript
+          - python
+        code-samples:
+          - language: javascript
+            name: Alchemy SDK
+            code: |
+              // Setup: npm install alchemy-sdk
+              // Github: https://github.com/alchemyplatform/alchemy-sdk-js
+              import { Alchemy, Network, WebhookType } from "alchemy-sdk";
+
+              // authToken is required to use Notify APIs. Found on the top right corner of
+              // https://dashboard.alchemy.com/notify.
+              const settings = {
+                authToken: "your-notify-auth-token",
+                network: Network.ETH_MAINNET, // Replace with your network.
+              };
+
+              const alchemy = new Alchemy(settings);
+
+              const minedTxWebhook = await alchemy.notify.createWebhook(
+                "https://webhook.site/your-webhook-url",
+                WebhookType.MINED_TRANSACTION,
+                { appId: "wq9fgv022aff81pg" }
+              );
+
+              await alchemy.notify.deleteWebhook("wh_qv16bt12wbj9ksss");
+              await alchemy.notify.deleteWebhook(minedTxWebhook);
+      responses:
+        '200':
+          description: 'Returns empty object.'
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: delete-webhook
+
+components:
+  schemas:
+    X-Alchemy-Token:
+      name: X-Alchemy-Token
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'Alchemy Auth token to use the Notify API.'
+      example: 'your-X-Alchemy-Token'
+    webhook_id:
+      name: webhook_id
+      schema:
+        type: string
+      description: 'ID of the address activity webhook.'
+      in: query
+      required: true
+    variable:
+      name: variable
+      schema:
+        type: string
+      description: 'String denoting a Custom Webhook variable'
+      in: path
+      required: true
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 100
+        description: The maximum number of items to return per page.
+    pageKey:
+      name: pageKey
+      schema:
+        type: string
+        default: '0'
+      description: 'Page cursor for the next page.'
+      in: query
+    after:
+      name: after
+      required: false
+      schema:
+        type: string
+      description: 'The cursor that points to the end of the current set of results.'
+      in: query
+    nft_filter_object:
+      type: object
+      properties:
+        contract_address:
+          type: string
+          description: Contract address for an NFT. If this field and the `token_id` aren't set all NFT activity updates will be sent.
+        token_id:
+          type: string
+          description: Token ID for an NFT. Can be decimal or "0x" prefixed hex integer string. If this field and the `token_id` aren't set all NFT activity updates will be sent. This field can't be set if the `contract_address` field isn't set.
+    nft_metadata_filter_object:
+      type: object
+      properties:
+        contract_address:
+          type: string
+          description: Contract address for an NFT. If this field and the `token_id` aren't set all metadata updates will be sent.
+        token_id:
+          type: string
+          description: Token ID for an NFT. Can be decimal or "0x" prefixed hex integer string. If this field and the `token_id` aren't set all metadata updates will be sent. This field can't be set if the `contract_address` field isn't set.
+    create_webhook:
+      type: object
+      required:
+        - network
+        - webhook_type
+        - webhook_url
+      properties:
+        network:
+          $ref: '#/components/schemas/network'
+        webhook_type:
+          $ref: '#/components/schemas/webhook_type'
+        webhook_url:
+          type: string
+          description: 'URL where requests are sent'
+        graphql_query:
+          oneOf:
+            - type: string
+              description: 'A valid, stringified GraphQL query that you would like to host on Alchemy'
+            - type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: 'A valid, stringified GraphQL query that you would like to host on Alchemy'
+                skip_empty_messages:
+                  type: boolean
+                  description: 'Boolean parameter to skip sending webhooks for empty messages.'
+        app_id:
+          type: string
+          description: |
+            Required for mined and dropped webhooks, optional for address activity or custom webhooks. Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
+        addresses:
+          type: array
+          description: 'List of addresses you want to track. Required for address activity webhooks only.'
+          items:
+            type: string
+        nft_filters:
+          type: array
+          description: list of nft filter objects to track transfer activity for
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+        nft_metadata_filters:
+          type: array
+          description: list of nft metadata filter objects to track metadata updates for
+          items:
+            $ref: '#/components/schemas/nft_metadata_filter_object'
+    create_custom_webhook:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          description: 'A variable defined as a set of addresses or byte32 elements. Must be a non-empty list.'
+          default: []
+          items:
+            type: string
+    update_webhook_addresses:
+      type: object
+      required:
+        - webhook_id
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        addresses_to_add:
+          type: array
+          default: []
+          description: 'List of addresses to add, use [] if none.'
+          items:
+            type: string
+        addresses_to_remove:
+          type: array
+          default: []
+          description: 'List of addresses to remove, use [] if none.'
+          items:
+            type: string
+    update_webhook_nft_filters:
+      type: object
+      required:
+        - webhook_id
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        nft_filters_to_add:
+          type: array
+          default: []
+          description: 'List of nft filters to add, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+        nft_filters_to_remove:
+          type: array
+          default: []
+          description: 'List of addresses to remove, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+    update_custom_webhook_variable:
+      type: object
+      properties:
+        add:
+          type: array
+          default: []
+          description: 'Set of addresses or byte32 elements to be ADDED to a given Custom Webhook variable'
+          items:
+            type: string
+        delete:
+          type: array
+          default: []
+          description: 'Set of addresses or byte32 elements to be DELETED for a given Custom Webhook variable'
+          items:
+            type: string
+    update_webhook_nft_metadata_filters:
+      type: object
+      required:
+        - webhook_id
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        nft_metadata_filters_to_add:
+          type: array
+          description: 'List of nft metadata filters to add, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_metadata_filter_object'
+        nft_metadata_filters_to_remove:
+          type: array
+          description: 'List of nft metadata filters to remove, use [] if none.'
+          items:
+            $ref: '#/components/schemas/nft_metadata_filter_object'
+    replace_webhook_addresses:
+      type: object
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook.'
+        addresses:
+          type: array
+          description: 'New list of addresses to track. This replaces any existing addresses.'
+          items:
+            type: string
+    update_webhook:
+      type: object
+      properties:
+        webhook_id:
+          type: string
+          description: 'ID of the address activity webhook'
+        is_active:
+          type: boolean
+          description: |
+            True - set webhook to active state
+            False - set webhook to inactive state
+    custom_webhook_object_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'Set of variable elements for a defined Custom Webhook variable'
+    webhook_object_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'List of webhooks for your team.'
+          items:
+            $ref: '#/components/schemas/webhook_creation_data'
+    webhook_creation_data:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Unique ID for given webhook.'
+        network:
+          $ref: '#/components/schemas/network'
+        webhook_type:
+          $ref: '#/components/schemas/webhook_type'
+        webhook_url:
+          type: string
+          description: 'URL endpoint where webhook is sent'
+        is_active:
+          type: boolean
+          description: '(boolean) - true if webhook is active, false if not active.'
+        time_created:
+          type: integer
+          description: 'Timestamp webhook was created.'
+        addresses:
+          type: array
+          description: 'List of addresses being tracked, null if not address activity webhook.'
+          items:
+            type: string
+        version:
+          type: string
+          description: Webhook version (v1 or v2)
+        signing_key:
+          type: string
+          description: 'Signing key for given webhook.'
+    gas_price_low:
+      type: integer
+      description: 'Low end of gas price threshold, null if not gas price webhook.'
+    gas_price_high:
+      type: integer
+      description: 'High end of gas price threshold, null if not gas price webhook.'
+    gas_price_type:
+      type: integer
+      description: 'Metric used for gas price threshold, null if not gas price webhook'
+    version:
+      type: string
+      description: 'V1 or V2'
+      enum:
+        - V1
+        - V2
+    webhook_addresses_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'List of addresses associated with given webhook.'
+          items:
+            type: string
+        pagination:
+          type: object
+          description: 'Information for pagination.'
+          properties:
+            cursors:
+              type: object
+              properties:
+                after:
+                  $ref: '#/components/schemas/after'
+            total_count:
+              type: integer
+              description: 'Total number of addresses.'
+    create_webhook_response:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/webhook_creation_data'
+    update_webhook_response:
+      type: object
+      properties:
+        data:
+          allOf:
+            - $ref: '#/components/schemas/webhook_creation_data'
+            - type: object
+              properties:
+                signing_key:
+                  type: string
+                  description: 'Signing key for given webhook.'
+    webhook_nft_filters_response:
+      type: object
+      properties:
+        data:
+          type: array
+          description: 'List of nft filter objects'
+          items:
+            $ref: '#/components/schemas/nft_filter_object'
+        pagination:
+          type: object
+          description: 'Information for pagination.'
+          properties:
+            cursors:
+              type: object
+              properties:
+                after:
+                  $ref: '#/components/schemas/after'
+            total_count:
+              type: integer
+              description: 'Total number of nft filters.'
+    network:
+      type: string
+      description: 'Network of webhook'
+      enum:
+        - ETH_MAINNET
+        - ETH_SEPOLIA
+        - ETH_HOLESKY
+        - ARBMAINNET
+        - ARBSEPOLIA
+        - ARBNOVA_MAINNET
+        - MATICMAINNET
+        - MATICMUMBAI
+        - OPTMAINNET
+        - OPTGOERLI
+        - BASE_MAINNET
+        - BASE_SEPOLIA
+        - ZKSYNC_MAINNET
+        - ZKSYNC_SEPOLIA
+        - LINEA_MAINNET
+        - LINEA_SEPOLIA
+        - GNOSIS_MAINNET
+        - GNOSIS_CHIADO
+        - FANTOM_MAINNET
+        - FANTOM_TESTNET
+        - METIS_MAINNET
+        - BLAST_MAINNET
+        - BLAST_SEPOLIA
+        - SHAPE_MAINNET
+        - SHAPE_SEPOLIA
+        - ZETACHAIN_MAINNET
+        - ZETACHAIN_TESTNET
+        - WORLDCHAIN_MAINNET
+        - WORLDCHAIN_SEPOLIA
+        - BNB_MAINNET
+        - BNB_TESTNET
+        - AVAX_MAINNET
+        - AVAX_FUJI
+        - SONEIUM_MAINNET
+        - SONEIUM_MINATO
+        - GEIST_POLTER
+        - GEIST_MAINNET
+        - STARKNET_MAINNET
+        - STARKNET_SEPOLIA
+        - STARKNET_GOERLI
+        - INK_MAINNET
+        - INK_SEPOLIA
+        - ROOTSTOCK_MAINNET
+        - ROOTSTOCK_TESTNET
+        - SCROLL_MAINNET
+        - SCROLL_SEPOLIA
+        - LINEA_MAINNET
+        - LINEA_SEPOLIA
+        - MONAD_TESTNET
+        - SONIC_MAINNET
+        - SONIC_TESTNET
+        - SETTLUS_SEPTESTNET
+        - APECHAIN_MAINNET
+        - APECHAIN_CURTIS
+      default: ETH_MAINNET
+    webhook_type:
+      type: string
+      description: 'Type of webhook.'
+      enum:
+        - GRAPHQL
+        - MINED_TRANSACTION
+        - DROPPED_TRANSACTION
+        - ADDRESS_ACTIVITY
+        - NFT_ACTIVITY
+        - NFT_METADATA_UPDATE
