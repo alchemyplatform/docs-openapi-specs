@@ -1434,7 +1434,6 @@ by-address:
                 type: string
                 description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
 
-
 # ============= Debug API Methods ===============
 tracer:
   type: string
@@ -2739,6 +2738,7 @@ pm_getPaymasterData:
                 description: An object containing context. Must have `policyId`.
                 properties:
                   policyId:
+                    description: The policy ID or list of policy IDs
                     oneOf:
                       - type: string
                         format: uuid
@@ -2746,7 +2746,6 @@ pm_getPaymasterData:
                         items:
                           type: string
                           format: uuid
-                  description: The policy ID or list of policy IDs
                   webhookData:
                     type: string
                     description: Additional data you wish to include in the request, such as proof of humanity.
