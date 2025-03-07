@@ -14,7 +14,7 @@ paths:
     post:
       summary: Token Balances By Wallet (Multi-Chain, 🆕 Beta)
       description: >
-        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address.
+        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ["Token API Endpoints"]
       x-readme:
         samples-languages:
