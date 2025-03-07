@@ -1436,7 +1436,6 @@ by-address:
                 type: string
                 description: 'String - UUID for pagination. If more results are available, a uuid pageKey will be returned in the response. Pass that uuid into pageKey to fetch the next 1000 or maxCount.'
 
-
 # ============= Debug API Methods ===============
 tracer:
   type: string
@@ -2536,8 +2535,14 @@ alchemy_requestPaymasterAndData:
                 type: string
                 description: Additional data you wish to include in the request, such as proof of humanity.
               policyId:
-                type: string
-                description: The policy ID
+                oneOf:
+                  - type: string
+                    format: uuid
+                  - type: array
+                    items:
+                      type: string
+                      format: uuid
+                description: The policy ID or list of policy IDs
                 default: '0x1234567890123456789012345678901234567890123456789012345678901234'
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
@@ -2567,8 +2572,14 @@ alchemy_requestGasAndPaymasterAndData:
                 type: string
                 description: Additional data you wish to include in the request, such as proof of humanity.
               policyId:
-                type: string
-                description: The policy ID
+                oneOf:
+                  - type: string
+                    format: uuid
+                  - type: array
+                    items:
+                      type: string
+                      format: uuid
+                description: The policy ID or list of policy IDs
                 default: '69d524a7-e932-4214-8673-dcdcba31bb42'
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
@@ -2729,9 +2740,14 @@ pm_getPaymasterData:
                 description: An object containing context. Must have `policyId`.
                 properties:
                   policyId:
-                    type: string
-                    format: uuid
-                    description: The gas policy ID
+                    description: The policy ID or list of policy IDs
+                    oneOf:
+                      - type: string
+                        format: uuid
+                      - type: array
+                        items:
+                          type: string
+                          format: uuid
                   webhookData:
                     type: string
                     description: Additional data you wish to include in the request, such as proof of humanity.
