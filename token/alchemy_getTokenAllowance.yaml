@@ -58,7 +58,7 @@ paths:
   /{apiKey}:
     post:
       summary: Token Allowance By Spender & Owner
-      description: 'alchemy_getTokenAllowance - Returns the amount which the spender is allowed to withdraw from the owner.' This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      description: 'alchemy_getTokenAllowance - Returns the amount which the spender is allowed to withdraw from the owner. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).'
       tags: []
       parameters:
         - name: apiKey
