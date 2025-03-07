@@ -1,3 +1,5 @@
+# To Update:
+# rdme openapi tokens.yaml --key=<key> --id=67cb0078f56864003061cf66
 openapi: 3.1.0
 info:
   title: 🧠 Data
@@ -11,64 +13,14 @@ x-sandbox:
     value: token
 paths:
   ####################################################
-  # NFT APIs
+  # Token APIs
   ####################################################
-  ####################################################
-  # Prices APIs
-  ####################################################
-  "/{apiKey}/tokens/by-symbol":
-    get:
-      summary: Token Prices By Symbol
-      description: >
-        Fetches current prices for multiple tokens using their symbols. Returns a list of token prices, each containing the symbol, prices, and an optional error field.
-      tags: ["📈 Price APIs"]
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-        - in: query
-          name: symbols
-          required: true
-          description: >
-            Array of token symbols (limit 25). Example: symbols=[ETH,BTC]
-          schema:
-            type: array
-            minItems: 1
-            items:
-              type: string
-              default: ETH
-          style: form
-          explode: true
-      responses:
-        "200":
-          description: Successful response, even if some tokens are missing.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TokenPricesResponse"
-        "400":
-          description: 'Bad Request: Malformed request or missing parameters.'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "429":
-          description: 'Too Many Requests: Rate limit exceeded.'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-      # operationId: get-token-prices-by-symbol
-  "/{apiKey}/tokens/by-address":
+  "/{apiKey}/assets/tokens/by-address":
     post:
-      summary: Token Prices By Address
+      summary: Tokens By Wallet (Multi-Chain, 🆕 Beta)
       description: >
-        Fetches current prices for multiple tokens using network and address pairs. Returns a list of token prices, each containing the network, address, prices, and an optional error field.
-      tags: ["📈 Price APIs"]
+        Fetches current balances, prices, and metadata for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      tags: ["🆕 Multi-Chain Token APIs"]
       x-readme:
         samples-languages:
           - javascript
@@ -82,14 +34,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ByAddressRequest"
+              $ref: "#/components/schemas/ByAddressRequestWithOptions"
       responses:
         "200":
-          description: Successful response, even if some prices are missing.
+          description: Successful response!
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AddressPricesResponse"
+                $ref: "#/components/schemas/TokensResponse"
         "400":
           description: 'Bad Request: Invalid input (e.g., malformed JSON).'
           content:
@@ -102,62 +54,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-      # operationId: get-token-prices-by-address
-  "/{apiKey}/tokens/historical":
-    post:
-      summary: Historical Token Prices
-      description: >
-        Provides historical price data for a single token over a time range. You can identify the token by symbol or by network and contract address.
-      tags: ["📈 Price APIs"]
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/HistoricalPricesRequest"
-      responses:
-        "200":
-          description: Successful response with historical price data.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/HistoricalPricesResponse"
-        "400":
-          description: 'Bad Request: Invalid input (e.g., malformed request, missing parameters).'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "404":
-          description: 'Not Found: Token not found.'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "429":
-          description: 'Too Many Requests: Rate limit exceeded.'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-      operationId: assets-get-historical-token-prices
-  ####################################################
-  # Token APIs
-  ####################################################
-  "/{apiKey}/assets/tokens/balances/by-address":
+      operationId: get-tokens-by-address
+  "/{apiKey}/tokens/balances/by-address":
     post:
       summary: Token Balances By Wallet (Multi-Chain, 🆕 Beta)
       description: >
         Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address.
-      tags: ["🪙 Token APIs"]
+      tags: ["🆕 Multi-Chain Token APIs"]
       x-readme:
         samples-languages:
           - javascript
@@ -214,7 +117,23 @@ components:
           </style>
           For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
       required: true
-
+    withMetadata:
+      name: withMetadata
+      description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+      schema:
+        type: boolean
+        default: true
+      in: query
+    withPrices:
+      name: withPrices
+      description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+      schema:
+        type: boolean
+        default: true
+      in: query
+  ####################################################
+  # Common Requests
+  ####################################################
     ByAddressRequest:
       type: object
       properties:
@@ -226,6 +145,24 @@ components:
             Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
           items:
             $ref: "#/components/schemas/AddressItem"
+      required:
+        - addresses
+
+    ByAddressRequestWithOptions:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+        withMetadata:
+          - $ref: "#/components/schemas/withMetadata"
+        withPrices:
+          - $ref: "#/components/schemas/withPrices"
       required:
         - addresses
 
@@ -276,6 +213,42 @@ components:
   ####################################################
   # Token APIs
   ####################################################
+    TokensResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of tokens by address, with prices and metadata.
+          items:
+            $ref: "#/components/schemas/TokensResponseItem"
+            # should references prices for the prices one.
+      required:
+        - data
+
+    TokensResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Wallet address.
+        tokenAddress:
+          type: string
+          description: Token address.
+        tokenBalance:
+          type: string
+          description: Balance of that particular token.
+        tokenMetadata:
+          $ref: ../evm_body.yaml#/alchemy_getTokenMetadata
+        tokenPrices:
+          $ref: "../prices/prices.yaml#/components/schemas/AddressPriceResponseItem"
+      required:
+        - network
+        - address
+        - tokenAddress
+        - tokenBalance
     TokenBalancesResponse:
       type: object
       properties:
