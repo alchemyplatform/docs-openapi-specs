@@ -148,7 +148,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-      # operationId: get-historical-token-prices
+      operationId: assets-get-historical-token-prices
   ####################################################
   # Token APIs
   ####################################################
@@ -192,8 +192,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: assets-token-balances-by-address
-
-
 ####################################################
 # Common Components for All APIs
 ####################################################
