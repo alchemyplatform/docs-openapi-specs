@@ -53,7 +53,7 @@ paths:
   '/v3/{apiKey}/getNFTsForOwner':
     get:
       summary: NFTs By Owner
-      description: getNFTsForOwner - Retrieves all NFTs currently owned by a specified address.
+      description: getNFTsForOwner - Retrieves all NFTs currently owned by a specified address. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Ownership Endpoints']
       parameters:
         - $ref: '#/components/schemas/owner'
@@ -105,7 +105,7 @@ paths:
   '/v3/{apiKey}/getNFTsForContract':
     get:
       summary: NFTs By Contract
-      description: getNFTsForContract - Retrieves all NFTs associated with a specific NFT contract.
+      description: getNFTsForContract - Retrieves all NFTs associated with a specific NFT contract. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -141,7 +141,7 @@ paths:
   '/v3/{apiKey}/getNFTsForCollection':
     get:
       summary: NFTs By Collection
-      description: getNFTsForCollection - Retrieves all NFTs associated with a specific NFT collection.
+      description: getNFTsForCollection - Retrieves all NFTs associated with a specific NFT collection. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -208,7 +208,7 @@ paths:
   '/v3/{apiKey}/getNFTMetadata':
     get:
       summary: NFT Metadata By Token ID
-      description: getNFTMetadata - Retrieves the metadata associated with a specific NFT.
+      description: getNFTMetadata - Retrieves the metadata associated with a specific NFT. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -236,7 +236,7 @@ paths:
   '/v3/{apiKey}/getNFTMetadataBatch':
     post:
       summary: NFT Metadata By Token ID [Batch]
-      description: getNFTMetadataBatch - Retrieves metadata for up to 100 specified NFT contracts in a single request.
+      description: getNFTMetadataBatch - Retrieves metadata for up to 100 specified NFT contracts in a single request. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -298,7 +298,7 @@ paths:
   '/v3/{apiKey}/getContractMetadata':
     get:
       summary: Contract Metadata By Address
-      description: getContractMetadata - Retrieves high-level collection or contract-level information for an NFT.
+      description: getContractMetadata - Retrieves high-level collection or contract-level information for an NFT. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -321,7 +321,7 @@ paths:
   '/v3/{apiKey}/getCollectionMetadata':
     get:
       summary: Collection Metadata By Slug
-      description: getCollectionMetadata - Retrieves high-level collection or contract-level information for an NFT collection.
+      description: getCollectionMetadata - Retrieves high-level collection or contract-level information for an NFT collection. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -414,7 +414,7 @@ paths:
   '/v3/{apiKey}/getOwnersForNFT':
     get:
       summary: Owners By NFT
-      description: getOwnersForNFT - Retrieves the owner(s) for a specific token.
+      description: getOwnersForNFT - Retrieves the owner(s) for a specific token. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Ownership Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -447,7 +447,7 @@ paths:
   '/v3/{apiKey}/getOwnersForContract':
     get:
       summary: Owners By Contract
-      description: getOwnersForContract - Retrieves all owners associated with a specific NFT contract.
+      description: getOwnersForContract - Retrieves all owners associated with a specific NFT contract. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Ownership Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -485,7 +485,7 @@ paths:
   '/v3/{apiKey}/getSpamContracts':
     get:
       summary: Spam Contracts
-      description: getSpamContracts - Returns a list of all spam contracts marked by Alchemy.
+      description: getSpamContracts - Returns a list of all spam contracts marked by Alchemy. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Spam Endpoints']
       servers:
         - url: https://{network}.g.alchemy.com/nft
@@ -521,7 +521,7 @@ paths:
   '/v3/{apiKey}/isSpamContract':
     get:
       summary: Is Spam Contract
-      description: isSpamContract - Determines whether a specific contract is marked as spam by Alchemy.
+      description: isSpamContract - Determines whether a specific contract is marked as spam by Alchemy. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Spam Endpoints']
       servers:
         - url: https://{network}.g.alchemy.com/nft
@@ -557,7 +557,7 @@ paths:
   '/v3/{apiKey}/isAirdropNFT':
     get:
       summary: Is Airdrop NFT
-      description: isAirdropNFT - Determines whether a specific token is marked as an airdrop. Airdrops are defined as NFTs minted to a user address in a transaction sent by a different address.
+      description: isAirdropNFT - Determines whether a specific token is marked as an airdrop. Airdrops are defined as NFTs minted to a user address in a transaction sent by a different address. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Spam Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -587,7 +587,7 @@ paths:
   '/v3/{apiKey}/summarizeNFTAttributes':
     get:
       summary: Attributes Summary By Contract
-      description: summarizeNFTAttributes - Generates a summary of attribute prevalence for a specific NFT collection.
+      description: summarizeNFTAttributes - Generates a summary of attribute prevalence for a specific NFT collection. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       servers:
         - url: https://{network}.g.alchemy.com/nft
@@ -630,7 +630,7 @@ paths:
   '/v3/{apiKey}/getFloorPrice':
     get:
       summary: Floor Prices By Slug
-      description: getFloorPrice - Retrieves the floor prices of an NFT collection across different marketplaces.
+      description: getFloorPrice - Retrieves the floor prices of an NFT collection across different marketplaces. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Sales Endpoints']
       servers:
         - url: https://{network}.g.alchemy.com/nft
@@ -707,7 +707,7 @@ paths:
   '/v3/{apiKey}/isHolderOfContract':
     get:
       summary: Is Holder Of Contract
-      description: isHolderOfContract - Determines whether a specific wallet holds any NFT from a given contract.
+      description: isHolderOfContract - Determines whether a specific wallet holds any NFT from a given contract. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Ownership Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'
@@ -736,7 +736,7 @@ paths:
   '/v3/{apiKey}/computeRarity':
     get:
       summary: Attribute Rarity By NFT
-      description: computeRarity - Calculates the rarity of each attribute within an NFT.
+      description: computeRarity - Calculates the rarity of each attribute within an NFT. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       servers:
         - url: https://{network}.g.alchemy.com/nft
@@ -786,7 +786,7 @@ paths:
   '/v3/{apiKey}/getNFTSales':
     get:
       summary: NFT Sales
-      description: getNFTSales - Retrieves NFT sales that have occurred through on-chain marketplaces.
+      description: getNFTSales - Retrieves NFT sales that have occurred through on-chain marketplaces. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Sales Endpoints']
       servers:
         - url: https://{network}.g.alchemy.com/nft
@@ -1041,7 +1041,7 @@ paths:
   '/v3/{apiKey}/refreshNftMetadata':
     post:
       summary: Refresh NFT Metadata
-      description: refreshNftMetadata - Submits a request for Alchemy to refresh the cached metadata of a specific NFT token.
+      description: refreshNftMetadata - Submits a request for Alchemy to refresh the cached metadata of a specific NFT token. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: ['NFT Metadata Endpoints']
       parameters:
         - $ref: '#/components/schemas/apiKey'

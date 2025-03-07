@@ -58,7 +58,7 @@ paths:
   /{apiKey}:
     post:
       summary: Token Balances By Wallet
-      description: 'alchemy_getTokenBalances - Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.'
+      description: 'alchemy_getTokenBalances - Returns ERC20 token balances for all tokens the given address has ever transacted in with. Optionally accepts a list of contracts.' This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
       tags: []
       parameters:
         - name: apiKey
