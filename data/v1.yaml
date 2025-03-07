@@ -17,10 +17,10 @@ paths:
   ####################################################
   "/{apiKey}/assets/tokens/by-address":
     post:
-      summary: Tokens By Wallet (Multi-Chain, 🆕 Beta)
+      summary: Tokens By Wallet
       description: >
         Fetches current balances, prices, and metadata for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
-      tags: ["🆕 Multi-Chain Token APIs"]
+      tags: ["🆕 Multi-Chain Token APIs (Beta)"]
       x-readme:
         samples-languages:
           - javascript
@@ -57,10 +57,10 @@ paths:
       operationId: get-tokens-by-address
   "/{apiKey}/tokens/balances/by-address":
     post:
-      summary: Token Balances By Wallet (Multi-Chain, 🆕 Beta)
+      summary: Token Balances By Wallet
       description: >
-        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address.
-      tags: ["🆕 Multi-Chain Token APIs"]
+        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens)
+      tags: ["🆕 Multi-Chain Token APIs (Beta)"]
       x-readme:
         samples-languages:
           - javascript
@@ -94,7 +94,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-      operationId: assets-token-balances-by-address
+      operationId: get-token-balances-by-address
 ####################################################
 # Common Components for All APIs
 ####################################################
