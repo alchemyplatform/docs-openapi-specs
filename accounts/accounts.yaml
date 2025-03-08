@@ -1,18 +1,18 @@
 openapi: 3.1.0
 info:
-  title: 👤 Embedded Accounts
-  version: "1.0"
+  title: 👤 Smart Wallets
+  version: '1.0'
 servers:
   - url: https://api.g.alchemy.com/signer/v1
 security:
   - apiKey: []
 paths:
-  "/signup":
+  '/signup':
     post:
-      summary: Create Account
+      summary: Create Wallet
       description: >
-        Enables the creation of an Embedded Account using Alchemy Signer. It allows applications to authenticate users and facilitate signature operations on their behalf. An Embedded Account is either an on-chain Modular Account with Alchemy Signer as the owner, a standalone EOA signer managed through Alchemy Signer, or a standalone Solana Wallet managed through the Alchemy Signer.
-      tags: ["Accounts API Endpoints"]
+        Enables the creation of a Smart Wallet using Alchemy Signer. It allows applications to authenticate users and facilitate signature operations on their behalf. A Smart Wallet is either an on-chain Modular Account with Alchemy Signer as the owner, a standalone EOA signer managed through Alchemy Signer, or a standalone Solana Wallet managed through the Alchemy Signer.
+      tags: ['Wallets API Endpoints']
       security:
         - apiKey: [] # Maps the request to a specific project using the Alchemy API key.
       x-readme:
@@ -58,26 +58,26 @@ paths:
                           items:
                             type: string
                 targetPublicKey:
-                  $ref: "#/components/schemas/targetPublicKey"
+                  $ref: '#/components/schemas/targetPublicKey'
                 expirationSeconds:
-                  $ref: "#/components/schemas/expirationSeconds"
+                  $ref: '#/components/schemas/expirationSeconds'
       responses:
-        "200":
-          description: Account creation response.
+        '200':
+          description: Wallet creation response.
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   orgId:
-                    $ref: "#/components/schemas/orgId"
+                    $ref: '#/components/schemas/orgId'
       operationId: createAccount
-  "/auth":
+  '/auth':
     post:
       summary: Send Auth Email
       description: >
-        Sends a user an email containing a magic link for authentication, allowing them to complete the login process and access their Embedded Account through a secure, simple email verification method. Developers can customize the appearance and content of the authentication email through Alchemy dashboard to align with their application's branding and user experience requirements.
-      tags: ["Accounts API Endpoints"]
+        Sends a user an email containing a magic link for authentication, allowing them to complete the login process and access their Smart Wallet through a secure, simple email verification method. Developers can customize the appearance and content of the authentication email through Alchemy dashboard to align with their application's branding and user experience requirements.
+      tags: ['Wallets API Endpoints']
       security:
         - apiKey: [] # Ensures the request is authenticated and mapped to a specific project using the Alchemy API key.
       x-readme:
@@ -93,14 +93,14 @@ paths:
               type: object
               properties:
                 email:
-                  $ref: "#/components/schemas/email"
+                  $ref: '#/components/schemas/email'
                   description: The email address of the user requesting access. This is where the authentication email, containing the magic link, will be sent.
                 targetPublicKey:
-                  $ref: "#/components/schemas/targetPublicKey"
+                  $ref: '#/components/schemas/targetPublicKey'
                 expirationSeconds:
-                  $ref: "#/components/schemas/expirationSeconds"
+                  $ref: '#/components/schemas/expirationSeconds'
       responses:
-        "200":
+        '200':
           description: Authentication email sent successfully.
           content:
             application/json:
@@ -108,15 +108,15 @@ paths:
                 type: object
                 properties:
                   orgId:
-                    $ref: "#/components/schemas/orgId"
+                    $ref: '#/components/schemas/orgId'
                     description: The organization ID associated with the user and the application, facilitating the authentication process within the context of the user's application.
       operationId: sendEmailAuth
-  "/whoami":
+  '/whoami':
     post:
       summary: Authenticate User
       description: >
-        Authenticates a user and returns their identity and account information, enabling the application to grant the user access to their Embedded Account functionalities. This endpoint is used to confirm user authentication via email or passkey, thereby authorizing them to perform actions as the owner of a smart account or to conduct transactions as an EOA signer. It ensures that only authenticated users can access and manage their accounts.
-      tags: ["Accounts API Endpoints"]
+        Authenticates a user and returns their identity and wallet information, enabling the application to grant the user access to their Smart Wallet functionalities. This endpoint is used to confirm user authentication via email or passkey, thereby authorizing them to perform actions as the owner of a smart account or to conduct transactions as an EOA signer. It ensures that only authenticated users can access and manage their wallets.
+      tags: ['Wallets API Endpoints']
       security:
         - apiKey: [] # Ensures authentication and project-specific request mapping.
       x-readme:
@@ -132,11 +132,11 @@ paths:
               type: object
               properties:
                 stampedRequest:
-                  $ref: "#/components/schemas/SignedTurnkeyRequest"
+                  $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: >
                     A stamped [Turnkey Whoami Request](https://docs.turnkey.com/api#tag/Sessions/operation/GetWhoami).
       responses:
-        "200":
+        '200':
           description: User authentication successful.
           content:
             application/json:
@@ -144,27 +144,27 @@ paths:
                 type: object
                 properties:
                   email:
-                    $ref: "#/components/schemas/email"
+                    $ref: '#/components/schemas/email'
                     description: The authenticated user's email address.
                   userId:
                     type: string
                     description: A unique identifier for the authenticated user.
                   orgId:
-                    $ref: "#/components/schemas/orgId"
+                    $ref: '#/components/schemas/orgId'
                     description: The organization ID associated with the authenticated user's account.
                   address:
                     type: string
-                    description: The Ethereum address of the user's signer. Essential for executing transactions and managing the account.
+                    description: The Ethereum address of the user's signer. Essential for executing transactions and managing the wallet.
                   solanaAddress:
                     type: string
-                    description: The Solana address of the user's signer. Required for Solana transactions and account management.
+                    description: The Solana address of the user's signer. Required for Solana transactions and wallet management.
       operationId: authUser
-  "/lookup":
+  '/lookup':
     post:
       summary: Get User
       description: >
-        Enables applications to query the existence of a user account based on an email address.
-      tags: ["Accounts API Endpoints"]
+        Enables applications to query the existence of a user wallet based on an email address.
+      tags: ['Wallets API Endpoints']
       security:
         - apiKey: [] # Ensures that the request is authenticated and mapped to a specific project.
       x-readme:
@@ -180,10 +180,10 @@ paths:
               type: object
               properties:
                 email:
-                  $ref: "#/components/schemas/email"
+                  $ref: '#/components/schemas/email'
                   description: The email address of the user to look up. This is used to verify if an associated account exists within the system.
       responses:
-        "200":
+        '200':
           description: Query successful. Returns organization ID if an account exists for the provided email address.
           content:
             application/json:
@@ -191,16 +191,16 @@ paths:
                 type: object
                 properties:
                   orgId:
-                    $ref: "#/components/schemas/orgId"
+                    $ref: '#/components/schemas/orgId'
                     description: >
                       The organization ID associated with the user. This ID is returned if an account exists for the given email address. If no account is found, this value will be null. The response is intentionally limited to this information to protect user privacy and security.
       operationId: getUser
-  "/sign-payload":
+  '/sign-payload':
     post:
       summary: Sign Message
       description: >
-        Allows for the signing of arbitrary payloads using the authenticated user's signer. The payload to be signed should be included within the body of a stamped request, ensuring the integrity and authenticity of the message to be signed. This operation is important for executing transactions and interactions on the blockchain that require verified signatures from the user's account.
-      tags: ["Accounts API Endpoints"]
+        Allows for the signing of arbitrary payloads using the authenticated user's signer. The payload to be signed should be included within the body of a stamped request, ensuring the integrity and authenticity of the message to be signed. This operation is important for executing transactions and interactions on the blockchain that require verified signatures from the user's wallet.
+      tags: ['Wallets API Endpoints']
       security:
         - apiKey: [] # Secures the request and ensures it is mapped to a specific project.
       x-readme:
@@ -216,10 +216,10 @@ paths:
               type: object
               properties:
                 stampedRequest:
-                  $ref: "#/components/schemas/SignedTurnkeyRequest"
+                  $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: |
                     A stamped request that includes the payload to be signed. The payload is part of the stamped request's body, which should conform to the structure outlined in the Turnkey API documentation for signing raw payloads.
-                    Because users are given accounts for both Ethereum and Solana, it's possible to request signatures for both chains. The following is an example of the payload structure for signing bytes on Ethereum and Solana:
+                    Because users are given wallets for both Ethereum and Solana, it's possible to request signatures for both chains. The following is an example of the payload structure for signing bytes on Ethereum and Solana:
 
                     Signing bytes for Ethereum:
                     ```
@@ -250,10 +250,10 @@ paths:
                       },
                     }
                     ```
-                    
+
                     For more details on the parameters of the request body, see [Turnkey's API Reference](https://docs.turnkey.com/api#tag/Signing/operation/SignRawPayload).
       responses:
-        "200":
+        '200':
           description: Message signing successful.
           content:
             application/json:
@@ -264,12 +264,12 @@ paths:
                     type: string
                     description: The signature generated for the specified payload.
       operationId: signMessage
-  "/account/authenticator":
+  '/account/authenticator':
     post:
       summary: Register New Authenticator
       description: >
-        Enables users to register a new authenticator with their account, supporting enhanced security and multi-device accessibility. Currently, this functionality supports adding a new passkey as an authenticator, facilitating secure login across different devices.
-      tags: ["Accounts API Endpoints"]
+        Enables users to register a new authenticator with their wallet, supporting enhanced security and multi-device accessibility. Currently, this functionality supports adding a new passkey as an authenticator, facilitating secure login across different devices.
+      tags: ['Wallets API Endpoints']
       security:
         - apiKey: [] # Secures the request and ensures it is mapped to a specific project.
       x-readme:
@@ -285,11 +285,11 @@ paths:
               type: object
               properties:
                 stampedAddAuthenticatorRequest:
-                  $ref: "#/components/schemas/SignedTurnkeyRequest"
+                  $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: >
-                    A stamped request that specifies the details of the new authenticator to be registered. This ensures the integrity of the request and confirms the user's intent to add a new authentication method to their account. The body of this request must match [Turnkey's Create Authenticators Request Body](https://docs.turnkey.com/api#tag/Authenticators/operation/CreateAuthenticators).
+                    A stamped request that specifies the details of the new authenticator to be registered. This ensures the integrity of the request and confirms the user's intent to add a new authentication method to their wallet. The body of this request must match [Turnkey's Create Authenticators Request Body](https://docs.turnkey.com/api#tag/Authenticators/operation/CreateAuthenticators).
       responses:
-        "200":
+        '200':
           description: Authenticator registration successful.
           content:
             application/json:
@@ -298,7 +298,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: "ok"
+                    example: 'ok'
                     description: A confirmation message indicating the successful registration of the new authenticator.
       operationId: registerNewAuthenticator
 
@@ -342,14 +342,14 @@ components:
       name: targetPublicKey
       description: |
         Authentication of a client is done via an HPKE flow that allows the client and TEE to exchange an encrypted bundle without revealing it to a middleman (you, us, or Turnkey). The targetPublicKey is the public key that the client uses to decrypt a the shared secret.
-        
+
         See more in the [Turnkey Docs](https://docs.turnkey.com/embedded-wallets/sub-organization-auth).
       schema:
         type: string
       required: false
     orgId:
       name: orgId
-      description: The organization ID associated with the user and application, enabling the management of Embedded Accounts.
+      description: The organization ID associated with the user and application, enabling the management of Smart Wallets.
       schema:
         type: string
     SignedTurnkeyRequest:
@@ -379,6 +379,6 @@ components:
               required: true
             stampHeaderValue:
               type: string
-              description: > 
+              description: >
                 The stamp over the request body. See the [Turnkey Stamps Documentation](https://docs.turnkey.com/api-design/stamps) for information on the format of this value.
               required: true
