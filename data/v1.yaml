@@ -1,0 +1,519 @@
+# To Update:
+# rdme openapi tokens.yaml --key=<key> --id=67cb0078f56864003061cf66
+openapi: 3.1.0
+info:
+  title: 🧠 Data
+  version: "1.0"
+servers: # servers are also specified at the method level, if there isn't a specification then the server is supported on all the networks below
+  - url: https://api.g.alchemy.com/data/v1
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category' # change the path to "../components/sandbox.yaml#/Category" if updating the spec from CLI
+    value: token
+paths:
+  ####################################################
+  # Token APIs
+  ####################################################
+  "/{apiKey}/assets/tokens/by-address":
+    post:
+      summary: Tokens By Wallet
+      description: >
+        Fetches current balances, prices, and metadata for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      tags: ["🆕 Multi-Chain Token APIs (Beta)"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequestWithOptions"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokensResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-tokens-by-address
+  "/{apiKey}/tokens/balances/by-address":
+    post:
+      summary: Token Balances By Wallet
+      description: >
+        Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens)
+      tags: ["🆕 Multi-Chain Token APIs (Beta)"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenBalancesResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-token-balances-by-address
+####################################################
+# Common Components for All APIs
+####################################################
+components:
+  schemas:
+  ####################################################
+  # Common Components
+  ####################################################
+    apiKey:
+      name: apiKey
+      in: path
+      schema:
+        type: string
+        default: docs-demo
+        description: |
+          <style>
+            .custom-style {
+              color: #048FF4;
+            }
+          </style>
+          For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+      required: true
+    withMetadata:
+      name: withMetadata
+      description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+      schema:
+        type: boolean
+        default: true
+      in: query
+    withPrices:
+      name: withPrices
+      description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+      schema:
+        type: boolean
+        default: true
+      in: query
+  ####################################################
+  # Common Requests
+  ####################################################
+    ByAddressRequest:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+      required:
+        - addresses
+
+    ByAddressRequestWithOptions:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+        withMetadata:
+          - $ref: "#/components/schemas/withMetadata"
+        withPrices:
+          - $ref: "#/components/schemas/withPrices"
+      required:
+        - addresses
+
+    AddressItem:
+      type: array
+      properties:
+        address:
+          type: string
+          description: Wallet address.
+          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+        networks:
+          type: array
+          minItems: 1
+          maxItems: 5
+          default:
+            - eth-mainnet
+            - base-mainnet
+            - matic-mainnet
+          items:
+            type: string
+            default: eth-mainnet
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      required:
+        - address
+        - networks
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Detailed error message.
+          required:
+            - message
+          description: Error details.
+      required:
+        - error
+  ####################################################
+  # Token APIs
+  ####################################################
+    TokensResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of tokens by address, with prices and metadata.
+          items:
+            $ref: "#/components/schemas/TokensResponseItem"
+            # should references prices for the prices one.
+      required:
+        - data
+
+    TokensResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Wallet address.
+        tokenAddress:
+          type: string
+          description: Token address.
+        tokenBalance:
+          type: string
+          description: Balance of that particular token.
+        tokenMetadata:
+          $ref: ../evm_body.yaml#/alchemy_getTokenMetadata
+        tokenPrices:
+          $ref: "../prices/prices.yaml#/components/schemas/AddressPriceResponseItem"
+      required:
+        - network
+        - address
+        - tokenAddress
+        - tokenBalance
+    TokenBalancesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of token balances by address.
+          items:
+            $ref: "#/components/schemas/TokenBalancesResponseItem"
+      required:
+        - data
+
+    TokenBalancesResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Wallet address.
+        tokenAddress:
+          type: string
+          description: Token address.
+        tokenBalance:
+          type: string
+          description: Balance of that particular token.
+      required:
+        - network
+        - address
+        - tokenAddress
+        - tokenBalance
+  ####################################################
+  # Prices APIs
+  ####################################################
+    TokenPricesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of token price data.
+          items:
+            $ref: "#/components/schemas/TokenPriceResponseItem"
+      required:
+        - data
+
+    TokenPriceResponseItem:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Token symbol.
+        prices:
+          type: array
+          description: List of price information.
+          items:
+            $ref: "#/components/schemas/Price"
+        error:
+          type: string
+          nullable: true
+          description: Error message if applicable.
+      required:
+        - symbol
+        - prices
+        - error
+    Price:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code (e.g., USD).
+        value:
+          type: string
+          description: Price value as a string.
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          description: Time when the price was last updated.
+      required:
+        - currency
+        - value
+        - lastUpdatedAt
+
+    AddressPricesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          description: List of token prices by address.
+          items:
+            $ref: "#/components/schemas/AddressPriceResponseItem"
+      required:
+        - data
+
+    AddressPriceResponseItem:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Token contract address.
+        prices:
+          type: array
+          description: List of price information.
+          items:
+            $ref: "#/components/schemas/Price"
+        error:
+          type: string
+          nullable: true
+          description: Error message if applicable.
+      required:
+        - network
+        - address
+        - prices
+        - error
+
+    HistoricalPricesRequest:
+      type: object
+      description: >
+        Request body for fetching historical token prices. Provide either the token `symbol` or both `network` and `address`, along with the required time range parameters.
+      oneOf:
+        - required: ["symbol", "startTime", "endTime"]
+          properties:
+            symbol:
+              type: string
+              description: Token symbol (e.g., ETH, BTC).
+              example: "ETH"
+              default: "ETH"
+            startTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: Start of the time range in ISO 8601 format.
+                  default: "2024-01-01T00:00:00Z"
+                - type: number
+                  description: Start of the time range as a timestamp in seconds since epoch.
+                  default: 1704067200  # Equivalent to "2024-01-01T00:00:00Z"
+              description: Start of the time range.
+              example: "2024-01-01T00:00:00Z"
+            endTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: End of the time range in ISO 8601 format.
+                  default: "2024-01-31T23:59:59Z"
+                - type: number
+                  description: End of the time range as a timestamp in seconds since epoch.
+                  default: 1706745599  # Equivalent to "2024-01-31T23:59:59Z"
+              description: End of the time range.
+              example: "2024-01-31T23:59:59Z"
+            interval:
+              type: string
+              description: >
+                Time interval for data points. Max ranges: (5m, 7d), (1h, 30d), (1d, 1yr)
+              enum: [ "5m", "1h", "1d" ]
+              default: "1d"
+              example: "1d"
+        - required: ["network", "address", "startTime", "endTime"]
+          properties:
+            network:
+              type: string
+              description: Network identifier (e.g., eth-mainnet).
+              example: "eth-mainnet"
+              default: "eth-mainnet"
+            address:
+              type: string
+              description: Token contract address.
+              example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+              default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+            startTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: Start of the time range in ISO 8601 format.
+                  default: "2024-01-01T00:00:00Z"
+                - type: number
+                  description: Start of the time range as a timestamp since epoch.
+                  default: 1704067200  # Equivalent to "2024-01-01T00:00:00Z"
+              description: Start of the time range.
+              example: "2024-01-01T00:00:00Z"
+            endTime:
+              oneOf:
+                - type: string
+                  format: date-time
+                  description: End of the time range in ISO 8601 format.
+                  default: "2024-01-31T23:59:59Z"
+                - type: number
+                  description: End of the time range as a timestamp since epoch.
+                  default: 1706745599  # Equivalent to "2024-01-31T23:59:59Z"
+              description: End of the time range.
+              example: "2024-01-31T23:59:59Z"
+            interval:
+              type: string
+              description: >
+                Time interval for data points. Max ranges: (5m, 7d), (1h, 30d), (1d, 1yr)
+              enum: [ "5m", "1h", "1d" ]
+              default: "1d"
+              example: "1d"
+
+    HistoricalPricesResponse:
+      type: object
+      description: >
+        Response containing historical price data. It will either include `symbol` or both `network` and `address` based on the request.
+      properties:
+        data:
+          oneOf:
+            - $ref: "#/components/schemas/HistoricalPricesBySymbol"
+            - $ref: "#/components/schemas/HistoricalPricesByAddress"
+      required:
+        - data
+
+    HistoricalPricesBySymbol:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Token symbol.
+          example: "ETH"
+          default: "ETH"
+        prices:
+          type: array
+          description: List of historical price data points.
+          items:
+            $ref: "#/components/schemas/HistoricalPriceItem"
+      required:
+        - symbol
+        - prices
+
+    HistoricalPricesByAddress:
+      type: object
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+          example: "eth-mainnet"
+          default: "eth-mainnet"
+        address:
+          type: string
+          description: Token contract address.
+          example: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          default: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+        prices:
+          type: array
+          description: List of historical price data points.
+          items:
+            $ref: "#/components/schemas/HistoricalPriceItem"
+      required:
+        - network
+        - address
+        - prices
+
+    HistoricalPriceItem:
+      type: object
+      properties:
+        value:
+          type: string
+          description: Price value as a string.
+          example: "1900.00"
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the price data point.
+          example: "2024-01-01T00:00:00Z"
+      required:
+        - value
+        - timestamp
+
