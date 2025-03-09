@@ -57,12 +57,15 @@ jobs:
         working-directory: ./transfers
         run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=67ca34df40250800249a1615
 
+    # NOTE(@peter): Turned off as we want to manually have a grouped Data field. This shouldn't be a problem
+    # once we switch to Fern-based docs.
+    #
     # Update Prices API
-      - name: Update Prices API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./prices
-        run: rdme openapi prices.yaml --key=$README_API_KEY --id=6722b04865e1af005abf91bc
+    #  - name: Update Prices API
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./prices
+    #    run: rdme openapi prices.yaml --key=$README_API_KEY --id=6722b04865e1af005abf91bc
 
     # Update Gas Manager Admin API
       - name: Update Gas Manager Admin API

@@ -1,3 +1,11 @@
+# NOTE: Due to manual migrations back and forth, to update this section
+# you'll need to move this OUT of the Data section, back into the Prices section,
+# and then back.
+#
+# GH Actions are turned off for this. This shouldn't be a problem once we move to
+# Fern and have a non-README based structure.
+#
+# Reachout to @peter if you need to update this.
 openapi: 3.1.0
 info:
   title: 📈 Prices API

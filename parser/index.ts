@@ -36,6 +36,7 @@ const ignoreList = [
   'blocks.yaml',
   'tokens.yaml',
   'transactions.yaml',
+  'v1.yaml',
 ];
 
 async function* walk(dir: string): AsyncGenerator<string> {
