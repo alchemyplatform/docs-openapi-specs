@@ -85,12 +85,14 @@ jobs:
         working-directory: ./transaction-receipts
         run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
 
+    # NOTE(@peter): This is deprecated for now.
+    #
     # Update Blocks API
-      - name: Update Blocks API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./blocks
-        run: rdme openapi blocks.yaml --key=$README_API_KEY --id=67ca622e17a5e80058eba91e
+    #  - name: Update Blocks API
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./blocks
+    #    run: rdme openapi blocks.yaml --key=$README_API_KEY --id=67ca622e17a5e80058eba91e
 
     # Update AA APIs
       - name: Update AA API - alchemy_requestGasAndPaymasterAndData
