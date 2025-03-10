@@ -42,12 +42,15 @@ jobs:
         run: rdme openapi nfts.yaml --key=$README_API_KEY --id=62bb5f1af2192000e16f5c93
       
 
+    # NOTE(@peter): Turned off as we want to manually have a grouped Data field. This shouldn't be a problem
+    # once we switch to Fern-based docs.
+    #
     # Update Notify API
-      - name: Update Notify API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./notify
-        run: rdme openapi notify.yaml --key=$README_API_KEY --id=62d74663f3ed8d0071190eb2
+    #  - name: Update Notify API
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./notify
+    #    run: rdme openapi notify.yaml --key=$README_API_KEY --id=62d74663f3ed8d0071190eb2
           
 
     # Update Transfers API
@@ -206,24 +209,27 @@ jobs:
         working-directory: ./debug
         run: rdme openapi debug_getRawReceipts.yaml --key=$README_API_KEY --id=6727c488a71b2c0071a805d5
 
+    # NOTE(@peter): Turned off as we want to manually have a grouped Data field. This shouldn't be a problem
+    # once we switch to Fern-based docs.
+    #
     # Update Token APIs
-      - name: Update Token API - alchemy_getTokenAllowance
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./token
-        run: rdme openapi alchemy_getTokenAllowance.yaml --key=$README_API_KEY --id=62d557bb6c138d007e01972e
+    #  - name: Update Token API - alchemy_getTokenAllowance
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./token
+    #    run: rdme openapi alchemy_getTokenAllowance.yaml --key=$README_API_KEY --id=62d557bb6c138d007e01972e
 
-      - name: Update Token API - alchemy_getTokenBalances
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./token
-        run: rdme openapi alchemy_getTokenBalances.yaml --key=$README_API_KEY --id=62d551cf2cef3a00205a5924
+    #  - name: Update Token API - alchemy_getTokenBalances
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./token
+    #    run: rdme openapi alchemy_getTokenBalances.yaml --key=$README_API_KEY --id=62d551cf2cef3a00205a5924
 
-      - name: Update Token API - alchemy_getTokenMetadata
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./token
-        run: rdme openapi alchemy_getTokenMetadata.yaml --key=$README_API_KEY --id=62d5581637732c00307aec6e
+    #  - name: Update Token API - alchemy_getTokenMetadata
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./token
+    #    run: rdme openapi alchemy_getTokenMetadata.yaml --key=$README_API_KEY --id=62d5581637732c00307aec6e
 
 
     # Update Trace APIs
