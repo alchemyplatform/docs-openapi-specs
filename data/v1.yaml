@@ -96,6 +96,38 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-token-balances-by-address
   ####################################################
+  # NFT APIs  (Deprecated / Older)
+  ####################################################
+  # NOTE: This should be hidden from the user.
+  "/{apiKey}/assets/nfts":
+    post:
+      summary: Placeholder for NFT API
+      description: >
+        Placeholder for the NFT API - in order to update this you'll need to move it back and forth.
+      tags: ["🎨 NFT API"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenPricesResponse"
+      operationId: get-nfts-by-address-placeholder
+  ####################################################
   # Tokens APIs (Deprecated / Older)
   ####################################################
   # NOTE: This should be hidden from the user.
@@ -172,6 +204,50 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-tokens-prices-by-address-placeholder
   ####################################################
+  # Transfer API (Deprecated / Older)
+  ####################################################
+  # NOTE: This should be hidden from the user.
+  "/{apiKey}/assets/transfers":
+    post:
+      summary: Placeholder for Transfers API
+      description: >
+        Placeholder for the Transfers API - in order to update this you'll need to move it back and forth.
+      tags: ["💸 Transfers API"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenPricesResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-transfers-by-address-placeholder
+  ####################################################
   # Utility APIs
   ####################################################
   "/{apiKey}/utility/blocks/by-timestamp":
@@ -210,6 +286,38 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: blocks-by-timestamp
+  ####################################################
+  # Subgraphs
+  ####################################################
+  # NOTE: This should be hidden from the user.
+  "/{apiKey}/subgraphs":
+    post:
+      summary: Placeholder for Subgraphs
+      description: >
+        Placeholder for the Subgraphs - in order to update this you'll need to move it back and forth.
+      tags: ["🍊 Subgraphs"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenPricesResponse"
+      operationId: subgraphs-placeholder
   ####################################################
   # Webhooks
   ####################################################

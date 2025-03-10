@@ -33,17 +33,15 @@ jobs:
       - name: Install rdme
         run: npm install -g rdme@8.6.4
 
-
-    # Update NFT API
-      - name: Update NFT API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./nft
-        run: rdme openapi nfts.yaml --key=$README_API_KEY --id=62bb5f1af2192000e16f5c93
-      
-
     # NOTE(@peter): Turned off as we want to manually have a grouped Data field. This shouldn't be a problem
     # once we switch to Fern-based docs.
+    #
+    # Update NFT API
+    #  - name: Update NFT API
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./nft
+    #    run: rdme openapi nfts.yaml --key=$README_API_KEY --id=62bb5f1af2192000e16f5c93
     #
     # Update Notify API
     #  - name: Update Notify API
@@ -51,17 +49,13 @@ jobs:
     #      README_API_KEY: ${{ secrets.README_API_KEY }}
     #    working-directory: ./notify
     #    run: rdme openapi notify.yaml --key=$README_API_KEY --id=62d74663f3ed8d0071190eb2
-          
-
+    #
     # Update Transfers API
-      - name: Update Transfers API
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transfers
-        run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=67ca34df40250800249a1615
-
-    # NOTE(@peter): Turned off as we want to manually have a grouped Data field. This shouldn't be a problem
-    # once we switch to Fern-based docs.
+    #  - name: Update Transfers API
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./transfers
+    #    run: rdme openapi alchemy_getAssetTransfers.yaml --key=$README_API_KEY --id=67ca34df40250800249a1615
     #
     # Update Prices API
     #  - name: Update Prices API
@@ -69,6 +63,21 @@ jobs:
     #      README_API_KEY: ${{ secrets.README_API_KEY }}
     #    working-directory: ./prices
     #    run: rdme openapi prices.yaml --key=$README_API_KEY --id=6722b04865e1af005abf91bc
+    #
+    # Update Transaction Receipts API
+    #  - name: Update Transaction Receipts API - alchemy_getTransactionReceipts
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./transaction-receipts
+    #    run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
+    #
+    # NOTE(@peter): This is deprecated for now - this was hard moved into data/v1.
+    # Update Blocks API
+    #  - name: Update Blocks API
+    #    env:
+    #      README_API_KEY: ${{ secrets.README_API_KEY }}
+    #    working-directory: ./blocks
+    #    run: rdme openapi blocks.yaml --key=$README_API_KEY --id=67ca622e17a5e80058eba91e
 
     # Update Gas Manager Admin API
       - name: Update Gas Manager Admin API
@@ -77,22 +86,6 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi gas_manager_admin.yaml --key=$README_API_KEY --id=648a94b656f41511b55a453b
 
-
-    # Update Transaction Receipts API
-      - name: Update Transaction Receipts API - alchemy_getTransactionReceipts
-        env:
-          README_API_KEY: ${{ secrets.README_API_KEY }}
-        working-directory: ./transaction-receipts
-        run: rdme openapi alchemy_getTransactionReceipts.yaml --key=$README_API_KEY --id=62d76a925edcd00083b41115
-
-    # NOTE(@peter): This is deprecated for now.
-    #
-    # Update Blocks API
-    #  - name: Update Blocks API
-    #    env:
-    #      README_API_KEY: ${{ secrets.README_API_KEY }}
-    #    working-directory: ./blocks
-    #    run: rdme openapi blocks.yaml --key=$README_API_KEY --id=67ca622e17a5e80058eba91e
 
     # Update AA APIs
       - name: Update AA API - alchemy_requestGasAndPaymasterAndData
