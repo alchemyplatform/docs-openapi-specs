@@ -96,6 +96,38 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-token-balances-by-address
   ####################################################
+  # Tokens APIs (Deprecated / Older)
+  ####################################################
+  # NOTE: This should be hidden from the user.
+  "/{apiKey}/assets/tokens":
+    post:
+      summary: Placeholder for Tokens API
+      description: >
+        Placeholder for the Prices API - in order to update this you'll need to move it back and forth.
+      tags: ["🪙 Token API"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenPricesResponse"
+      operationId: get-tokens-by-address-placeholder
+  ####################################################
   # Prices APIs
   ####################################################
   # NOTE: This should be hidden from the user.
@@ -139,6 +171,38 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-tokens-prices-by-address-placeholder
+  ####################################################
+  # Webhooks
+  ####################################################
+  # NOTE: This should be hidden from the user.
+  "/{apiKey}/assets/webhooks":
+    post:
+      summary: Placeholder for Webhooks
+      description: >
+        Placeholder for the Webhooks - in order to update this you'll need to move it back and forth.
+      tags: ["🔔 Webhooks"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequest"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenPricesResponse"
+      operationId: webhooks-placeholder
 ####################################################
 # Common Components for All APIs
 ####################################################
