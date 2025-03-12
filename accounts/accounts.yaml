@@ -219,41 +219,7 @@ paths:
                 stampedRequest:
                   $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: |
-                    A stamped request that includes the payload to be signed. The payload is part of the stamped request's body, which should conform to the structure outlined in the Turnkey API documentation for signing raw payloads.
-                    Because users are given wallets for both Ethereum and Solana, it's possible to request signatures for both chains. The following is an example of the payload structure for signing bytes on Ethereum and Solana:
-
-                    Signing bytes for Ethereum:
-                    ```
-                    {
-                      organizationId: this.user.orgId, # the user's orgID (returned from whoami)
-                      type: "ACTIVITY_TYPE_SIGN_RAW_PAYLOAD_V2",
-                      timestampMs: Date.now().toString(),
-                      parameters: {
-                        encoding: "PAYLOAD_ENCODING_HEXADECIMAL",
-                        hashFunction: "HASH_FUNCTION_NO_OP", # this assumes you've hashed the bytes alread on the client
-                        payload: msg,
-                        signWith: this.user.address, # the user's Ethereum address (returned from whoami)
-                      },
-                    }
-                    ```
-
-                    Signing bytes for Solana:
-                    ```
-                    {
-                      organizationId: this.user.orgId,
-                      type: "ACTIVITY_TYPE_SIGN_RAW_PAYLOAD_V2",
-                      timestampMs: Date.now().toString(),
-                      parameters: {
-                        encoding: "PAYLOAD_ENCODING_HEXADECIMAL",
-                        hashFunction: "HASH_FUNCTION_NOT_APPLICABLE",
-                        payload: msg,
-                        signWith: this.user.solanaAddress, # the user's Solana address (returned from whoami)
-                      },
-                    }
-                    ```
-
-                    For more details on the parameters of the request body, see [Turnkey's API Reference](https://docs.turnkey.com/api#tag/Signing/operation/SignRawPayload).
-      responses:
+                    A stamped request that includes the payload to be signed. See above for generating this.
         '200':
           description: Message signing successful.
           content:
