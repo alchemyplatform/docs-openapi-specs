@@ -220,6 +220,7 @@ paths:
                   $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: |
                     A stamped request that includes the payload to be signed. See above for request formatting and [this guide](https://docs.alchemy.com/reference/how-to-stamp-requests) for stamping.
+      responses:
         '200':
           description: Message signing successful.
           content:
