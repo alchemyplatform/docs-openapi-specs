@@ -74,7 +74,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ByAddressRequest"
+              $ref: "#/components/schemas/ByAddressRequestWith3PairsAnd20Networks"
       responses:
         "200":
           description: Successful response!
@@ -440,6 +440,20 @@ components:
       required:
         - addresses
 
+    ByAddressRequestWith3PairsAnd20Networks:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 3
+          description: >
+            Array of address and networks pairs (limit 3 pairs, max 20 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItemWith20Maximum"
+      required:
+        - addresses
+
     ByAddressRequestWithOptions:
       type: object
       properties:
@@ -470,6 +484,36 @@ components:
           type: array
           minItems: 1
           maxItems: 5
+          default:
+            - eth-mainnet
+            - base-mainnet
+            - matic-mainnet
+          items:
+            type: string
+            default: eth-mainnet
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      required:
+        - address
+        - networks
+
+    AddressItemWith20Maximum:
+      type: array
+      properties:
+        address:
+          type: string
+          description: Wallet address.
+          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+        networks:
+          type: array
+          minItems: 1
+          maxItems: 20
           default:
             - eth-mainnet
             - base-mainnet
