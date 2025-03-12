@@ -136,7 +136,7 @@ paths:
                 stampedRequest:
                   $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: >
-                    A stamped [Turnkey Whoami Request](https://docs.turnkey.com/api#tag/Sessions/operation/GetWhoami).
+                    A stamped [Turnkey Whoami Request](https://docs.turnkey.com/api#tag/Sessions/operation/GetWhoami). Follow [this guide](https://docs.alchemy.com/reference/how-to-stamp-requests) for stamping.
       responses:
         '200':
           description: User authentication successful.
@@ -201,7 +201,7 @@ paths:
     post:
       summary: Sign Message
       description: >
-        Sign arbitrary payloads using the authenticated user’s wallet on Ethereum and Solana. The payload to be signed should be included within the body of a stamped request, ensuring the integrity and authenticity of the message to be signed. This endpoint generates a verified signature from the user’s wallet, essential for executing transactions and interactions on the blockchain that require verified signatures from the user's wallet.
+        Sign arbitrary payloads using the authenticated user’s wallet on Ethereum and Solana. The payload to be signed should be included within the body of a [stamped request](https://docs.alchemy.com/reference/how-to-stamp-requests), ensuring the integrity and authenticity of the message to be signed. This endpoint generates a verified signature from the user’s wallet, essential for executing transactions and interactions on the blockchain that require verified signatures from the user's wallet.
       security:
         - apiKey: [] # Secures the request and ensures it is mapped to a specific project.
       x-readme:
@@ -219,7 +219,7 @@ paths:
                 stampedRequest:
                   $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: |
-                    A stamped request that includes the payload to be signed. See above for generating this.
+                    A stamped request that includes the payload to be signed. See above for request formatting and [this guide](https://docs.alchemy.com/reference/how-to-stamp-requests) for stamping.
         '200':
           description: Message signing successful.
           content:
@@ -254,7 +254,7 @@ paths:
                 stampedAddAuthenticatorRequest:
                   $ref: '#/components/schemas/SignedTurnkeyRequest'
                   description: >
-                    A stamped request specifying the new authenticator (e.g., a passkey) to register with the user’s wallet. This JSON object ensures the request’s integrity and authenticity. This request format must match the Turnkey's Create Authenticators Request Body. See [this guide](https://docs.alchemy.com/reference/sending-verified-requests) for generating a stamped request.
+                    A stamped request specifying the new authenticator (e.g., a passkey) to register with the user’s wallet. This JSON object ensures the request’s integrity and authenticity. This request format must match the [Turnkey's Create Authenticators Request Body](https://docs.turnkey.com/api#tag/Authenticators/operation/CreateAuthenticators). See [this guide](https://docs.alchemy.com/reference/how-to-stamp-requests) for stamping.
       responses:
         '200':
           description: Authenticator registration successful.
@@ -320,7 +320,7 @@ components:
     SignedTurnkeyRequest:
       type: object
       description: >
-        The signed request object containing session information. It is used to ensure the integrity and authenticity of requests to our API. For detailed steps on how to create a stamped request refer to the [Turnkey Stamps Documentation](https://docs.turnkey.com/api-design/stamps).
+        The signed request object containing session information. It is used to ensure the integrity and authenticity of requests to our API. Learn how to [stamp requests](https://docs.alchemy.com/reference/how-to-stamp-requests).
       required: true
       properties:
         url:
@@ -334,7 +334,7 @@ components:
         stamp:
           type: object
           description: >
-            A JSON-encoded object containing stamping information.
+            A JSON-encoded object containing stamping information. See [stamping guide](https://docs.alchemy.com/reference/how-to-stamp-requests).
           required: true
           properties:
             stampHeaderName:
@@ -345,5 +345,5 @@ components:
             stampHeaderValue:
               type: string
               description: >
-                The stamp over the request body. See the [Turnkey Stamps Documentation](https://docs.turnkey.com/api-design/stamps) for information on the format of this value.
+                The [stamp](https://docs.alchemy.com/reference/how-to-stamp-requests) over the request body. See the [Turnkey Stamps Documentation](https://docs.turnkey.com/api-design/stamps) for information on the format of this value.
               required: true
