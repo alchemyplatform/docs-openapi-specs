@@ -103,7 +103,7 @@ paths:
       summary: Transaction History By Wallet
       description: >
         Fetches all transactions addresses using network and address pairs (currently limited to 1 in BETA) Returns a list of transaction objects. This endpoint will be supported on Ethereum, Solana, and 30+ EVM chains (currently limited to ETH and Base)
-      tags: ["🆕 Tranaction History APIs (Beta)"]
+      tags: ["🆕 Transaction History APIs (Beta)"]
       x-readme:
         samples-languages:
           - javascript
@@ -493,7 +493,7 @@ components:
           description: >
             Array of address and networks pairs (limit 1 pairs, max 2 networks). Networks should match network enums.
           items:
-            $ref: "#/components/schemas/AddressItem"
+            $ref: "#/components/schemas/AddressItemTransactionHistory"
       required:
         - addresses
 
@@ -555,6 +555,35 @@ components:
               }
             </style>
             Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      required:
+        - address
+        - networks
+
+    AddressItemTransactionHistory:
+      type: array
+      properties:
+        address:
+          type: string
+          description: Wallet address.
+          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+        networks:
+          type: array
+          minItems: 1
+          maxItems: 2
+          default:
+            - eth-mainnet
+            - base-mainnet
+          items:
+            type: string
+            default: eth-mainnet
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            (In BETA and only accepts ETH & BASE mainnets). Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
       required:
         - address
         - networks
