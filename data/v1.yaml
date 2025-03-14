@@ -13,7 +13,7 @@ x-sandbox:
     value: token
 paths:
   ####################################################
-  # Token APIs
+  # Multi-Chain Token APIs
   ####################################################
   "/{apiKey}/assets/tokens/by-address":
     post:
@@ -55,7 +55,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-tokens-by-address
-  "/{apiKey}/tokens/balances/by-address":
+  "/{apiKey}/assets/tokens/balances/by-address":
     post:
       summary: Token Balances By Wallet
       description: >
@@ -95,6 +95,49 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-token-balances-by-address
+  ####################################################
+  # Multi-Chain NFT APIs
+  ####################################################
+  "/{apiKey}/assets/nfts/by-address":
+    post:
+      summary: NFTs By Owner
+      description: >
+        Retrieves all NFTs currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      tags: ["🆕 Multi-Chain NFT APIs (Beta)"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequestWithNFTOptions"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NFTByOwnerResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-nfts-by-address
   ####################################################
   # Transaction History API
   ####################################################
@@ -415,20 +458,18 @@ components:
           </style>
           For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
       required: true
-    withMetadata:
-      name: withMetadata
-      description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
-      schema:
-        type: boolean
-        default: true
-      in: query
-    withPrices:
-      name: withPrices
-      description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
-      schema:
-        type: boolean
-        default: true
-      in: query
+    # TODO(peter): Annoyingly this doesn't work and defaults to string. Debug this eventually.
+    #
+    #withMetadataField:
+    #  description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+    #  type: boolean
+    #  default: true
+    #withPrices:
+    #  name: withPrices
+    #  description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+    #  schema:
+    #    type: boolean
+    #    default: true
     networks:
       name: networks
       description: |
@@ -533,9 +574,32 @@ components:
           items:
             $ref: "#/components/schemas/AddressItem"
         withMetadata:
-          - $ref: "#/components/schemas/withMetadata"
+          description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+          type: boolean
+          default: true
         withPrices:
-          - $ref: "#/components/schemas/withPrices"
+          description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+          type: boolean
+          default: true
+      required:
+        - addresses
+
+    ByAddressRequestWithNFTOptions:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+        withMetadata:
+          description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+          type: boolean
+          default: true
+        # TODO: spamConfidenceLevel
       required:
         - addresses
 
@@ -545,8 +609,8 @@ components:
         address:
           type: string
           description: Wallet address.
-          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          example: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+          default: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
         networks:
           type: array
           minItems: 1
@@ -604,8 +668,8 @@ components:
         address:
           type: string
           description: Wallet address.
-          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          example: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+          default: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
         networks:
           type: array
           minItems: 1
@@ -634,8 +698,8 @@ components:
         address:
           type: string
           description: Wallet address.
-          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          example: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+          default: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
         networks:
           type: array
           minItems: 1
@@ -741,6 +805,65 @@ components:
         - address
         - tokenAddress
         - tokenBalance
+
+  ####################################################
+  # NFT APIs
+  ####################################################
+    NFTByOwnerResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          description: List of nfts by address with appropriate metadata.
+          # No validAt for the multi-chain version, for now.
+          ownedNfts:
+            type: array
+            items:
+              $ref: "#/components/schemas/NFTResponseItem"
+            totalCount:
+              $ref: '../nft/nfts.yaml#/components/schemas/totalNFTCount'
+            pageKey:
+              $ref: '../nft/nfts.yaml#/components/schemas/pageKey'
+      required:
+        - data
+
+    # Similar to ownedNFTv3, just with extra address and network identifiers.
+    NFTResponseItem:
+      type: object
+      description: 'The object that represents an NFT and has all data corresponding to that NFT'
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Wallet address.
+        contract:
+          $ref: '../nft/nfts.yaml#/components/schemas/contractv3'
+        tokenId:
+          $ref: '../nft/nfts.yaml#/components/schemas/tokenIdV3'
+        tokenType:
+          $ref: '../nft/nfts.yaml#/components/schemas/tokenType'
+        name:
+          type: string
+          description: 'String - Name of the NFT asset.'
+        description:
+          type: string
+          description: 'String - Brief human-readable description'
+        image:
+          $ref: '../nft/nfts.yaml#/components/schemas/imagev3'
+        raw:
+          $ref: '../nft/nfts.yaml#/components/schemas/rawv3'
+        collection:
+          $ref: '../nft/nfts.yaml#/components/schemas/collectionv3'
+        tokenUri:
+          type: string
+          description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+        timeLastUpdated:
+          type: string
+          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+        acquiredAt:
+          $ref: '../nft/nfts.yaml#/components/schemas/acquiredAt'
 
   ####################################################
   # Transaction History APIs
