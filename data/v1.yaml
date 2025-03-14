@@ -502,7 +502,7 @@ components:
           description: 'The cursor that points to the end of the current set of results.'
         limit:
           type: integer
-          description: 'Sets the maximum number of items per page'
+          description: 'Sets the maximum number of items per page (Max: 100)'
           default: 25
       required:
         - addresses
