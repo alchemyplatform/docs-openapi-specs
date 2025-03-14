@@ -575,8 +575,8 @@ components:
         address:
           type: string
           description: Wallet address.
-          example: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-          default: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+          example: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+          default: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
         networks:
           type: array
           minItems: 1
