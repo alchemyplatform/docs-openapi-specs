@@ -816,26 +816,26 @@ components:
         type: string
         description: solidity revert reason, if any
 
-txn_history_log_object:
-  type: object
-  properties:
-    contractAddress:
-      type: string
-      description: 20 Bytes - contract address from which this log originated.
-    logIndex:
-      type: string
-      description: Integer of the log index position in the block. null when its pending log.
-    data:
-      type: string
-      description: Contains one or more 32 Bytes non-indexed arguments of the log.
-    removed:
-      type: boolean
-      description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
-    topics:
-      type: array
-      items:
+  txn_history_log_object:
+    type: object
+    properties:
+      contractAddress:
         type: string
-      description: 'Array of zero to four 32 Bytes DATA of indexed log arguments'
+        description: 20 Bytes - contract address from which this log originated.
+      logIndex:
+        type: string
+        description: Integer of the log index position in the block. null when its pending log.
+      data:
+        type: string
+        description: Contains one or more 32 Bytes non-indexed arguments of the log.
+      removed:
+        type: boolean
+        description: 'true when the log was removed, due to a chain reorganization. false if its a valid log.'
+      topics:
+        type: array
+        items:
+          type: string
+        description: 'Array of zero to four 32 Bytes DATA of indexed log arguments'
 
   ####################################################
   # Prices APIs
