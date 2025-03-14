@@ -774,12 +774,12 @@ components:
           type: array
           description: 'Array of log objects, which this transaction generated'
           items:
-            $ref: '#/txn_history_log_object'
+            $ref: '#/components/schemas/txn_history_log_object'
         internalTxns:
           type: array
           description: 'Array of internal transaction objects, which this transaction generated'
           items:
-            $ref: '#/txn_history_trace_object'
+            $ref: '#/components/schemas/txn_history_trace_object'
 
   txn_history_trace_object:
     type: object
