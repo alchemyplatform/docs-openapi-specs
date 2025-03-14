@@ -494,6 +494,16 @@ components:
             Array of address and networks pairs (limit 1 pairs, max 2 networks). Networks should match network enums.
           items:
             $ref: "#/components/schemas/AddressItemTransactionHistory"
+        before:
+          type: string
+          description: 'The cursor that points to the previous set of results.'
+        after:
+          type: string
+          description: 'The cursor that points to the end of the current set of results.'
+        limit:
+          type: integer
+          description: 'Sets the maximum number of items per page'
+          default: 25
       required:
         - addresses
 
