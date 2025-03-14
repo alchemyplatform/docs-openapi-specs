@@ -13,7 +13,7 @@ x-sandbox:
     value: token
 paths:
   ####################################################
-  # Token APIs
+  # Multi-Chain Token APIs
   ####################################################
   "/{apiKey}/assets/tokens/by-address":
     post:
@@ -95,6 +95,49 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-token-balances-by-address
+  ####################################################
+  # Multi-Chain NFT APIs
+  ####################################################
+  "/{apiKey}/assets/nfts/by-address":
+    post:
+      summary: NFTs By Owner
+      description: >
+        Retrieves all NFTs currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      tags: ["🆕 Multi-Chain NFT APIs (Beta)"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequestWithOptions"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NFTByOwnerResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-nfts-by-address
   ####################################################
   # Transaction History API
   ####################################################
@@ -741,6 +784,65 @@ components:
         - address
         - tokenAddress
         - tokenBalance
+
+  ####################################################
+  # NFT APIs
+  ####################################################
+    NFTByOwnerResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          description: List of nfts by address with appropriate metadata.
+          # No validAt for the multi-chain version, for now.
+          ownedNfts:
+            type: array
+            items:
+              $ref: "#/components/schemas/NFTResponseItem"
+            totalCount:
+              $ref: '"../nft/nfts.yaml#/components/schemas/totalNFTCount'
+            pageKey:
+              $ref: '"../nft/nfts.yaml#/components/schemas/pageKey'
+      required:
+        - data
+
+    # Similar to ownedNFTv3, just with extra address and network identifiers.
+    NFTResponseItem:
+      type: object
+      description: 'The object that represents an NFT and has all data corresponding to that NFT'
+      properties:
+        network:
+          type: string
+          description: Network identifier.
+        address:
+          type: string
+          description: Wallet address.
+        contract:
+          $ref: '../nft/nfts.yaml#/components/schemas/contractv3'
+        tokenId:
+          $ref: '../nft/nfts.yaml#/components/schemas/tokenIdV3'
+        tokenType:
+          $ref: '../nft/nfts.yaml#/components/schemas/tokenType'
+        name:
+          type: string
+          description: 'String - Name of the NFT asset.'
+        description:
+          type: string
+          description: 'String - Brief human-readable description'
+        image:
+          $ref: '../nft/nfts.yaml#/components/schemas/imagev3'
+        raw:
+          $ref: '../nft/nfts.yaml#/components/schemas/rawv3'
+        collection:
+          $ref: '../nft/nfts.yaml#/components/schemas/collectionv3'
+        tokenUri:
+          type: string
+          description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
+        timeLastUpdated:
+          type: string
+          description: 'String - ISO timestamp of the last cache refresh for the information returned in the metadata field.'
+        acquiredAt:
+          $ref: '../nft/nfts.yaml#/components/schemas/acquiredAt'
 
   ####################################################
   # Transaction History APIs
