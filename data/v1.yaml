@@ -103,6 +103,7 @@ paths:
       summary: Transaction History By Wallet
       description: >
         Fetches all transactions addresses using network and address pairs (currently limited to 1 in BETA) Returns a list of transaction objects. This endpoint will be supported on Ethereum, Solana, and 30+ EVM chains (currently limited to ETH and Base)
+      tags: ["🆕 Tranaction History APIs (Beta)"]
       x-readme:
         samples-languages:
           - javascript
@@ -1086,7 +1087,7 @@ txn_history_log_object:
             $ref: "#/components/schemas/BlockTimestampResponseItem"
       required:
         - data
-    
+
     BlockTimestampResponseItem:
       type: object
       properties:
@@ -1108,4 +1109,3 @@ txn_history_log_object:
       required:
         - network
         - block
-
