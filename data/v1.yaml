@@ -96,6 +96,48 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-token-balances-by-address
   ####################################################
+  # Transaction History API
+  ####################################################
+  "/{apiKey}/transactions/history/by-address":
+    post:
+      summary: Transaction History By Wallet
+      description: >
+        Fetches all transactions addresses using network and address pairs (currently limited to 1 in BETA) Returns a list of transaction objects. This endpoint will be supported on Ethereum, Solana, and 30+ EVM chains (currently limited to ETH and Base)
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequestWith3PairsAnd20Networks"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenBalancesResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-transaction-history-by-address
+  ####################################################
   # NFT APIs  (Deprecated / Older)
   ####################################################
   # NOTE: This should be hidden from the user.
