@@ -877,9 +877,11 @@ components:
       properties:
         webhook_id:
           type: string
+          required: true
           description: 'ID of the address activity webhook.'
         addresses:
           type: array
+          required: true
           description: 'New list of addresses to track. This replaces any existing addresses.'
           items:
             type: string
