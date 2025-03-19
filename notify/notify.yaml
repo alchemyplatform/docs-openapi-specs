@@ -889,8 +889,10 @@ components:
         webhook_id:
           type: string
           description: 'ID of the address activity webhook'
+          required: true
         is_active:
           type: boolean
+          required: true
           description: |
             True - set webhook to active state
             False - set webhook to inactive state
