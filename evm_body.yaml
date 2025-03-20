@@ -2760,7 +2760,7 @@ alchemy_requestFeePayer:
           default: alchemy_requestFeePayer
         params:
           type: array
-          description: Parameters for requesting gas sponsorsip
+          description: Parameters for requesting gas sponsorship
           minItems: 1
           maxItems: 1
           items:
