@@ -1938,7 +1938,7 @@ alchemy_requestFeePayer:
           type: object
           properties:
             serializedTransaction:
-              type: base64
+              type: string
               description: A base64-encoded serialized transaction, signed by the `feePayer` with the `feePayer` field set.
       example:
         $ref: ./evm_examples.yaml#/alchemy_requestFeePayer
