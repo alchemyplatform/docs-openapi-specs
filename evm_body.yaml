@@ -2760,7 +2760,7 @@ alchemy_requestFeePayer:
           default: alchemy_requestFeePayer
         params:
           type: array
-          description: Parameters for requesting fee payer
+          description: Parameters for requesting gas sponsorship
           minItems: 1
           maxItems: 1
           items:
@@ -2770,10 +2770,9 @@ alchemy_requestFeePayer:
             items:
               type: object
               properties:
-                webhookData:
-                  type: string
-                  description: Additional data you wish to include in the request, such as proof of humanity.
                 policyId:
+                  type: string
+                  description: The policy ID or list of policy IDs
                   oneOf:
                     - type: string
                       format: uuid
@@ -2782,5 +2781,8 @@ alchemy_requestFeePayer:
                         type: string
                         format: uuid
                 serializedTransaction:
-                  type: string
+                  type: base64
                   description: A base64-encoded serialized transaction missing signature fields. The `feePayer` field should be set to an address that is different than any other address included in the tx. The API will update the `feePayer` and add the signature to the `serializedTransaction`.
+                webhookData:
+                  type: string
+                  description: (optional) Additional data you wish to include in the request, such as proof of humanity.
