@@ -2781,7 +2781,7 @@ alchemy_requestFeePayer:
                         type: string
                         format: uuid
                 serializedTransaction:
-                  type: base64
+                  type: string
                   description: A base64-encoded serialized transaction missing signature fields. The `feePayer` field should be set to an address that is different than any other address included in the tx. The API will update the `feePayer` and add the signature to the `serializedTransaction`.
                 webhookData:
                   type: string
