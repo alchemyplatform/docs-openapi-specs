@@ -177,7 +177,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-      operationId: get-nfts-by-address
+      operationId: get-nft-contracts-by-address
   ####################################################
   # Transaction History API
   ####################################################
