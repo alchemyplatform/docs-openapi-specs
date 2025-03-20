@@ -2749,3 +2749,38 @@ pm_getPaymasterData:
                   webhookData:
                     type: string
                     description: Additional data you wish to include in the request, such as proof of humanity.
+
+alchemy_requestFeePayer:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: alchemy_requestFeePayer
+        params:
+          type: array
+          description: Parameters for requesting fee payer
+          minItems: 1
+          maxItems: 1
+          items:
+            type: array
+            minItems: 1
+            maxItems: 1
+            items:
+              type: object
+              properties:
+                webhookData:
+                  type: string
+                  description: Additional data you wish to include in the request, such as proof of humanity.
+                policyId:
+                  oneOf:
+                    - type: string
+                      format: uuid
+                    - type: array
+                      items:
+                        type: string
+                        format: uuid
+                serializedTransaction:
+                  type: string
+                  description: A base64-encoded serialized transaction missing signature fields. The `feePayer` field should be set to an address that is different than any other address included in the tx. The API will update the `feePayer` and add the signature to the `serializedTransaction`.
