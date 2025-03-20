@@ -2948,3 +2948,13 @@ alchemy_requestGasAndPaymasterAndData:
         'preVerificationGas': '0xab9c',
       },
   }
+
+alchemy_requestFeePayer:
+  {
+    'jsonrpc': '2.0',
+    'method': 'alchemy_requestFeePayer',
+    'id': 1,
+    'result': {
+      'serializedTransaction': 'Ag0GtWZxxEAa5RRlVa9nlvoHlQipM/Xe27r8M+tU7UR3gFIX6inCTo22g1GGTMzKv+8O5d0UfCh1sv1ncCeTHwsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAIAAQORLBR6iVTq70gqvschURzPHFw9OqToL0kpKcKJq/fSDMnfsDRNlEHTg8DntRPI83TAVf3jUyJ23AiXAcWFBtckAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/srKfEvAFKeLN9XFazboEjOa7AXHC5+zjZ6wCIFEgHAECAgEBDAIAAACAlpgAAAAAAAA=',
+    },
+  }

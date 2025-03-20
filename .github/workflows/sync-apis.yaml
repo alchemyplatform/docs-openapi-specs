@@ -154,6 +154,12 @@ jobs:
         working-directory: ./account-abstraction
         run: rdme openapi pm_getPaymasterStubData.yaml --key=$README_API_KEY --id=66c9270918cfbd0012803bb9
 
+      - name: Update AA API - alchemy_requestFeePayer
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./account-abstraction
+        run: rdme openapi alchemy_requestFeePayer.yaml --key=$README_API_KEY --id=67dc9614acaaf200248f71ea
+
     # Update Embedded Accounts API
       - name: Update Embedded Accounts API - accounts
         env:
