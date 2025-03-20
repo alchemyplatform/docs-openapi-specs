@@ -138,6 +138,46 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-nfts-by-address
+  "/{apiKey}/assets/nfts/contracts/by-address":
+    post:
+      summary: Contracts By Owner
+      description: >
+        Retrieves all NFT contracts currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      tags: ["🆕 Multi-Chain NFT APIs (Beta)"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequestWithNFTOptions"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NFTByOwnerResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-nfts-by-address
   ####################################################
   # Transaction History API
   ####################################################
@@ -865,6 +905,23 @@ components:
         acquiredAt:
           $ref: '../nft/nfts.yaml#/components/schemas/acquiredAt'
 
+    ContractsByOwnerResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          description: List of nfts by address with appropriate metadata.
+          # No validAt for the multi-chain version, for now.
+          contracts:
+            type: array
+            items:
+              $ref: '../nft/nfts.yaml#/components/schemas/ownedContractv3'
+            # totalCount:
+            #  $ref: '../nft/nfts.yaml#/components/schemas/totalNFTCount'
+            # pageKey:
+            #   $ref: '../nft/nfts.yaml#/components/schemas/pageKey'
+      required:
+        - data
   ####################################################
   # Transaction History APIs
   ####################################################
