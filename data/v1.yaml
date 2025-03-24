@@ -1,5 +1,5 @@
 # To Update:
-# rdme openapi tokens.yaml --key=<key> --id=67cb0078f56864003061cf66
+# rdme openapi v1.yaml --key=<key> --id=67cb0078f56864003061cf66
 openapi: 3.1.0
 info:
   title: 🧠 Data
@@ -117,7 +117,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ByAddressRequestWithNFTOptions"
+              $ref: "#/components/schemas/ByAddressRequestWithNFTOptionsAndPaging"
       responses:
         "200":
           description: Successful response!
@@ -621,6 +621,26 @@ components:
           description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
           type: boolean
           default: true
+      required:
+        - addresses
+
+    ByAddressRequestWithNFTOptionsAndPaging:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+        withMetadata:
+          description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+          type: boolean
+          default: true
+        pageKey:
+          $ref: '../nft/nfts.yaml#/components/schemas/pageKey'
       required:
         - addresses
 
