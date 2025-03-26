@@ -2545,7 +2545,7 @@ alchemy_requestPaymasterAndData:
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
                 description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
-                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+                default: '0x0000000071727De22E5E9d8BAf0edAc6f37da032'
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
                 description: Partial UserOperation object, missing paymasterAndData and signature fields. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address in the `entryPoint` field.
@@ -2582,7 +2582,7 @@ alchemy_requestGasAndPaymasterAndData:
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
                 description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
-                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+                default: '0x0000000071727De22E5E9d8BAf0edAc6f37da032'
               dummySignature:
                 type: string
                 description: Dummy signature for the operation. This is useful for estimating gas costs.
