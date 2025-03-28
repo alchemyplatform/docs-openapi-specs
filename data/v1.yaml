@@ -632,9 +632,9 @@ components:
           minItems: 1
           maxItems: 2
           description: >
-            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+            Array of address and networks pairs (limit 2 addresses, max 15 networks). Networks should match network enums.
           items:
-            $ref: "#/components/schemas/AddressItem"
+            $ref: "#/components/schemas/AddressItemWith15Maximum"
         withMetadata:
           description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
           type: boolean
@@ -718,6 +718,36 @@ components:
               }
             </style>
             (In BETA and only accepts ETH & BASE mainnets). Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      required:
+        - address
+        - networks
+
+    AddressItemWith15Maximum:
+      type: array
+      properties:
+        address:
+          type: string
+          description: Wallet address.
+          example: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+          default: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+        networks:
+          type: array
+          minItems: 1
+          maxItems: 15
+          default:
+            - eth-mainnet
+            - base-mainnet
+            - matic-mainnet
+          items:
+            type: string
+            default: eth-mainnet
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
       required:
         - address
         - networks
