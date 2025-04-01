@@ -13,10 +13,9 @@ servers:
         default: starknet-mainnet
       version:
         enum:
+          - v0_8
           - v0_7
           - v0.6
-          - v0.5
-          - v0.4
         default: v0_7
 x-sandbox:
   category:
