@@ -1928,3 +1928,18 @@ pm_getPaymasterData:
                   type: string
                   description: |
                     The data for the paymaster in the operation.
+
+alchemy_requestFeePayer:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object
+          properties:
+            serializedTransaction:
+              type: string
+              description: A base64-encoded serialized transaction, signed by the `feePayer` with the `feePayer` field set.
+      example:
+        $ref: ./evm_examples.yaml#/alchemy_requestFeePayer
+        

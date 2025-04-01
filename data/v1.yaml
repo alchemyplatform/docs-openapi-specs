@@ -1,5 +1,5 @@
 # To Update:
-# rdme openapi tokens.yaml --key=<key> --id=67cb0078f56864003061cf66
+# rdme openapi v1.yaml --key=<key> --id=67cb0078f56864003061cf66
 openapi: 3.1.0
 info:
   title: 🧠 Data
@@ -117,7 +117,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ByAddressRequestWithNFTOptions"
+              $ref: "#/components/schemas/ByAddressRequestWithNFTOptionsAndPaging"
       responses:
         "200":
           description: Successful response!
@@ -138,6 +138,46 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
       operationId: get-nfts-by-address
+  "/{apiKey}/assets/nfts/contracts/by-address":
+    post:
+      summary: Contracts By Owner
+      description: >
+        Retrieves all NFT contracts currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+      tags: ["🆕 Multi-Chain NFT APIs (Beta)"]
+      x-readme:
+        samples-languages:
+          - javascript
+          - curl
+          - python
+          - go
+      parameters:
+        - $ref: '#/components/schemas/apiKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ByAddressRequestWithNFTOptions"
+      responses:
+        "200":
+          description: Successful response!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NFTByOwnerResponse"
+        "400":
+          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: 'Too Many Requests: Rate limit exceeded.'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+      operationId: get-nft-contracts-by-address
   ####################################################
   # Transaction History API
   ####################################################
@@ -584,6 +624,28 @@ components:
       required:
         - addresses
 
+    ByAddressRequestWithNFTOptionsAndPaging:
+      type: object
+      properties:
+        addresses:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: >
+            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+          items:
+            $ref: "#/components/schemas/AddressItem"
+        withMetadata:
+          description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
+          type: boolean
+          default: true
+        pageKey:
+          $ref: '../nft/nfts.yaml#/components/schemas/pageKey'
+        pageSize:
+          $ref: '../nft/nfts.yaml#/components/schemas/pageSize'
+      required:
+        - addresses
+
     ByAddressRequestWithNFTOptions:
       type: object
       properties:
@@ -865,6 +927,23 @@ components:
         acquiredAt:
           $ref: '../nft/nfts.yaml#/components/schemas/acquiredAt'
 
+    ContractsByOwnerResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          description: List of nfts by address with appropriate metadata.
+          # No validAt for the multi-chain version, for now.
+          contracts:
+            type: array
+            items:
+              $ref: '../nft/nfts.yaml#/components/schemas/ownedContractv3'
+            # totalCount:
+            #  $ref: '../nft/nfts.yaml#/components/schemas/totalNFTCount'
+            # pageKey:
+            #   $ref: '../nft/nfts.yaml#/components/schemas/pageKey'
+      required:
+        - data
   ####################################################
   # Transaction History APIs
   ####################################################

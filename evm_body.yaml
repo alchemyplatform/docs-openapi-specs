@@ -2545,7 +2545,7 @@ alchemy_requestPaymasterAndData:
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
                 description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
-                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+                default: '0x0000000071727De22E5E9d8BAf0edAc6f37da032'
               userOperation:
                 $ref: ./components/schemas.yaml#/UserOperationPartialWithGasFields
                 description: Partial UserOperation object, missing paymasterAndData and signature fields. This can be either a v0.6 or v0.7 user operation, but MUST match the version of the entry point at the address in the `entryPoint` field.
@@ -2582,7 +2582,7 @@ alchemy_requestGasAndPaymasterAndData:
               entryPoint:
                 $ref: ./components/schemas.yaml#/EntryPoint
                 description: The `entrypoint` address the request should be sent through. This MUST be one of the entry points returned by the supportedEntryPoints rpc call and match the version of the user operation in the `userOperation` field.
-                default: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+                default: '0x0000000071727De22E5E9d8BAf0edAc6f37da032'
               dummySignature:
                 type: string
                 description: Dummy signature for the operation. This is useful for estimating gas costs.
@@ -2749,3 +2749,40 @@ pm_getPaymasterData:
                   webhookData:
                     type: string
                     description: Additional data you wish to include in the request, such as proof of humanity.
+
+alchemy_requestFeePayer:
+  allOf:
+    - $ref: '#/common_request_fields'
+    - type: object
+      properties:
+        method:
+          $ref: ./components/schemas.yaml#/Method
+          default: alchemy_requestFeePayer
+        params:
+          type: array
+          description: Parameters for requesting gas sponsorship
+          minItems: 1
+          maxItems: 1
+          items:
+            type: array
+            minItems: 1
+            maxItems: 1
+            items:
+              type: object
+              properties:
+                policyId:
+                  type: string
+                  description: The policy ID or list of policy IDs
+                  oneOf:
+                    - type: string
+                      format: uuid
+                    - type: array
+                      items:
+                        type: string
+                        format: uuid
+                serializedTransaction:
+                  type: string
+                  description: A base64-encoded serialized transaction missing signature fields. The `feePayer` field should be set to an address that is different than any other address included in the tx. The API will update the `feePayer` and add the signature to the `serializedTransaction`.
+                webhookData:
+                  type: string
+                  description: (optional) Additional data you wish to include in the request, such as proof of humanity.
