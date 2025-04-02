@@ -528,6 +528,44 @@ components:
           default: eth-mainnet
       in: query
       required: true
+    # Networks that NFTs are supported on.
+    nftNetworks:
+      type: string
+      enum:
+        - eth-mainnet
+        - eth-sepolia
+        - eth-holesky
+        - avax-mainnet
+        - avax-fuji
+        - zksync-mainnet
+        - opt-mainnet
+        - polygon-mainnet
+        - polygon-amoy
+        - arb-mainnet
+        - arb-sepolia
+        - blast-mainnet
+        - blast-sepolia
+        - base-mainnet
+        - base-sepolia
+        - soneium-mainnet
+        - soneium-minato
+        - scroll-mainnet
+        - scroll-sepolia
+        - shape-mainnet
+        - shape-sepolia
+        - lens-mainnet
+        - lens-sepolia
+        - starknet-mainnet
+        - starknet-sepolia
+        - rootstock-mainnet
+        - rootstock-testnet
+        - linea-mainnet
+        - linea-sepolia
+        - settlus-septestnet
+        - abstract-mainnet
+        - abstract-testnet
+        - apechain-mainnet
+      default: eth-mainnet
     timestamp:
       name: timestamp
       description: Unix or ISO timestamp
@@ -632,9 +670,9 @@ components:
           minItems: 1
           maxItems: 2
           description: >
-            Array of address and networks pairs (limit 2 pairs, max 5 networks each). Networks should match network enums.
+            Array of address and networks pairs (limit 2 pairs, max 15 networks each). Networks should match network enums.
           items:
-            $ref: "#/components/schemas/AddressItem"
+            $ref: "#/components/schemas/AddressItemForNFTOwnership"
         withMetadata:
           description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
           type: boolean
@@ -661,7 +699,6 @@ components:
           description: 'Boolean - if set to `true`, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
           type: boolean
           default: true
-        # TODO: spamConfidenceLevel
       required:
         - addresses
 
@@ -691,6 +728,41 @@ components:
               }
             </style>
             Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>
+      required:
+        - address
+        - networks
+
+    AddressItemForNFTOwnership:
+      type: array
+      properties:
+        address:
+          type: string
+          description: Wallet address.
+          example: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+          default: "0x1E6E8695FAb3Eb382534915eA8d7Cc1D1994B152"
+        networks:
+          type: array
+          minItems: 1
+          maxItems: 5
+          default:
+            - eth-mainnet
+            - base-mainnet
+            - matic-mainnet
+          items:
+            $ref: "#/components/schemas/nftNetworks"
+          description: |
+            <style>
+              .custom-style {
+                color: #048FF4;
+              }
+            </style>
+            Network identifier (e.g., eth-mainnet). Find more network enums <span class="custom-style"><a href="https://dashboard.alchemy.com/chains" target="_blank">here</a></span>        
+        excludeFilters:
+          $ref: '../nft/nfts.yaml#/components/schemas/excludeFilters'
+        includeFilters:
+          $ref: '../nft/nfts.yaml#/components/schemas/includeFilters'
+        spamConfidenceLevel:
+          $ref: '../nft/nfts.yaml#/components/schemas/spamConfidenceLevel'
       required:
         - address
         - networks
