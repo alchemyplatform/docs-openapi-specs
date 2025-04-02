@@ -9,7 +9,6 @@ servers:
         enum:
           - eth-mainnet
           - eth-sepolia
-          - eth-holesky
           - zksync-mainnet
           - opt-mainnet
           - polygon-mainnet
