@@ -11,22 +11,76 @@ servers:
           - eth-sepolia
           - eth-holesky
           - opt-mainnet
+          - opt-sepolia
           - polygon-mainnet
           - polygon-amoy
+          - polygonzkevm-mainnet
+          - polygonzkevm-cardona
+          - apechain-mainnet
+          - apechain-curtis
           - arb-mainnet
           - arb-sepolia
+          - astar-mainnet
+          - avax-mainnet
+          - avax-fuji
           - arbnova-mainnet
+          - abstract-mainnet
+          - abstract-testnet
           - base-mainnet
           - base-sepolia
+          - berachain-mainnet
           - bob-mainnet
+          - blast-sepolia
+          - bnb-mainnet
+          - celo-mainnet
+          - crossfi-mainnet
+          - crossfi-testnet
+          - degen-mainnet
+          - fantom-testnet
+          - flow-mainnet
+          - geist-mainnet
+          - geist-polter
+          - gnosis-chiado
+          - k2-testnet
+          - kinto-mainnet
           - spotlight-mainnet
           - spotlight-sepolia
           - xmtp-testnet
           - chiliz-mainnet
           - chiliz-spicy
-          - abstract-testnet
+          - ink-mainnet
+          - ink-sepolia
+          - metis-mainnet
+          - moonbeam-mainnet
+          - monad-testnet
+          - lens-mainnet
+          - lens-sepolia
+          - linea-mainnet
+          - opbnb-mainnet
+          - openloot-sepolia
+          - rootstock-mainnet
+          - rootstock-testnet
+          - ronin-mainnet
+          - ronin-saigon
+          - sei-mainnet
+          - sei-testnet
+          - scroll-mainnet
+          - scroll-sepolia
           - shape-mainnet
-          - shape-sepolia
+          - soneium-mainnet
+          - soneium-minato
+          - sonic-blaze
+          - superseed-mainnet
+          - tea-sepolia
+          - unichain-mainnet
+          - unichain-sepolia
+          - worldchain-mainnet
+          - worldchain-sepolia
+          - xmtp-testnet
+          - zetachain-mainnet
+          - zetachain-testnet
+          - zksync-mainnet
+          - zksync-sepolia
         default: eth-mainnet
 x-sandbox:
   category:
