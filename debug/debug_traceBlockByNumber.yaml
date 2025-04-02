@@ -11,22 +11,45 @@ servers:
           - eth-sepolia
           - eth-holesky
           - opt-mainnet
+          - opt-sepolia
           - polygon-mainnet
           - polygon-amoy
           - arb-mainnet
           - arb-sepolia
           - arbnova-mainnet
+          - abstract-mainnet
+          - abstract-testnet
           - base-mainnet
           - base-sepolia
+          - berachain-bartio
           - bob-mainnet
+          - bob-sepolia
+          - crossfi-mainnet
+          - crossfi-testnet
+          - k2-testnet
           - spotlight-mainnet
           - spotlight-sepolia
           - xmtp-testnet
           - chiliz-mainnet
           - chiliz-spicy
-          - abstract-testnet
+          - ink-mainnet
+          - ink-sepolia
+          - metabased-stratos
+          - ronin-mainnet
+          - ronin-saigon
+          - sei-mainnet
+          - sei-testnet
           - shape-mainnet
           - shape-sepolia
+          - soneium-mainnet
+          - soneium-minato
+          - sonic-mainnet
+          - sonic-blaze
+          - superseed-mainnet
+          - superseed-sepolia
+          - unichain-mainnet
+          - unichain-sepolia
+          - xmtp-testnet
         default: eth-mainnet
 x-sandbox:
   category:
