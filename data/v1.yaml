@@ -1,5 +1,8 @@
 # To Update:
 # rdme openapi v1.yaml --key=<key> --id=67cb0078f56864003061cf66
+#
+# TODO: Better organize this.
+#
 openapi: 3.1.0
 info:
   title: 🧠 Data
@@ -17,50 +20,13 @@ paths:
   ####################################################
   "/{apiKey}/assets/tokens/by-address":
     post:
-      summary: Tokens By Wallet
-      description: >
-        Fetches current balances, prices, and metadata for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
-      tags: ["🆕 Multi-Chain Token APIs (Beta)"]
-      x-readme:
-        samples-languages:
-          - javascript
-          - curl
-          - python
-          - go
-      parameters:
-        - $ref: '#/components/schemas/apiKey'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ByAddressRequestWithOptions"
-      responses:
-        "200":
-          description: Successful response!
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TokensResponse"
-        "400":
-          description: 'Bad Request: Invalid input (e.g., malformed JSON).'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "429":
-          description: 'Too Many Requests: Rate limit exceeded.'
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-      operationId: get-tokens-by-address
+      $ref: './assets/tokens/by-address.yaml'
   "/{apiKey}/assets/tokens/balances/by-address":
     post:
       summary: Token Balances By Wallet
       description: >
         Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens)
-      tags: ["🆕 Multi-Chain Token APIs (Beta)"]
+      tags: ["📚 Portfolio APIs"]
       x-readme:
         samples-languages:
           - javascript
@@ -103,7 +69,7 @@ paths:
       summary: NFTs By Owner
       description: >
         Retrieves all NFTs currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
-      tags: ["🆕 Multi-Chain NFT APIs (Beta)"]
+      tags: ["📚 Portfolio APIs"]
       x-readme:
         samples-languages:
           - javascript
@@ -143,7 +109,7 @@ paths:
       summary: Contracts By Owner
       description: >
         Retrieves all NFT contracts currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
-      tags: ["🆕 Multi-Chain NFT APIs (Beta)"]
+      tags: ["📚 Portfolio APIs"]
       x-readme:
         samples-languages:
           - javascript
@@ -186,7 +152,7 @@ paths:
       summary: Transaction History By Wallet
       description: >
         Fetches all transactions addresses using network and address pairs (currently limited to 1 in BETA) Returns a list of transaction objects. This endpoint will be supported on Ethereum, Solana, and 30+ EVM chains (currently limited to ETH and Base)
-      tags: ["🆕 Multi-Chain Transaction History APIs (Beta)"]
+      tags: ["📚 Portfolio APIs"]
       x-readme:
         samples-languages:
           - javascript
