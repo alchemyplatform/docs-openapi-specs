@@ -41,6 +41,12 @@ servers: # servers are also specified at the method level, if there isn't a spec
           - abstract-mainnet
           - abstract-testnet
           - apechain-mainnet
+          - unichain-mainnet
+          - unichain-sepolia
+          - zora-mainnet
+          - zora-sepolia
+          - berachain-mainnet
+          - monad-testnet
         default: eth-mainnet
 x-sandbox:
   category:
