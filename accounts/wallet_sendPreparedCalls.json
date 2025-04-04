@@ -1,0 +1,216 @@
+{
+  "request": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": ["user-operation-v060"]
+            },
+            {
+              "type": "string",
+              "enum": ["user-operation-v070"]
+            }
+          ]
+        },
+        "data": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "sender": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "nonce": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "initCode": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^0x(.*)$"
+                    },
+                    {
+                      "type": "string",
+                      "enum": ["0x"]
+                    }
+                  ]
+                },
+                "callData": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "callGasLimit": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "verificationGasLimit": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "preVerificationGas": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "maxFeePerGas": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "maxPriorityFeePerGas": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "paymasterAndData": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^0x(.*)$"
+                    },
+                    {
+                      "type": "string",
+                      "enum": ["0x"]
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "sender",
+                "nonce",
+                "initCode",
+                "callData",
+                "callGasLimit",
+                "verificationGasLimit",
+                "preVerificationGas",
+                "maxFeePerGas",
+                "maxPriorityFeePerGas",
+                "paymasterAndData"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "sender": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "nonce": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "factory": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "factoryData": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "callData": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "callGasLimit": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "verificationGasLimit": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "preVerificationGas": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "maxFeePerGas": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "maxPriorityFeePerGas": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "paymaster": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "paymasterData": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "paymasterVerificationGasLimit": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                },
+                "paymasterPostOpGasLimit": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                }
+              },
+              "required": [
+                "sender",
+                "nonce",
+                "callData",
+                "callGasLimit",
+                "verificationGasLimit",
+                "preVerificationGas",
+                "maxFeePerGas",
+                "maxPriorityFeePerGas"
+              ]
+            }
+          ]
+        },
+        "chainId": {
+          "type": "string",
+          "pattern": "^0x(.*)$"
+        },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "signature": {
+              "type": "string",
+              "pattern": "^0x(.*)$"
+            }
+          },
+          "required": ["type", "signature"]
+        },
+        "capabilities": {
+          "type": "object",
+          "properties": {
+            "permissions": {
+              "type": "object",
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "pattern": "^0x(.*)$"
+                }
+              },
+              "required": ["context"]
+            }
+          },
+          "required": ["permissions"]
+        }
+      },
+      "required": ["type", "data", "chainId", "signature"]
+    }
+  },
+  "response": {
+    "type": "object",
+    "properties": {
+      "preparedCallIds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": ["preparedCallIds"]
+  }
+}
