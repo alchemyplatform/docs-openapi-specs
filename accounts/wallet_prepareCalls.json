@@ -1,0 +1,405 @@
+{
+  "request": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "calls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "to": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "data": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "value": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              }
+            },
+            "required": ["to"]
+          }
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^0x(.*)$"
+        },
+        "chainId": {
+          "type": "string",
+          "pattern": "^0x(.*)$"
+        },
+        "capabilities": {
+          "minProperties": 1,
+          "type": "object",
+          "properties": {
+            "permissions": {
+              "minItems": 1,
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "context": {
+                      "type": "string",
+                      "pattern": "^0x(.*)$"
+                    }
+                  },
+                  "required": ["context"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "pattern": "^0x(.*)$"
+                    },
+                    "chainId": {
+                      "type": "string",
+                      "pattern": "^0x(.*)$"
+                    },
+                    "expiry": {
+                      "type": "number"
+                    },
+                    "key": {
+                      "type": "object",
+                      "properties": {
+                        "publicKey": {
+                          "type": "string",
+                          "pattern": "^0x(.*)$"
+                        },
+                        "type": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": ["secp256k1"]
+                            },
+                            {
+                              "type": "string",
+                              "enum": ["contract"]
+                            }
+                          ]
+                        }
+                      },
+                      "required": ["publicKey", "type"]
+                    },
+                    "permissions": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": ["native-token-transfer"]
+                              },
+                              "data": {
+                                "type": "object",
+                                "properties": {
+                                  "allowance": {
+                                    "type": "string",
+                                    "pattern": "^0x(.*)$"
+                                  }
+                                },
+                                "required": ["allowance"]
+                              }
+                            },
+                            "required": ["type", "data"]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": ["erc20-token-transfer"]
+                              },
+                              "data": {
+                                "type": "object",
+                                "properties": {
+                                  "allowance": {
+                                    "type": "string",
+                                    "pattern": "^0x(.*)$"
+                                  },
+                                  "address": {
+                                    "type": "string",
+                                    "pattern": "^0x(.*)$"
+                                  }
+                                },
+                                "required": ["allowance", "address"]
+                              }
+                            },
+                            "required": ["type", "data"]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": ["gas-limit"]
+                              },
+                              "data": {
+                                "type": "object",
+                                "properties": {
+                                  "limit": {
+                                    "type": "string",
+                                    "pattern": "^0x(.*)$"
+                                  }
+                                },
+                                "required": ["limit"]
+                              }
+                            },
+                            "required": ["type", "data"]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": ["contract-call"]
+                              },
+                              "data": {
+                                "type": "array",
+                                "items": {
+                                  "minItems": 1,
+                                  "type": "object",
+                                  "properties": {
+                                    "address": {
+                                      "type": "string",
+                                      "pattern": "^0x(.*)$"
+                                    },
+                                    "selectors": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string",
+                                        "pattern": "^0x(.*)$"
+                                      }
+                                    }
+                                  },
+                                  "required": ["address"]
+                                }
+                              }
+                            },
+                            "required": ["type", "data"]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": ["root"]
+                              },
+                              "data": {
+                                "not": {}
+                              }
+                            },
+                            "required": ["type", "data"]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["address", "chainId", "key", "permissions"]
+                }
+              ]
+            },
+            "paymasterService": {
+              "type": "object",
+              "properties": {
+                "policyId": {
+                  "type": "string"
+                }
+              },
+              "required": ["policyId"]
+            }
+          }
+        }
+      },
+      "required": ["calls", "from", "chainId"]
+    }
+  },
+  "response": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "anyOf": [
+          {
+            "type": "string",
+            "enum": ["user-operation-v060"]
+          },
+          {
+            "type": "string",
+            "enum": ["user-operation-v070"]
+          }
+        ]
+      },
+      "data": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "sender": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "nonce": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "initCode": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x(.*)$"
+                  },
+                  {
+                    "type": "string",
+                    "enum": ["0x"]
+                  }
+                ]
+              },
+              "callData": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "callGasLimit": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "verificationGasLimit": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "preVerificationGas": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "maxFeePerGas": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "maxPriorityFeePerGas": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "paymasterAndData": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x(.*)$"
+                  },
+                  {
+                    "type": "string",
+                    "enum": ["0x"]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "sender",
+              "nonce",
+              "initCode",
+              "callData",
+              "callGasLimit",
+              "verificationGasLimit",
+              "preVerificationGas",
+              "maxFeePerGas",
+              "maxPriorityFeePerGas",
+              "paymasterAndData"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "sender": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "nonce": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "factory": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "factoryData": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "callData": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "callGasLimit": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "verificationGasLimit": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "preVerificationGas": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "maxFeePerGas": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "maxPriorityFeePerGas": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "paymaster": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "paymasterData": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "paymasterVerificationGasLimit": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              },
+              "paymasterPostOpGasLimit": {
+                "type": "string",
+                "pattern": "^0x(.*)$"
+              }
+            },
+            "required": [
+              "sender",
+              "nonce",
+              "callData",
+              "callGasLimit",
+              "verificationGasLimit",
+              "preVerificationGas",
+              "maxFeePerGas",
+              "maxPriorityFeePerGas"
+            ]
+          }
+        ]
+      },
+      "chainId": {
+        "type": "string",
+        "pattern": "^0x(.*)$"
+      },
+      "signatureRequest": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string",
+            "pattern": "^0x(.*)$"
+          }
+        },
+        "required": ["hash"]
+      }
+    },
+    "required": ["type", "data", "chainId", "signatureRequest"]
+  }
+}
