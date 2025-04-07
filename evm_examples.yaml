@@ -25,6 +25,91 @@ eth_getLogs:
 
 eth_blockNumber: { 'jsonrpc': '2.0', 'id': 1, 'result': '0xfd2fdb' }
 
+eth_simulateV1:
+  {
+    'jsonrpc': '2.0',
+    'id': 1,
+    'result':
+      [
+    {
+      "baseFeePerGas": "0x9",
+      "blobGasUsed": "0x0",
+      "calls": [
+        {
+          "returnData": "0x",
+          "logs": [
+            {
+              "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+              "topics": [
+                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "0x000000000000000000000000c000000000000000000000000000000000000000",
+                "0x000000000000000000000000c000000000000000000000000000000000000001"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+              "blockNumber": "0x1530a5e",
+              "transactionHash": "0x40e61ffc135d1d280646e8951141828e0fad81fd330b1c1a75454163f8c8ca34",
+              "transactionIndex": "0x0",
+              "blockHash": "0x105b451ea332730fe2d316d983b9a406b6d4a022ee6e83e02bcae17a94f8c87b",
+              "logIndex": "0x0",
+              "removed": false
+            }
+          ],
+          "gasUsed": "0x5208",
+          "status": "0x1"
+        },
+        {
+          "returnData": "0x",
+          "logs": [
+            {
+              "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+              "topics": [
+                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                "0x000000000000000000000000c000000000000000000000000000000000000000",
+                "0x000000000000000000000000c000000000000000000000000000000000000002"
+              ],
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+              "blockNumber": "0x1530a5e",
+              "transactionHash": "0x204d575c2f68b43a32423bc05491e8dafa71913e3e6d223aa5128cbd23562ecd",
+              "transactionIndex": "0x1",
+              "blockHash": "0x105b451ea332730fe2d316d983b9a406b6d4a022ee6e83e02bcae17a94f8c87b",
+              "logIndex": "0x1",
+              "removed": false
+            }
+          ],
+          "gasUsed": "0x5208",
+          "status": "0x1"
+        }
+      ],
+      "difficulty": "0x0",
+      "excessBlobGas": "0x3b80000",
+      "extraData": "0x",
+      "gasLimit": "0x22550dd",
+      "gasUsed": "0xa410",
+      "hash": "0x105b451ea332730fe2d316d983b9a406b6d4a022ee6e83e02bcae17a94f8c87b",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x1f9090aae28b8a3dceadf281b0f12828e676c326",
+      "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": "0x0000000000000000",
+      "number": "0x1530a5e",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x513a0aa73024f294cdbcb0312af0c920850035f0552d7349ebb30717de30b1cc",
+      "receiptsRoot": "0x75308898d571eafb5cd8cde8278bf5b3d13c5f6ec074926de3bb895b519264e1",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x29c",
+      "stateRoot": "0x65ea44c8bd5f9edbf269b6446b460b3e7378abb25c78fd5d70f0e2ef59296b25",
+      "timestamp": "0x67f43327",
+      "transactions": [
+        "0x40e61ffc135d1d280646e8951141828e0fad81fd330b1c1a75454163f8c8ca34",
+        "0x204d575c2f68b43a32423bc05491e8dafa71913e3e6d223aa5128cbd23562ecd"
+      ],
+      "transactionsRoot": "0xd6902f31ae9d2169b77cd88611c6afd691ea5a7e604e44c71f663fda0c5d1c28",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    }
+  ]
+}
+
 eth_block:
   {
     'jsonrpc': '2.0',

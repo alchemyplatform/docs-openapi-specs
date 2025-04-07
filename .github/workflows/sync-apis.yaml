@@ -600,6 +600,12 @@ jobs:
         working-directory: ./ethereum
         run: rdme openapi eth_getTransactionByBlockNumberAndIndex.yaml --key=$README_API_KEY --id=62d85761c50d8b00730dc6ce
 
+      - name: Update Ethereum API - eth_simulateV1
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./ethereum
+        run: rdme openapi eth_simulateV1.yaml --key=$README_API_KEY --id=67f44614304e6c004147ece2
+
       # Update Polygon PoS APIs
       - name: Update Polygon PoS API - eth_createAccessList
         env:
