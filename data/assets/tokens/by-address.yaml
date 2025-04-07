@@ -1,0 +1,38 @@
+summary: Tokens By Wallet
+description: >
+  Fetches current balances, prices, and metadata for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+tags: ["📚 Portfolio APIs"]
+x-readme:
+  samples-languages:
+    - javascript
+    - curl
+    - python
+    - go
+parameters:
+  - $ref: './../../v1.yaml#/components/schemas/apiKey'
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "./../../v1.yaml#/components/schemas/ByAddressRequestWithOptions"
+responses:
+  "200":
+    description: Successful response!
+    content:
+      application/json:
+        schema:
+          $ref: "./../../v1.yaml#/components/schemas/TokensResponse"
+  "400":
+    description: 'Bad Request: Invalid input (e.g., malformed JSON).'
+    content:
+      application/json:
+        schema:
+          $ref: "./../../v1.yaml#/components/schemas/ErrorResponse"
+  "429":
+    description: 'Too Many Requests: Rate limit exceeded.'
+    content:
+      application/json:
+        schema:
+          $ref: "./../../v1.yaml#/components/schemas/ErrorResponse"
+operationId: get-tokens-by-address
