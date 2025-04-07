@@ -123,4 +123,4 @@ components:
             content:
               application/json:
                 schema:
-                  $ref: ../evm_responses.yaml#/eth_call
+                  $ref: ../evm_responses.yaml#/eth_simulateV1

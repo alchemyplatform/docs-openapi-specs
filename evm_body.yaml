@@ -1764,59 +1764,56 @@ eth_simulateV1:
 simulate_object:
   type: object
   properties:
-    object:
-      type: object
-      description: the simulation request object
-      properties:
-        blockStateCalls:
-          type: array
-          description: an array of block state call objects
-          items:
-            type: object
-            properties:
-              blockOverrides:
-                type: object
-                description: an object to override block-level parameters
-                properties:
-                  baseFeePerGas:
-                    type: string
-                    description: the base fee per gas for the block, encoded as hexadecimal
-                  stateOverrides:
-                    type: object
-                    description: an object to override account states
-                    additionalProperties:
-                      type: object
-                      properties:
-                        balance:
-                          type: string
-                          description: the balance to set for the account, encoded as hexadecimal
-              calls:
-                type: array
-                description: an array of transaction call objects
-                items:
+    description: the simulation request object
+    properties:
+      blockStateCalls:
+        type: array
+        description: an array of block state call objects
+        items:
+          properties:
+            blockOverrides:
+              type: object
+              description: an object to override block-level parameters
+              properties:
+                baseFeePerGas:
+                  type: string
+                  description: the base fee per gas for the block, encoded as hexadecimal
+                stateOverrides:
                   type: object
-                  properties:
-                    from:
-                      type: string
-                      description: the address from which the transaction is sent
-                    to:
-                      type: string
-                      description: the address to which the transaction is directed
-                    maxFeePerGas:
-                      type: string
-                      description: (optional) the maximum fee per gas the sender is willing to pay
-                    value:
-                      type: string
-                      description: (optional) the value sent with the transaction, encoded as hexadecimal
-                    validation:
-                      type: boolean
-                      description: (optional) whether to perform validation checks
-                    traceTransfers:
-                      type: boolean
-                      description: (optional) whether to trace value transfers
-              quantity:
-                type: string
-                description: the integer block number or string tag ("latest", "earliest", "pending")
+                  description: an object to override account states
+                  additionalProperties:
+                    type: object
+                    properties:
+                      balance:
+                        type: string
+                        description: the balance to set for the account, encoded as hexadecimal
+            calls:
+              type: array
+              description: an array of transaction call objects
+              items:
+                type: object
+                properties:
+                  from:
+                    type: string
+                    description: the address from which the transaction is sent
+                  to:
+                    type: string
+                    description: the address to which the transaction is directed
+                  maxFeePerGas:
+                    type: string
+                    description: (optional) the maximum fee per gas the sender is willing to pay
+                  value:
+                    type: string
+                    description: (optional) the value sent with the transaction, encoded as hexadecimal
+                  validation:
+                    type: boolean
+                    description: (optional) whether to perform validation checks
+                  traceTransfers:
+                    type: boolean
+                    description: (optional) whether to trace value transfers
+            quantity:
+              type: string
+              description: the integer block number or string tag ("latest", "earliest", "pending")
 
 
 eth_call_polygon_zkevm:
