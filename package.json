@@ -17,11 +17,13 @@
   "homepage": "https://github.com/alchemyplatform/docs-openapi-specs#readme",
   "devDependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
+    "@openapi-generator-plus/json-schema-ref-parser": "^9.0.11",
     "@stoplight/spectral-cli": "^6.6.0",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3",
     "prettier": "^3.0.3",
     "rdme": "^8.4.0",
+    "s": "^1.0.0",
     "ts-node": "^10.9.1",
     "yaml": "^2.2.1"
   }
