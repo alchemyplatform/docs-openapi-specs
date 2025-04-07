@@ -170,31 +170,31 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./accounts
-        run: rdme openapi wallet_createAccount.yaml --key=$README_API_KEY --id=67f42a071b2ed2000fe43664
+        run: rdme openapi wallet_createAccount.yaml --key=$README_API_KEY --id=67f434bd4a56c70043d51750
 
       - name: Update Embedded Accounts API - wallet_listAccounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./accounts
-        run: rdme openapi wallet_listAccounts.yaml --key=$README_API_KEY --id=67f42a73b8d375005371bee4
+        run: rdme openapi wallet_listAccounts.yaml --key=$README_API_KEY --id=67f434d69d19f30070176aba
 
       - name: Update Embedded Accounts API - wallet_prepareCalls
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./accounts
-        run: rdme openapi wallet_prepareCalls.yaml --key=$README_API_KEY --id=67f42a871b2ed2000fe43c36
+        run: rdme openapi wallet_prepareCalls.yaml --key=$README_API_KEY --id=67f434ebb15dc5001e63e055
 
       - name: Update Embedded Accounts API - wallet_sendPreparedCalls
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./accounts
-        run: rdme openapi wallet_sendPreparedCalls.yaml --key=$README_API_KEY --id=67f42ab1538a23001074ae82
+        run: rdme openapi wallet_sendPreparedCalls.yaml --key=$README_API_KEY --id=67f434ff538a23001074cc8d
 
       - name: Update Embedded Accounts API - wallet_requestAccount
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./accounts
-        run: rdme openapi wallet_requestAccount.yaml --key=$README_API_KEY --id=67f42a9efe1c72002a20e949
+        run: rdme openapi wallet_requestAccount.yaml --key=$README_API_KEY --id=67f435141927c200189a230a
 
       # Update Debug APIs
       - name: Update Debug API - debug_traceBlockByHash
