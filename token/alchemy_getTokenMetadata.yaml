@@ -47,6 +47,14 @@ servers:
           - abstract-mainnet
           - abstract-testnet
           - apechain-mainnet
+          - unichain-mainnet
+          - unichain-sepolia
+          - zora-mainnet
+          - zora-sepolia
+          - berachain-mainnet
+          - monad-testnet
+          - ronin-mainnet
+          - ronin-saigon
         default: eth-mainnet
 x-sandbox:
   category:
