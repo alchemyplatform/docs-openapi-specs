@@ -65,50 +65,43 @@ components:
                   params: [
                     {
                       object: {
-                        blockStateCalls: [
+                        blockOverrides: {
+                          baseFeePerGas: "0x2540be400",
+                        },
+                        stateOverrides: {
+                          "0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41": {
+                            balance: "0xde0b6b3a7640000",
+                          },
+                        },
+                        calls: [
                           {
-                            blockOverrides: {
-                              baseFeePerGas: "0x2540be400",
-                              stateOverrides: {
-                                "0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41": {
-                                  balance: "0xde0b6b3a7640000",
-                                },
-                              },
-                            },
-                            calls: [
-                              {
-                                from: "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                                to: "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-                                maxFeePerGas: "0x9184e72a000",
-                                value: "0x0",
-                                validation: true,
-                                traceTransfers: false,
-                              },
-                            ],
-                            quantity: "latest",
+                            from: "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                            to: "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                            maxFeePerGas: "0x9184e72a000",
+                            value: "0x0",
                           },
                         ],
+                        validation: true,
+                        traceTransfers: false,
                       },
+                      quantity: "latest",
                     },
                     {
                       object: {
-                        blockStateCalls: [
+                        blockOverrides: {
+                          baseFeePerGas: "0x1dcd6500",
+                        },
+                        calls: [
                           {
-                            blockOverrides: {
-                              baseFeePerGas: "0x1dcd6500",
-                            },
-                            calls: [
-                              {
-                                from: "0xcccccccccccccccccccccccccccccccccccccccc",
-                                to: "0xdddddddddddddddddddddddddddddddddddddddd",
-                                value: "0x2386f26fc10000",
-                                validation: false,
-                              },
-                            ],
-                            quantity: "pending",
+                            from: "0xcccccccccccccccccccccccccccccccccccccccc",
+                            to: "0xdddddddddddddddddddddddddddddddddddddddd",
+                            value: "0x2386f26fc10000",
                           },
                         ],
+                        validation: false,
+                        traceTransfers: false,
                       },
+                      quantity: "pending",
                     },
                   ],
                 };
