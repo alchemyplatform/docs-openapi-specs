@@ -1,0 +1,68 @@
+{
+  "request": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "signerAddress": {
+          "type": "string",
+          "pattern": "^0x(.*)$"
+        },
+        "limit": {
+          "minimum": 1,
+          "maximum": 100,
+          "default": 100,
+          "type": "number"
+        },
+        "after": {
+          "format": "base64url",
+          "type": "string"
+        }
+      },
+      "required": ["signerAddress"]
+    }
+  },
+  "response": {
+    "type": "object",
+    "properties": {
+      "accounts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "accountAddress": {
+              "type": "string",
+              "pattern": "^0x(.*)$"
+            },
+            "id": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          "required": ["accountAddress", "id"]
+        }
+      },
+      "meta": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "number"
+          },
+          "after": {
+            "anyOf": [
+              {
+                "format": "base64url",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": ["totalCount", "after"]
+      }
+    },
+    "required": ["accounts", "meta"]
+  }
+}

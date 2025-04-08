@@ -41,6 +41,14 @@ servers: # servers are also specified at the method level, if there isn't a spec
           - abstract-mainnet
           - abstract-testnet
           - apechain-mainnet
+          - unichain-mainnet
+          - unichain-sepolia
+          - zora-mainnet
+          - zora-sepolia
+          - berachain-mainnet
+          - monad-testnet
+          - ronin-mainnet
+          - ronin-saigon
         default: eth-mainnet
 x-sandbox:
   category:
@@ -2411,8 +2419,8 @@ components:
       type: string
       description: "String - Uri representing the location of the NFT's original metadata blob. This is a backup for you to parse when the metadata field is not automatically populated."
     totalNFTCount:
-      type: string
-      description: 'String - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
+      type: integer
+      description: 'Integer - Total number of NFTs (distinct `tokenIds`) owned by the given address.'
     totalContractCount:
       type: string
       description: 'String - Total number of NFT contracts held by the given address returned in this page.'
@@ -2994,7 +3002,7 @@ components:
       description: Block Information of the block as of which the corresponding data is valid
       properties:
         blockNumber:
-          type: string
+          type: integer
           description: 'The block number above information is valid as of'
         blockHash:
           type: string

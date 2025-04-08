@@ -40,7 +40,13 @@ create new spec => remove id from spec`);
   const id = await readme.spec.upload({ spec });
 
   // 4. Add id to spec!
-  originalSpec['x-readme'].id = id;
+  if (!originalSpec['x-readme']) {
+    originalSpec['x-readme'] = {
+      id: id,
+    };
+  } else {
+    originalSpec['x-readme'].id = id;
+  }
 
   fs.writeFileSync(filePath, stringify(originalSpec));
   console.log(`Added id ${id} (x-readme.id)\n`);

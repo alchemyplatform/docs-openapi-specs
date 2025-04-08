@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: eth simulate V1 - Ethereum
+  description: Ethereum API method that enables simulation of complex transactions and state changes without modifying the blockchain. This method is particularly useful for testing and debugging smart contracts, estimating gas costs, and analyzing the potential outcomes of transactions before committing them to the network.
+  version: '1.0'
+servers:
+  - url: 'https://{network}.g.alchemy.com/v2/'
+    variables:
+      network:
+        enum:
+          - eth-mainnet
+          - eth-sepolia
+          - eth-hoodi
+          - eth-holesky
+          - base-mainnet
+          - base-sepolia
+        default: eth-mainnet
+x-sandbox:
+  category:
+    type:
+      $ref: '../components/sandbox.yaml#/Category'
+    value: core
+paths:
+  /{apiKey}:
+    $ref: '#/components/pathItems/path'
+components:
+  pathItems:
+    path:
+      post:
+        operationId: eth_simulateV1
+        summary: eth_simulateV1 - Ethereum
+        description: Enables simulation of complex transactions and state changes without modifying the blockchain.
+        parameters:
+          - name: apiKey
+            in: path
+            schema:
+              type: string
+              default: docs-demo
+              description: |
+                <style>
+                  .custom-style {
+                    color: #048FF4;
+                  }
+                </style>
+                For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
+            required: true
+        requestBody:
+          description: Accepts the transaction call object, state overrides and the block number / block hash / block tag to execute the call on.
+          content:
+            application/json:
+              schema:
+                $ref: ../evm_body.yaml#/eth_simulateV1
+        x-readme:
+          explorer-enabled: false
+          samples-languages:
+            - curl
+            - javascript
+            - python
+          code-samples:
+            - language: javascript
+              name: eth_simulateV1
+              code: |
+                const request = {
+                  method: "eth_simulateV1",
+                  params: [
+                    {
+                      object: {
+                        blockOverrides: {
+                          baseFeePerGas: "0x2540be400",
+                        },
+                        stateOverrides: {
+                          "0x4976fb03C32e5B8cfe2b6cCB31c09Ba78EBaBa41": {
+                            balance: "0xde0b6b3a7640000",
+                          },
+                        },
+                        calls: [
+                          {
+                            from: "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                            to: "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                            maxFeePerGas: "0x9184e72a000",
+                            value: "0x0",
+                          },
+                        ],
+                        validation: true,
+                        traceTransfers: false,
+                      },
+                      quantity: "latest",
+                    },
+                    {
+                      object: {
+                        blockOverrides: {
+                          baseFeePerGas: "0x1dcd6500",
+                        },
+                        calls: [
+                          {
+                            from: "0xcccccccccccccccccccccccccccccccccccccccc",
+                            to: "0xdddddddddddddddddddddddddddddddddddddddd",
+                            value: "0x2386f26fc10000",
+                          },
+                        ],
+                        validation: false,
+                        traceTransfers: false,
+                      },
+                      quantity: "pending",
+                    },
+                  ],
+                };
+
+                console.log(request);
+            - language: python
+              code: "from web3 import Web3, HTTPProvider\r\n\r\n#Replace with your Alchemy API key:\r\napiKey = \"demo\"\r\n\r\n# Initialize a Web3.py instance\r\nweb3 = Web3(Web3.HTTPProvider('https://eth-mainnet.g.alchemy.com/v2 /'+apiKey))\r\n\r\n# Query the blockchain (replace example parameters)\r\ndata = web3.eth.call({\r\n\t\t'value': 0, \r\n\t\t'gas': 21736, \r\n\t\t'maxFeePerGas': 2000000000, \r\n\t\t'maxPriorityFeePerGas': 1000000000, \r\n\t\t'to': '0xc305c90',\r\n\t\t'data': '0x477a5c98'\r\n\t\t}) \r\n\r\n# Print the output to console\r\nprint(data)"
+              name: web3.py
+        responses:
+          '200':
+            description: The result of the call.
+            content:
+              application/json:
+                schema:
+                  $ref: ../evm_responses.yaml#/eth_simulateV1

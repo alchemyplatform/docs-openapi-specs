@@ -620,6 +620,17 @@ eth_call:
       example:
         $ref: ./evm_examples.yaml#/string_result_response
 
+eth_simulateV1:
+  allOf:
+    - $ref: '#/common_response_fields'
+    - type: object
+      properties:
+        result:
+          type: object            
+          description: The result of the simulation
+      example:
+        $ref: ./evm_examples.yaml#/eth_simulateV1
+
 getTxn_result_response:
   allOf:
     - $ref: '#/common_response_fields'
