@@ -2181,7 +2181,7 @@ components:
       name: excludeFilters[]
       description: |-
         Array of filters (as ENUMS) that will be applied to the query. NFTs that match one or more of these filters will be excluded from the response. May not be used in conjunction with includeFilters[]. Filter Options:
-          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. Please note that this filter is currently supported only on Ethereum Mainnet and Matic Mainnet, and is **available exclusively on paid tiers**.
+          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. Please note that this filter is **available exclusively on paid tiers**.
           - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
           - To learn more about spam, you can refer to this: <span class="custom-style"><a href="https://www.alchemy.com/overviews/spam-nfts" target="_blank">Spam NFTs and how to fix them</a></span>
       schema:
@@ -2205,7 +2205,7 @@ components:
       name: includeFilters[]
       description: |-
         Array of filters (as ENUMS) that will be applied to the query. Only NFTs that match one or more of these filters will be included in the response. May not be used in conjunction with excludeFilters[]. Filter Options:
-          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. Please note that this filter is currently supported only on Ethereum Mainnet and Matic Mainnet, and is **available exclusively on paid tiers**.
+          - SPAM: NFTs that have been classified as spam. Spam classification has a wide range of criteria that includes but is not limited to emitting fake events and copying other well-known NFTs. Please note that this filter is **available exclusively on paid tiers**.
           - AIRDROPS: NFTs that have were airdropped to the user. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address. NOTE: this filter is currently supported on Ethereum Mainnet, Ethereum Goerli, and Matic Mainnet only.
           - To learn more about spam, you can refer to this: <span class="custom-style"><a href="https://www.alchemy.com/overviews/spam-nfts" target="_blank">Spam NFTs and how to fix them</a></span>
       schema:
@@ -2229,7 +2229,7 @@ components:
           - LOW
 
         The confidence level set means that any spam that is at that confidence level or higher will be filtered out. For example, if the confidence level is HIGH, contracts that we have HIGH or VERY_HIGH confidence in being spam will be filtered out from the response. 
-        Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for Matic Mainnet.
+        Defaults to VERY_HIGH for Ethereum Mainnet and MEDIUM for other networks.
 
         **Please note that this filter is only available on paid tiers. Upgrade your account [here](https://dashboard.alchemyapi.io/settings/billing/).**
       schema:
