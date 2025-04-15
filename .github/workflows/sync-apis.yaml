@@ -604,7 +604,7 @@ jobs:
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
         working-directory: ./ethereum
-        run: rdme openapi eth_simulateV1.yaml --key=$README_API_KEY --id=67f44614304e6c004147ece2
+        run: rdme openapi eth_simulateV1.yaml --key=$README_API_KEY --id=67f54b64304e6c00414dcd89
 
       # Update Polygon PoS APIs
       - name: Update Polygon PoS API - eth_createAccessList
