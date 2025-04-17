@@ -1,6 +1,6 @@
 summary: NFTs By Wallet
 description: >
-  Retrieves all NFTs currently owned by multiple addresses using network and address pairs. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
+    Fetches NFTs for multiple wallet addresses and networks. Returns a list of NFTs and metadata for each wallet/network combination. This endpoint is supported on Ethereum and many L2s, including Polygon, Arbitrum, Optimism, Base, World Chain and more. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens).
 tags: ["📚 Portfolio APIs"]
 x-readme:
   samples-languages:

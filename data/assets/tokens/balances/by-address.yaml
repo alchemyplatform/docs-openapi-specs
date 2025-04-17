@@ -1,6 +1,6 @@
 summary: Token Balances By Wallet
 description: >
-  Fetches current balances for multiple addresses using network and address pairs. Returns a list of token balances, each containing the network and address. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens)
+  Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and networks. Returns a list of tokens with balances for each wallet/network combination. This endpoint is supported on Ethereum, Solana, and 30+ EVM chains. See the full list of supported networks [here](https://dashboard.alchemy.com/chains?service=token-api&utm_source=readme&utm_medium=link&utm_campaign=docs_method_chains_link_v1_tokens)
 tags: ["📚 Portfolio APIs"]
 x-readme:
   samples-languages:

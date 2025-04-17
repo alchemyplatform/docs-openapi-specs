@@ -1,6 +1,6 @@
-summary: Transaction History By Wallet
+summary: Transactions By Wallet
 description: >
-  Fetches all transactions addresses using network and address pairs (currently limited to 1 in BETA) Returns a list of transaction objects. This endpoint will be supported on Ethereum, Solana, and 30+ EVM chains (currently limited to ETH and Base)
+  Fetches all historical transactions (internal & external) for multiple wallet addresses and networks. Returns a list of transaction objects with metadata and log information. This endpoint will be supported on Ethereum, Solana, and 30+ EVM chains (Beta: currently limited to Ethereum and Base with a limit of 1 address)
 tags: ["📚 Portfolio APIs"]
 x-readme:
   samples-languages:

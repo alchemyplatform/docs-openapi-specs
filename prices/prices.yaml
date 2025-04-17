@@ -355,6 +355,11 @@ components:
               enum: [ "5m", "1h", "1d" ]
               default: "1d"
               example: "1d"
+            withMarketData:
+              type: boolean
+              description: Whether to include market cap and volume for each token
+              example: true
+              default: false
         - required: ["network", "address", "startTime", "endTime"]
           properties:
             network:
@@ -396,6 +401,11 @@ components:
               enum: [ "5m", "1h", "1d" ]
               default: "1d"
               example: "1d"
+            withMarketData:
+              type: boolean
+              description: Whether to include market cap and volume for each token
+              example: true
+              default: false
 
     HistoricalPricesResponse:
       type: object
@@ -461,6 +471,14 @@ components:
           format: date-time
           description: Timestamp of the price data point.
           example: "2024-01-01T00:00:00Z"
+        marketCap:
+          type: string
+          description: Total market capitalization at the timestamp
+          example: "274292310008.21802"
+        totalVolume:
+          type: string
+          description: Volume traded during the defined interval
+          example: "6715146404.608721"
       required:
         - value
         - timestamp

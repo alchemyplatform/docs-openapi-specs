@@ -455,6 +455,11 @@ components:
             Array of address and networks pairs (limit 3 pairs, max 20 networks each). Networks should match network enums.
           items:
             $ref: "#/components/schemas/AddressItemWith20Maximum"
+        includeNativeTokens:
+          type: boolean
+          description: Whether to include each chain's native token in the response (e.g. ETH on Ethereum). The native token will have a null contract address.
+          example: true
+          default: true
       required:
         - addresses
 
@@ -476,6 +481,11 @@ components:
         withPrices:
           description: 'Boolean - if set to `true`, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. Defaults to `true`.'
           type: boolean
+          default: true
+        includeNativeTokens:
+          type: boolean
+          description: Whether to include each chain's native token in the response (e.g. ETH on Ethereum). The native token will have a null contract address.
+          example: true
           default: true
       required:
         - addresses
