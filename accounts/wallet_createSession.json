@@ -1,0 +1,186 @@
+{
+  "request": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string",
+          "pattern": "^0x(.*)$"
+        },
+        "chainId": {
+          "type": "string",
+          "pattern": "^0x(.*)$"
+        },
+        "expiry": {
+          "type": "number"
+        },
+        "key": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": ["secp256k1"]
+                },
+                {
+                  "type": "string",
+                  "enum": ["contract"]
+                }
+              ]
+            },
+            "publicKey": {
+              "type": "string",
+              "pattern": "^0x(.*)$"
+            }
+          },
+          "required": ["type", "publicKey"]
+        },
+        "permissions": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "description": "allows transfer of native tokens from the account",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["native-token-transfer"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "allowance": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      }
+                    },
+                    "required": ["allowance"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
+                "description": "allows the key to spend gas for UOs",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["gas-limit"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "limit": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      }
+                    },
+                    "required": ["limit"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
+                "description": "grants access to functions in the account",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["account-functions"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "functions": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^0x(.*)$"
+                        }
+                      }
+                    },
+                    "required": ["functions"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
+                "description": "grants full access to everything",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["root"]
+                  },
+                  "data": {
+                    "not": {}
+                  }
+                },
+                "required": ["type"]
+              }
+            ]
+          }
+        }
+      },
+      "required": ["account", "chainId", "key", "permissions"]
+    }
+  },
+  "response": {
+    "type": "object",
+    "properties": {
+      "sessionId": {
+        "type": "string",
+        "pattern": "^0x(.*)$"
+      },
+      "signatureRequest": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["personal_sign"]
+              },
+              "data": {
+                "anyOf": [
+                  {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "raw": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      }
+                    },
+                    "required": ["raw"]
+                  }
+                ]
+              }
+            },
+            "required": ["type", "data"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["eth_signTypedData_v4"]
+              },
+              "data": {}
+            },
+            "required": ["type", "data"]
+          }
+        ]
+      }
+    },
+    "required": ["sessionId", "signatureRequest"]
+  }
+}
