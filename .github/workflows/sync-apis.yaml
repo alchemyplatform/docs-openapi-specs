@@ -172,6 +172,12 @@ jobs:
         working-directory: ./accounts
         run: rdme openapi wallet_createAccount.yaml --key=$README_API_KEY --id=67f434bd4a56c70043d51750
 
+      - name: Update Embedded Accounts API - wallet_createSession
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./accounts
+        run: rdme openapi wallet_createSession.yaml --key=$README_API_KEY --id=680296efc8a45000114867c5
+
       - name: Update Embedded Accounts API - wallet_listAccounts
         env:
           README_API_KEY: ${{ secrets.README_API_KEY }}
