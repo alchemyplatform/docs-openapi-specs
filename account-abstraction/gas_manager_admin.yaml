@@ -32,7 +32,7 @@ paths:
                   default: 'My Policy'
                 policyType:
                   type: string
-                  description: Type of the policy (e.g. "sponsorship")
+                  description: Type of the policy (e.g. "sponsorship"). Currently we support "sponsorship" (for EVM network policies) and "solana" (for Solana network policies).
                   default: 'sponsorship'
                 appId:
                   type: string
@@ -41,15 +41,11 @@ paths:
                     Learn how to find your app ID [here](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
                   default: '6d834x9k1yh4dx6z'
                 rules:
-                  description: Rules for the policy
+                  description: Rules for "sponsorship" policy type. Empty if `policyType` is not "sponsorship".
                   $ref: './schemas.yaml#/components/schemas/Rules'
-                networks:
-                  description: Networks for the policy
-                  type: array
-                  items:
-                    type: string
-                  default:
-                    - ETH_MAINNET
+                solanaRules:
+                  description: Rules for "solana" policy type. Empty if `policyType` is not "solana".
+                  $ref: './schemas.yaml#/components/schemas/SolanaRules'
       responses:
         '200':
           description: Policy created successfully
@@ -150,13 +146,10 @@ paths:
                   default: 'My Policy'
                 rules:
                   $ref: './schemas.yaml#/components/schemas/Rules'
-                networks:
-                  description: Networks for the policy
-                  type: array
-                  items:
-                    type: string
-                  default:
-                    - ETH_MAINNET
+                  description: Rules for "sponsorship" policy type. Empty if `policyType` is not "sponsorship".
+                solanaRules:
+                  $ref: './schemas.yaml#/components/schemas/SolanaRules'
+                  description: Rules for "solana" policy type. Empty if `policyType` is not "solana".
       responses:
         '200':
           description: Policy rules replaced successfully
