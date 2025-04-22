@@ -6,40 +6,51 @@ components:
         maxSpendUsd:
           type: string
           description: Maximum amount of USD that can be spent by the Gas Manager
+          nullable: true
         maxSpendPerSenderUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single sender
+          nullable: true
         maxSpendPerUoUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single user operation
+          nullable: true
         maxCount:
           type: string
           description: Maximum number of operations that can be sponsored through the policy
+          nullable: true
         maxCountPerSender:
           type: string
           description: Maximum number of operations that can be sponsored for a single sender through the policy
+          nullable: true
         senderAllowlist:
           type: array
           items:
             type: string
           description: List of addresses that are allowed to send operations
+          nullable: true
         senderBlocklist:
           type: array
           items:
             type: string
           description: List of addresses that are not allowed to send operations
+          nullable: true
         startTimeUnix:
           type: string
           description: Unix timestamp of when the policy starts
+          nullable: true
         endTimeUnix:
           type: string
           description: Unix timestamp of when the policy ends
+          nullable: true
         sponsorshipExpiryMs:
           type: string
           description: Milliseconds from signing that the sponsorship expires. Defaults to 600000 (10 minutes).
           default: '600000'
+          nullable: true
         webhookRules:
           type: object
+          nullable: true
           description: Make a request to your server to verify sponsorship eligibility.
           properties:
             webhookUrl:
