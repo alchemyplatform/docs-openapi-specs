@@ -6,54 +6,37 @@ components:
         maxSpendUsd:
           type: string
           description: Maximum amount of USD that can be spent by the Gas Manager
-          default: '5000.00'
-          nullable: true
         maxSpendPerSenderUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single sender
-          default: '100.00'
-          nullable: true
         maxSpendPerUoUsd:
           type: string
           description: Maximum amount of USD that can be spent by a single user operation
-          default: '20.00'
-          nullable: true
         maxCount:
           type: string
           description: Maximum number of operations that can be sponsored through the policy
-          default: '100'
-          nullable: true
         maxCountPerSender:
           type: string
           description: Maximum number of operations that can be sponsored for a single sender through the policy
-          default: '2'
-          nullable: true
         senderAllowlist:
           type: array
           items:
             type: string
           description: List of addresses that are allowed to send operations
-          default:
-            - '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266'
-            - '0x70997970c51812dc3a010c7d01b50e0d17dc79c8'
         senderBlocklist:
           type: array
           items:
             type: string
           description: List of addresses that are not allowed to send operations
-          nullable: true
         startTimeUnix:
           type: string
           description: Unix timestamp of when the policy starts
-          default: '1674228753'
         endTimeUnix:
           type: string
           description: Unix timestamp of when the policy ends
-          default: '1679340742'
-          nullable: true
         sponsorshipExpiryMs:
           type: string
-          description: Milliseconds from signing that the sponsorship expires
+          description: Milliseconds from signing that the sponsorship expires. Defaults to 600000 (10 minutes).
           default: '600000'
         webhookRules:
           type: object
@@ -72,14 +55,12 @@ components:
             - webhookUrl
             - approveOnFailure
         networks:
-          description: Networks for the policy
+          description: |
+            Networks for the policy. Example: ["ETH_MAINNET"]
           type: array
           items:
             type: string
-          default:
-            - ETH_MAINNET
       required:
-        - startTimeUnix
         - sponsorshipExpiryMs
 
     SolanaRules:
@@ -88,30 +69,23 @@ components:
         maxSpendUsd:
           type: string
           description: Maximum amount of USD that can be spent by the Gas Manager
-          default: '6500.00'
         maxSpendPerTxnUsd:
           type: string
           description: Maximum amount of USD that can be spent per transaction
-          default: '30.00'
         maxCount:
           type: string
           description: Maximum number of transactions that can be sponsored through the policy
-          default: '200'
         startTimeUnix:
           type: string
           description: Unix timestamp of when the policy starts
-          default: '1674228753'
         endTimeUnix:
           type: string
           description: Unix timestamp of when the policy ends
-          default: '1679340742'
         networks:
           type: array
           items:
             type: string
-          description: List of networks the policy is active on
-          default:
-            - 'SOLANA_MAINNET'
+          description: List of networks the policy is active on. Valid values are "SOLANA_MAINNET" and "SOLANA_DEVNET".
           
           
     Policy:
