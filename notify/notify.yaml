@@ -809,14 +809,16 @@ components:
           description: 'ID of the address activity webhook'
         addresses_to_add:
           type: array
+          required: true
           default: []
-          description: 'List of addresses to add, use [] if none.'
+          description: 'List of addresses to add, **use [] if none**.'
           items:
             type: string
         addresses_to_remove:
           type: array
+          required: true
           default: []
-          description: 'List of addresses to remove, use [] if none.'
+          description: 'List of addresses to remove, **use [] if none**.'
           items:
             type: string
     update_webhook_nft_filters:
@@ -864,12 +866,14 @@ components:
           description: 'ID of the address activity webhook'
         nft_metadata_filters_to_add:
           type: array
-          description: 'List of nft metadata filters to add, use [] if none.'
+          description: 'List of nft metadata filters to add, **use [] if none**.'
+          required: true
           items:
             $ref: '#/components/schemas/nft_metadata_filter_object'
         nft_metadata_filters_to_remove:
           type: array
-          description: 'List of nft metadata filters to remove, use [] if none.'
+          description: 'List of nft metadata filters to remove, **use [] if none**.'
+          required: true
           items:
             $ref: '#/components/schemas/nft_metadata_filter_object'
     replace_webhook_addresses:
