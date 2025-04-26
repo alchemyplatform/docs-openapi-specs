@@ -15,7 +15,7 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: "./../../../v1.yaml#/components/schemas/ByAddressRequestWithNFTOptions"
+        $ref: "./../../../v1.yaml#/components/schemas/ByAddressRequestWithNFTOptionsAndPaging"
 responses:
   "200":
     description: Successful response!
