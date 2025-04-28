@@ -266,7 +266,63 @@
                 "type": "string",
                 "enum": ["eth_signTypedData_v4"]
               },
-              "data": {}
+              "data": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "object",
+                    "properties": {
+                      "chainId": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "salt": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      },
+                      "verifyingContract": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      },
+                      "version": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "types": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["name", "type"]
+                        }
+                      }
+                    }
+                  },
+                  "primaryType": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {}
+                    }
+                  }
+                },
+                "required": ["types", "primaryType", "message"]
+              }
             },
             "required": ["type", "data"]
           }

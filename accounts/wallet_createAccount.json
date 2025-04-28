@@ -42,59 +42,5 @@
       }
     },
     "required": ["accountAddress", "id"]
-  },
-  "headers": {
-    "x-alchemy-wallet-api-auth": {
-      "description": "The auth header is used to verify the end user making the request. When passed as a header, this object needs to be converted to string and Base64 encoded. See the schema definition for x-alchemy-wallet-api-auth for its shape",
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["ECDSA"]
-            },
-            "signature": {
-              "type": "string",
-              "pattern": "^0x(.*)$"
-            }
-          },
-          "required": ["type", "signature"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["TURNKEY_STAMP"]
-            },
-            "body": {
-              "description": "This is the body of the whoami request. The organizationId here is the organizationId returned for a given logged in user",
-              "type": "object",
-              "properties": {
-                "organizationId": {
-                  "type": "string"
-                }
-              },
-              "required": ["organizationId"]
-            },
-            "stamp": {
-              "description": "This is the result of generating a stamp over the body",
-              "type": "object",
-              "properties": {
-                "stampHeaderName": {
-                  "type": "string"
-                },
-                "stampHeaderValue": {
-                  "type": "string"
-                }
-              },
-              "required": ["stampHeaderName", "stampHeaderValue"]
-            }
-          },
-          "required": ["type", "body", "stamp"]
-        }
-      ]
-    }
   }
 }

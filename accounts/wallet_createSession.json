@@ -64,6 +64,31 @@
                 "required": ["type", "data"]
               },
               {
+                "description": "allows transfer or approval of erc20 tokens from the account",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["erc20-token-transfer"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "allowance": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      },
+                      "address": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      }
+                    },
+                    "required": ["allowance", "address"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
                 "description": "allows the key to spend gas for UOs",
                 "type": "object",
                 "properties": {
@@ -80,6 +105,27 @@
                       }
                     },
                     "required": ["limit"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
+                "description": "grants access to all functions in a contract",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["contract-access"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      }
+                    },
+                    "required": ["address"]
                   }
                 },
                 "required": ["type", "data"]
@@ -110,15 +156,66 @@
                 "required": ["type", "data"]
               },
               {
+                "description": "access to a function selector in any address or contract",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["functions-on-all-contracts"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "functions": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^0x(.*)$"
+                        }
+                      }
+                    },
+                    "required": ["functions"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
+                "description": "grants access to specified functions on a specific contract",
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["functions-on-contract"]
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "address": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      },
+                      "functions": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^0x(.*)$"
+                        }
+                      }
+                    },
+                    "required": ["address", "functions"]
+                  }
+                },
+                "required": ["type", "data"]
+              },
+              {
                 "description": "grants full access to everything",
                 "type": "object",
                 "properties": {
                   "type": {
                     "type": "string",
                     "enum": ["root"]
-                  },
-                  "data": {
-                    "not": {}
                   }
                 },
                 "required": ["type"]
@@ -174,7 +271,63 @@
                 "type": "string",
                 "enum": ["eth_signTypedData_v4"]
               },
-              "data": {}
+              "data": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "object",
+                    "properties": {
+                      "chainId": {
+                        "type": "number"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "salt": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      },
+                      "verifyingContract": {
+                        "type": "string",
+                        "pattern": "^0x(.*)$"
+                      },
+                      "version": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "types": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["name", "type"]
+                        }
+                      }
+                    }
+                  },
+                  "primaryType": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "object",
+                    "patternProperties": {
+                      "^(.*)$": {}
+                    }
+                  }
+                },
+                "required": ["types", "primaryType", "message"]
+              }
             },
             "required": ["type", "data"]
           }

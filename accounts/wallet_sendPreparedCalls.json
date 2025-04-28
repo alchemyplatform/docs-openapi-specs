@@ -207,7 +207,8 @@
       "preparedCallIds": {
         "type": "array",
         "items": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^0x(.*)$"
         }
       }
     },

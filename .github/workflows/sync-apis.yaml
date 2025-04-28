@@ -202,6 +202,12 @@ jobs:
         working-directory: ./accounts
         run: rdme openapi wallet_requestAccount.yaml --key=$README_API_KEY --id=67f435141927c200189a230a
 
+      - name: Update Embedded Accounts API - wallet_getCallsStatus
+        env:
+          README_API_KEY: ${{ secrets.README_API_KEY }}
+        working-directory: ./accounts
+        run: rdme openapi wallet_getCallsStatus.yaml --key=$README_API_KEY --id=680fcd2f17475500108c0e37
+
       # Update Debug APIs
       - name: Update Debug API - debug_traceBlockByHash
         env:
