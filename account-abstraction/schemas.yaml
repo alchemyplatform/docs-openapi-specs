@@ -65,12 +65,6 @@ components:
           required:
             - webhookUrl
             - approveOnFailure
-        networks:
-          description: |
-            Networks for the policy. Example: ["ETH_MAINNET"]
-          type: array
-          items:
-            type: string
       required:
         - sponsorshipExpiryMs
 
@@ -92,12 +86,6 @@ components:
         endTimeUnix:
           type: string
           description: Unix timestamp of when the policy ends
-        networks:
-          type: array
-          items:
-            type: string
-          description: List of networks the policy is active on. Valid values are "SOLANA_MAINNET" and "SOLANA_DEVNET".
-          
           
     Policy:
       type: object
