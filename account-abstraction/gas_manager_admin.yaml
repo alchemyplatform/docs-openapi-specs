@@ -46,6 +46,12 @@ paths:
                 solanaRules:
                   description: Rules for "solana" policy type. Empty if `policyType` is not "solana".
                   $ref: './schemas.yaml#/components/schemas/SolanaRules'
+                networks:
+                  description: |
+                    Networks for the policy. Example: ["ETH_MAINNET"]. For Solana policies, valid values are "SOLANA_MAINNET" and "SOLANA_DEVNET".
+                  type: array
+                  items:
+                    type: string
       responses:
         '200':
           description: Policy created successfully
@@ -150,6 +156,12 @@ paths:
                 solanaRules:
                   $ref: './schemas.yaml#/components/schemas/SolanaRules'
                   description: Rules for "solana" policy type. Empty if `policyType` is not "solana".
+                networks:
+                  description: |
+                    Networks for the policy. Example: ["ETH_MAINNET"]. For Solana policies, valid values are "SOLANA_MAINNET" and "SOLANA_DEVNET".
+                  type: array
+                  items:
+                    type: string
       responses:
         '200':
           description: Policy rules replaced successfully
