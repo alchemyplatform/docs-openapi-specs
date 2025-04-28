@@ -14,7 +14,7 @@ paths:
   /{apiKey}:
     post:
       summary: wallet_requestAccount
-      description: This method is used to get the smart account address and relevant info for a given signer. If an account does not already exist for a given signer, this method will create one before returning the counterfactual address. This method requires passing a stamped whoami request via the x-alchemy-wallet-api-auth header. This method is only available as a private early access for now
+      description: This method is used to get the smart account address and relevant info for a given signer. If an account does not already exist for a given signer, this method will create one before returning the counterfactual address. This method is only available as a private early access for now
       x-readme:
         samples-languages:
           - javascript
@@ -34,12 +34,6 @@ paths:
               }
             </style>
             For higher throughput, <span class="custom-style"><a href="https://alchemy.com/?a=docs-demo" target="_blank">create your own API key</a></span>
-          required: true
-        - name: x-alchemy-wallet-api-auth
-          in: header
-          description: The auth header is used to verify the end user making the request. When passed as a header, this object needs to be converted to string and Base64 encoded. See the schema definition for x-alchemy-wallet-api-auth for its shape
-          schema:
-            type: string
           required: true
 
       requestBody:
@@ -81,5 +75,3 @@ components:
   schemas:
     Response:
       $ref: wallet_requestAccount.json#/response
-    x-alchemy-wallet-api-auth:
-      $ref: wallet_requestAccount.json#/headers/x-alchemy-wallet-api-auth
