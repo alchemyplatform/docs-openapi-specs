@@ -37,7 +37,7 @@ If you're feeling adventurous, feel free to open a pull request [here](https://g
 # WIP 👷‍♀️
 
 > Below section is WIP.
-> Until we add ids to every spec, deploy specs as you normally would.
+> Until we add IDs to every spec, deploy specs as you normally would.
 
 ## Alchemists 👩‍🔬
 
@@ -47,11 +47,11 @@ To speed up your development, 2 commands are now available.
 - `npm run update spec.yaml`
 
 You no longer need to run the `rdme` command line directly to push to staging.
-You also no longer need to pass an API key and readme id! 🎉
+You also no longer need to pass an API key and readme ID! 🎉
 
 ### First time?
 
-> Make sure you first ran through the steps [above](#getting-started).
+> Make sure you first run through the steps [above](#getting-started).
 
 1. Clone `.env.template` into `.env`.
 
@@ -79,7 +79,7 @@ This will:
 
 - deploy your spec to readme
 - create a page and id
-- associate page id with your spec
+- associate page ID with your spec
 
 3. Your spec will be updated with a `x-readme.id` field. This is super important to ensure updates work smoothly in the future!
 
@@ -101,7 +101,7 @@ npm run create spec.yaml
 npm run update spec.yaml
 ```
 
-3. Check the spec has a `x-readme.id` property. This id is used to match the spec on Readme's side.
+3. Check the spec has a `x-readme.id` property. This ID is used to match the spec on Readme's side.
 4. Reach out to Bastien if you have any issues running the scripts.
 
 ## Linting
