@@ -881,9 +881,11 @@ components:
       properties:
         webhook_id:
           type: string
+          required: true
           description: 'ID of the address activity webhook.'
         addresses:
           type: array
+          required: true
           description: 'New list of addresses to track. This replaces any existing addresses.'
           items:
             type: string
@@ -893,8 +895,10 @@ components:
         webhook_id:
           type: string
           description: 'ID of the address activity webhook'
+          required: true
         is_active:
           type: boolean
+          required: true
           description: |
             True - set webhook to active state
             False - set webhook to inactive state
