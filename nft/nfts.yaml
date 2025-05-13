@@ -49,6 +49,10 @@ servers: # servers are also specified at the method level, if there isn't a spec
           - monad-testnet
           - ronin-mainnet
           - ronin-saigon
+          - anime-mainnet
+          - anime-sepolia
+          - story-mainnet
+          - story-aeneid
         default: eth-mainnet
 x-sandbox:
   category:
