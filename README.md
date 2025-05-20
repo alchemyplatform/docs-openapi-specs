@@ -1,3 +1,6 @@
+> \[!WARNING]
+> This repository is no longer maintained. Please visit our new documentation repository at <https://github.com/alchemyplatform/docs> which holds all Alchemy OpenAPI specs.
+
 # Alchemy Docs
 
 Hey there - thanks for checking our API docs! 👋
